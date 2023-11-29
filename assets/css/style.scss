@@ -1,0 +1,63 @@
+// start color and layouts
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Janna-lt";
+  src:
+    url("/assets/fonts/Janna-lt.ttf") format("truetype"),
+    url("/assets/fonts/Janna-lt-Bold.ttf");
+  font-weight: bolder;
+  font-display: swap;
+}
+
+$main-bg: #fafafa;
+$text-color: #5a7184;
+$primary: #dcba95;
+$primary: #dcba9565;
+$primary-light: #f9f4ee;
+$secondary-black: #2d3a4a;
+$body-text: #5a7184;
+$body-text2: #959ead;
+$icons: #919eab;
+$border-color: #ebeaed;
+$red-color: #b1628c;
+$red-bg: #f5ecf1;
+$rating-bg: #ecb43c;
+
+// end color and layouts
+
+// start mixins
+
+
+// end mixins
+
+// start common classes and components
+
+h3 {
+  color: $secondary-black;
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+
+body,
+html {
+  overflow-x: clip;
+}
+body {
+  font-family: "Janna-lt", sans-serif;
+  background-color: $main-bg;
+}
+
+// end common classes and components
+

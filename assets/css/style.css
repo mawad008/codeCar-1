@@ -1,0 +1,32 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Janna-lt";
+  src: url("/assets/fonts/Janna-lt.ttf") format("truetype"), url("/assets/fonts/Janna-lt-Bold.ttf");
+  font-weight: bolder;
+  font-display: swap;
+}
+h3 {
+  color: #2d3a4a;
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body,
+html {
+  overflow-x: clip;
+}
+
+body {
+  font-family: "Janna-lt", sans-serif;
+  background-color: #fafafa;
+}/*# sourceMappingURL=style.css.map */
