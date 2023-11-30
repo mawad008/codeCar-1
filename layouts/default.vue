@@ -2,208 +2,32 @@
   <div>
     <nav class="navbar" :class="{ active: activeNav }">
       <div class="container">
-        <div
-          class="items-container w-100 d-flex align-items-center justify-content-between"
-          :class="{ active: activeNav }"
-        >
-          <div class="items d-flex align-items-center gap-4">
-          <nuxt-link to="/">
-            <span>الرئيسية</span>
-          </nuxt-link>
-
-            <v-menu>
-              <template v-slot:activator="{ props }">
-                <button v-bind="props" class="d-flex align-items-center gap-2">
-                  <span> الاقسام</span>
-                  <i class="fa-solid fa-sort-down"></i>
-                </button>
-              </template>
-              <div>
-                <div
-                  id="mega-menu-id"
-                  class="mega-menu"
-                  :class="{ 'd-none': activeNav }"
-                >
-                  <div class="row">
-                    <div v-for="(i, index) in 4" class="col-12 col-xl-3 col-lg-3 col-md-6">
-                      <div class="box d-flex flex-column align-item-center ">
-                      <div class="d-flex align-items-center justify-content-center w-100 ">
-                        <div class="image" :class="`f${index + 1}`">
-                          <img src="" alt="" />
-                        </div>
-                      </div>
-                        <div class="text d-flex flex-column gap-3">
-                          <h6 class="mt-3">الذهب</h6>
-                          <div
-                            class="links d-flex align-items-center gap-3 flex-column"
-                          >
-                            <span> الاساور </span>
-                            <span> القلادات </span>
-                            <span> الاطقم </span>
-                            <span> الخواتم </span>
-                          </div>
-                          <span class="all"> الكل </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </v-menu>
-             <nuxt-link to="gold">
-            <span>السبائك</span> 
-             </nuxt-link>
-             <nuxt-link to="vendors">
-            <span>التجار</span> 
-             </nuxt-link>
-          </div>
-          <div class="d-flex align-items-center gap-2 supp">
-            <i class="fa-solid fa-headset"></i>
-            <span>الدعم الفني</span>
-          </div>
-        </div>
-        <v-divider :class="{ 'd-none': activeNav }" :thickness="1"></v-divider>
-        <div
-          class="d-flex align-items-center bg-dange w-100 justify-content-between"
-        >
-          <div class="d-flex align-items-center gap-5">
+        <div class="items w-100 d-flex align-items-center justify-content-between">
             <div class="logo">
-              <img src="" alt="" />
+             <img src="~/assets/images/logo-white.svg" alt="">
             </div>
 
-            <div v-if="activeNav" class="items d-flex align-items-center gap-4">
-          <nuxt-link to="/">
-            <span>الرئيسية</span>
-          </nuxt-link>
+            <div class="links">
+             <a href=""> الرئيسية </a>
+             <a href=""> التمويل </a>
+             <a href=""> المعرض </a>
+             <a href="">  اخبار السيارات </a>
+             <a href=""> العروض </a>
+             <a href=""> تتبع طلبك</a>
+             <a href=""> اتصل بنا </a>
+             <a href=""> من نحن </a>
+             <a href=""> اضف اعلانك </a>
+            </div>
 
-            <v-menu>
-              <template v-slot:activator="{ props }">
-                <button v-bind="props" class="d-flex align-items-center gap-2">
-                  <span> الاقسام</span>
-                  <i class="fa-solid fa-sort-down"></i>
-                </button>
-              </template>
-              <div>
-                <div
-                  id="mega-menu-id"
-                  class="mega-menu"
-                  
-                >
-                  <div class="row">
-                    <div v-for="(i, index) in 4" class="col-12 col-xl-3 col-lg-3 col-md-6">
-                      <div class="box d-flex flex-column align-items-center">
-                        <div class="d-flex align-items-center justify-content-center w-100 ">
-                        <div class="image" :class="`f${index + 1}`">
-                          <img src="" alt="" />
-                        </div>
-                      </div>
-                        <div class="text d-flex flex-column gap-3">
-                          <h6 class="mt-3">الذهب</h6>
-                          <div
-                            class="links d-flex align-items-center gap-3 flex-column"
-                          >
-                            <span> الاساور </span>
-                            <span> القلادات </span>
-                            <span> الاطقم </span>
-                            <span> الخواتم </span>
-                          </div>
-                          <span class="all"> الكل </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="icons">
+              <span class="lang">en</span>
+              <div class="icon">
+               <img src="~/assets/images/search-icon.svg" alt="">
               </div>
-            </v-menu>
-             <nuxt-link to="gold">
-            <span>السبائك</span> 
-             </nuxt-link>
-             <nuxt-link to="vendors">
-            <span>التجار</span> 
-             </nuxt-link>
-            <span>الدعم الفني</span>
-          </div>
-            <div v-if="!activeNav"
-              class="search d-flex align-items-center justify-content-between px-1"
-              style=""
-            >
-              <div class="inp">
-                <input type="text" :placeholder="$t('search')" style="" />
-              </div>
-              <div class="d-flex align-item-cente gap-4">
-                <v-menu>
-                  <template v-slot:activator="{ props }">
-                    <button class="d-flex align-items-center gap-1" v-bind="props">
-                    {{ $t("sections") }}
-                    <i class="fa-solid fa-caret-down"></i>
-                    </button>
-                   
-                  </template>
-                  <v-list>
-                    <!-- <v-list-item
-          v-for="(item, index) in items"
-          :key="index"
-          :value="index"
-        >
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item> -->
-                  </v-list>
-                </v-menu>
-                <div class="search-icon">
-                <i class="fab fa-sistrix "></i>
-                </div>
+              <div class="icon">
+               <img src="~/assets/images/heart-icon.svg" alt="">
               </div>
             </div>
-          </div>
-
-          <div class="icons-with-profile d-flex gap-3">
-            <div class="icons d-flex align-items-center gap-3">
-              <div @click="changeLang()" class="icon lang d-flex align-items-center gap-1">
-                <span>{{ $t('ar') }}</span>
-                <i class="fa-solid fa-earth-americas"></i>
-              </div>
-              <nuxt-link to="wishlist">
-              <div class="icon border">
-                <i class="fa-solid fa-heart"></i>
-              </div>
-              </nuxt-link>
-              <nuxt-link to="cart">
-                <v-badge :content="theNum" color="#B1628C">
-              <div class="icon border">
-                  <i class="fa-solid fa-cart-shopping"></i>
-              </div>
-                </v-badge>
-              </nuxt-link>
-            </div>
-            <div class="profile">
-              <v-menu class="menu">
-                <template v-slot:activator="{ props }">
-                  <button
-                    v-bind="props"
-                    class="d-flex align-items-center gap-2"
-                  >
-                  <div class="iconn">
-                    <i class="fa-solid fa-caret-down"></i>
-                  </div>
-                    <img src="" alt="" />
-                  </button>
-                </template>
-                <div
-                  id="list-profile"
-                  class="list d-flex flex-column p-4 gap-4 text-center"
-                >
-                
-                  <span> الملف الشخصي </span>
-                  <span> طلباتي </span>
-                  <span> الامان </span>
-                  <div class="d-flex align-items-center gap-2">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <span> تسجيل الخروج </span>
-                  </div>
-                </div>
-              </v-menu>
-            </div>
-          </div>
         </div>
       </div>
     </nav>

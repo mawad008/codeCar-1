@@ -2,6 +2,10 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["nuxt-swiper", "@nuxtjs/i18n"],
+  server: {
+    host: '0.0.0.0',
+    port: 3000 // You can set a specific port if neede
+  },
   plugins: [
     // { src: "~/plugins/lottie.js" , mode: 'client'},
   ],
