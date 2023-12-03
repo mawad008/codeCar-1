@@ -23,6 +23,7 @@
     "axios": "^1.6.2",
     "nuxt-swiper": "^1.2.2",
     "sass": "^1.69.5",
+    "vue-easy-lightbox": "^1.16.0",
     "vuex": "^4.1.0"
   }
 }

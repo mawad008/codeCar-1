@@ -99,7 +99,7 @@ a {
       font-size: 16px;
       font-style: normal;
       font-weight: 700;
-      color: $primary;
+      color: #dcb63b;
     }
     span {
       font-size: 12px;
@@ -140,6 +140,7 @@ a {
       justify-content: center;
       border-radius: 8px;
       border: 1px solid #ebeaed;
+      cursor: pointer;
     }
     button {
       display: flex;
@@ -154,7 +155,7 @@ a {
       color: #fff;
       font-size: 16px;
       font-style: normal;
-      font-weight: 700;
+      font-weight: 600;
     }
   }
 }
@@ -212,6 +213,107 @@ body {
   }
 }
 
+.footer-container {
+  background-color: #1b2126;
+  color: #fff;
+  padding: 31px 104px;
+  position: relative;
+  background-image: url("~/assets/images/Tire.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  .tire {
+    position: absolute;
+    // left: 50%;
+    // transform: translateX(-50%);
+    // z-index: -1;
+  }
+  .search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    h5 {
+      font-size: 24px;
+      font-style: normal;
+    }
+    span {
+      color: #8c8c8c;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+    }
+    .search-input {
+      display: flex;
+      width: 751px;
+      height: 60px;
+      align-items: center;
+      gap: 12px;
+      border-radius: 40px;
+      background: rgba(255, 255, 255, 0.18);
+      position: relative;
+      padding: 0px 32px;
+      .input {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        width: 100%;
+      }
+      input {
+        border: none;
+        outline: none;
+        color: #fff;
+        font-size: 16px;
+        width: 80%;
+        ::placeholder {
+          color: red;
+        }
+      }
+      button {
+        position: absolute;
+        left: 5px;
+        display: flex;
+        width: 136px;
+        height: 48px;
+        padding: 0px 38px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+  .box-container {
+    p {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+    }
+    .icons {
+      gap: 14px;
+      .icon {
+        display: flex;
+        width: 48px;
+        height: 48px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+      }
+    }
+  }
+  .foot {
+    span {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+    }
+  }
+}
 // end navbar and footer
 
 // start hero section
@@ -427,7 +529,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 10px;
+    border-radius: 16px;
+    background: #fff;
+    width: 192px;
+    height: 163px;
     .image {
       width: 100%;
       height: 88px;
@@ -585,6 +692,229 @@ body {
 // start our products section
 
 .our-products {
+  margin-top: 120px;
+
+  .header {
+    .v-btn {
+      color: $text-color;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      letter-spacing: 0px !important;
+      .v-btn__content {
+        position: relative;
+        svg {
+          position: absolute;
+          height: 7px;
+          width: 50px;
+          right: 0;
+          bottom: -9px;
+          display: none;
+        }
+      }
+      &.v-slide-group-item--active {
+        color: #dcb63b !important;
+        font-weight: bold;
+        .v-tab__slider {
+          display: none;
+        }
+        .v-btn__content {
+          svg {
+            display: block;
+          }
+        }
+      }
+      .v-btn__overlay {
+        display: none;
+      }
+      :hover {
+        background-color: transparent;
+      }
+    }
+  }
 }
 
 // end our products section
+
+// start best offer section
+
+.best-offers {
+  background-color: #fff;
+  margin-top: $margin-top-home;
+  padding: 72px;
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    .main-image {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 40px;
+      .main {
+        gap: 14px;
+        .choose {
+          gap: 8px;
+        }
+      }
+    }
+    button {
+      display: flex;
+      width: 211px;
+      height: 48px;
+      padding: 0px 20px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      border: 1px solid #2d3a4a;
+      background: #2d3a4a;
+      color: #fff;
+      margin-top: 48px;
+    }
+    h4 {
+      width: 433px;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%;
+      margin-bottom: 40px;
+      color: $secondary-black;
+    }
+    .special {
+      color: #5a7184;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      margin-bottom: 18px;
+    }
+    .image {
+      width: 70px;
+      height: 56px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0px 12px 32px 0px rgba(169, 169, 173, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+    .choose {
+      h6 {
+        color: $secondary-black;
+        font-size: 18px;
+      }
+      span {
+        color: #5a7184;
+        font-size: 14px;
+        width: 370px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 160%;
+      }
+    }
+  }
+
+  .big-img {
+    width: 582.157px;
+    height: 506.854px;
+  }
+}
+
+// end best offer section
+
+// start all marks section
+
+.all-marks {
+  margin-top: $margin-top-home;
+  margin-bottom: 140px;
+  .header {
+    margin-bottom: 90px;
+    .text {
+      gap: 24px;
+      span {
+        width: 492px;
+        color: $body-text;
+        line-height: 24px;
+      }
+    }
+  }
+  .box {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    margin-bottom: 88px;
+  }
+}
+// end all marks section
+
+// start car page
+
+.car-details {
+  margin-top: 50px;
+  border-radius: 24px;
+background: #FFF;
+padding: 30px;
+  .images-text {
+    .mySwiper2 {
+      .swiper-slide {
+        width: 100%;
+        height: 416px;
+        border-radius: 16px;
+        border: 1px solid #ebeaed;
+        background-image: url("~/assets/images/car.png");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: relative;
+        .zoom {
+          position: absolute;
+          z-index: 11;
+          bottom: 20px;
+          right: 20px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .mySwiper .swiper-slide {
+      .image {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        border: 1px solid #ebeaed;
+        background-image: url("~/assets/images/car.png");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+
+    .mySwiper .swiper-slide-thumb-active {
+      .image{
+        border: 1px solid #dcb63b;
+      }
+    }
+
+    .slider__prev,
+    .slider__next {
+      width: 50px;
+      height: 33px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: #f6f7f9;
+      img{
+      }
+    }
+  }
+}
+
+// end car page
