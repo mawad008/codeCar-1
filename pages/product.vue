@@ -1,6 +1,6 @@
 <template>
   <div style="min-height: 100vh">
-    <div class="container">
+    <div class="main-car-page container">
       <div class="car-details">
         <div class="images-text">
           <div class="row">
@@ -197,11 +197,104 @@
                   استمتع بتجربة القيادة الفريدة مع هذه السيارة الفاخرة. تجمع الأداء العالي والتصميم الأنيق في سيارة تضيف لمسة من الرفاهية إلى رحلاتك اليومية. اكتشف قوة المحرك، والراحة في الداخل، والتكنولوجيا المتقدمة التي تجعل هذه السيارة فريدة من نوعها
                   استمتع بتجربة القيادة الفريدة مع هذه السيارة الفاخرة. تجمع الأداء العالي والتصميم الأنيق في سيارة تضيف لمسة من الرفاهية إلى رحلاتك اليومية. اكتشف قوة المحرك، والراحة في الداخل، والتكنولوجيا المتقدمة التي تجعل هذه السيارة فريدة من نوعها
                  </p>
+
+               </div>
+
+               <div class="price">
+                <span class="word">السعر</span>
+                <div class="main-price">
+                 <h5>2500 ر.س</h5>
+                 <span class="disc">4000 ر.س</span>
+                 <span>( 700,000 ر.س شامل ضريبة )</span>
+                </div>
+               </div>
+               <div class="colors">
+                <span class="word">الالوان المتاحة</span>
+                 <div class="main">
+                  <span> اسود </span>
+                 </div>
+               </div>
+
+               <div class="btns">
+                 <button class="cash">كاش</button>
+                 <button class="finance">تمويل</button>
                </div>
             </div>
           </div>
         </div>
       </div>
+       <div class="details">
+         <div class="text-center">
+          <h2> التفاصيل </h2>
+         </div>
+          <div class="row">
+            <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
+             <div class="box">
+               <div class="icon">
+                <img src="@/assets/images/s1.svg" alt="">
+               </div>
+               <span class="label">نوع المحرك</span>
+               <span class="type">اوتوماتيك</span>
+             </div>
+            </div>
+            <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
+             <div class="box">
+               <div class="icon">
+                <img src="@/assets/images/s2.svg" alt="">
+               </div>
+               <span class="label"> نوع الوقود </span>
+               <span class="type">بنزين</span>
+             </div>
+            </div>
+            <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
+             <div class="box">
+               <div class="icon">
+                <img src="@/assets/images/s3.svg" alt="">
+               </div>
+               <span class="label">الموديل</span>
+               <span class="type">2024</span>
+             </div>
+            </div>
+            <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
+             <div class="box">
+               <div class="icon">
+                <img src="@/assets/images/s4.svg" alt="">
+               </div>
+               <span class="label">الممشي</span>
+               <span class="type">25,000 كم</span>
+             </div>
+            </div>
+            <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
+             <div class="box">
+               <div class="icon">
+                <img src="@/assets/images/s5.svg" alt="">
+               </div>
+               <span class="label">الوارد</span>
+               <span class="type">سعودي</span>
+             </div>
+            </div>
+            <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
+             <div class="box">
+               <div class="icon">
+                <img src="@/assets/images/s6.svg" alt="">
+               </div>
+               <span class="label">رقم الاعلان</span>
+               <span class="type">561</span>
+             </div>
+            </div>
+          </div>
+       </div>
+
+       <div class="similar-cars">
+         <div class="head">
+          <h4> السيارات المشابهة </h4>
+         </div>
+          <div class="row">
+           <div v-for="i in 5" class="col-12 col-xl-3 col-lg-3 col-md-6">
+            <car-card/>
+           </div>
+          </div>
+       </div>
     </div>
   </div>
 </template>
