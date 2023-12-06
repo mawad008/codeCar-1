@@ -140,9 +140,9 @@
                     <span class="city"> الرياض </span>
                   </div>
                   <div class="d-flex align-items-center gap-3">
-                  <div class="icon">
-                   <img src="@/assets/images/call.svg" alt="">
-                  </div>
+                    <div class="icon">
+                      <img src="@/assets/images/call.svg" alt="" />
+                    </div>
                     <div>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -173,134 +173,559 @@
                 <div>
                   <div class="icons">
                     <div class="icon">
-                      <img src="@/assets/images/share-icon.svg" alt="">
+                      <img src="@/assets/images/share-icon.svg" alt="" />
                     </div>
                     <div class="icon">
-                      <img src="@/assets/images/fav.svg" alt="">
+                      <img src="@/assets/images/fav.svg" alt="" />
                     </div>
                   </div>
                 </div>
               </div>
-              <p class="time"> تاريخ النشر : 24 / 10 / 2023</p>
+              <p class="time">تاريخ النشر : 24 / 10 / 2023</p>
               <div class="name">
-               <h4>هيونداي اكسنت ستاندر 2024</h4>
-               <div class="model">
-                <span>جديد</span>
-                <span>ستاندر</span>
-                <img src="@/assets/images/brand1.png" alt="">
-               </div>
+                <h4>هيونداي اكسنت ستاندر 2024</h4>
+                <div class="model">
+                  <span>جديد</span>
+                  <span>ستاندر</span>
+                  <img src="@/assets/images/brand1.png" alt="" />
+                </div>
               </div>
-               <div class="description">
-                 <span class="word">الوصف</span>
-                 <p>
-                  استمتع بتجربة القيادة الفريدة مع هذه السيارة الفاخرة. تجمع الأداء العالي والتصميم الأنيق في سيارة تضيف لمسة من الرفاهية إلى رحلاتك اليومية. اكتشف قوة المحرك، والراحة في الداخل، والتكنولوجيا المتقدمة التي تجعل هذه السيارة فريدة من نوعها
-                  استمتع بتجربة القيادة الفريدة مع هذه السيارة الفاخرة. تجمع الأداء العالي والتصميم الأنيق في سيارة تضيف لمسة من الرفاهية إلى رحلاتك اليومية. اكتشف قوة المحرك، والراحة في الداخل، والتكنولوجيا المتقدمة التي تجعل هذه السيارة فريدة من نوعها
-                  استمتع بتجربة القيادة الفريدة مع هذه السيارة الفاخرة. تجمع الأداء العالي والتصميم الأنيق في سيارة تضيف لمسة من الرفاهية إلى رحلاتك اليومية. اكتشف قوة المحرك، والراحة في الداخل، والتكنولوجيا المتقدمة التي تجعل هذه السيارة فريدة من نوعها
-                 </p>
+              <div class="description">
+                <span class="word">الوصف</span>
+                <p>
+                  استمتع بتجربة القيادة الفريدة مع هذه السيارة الفاخرة. تجمع
+                  الأداء العالي والتصميم الأنيق في سيارة تضيف لمسة من الرفاهية
+                  إلى رحلاتك اليومية. اكتشف قوة المحرك، والراحة في الداخل،
+                  والتكنولوجيا المتقدمة التي تجعل هذه السيارة فريدة من نوعها
+                  استمتع بتجربة القيادة الفريدة مع هذه السيارة الفاخرة. تجمع
+                  الأداء العالي والتصميم الأنيق في سيارة تضيف لمسة من الرفاهية
+                  إلى رحلاتك اليومية. اكتشف قوة المحرك، والراحة في الداخل،
+                  والتكنولوجيا المتقدمة التي تجعل هذه السيارة فريدة من نوعها
+                  استمتع بتجربة القيادة الفريدة مع هذه السيارة الفاخرة. تجمع
+                  الأداء العالي والتصميم الأنيق في سيارة تضيف لمسة من الرفاهية
+                  إلى رحلاتك اليومية. اكتشف قوة المحرك، والراحة في الداخل،
+                  والتكنولوجيا المتقدمة التي تجعل هذه السيارة فريدة من نوعها
+                </p>
+              </div>
 
-               </div>
-
-               <div class="price">
+              <div class="price">
                 <span class="word">السعر</span>
                 <div class="main-price">
-                 <h5>2500 ر.س</h5>
-                 <span class="disc">4000 ر.س</span>
-                 <span>( 700,000 ر.س شامل ضريبة )</span>
+                  <h5>2500 ر.س</h5>
+                  <span class="disc">4000 ر.س</span>
+                  <span>( 700,000 ر.س شامل ضريبة )</span>
                 </div>
-               </div>
-               <div class="colors">
+              </div>
+              <div class="colors">
                 <span class="word">الالوان المتاحة</span>
-                 <div class="main">
+                <div class="main">
                   <span> اسود </span>
-                 </div>
-               </div>
+                </div>
+              </div>
 
-               <div class="btns">
-                 <button class="cash">كاش</button>
-                 <button class="finance">تمويل</button>
-               </div>
+              <div class="btns">
+                <button class="cash">كاش</button>
+                <button class="finance">تمويل</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-       <div class="details">
-         <div class="text-center">
-          <h2> التفاصيل </h2>
-         </div>
-          <div class="row">
-            <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
-             <div class="box">
-               <div class="icon">
-                <img src="@/assets/images/s1.svg" alt="">
-               </div>
-               <span class="label">نوع المحرك</span>
-               <span class="type">اوتوماتيك</span>
-             </div>
-            </div>
-            <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
-             <div class="box">
-               <div class="icon">
-                <img src="@/assets/images/s2.svg" alt="">
-               </div>
-               <span class="label"> نوع الوقود </span>
-               <span class="type">بنزين</span>
-             </div>
-            </div>
-            <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
-             <div class="box">
-               <div class="icon">
-                <img src="@/assets/images/s3.svg" alt="">
-               </div>
-               <span class="label">الموديل</span>
-               <span class="type">2024</span>
-             </div>
-            </div>
-            <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
-             <div class="box">
-               <div class="icon">
-                <img src="@/assets/images/s4.svg" alt="">
-               </div>
-               <span class="label">الممشي</span>
-               <span class="type">25,000 كم</span>
-             </div>
-            </div>
-            <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
-             <div class="box">
-               <div class="icon">
-                <img src="@/assets/images/s5.svg" alt="">
-               </div>
-               <span class="label">الوارد</span>
-               <span class="type">سعودي</span>
-             </div>
-            </div>
-            <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
-             <div class="box">
-               <div class="icon">
-                <img src="@/assets/images/s6.svg" alt="">
-               </div>
-               <span class="label">رقم الاعلان</span>
-               <span class="type">561</span>
-             </div>
+      <div class="details">
+        <div class="text-center">
+          <h2>التفاصيل</h2>
+        </div>
+        <div class="row">
+          <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
+            <div class="box">
+              <div class="icon">
+                <img src="@/assets/images/s1.svg" alt="" />
+              </div>
+              <span class="label">نوع المحرك</span>
+              <span class="type">اوتوماتيك</span>
             </div>
           </div>
-       </div>
+          <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
+            <div class="box">
+              <div class="icon">
+                <img src="@/assets/images/s2.svg" alt="" />
+              </div>
+              <span class="label"> نوع الوقود </span>
+              <span class="type">بنزين</span>
+            </div>
+          </div>
+          <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
+            <div class="box">
+              <div class="icon">
+                <img src="@/assets/images/s3.svg" alt="" />
+              </div>
+              <span class="label">الموديل</span>
+              <span class="type">2024</span>
+            </div>
+          </div>
+          <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
+            <div class="box">
+              <div class="icon">
+                <img src="@/assets/images/s4.svg" alt="" />
+              </div>
+              <span class="label">الممشي</span>
+              <span class="type">25,000 كم</span>
+            </div>
+          </div>
+          <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
+            <div class="box">
+              <div class="icon">
+                <img src="@/assets/images/s5.svg" alt="" />
+              </div>
+              <span class="label">الوارد</span>
+              <span class="type">سعودي</span>
+            </div>
+          </div>
+          <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
+            <div class="box">
+              <div class="icon">
+                <img src="@/assets/images/s6.svg" alt="" />
+              </div>
+              <span class="label">رقم الاعلان</span>
+              <span class="type">561</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-       <div class="similar-cars">
-         <div class="head">
-          <h4> السيارات المشابهة </h4>
-         </div>
-          <div class="row">
-           <div v-for="i in 5" class="col-12 col-xl-3 col-lg-3 col-md-6">
-            <car-card/>
-           </div>
+      <div class="paymentType">
+        <div class="payment-container cash">
+          <h4>التمويل</h4>
+          <span class="word">
+            قم بإتمام عمليتك بشكل سلس وفوري مع السداد النقدي
+          </span>
+
+          <div class="payment-method">
+            <button
+              @click="paymentMethod = 1"
+              :class="{ active: paymentMethod == 1 }"
+            >
+              افراد
+            </button>
+            <button
+              @click="paymentMethod = 2"
+              :class="{ active: paymentMethod == 2 }"
+            >
+              شركات
+            </button>
           </div>
-       </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="main-pagination-container">
+                <div class="pagination-container">
+                  <div
+                    class="icon"
+                    :class="{ active: paymentIndividualBtn == 1 }"
+                  >
+                    <img
+                      class="def"
+                      src="@/assets/images/calc-icon1.svg"
+                      alt=""
+                    />
+                    <img
+                      class="active"
+                      src="@/assets/images/calc-icon-active1.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="icon"
+                    :class="{ active: paymentIndividualBtn == 2 }"
+                  >
+                    <img
+                      class="def"
+                      src="@/assets/images/calc-icon2.svg"
+                      alt=""
+                    />
+                    <img
+                      class="active"
+                      src="@/assets/images/calc-icon-active2.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="icon"
+                    :class="{ active: paymentIndividualBtn == 3 }"
+                  >
+                    <img
+                      class="def"
+                      src="@/assets/images/calc-icon3.svg"
+                      alt=""
+                    />
+                    <img
+                      class="active"
+                      src="@/assets/images/calc-icon-active3.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="icon"
+                    :class="{ active: paymentIndividualBtn == 4 }"
+                  >
+                    <img
+                      class="def"
+                      src="@/assets/images/calc-icon4.svg"
+                      alt=""
+                    />
+                    <img
+                      class="active"
+                      src="@/assets/images/calc-icon-active4.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="icon"
+                    :class="{ active: paymentIndividualBtn == 5 }"
+                  >
+                    <img
+                      class="def"
+                      src="@/assets/images/calc-icon5.svg"
+                      alt=""
+                    />
+                    <img
+                      class="active"
+                      src="@/assets/images/calc-icon-active5.svg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div class="content-pagination">
+                  <div>
+                    <h5 :class="{ active: paymentIndividualBtn == 1 }">
+                      خيارات التمويل
+                    </h5>
+                    <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                  </div>
+                  <div>
+                    <h5 :class="{ active: paymentIndividualBtn == 2 }">
+                      خيارات التمويل
+                    </h5>
+                    <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                  </div>
+                  <div>
+                    <h5 :class="{ active: paymentIndividualBtn == 3 }">
+                      خيارات التمويل
+                    </h5>
+                    <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                  </div>
+                  <div>
+                    <h5 :class="{ active: paymentIndividualBtn == 4 }">
+                      خيارات التمويل
+                    </h5>
+                    <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                  </div>
+                  <div :class="{ active: paymentIndividualBtn == 5 }">
+                    <h5>خيارات التمويل</h5>
+                    <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                  </div>
+                </div>
+                <div class="pagination-container">
+                  <div
+                    class="dot"
+                    :class="{ active: paymentIndividualBtn == 1 }"
+                  >
+                    <i class="fa-solid fa-check"></i>
+                  </div>
+                  <div
+                    class="dot"
+                    :class="{ active: paymentIndividualBtn == 2 }"
+                  >
+                    <i class="fa-solid fa-check"></i>
+                  </div>
+                  <div
+                    class="dot"
+                    :class="{ active: paymentIndividualBtn == 3 }"
+                  >
+                    <i class="fa-solid fa-check"></i>
+                  </div>
+                  <div
+                    class="dot"
+                    :class="{ active: paymentIndividualBtn == 4 }"
+                  >
+                    <i class="fa-solid fa-check"></i>
+                  </div>
+                  <div
+                    class="dot"
+                    :class="{ active: paymentIndividualBtn == 5 }"
+                  >
+                    <i class="fa-solid fa-check"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-7">
+              <div v-if="paymentIndividualBtn == 1" class="range-container">
+                <div class="d-flex flex-column range-slider">
+                  <span class="word">المقدم</span>
+                  <v-slider
+                    v-model="sliderValue1"
+                    min="100000"
+                    max="500000"
+                    step="10000"
+                    thumb-label="always"
+                    class="custom-slider mt-5"
+                    @input="updateRange()"
+                    :reverse="true"
+                  >
+                    <template v-slot:thumb-label="{ value }">
+                      <div class="d-flex align-items-center gap-2">
+                        <span> ر.س </span>
+                        {{ sliderValue1 }}
+                      </div>
+                    </template>
+                  </v-slider>
+                </div>
+                <div class="d-flex flex-column range-slider">
+                  <span class="word">مدة التقسيط</span>
+                  <v-slider
+                    v-model="sliderValue2"
+                    min="1"
+                    max="160"
+                    step="1"
+                    thumb-label="always"
+                    class="custom-slider mt-5"
+                    @input="updateRange()"
+                    :reverse="true"
+                  >
+                    <template v-slot:thumb-label="{ value }">
+                      <div class="d-flex align-items-center gap-2">
+                        <span> شهر </span>
+                        {{ sliderValue2 }}
+                      </div>
+                    </template>
+                  </v-slider>
+                </div>
+
+                <div class="total-container">
+                  <div
+                    class="w-100 d-flex align-items-center justify-content-between"
+                  >
+                    <span>سعر السيارة</span>
+                    <span> 500,000 ريال سعودي </span>
+                  </div>
+                  <div
+                    class="w-100 d-flex align-items-center justify-content-between"
+                  >
+                    <span>الدفعة الاولي</span>
+                    <span> 10% </span>
+                  </div>
+                  <div
+                    class="w-100 d-flex align-items-center justify-content-between"
+                  >
+                    <span>الدفعة الاخيرة</span>
+                    <span> 30% </span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                  <button @click="paymentIndividualBtn = 2" class="next-step">
+                    التالي
+                  </button>
+                </div>
+              </div>
+
+              <div
+                v-if="paymentIndividualBtn == 2"
+                class="d-flex flex-column gap-4"
+              >
+                <div class="d-flex gap-3">
+                  <div class="input-container">
+                    <span> ماركة السيارة </span>
+                    <div class="input">
+                      <input
+                        type="text"
+                        placeholder="مثال : تويوتا"
+                        name=""
+                        value=""
+                        class=""
+                      />
+                    </div>
+                  </div>
+                  <div class="input-container">
+                    <span> نوع السيارة </span>
+                    <div class="input">
+                      <input type="text" name="" value="" class="" />
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex gap-3">
+                  <div class="input-container">
+                    <span> موديل السيارة </span>
+                    <div class="input">
+                      <input
+                        type="text"
+                        placeholder="مثال : تويوتا"
+                        name=""
+                        value=""
+                        class=""
+                      />
+                    </div>
+                  </div>
+                  <div class="input-container">
+                    <span> المواصفات </span>
+                    <div class="input">
+                      <input type="text" name="" value="" class="" />
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex gap-3">
+                  <div class="input-container">
+                    <span>اللون</span>
+                    <div class="input">
+                      <input
+                        type="text"
+                        placeholder="مثال : تويوتا"
+                        name=""
+                        value=""
+                        class=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="btns">
+                  <button @click="paymentIndividualBtn = 1" class="back">
+                    الرجوع
+                  </button>
+                  <button @click="paymentIndividualBtn = 3" class="next">
+                    التالي
+                  </button>
+                </div>
+              </div>
+              <div class="d-flex flex-column gap-4">
+                <div class="d-flex gap-3">
+                  <div class="input-container">
+                    <span> اسم العميل </span>
+                    <div class="input">
+                      <input
+                        type="text"
+                        placeholder="خالد سوادة"
+                        name=""
+                        value=""
+                        class=""
+                      />
+                    </div>
+                  </div>
+                  <div class="input-container">
+                    <span> رقم الجوال </span>
+                    <div class="input">
+                      <input type="tel" name="" value="" class="" />
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex gap-3">
+                  <div class="input-container">
+                    <span> رقم الهوية </span>
+                    <div class="input">
+                      <input
+                        type="tel"
+                        placeholder="مثال : 3333-5555-9999-55"
+                        name=""
+                        value=""
+                        class=""
+                      />
+                    </div>
+                  </div>
+                  <div class="input-container">
+                    <span> تاريخ الميلاد </span>
+                    <div class="input">
+                      <input type="date" name="" value="" class="" />
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex gap-3">
+                  <div class="input-container">
+                    <span>جهة تحويل الراتب</span>
+                    <div class="input">
+                      <Dropdown v-model="selectedCountry" :options="countries" filter optionLabel="name" placeholder="مثال : مصرف الجارحي" class="">
+            <!-- <template #value="slotProps">
+                <div v-if="slotProps.value" class="flex align-items-center">
+                    <div>{{ slotProps.value.name }}</div>
+                </div>
+                <span v-else>
+                    {{ slotProps.placeholder }}
+                </span>
+            </template> -->
+            <template #option="slotProps">
+                <div class="flex align-items-center">
+                    <div>{{ slotProps.option.name }}</div>
+                </div>
+            </template>
+        </Dropdown>
+                  <h3>{{ selectedCountry }}</h3>
+                    </div>
+                  </div>
+                  <div class="input-container">
+                    <span>اللون</span>
+                    <div class="input">
+                      <input
+                        type="text"
+                        placeholder="مثال : تويوتا"
+                        name=""
+                        value=""
+                        class=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="btns">
+                  <button @click="paymentIndividualBtn = 1" class="back">
+                    الرجوع
+                  </button>
+                  <button @click="paymentIndividualBtn = 3" class="next">
+                    التالي
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="similar-cars">
+        <div class="head">
+          <h4>السيارات المشابهة</h4>
+        </div>
+        <div class="row">
+          <div v-for="i in 5" class="col-12 col-xl-3 col-lg-3 col-md-6">
+            <car-card />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import VueEasyLightbox from "vue-easy-lightbox";
+import Dropdown from "primevue/dropdown";
+
+let paymentMethod = ref(1);
+let paymentType = ref(0);
+let sliderValue1 = ref(340000);
+let sliderValue2 = ref(40);
+const selectedCountry = ref();
+const countries = ref([
+    { name: 'Australia', code: 'AU' },
+    { name: 'Brazil', code: 'BR' },
+    { name: 'China', code: 'CN' },
+    { name: 'Egypt', code: 'EG' },
+    { name: 'France', code: 'FR' },
+    { name: 'Germany', code: 'DE' },
+    { name: 'India', code: 'IN' },
+    { name: 'Japan', code: 'JP' },
+    { name: 'Spain', code: 'ES' },
+    { name: 'United States', code: 'US' }
+])
+
+let paymentIndividualBtn = ref(1);
+
+const updateRange = () => {
+  //console.log('Slider value:', sliderValue.value);
+};
 
 const thumbsSwiper = ref(null);
 
@@ -336,4 +761,6 @@ const showMultiple = () => {
 const onHide = () => (visibleRef.value = false);
 
 // end lightbox images
+
+onMounted(() => {});
 </script>

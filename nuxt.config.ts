@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["nuxt-swiper", "@nuxtjs/i18n"],
+  modules: ["nuxt-swiper", "@nuxtjs/i18n" , 'nuxt-primevue'],
   server: {
     host: '0.0.0.0',
     port: 3000 // You can set a specific port if neede
@@ -59,6 +59,7 @@ export default defineNuxtConfig({
     },
   },
   css: [
+    // "primevue/resources/themes/lara-dark-green/theme.css",
     "vuetify/lib/styles/main.sass",
     "@mdi/font/css/materialdesignicons.min.css",
     "~/assets/bootstrap/css/bootstrap.css",
