@@ -472,11 +472,12 @@
         </div>
     </div>
 </template>
-
+k
 <script setup>
 let settingNav = ref(1);
 let selectedFile = ref(null);
 let selectedFileUrl = ref(null);
+
 const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
