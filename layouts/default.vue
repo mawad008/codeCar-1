@@ -310,7 +310,7 @@
                 />
               </svg>
             </div>
-            <div class="icon">
+            <nuxt-link :to="localePath('/auth')"  class="icon">
          
               <svg
                 class="dark-img"
@@ -342,7 +342,7 @@
                   fill="#90A3BF"
                 />
               </svg>
-            </div>
+            </nuxt-link>
           </div>
           
           </div>

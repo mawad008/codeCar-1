@@ -7,7 +7,8 @@
 
 @font-face {
   font-family: "Janna-lt";
-  src: url("/assets/fonts/Janna-lt.ttf") format("truetype"),
+  src:
+    url("/assets/fonts/Janna-lt.ttf") format("truetype"),
     url("/assets/fonts/Janna-lt-Bold.ttf");
   font-weight: bolder;
   font-display: swap;
@@ -219,7 +220,7 @@ html[dir="rtl"] body {
 // start navbar and footer
 
 .main-auth {
-  height: 100vh;
+  // height: 100vh;
   background-color: #fff;
 
   .row {
@@ -231,10 +232,11 @@ html[dir="rtl"] body {
     // background-image: url("~/assets/images/login-img.png");
     height: 100%;
     // background-size: auto;
-    // background-color: red;
+    background-color: #fff;
     img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
 
@@ -251,6 +253,12 @@ html[dir="rtl"] body {
       align-items: center;
       border-radius: 10px;
       border: 1px solid #ebeaed;
+    }
+    .forget {
+      color: #dcb63b;
+      font-size: 14px;
+      font-weight: 400;
+      cursor: pointer;
     }
     .header {
       margin-top: 74px;
@@ -377,6 +385,12 @@ html[dir="rtl"] body {
         width: 100%;
         width: 400px;
         position: relative;
+        .error-msg{
+          position: absolute;
+          top: 101%;
+          font-size: 14px;
+          color: #ED3F3F;
+        }
         &.pass {
           .icon {
             position: absolute;
@@ -398,6 +412,22 @@ html[dir="rtl"] body {
           outline: none;
           background: #f6f7f9;
         }
+      }
+    }
+    .icons-container {
+      margin-top: 196px;
+    }
+    
+    .otp-container {
+      span {
+        cursor: pointer;
+        color: #dcb63b;
+        font-size: 14px;
+        text-decoration: underline;
+        font-weight: 400;
+      }
+      button {
+        margin-top: 56px;
       }
     }
   }
@@ -905,11 +935,7 @@ html[dir="rtl"] body {
 .explore {
   margin-top: $margin-top-home;
   height: 655px;
-  background: linear-gradient(
-    258deg,
-    #1b2126 67.66%,
-    rgba(12, 16, 28, 0) 616.47%
-  );
+  background: linear-gradient(258deg, #1b2126 67.66%, rgba(12, 16, 28, 0) 616.47%);
   color: #fff;
   .container {
     position: relative;
@@ -956,11 +982,7 @@ html[dir="rtl"] body {
         content: "";
         position: absolute;
         width: 152px;
-        background: linear-gradient(
-          270deg,
-          #fff -0.08%,
-          rgba(255, 255, 255, 0) 91.53%
-        );
+        background: linear-gradient(270deg, #fff -0.08%, rgba(255, 255, 255, 0) 91.53%);
         height: 1.5px;
         transform: rotate(270deg);
         right: -80px;
@@ -2511,8 +2533,7 @@ html[dir="rtl"] body {
         transform: scale(1) !important;
         background-color: #fff;
       }
-      .v-slider-thumb:hover:not(.v-slider-thumb--focused)
-        .v-slider-thumb__surface::before {
+      .v-slider-thumb:hover:not(.v-slider-thumb--focused) .v-slider-thumb__surface::before {
         // opacity: 1 !important;
         background-color: #fff;
       }
@@ -2632,11 +2653,7 @@ html[dir="rtl"] body {
           width: 100%;
           height: 100%;
           border-radius: 16px;
-          background: linear-gradient(
-            257deg,
-            #000 -83.16%,
-            rgba(38, 139, 202, 0) 101.18%
-          );
+          background: linear-gradient(257deg, #000 -83.16%, rgba(38, 139, 202, 0) 101.18%);
         }
       }
 
@@ -2811,11 +2828,7 @@ html[dir="rtl"] body {
       top: 0;
       right: 0;
       border-radius: 16px;
-      background: linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.5) 0%,
-        rgba(0, 0, 0, 0) 104.75%
-      );
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 104.75%);
       width: 100%;
       height: 100%;
     }
@@ -3071,11 +3084,7 @@ html[dir="rtl"] body {
         right: 0;
         border-radius: 24px 0px 0px 24px;
         opacity: 0.5;
-        background: linear-gradient(
-          180deg,
-          #000 0%,
-          rgba(38, 139, 202, 0) 100%
-        );
+        background: linear-gradient(180deg, #000 0%, rgba(38, 139, 202, 0) 100%);
       }
     }
   }
@@ -3101,9 +3110,7 @@ html[dir="rtl"] body {
     .v-expansion-panel--disabled .v-expansion-panel-title {
       color: rgba(var(--v-theme-on-surface), 0.26);
     }
-    .v-expansion-panel--disabled
-      .v-expansion-panel-title
-      .v-expansion-panel-title__overlay {
+    .v-expansion-panel--disabled .v-expansion-panel-title .v-expansion-panel-title__overlay {
       opacity: 1 !important;
     }
 
@@ -3150,26 +3157,21 @@ html[dir="rtl"] body {
       }
     }
     .v-expansion-panel-title--active > .v-expansion-panel-title__overlay,
-    .v-expansion-panel-title[aria-haspopup="menu"][aria-expanded="true"]
-      > .v-expansion-panel-title__overlay {
+    .v-expansion-panel-title[aria-haspopup="menu"][aria-expanded="true"] > .v-expansion-panel-title__overlay {
       opacity: 1 !important;
     }
     .v-expansion-panel-title--active:hover > .v-expansion-panel-title__overlay,
-    .v-expansion-panel-title[aria-haspopup="menu"][aria-expanded="true"]:hover
-      > .v-expansion-panel-title__overlay {
+    .v-expansion-panel-title[aria-haspopup="menu"][aria-expanded="true"]:hover > .v-expansion-panel-title__overlay {
       opacity: 1 !important;
     }
-    .v-expansion-panel-title--active:focus-visible
-      > .v-expansion-panel-title__overlay,
+    .v-expansion-panel-title--active:focus-visible > .v-expansion-panel-title__overlay,
     .v-expansion-panel-title[aria-haspopup="menu"][aria-expanded="true"]:focus-visible
       > .v-expansion-panel-title__overlay {
       opacity: 1 !important;
     }
     @supports not selector(:focus-visible) {
-      .v-expansion-panel-title--active:focus
-        > .v-expansion-panel-title__overlay,
-      .v-expansion-panel-title[aria-haspopup="menu"][aria-expanded="true"]:focus
-        > .v-expansion-panel-title__overlay {
+      .v-expansion-panel-title--active:focus > .v-expansion-panel-title__overlay,
+      .v-expansion-panel-title[aria-haspopup="menu"][aria-expanded="true"]:focus > .v-expansion-panel-title__overlay {
         opacity: 1 !important;
       }
     }

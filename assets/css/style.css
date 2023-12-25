@@ -183,7 +183,6 @@ html[dir=rtl] body {
 }
 
 .main-auth {
-  height: 100vh;
   background-color: #fff;
 }
 .main-auth .row {
@@ -192,10 +191,13 @@ html[dir=rtl] body {
 .main-auth .main-img {
   width: 100%;
   height: 100%;
+  background-color: #fff;
 }
 .main-auth .main-img img {
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .main-auth .form-inputs {
   background-color: #fff;
@@ -208,6 +210,12 @@ html[dir=rtl] body {
   align-items: center;
   border-radius: 10px;
   border: 1px solid #ebeaed;
+}
+.main-auth .form-inputs .forget {
+  color: #dcb63b;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
 }
 .main-auth .form-inputs .header {
   margin-top: 74px;
@@ -334,6 +342,12 @@ html[dir=rtl] body {
   width: 400px;
   position: relative;
 }
+.main-auth .form-inputs .form .input .error-msg {
+  position: absolute;
+  top: 101%;
+  font-size: 14px;
+  color: #ED3F3F;
+}
 .main-auth .form-inputs .form .input.pass .icon {
   position: absolute;
   top: 55%;
@@ -352,6 +366,19 @@ html[dir=rtl] body {
   border-radius: 8px;
   outline: none;
   background: #f6f7f9;
+}
+.main-auth .form-inputs .icons-container {
+  margin-top: 196px;
+}
+.main-auth .form-inputs .otp-container span {
+  cursor: pointer;
+  color: #dcb63b;
+  font-size: 14px;
+  text-decoration: underline;
+  font-weight: 400;
+}
+.main-auth .form-inputs .otp-container button {
+  margin-top: 56px;
 }
 
 .navbar {
