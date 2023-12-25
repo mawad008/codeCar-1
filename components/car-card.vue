@@ -4,8 +4,9 @@
             <div class="image">
                 <img src="~/assets/images/car1.png" alt="" />
             </div>
+            <span class="namee">مستعمل</span>
             <div class="name d-flex flex-column">
-                <span class="used"> مستعمل </span>
+                <span class="used"> خصم 25 % </span>
                 <h4>هيونداي اكسنت ستاندر 2024</h4>
             </div>
             <div class="price d-flex align-items-center w-100 justify-content-center gap-4">
@@ -58,7 +59,11 @@
             </div>
 
             <div class="btn-container">
-                <button>شراء الان</button>
+            
+                <button>
+              
+                <nuxt-link class="w-100" :to="localePath('/car')">  شراء الان</nuxt-link>
+                </button>
                 <div class="icon">
                     <img src="~/assets/images/heart.png" />
                 </div>
@@ -68,6 +73,7 @@
 </template>
 
 <script setup>
+const localePath = useLocalePath();
 
 </script>
 

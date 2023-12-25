@@ -4,7 +4,8 @@
       <div class="car-details">
         <div class="images-text">
           <div class="row">
-            <div class="col-6">
+            <div class="col-12 col-xl-6 col-lg-6">
+            <div class="main-images">
               <swiper
                 :style="{
                   '--swiper-navigation-color': '#fff',
@@ -60,7 +61,7 @@
                   @swiper="setThumbsSwiper"
                   :loop="true"
                   :spaceBetween="10"
-                  :slidesPerView="1"
+                 
                   :freeMode="true"
                   :watchSlidesProgress="true"
                   :navigation="{
@@ -68,7 +69,7 @@
                     prevEl: '.slider__prev',
                   }"
                   :breakpoints="{
-                    '640': {
+                    '300': {
                       slidesPerView: 2,
                       spaceBetween: 20,
                     },
@@ -110,6 +111,8 @@
                   <img src="~/assets/images/arrow-left.svg" alt="" />
                 </div>
               </div>
+            
+            </div>
             </div>
             <vue-easy-lightbox
               :visible="visibleRef"
@@ -117,7 +120,8 @@
               :index="indexRef"
               @hide="onHide"
             ></vue-easy-lightbox>
-            <div class="col-6">
+            <div class="col-12 col-xl-6 col-lg-6">
+            <div>
               <div class="header">
                 <div class="vendor">
                   <div>
@@ -232,6 +236,8 @@
                 >
                 <a href="#finance-payment-container" @click="paymentType = 2" class="finance">تمويل</a>
               </div>
+            
+            </div>
             </div>
           </div>
         </div>

@@ -16,9 +16,21 @@
   font-weight: bolder;
 }
 
+.p-text {
+  width: 492px;
+  color: #5a7184;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
 @media (max-width: 760px) {
   .heading-text {
     font-size: 24px !important;
+  }
+  .p-text {
+    width: 300px;
   }
 }
 a {
@@ -123,6 +135,8 @@ a {
   align-items: center;
   justify-content: center;
   gap: 20px;
+  border-top: 1px solid #ebeaed;
+  padding-top: 15px;
 }
 .car-card .btn-container .icon {
   width: 40px;
@@ -149,6 +163,13 @@ a {
   font-style: normal;
   font-weight: 600;
 }
+.car-card .namee {
+  margin-top: 20px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #959ead;
+}
 
 body,
 html {
@@ -161,8 +182,199 @@ html[dir=rtl] body {
   direction: rtl;
 }
 
+.main-auth {
+  height: 100vh;
+  background-color: #fff;
+}
+.main-auth .row {
+  height: 100%;
+}
+.main-auth .main-img {
+  width: 100%;
+  height: 100%;
+}
+.main-auth .main-img img {
+  width: 100%;
+  height: 100%;
+}
+.main-auth .form-inputs {
+  background-color: #fff;
+}
+.main-auth .form-inputs .arrow {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #ebeaed;
+}
+.main-auth .form-inputs .header {
+  margin-top: 74px;
+  padding: 0 104px;
+}
+.main-auth .form-inputs .text {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.main-auth .form-inputs .text h3 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2d3a4a;
+}
+.main-auth .form-inputs .text span {
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #5a7184;
+}
+.main-auth .form-inputs .main-radio {
+  direction: rtl;
+  margin-top: 24px;
+}
+.main-auth .form-inputs .radio {
+  margin: 0px 15px;
+}
+.main-auth .form-inputs .radio label {
+  color: #5a7184;
+  font-size: 14px;
+  font-weight: 400;
+}
+.main-auth .form-inputs .radio label.active {
+  color: #dcb63b;
+  font-weight: 700;
+}
+.main-auth .form-inputs .mainform {
+  padding: 0px 183px;
+}
+.main-auth .form-inputs .mainform p {
+  width: 324px;
+  line-height: 160%;
+  margin-top: 14px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  color: #5a7184;
+}
+.main-auth .form-inputs .mainform p span {
+  color: #2d3a4a;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.main-auth .form-inputs .mainform button {
+  display: flex;
+  width: 400px;
+  height: 56px;
+  padding: 0px 8px;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 12px;
+  background: #2d3a4a;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+.main-auth .form-inputs .mainform .linkk {
+  margin-top: 16px;
+  margin-bottom: 40px;
+}
+.main-auth .form-inputs .mainform .linkk span {
+  color: #5a7184;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+.main-auth .form-inputs .mainform .linkk span.active {
+  color: #dcb63b;
+  cursor: pointer;
+}
+.main-auth .form-inputs .mainform .icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 21px;
+  margin-top: 40px;
+  margin-bottom: 27px;
+}
+.main-auth .form-inputs .mainform .icons .icon {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background: #f6f7f9;
+  cursor: pointer;
+}
+.main-auth .form-inputs .mainform .logo {
+  margin-bottom: 35px;
+}
+.main-auth .form-inputs .mainform .logo span {
+  color: #5a7184;
+  font-size: 12px;
+  font-weight: 400;
+}
+.main-auth .form-inputs .form {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+}
+.main-auth .form-inputs .form .input {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  width: 400px;
+  position: relative;
+}
+.main-auth .form-inputs .form .input.pass .icon {
+  position: absolute;
+  top: 55%;
+  left: 20px;
+  cursor: pointer;
+}
+.main-auth .form-inputs .form .input label {
+  color: #5a7184;
+  font-size: 14px;
+  font-weight: 700;
+}
+.main-auth .form-inputs .form .input input,
+.main-auth .form-inputs .form .input .p-dropdown {
+  width: 100%;
+  padding: 16px;
+  border-radius: 8px;
+  outline: none;
+  background: #f6f7f9;
+}
+
 .navbar {
   background-color: #1b2126;
+  transition: 0.4s all;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.navbar .white-img {
+  display: none;
+}
+.navbar.active {
+  transition: 0.4s all;
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5555;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.navbar .nav-link {
+  padding: 0px !important;
 }
 .navbar .items .links {
   display: flex;
@@ -195,6 +407,26 @@ html[dir=rtl] body {
   cursor: pointer;
   padding-left: 20px;
   border-left: 1px solid white;
+}
+.navbar.back {
+  background-color: #fff;
+  color: #5a7184;
+}
+.navbar.back .icons span {
+  color: #5a7184;
+  border-left: 1px solid #ebeaed;
+}
+.navbar.back .icon {
+  border: 1px solid #ebeaed !important;
+}
+.navbar.back .white-img {
+  display: block;
+}
+.navbar.back .dark-img {
+  display: none;
+}
+.navbar.back a {
+  color: #5a7184 !important;
 }
 
 .footer-container {
@@ -295,12 +527,27 @@ html[dir=rtl] body {
   font-weight: 400;
 }
 
+@media (max-width: 920px) {
+  .footer-container {
+    padding: 31px 16px;
+  }
+  .footer-container .search .search-input {
+    width: 100%;
+  }
+  .footer-container .main-link {
+    margin: 25px 0px;
+  }
+  .footer-container .icons .icon {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
 .hero-section {
   height: 774px;
   background-image: url("~/assets/images/mask-hero.png");
-  background-position: left;
+  background-position: right;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: left;
   background-color: #1b2126;
 }
 .hero-section .container {
@@ -460,6 +707,26 @@ html[dir=rtl] body {
     width: 138px;
     height: 43px;
     margin-top: 15px;
+  }
+}
+@media (max-width: 900px) {
+  .hero-section {
+    height: 100%;
+  }
+  .hero-section .swiper .swiper-slide .text {
+    width: 100%;
+    gap: 20px;
+  }
+  .hero-section .swiper .swiper-slide .text h1 {
+    line-height: 40px;
+    font-size: 18px;
+  }
+  .hero-section .swiper .swiper-slide .text p {
+    font-size: 15px;
+  }
+  .search-section {
+    top: 0px;
+    margin-top: 50px;
   }
 }
 .text-breadcrumbs {
@@ -748,6 +1015,23 @@ html[dir=rtl] body {
   height: 506.854px;
 }
 
+@media (max-width: 900px) {
+  .best-offers {
+    padding: 16px;
+  }
+  .best-offers h4 {
+    width: 100% !important;
+    font-size: 24px !important;
+  }
+  .best-offers .big-img {
+    width: 100%;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  .best-offers .text-container .choose span {
+    width: 100% !important;
+  }
+}
 .all-marks {
   margin-top: 120px;
   margin-bottom: 140px;
@@ -757,11 +1041,6 @@ html[dir=rtl] body {
 }
 .all-marks .header .text {
   gap: 24px;
-}
-.all-marks .header .text span {
-  width: 492px;
-  color: #5a7184;
-  line-height: 24px;
 }
 .all-marks .box {
   margin-bottom: 88px;
@@ -778,6 +1057,9 @@ html[dir=rtl] body {
   border-radius: 24px;
   background: #fff;
   padding: 30px;
+}
+.main-car-page .car-details .images-text .main-images {
+  width: 578px;
 }
 .main-car-page .car-details .images-text .mySwiper2 .swiper-slide {
   width: 100%;
@@ -1060,6 +1342,18 @@ html[dir=rtl] body {
   color: #2d3a4a;
 }
 
+@media (max-width: 900px) {
+  .main-car-page .car-details {
+    padding: 16px;
+  }
+  .main-car-page .car-details .images-text .main-images {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  .main-car-page .car-details .images-text .main-images .mySwiper2 .swiper-slide {
+    height: 300px;
+  }
+}
 .similar-cars {
   margin-bottom: 140px;
 }
@@ -1708,6 +2002,10 @@ html[dir=rtl] body {
   color: #5a7184;
 }
 
+.cars-filter {
+  margin-top: 73px;
+  margin-bottom: 140px;
+}
 .cars-filter .filter {
   top: 10px;
   position: sticky;
@@ -1966,6 +2264,7 @@ html[dir=rtl] body {
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
+  width: 212px;
   line-height: 32px;
 }
 

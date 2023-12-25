@@ -19,13 +19,13 @@
           <div class="container">
             <div class="row">
               <div v-for="i in 12" class="col-6 col-xl-2 col-lg-2 col-md-3 my-4">
-                <div class="box">
+                <nuxt-link :to="localePath('/cars')" class="box">
                   <div class="image">
                     <!-- <img src="~/assets/images/brand1.png" alt=""> -->
                   </div>
                   <span class="name"> هيونداي </span>
                   <span class="num"> 320 سيارة </span>
-                </div>
+                </nuxt-link>
               </div>
             </div>
           </div>
@@ -34,6 +34,8 @@
 </template>
 
 <script setup>
+
+const localePath = useLocalePath();
 
 let items = ref([
     {

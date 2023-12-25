@@ -18,8 +18,8 @@
                 <div v-for="i in 6" class="col-12 col-xl-4 col-lg-4 col-md-6 my-2">
                     <div class="box">
                         <div class="overlay">
-                            <div>
-                                <div>
+                            <div class="w-100">
+                                <div class=" w-100">
                                     <div class="date">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
                                             fill="none">
@@ -43,9 +43,9 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                     <h4>اسعار ومواصفات BMW 8 كوبيه 2023</h4>
-                                      <div class="icon">
+                                      <nuxt-link class="icon" :to="localePath('/new')">
                                       <i class="fa-solid fa-arrow-left"></i>
-                                      </div>
+                                      </nuxt-link>
                                     </div>
                                 </div>
                             </div>
@@ -58,6 +58,9 @@
 </template>
 
 <script setup>
+
+const localePath = useLocalePath();
+
 let items = ref([
     {
         title: 'الرئيسية',
