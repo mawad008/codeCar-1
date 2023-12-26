@@ -1,11 +1,9 @@
 <template>
     <div>
-        <div class="container offer-page">
+        <div v-if="offerArr" class="container offer-page">
             <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
-                <h4 class="heading-text"> صيانة سيارات مجانية </h4>
-                <p>
-                    اشتري الان سيارة فورد من توبكار و أحصل على صيانة مجانية عامين أو 24000 كم أيهما أقرب.عروض توبكار لا تقبل
-                    المنافسة. </p>
+                <h4 class="heading-text">{{ offerArr.title }}</h4>
+                <p> {{ offerArr.description }} </p>
 
                 <v-breadcrumbs :items="items">
                     <template v-slot:divider>
@@ -23,7 +21,7 @@
              <h5>سيارات العرض</h5>
             </div>
              <div class="row">
-              <div v-for="i in 8" class="col-12 col-xl-3 col-lg-3 col-md-6 my-3">
+              <div v-for="item in offerArr.cars" class="col-12 col-xl-3 col-lg-3 col-md-6 my-3">
                <CarCard/> 
               </div>
              </div>
@@ -33,6 +31,31 @@
 </template>
 
 <script setup>
+
+import axios from 'axios';
+
+const localePath = useLocalePath();
+const { locale } = useI18n();
+let route = useRoute();
+let id = route.query.id;
+
+let offerArr = ref([]);
+const getOfferData = async ()=>{
+  let result = await axios.get(`${getUrl()}/offer/show/${id}`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+if(result.status == 200){
+    offerArr.value = result.data.data;
+}
+
+}
+
+onMounted(() => {
+    getOfferData();
+})
 
 let items = ref([
     {

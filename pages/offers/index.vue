@@ -15,15 +15,14 @@
             </div>
 
             <div class="row">
-                <div v-for="i in 8" class="col-12 col-xl-6 col-lg-6 my-2">
+                <div v-for="item in offersArr.offers" class="col-12 col-xl-6 col-lg-6 my-2">
                     <div class="offer-box">
-                        <div class="image"></div>
-                        <div class="text">
-                            <h6>صيانة مجانية سنتين</h6>
-                            <p>اشتري الان سيارة فورد من توبكار و أحصل على صيانة مجانية عامين أو 24000 كم أيهما أقرب.عروض
-                                توبكار لا تقبل المنافسة.</p>
+                        <div class="image" :style="{backgroundImage: 'url(' +( item.image  ?  item.image :'https://placehold.co/600'   ) + ')' }"></div>
+                        <div class="text w-100">
+                            <h6>{{ item.title }}</h6>
+                            <p> {{ item.description }} </p>
                             <div class="det">
-                                <div class="d-flex align-items-center gap-2">
+                                <div @click="goToOfferPage(item.id , item.title)" class="d-flex align-items-center gap-2">
                                     <span>تفاصيل العرض</span>
                                     <i class="fa-solid fa-arrow-left"></i>
 
@@ -40,6 +39,50 @@
 </template>
 
 <script setup>
+
+import axios from 'axios';
+const localePath = useLocalePath();
+const { locale } = useI18n();
+
+const router = useRouter();
+
+let offersArr = ref([]);
+const getOffersData = async ()=>{
+  let result = await axios.get(`${getUrl()}/offer`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+if(result.status == 200){
+    offersArr.value = result.data.data;
+}
+
+}
+
+
+
+const goToOfferPage = (id , name) =>{
+    const queryParams = {
+        id: id,
+        name: name,
+    };
+  const url = "/offer";
+  
+  const updatedRoute = {
+      path: url,
+      query: {
+          ...queryParams,
+        },
+    };
+    
+    const fullLocalePath = localePath(updatedRoute);
+    router.push(fullLocalePath);
+}
+
+onMounted(() => {
+    getOffersData();
+})
 let items = ref([
     {
         title: 'الرئيسية',

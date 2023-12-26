@@ -15,8 +15,8 @@
             </div>
 
             <div class="row">
-                <div v-for="i in 6" class="col-12 col-xl-4 col-lg-4 col-md-6 my-2">
-                    <div class="box">
+                <div v-for="item in newsArr.news" class="col-12 col-xl-4 col-lg-4 col-md-6 my-2">
+                    <div class="box" :style="{backgroundImage: 'url(' +( item.main_image  ?  item.main_image :'https://placehold.co/600'   ) + ')' }">
                         <div class="overlay">
                             <div class="w-100">
                                 <div class=" w-100">
@@ -39,13 +39,13 @@
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                        <span>2023-11-19</span>
+                                        <span>{{ item.created_at }}</span>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
-                                    <h4>اسعار ومواصفات BMW 8 كوبيه 2023</h4>
-                                      <nuxt-link class="icon" :to="localePath('/new')">
+                                    <h4>{{ item.title }}</h4>
+                                      <div @click="goToNewPage(item.id , item.title)" class="icon" >
                                       <i class="fa-solid fa-arrow-left"></i>
-                                      </nuxt-link>
+                                      </div>
                                     </div>
                                 </div>
                             </div>
@@ -58,8 +58,45 @@
 </template>
 
 <script setup>
-
+import axios from 'axios';
 const localePath = useLocalePath();
+const { locale } = useI18n();
+
+const router = useRouter();
+
+let newsArr = ref([]);
+const getNewsData = async ()=>{
+  let result = await axios.get(`${getUrl()}/cars-news`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+if(result.status == 200){
+    newsArr.value = result.data.data;
+}
+
+}
+
+
+
+const goToNewPage = (id , name) =>{
+    const queryParams = {
+        id: id,
+        name: name,
+    };
+  const url = "/new";
+  
+  const updatedRoute = {
+      path: url,
+      query: {
+          ...queryParams,
+        },
+    };
+    
+    const fullLocalePath = localePath(updatedRoute);
+    router.push(fullLocalePath);
+}
 
 let items = ref([
     {
@@ -73,6 +110,9 @@ let items = ref([
         href: 'news',
     },
 ]);
+onMounted(() => {
+    getNewsData();
+})
 
 </script>
 

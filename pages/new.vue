@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="container single-new-container">
-            <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
-                <h4 class="heading-text"> اسعار ومواصفات BMW 8 كوبيه 2023</h4>
+        <div v-if="newsArr" class="container single-new-container">
+            <div v-if="newsArr.news" class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
+                <h4 class="heading-text">{{ newsArr.news.title }}</h4>
 
                 <div class="date">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -21,7 +21,7 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    <span>2023-11-19</span>
+                    <span>{{ newsArr.news.created_at }}</span>
                 </div>
                 <v-breadcrumbs :items="items">
                     <template v-slot:divider>
@@ -33,21 +33,13 @@
             <div class="single-new">
                 <div class="row justify-content-center justify-content-xl-between justify-content-lg-between">
                     <div class="col-12 col-xl-7 col-lg-7">
-                        <div class="img-box">
-                            <div class="image">
+                        <div v-if="newsArr.news" class="img-box">
+                            <div class="image" :style="{backgroundImage: 'url(' +( newsArr.news.main_image  ?  newsArr.news.main_image :'https://placehold.co/600'   ) + ')' }">
                                 <div class="overlay"></div>
                             </div>
 
-                            <div class="text">
-                                <p>مزاد جديد بالمظاريف المغلقة تم الإعلان عن مزاد جديد للسيارات سيقام في مصر خلال الفترة
-                                    الجارية من شهر نوفمبر. والمزاد الجديد سيقام في يوم 29 نوفمبر الجاري 2023 ويتضمن مركبات
-                                    وبضائع أخرى لإحدي كبريات الشركات التي لم يتم الاعلان عن اسمها. وسيكون المزاد بنظام
-                                    المظاريف المغلقة بدون حضور مقدمى العطاءات. سيارة واحدة في مزاد جديد في نوفمبر وسيتم
-                                    إقامة جلسة فض المظاريف الاربعاء الموافق 29-11-2023 ، وتتضمن الجلسة سيارة ملاكي واحدة
-                                    وبعض الرواكد التي تخص السيارات كالتالي: هيونداى فيرنا موديل 2008. كاوتش خردة. خردة
-                                    متنوعة. كراسة شروط مزاد 29 نوفمبر وتتواجد كراسة الشروط والمواصفات وبها كافة التفاصيل في
-                                    2 ش شريف عماره اللواء الدور الرابع شقه 40 عابدين القاهرة. ويبلغ سعر كراسة الشروط
-                                    والمواصفات 300 جنيه.</p>
+                            <div class="text" v-html="newsArr.news.description ">
+                              
                             </div>
                         </div>
                     </div>
@@ -55,12 +47,12 @@
                         <div class="news-box">
                             <h5>احدث الاخبار</h5>
                             <div class="boxes">
-                                <div v-for="i in 4" class="box my-2">
-                                    <div class="image"></div>
-                                    <div class="text">
-                                        <h6>اسعار ومواصفات BMW 8 كوبيه 2023</h6>
+                                <div v-for="item in newsArr.latest" class="box my-2">
+                                    <div class="image" :style="{backgroundImage: 'url(' +( item.main_image  ?  item.main_image :'https://placehold.co/600'   ) + ')' }"></div>
+                                    <div class="text w-100">
+                                        <h6>{{ item.title }}</h6>
                                         <div class="d-flex w-100 align-items-center justify-content-between">
-                                            <div class="date">
+                                            <div class="date ">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     viewBox="0 0 16 16" fill="none">
                                                     <g clip-path="url(#clip0_148_13397)">
@@ -75,9 +67,9 @@
                                                         </clipPath>
                                                     </defs>
                                                 </svg>
-                                                <span> 2023-11-19</span>
+                                                <span>{{ item.created_at }}</span>
                                             </div>
-                                            <div class="icon">
+                                            <div @click="id = item.id , getNewsData()" class="icon">
                                                 <i class="fa-solid fa-arrow-left"></i>
                                             </div>
                                         </div>
@@ -116,6 +108,26 @@
 </template>
 
 <script setup>
+import axios from 'axios';
+
+const localePath = useLocalePath();
+const { locale } = useI18n();
+let route = useRoute();
+let id = route.query.id;
+
+let newsArr = ref([]);
+const getNewsData = async ()=>{
+  let result = await axios.get(`${getUrl()}/news/show/${id}`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+if(result.status == 200){
+    newsArr.value = result.data.data;
+}
+
+}
 let items = ref([
     {
         title: 'الرئيسية',
@@ -132,6 +144,10 @@ let items = ref([
         disabled: true,
     },
 ]);
+
+onMounted(() => {
+    getNewsData();  
+})
 </script>
 
 <style lang="scss" scoped></style>

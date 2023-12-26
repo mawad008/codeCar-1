@@ -51,6 +51,13 @@ $margin-top-home: 120px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+  label{
+    color: #5a7184 !important;
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
 }
 
 @media (max-width: 760px) {
@@ -617,6 +624,9 @@ html[dir="rtl"] body {
 @media (max-width: 920px) {
   .footer-container {
     padding: 31px 16px;
+    p{
+      text-align: center;
+    }
     .search {
       .search-input {
         width: 100%;
@@ -759,7 +769,7 @@ html[dir="rtl"] body {
     // margin-top: 30px;
   }
   .select {
-    width: 169px;
+    width: 190px;
     // height: 57px;
     .type {
       color: $body-text;
@@ -812,6 +822,10 @@ html[dir="rtl"] body {
     }
   }
 }
+
+// .v-field.v-field--appended{
+//   direction: rtl;
+// }
 
 @media (max-width: 1000px) {
   .search-section {
@@ -891,14 +905,17 @@ html[dir="rtl"] body {
     border-radius: 16px;
     background: #fff;
     // width: 192px;
-    height: 163px;
+    // height: 163px;
+    padding: 16px 0px;
     .image {
-      width: 100%;
+      // width: 100%;
+      width: 88px;
       height: 88px;
-      background-image: url("~/assets/images/brand1.png");
+      // background-image: url("~/assets/images/brand1.png");
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
+      margin-top: 11px;
       img {
         height: 100%;
         width: 100%;
@@ -1136,7 +1153,7 @@ html[dir="rtl"] body {
       margin-bottom: 18px;
     }
     .image {
-      width: 70px;
+      width: 56px;
       height: 56px;
       border-radius: 12px;
       background: #fff;
@@ -1144,9 +1161,10 @@ html[dir="rtl"] body {
       display: flex;
       align-items: center;
       justify-content: center;
-      svg {
+      img {
         width: 32px;
         height: 32px;
+        object-fit: cover;
       }
     }
     .choose {
@@ -2576,7 +2594,7 @@ html[dir="rtl"] body {
   min-height: 100vh;
   .box {
     height: 400px;
-    background-image: url("~/assets/images/new1.png");
+    // background-image: url("~/assets/images/new1.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -2636,7 +2654,7 @@ html[dir="rtl"] body {
     .img-box {
       width: 100%;
       .image {
-        background-image: url("~/assets/images/new1.png");
+        // background-image: url("~/assets/images/new1.png");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -2766,7 +2784,7 @@ html[dir="rtl"] body {
     .image {
       width: 210px;
       height: 128px;
-      background-image: url("~/assets/images/new1.png");
+      // background-image: url("~/assets/images/new1.png");
       border-radius: 8px;
       background-size: cover;
       background-position: center;
