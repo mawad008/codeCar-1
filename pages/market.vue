@@ -18,14 +18,14 @@
 
           <div class="container">
             <div class="row">
-              <div v-for="i in 12" class="col-6 col-xl-2 col-lg-2 col-md-3 my-4">
-                <nuxt-link :to="localePath('/cars')" class="box">
-                  <div class="image">
-                    <!-- <img src="~/assets/images/brand1.png" alt=""> -->
-                  </div>
-                  <span class="name"> هيونداي </span>
-                  <span class="num"> 320 سيارة </span>
-                </nuxt-link>
+              <div v-for="item in brandsArr.brands" class="col-6 col-xl-2 col-lg-2 col-md-3 my-4">
+                <div class="box">
+              <div class="image" :style="{backgroundImage: 'url(' +( item.cover  ?  item.cover :'https://placehold.co/600'   ) + ')' }">
+                <!-- <img src="~/assets/images/brand1.png" alt=""> -->
+              </div>
+              <span class="name"> {{ item.name }} </span>
+              <span class="num"> {{ item.count_cars_count }} سيارة </span>
+            </div>
               </div>
             </div>
           </div>
@@ -34,8 +34,28 @@
 </template>
 
 <script setup>
-
+import axios from "axios";
 const localePath = useLocalePath();
+let { locale } = useI18n();
+
+
+let brandsArr = ref([]);
+const getBrands = async () => {
+  let result = await axios.get(`${getUrl()}/brand`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  if (result.status == 200) {
+    brandsArr.value = result.data.data;
+  }
+ 
+};
+
+
+onMounted(() => {
+  getBrands();
+})
 
 let items = ref([
     {

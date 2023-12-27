@@ -189,6 +189,10 @@ html[dir=rtl] body {
   direction: rtl;
 }
 
+.error-msg {
+  color: #ed3f3f !important;
+}
+
 .main-auth {
   background-color: #fff;
 }
@@ -353,7 +357,6 @@ html[dir=rtl] body {
   position: absolute;
   top: 101%;
   font-size: 14px;
-  color: #ED3F3F;
 }
 .main-auth .form-inputs .form .input.pass .icon {
   position: absolute;
@@ -767,7 +770,7 @@ html[dir=rtl] body {
   }
 }
 .text-breadcrumbs {
-  gap: 18px;
+  gap: 16px;
   margin-bottom: 70px;
 }
 .text-breadcrumbs .date {
@@ -786,6 +789,9 @@ html[dir=rtl] body {
   font-style: normal;
   font-weight: 400;
   color: #5a7184;
+}
+.text-breadcrumbs .v-breadcrumbs {
+  height: 0px !important;
 }
 
 .brands {
@@ -2573,24 +2579,35 @@ html[dir=rtl] body {
 }
 .contact-us .contact-container .text-container .icon-container .icons .iconn {
   display: flex;
-  width: 50px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   justify-content: center;
   align-items: center;
   border-radius: 30px;
   border: 1px solid #ebeaed;
 }
 .contact-us .contact-container .text-container .map {
-  height: 130px;
+  height: 150px;
   width: 100%;
   position: relative;
   margin-top: 40px;
   border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
 }
 .contact-us .contact-container .text-container .map img {
   border-radius: 8px;
   width: 100%;
   height: 100%;
+}
+.contact-us .contact-container .text-container .map iframe {
+  border-radius: 8px;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
 }
 .contact-us .contact-container .text-container .map .overlay {
   position: absolute;
@@ -2631,6 +2648,10 @@ html[dir=rtl] body {
 .contact-us .contact-container .form-container .input {
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+.contact-us .contact-container .form-container .input .error-msg {
+  color: #ED3F3F;
 }
 .contact-us .contact-container .form-container .input label {
   font-size: 14px;
@@ -3841,6 +3862,7 @@ html[dir=rtl] body {
   padding: 20px;
   display: flex;
   gap: 20px;
+  cursor: pointer;
 }
 .careers-page .careers .boxes .box .image {
   width: 56px;

@@ -377,7 +377,7 @@
       </div>
     </nav>
     <slot />
-
+    <Loader2 v-if="checkInt"></Loader2>
     <footer>
       <div class="footer-container">
         <div class="container">
@@ -749,6 +749,7 @@ const subscripe = async()=>{
     );
 
       if(result.status >= 200){
+        error.value = '';
         console.log('dasdas');
         createToast({
           title:'تم الاشتراك بنجاح'
@@ -772,8 +773,22 @@ const subscripe = async()=>{
   }
 }
 
-
+let checkInt = ref(false);
 onMounted(() => {
+
+  let head = document.querySelector('.head');
+let ul = document.querySelector('ul');
+let realod = document.querySelector('.reload');
+let container = document.querySelector('.container');
+
+window.addEventListener("online" , function(){
+  checkInt.value = false;
+});
+window.addEventListener("offline" , function(){
+  checkInt.value = true;
+});
+
+   
   updateLang();
   window.addEventListener("scroll", function () {
     if (this.window.scrollY >= 300) {
