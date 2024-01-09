@@ -277,7 +277,7 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="sr-only">Toggle navigation</span>
+          <span class="sr-only"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -318,7 +318,7 @@
             class="icons justify-content-center justify-content-xl-start justify-content-lg-start justify-content-md-start mt-4 mt-xl-0 mt-lg-0 mt-md-0"
           >
             <span @click="changeLang()" class="lang">en</span>
-            <div class="icon">
+            <div @click="overlay = !overlay" class="icon">
               <img
                 class="dark-img"
                 src="~/assets/images/search-icon.svg"
@@ -340,6 +340,27 @@
                 />
               </svg>
             </div>
+            <div v-if="overlay" class="searchBar">
+              <input type="text" placeholder="ابحث الان" />
+              <div  class="iconn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="26"
+                  viewBox="0 0 24 26"
+                  fill="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M17.0254 17.0477L19.4691 19.515C20.148 20.2005 19.1299 21.229 18.451 20.5435L16.0071 18.076C13.0714 20.5213 8.7405 20.3345 6.01915 17.586C3.11365 14.6516 3.11365 9.89401 6.01915 6.9596C8.92465 4.02519 13.6354 4.02519 16.5409 6.9596C19.2625 9.70828 19.4473 14.0828 17.0254 17.0477ZM15.5227 7.98796C13.1795 5.6215 9.38053 5.6215 7.03739 7.98796C4.69424 10.3544 4.69424 14.1912 7.03739 16.5577C9.38053 18.9241 13.1795 18.9241 15.5227 16.5577C17.8658 14.1912 17.8658 10.3544 15.5227 7.98796Z"
+                    fill="white"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div v-if="overlay" @click="overlay = !overlay" class="overlay"></div>
+
             <nuxt-link :to="localePath('/auth')" class="icon">
               <svg
                 class="dark-img"
@@ -389,7 +410,11 @@
             <div class="search-input">
               <div class="input">
                 <img src="~/assets/images/sms.svg" alt="" />
-                <input type="email" v-model="email" placeholder="أدخل البريد الالكترونى" />
+                <input
+                  type="email"
+                  v-model="email"
+                  placeholder="أدخل البريد الالكترونى"
+                />
               </div>
               <button @click="subscripe">الانضمام</button>
             </div>
@@ -399,6 +424,7 @@
           <div class="row justify-content-between">
             <div class="col-12 col-xl-4 col-lg-4 col-md-6">
               <div
+                v-if="footerData"
                 class="box-container d-flex flex-column justify-content-center gap-3"
               >
                 <div
@@ -406,8 +432,8 @@
                 >
                   <img
                     class="img-flui"
-                    src="~/assets/images/logo-white.svg"
-                    style="width: 74px; height: 46px"
+                    :src="footerData.logo"
+                    style="width: 74px; height: 46px; object-fit: cover"
                     alt=""
                   />
                 </div>
@@ -647,15 +673,19 @@
 </template>
 
 <script setup>
-import axios from 'axios';
-import { createToast } from 'mosha-vue-toastify';
-import 'mosha-vue-toastify/dist/style.css'
+import { useStore } from "~/store";
+const store = useStore;
+import axios from "axios";
+import { createToast } from "mosha-vue-toastify";
+import "mosha-vue-toastify/dist/style.css";
 
 let activeNav = ref(false);
 let activeItemsContainer = ref(false);
 
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
+
+let overlay = ref(false);
 let route = useRoute();
 const changeLang = async () => {
   locale.value = locale.value === "en" ? "ar" : "en";
@@ -703,8 +733,7 @@ const updateLang = () => {
     });
     setLocale("en");
   }
-  if(process.client){
-
+  if (process.client) {
     const navItems = document.querySelectorAll(".nav-link");
 
     navItems.forEach((item) => {
@@ -717,78 +746,68 @@ const updateLang = () => {
   }
 };
 
-
 let footerData = ref();
 
-const getFooterData = async ()=>{
+const getFooterData = async () => {
   let result = await axios.get(`${getUrl()}/footer`, {
     headers: {
       "Content-Language": `${locale.value}`,
     },
   });
 
-if(result.status == 200){
-  footerData.value = result.data.data;
-}
-
-}
-
-let email = ref('');
-let error = ref();
-const subscripe = async()=>{
-  if(email.value != ''){
-    try{
-      let result = await axios.post(
-      `${getUrl()}/subscriber/store`,
-      { email: email.value },
-      {
-        headers: {
-          "Content-Language": `${locale.value}`,
-        },
-      }
-    );
-
-      if(result.status >= 200){
-        error.value = '';
-        console.log('dasdas');
-        createToast({
-          title:'تم الاشتراك بنجاح'
-        },
-        {
-        type: 'success',
-        transition: 'bounce',
-        showIcon: 'true',
-        timeout: 3000,
-        toastBackgroundColor: '#dcb63b',
-        });
-      }
-
-    }catch(errors){
-      if (errors.response) {
-                error.value = errors.response.data.errors;
-            }
-
-    }
-
+  if (result.status == 200) {
+    footerData.value = result.data.data;
   }
-}
+};
+
+let email = ref("");
+let error = ref();
+const subscripe = async () => {
+  if (email.value != "") {
+    try {
+      let result = await axios.post(
+        `${getUrl()}/subscriber/store`,
+        { email: email.value },
+        {
+          headers: {
+            "Content-Language": `${locale.value}`,
+          },
+        }
+      );
+
+      if (result.status >= 200) {
+        error.value = "";
+        console.log("dasdas");
+        createToast(
+          {
+            title: "تم الاشتراك بنجاح",
+          },
+          {
+            type: "success",
+            transition: "bounce",
+            showIcon: "true",
+            timeout: 3000,
+            toastBackgroundColor: "#dcb63b",
+          }
+        );
+      }
+    } catch (errors) {
+      if (errors.response) {
+        error.value = errors.response.data.errors;
+      }
+    }
+  }
+};
 
 let checkInt = ref(false);
 onMounted(() => {
+  window.addEventListener("online", function () {
+    checkInt.value = false;
+  });
+  window.addEventListener("offline", function () {
+    checkInt.value = true;
+  });
 
-  let head = document.querySelector('.head');
-let ul = document.querySelector('ul');
-let realod = document.querySelector('.reload');
-let container = document.querySelector('.container');
-
-window.addEventListener("online" , function(){
-  checkInt.value = false;
-});
-window.addEventListener("offline" , function(){
-  checkInt.value = true;
-});
-
-   
   updateLang();
   window.addEventListener("scroll", function () {
     if (this.window.scrollY >= 300) {
@@ -800,10 +819,12 @@ window.addEventListener("offline" , function(){
     }
   });
   getFooterData();
+  
+  store.dispatch("loadBasketFromLocalStorage");
 });
 
 onBeforeMount(() => {
-  // store.dispatch("loadBasketFromLocalStorage");
+  store.dispatch("loadBasketFromLocalStorage");
   updateLang();
 });
 </script>

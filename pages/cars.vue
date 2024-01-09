@@ -180,7 +180,7 @@
 
 
                                 <div class="d-flex flex-column all-marks-container">
-                                    <div class="d-flex align-items-center mt-3 gap-2 ">
+                                    <!-- <div class="d-flex align-items-center mt-3 gap-2 ">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                             fill="none">
                                             <path
@@ -189,40 +189,24 @@
                                         </svg>
                                         <span class="all-span">كل الماركات</span>
 
-                                    </div>
+                                    </div> -->
                                     <div>
                                         <Accordion>
-                                            <AccordionTab>
+                                            <AccordionTab v-for="item , index in optionsCars.brands">
                                                 <template v-slot:header>
                                                     <div class="d-flex align-items-center gap-2 header-icon">
-                                                        <span>تويوتا</span>
-                                                        <img src="~/assets/images/brand1.png" />
+                                                        <label :for="`brand-label-${index}`" class="fw-bold">{{ item.title }}</label>
+                                                        <!-- <img src="~/assets/images/brand1.png" /> -->
+                                                        <v-checkbox style="" class="" :id="`brand-label-${index}`" v-model="selected5"
+                                                                color="#DCB63B" :value="item.id"></v-checkbox>
                                                     </div>
                                                 </template>
                                                 <div class="d-flex flex-column gap-3">
-                                                    <div class="d-flex align-items-center justify-content-between">
+                                                    <div v-for="model , index in item.models" class="d-flex align-items-center justify-content-between">
                                                         <div class="d-flex align-items-center gap-2">
-                                                            <v-checkbox style="" class="" id="brand-1" v-model="selected5"
-                                                                color="#DCB63B" value="brand-1"></v-checkbox>
-                                                            <label for="brand-1"> النترا </label>
-                                                        </div>
-                                                        <span class="num">(25)</span>
-
-                                                    </div>
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <div class="d-flex align-items-center gap-2">
-                                                            <v-checkbox style="" class="" id="brand-2" v-model="selected5"
-                                                                color="#DCB63B" value="brand-2"></v-checkbox>
-                                                            <label for="brand-2"> اكسنت </label>
-                                                        </div>
-                                                        <span class="num">(25)</span>
-
-                                                    </div>
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <div class="d-flex align-items-center gap-2">
-                                                            <v-checkbox style="" class="" id="brand-3" v-model="selected5"
-                                                                color="#DCB63B" value="brand-3"></v-checkbox>
-                                                            <label for="brand-3"> اكسنت </label>
+                                                            <v-checkbox style="" class="" :id="`model-label-${index}`" v-model="selected6"
+                                                                color="#DCB63B" :value="model.id"></v-checkbox>
+                                                            <label :for="`model-label-${index}`"> {{ model.name }} </label>
                                                         </div>
                                                         <span class="num">(25)</span>
 
@@ -232,14 +216,15 @@
                                             </AccordionTab>
                                         </Accordion>
                                     </div>
-
+                                       
                                 </div>
                             </AccordionTab>
-                            <AccordionTab header="الفئة">
-                                <div class="d-flex flex-column gap-3">
+                            <AccordionTab header="سنة الصنع">
+                                <div class=" accordtion-container">
+                                <div class="mainn d-flex flex-column gap-3">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2">
-                                            <v-checkbox style="" class="" id="All-l-3" v-model="selected6" color="#DCB63B"
+                                            <v-checkbox style="" class="" id="All-l-3" v-model="selected7" color="#DCB63B"
                                                 value="all"></v-checkbox>
                                             <label for="All-l-3">الكل</label>
 
@@ -247,61 +232,41 @@
                                         <span class="num">(25)</span>
 
                                     </div>
-                                    <div class="d-flex align-items-center justify-content-between">
+                                    <div v-for="i , index in optYears" class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2">
-                                            <v-checkbox style="" class="" id="label-l-3" v-model="selected6" color="#DCB63B"
-                                                value="used"></v-checkbox>
-                                            <label for="label-l-3"> 2022 </label>
+                                            <v-checkbox style="" class="" :id="`labelll-${index}`" v-model="selected7" color="#DCB63B"
+                                                :value="i"></v-checkbox>
+                                            <label :for="`labelll-${index}`"> {{ i }} </label>
                                         </div>
                                         <span class="num">(25)</span>
 
                                     </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <v-checkbox style="" class="" id="label-l-4" v-model="selected6" color="#DCB63B"
-                                                value="new"></v-checkbox>
-                                            <label for="label-l-4"> 2023 </label>
-                                        </div>
-                                        <span class="num">(25)</span>
 
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <v-checkbox style="" class="" id="label-l-5" v-model="selected6" color="#DCB63B"
-                                                value="new1"></v-checkbox>
-                                            <label for="label-l-5"> 2024 </label>
-                                        </div>
-                                        <span class="num">(25)</span>
-
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <v-checkbox style="" class="" id="label-l-6" v-model="selected6" color="#DCB63B"
-                                                value="new2"></v-checkbox>
-                                            <label for="label-l-6"> 2025 </label>
-                                        </div>
-                                        <span class="num">(25)</span>
-
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <v-checkbox style="" class="" id="label-l-7" v-model="selected6" color="#DCB63B"
-                                                value="new3"></v-checkbox>
-                                            <label for="label-l-7"> 2026 </label>
-                                        </div>
-                                        <span class="num">(25)</span>
-
-                                    </div>
+                                    <span class="moree" style="font-size: 12px; color:#DCB63B; cursor:pointer;" @click="optYears = years"> عرض المزيد </span>
+                                
+                                
+                                </div>
+                                
                                 </div>
                             </AccordionTab>
                             <AccordionTab header="اللون">
-
+                            <div class="d-flex flex-column gap-3">
+                                <div v-for="item , index in optionsCars.colors" class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <v-checkbox style="" class="" :id="`color-label-${index}`" v-model="selected8" color="#DCB63B"
+                                                :value="item.id"></v-checkbox>
+                                            <label :for="`color-label-${index}`"> {{ item.title }} </label>
+                                        </div>
+                                        <span class="num">(25)</span>
+                                    </div>
+                            
+                            </div>
                             </AccordionTab>
                             <AccordionTab header="سعة المحرك">
                                 <div class="d-flex flex-column gap-3">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2">
-                                            <v-checkbox style="" class="" id="All-t-3" v-model="selected7" color="#DCB63B"
+                                            <v-checkbox style="" class="" id="All-t-3" v-model="selected9" color="#DCB63B"
                                                 value="all"></v-checkbox>
                                             <label for="All-t-3">الكل</label>
 
@@ -311,45 +276,54 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2">
-                                            <v-checkbox style="" class="" id="label-t-3" v-model="selected7" color="#DCB63B"
-                                                value="used"></v-checkbox>
-                                            <label for="label-t-3"> 2022 </label>
+                                            <v-checkbox style="" class="" id="cc-label-1" v-model="selected9" color="#DCB63B"
+                                                value="0"></v-checkbox>
+                                            <label for="cc-label-1"> من 800 الي 1200 </label>
                                         </div>
                                         <span class="num">(25)</span>
 
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2">
-                                            <v-checkbox style="" class="" id="label-t-4" v-model="selected7" color="#DCB63B"
-                                                value="new"></v-checkbox>
-                                            <label for="label-t-4"> 2023 </label>
+                                            <v-checkbox style="" class="" id="cc-label-2" v-model="selected9" color="#DCB63B"
+                                                value="1"></v-checkbox>
+                                            <label for="cc-label-2"> من 1300 الي 1400 </label>
                                         </div>
                                         <span class="num">(25)</span>
 
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2">
-                                            <v-checkbox style="" class="" id="label-t-5" v-model="selected7" color="#DCB63B"
-                                                value="new1"></v-checkbox>
-                                            <label for="label-t-5"> 2024 </label>
+                                            <v-checkbox style="" class="" id="cc-label-3" v-model="selected9" color="#DCB63B"
+                                                value="2"></v-checkbox>
+                                            <label for="cc-label-3"> من 1500 الي 1600 </label>
                                         </div>
                                         <span class="num">(25)</span>
 
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2">
-                                            <v-checkbox style="" class="" id="label-t-6" v-model="selected6" color="#DCB63B"
-                                                value="new2"></v-checkbox>
-                                            <label for="label-t-6"> 2025 </label>
+                                            <v-checkbox style="" class="" id="cc-label-4" v-model="selected9" color="#DCB63B"
+                                                value="3"></v-checkbox>
+                                            <label for="cc-label-4"> من 1800 الي 2000 </label>
                                         </div>
                                         <span class="num">(25)</span>
 
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2">
-                                            <v-checkbox style="" class="" id="label-t-7" v-model="selected6" color="#DCB63B"
-                                                value="new3"></v-checkbox>
-                                            <label for="label-t-7"> 2026 </label>
+                                            <v-checkbox style="" class="" id="cc-label-5" v-model="selected9" color="#DCB63B"
+                                                value="4"></v-checkbox>
+                                            <label for="cc-label-5"> من 2200 الي 3000 </label>
+                                        </div>
+                                        <span class="num">(25)</span>
+
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <v-checkbox style="" class="" id="cc-label-6" v-model="selected9" color="#DCB63B"
+                                                value="5"></v-checkbox>
+                                            <label for="cc-label-6"> اكثر من 3000 </label>
                                         </div>
                                         <span class="num">(25)</span>
 
@@ -388,21 +362,48 @@
 
 
 <script setup>
+import axios from 'axios';
 
 // import Accordion from 'primevue/accordion';
 // import AccordionTab from 'primevue/accordiontab';
+
+let { locale } = useI18n();
+const localePath = useLocalePath();
+
 let valuePrice = ref([60000, 90000]);
 const rangeLabel = (value) => {
     return `${value} SAR`;
 }
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+let years = ref([]);
+for(let i = currentYear; i >= (currentYear - 14); i--){
+years.value.push(i);
+}
+
+let optYears = ref(years.value.slice(0 , 6));
 let selected1 = ref(["all"]);
 let selected2 = ref(["all"]);
 let selected3 = ref(["all"]);
 let selected4 = ref(["all"]);
 let selected5 = ref([]);
 let selected6 = ref(["all"]);
-let selected7 = ref([]);
-let selected8 = ref(["all"]);
+let selected7 = ref(["all"]);
+let selected8 = ref([]);
+let selected9 = ref(["all"]);
+
+let optionsCars = ref([]);
+const getOptions = async () => {
+  let result = await axios.get(`${getUrl()}/car-option`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+ 
+  optionsCars.value = result.data.data;
+};
+
+
 let items = ref([
     {
         title: 'الرئيسية',
@@ -416,5 +417,9 @@ let items = ref([
     },
 ]);
 
+
+onMounted(() => {
+    getOptions(); 
+});
 
 </script>

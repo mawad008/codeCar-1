@@ -42,7 +42,7 @@
                           type="tel"
                           placeholder="مثال : 3333-5555-9999-55"
                           name=""
-                          value=""
+                         v-model="form.phone"
                         />
                       </div>
               
@@ -52,7 +52,7 @@
                           :type="passType"
                           placeholder="***************"
                           name=""
-                          value=""
+                          v-model="form.password"
                         />
                         <div @click="changePass1()" class="icon">
                           <svg
@@ -75,10 +75,12 @@
                       </div>
                 
                     </div>
+                    <div class="input">
                     <span @click="loginNav = 2" class="forget d-block mt-3">هل نسيت كلمة السر؟</span>
+                    </div>
              
                     <div class="d-flex align-item-center justify-content-center">
-                      <button  type="">تسجيل دخول</button>
+                      <button @click="loginFunc()"  type="">تسجيل دخول</button>
                     </div>
                     <div class="d-flex align-item-center justify-content-center">
                       <div class="d-flex align-items-center gap-2 linkk">
@@ -761,20 +763,38 @@ const handleButtonClick = (value) => {
 
 
 let form = ref({
-    email: '',
+    phone: '',
     password: '',
 });
 
 
-const rules = computed(() => {
-    return {
+let value1 = ref("value is required");
+let value2 = ref("The email field is required");
+let value3 = ref("Invalid email format");
+let value4 = ref("This field should be at least 8 characters long");
+if (locale.value == "ar") {
+  value1.value = "هذا الحقل مطلوبة";
+  value2.value = "حقل البريد الإلكتروني مطلوب";
+  value3.value = "تنسيق البريد الإلكتروني غير صالح";
+  value4.value = "يجب أن يكون هذا الحقل 8 أحرف على الأقل";
+} else {
+    value1.value = 'value is required';
+  value2.value = "The email field is required";
+  value3.value = "Invalid email format";
+  value4.value = "This field should be at least 8 characters long";
+}
 
-        email: {
-            required: helpers.withMessage('The email field is required', required),
-            email: helpers.withMessage('Invalid email format', email),
-        },
-        password: { required, minLength: minLength(6) },
-    };
+const rules = computed(() => {
+  return {
+    email: {
+      required: helpers.withMessage(value2.value, required),
+      email: helpers.withMessage(value3.value, email),
+    },
+    password: {
+      required: helpers.withMessage(value1.value , required),
+      minLength: helpers.withMessage(value4.value, minLength(8)),
+    },
+  };
 });
 
 let errors = ref([]);
@@ -784,7 +804,7 @@ const v$ = useValidate(rules, form);
 const loginFunc = async () => {
     let check = await v$.value.$validate();
     let formBody = new FormData();
-    formBody.append("email", form.value.email);
+    formBody.append("phone", form.value.phone);
     formBody.append("password", form.value.password);
     if (check) {
         console.log('login');
@@ -808,7 +828,7 @@ const loginFunc = async () => {
 
                     //  localStorage.setItem("user", JSON.stringify(result.data.data.user));
                     // localStorage.setItem("auth", true);
-                    router.push('/');
+                    router.push(localePath('/'));
                 }
             }
 

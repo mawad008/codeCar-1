@@ -84,8 +84,7 @@
       >
         <h4 class="heading-text">الماركات</h4>
         <p class="p-text">
-          استكشف تشكيلة متنوعة من أفضل الماركات العالمية لتلبية احتياجاتك
-          المختلفة وتجربة القيادة بأسلوب فريد.
+         {{ brandsArr.description }}
         </p>
         <!-- <p class="p-text " v-html="brandsArr.description">
         </p> -->
@@ -112,7 +111,7 @@
     <div class="explore">
       <div class="container">
         <div class="text">
-          <span>ليش كود كار!</span>
+          <span>{{ whyCodeCarArr.description }}</span>
           <h3 class="heading-text">اكتشف المزيد مما نقدمه</h3>
         </div>
         <svg
@@ -121,6 +120,7 @@
           height="652"
           viewBox="0 0 712 652"
           fill="none"
+          class="backGround"
         >
           <path
             opacity="0.04"
@@ -131,40 +131,40 @@
           />
         </svg>
 
-        <div class="row">
+        <div class="row w-100 ">
           <div class="col-12 col-xl-4 col-lg-4 my-3">
             <div class="box">
               <div class="image">
-                <img src="~/assets/images/explore1.png" alt="" />
+                <!-- <img src="~/assets/images/explore1.png" alt="" /> -->
+                <img :src="whyCodeCarArr.icon_card_1" alt="" />
               </div>
-              <span> سهولة الوصول والإعلان </span>
+              <span> {{ whyCodeCarArr.why_code_car_label_card_1 }} </span>
               <p>
-                نسهل الوصول إلى أوسع جمهور للباحثين عن بيع أو شراء سيارات،
-                وتقديم بيئة إعلانية متقدمة للمعلنين بطرق سلسة وحديثة.
+               {{ whyCodeCarArr.why_code_car_cars_card_1 }}
               </p>
             </div>
           </div>
           <div class="col-12 col-xl-4 col-lg-4 my-3">
             <div class="box">
               <div class="image">
-                <img src="~/assets/images/explore2.png" alt="" />
+                <!-- <img src="~/assets/images/explore2.png" alt="" /> -->
+                <img :src="whyCodeCarArr.icon_card_2" alt="" />
               </div>
-              <span> خيارات الدفع والتمويل </span>
+              <span> {{ whyCodeCarArr.why_code_car_label_card_2 }} </span>
               <p>
-                نقدم خيارات تمويل سيارات متطورة وشاملة، سواء كنت تبحث عن الدفع
-                النقدي أو التمويل التأجيري، مع تعاون مع أفضل جهات التمويل
+                {{ whyCodeCarArr.why_code_car_cars_card_2 }}
               </p>
             </div>
           </div>
           <div class="col-12 col-xl-4 col-lg-4 my-3">
             <div class="box">
               <div class="image">
-                <img src="~/assets/images/explore3.png" alt="" />
+                <!-- <img src="~/assets/images/explore3.png" alt="" /> -->
+                <img :src="whyCodeCarArr.icon_card_3" alt="" />
               </div>
-              <span> مجتمع متقدم وتواصل فعّال </span>
+              <span> {{ whyCodeCarArr.why_code_car_label_card_3 }} </span>
               <p>
-                ملتزمون بتقديم منصة تفاعلية تمكّن المستخدمين من البحث عن سيارات
-                أحلامهم والتواصل بفعالية، مع التزام دائم بالتطور
+                {{ whyCodeCarArr.why_code_car_cars_card_3 }}
               </p>
             </div>
           </div>
@@ -179,7 +179,7 @@
         >
           <h3 class="mb-5 heading-text">السيارات</h3>
 
-          <v-tabs v-model="tabNav" align-tabs="center">
+          <!-- <v-tabs v-model="tabNav" align-tabs="center">
             <v-tab :value="0" class="head">
               <span class="choose"> الاكثر مبيعا </span>
             </v-tab>
@@ -192,51 +192,51 @@
             <v-tab :value="3" class="head">
               <span class="choose"> موديل السنة </span>
             </v-tab>
-          </v-tabs>
+          </v-tabs> -->
+
+          <div class="tabs">
+          <div
+            @click="tabNav = 0 , tab = 1 , getProducts()"
+            :class="{ active: tab == 1 }"
+            class="tab"
+          >
+            <span class="choose"> الاكثر مبيعا </span>
+            <border />
+          </div>
+          <div
+            @click="tabNav = 1 , tab = 2 , getProducts()"
+            :class="{ active: tab == 2 }"
+            class="tab"
+          >
+            <span class="choose"> افضل العروض </span>
+            <border />
+          </div>
+          <div
+            @click="tabNav = 2 , tab = 3 , getProducts()"
+            :class="{ active: tab == 3 }"
+            class="tab"
+          >
+            <span class="choose"> موديل السنة </span>
+            <border />
+          </div>
+        </div>
         </div>
 
         <v-window v-model="tabNav">
-          <v-window-item>
+          <v-window-item v-for="i in 3">
             <div class="row">
               <div
-                v-for="item in 6"
+                v-for="item in productsTags"
                 class="col-12 col-xl-3 col-lg-3 col-md-6 my-2"
               >
-                <car-card />
-              </div>
-            </div>
-          </v-window-item>
-          <v-window-item>
-            <div class="row">
-              <div
-                v-for="item in 4"
-                class="col-12 col-xl-3 col-lg-3 col-md-6 my-2"
-              >
-                <car-card />
-              </div>
-            </div>
-          </v-window-item>
-          <v-window-item>
-            <div class="row">
-              <div
-                v-for="item in 3"
-                class="col-12 col-xl-3 col-lg-3 col-md-6 my-2"
-              >
-                <car-card />
-              </div>
-            </div>
-          </v-window-item>
-          <v-window-item>
-            <div class="row">
-              <div
-                v-for="item in 2"
-                class="col-12 col-xl-3 col-lg-3 col-md-6 my-2"
-              >
-                <car-card />
+                <car-card :car="item" />
               </div>
             </div>
           </v-window-item>
         </v-window>
+        <client-only v-if="spinnerProducts">
+            <Vue3Lottie :animation-data="loader" :height="100" :width="100" />
+          </client-only>
       </div>
     </div>
     <!-- <img :src="financingAdv.icon_card_1" alt=""> -->
@@ -246,7 +246,7 @@
           <div class="col-12 col-xl-5 col-lg-5">
             <div class="text-container">
               <span class="special"> عن ميزة التمويل </span>
-              <h4>احصل على أفضل العروض لتمويل سيارتك!</h4>
+              <h4>{{ financingAdv.description }}</h4>
               <div class="main-image">
                 <div class="main d-flex">
                   <div class="image">
@@ -345,7 +345,7 @@
                     </svg> -->
                   </div>
                   <div class="choose d-flex flex-column">
-                    <h6 class="fw-bold">1.اختر البنك المفضل</h6>
+                    <h6 class="fw-bold">{{ financingAdv.financing_advantage_label_card_1 }}</h6>
                     <span>
                     {{ financingAdv.financing_advantage_card_1 }}
                     </span>
@@ -456,7 +456,7 @@
                     </svg> -->
                   </div>
                   <div class="choose d-flex flex-column">
-                    <h6>1.احصل على أفضل العروض</h6>
+                    <h6 class="fw-bold">{{ financingAdv.financing_advantage_label_card_2 }}</h6>
                     <span>
                       {{ financingAdv.financing_advantage_card_2 }}
 
@@ -481,8 +481,7 @@
         <div class="text d-flex text-center flex-column">
           <h3 class="heading-text">معتمدون لدى جهات التمويل</h3>
           <span class="p-text"
-            >معتمدون لدى أبرز جهات التمويل في المملكة، نوفر لك خيارات تمويل
-            موثوقة وميسرة لتحقيق حلمك في امتلاك السيارة المثالية.</span
+            >{{ financingbodyArr.description }}</span
           >
         </div>
       </div>
@@ -500,14 +499,17 @@
 
 <script setup>
 import axios from "axios";
-let tab = ref(null);
-let tabNav = ref(null);
+import { Vue3Lottie } from "vue3-lottie";
+import loader from "~/assets/animations/Loader.json";;
+let tab = ref(1);
+let tabNav = ref(0);
 
 let { locale } = useI18n();
 
 let brandsArr = ref([]);
 let categArr = ref([]);
 let financingbodyArr = ref([]);
+let whyCodeCarArr = ref([]);
 let financingAdv = ref();
 const getBrands = async () => {
   let result = await axios.get(`${getUrl()}/brand`, {
@@ -554,6 +556,39 @@ const getfinancingAdv = async () => {
 
 };
 
+const whyCodeCar = async ()=>{
+  let result = await axios.get(`${getUrl()}/why-code-car`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+
+  if (result.status == 200) {
+    whyCodeCarArr.value = result.data.data;
+  }
+}
+
+let spinnerProducts = ref(false);
+let productsTags = ref([]);
+const getProducts = async () => {
+  spinnerProducts.value = true;
+  productsTags.value = [];
+  let result = await axios.get(`${getUrl()}/filter`, {
+    params: {
+      tag: tab.value,
+    },
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  if (result.status == 200) {
+    spinnerProducts.value = false;
+  }
+  productsTags.value = result.data.data;
+};
+
 const customFilter = (itemTitle, queryText, item) => {
   const textOne = item.raw.name.toLowerCase();
   const textTwo = item.raw.abbr.toLowerCase();
@@ -564,8 +599,10 @@ const customFilter = (itemTitle, queryText, item) => {
 
 onMounted(() => {
   getBrands();
+  whyCodeCar();
   getfinancingbody();
   getfinancingAdv();
+  getProducts();
 });
 </script>
 

@@ -65,15 +65,14 @@ export const useStore = createStore({
   actions: {
     loadBasketFromLocalStorage({ commit, state }) {
       if (process.client) {
-        const storedfav = JSON.parse(localStorage.getItem("fav")) || [];
-        const storedfavicon = JSON.parse(localStorage.getItem("favIcon")) || [];
+        // const storedfav = JSON.parse(localStorage.getItem("fav")) || [];
+        // const storedfavicon = JSON.parse(localStorage.getItem("favIcon")) || [];
         const userCookie = Cookies.get("user");
         const authCookie = Cookies.get("auth");
         const storedUser = userCookie ? JSON.parse(userCookie) : {};
         const storedAuth = authCookie ? JSON.parse(authCookie) : false;
-        commit("setBasket", storedBasket);
-        commit("setfav", storedfav);
-        commit("setfavIcon", storedfavicon);
+        // commit("setfav", storedfav);
+        // commit("setfavIcon", storedfavicon);
         commit("setuser", storedUser);
         commit("setAuthenticated", storedAuth);
       }

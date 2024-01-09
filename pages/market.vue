@@ -1,12 +1,12 @@
 <template>
-    <div style="min-height:100vh;">
+    <div style="">
         <div class="brands">
           <div
             class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column"
           >
             <h4 class="heading-text"> المعرض </h4>
             <p>
-              هذا النص هو مثال حي يستبدل في نفش المساحة
+              {{ brandsArr.description }}
             </p>
 
                 <v-breadcrumbs :items="items">

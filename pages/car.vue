@@ -1905,8 +1905,8 @@
 <script setup>
 import VueEasyLightbox from "vue-easy-lightbox";
 import Dropdown from "primevue/dropdown";
-import data from "~/assets/animations/animation.json";
 import loader from "~/assets/animations/Loader.json";
+import data from "~/assets/animations/animation.json";
 import { Vue3Lottie } from "vue3-lottie";
 
 let paymentMethod = ref(1);

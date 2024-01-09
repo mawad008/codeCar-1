@@ -48,7 +48,7 @@ const getOfferData = async ()=>{
   });
 
 if(result.status == 200){
-    offerArr.value = result.data.data;
+    offerArr.value = result.data.data.Offers;
 }
 
 }
