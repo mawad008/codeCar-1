@@ -35,6 +35,7 @@
           </swiper-slide>
         </swiper>
       </div>
+      <img class="mask" src="~/assets/images/mask-hero.png" alt="">
     </div>
 
     <div class="container d-flex align-items-center justify-content-center">
@@ -85,6 +86,7 @@
         <h4 class="heading-text">الماركات</h4>
         <p class="p-text">
          {{ brandsArr.description }}
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga sequi nihil, corporis est placeat optio voluptatum, at ex expedita debitis labore porro accusantium consequatur neque animi explicabo, autem incidunt deserunt.
         </p>
         <!-- <p class="p-text " v-html="brandsArr.description">
         </p> -->
@@ -94,7 +96,7 @@
         <div class="row">
           <div
             v-for="item in brandsArr.brands"
-            class="col-6 col-xl-2 col-lg-2 col-md-3 my-4"
+            class="col-6 col-xl-2 col-lg-2 col-md-3 "
           >
             <div class="box">
               <div class="image" :style="{backgroundImage: 'url(' +( item.cover  ?  item.cover :'https://placehold.co/600'   ) + ')' }">
@@ -107,6 +109,8 @@
         </div>
       </div>
     </div>
+
+    
 
     <div class="explore">
       <div class="container">
@@ -131,8 +135,8 @@
           />
         </svg>
 
-        <div class="row w-100 ">
-          <div class="col-12 col-xl-4 col-lg-4 my-3">
+        <div class="row w-100 align-items-center">
+          <div class="col-12 col-xl-4 col-lg-4">
             <div class="box">
               <div class="image">
                 <!-- <img src="~/assets/images/explore1.png" alt="" /> -->

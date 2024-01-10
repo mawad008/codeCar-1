@@ -11,7 +11,7 @@
             </div>
             <div class="price d-flex align-items-center w-100 justify-content-center gap-4">
                 <h6>{{ car.price }} ر.س</h6>
-                <span> {{Math.round(car.price_after_tax)}}ر.س شامل ضريبة </span>
+                <span> {{Math.round(car.price_after_tax)}} ر.س شامل ضريبة </span>
             </div>
             <div class="types">
                 <div class="type">

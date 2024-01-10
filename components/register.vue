@@ -672,12 +672,16 @@ const registerFunc = async () => {
 
 const otpFunc = async () => {
   pending.value = true;
+  let formBody = new FormData();
+  formBody.append("otp", parseInt(otp.value));
+  formBody.append("phone", form.value.phone);
   try {
-    let result = await axios.post(`${getUrl()}/verify-otp`, {
-      params: {
-        otp: parseInt(otp.value),
-        phone: form.value.phone
-      },
+    let result = await axios.post(`${getUrl()}/verify-otp`, formBody,
+    {
+      // params: {
+      //   otp: parseInt(otp.value),
+      //   phone: form.value.phone
+      // },
       headers: {
         "Content-Language": `${locale.value}`,
       },

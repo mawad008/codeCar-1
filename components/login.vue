@@ -786,9 +786,8 @@ if (locale.value == "ar") {
 
 const rules = computed(() => {
   return {
-    email: {
+    phone: {
       required: helpers.withMessage(value2.value, required),
-      email: helpers.withMessage(value3.value, email),
     },
     password: {
       required: helpers.withMessage(value1.value , required),
@@ -850,6 +849,7 @@ const loginFunc = async () => {
         console.log('not login');
     }
 }
+
 </script>
 
 <style lang="scss" scoped>

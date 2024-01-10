@@ -4,7 +4,7 @@
             <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
                 <h4 class="heading-text"> اخبار السيارات </h4>
                 <p>
-                    هذا النص هو مثال حي يستبدل في نفش المساحة
+                  {{ newsArr.description }}
                 </p>
 
                 <v-breadcrumbs :items="items">

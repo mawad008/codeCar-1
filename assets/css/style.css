@@ -14,6 +14,7 @@
   color: #2d3a4a;
   font-size: 40px;
   font-weight: bolder;
+  margin-bottom: 24px;
 }
 
 .p-text {
@@ -23,6 +24,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+  margin-bottom: 0px;
 }
 .p-text label {
   color: #5a7184 !important;
@@ -482,25 +484,28 @@ html[dir=rtl] input[type=tel] {
   padding-left: 20px;
   border-left: 1px solid white;
 }
-.navbar.back {
+.navbar.back, .navbar.active {
   background-color: #fff;
   color: #5a7184;
 }
-.navbar.back .icons span {
+.navbar.back .icons span, .navbar.active .icons span {
   color: #5a7184;
   border-left: 1px solid #ebeaed;
 }
-.navbar.back .icon {
+.navbar.back .icon, .navbar.active .icon {
   border: 1px solid #ebeaed !important;
 }
-.navbar.back .white-img {
+.navbar.back .white-img, .navbar.active .white-img {
   display: block;
 }
-.navbar.back .dark-img {
+.navbar.back .dark-img, .navbar.active .dark-img {
   display: none;
 }
-.navbar.back a {
+.navbar.back a, .navbar.active a {
   color: #5a7184 !important;
+}
+.navbar .router-link-active {
+  font-weight: 700 !important;
 }
 .navbar .searchBar {
   position: absolute;
@@ -666,12 +671,21 @@ html[dir=rtl] input[type=tel] {
   }
 }
 .hero-section {
-  height: 774px;
-  background-image: url("~/assets/images/mask-hero.png");
-  background-position: right;
-  background-repeat: no-repeat;
-  background-size: left;
+  min-height: 774px;
+  position: relative;
   background-color: #1b2126;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-section .mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  top: 0;
+  left: 30%;
 }
 .hero-section .container {
   height: 100%;
@@ -679,11 +693,12 @@ html[dir=rtl] input[type=tel] {
 .hero-section .swiper {
   width: 100%;
   height: 100%;
+  overflow-y: visible !important;
   padding: 0px !important;
 }
 .hero-section .swiper .swiper-pagination {
   position: absolute;
-  top: 20%;
+  top: 0%;
   transform: translateY(-50%);
   left: 10px;
   width: 8px;
@@ -736,12 +751,12 @@ html[dir=rtl] input[type=tel] {
   width: 491px;
   display: flex;
   flex-direction: column;
-  gap: 41px;
 }
 .hero-section .swiper .swiper-slide .text h1 {
   font-size: 40px;
   font-weight: bolder;
   line-height: 60px;
+  margin-bottom: 41px;
 }
 .hero-section .swiper .swiper-slide .text h1 span {
   color: #dcb63b;
@@ -755,10 +770,9 @@ html[dir=rtl] input[type=tel] {
 
 .search-section {
   width: 100%;
-  height: 105px;
   border-radius: 12px;
   background-color: #fff;
-  padding: 20px 50px;
+  padding: 20px;
   box-shadow: 0px 16px 24px 0px rgba(113, 128, 150, 0.04);
   display: flex;
   align-items: center;
@@ -777,10 +791,11 @@ html[dir=rtl] input[type=tel] {
   border-radius: 12px;
   background-color: #2d3a4a;
   color: white;
-  font-weight: 600;
+  font-weight: 700;
 }
 .search-section .select {
   width: 190px;
+  direction: rtl;
 }
 .search-section .select .type {
   color: #5a7184;
@@ -788,19 +803,31 @@ html[dir=rtl] input[type=tel] {
   font-style: normal;
   font-weight: 400;
 }
+.search-section .select .v-field__append-inner .v-icon {
+  opacity: 1 !important;
+  background-color: #F6F7F9;
+  border-radius: 50%;
+  color: #90A3BF !important;
+}
+.search-section .select .v-input {
+  direction: rtl;
+}
 .search-section .select .v-input .mdi-menu-down::before,
 .search-section .select .v-input .mdi-set {
   font-size: 12px !important;
   font-family: "FontAwesome" !important;
   content: "\f078" !important;
+  opacity: 1 !important;
 }
 .search-section .select .v-input .v-field__outline {
   transition: 0.3s;
   opacity: 0;
 }
+.search-section .select .v-input .v-field {
+  direction: rtl;
+}
 .search-section .select .v-input .v-field .v-label {
   color: #2d3a4a;
-  text-align: right;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -811,7 +838,6 @@ html[dir=rtl] input[type=tel] {
 }
 .search-section .select .v-input .v-field.v-field--active .v-label {
   color: #2d3a4a;
-  text-align: right;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -834,7 +860,7 @@ html[dir=rtl] input[type=tel] {
 }
 @media (max-width: 900px) {
   .hero-section {
-    height: 100%;
+    min-height: 82vh;
   }
   .hero-section .swiper .swiper-slide .text {
     width: 100%;
@@ -843,13 +869,28 @@ html[dir=rtl] input[type=tel] {
   .hero-section .swiper .swiper-slide .text h1 {
     line-height: 40px;
     font-size: 18px;
+    margin-bottom: 0px;
   }
   .hero-section .swiper .swiper-slide .text p {
-    font-size: 15px;
+    font-size: 15px !important;
+  }
+  .hero-section .swiper .swiper-pagination {
+    top: 110%;
+    flex-direction: row;
+    left: 50%;
+    width: -moz-fit-content;
+    width: fit-content;
+    transform: translateX(-50%);
   }
   .search-section {
     top: 0px;
     margin-top: 50px;
+  }
+  .search-section .v-field .v-label {
+    font-size: 18px !important;
+  }
+  .search-section .v-field.v-field--active .v-label {
+    font-size: 14px !important;
   }
 }
 .text-breadcrumbs {
@@ -875,11 +916,15 @@ html[dir=rtl] input[type=tel] {
 }
 .text-breadcrumbs .v-breadcrumbs {
   height: 0px !important;
+  padding: 0px 12px !important;
 }
 
 .brands {
-  margin-top: 120px;
+  margin-top: 140px;
   margin-bottom: 120px;
+}
+.brands .container {
+  margin-top: 64px;
 }
 .brands .box {
   display: flex;
@@ -890,6 +935,7 @@ html[dir=rtl] input[type=tel] {
   border-radius: 16px;
   background: #fff;
   padding: 16px 0px;
+  margin-bottom: 20px;
 }
 .brands .box .image {
   width: 88px;
@@ -922,6 +968,10 @@ html[dir=rtl] input[type=tel] {
   .text-breadcrumbs p {
     width: 100%;
     padding: 0px 20px;
+  }
+  .brands .box .image {
+    width: 64px;
+    height: 64px;
   }
 }
 .explore {
@@ -969,7 +1019,6 @@ html[dir=rtl] input[type=tel] {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 20px;
   z-index: 1;
   position: relative;
 }
@@ -991,6 +1040,7 @@ html[dir=rtl] input[type=tel] {
   justify-content: center;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.08);
+  margin-bottom: 32px;
 }
 .explore .container .box .image img {
   width: 40px;
@@ -1009,6 +1059,8 @@ html[dir=rtl] input[type=tel] {
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+  margin-bottom: 0;
+  margin-top: 24px;
 }
 
 @media (max-width: 1000px) {
@@ -1018,6 +1070,9 @@ html[dir=rtl] input[type=tel] {
   }
   .explore .text {
     margin-bottom: 20px !important;
+  }
+  .explore .box {
+    margin-bottom: 30px;
   }
   .explore .box p {
     width: 100%;
