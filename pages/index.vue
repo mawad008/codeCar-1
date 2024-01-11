@@ -44,9 +44,9 @@
           <span class="type"> النوع </span>
           <v-autocomplete
             chips
-            :items="brandsArr.brands"
+            :items="carBody"
             item-title="name"
-            item-value="id"
+            item-value="value"
             variant="underlined"
             label="اختر نوع السيارة"
           ></v-autocomplete>
@@ -57,7 +57,6 @@
             clearable
             chips
             :items="brandsArr.brands"
-            
             item-title="name"
             item-value="id"
             variant="underlined"
@@ -65,14 +64,14 @@
           ></v-autocomplete>
         </div>
         <div class="select">
-          <span class="type"> الفئة </span>
+          <span class="type"> الموديل </span>
           <v-autocomplete
             chips
             :items="categArr"
             item-title="title"
             item-value="id"
             variant="underlined"
-            label="اختر فئة السيارة"
+            label="اختر موديل السيارة"
           ></v-autocomplete>
         </div>
         <button class="search">ابحث</button>
@@ -504,7 +503,7 @@
 <script setup>
 import axios from "axios";
 import { Vue3Lottie } from "vue3-lottie";
-import loader from "~/assets/animations/Loader.json";;
+import loader from "~/assets/animations/Loader.json";
 let tab = ref(1);
 let tabNav = ref(0);
 
@@ -515,6 +514,17 @@ let categArr = ref([]);
 let financingbodyArr = ref([]);
 let whyCodeCarArr = ref([]);
 let financingAdv = ref();
+
+let carBody = ref([
+  {
+    name:"مستعمل",
+    value:0
+  },
+  {
+    name:"جديد",
+    value:1
+  },
+])
 const getBrands = async () => {
   let result = await axios.get(`${getUrl()}/brand`, {
     headers: {

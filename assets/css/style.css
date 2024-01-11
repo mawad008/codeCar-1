@@ -14,7 +14,6 @@
   color: #2d3a4a;
   font-size: 40px;
   font-weight: bolder;
-  margin-bottom: 24px;
 }
 
 .p-text {
@@ -865,6 +864,7 @@ html[dir=rtl] input[type=tel] {
   .hero-section .swiper .swiper-slide .text {
     width: 100%;
     gap: 20px;
+    text-align: center;
   }
   .hero-section .swiper .swiper-slide .text h1 {
     line-height: 40px;
@@ -1014,7 +1014,7 @@ html[dir=rtl] input[type=tel] {
   letter-spacing: 0.893px;
   color: #fff !important;
 }
-.explore .container .box {
+.explore .container .col-12 .box {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1022,17 +1022,7 @@ html[dir=rtl] input[type=tel] {
   z-index: 1;
   position: relative;
 }
-.explore .container .box::before {
-  content: "";
-  position: absolute;
-  width: 152px;
-  background: linear-gradient(270deg, #fff -0.08%, rgba(255, 255, 255, 0) 91.53%);
-  height: 1.5px;
-  transform: rotate(270deg);
-  right: -80px;
-  top: 50%;
-}
-.explore .container .box .image {
+.explore .container .col-12 .box .image {
   width: 64px;
   height: 64px;
   display: flex;
@@ -1042,18 +1032,18 @@ html[dir=rtl] input[type=tel] {
   background: rgba(255, 255, 255, 0.08);
   margin-bottom: 32px;
 }
-.explore .container .box .image img {
+.explore .container .col-12 .box .image img {
   width: 40px;
   height: 40px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.explore .container .box span {
+.explore .container .col-12 .box span {
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
 }
-.explore .container .box p {
+.explore .container .col-12 .box p {
   width: 80%;
   font-size: 16px;
   font-style: normal;
@@ -1061,6 +1051,27 @@ html[dir=rtl] input[type=tel] {
   line-height: 24px;
   margin-bottom: 0;
   margin-top: 24px;
+}
+html[dir=ltr] .explore .col-12:not(:last-child) .box::before {
+  content: "";
+  position: absolute;
+  width: 152px;
+  background: linear-gradient(270deg, #fff -0.08%, rgba(255, 255, 255, 0) 91.53%);
+  height: 1.5px;
+  transform: rotate(270deg);
+  right: -80px;
+  top: 50%;
+}
+
+html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
+  content: "";
+  position: absolute;
+  width: 152px;
+  background: linear-gradient(270deg, #fff -0.08%, rgba(255, 255, 255, 0) 91.53%);
+  height: 1.5px;
+  transform: rotate(270deg);
+  right: -80px;
+  top: 50%;
 }
 
 @media (max-width: 1000px) {
@@ -1078,10 +1089,16 @@ html[dir=rtl] input[type=tel] {
     width: 100%;
   }
   .explore .box::before {
+    content: "";
+    content: "";
+    position: absolute;
+    width: 152px;
+    background: linear-gradient(270deg, #fff -0.08%, rgba(255, 255, 255, 0) 91.53%);
     transform: rotate(0deg) !important;
     right: 50% !important;
-    top: 100% !important;
+    top: 108% !important;
     transform: translateX(50%) !important;
+    height: 1.5px;
   }
 }
 .our-products {
@@ -1242,9 +1259,25 @@ html[dir=rtl] input[type=tel] {
   .best-offers {
     padding: 16px;
   }
+  .best-offers .special {
+    text-align: center;
+    margin-bottom: 12px !important;
+  }
   .best-offers h4 {
+    text-align: center;
     width: 100% !important;
-    font-size: 24px !important;
+    font-size: 20px !important;
+    line-height: 30px !important;
+    margin-bottom: 0px !important;
+  }
+  .best-offers .main-image {
+    margin-top: 30px !important;
+  }
+  .best-offers .main-image .choose h6 {
+    font-size: 16px;
+  }
+  .best-offers button {
+    width: 100% !important;
   }
   .best-offers .big-img {
     width: 100%;
@@ -2319,7 +2352,6 @@ html[dir=rtl] input[type=tel] {
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  direction: ltr;
 }
 .cars-filter .filter .p-accordion-header .p-accordion-header-action svg {
   transform: rotate(90deg);
@@ -2331,12 +2363,8 @@ html[dir=rtl] input[type=tel] {
   fill: #dcb63b !important;
 }
 .cars-filter .filter .accordtion-container {
-  height: 300px;
+  height: 200px;
   overflow-y: auto;
-  direction: ltr;
-}
-.cars-filter .filter .accordtion-container .mainn {
-  direction: rtl;
 }
 .cars-filter .filter .accordtion-container::-webkit-scrollbar {
   width: 5px;
@@ -2416,19 +2444,12 @@ html[dir=rtl] input[type=tel] {
 .cars-filter .filter .v-slider-thumb--focused .v-slider-thumb__surface::before {
   transform: scale(1) !important;
   background-color: #fff;
+  display: none !important;
 }
 .cars-filter .filter .v-slider-thumb--pressed .v-slider-thumb__surface::before {
   opacity: 1 !important;
   background-color: #fff;
-}
-@media (hover: hover) {
-  .cars-filter .filter .v-slider-thumb:hover .v-slider-thumb__surface::before {
-    transform: scale(1) !important;
-    background-color: #fff;
-  }
-  .cars-filter .filter .v-slider-thumb:hover:not(.v-slider-thumb--focused) .v-slider-thumb__surface::before {
-    background-color: #fff;
-  }
+  display: none !important;
 }
 .cars-filter .progress-container {
   margin-top: 64px;
@@ -2436,6 +2457,9 @@ html[dir=rtl] input[type=tel] {
   align-items: center;
   flex-direction: column;
   gap: 16px;
+}
+.cars-filter .progress-container .line {
+  width: 362px;
 }
 .cars-filter .progress-container span {
   font-size: 14px;
@@ -2453,6 +2477,26 @@ html[dir=rtl] input[type=tel] {
   border: 1px solid #dcb63b;
   color: #dcb63b;
   font-weight: 700;
+}
+
+html[dir=rtl] .accordtion-container {
+  direction: ltr;
+}
+html[dir=rtl] .accordtion-container .mainn {
+  direction: rtl;
+}
+html[dir=rtl] .p-accordion-header-action {
+  direction: ltr;
+}
+
+html[dir=ltr] .accordtion-container {
+  direction: ltr;
+}
+html[dir=ltr] .accordtion-container .mainn {
+  direction: ltr;
+}
+html[dir=ltr] .p-accordion-header-action {
+  direction: rtl;
 }
 
 .news-container {

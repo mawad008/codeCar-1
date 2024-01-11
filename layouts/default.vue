@@ -397,6 +397,13 @@
         </div>
       </div>
     </nav>
+
+    <!-- <div class="search-nav">
+    <div class="input"> 
+     <input type="text" placeholder="search">
+     <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    </div> -->
     <slot />
     <Loader2 v-if="checkInt"></Loader2>
     <footer>
@@ -830,6 +837,11 @@ onBeforeMount(() => {
 </script>
 
 <style lang="scss" scoped>
+
+
+.search-nav{
+  
+}
 .navbar-toggler .icon-bar {
   display: block;
   width: 22px;
@@ -848,7 +860,7 @@ onBeforeMount(() => {
     border: none !important;
     color: transparent !important;
   }
-  &.back {
+  &.back , &.active {
     .icon-bar {
       background-color: #000;
     }
