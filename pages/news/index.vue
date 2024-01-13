@@ -2,7 +2,7 @@
     <div>
         <div class="news-container container">
             <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
-                <h4 class="heading-text"> اخبار السيارات </h4>
+                <h4 class="heading-text"> {{ $t("news") }}  </h4>
                 <p>
                   {{ newsArr.description }}
                 </p>
@@ -100,12 +100,12 @@ const goToNewPage = (id , name) =>{
 
 let items = ref([
     {
-        title: 'الرئيسية',
+        title: locale.value == 'ar' ? 'الرئيسية' : 'home',
         disabled: true,
         href: '/',
     },
     {
-        title: 'اخبار السيارات',
+        title: locale.value == 'ar' ? 'اخبار السيارات' : 'news',
         disabled: false,
         href: 'news',
     },

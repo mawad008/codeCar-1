@@ -2,7 +2,7 @@
     <div>
         <div class="container about-us">
             <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
-                <h4 class="heading-text"> من نحن </h4>
+                <h4 class="heading-text"> {{ $t("about") }} </h4>
                 <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
 
                 <v-breadcrumbs :items="items">
@@ -52,7 +52,7 @@
             </div>
 
             <div class="faqs">
-            <h5>الاسئلة الشائعة</h5>
+            <h5> {{ $t("faq") }}</h5>
                 <v-expansion-panels class="row justify-content-start"   multiple  variant="popout">
                     <div v-for="i in 8" :key="i" class="col-6 my-2">
                         <v-expansion-panel >
@@ -73,14 +73,20 @@
 </template>
 
 <script setup>
+import axios from 'axios';
+const localePath = useLocalePath();
+const { locale } = useI18n();
+
+const router = useRouter();
+
 let items = ref([
     {
-        title: 'الرئيسية',
+        title: locale.value == 'ar' ? 'الرئيسية' : 'home',
         disabled: true,
         href: '/',
     },
     {
-        title: 'من نحن',
+        title: locale.value == 'ar' ? 'من نحن' : 'about us',
         disabled: false,
         href: 'about',
     },

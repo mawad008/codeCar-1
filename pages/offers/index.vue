@@ -2,7 +2,7 @@
     <div>
         <div class="container offers-container">
             <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
-                <h4 class="heading-text"> العروض </h4>
+                <h4 class="heading-text"> {{ $t("offers") }} </h4>
                 <p>
                   {{ offersArr.description }}
                 </p>
@@ -23,7 +23,7 @@
                             <p> {{ item.description }} </p>
                             <div class="det">
                                 <div @click="goToOfferPage(item.id , item.title)" class="d-flex align-items-center gap-2">
-                                    <span>تفاصيل العرض</span>
+                                    <span>{{ $t("offersDetails") }}</span>
                                     <i class="fa-solid fa-arrow-left"></i>
 
                                 </div>
@@ -85,12 +85,12 @@ onMounted(() => {
 })
 let items = ref([
     {
-        title: 'الرئيسية',
+        title: locale.value == 'ar' ? 'الرئيسية' : 'home',
         disabled: true,
         href: '/',
     },
     {
-        title: 'العروض',
+        title: locale.value == 'ar' ? 'العروض' : 'offers',
         disabled: false,
         href: 'offers',
     },

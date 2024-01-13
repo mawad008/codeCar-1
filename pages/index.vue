@@ -1,5 +1,21 @@
 <template>
   <div style="min-height: 100vh">
+   <div class="search-mobile">
+     <div class="inputt">
+      <input type="text" :placeholder="$t('search')" />
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0252 16.1671L19.4689 18.6344C20.1478 19.3199 19.1297 20.3484 18.4508 19.6629L16.0069 17.1954C13.0712 19.6407 8.74031 19.4539 6.01897 16.7055C3.11347 13.771 3.11347 9.01342 6.01897 6.07901C8.92447 3.1446 13.6352 3.1446 16.5407 6.07901C19.2623 8.8277 19.4471 13.2022 17.0252 16.1671ZM15.5225 7.10738C13.1793 4.74092 9.38035 4.74092 7.0372 7.10738C4.69406 9.47384 4.69406 13.3106 7.0372 15.6771C9.38035 18.0436 13.1793 18.0436 15.5225 15.6771C17.8656 13.3106 17.8656 9.47384 15.5225 7.10738Z" fill="#90A3BF"/>
+  </svg>
+     </div>
+     <button>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17" fill="none">
+  <path d="M7.33197 13.5929H1.03125" stroke="#DCB63B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M10.1406 3.90039H16.4413" stroke="#DCB63B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M5.72629 3.84625C5.72629 2.5506 4.66813 1.5 3.36314 1.5C2.05816 1.5 1 2.5506 1 3.84625C1 5.14191 2.05816 6.19251 3.36314 6.19251C4.66813 6.19251 5.72629 5.14191 5.72629 3.84625Z" stroke="#DCB63B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9997 13.5537C16.9997 12.2581 15.9424 11.2075 14.6374 11.2075C13.3316 11.2075 12.2734 12.2581 12.2734 13.5537C12.2734 14.8494 13.3316 15.9 14.6374 15.9C15.9424 15.9 16.9997 14.8494 16.9997 13.5537Z" stroke="#DCB63B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+     </button>
+   </div>
     <div class="hero-section">
       <div class="container">
         <swiper
@@ -227,10 +243,17 @@
 
         <v-window v-model="tabNav">
           <v-window-item v-for="i in 3">
+            <swiper
+            
+            >
+            <swiper-slide>
+            
+            </swiper-slide>
+            </swiper>
             <div class="row">
               <div
                 v-for="item in productsTags"
-                class="col-12 col-xl-3 col-lg-3 col-md-6 my-2"
+                class="col-6  col-xl-3 col-lg-3 col-md-6"
               >
                 <car-card :car="item" />
               </div>
@@ -488,11 +511,14 @@
           >
         </div>
       </div>
-      <div class="row justify-content-around align-items-center gap-2 mb-4">
-        <div v-for="item in financingbodyArr.banks" class="box col-6 col-xl-2 col-lg-2 col-md-4">
+      <div class="row  gap-3 align-items-center">
+        <div v-for="item in financingbodyArr.banks" class="col-6 col-xl-2 col-lg-2 col-md-4">
+        <div class="box">
           <div>
             <img :src="item.image" />
           </div>
+        
+        </div>
         </div>
       
       </div>

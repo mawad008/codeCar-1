@@ -285,39 +285,47 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="links navbar-nav justify-content-center w-100">
             <nuxt-link class="nav-link" :to="localePath('/')"
-              >الرئيسية</nuxt-link
+              >{{$t("home")}}</nuxt-link
             >
             <nuxt-link class="nav-link" :to="localePath('/finance')"
-              >التمويل</nuxt-link
+              >{{$t("finance")}}</nuxt-link
             >
             <nuxt-link class="nav-link" :to="localePath('/market')"
-              >المعرض</nuxt-link
+              >{{$t("market")}}</nuxt-link
             >
 
             <nuxt-link class="nav-link" :to="localePath('/news')"
-              >اخبار السيارات
+              >
+             {{$t("news")}}
             </nuxt-link>
             <nuxt-link class="nav-link" :to="localePath('/offers')"
-              >العروض</nuxt-link
+              >{{$t("offers")}}</nuxt-link
             >
             <nuxt-link class="nav-link" :to="localePath('/orders')"
-              >تتبع طلبك</nuxt-link
+              >
+              {{ $t("follow") }}
+              </nuxt-link
             >
             <nuxt-link class="nav-link" :to="localePath('/contact')"
-              >اتصل بنا
+              >
+              {{ $t("contact") }}
             </nuxt-link>
             <nuxt-link class="nav-link" :to="localePath('/about')"
-              >من نحن</nuxt-link
+              >
+              {{ $t("about") }}
+              </nuxt-link
             >
             <nuxt-link class="nav-link" :to="localePath('/ad')"
-              >اضف اعلانك</nuxt-link
+              >
+              {{ $t("ad") }}
+              </nuxt-link
             >
           </div>
 
           <div
             class="icons justify-content-center justify-content-xl-start justify-content-lg-start justify-content-md-start mt-4 mt-xl-0 mt-lg-0 mt-md-0"
           >
-            <span @click="changeLang()" class="lang">en</span>
+            <span @click="changeLang()" class="lang">{{ $t("lang") }}</span>
             <div @click="overlay = !overlay" class="icon">
               <img
                 class="dark-img"
@@ -341,7 +349,7 @@
               </svg>
             </div>
             <div v-if="overlay" class="searchBar">
-              <input type="text" placeholder="ابحث الان" />
+              <input type="text" :placeholder="$t('search')" />
               <div  class="iconn">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -410,20 +418,22 @@
       <div class="footer-container">
         <div class="container">
           <div class="search">
-            <h5>انضم إلى القائمة البريدية</h5>
+            <h5>
+            {{ $t("mail1") }}
+            </h5>
             <span class="text-center">
-              لا يفوتك كل جديد من كودكار بالإنضمام إلى قائمة الرسائل.
-            </span>
+              {{ $t("mail2") }}
+             </span>
             <div class="search-input">
               <div class="input">
                 <img src="~/assets/images/sms.svg" alt="" />
                 <input
                   type="email"
                   v-model="email"
-                  placeholder="أدخل البريد الالكترونى"
+                  :placeholder="$t('emailE')"
                 />
               </div>
-              <button @click="subscripe">الانضمام</button>
+              <button @click="subscripe">{{$t("join")}}</button>
             </div>
             <span v-if="error" class="text-danger">{{ error.email[0] }}</span>
           </div>
@@ -590,7 +600,7 @@
               <div
                 class="box-container d-flex flex-column align-items-center text-center justify-content-center gap-3"
               >
-                <h6 class="head">الرئيسية</h6>
+                <h6 class="head">{{ $t("home") }}</h6>
                 <div class="links d-flex flex-column gap-4">
                   <span class="head-link"> سيارات</span>
                   <span class="head-link"> سيارات</span>
@@ -605,11 +615,13 @@
               <div
                 class="box-container d-flex flex-column align-items-center text-center justify-content-center gap-3"
               >
-                <h6 class="head">روابط مهمة</h6>
+                <h6 class="head">
+                {{ $t("impLinks") }}
+                </h6>
                 <div class="links d-flex flex-column gap-4">
-                  <span class="head-link"> التقديم كتاجر </span>
+                  <span class="head-link"> {{ $t("vendor") }} </span>
                   <nuxt-link to="/careers">
-                    <span class="head-link"> التوظيف </span>
+                    <span class="head-link"> {{ $t("employe") }} </span>
                   </nuxt-link>
                   <span class="head-link"> سيارات </span>
                   <span class="head-link"> سيارات </span>
@@ -622,7 +634,7 @@
               <div
                 class="box-container d-flex flex-column align-items-center justify-content-center gap-3"
               >
-                <h6 class="head">العنوان</h6>
+                <h6 class="head">{{ $t("address") }}</h6>
                 <div class="links d-flex flex-column gap-4">
                   <span class="head-link"> سيارات </span>
                   <span class="head-link"> سيارات </span>
@@ -637,7 +649,7 @@
               <div
                 class="box-container d-flex flex-column align-items-center justify-content-center gap-3"
               >
-                <h6 class="head">الاتصال</h6>
+                <h6 class="head">{{$t("contact2")}}</h6>
                 <div class="links d-flex flex-column gap-4">
                   <span class="head-link"> سيارات </span>
                   <span class="head-link"> سيارات </span>
@@ -660,9 +672,9 @@
             <div
               class="d-flex align-items-center text-center gap-2 flex-column flex-xl-row flex-lg-row"
             >
-              <span>شروط السياسة والخصوصية</span>
+              <span> {{ $t('policy') }} </span>
               <span> | </span>
-              <span>جميع الحقوق محفوظة © 2023 .</span>
+              <span> {{ $t('cop') }}  © 2023</span>
             </div>
             <div>
               <img src="~/assets/images/webstdy-white.png" alt="" />
@@ -769,6 +781,14 @@ const getFooterData = async () => {
 
 let email = ref("");
 let error = ref();
+
+let title = ref("تم الاشتراك بنجاح");
+
+if (locale.value == 'ar') {
+  title.value = 'تم الاشتراك بنجاح';
+} else {
+  title.value = 'You have successfully subscribed'
+}
 const subscripe = async () => {
   if (email.value != "") {
     try {
@@ -787,7 +807,7 @@ const subscripe = async () => {
         console.log("dasdas");
         createToast(
           {
-            title: "تم الاشتراك بنجاح",
+            title: title.value,
           },
           {
             type: "success",
