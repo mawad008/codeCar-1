@@ -523,6 +523,7 @@
 
 <script setup>
 import useValidate from "@vuelidate/core";
+import axios from "axios";
 import {
   required,
   email,
@@ -531,10 +532,9 @@ import {
   helpers,
 } from "@vuelidate/validators";
 import { useStore } from "~/store";
-import axios from "axios";
+let store = useStore;
 const localePath = useLocalePath();
 const { locale } = useI18n();
-let store = useStore;
 
 let type = ref(0);
 let passType = ref("password");

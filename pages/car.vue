@@ -68,41 +68,16 @@
                 :modules="[SwiperFreeMode, SwiperThumbs]"
                 class="mySwiper2"
               >
-                <swiper-slide>
+                <swiper-slide v-for="i in 8">
+                <div class="image">
+                <img src="~/assets/images/car.png" alt="">
+                
+                </div>
                   <div @click="showMultiple" class="zoom">
                     <img src="~/assets/images/zoom.svg" alt="" />
                   </div>
                 </swiper-slide>
-                <swiper-slide>
-                  <div @click="showMultiple" class="zoom">
-                    <img src="~/assets/images/zoom.svg" alt="" />
-                  </div>
-                </swiper-slide>
-                <swiper-slide>
-                  <div @click="showMultiple" class="zoom">
-                    <img src="~/assets/images/zoom.svg" alt="" />
-                  </div>
-                </swiper-slide>
-                <swiper-slide>
-                  <div @click="showMultiple" class="zoom">
-                    <img src="~/assets/images/zoom.svg" alt="" />
-                  </div>
-                </swiper-slide>
-                <swiper-slide>
-                  <div @click="showMultiple" class="zoom">
-                    <img src="~/assets/images/zoom.svg" alt="" />
-                  </div>
-                </swiper-slide>
-                <swiper-slide>
-                  <div @click="showMultiple" class="zoom">
-                    <img src="~/assets/images/zoom.svg" alt="" />
-                  </div>
-                </swiper-slide>
-                <swiper-slide>
-                  <div @click="showMultiple" class="zoom">
-                    <img src="~/assets/images/zoom.svg" alt="" />
-                  </div>
-                </swiper-slide>
+        
               </swiper>
               <div class="d-flex align-items-center gap-3 mt-3">
                 <div class="slider__prev">
@@ -112,7 +87,6 @@
                   @swiper="setThumbsSwiper"
                   :loop="true"
                   :spaceBetween="10"
-                  :dir="rtl"
                   :freeMode="true"
                   :watchSlidesProgress="true"
                   :navigation="{
@@ -130,32 +104,16 @@
                     },
                     '1024': {
                       slidesPerView: 5,
-                      spaceBetween: 10,
+                      spaceBetween: 20,
                     },
                   }"
                   :modules="[SwiperNavigation]"
                   class="mySwiper"
                 >
-                  <swiper-slide>
-                    <div class="image"></div>
-                  </swiper-slide>
-                  <swiper-slide>
-                    <div class="image"></div>
-                  </swiper-slide>
-                  <swiper-slide>
-                    <div class="image"></div>
-                  </swiper-slide>
-                  <swiper-slide>
-                    <div class="image"></div>
-                  </swiper-slide>
-                  <swiper-slide>
-                    <div class="image"></div>
-                  </swiper-slide>
-                  <swiper-slide>
-                    <div class="image"></div>
-                  </swiper-slide>
-                  <swiper-slide>
-                    <div class="image"></div>
+                  <swiper-slide v-for="i in 8">
+                    <div class="image">
+                     <img src="~/assets/images/car.png" alt="">
+                    </div>
                   </swiper-slide>
                 </swiper>
                 <div class="slider__next">
@@ -242,7 +200,8 @@
                 <div class="model">
                   <span>جديد</span>
                   <span>ستاندر</span>
-                  <img src="@/assets/images/brand1.png" alt="" />
+                  <!-- <img src="@/assets/images/brand1.png" alt="" /> -->
+                  <span>اكسنت</span>
                 </div>
               </div>
               <div class="description">
@@ -366,21 +325,26 @@
           v-if="paymentType == 1"
           class="payment-container"
         >
+        <div class="textt">
           <h4>{{$t('cash')}}</h4>
           <span class="word">
-            :{{ $t('cash1') }}
+            {{ $t('cash1') }}
           </span>
+        
+        </div>
 
           <div class="payment-method">
             <button
               @click="paymentMethod2 = 1"
               :class="{ active: paymentMethod2 == 1 }"
+              class="one"
             >
               {{$t('ind')}}
             </button>
             <button
               @click="paymentMethod2 = 2"
               :class="{ active: paymentMethod2 == 2 }"
+              class="two"
             >
               {{$t('comp')}}
             </button>
@@ -389,7 +353,7 @@
           <div v-if="paymentMethod2 == 1" class="row">
             <div class="col-12 col-xl-8 col-lg-8">
               <div class="form-ind">
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> {{$t('name1')}} </span>
                     <div class="input">
@@ -486,7 +450,7 @@
           <div v-if="paymentMethod2 == 2" class="row">
             <div class="col-12 col-xl-8 col-lg-8">
               <div class="form-ind">
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> {{ $t('name3') }}</span>
                     <div class="input">
@@ -520,7 +484,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> رقم السجل التجاري</span>
                     <div class="input">
@@ -554,7 +518,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> اسم الشخص المسؤول </span>
                     <div class="input">
@@ -581,7 +545,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> عمر المنشأة </span>
                     <div class="input">
@@ -616,7 +580,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> حساب المنشأة لدي البنك</span>
                     <div class="input">
@@ -725,20 +689,24 @@
           v-if="paymentType == 2"
           class="payment-container cash"
         >
+        <div class="textt">
           <h4>التمويل</h4>
           <span class="word">
             قم بإتمام عمليتك بشكل سلس وفوري مع السداد النقدي
           </span>
+        </div>
 
           <div class="payment-method">
             <button
               @click="paymentMethod = 1"
+              class="one"
               :class="{ active: paymentMethod == 1 }"
             >
               افراد
             </button>
             <button
               @click="paymentMethod = 2"
+              class="two"
               :class="{ active: paymentMethod == 2 }"
             >
               شركات
@@ -828,9 +796,10 @@
             <div class="col-12 col-xl-5 col-lg-5">
               <div class="main-pagination-container">
                 <div class="pagination-container">
+                <div class="contain">
                   <div
                     class="icon"
-                    :class="{ active: paymentIndividualBtn == 1 }"
+                    :class="{ active: paymentBtn1 == 1 }"
                   >
                     <img
                       class="def"
@@ -842,10 +811,11 @@
                       src="@/assets/images/calc-icon-active1.svg"
                       alt=""
                     />
+                    
                   </div>
                   <div
                     class="icon"
-                    :class="{ active: paymentIndividualBtn == 2 }"
+                    :class="{ active: paymentBtn2 == 1 }"
                   >
                     <img
                       class="def"
@@ -860,7 +830,7 @@
                   </div>
                   <div
                     class="icon"
-                    :class="{ active: paymentIndividualBtn == 3 }"
+                    :class="{ active: paymentBtn3 == 1 }"
                   >
                     <img
                       class="def"
@@ -875,7 +845,7 @@
                   </div>
                   <div
                     class="icon"
-                    :class="{ active: paymentIndividualBtn == 4 }"
+                    :class="{ active: paymentBtn4 == 1 }"
                   >
                     <img
                       class="def"
@@ -890,7 +860,7 @@
                   </div>
                   <div
                     class="icon"
-                    :class="{ active: paymentIndividualBtn == 5 }"
+                    :class="{ active: paymentBtn5 == 1 }"
                   >
                     <img
                       class="def"
@@ -903,68 +873,98 @@
                       alt=""
                     />
                   </div>
+                
+                </div>
+                <div class="text">
+                  <div>
+                    <h5 :class="{ active: paymentBtn1 == 1 }">
+                      خيارات التمويل
+                    </h5>
+                  </div>
+                  <div>
+                    <h5 :class="{ active: paymentBtn2 == 1 }">
+                      بيانات السيارة
+                    </h5>
+                  </div>
+                  <div>
+                    <h5 :class="{ active: paymentBtn3 == 1 }">
+                      البيانات الشخصية
+                    </h5>
+                  </div>
+                  <div>
+                    <h5 :class="{ active: paymentBtn4 == 1 }">
+                      العروض
+                    </h5>
+                  </div>
+                  <div >
+                    <h5 :class="{ active: paymentBtn5 == 1 }">اكمال الطلب</h5>
+                  </div>
+                </div>
                 </div>
                 <div class="content-pagination">
                   <div>
-                    <h5 :class="{ active: paymentIndividualBtn == 1 }">
+                    <h5 :class="{ active: paymentBtn1 == 1 }">
                       خيارات التمويل
                     </h5>
                     <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                   </div>
                   <div>
-                    <h5 :class="{ active: paymentIndividualBtn == 2 }">
+                    <h5 :class="{ active: paymentBtn2 == 1 }">
                       بيانات السيارة
                     </h5>
                     <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                   </div>
                   <div>
-                    <h5 :class="{ active: paymentIndividualBtn == 3 }">
+                    <h5 :class="{ active: paymentBtn3 == 1 }">
                       البيانات الشخصية
                     </h5>
                     <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                   </div>
                   <div>
-                    <h5 :class="{ active: paymentIndividualBtn == 4 }">
+                    <h5 :class="{ active: paymentBtn4 == 1 }">
                       العروض
                     </h5>
                     <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                   </div>
-                  <div :class="{ active: paymentIndividualBtn == 5 }">
-                    <h5>اكمال الطلب</h5>
+                  <div >
+                    <h5 :class="{ active: paymentBtn5 == 1 }">اكمال الطلب</h5>
                     <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                   </div>
                 </div>
-                <div class="pagination-container">
+                <div class="pagination-container ">
+                <div class="contain second">
                   <div
                     class="dot"
-                    :class="{ active: paymentIndividualBtn == 1 }"
+                    :class="{ active: paymentBtn1 == 1 , check: checkBtn1 == 1 }"
                   >
                     <i class="fa-solid fa-check"></i>
                   </div>
                   <div
                     class="dot"
-                    :class="{ active: paymentIndividualBtn == 2 }"
+                    :class="{ active: paymentBtn2 == 1 , check: checkBtn2 == 1}"
                   >
                     <i class="fa-solid fa-check"></i>
                   </div>
                   <div
                     class="dot"
-                    :class="{ active: paymentIndividualBtn == 3 }"
+                    :class="{ active: paymentBtn3 == 1 , check: checkBtn3 == 1}"
                   >
                     <i class="fa-solid fa-check"></i>
                   </div>
                   <div
                     class="dot"
-                    :class="{ active: paymentIndividualBtn == 4 }"
+                    :class="{ active: paymentBtn4 == 1 , check: checkBtn4 == 1}"
                   >
                     <i class="fa-solid fa-check"></i>
                   </div>
                   <div
                     class="dot"
-                    :class="{ active: paymentIndividualBtn == 5 }"
+                    :class="{ active: paymentBtn5 == 1 , check: checkBtn5 == 1}"
                   >
                     <i class="fa-solid fa-check"></i>
                   </div>
+                
+                </div>
                 </div>
               </div>
             </div>
@@ -980,7 +980,7 @@
                     thumb-label="always"
                     class="custom-slider mt-5"
                     @input="updateRange()"
-                    :reverse="true"
+                    :reverse="slide"
                   >
                     <template v-slot:thumb-label="{ value }">
                       <div class="d-flex align-items-center gap-2">
@@ -1000,7 +1000,7 @@
                     thumb-label="always"
                     class="custom-slider mt-5"
                     @input="updateRange()"
-                    :reverse="true"
+                    :reverse="slide"
                   >
                     <template v-slot:thumb-label="{ value }">
                       <div class="d-flex align-items-center gap-2">
@@ -1020,7 +1020,7 @@
                     thumb-label="always"
                     class="custom-slider mt-5"
                     @input="updateRange()"
-                    :reverse="true"
+                    :reverse="slide"
                   >
                     <template v-slot:thumb-label="{ value }">
                       <div class="d-flex align-items-center gap-2">
@@ -1051,8 +1051,8 @@
                     <span> 30% </span>
                   </div>
                 </div>
-                <div class="d-flex justify-content-end">
-                  <button @click="paymentIndividualBtn = 2" class="next-step">
+                <div class="d-flex justify-content-center justify-content-xl-end justify-content-lg-end">
+                  <button @click="paymentIndividualBtn = 2 , paymentFunc1()" class="next-step">
                     التالي
                   </button>
                 </div>
@@ -1062,7 +1062,7 @@
                 v-if="paymentIndividualBtn == 2"
                 class="d-flex flex-column gap-4"
               >
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> ماركة السيارة </span>
                     <div class="input">
@@ -1082,7 +1082,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> موديل السيارة </span>
                     <div class="input">
@@ -1102,7 +1102,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span>اللون</span>
                     <div class="input">
@@ -1120,7 +1120,7 @@
                   <button @click="paymentIndividualBtn = 1" class="back">
                     الرجوع
                   </button>
-                  <button @click="paymentIndividualBtn = 3" class="next">
+                  <button @click="paymentIndividualBtn = 3 , paymentFunc2()" class="next">
                     التالي
                   </button>
                 </div>
@@ -1129,7 +1129,7 @@
                 v-if="paymentIndividualBtn == 3"
                 class="d-flex flex-column gap-4"
               >
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> اسم العميل </span>
                     <div class="input">
@@ -1149,7 +1149,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> رقم الهوية </span>
                     <div class="input">
@@ -1169,7 +1169,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span>جهة تحويل الراتب</span>
                     <div class="input">
@@ -1209,7 +1209,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span>مبلغ الراتب</span>
                     <div class="input">
@@ -1237,7 +1237,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> المدينة </span>
                     <div class="input">
@@ -1287,7 +1287,7 @@
                   </div>
                 </div>
                 <div
-                  class="d-flex main-radio align-items-center w-100 justify-content-between"
+                  class="d-flex main-radio flex-column flex-xl-row flex-lg-row align-items-start align-items-xl-center align-items-lg-center w-100 justify-content-between"
                 >
                   <div>
                     <span>هل يوجد تعثرات</span>
@@ -1395,7 +1395,7 @@
                     الرجوع
                   </button>
                   <button
-                    @click="(paymentIndividualBtn = 4), SendCar()"
+                    @click="(paymentIndividualBtn = 4) , paymentFunc3()"
                     class="next"
                   >
                     التالي
@@ -1404,7 +1404,7 @@
               </div>
 
               <div v-if="paymentIndividualBtn == 4" class="offers h-50">
-                <div
+                <!-- <div
                   v-if="pending"
                   class="d-flex justify-content-center align-items-center h-100"
                 >
@@ -1413,30 +1413,32 @@
                     :height="180"
                     :width="180"
                   />
-                </div>
-
-                <v-radio-group v-if="!pending">
+                </div> -->
+                <!-- !pending -->
+                <!-- bankOffers.banks -->
+                <v-radio-group >
                   <div class="row">
                     <div
-                      v-for="(offer, index) in bankOffers.banks"
-                      class="col-6"
+                      v-for="(offer, index) in 4"
+                      class="col-12 col-xl-6 col-lg-6"
                     >
                       <label :for="`offer-id-${index}`" class="offer w-100">
                         <div
                           class="d-flex align-items-center justify-content-between w-100"
                         >
-                          <span v-if="offer.bank_offer == null" class="name">{{
+                          <!-- <span v-if="offer.bank_offer == null" class="name">{{
                             offer.bank.name
-                          }}</span>
-                          <span class="name" v-else>{{
+                          }}</span> -->
+                          <span v-if="offer.bank_offer == null" class="name">asjkhdasd</span>
+                          <!-- <span class="name" v-else>{{
                             offer.bank_offer
-                          }}</span>
+                          }}</span> -->
                           <v-radio
                             class="radio-input"
                             :id="`offer-id-${index}`"
                             color="#DCB63B"
                             name="offer-id"
-                            :value="offer.bank.id"
+                            :value="index"
                           ></v-radio>
                         </div>
                         <!-- <div class="price">
@@ -1451,7 +1453,8 @@
                               <span class="name">القسط الشهري</span>
                             </div>
                             <p class="price">
-                              {{ offer.monthly_installment }} رس
+                              <!-- {{ offer.monthly_installment }} رس -->
+                              dasd
                             </p>
                           </div>
                           <div class="detail">
@@ -1460,7 +1463,8 @@
                               <span class="name">الدفعة الاولي</span>
                             </div>
                             <p class="price">
-                              {{ bankOffers.first_installment }} رس
+                              <!-- {{ bankOffers.first_installment }} رس -->
+                              fdsa
                             </p>
                           </div>
                           <div class="detail">
@@ -1468,7 +1472,8 @@
                               <img src="~/assets/images/det3.png" alt="" />
                               <span class="name">مدة الاقساط</span>
                             </div>
-                            <p class="price">{{ bankOffers.years }}</p>
+                            <!-- <p class="price">{{ bankOffers.years }}</p> -->
+                            <p class="price">44654</p>
                           </div>
                           <div class="detail">
                             <div class="d-flex align-items-center gap-2">
@@ -1476,7 +1481,8 @@
                               <span class="name">الدفعة الاخيرة</span>
                             </div>
                             <p class="price">
-                              {{ bankOffers.last_installment }} رس
+                              <!-- {{ bankOffers.last_installment }} رس -->
+                              dsfsd
                             </p>
                           </div>
                           <div class="detail">
@@ -1485,7 +1491,8 @@
                               <span class="name">الرسوم الادارية</span>
                             </div>
                             <p class="price">
-                              {{ offer.administrative_fees }} رس
+                              <!-- {{ offer.administrative_fees }} رس -->
+                              4354
                             </p>
                           </div>
                         </div>
@@ -1493,11 +1500,12 @@
                     </div>
                   </div>
                 </v-radio-group>
-                <div v-if="!pending" class="btns">
+                <!-- v-if="!pending" -->
+                <div  class="btns">
                   <button @click="paymentIndividualBtn = 3" class="back">
                     الرجوع
                   </button>
-                  <button @click="paymentIndividualBtn = 5" class="next">
+                  <button @click="paymentIndividualBtn = 5 , paymentFunc4()" class="next">
                     التالي
                   </button>
                 </div>
@@ -1518,7 +1526,7 @@
                       </div>
                     </div>
                     <div class="offer-det">
-                      <div class="d-flex align-items-center gap-3">
+                      <div class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3">
                         <div class="d-flex align-items-center gap-4">
                           <div class="d-flex align-items-center gap-2">
                             <img src="~/assets/images/det1.png" alt="" />
@@ -1534,7 +1542,7 @@
                           <h6>40,000 ريال سعودي</h6>
                         </div>
                       </div>
-                      <div class="d-flex align-items-center gap-3">
+                      <div class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3">
                         <div class="d-flex align-items-center gap-3">
                           <div class="d-flex align-items-center gap-2">
                             <img src="~/assets/images/det3.png" alt="" />
@@ -1550,7 +1558,7 @@
                           <h6>40,000 ريال سعودي</h6>
                         </div>
                       </div>
-                      <div class="d-flex align-items-center gap-3">
+                      <div class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3">
                         <div class="d-flex align-items-center gap-3">
                           <div class="d-flex align-items-center gap-2">
                             <img src="~/assets/images/det3.png" alt="" />
@@ -1569,7 +1577,7 @@
                       <div class="image">
                         <img src="~/assets/images/small-car.png" />
                       </div>
-                      <div class="d-flex flex-column">
+                      <div class="d-flex flex-column gap-2">
                         <h6>تويوتا كامري 2024</h6>
                         <span>كامري - GLX - رصاصي - 2024</span>
                       </div>
@@ -1582,7 +1590,7 @@
                     <span class="f2">( اختياري )</span>
                   </div>
                   <div class="row">
-                    <div class="col-3">
+                    <div class="col-6 col-xl-3 col-lg-3 col-md-4">
                       <label for="fileInput1" class="custom-file-upload">
                         <!-- <span>{{ buttonText }}</span> -->
                         <img src="~/assets/images/file1.png" />
@@ -1598,7 +1606,7 @@
                         />
                       </label>
                     </div>
-                    <div class="col-3">
+                    <div class="col-6 col-xl-3 col-lg-3 col-md-4">
                       <label for="fileInput2" class="custom-file-upload">
                         <!-- <span>{{ buttonText }}</span> -->
                         <img src="~/assets/images/file2.png" />
@@ -1614,7 +1622,7 @@
                         />
                       </label>
                     </div>
-                    <div class="col-3">
+                    <div class="col-6 col-xl-3 col-lg-3 col-md-4">
                       <label for="fileInput3" class="custom-file-upload">
                         <!-- <span>{{ buttonText }}</span> -->
                         <img src="~/assets/images/file3.png" />
@@ -1630,7 +1638,7 @@
                         />
                       </label>
                     </div>
-                    <div class="col-3">
+                    <div class="col-6 col-xl-3 col-lg-3 col-md-4">
                       <label for="fileInput4" class="custom-file-upload">
                         <!-- <span>{{ buttonText }}</span> -->
                         <img src="~/assets/images/file4.png" />
@@ -1663,9 +1671,9 @@
             </div>
           </div>
           <div v-if="paymentMethod == 2" class="row">
-            <div class="col-8">
+            <div class="col-12 col-xl-8 col-lg-8">
               <div class="form-ind">
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> اسم المنشأة</span>
                     <div class="input">
@@ -1699,7 +1707,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> رقم السجل التجاري</span>
                     <div class="input">
@@ -1733,7 +1741,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> اسم الشخص المسؤول </span>
                     <div class="input">
@@ -1760,7 +1768,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> عمر المنشأة </span>
                     <div class="input">
@@ -1795,7 +1803,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> حساب المنشأة لدي البنك</span>
                     <div class="input">
@@ -1837,7 +1845,7 @@
                 </button>
               </div>
             </div>
-            <div class="col-4" style="position: relative">
+            <div class="col-12 col-xl-4 col-lg-4" style="position: relative">
               <div class="info-data">
                 <h4>معلومات الاتصال</h4>
                 <p>سيتم الرد عليكم خلال مدة اقصاها 24 ساعة .</p>
@@ -1904,7 +1912,7 @@
       <div v-if="showConfirm" class="confirm-container">
         <div v-if="paymentIndividualBtn == 6" class="confirm-text">
           <client-only>
-            <Vue3Lottie :animation-data="data" :height="100" :width="100" />
+            <Vue3Lottie :animation-data="otpp" :height="200" :width="200" />
           </client-only>
           <h4>تم ارسال الكود!</h4>
           <p>
@@ -1921,7 +1929,7 @@
         </div>
         <div v-if="paymentIndividualBtn == 7" class="confirm-text">
           <client-only>
-            <Vue3Lottie :animation-data="data" :height="100" :width="100" />
+            <Vue3Lottie :animation-data="success" :height="200" :width="200" />
           </client-only>
           <h4>تم ارسال طلبك بنجاح!</h4>
           <p>
@@ -1957,9 +1965,18 @@
 import VueEasyLightbox from "vue-easy-lightbox";
 import Dropdown from "primevue/dropdown";
 import loader from "~/assets/animations/Loader.json";
-import data from "~/assets/animations/animation.json";
+import otpp from "~/assets/animations/otp.json";
+import success from "~/assets/animations/success.json";
 import { Vue3Lottie } from "vue3-lottie";
+const { locale } = useI18n();
 
+let slide = ref(true);
+
+if(locale.value == 'ar'){
+  slide.value = true;
+} else{
+  slide.value = false;
+}
 let paymentMethod = ref(1);
 let paymentMethod2 = ref(1);
 let paymentType = ref(0);
@@ -2024,7 +2041,34 @@ const countries = ref([
 ]);
 
 let paymentIndividualBtn = ref(1);
-let paymentIndividualBtn2 = ref(1);
+let paymentBtn1 = ref(1);
+let paymentBtn2 = ref(0);
+let paymentBtn3 = ref(0);
+let paymentBtn4 = ref(0);
+let paymentBtn5 = ref(0);
+let checkBtn1 = ref(0);
+let checkBtn2 = ref(0);
+let checkBtn3 = ref(0);
+let checkBtn4 = ref(0);
+let checkBtn5 = ref(0);
+
+
+const paymentFunc1 = ()=>{
+  paymentBtn2.value = 1;
+  checkBtn1.value = 1
+}
+const paymentFunc2 = ()=>{
+  paymentBtn3.value = 1;
+  checkBtn2.value = 1
+}
+const paymentFunc3 = ()=>{
+  paymentBtn4.value = 1;
+  checkBtn3.value = 1
+}
+const paymentFunc4 = ()=> {
+  paymentBtn5.value = 1;
+  checkBtn4.value = 1
+}
 
 const updateRange = () => {
   //console.log('Slider value:', sliderValue.value);

@@ -1,21 +1,66 @@
 <template>
   <div style="min-height: 100vh">
-   <div class="search-mobile">
-     <div class="inputt">
-      <input type="text" :placeholder="$t('search')" />
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0252 16.1671L19.4689 18.6344C20.1478 19.3199 19.1297 20.3484 18.4508 19.6629L16.0069 17.1954C13.0712 19.6407 8.74031 19.4539 6.01897 16.7055C3.11347 13.771 3.11347 9.01342 6.01897 6.07901C8.92447 3.1446 13.6352 3.1446 16.5407 6.07901C19.2623 8.8277 19.4471 13.2022 17.0252 16.1671ZM15.5225 7.10738C13.1793 4.74092 9.38035 4.74092 7.0372 7.10738C4.69406 9.47384 4.69406 13.3106 7.0372 15.6771C9.38035 18.0436 13.1793 18.0436 15.5225 15.6771C17.8656 13.3106 17.8656 9.47384 15.5225 7.10738Z" fill="#90A3BF"/>
-  </svg>
-     </div>
-     <button>
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17" fill="none">
-  <path d="M7.33197 13.5929H1.03125" stroke="#DCB63B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M10.1406 3.90039H16.4413" stroke="#DCB63B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M5.72629 3.84625C5.72629 2.5506 4.66813 1.5 3.36314 1.5C2.05816 1.5 1 2.5506 1 3.84625C1 5.14191 2.05816 6.19251 3.36314 6.19251C4.66813 6.19251 5.72629 5.14191 5.72629 3.84625Z" stroke="#DCB63B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9997 13.5537C16.9997 12.2581 15.9424 11.2075 14.6374 11.2075C13.3316 11.2075 12.2734 12.2581 12.2734 13.5537C12.2734 14.8494 13.3316 15.9 14.6374 15.9C15.9424 15.9 16.9997 14.8494 16.9997 13.5537Z" stroke="#DCB63B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-     </button>
-   </div>
+    <div class="search-mobile">
+      <div class="inputt">
+        <input type="text" :placeholder="$t('search')" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="25"
+          viewBox="0 0 24 25"
+          fill="none"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M17.0252 16.1671L19.4689 18.6344C20.1478 19.3199 19.1297 20.3484 18.4508 19.6629L16.0069 17.1954C13.0712 19.6407 8.74031 19.4539 6.01897 16.7055C3.11347 13.771 3.11347 9.01342 6.01897 6.07901C8.92447 3.1446 13.6352 3.1446 16.5407 6.07901C19.2623 8.8277 19.4471 13.2022 17.0252 16.1671ZM15.5225 7.10738C13.1793 4.74092 9.38035 4.74092 7.0372 7.10738C4.69406 9.47384 4.69406 13.3106 7.0372 15.6771C9.38035 18.0436 13.1793 18.0436 15.5225 15.6771C17.8656 13.3106 17.8656 9.47384 15.5225 7.10738Z"
+            fill="#90A3BF"
+          />
+        </svg>
+      </div>
+      <button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="17"
+          viewBox="0 0 18 17"
+          fill="none"
+        >
+          <path
+            d="M7.33197 13.5929H1.03125"
+            stroke="#DCB63B"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M10.1406 3.90039H16.4413"
+            stroke="#DCB63B"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M5.72629 3.84625C5.72629 2.5506 4.66813 1.5 3.36314 1.5C2.05816 1.5 1 2.5506 1 3.84625C1 5.14191 2.05816 6.19251 3.36314 6.19251C4.66813 6.19251 5.72629 5.14191 5.72629 3.84625Z"
+            stroke="#DCB63B"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M16.9997 13.5537C16.9997 12.2581 15.9424 11.2075 14.6374 11.2075C13.3316 11.2075 12.2734 12.2581 12.2734 13.5537C12.2734 14.8494 13.3316 15.9 14.6374 15.9C15.9424 15.9 16.9997 14.8494 16.9997 13.5537Z"
+            stroke="#DCB63B"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </div>
     <div class="hero-section">
       <div class="container">
         <swiper
@@ -51,7 +96,7 @@
           </swiper-slide>
         </swiper>
       </div>
-      <img class="mask" src="~/assets/images/mask-hero.png" alt="">
+      <img class="mask" src="~/assets/images/mask-hero.png" alt="" />
     </div>
 
     <div class="container d-flex align-items-center justify-content-center">
@@ -100,8 +145,11 @@
       >
         <h4 class="heading-text">الماركات</h4>
         <p class="p-text">
-         {{ brandsArr.description }}
-         Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga sequi nihil, corporis est placeat optio voluptatum, at ex expedita debitis labore porro accusantium consequatur neque animi explicabo, autem incidunt deserunt.
+          {{ brandsArr.description }}
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga sequi
+          nihil, corporis est placeat optio voluptatum, at ex expedita debitis
+          labore porro accusantium consequatur neque animi explicabo, autem
+          incidunt deserunt.
         </p>
         <!-- <p class="p-text " v-html="brandsArr.description">
         </p> -->
@@ -111,10 +159,18 @@
         <div class="row">
           <div
             v-for="item in brandsArr.brands"
-            class="col-6 col-xl-2 col-lg-2 col-md-3 "
+            class="col-6 col-xl-2 col-lg-2 col-md-3"
           >
             <div class="box">
-              <div class="image" :style="{backgroundImage: 'url(' +( item.cover  ?  item.cover :'https://placehold.co/600'   ) + ')' }">
+              <div
+                class="image"
+                :style="{
+                  backgroundImage:
+                    'url(' +
+                    (item.cover ? item.cover : 'https://placehold.co/600') +
+                    ')',
+                }"
+              >
                 <!-- <img src="~/assets/images/brand1.png" alt=""> -->
               </div>
               <span class="name"> {{ item.name }} </span>
@@ -124,8 +180,6 @@
         </div>
       </div>
     </div>
-
-    
 
     <div class="explore">
       <div class="container">
@@ -159,7 +213,7 @@
               </div>
               <span> {{ whyCodeCarArr.why_code_car_label_card_1 }} </span>
               <p>
-               {{ whyCodeCarArr.why_code_car_cars_card_1 }}
+                {{ whyCodeCarArr.why_code_car_cars_card_1 }}
               </p>
             </div>
           </div>
@@ -214,55 +268,102 @@
           </v-tabs> -->
 
           <div class="tabs">
-          <div
-            @click="tabNav = 0 , tab = 1 , getProducts()"
-            :class="{ active: tab == 1 }"
-            class="tab"
-          >
-            <span class="choose"> الاكثر مبيعا </span>
-            <border />
+            <div
+              @click="(tabNav = 0), (tab = 1), getProducts()"
+              :class="{ active: tab == 1 }"
+              class="tab"
+            >
+              <span class="choose"> الاكثر مبيعا </span>
+              <border />
+            </div>
+            <div
+              @click="(tabNav = 1), (tab = 2), getProducts()"
+              :class="{ active: tab == 2 }"
+              class="tab"
+            >
+              <span class="choose"> افضل العروض </span>
+              <border />
+            </div>
+            <div
+              @click="(tabNav = 2), (tab = 3), getProducts()"
+              :class="{ active: tab == 3 }"
+              class="tab"
+            >
+              <span class="choose"> موديل السنة </span>
+              <border />
+            </div>
           </div>
-          <div
-            @click="tabNav = 1 , tab = 2 , getProducts()"
-            :class="{ active: tab == 2 }"
-            class="tab"
-          >
-            <span class="choose"> افضل العروض </span>
-            <border />
-          </div>
-          <div
-            @click="tabNav = 2 , tab = 3 , getProducts()"
-            :class="{ active: tab == 3 }"
-            class="tab"
-          >
-            <span class="choose"> موديل السنة </span>
-            <border />
-          </div>
-        </div>
         </div>
 
         <v-window v-model="tabNav">
           <v-window-item v-for="i in 3">
             <swiper
-            
+            :navigation="{
+          nextEl: '.slider-product-next',
+          prevEl: '.slider-product-prev',
+        }"
+              :breakpoints="{
+                '300': {
+                  slidesPerView: 1.3,
+                  spaceBetween: 30,
+                },
+                '768': {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+                '1024': {
+                  slidesPerView: 4,
+                  spaceBetween: 30,
+                },
+              }"
+              :autoplay="{
+                delay: 4500,
+                disableOnInteraction: false,
+              }"
+              :modules="[SwiperNavigation, SwiperAutoplay]"
             >
-            <swiper-slide>
-            
-            </swiper-slide>
+              <swiper-slide v-for="item in productsTags">
+                <car-card :car="item" />
+              </swiper-slide>
             </swiper>
-            <div class="row">
+
+            <div v-if="!spinnerProducts && productsTags.length >= 1" class="icons-arrow">
+              <div class="icon slider-product-next">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="17"
+                  viewBox="0 0 16 17"
+                  fill="none"
+                  class="arrow-icon"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M4.29289 1.3384C3.90237 1.72995 3.90237 2.36479 4.29289 2.75634L9.58579 8.06316L4.29289 13.37C3.90237 13.7615 3.90237 14.3964 4.29289 14.7879C4.68342 15.1795 5.31658 15.1795 5.70711 14.7879L11.7071 8.77213C12.0976 8.38058 12.0976 7.74574 11.7071 7.35419L5.70711 1.3384C5.31658 0.946851 4.68342 0.946851 4.29289 1.3384Z"
+                    
+                  />
+                </svg>
+              </div>
+              <div class="icon slider-product-prev">
+                <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7071 1.3384C12.0976 1.72995 12.0976 2.36479 11.7071 2.75634L6.41421 8.06316L11.7071 13.37C12.0976 13.7615 12.0976 14.3964 11.7071 14.7879C11.3166 15.1795 10.6834 15.1795 10.2929 14.7879L4.29289 8.77213C3.90237 8.38058 3.90237 7.74574 4.29289 7.35419L10.2929 1.3384C10.6834 0.946851 11.3166 0.946851 11.7071 1.3384Z" />
+</svg>
+              </div>
+            </div>
+            <!-- <div class="row">
               <div
                 v-for="item in productsTags"
-                class="col-6  col-xl-3 col-lg-3 col-md-6"
+                class="col-12  col-xl-3 col-lg-3 col-md-6"
               >
                 <car-card :car="item" />
               </div>
-            </div>
+            </div> -->
           </v-window-item>
         </v-window>
         <client-only v-if="spinnerProducts">
-            <Vue3Lottie :animation-data="loader" :height="100" :width="100" />
-          </client-only>
+          <Vue3Lottie :animation-data="loader" :height="100" :width="100" />
+        </client-only>
       </div>
     </div>
     <!-- <img :src="financingAdv.icon_card_1" alt=""> -->
@@ -276,7 +377,7 @@
               <div class="main-image">
                 <div class="main d-flex">
                   <div class="image">
-                    <img :src="financingAdv.icon_card_1" alt="">
+                    <img :src="financingAdv.icon_card_1" alt="" />
                     <!-- <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="33"
@@ -371,15 +472,17 @@
                     </svg> -->
                   </div>
                   <div class="choose d-flex flex-column">
-                    <h6 class="fw-bold">{{ financingAdv.financing_advantage_label_card_1 }}</h6>
+                    <h6 class="fw-bold">
+                      {{ financingAdv.financing_advantage_label_card_1 }}
+                    </h6>
                     <span>
-                    {{ financingAdv.financing_advantage_card_1 }}
+                      {{ financingAdv.financing_advantage_card_1 }}
                     </span>
                   </div>
                 </div>
                 <div class="main d-flex">
                   <div class="image">
-                    <img :src="financingAdv.icon_card_2" alt="">
+                    <img :src="financingAdv.icon_card_2" alt="" />
                     <!-- <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="30"
@@ -482,10 +585,11 @@
                     </svg> -->
                   </div>
                   <div class="choose d-flex flex-column">
-                    <h6 class="fw-bold">{{ financingAdv.financing_advantage_label_card_2 }}</h6>
+                    <h6 class="fw-bold">
+                      {{ financingAdv.financing_advantage_label_card_2 }}
+                    </h6>
                     <span>
                       {{ financingAdv.financing_advantage_card_2 }}
-
                     </span>
                   </div>
                 </div>
@@ -506,21 +610,20 @@
       <div class="header d-flex align-items-center justify-content-center">
         <div class="text d-flex text-center flex-column">
           <h3 class="heading-text">معتمدون لدى جهات التمويل</h3>
-          <span class="p-text"
-            >{{ financingbodyArr.description }}</span
-          >
+          <span class="p-text">{{ financingbodyArr.description }}</span>
         </div>
       </div>
-      <div class="row  gap-3 align-items-center">
-        <div v-for="item in financingbodyArr.banks" class="col-6 col-xl-2 col-lg-2 col-md-4">
-        <div class="box">
-          <div>
-            <img :src="item.image" />
+      <div class="row gap-3 align-items-center">
+        <div
+          v-for="item in financingbodyArr.banks"
+          class="col-6 col-xl-2 col-lg-2 col-md-4"
+        >
+          <div class="box">
+            <div>
+              <img :src="item.image" />
+            </div>
           </div>
-        
         </div>
-        </div>
-      
       </div>
     </div>
   </div>
@@ -543,14 +646,14 @@ let financingAdv = ref();
 
 let carBody = ref([
   {
-    name:"مستعمل",
-    value:0
+    name: "مستعمل",
+    value: 0,
   },
   {
-    name:"جديد",
-    value:1
+    name: "جديد",
+    value: 1,
   },
-])
+]);
 const getBrands = async () => {
   let result = await axios.get(`${getUrl()}/brand`, {
     headers: {
@@ -566,7 +669,7 @@ const getBrands = async () => {
   if (result.status == 200) {
     brandsArr.value = result.data.data;
   }
- 
+
   categArr.value = result1.data.data;
 };
 const getfinancingbody = async () => {
@@ -576,11 +679,9 @@ const getfinancingbody = async () => {
     },
   });
 
-
   if (result.status == 200) {
     financingbodyArr.value = result.data.data;
   }
-
 };
 const getfinancingAdv = async () => {
   let result = await axios.get(`${getUrl()}/financing-advantage`, {
@@ -589,25 +690,22 @@ const getfinancingAdv = async () => {
     },
   });
 
-
   if (result.status == 200) {
     financingAdv.value = result.data.data;
   }
-
 };
 
-const whyCodeCar = async ()=>{
+const whyCodeCar = async () => {
   let result = await axios.get(`${getUrl()}/why-code-car`, {
     headers: {
       "Content-Language": `${locale.value}`,
     },
   });
 
-
   if (result.status == 200) {
     whyCodeCarArr.value = result.data.data;
   }
-}
+};
 
 let spinnerProducts = ref(false);
 let productsTags = ref([]);

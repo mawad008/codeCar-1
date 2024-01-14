@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+p {
+  margin-bottom: 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0px;
+}
+
 @font-face {
   font-family: "Janna-lt";
   src: url("/assets/fonts/Janna-lt.ttf") format("truetype"), url("/assets/fonts/Janna-lt-Bold.ttf");
@@ -33,20 +41,10 @@
   line-height: 24px;
 }
 
-.rotate-scale-up-hor {
-  animation: rotate-scale-up-hor 0.65s linear both;
+html[dir=ltr] .arrow-icon {
+  transform: scaleX(-1);
 }
-@keyframes rotate-scale-up-hor {
-  0% {
-    transform: scale(1) rotateX(0);
-  }
-  50% {
-    transform: scale(2) rotateX(-180deg);
-  }
-  100% {
-    transform: scale(1) rotateX(-360deg);
-  }
-}
+
 @media (max-width: 760px) {
   .heading-text {
     font-size: 24px !important;
@@ -174,6 +172,7 @@ a {
 .car-card .btn-container button {
   display: flex;
   width: 80%;
+  height: 40px;
   padding: 0px 20px;
   justify-content: center;
   align-items: center;
@@ -193,48 +192,6 @@ a {
   color: #959ead;
 }
 
-@media (max-width: 900px) {
-  .car-card .image {
-    height: 76px;
-    margin-bottom: 0px;
-  }
-  .car-card .image img {
-    height: 49px;
-  }
-  .car-card .price {
-    flex-direction: column !important;
-    gap: 5px !important;
-    align-items: flex-start !important;
-  }
-  .car-card .price h6 {
-    font-size: 14px;
-  }
-  .car-card .price span {
-    font-size: 10px;
-  }
-  .car-card .namee {
-    margin-top: 8px;
-  }
-  .car-card .btn-container button {
-    width: 111px;
-    height: 32px;
-    font-size: 12px;
-  }
-  .car-card .btn-container .icon {
-    width: 18px;
-    height: 18px;
-  }
-  .car-card .types svg {
-    width: 16px !important;
-    height: 16px !important;
-  }
-  .car-card .types span {
-    font-size: 12px;
-  }
-  .car-card .types .year {
-    display: none;
-  }
-}
 body,
 html {
   overflow-x: clip;
@@ -244,6 +201,12 @@ html[dir=rtl] body {
   background-color: #fafafa;
   font-family: "Janna-lt", sans-serif;
   direction: rtl;
+}
+
+html[dir=ltr] body {
+  background-color: #fafafa;
+  font-family: "Janna-lt", sans-serif;
+  direction: ltr;
 }
 
 html[dir=rtl] input[type=tel] {
@@ -724,6 +687,10 @@ html[dir=rtl] input[type=tel] {
     width: 40px !important;
     height: 40px !important;
   }
+  .footer-container .search-input button {
+    width: 100px !important;
+    height: 44px !important;
+  }
 }
 .hero-section {
   min-height: 774px;
@@ -960,7 +927,7 @@ html[dir=rtl] input[type=tel] {
     font-size: 15px !important;
   }
   .hero-section .swiper .swiper-pagination {
-    top: 101%;
+    top: 100%;
     flex-direction: row;
     left: 50%;
     width: -moz-fit-content;
@@ -1247,6 +1214,33 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
 .our-products .tabs .tab.active svg {
   display: block;
 }
+.our-products .icons-arrow {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.our-products .icons-arrow .icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: white;
+  transition: 0.4s;
+}
+.our-products .icons-arrow .icon svg {
+  fill: #2D3A4A;
+}
+.our-products .icons-arrow .icon:hover {
+  background-color: #90A3BF;
+}
+.our-products .icons-arrow .icon:hover svg {
+  fill: #fff;
+}
 
 .best-offers {
   background-color: #fff;
@@ -1365,6 +1359,9 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   .best-offers .text-container .choose span {
     width: 100% !important;
   }
+  .our-products .icons-arrow {
+    display: none;
+  }
 }
 .all-marks {
   margin-top: 120px;
@@ -1424,6 +1421,9 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   .all-marks .text {
     gap: 15px !important;
   }
+  .all-marks .row {
+    gap: 0px !important;
+  }
 }
 .main-car-page .car-details {
   margin-top: 50px;
@@ -1436,11 +1436,23 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   height: 416px;
   border-radius: 16px;
   border: 1px solid #ebeaed;
-  background-image: url("~/assets/images/car.png");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-car-page .car-details .images-text .mySwiper2 .swiper-slide .image {
+  width: 401px;
+  height: 416px;
+}
+.main-car-page .car-details .images-text .mySwiper2 .swiper-slide .image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .main-car-page .car-details .images-text .mySwiper2 .swiper-slide .zoom {
   position: absolute;
@@ -1461,10 +1473,15 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
 .main-car-page .car-details .images-text .mySwiper .swiper-slide .image {
   width: 68px;
   height: 32px;
-  background-image: url("~/assets/images/car.png");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+}
+.main-car-page .car-details .images-text .mySwiper .swiper-slide .image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .main-car-page .car-details .images-text .mySwiper .swiper-slide-thumb-active {
   border: 1px solid #dcb63b;
@@ -1563,6 +1580,7 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   margin-top: 20px;
   font-size: 12px;
   color: #5a7184;
+  margin-bottom: 5px;
 }
 .main-car-page .car-details .name {
   display: flex;
@@ -1574,6 +1592,7 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
+  line-height: 35px;
   color: #2d3a4a;
 }
 .main-car-page .car-details .name .model {
@@ -1589,6 +1608,8 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   font-size: 12px;
   color: #5a7184;
   padding-left: 5px;
+}
+.main-car-page .car-details .name .model span:not(:last-child) {
   border-left: 1px solid #ebeaed;
 }
 .main-car-page .car-details .name .model img {
@@ -1779,29 +1800,6 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   font-style: normal;
   font-weight: 400;
   color: #5a7184;
-}
-.paymentType .payment-container .payment-method {
-  margin-top: 24px;
-  margin-bottom: 48px;
-  display: flex;
-  align-items: center;
-  width: 344px;
-  height: 48px;
-  border-radius: 32px;
-  border: 1px solid #ebeaed;
-}
-.paymentType .payment-container .payment-method button {
-  width: 50%;
-  font-size: 16px;
-  font-weight: 400;
-  height: 100%;
-  color: #5a7184;
-}
-.paymentType .payment-container .payment-method button.active {
-  color: #dcb63b;
-  font-weight: 700;
-  border-radius: 32px 32px 32px 32px;
-  background-color: #fcf4e2;
 }
 .paymentType .main-radio span {
   color: #2d3a4a;
@@ -2094,7 +2092,7 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   align-items: center;
   gap: 10px;
 }
-.paymentType .main-pagination-container .pagination-container {
+.paymentType .main-pagination-container .pagination-container .contain {
   width: 6px;
   border-radius: 32px;
   background-color: #fafafa;
@@ -2124,8 +2122,11 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   background-color: #dcb63b;
   border: 2px solid #fcebc5;
 }
-.paymentType .main-pagination-container .pagination-container .dot.active i {
+.paymentType .main-pagination-container .pagination-container .dot.check i {
   display: block;
+}
+.paymentType .main-pagination-container .pagination-container .icon-div {
+  position: relative;
 }
 .paymentType .main-pagination-container .pagination-container .icon {
   width: 48px;
@@ -2135,9 +2136,13 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   justify-content: center;
   background-color: #f6f7f9;
   border-radius: 50%;
+  position: relative;
 }
 .paymentType .main-pagination-container .pagination-container .icon img.active {
   display: none;
+}
+.paymentType .main-pagination-container .pagination-container .icon.active {
+  background-color: #FCF4E2;
 }
 .paymentType .main-pagination-container .pagination-container .icon.active img.active {
   display: block;
@@ -2179,6 +2184,9 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   height: 200px;
   flex-direction: column;
   justify-content: space-between;
+}
+.paymentType .main-pagination-container .text {
+  display: none;
 }
 .paymentType .final-review .word {
   font-size: 16px;
@@ -2277,6 +2285,43 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   width: 38.411px;
   height: 17.438px;
   border-radius: 6px;
+}
+
+.payment-method {
+  margin-top: 24px;
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  width: 344px;
+  height: 48px;
+  border-radius: 32px;
+  border: 1px solid #ebeaed;
+}
+.payment-method button {
+  width: 50%;
+  font-size: 16px;
+  font-weight: 400;
+  height: 100%;
+  color: #5a7184;
+}
+.payment-method button.active {
+  color: #dcb63b;
+  font-weight: 700;
+  background-color: #fcf4e2;
+}
+
+html[dir=rtl] .payment-method button.one {
+  border-radius: 0px 32px 32px 0px;
+}
+html[dir=rtl] .payment-method button.two {
+  border-radius: 32px 0px 0px 32px;
+}
+
+html[dir=ltr] .payment-method button.one {
+  border-radius: 32px 0px 0px 32px;
+}
+html[dir=ltr] .payment-method button.two {
+  border-radius: 0px 32px 32px 0px;
 }
 
 .confirm-container {
@@ -2412,7 +2457,39 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
     margin-bottom: 20px;
   }
   .main-car-page .car-details .images-text .main-images .mySwiper2 .swiper-slide {
-    height: 300px;
+    height: 164px;
+  }
+  .main-car-page .car-details .images-text .main-images .mySwiper2 .swiper-slide .image {
+    width: 249px;
+    height: 120px;
+  }
+  .main-car-page .car-details .images-text .main-images .mySwiper .swiper-slide {
+    width: 64px !important;
+    height: 52px;
+  }
+  .main-car-page .car-details .images-text .main-images .mySwiper .swiper-slide .image {
+    width: 52px;
+    height: 24px;
+  }
+  .main-car-page .car-details .time {
+    margin-top: 10px !important;
+  }
+  .main-car-page .car-details .name h4 {
+    font-size: 20px;
+    width: 136px;
+  }
+  .main-car-page .car-details .name .model {
+    border: none;
+  }
+  .main-car-page .car-details .price .main-price h5 {
+    font-size: 16px;
+  }
+  .main-car-page .car-details .price .main-price span {
+    font-size: 10px;
+  }
+  .main-car-page .car-details .btns a {
+    width: 153px;
+    height: 48px;
   }
   .main-car-page .details {
     margin-top: 50px;
@@ -2428,19 +2505,36 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
     flex-direction: column;
   }
   .paymentType .main-pagination-container .pagination-container {
-    flex-direction: row !important;
     width: 100%;
     width: 330px;
     overflow-x: auto;
+    overflow-y: hidden;
     min-height: -moz-fit-content !important;
     min-height: fit-content !important;
     height: -moz-fit-content;
     height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 20px;
+  }
+  .paymentType .main-pagination-container .pagination-container .contain {
+    width: 100%;
+    flex-direction: row !important;
     gap: 60px;
     position: relative;
     background-color: transparent;
+    justify-content: flex-start;
+    min-height: -moz-fit-content !important;
+    min-height: fit-content !important;
+    height: -moz-fit-content;
+    height: fit-content;
   }
-  .paymentType .main-pagination-container .pagination-container .icon {
+  .paymentType .main-pagination-container .pagination-container .contain.second {
+    display: none;
+  }
+  .paymentType .main-pagination-container .pagination-container .contain .icon {
     z-index: 11;
     width: -moz-fit-content;
     width: fit-content;
@@ -2448,17 +2542,102 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
     height: fit-content;
     padding: 15px;
   }
-  .paymentType .main-pagination-container .pagination-container .icon img {
+  .paymentType .main-pagination-container .pagination-container .contain .icon img {
     width: 20px;
     height: 20px;
   }
-  .paymentType .main-pagination-container .pagination-container::before {
+  .paymentType .main-pagination-container .pagination-container .contain::before {
     content: "";
     background-color: #fafafa;
     position: absolute;
-    width: 430px;
+    width: 500px;
     height: 6px;
     top: 50%;
+  }
+  .paymentType .main-pagination-container .pagination-container .text {
+    display: flex;
+    width: 100%;
+    gap: 60px;
+    position: relative;
+    justify-content: flex-start;
+    text-align: center;
+  }
+  .paymentType .main-pagination-container .pagination-container .text h5 {
+    font-size: 16px;
+    font-style: normal;
+    color: #5a7184;
+    font-weight: 400;
+  }
+  .paymentType .main-pagination-container .pagination-container .text h5.active {
+    color: #dcb63b;
+    font-weight: 700;
+  }
+  .paymentType .main-pagination-container .content-pagination {
+    display: none;
+    flex-direction: row;
+    width: 330px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 60px;
+    min-height: -moz-fit-content !important;
+    min-height: fit-content !important;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .paymentType .main-pagination-container .content-pagination span {
+    display: none;
+  }
+  .paymentType .payment-container {
+    padding: 20px !important;
+  }
+  .paymentType .payment-container .textt {
+    text-align: center;
+  }
+  .paymentType button {
+    width: 100% !important;
+  }
+  .paymentType .btns button {
+    margin-top: 20px !important;
+  }
+  .paymentType .final-review .offer .name-price {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  .paymentType .final-review .offer .main {
+    gap: 7px !important;
+  }
+  .paymentType .final-review .offer .type {
+    margin-top: 0px !important;
+  }
+  .paymentType .final-review .custom-file-upload {
+    margin: 10px 0px;
+    padding: 0px 10px;
+  }
+  .paymentType .final-review .custom-file-upload span {
+    margin-top: 7px;
+  }
+  .paymentType .info-data {
+    margin-top: 30px;
+  }
+  .payment-method {
+    margin-bottom: 20px !important;
+    width: 100% !important;
+    height: 45px !important;
+  }
+  .input-container {
+    width: 100% !important;
+  }
+  .confirm-container p, .confirm-container button, .confirm-container .order-number, .confirm-container a {
+    width: 100% !important;
+  }
+  .confirm-container button {
+    margin-top: 20px !important;
+  }
+  .confirm-container .resend {
+    margin-top: 0px !important;
   }
 }
 .cars-filter {
