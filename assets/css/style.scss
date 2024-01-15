@@ -2539,9 +2539,15 @@ html[dir="rtl"] .explore {
     &.finance {
       align-items: flex-start;
       .pagination-container {
-        height: 200px;
-        // gap: 80px;
-        justify-content: space-between;
+
+        .contain{
+          height: 200px;
+          min-height: 200px;
+          // gap: 80px;
+          justify-content: space-between;
+        flex-direction: column;
+
+        }
       }
       .content-pagination {
         display: flex;
@@ -2851,7 +2857,7 @@ html[dir="ltr"] .payment-method{
               height: 164px;
               .image{
                 width: 249px;
-height: 120px;
+                height: 120px;
               }
             }
           }
@@ -2932,9 +2938,9 @@ height: 120px;
           background-color: transparent;
           justify-content: flex-start;
           min-height: fit-content !important;
-          height: fit-content;
+          height: fit-content !important;
           &.second{
-            display: none;
+            display: none !important;
           }
           .icon {
             z-index: 11;
@@ -2958,7 +2964,7 @@ height: 120px;
              
         }
         .text{
-          display: flex;
+          display: flex !important;
           width: 100%;
           gap: 60px;
           position: relative;
@@ -2985,7 +2991,7 @@ height: 120px;
         overflow-y: hidden;
         gap: 60px;
         min-height: fit-content !important;
-        height: fit-content;
+        height: fit-content !important;
         span{
           display: none;
         }

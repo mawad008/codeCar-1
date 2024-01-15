@@ -302,19 +302,39 @@
                   <div class="input-container">
                     <span> ماركة السيارة </span>
                     <div class="input">
-                      <input
-                        type="text"
-                        placeholder="مثال : تويوتا"
-                        name=""
-                        value=""
+                      <Dropdown
+                        v-model="selectedCountry"
+                        :options="countries"
+                        filter
+                        optionLabel="name"
+                        placeholder="مثال : شركة"
                         class=""
-                      />
+                      >
+                        <template #option="slotProps">
+                          <div class="flex align-items-center">
+                            <div>{{ slotProps.option.name }}</div>
+                          </div>
+                        </template>
+                      </Dropdown>
                     </div>
                   </div>
                   <div class="input-container">
                     <span> نوع السيارة </span>
                     <div class="input">
-                      <input type="text" name="" value="" class="" />
+                      <Dropdown
+                        v-model="selectedCountry"
+                        :options="countries"
+                        filter
+                        optionLabel="name"
+                        placeholder="مثال : شركة"
+                        class=""
+                      >
+                        <template #option="slotProps">
+                          <div class="flex align-items-center">
+                            <div>{{ slotProps.option.name }}</div>
+                          </div>
+                        </template>
+                      </Dropdown>
                     </div>
                   </div>
                 </div>
@@ -322,19 +342,39 @@
                   <div class="input-container">
                     <span> موديل السيارة </span>
                     <div class="input">
-                      <input
-                        type="text"
-                        placeholder="مثال : تويوتا"
-                        name=""
-                        value=""
+                      <Dropdown
+                        v-model="selectedCountry"
+                        :options="countries"
+                        filter
+                        optionLabel="name"
+                        placeholder="مثال : شركة"
                         class=""
-                      />
+                      >
+                        <template #option="slotProps">
+                          <div class="flex align-items-center">
+                            <div>{{ slotProps.option.name }}</div>
+                          </div>
+                        </template>
+                      </Dropdown>
                     </div>
                   </div>
                   <div class="input-container">
                     <span> المواصفات </span>
                     <div class="input">
-                      <input type="text" name="" value="" class="" />
+                      <Dropdown
+                        v-model="selectedCountry"
+                        :options="countries"
+                        filter
+                        optionLabel="name"
+                        placeholder="مثال : شركة"
+                        class=""
+                      >
+                        <template #option="slotProps">
+                          <div class="flex align-items-center">
+                            <div>{{ slotProps.option.name }}</div>
+                          </div>
+                        </template>
+                      </Dropdown>
                     </div>
                   </div>
                 </div>
@@ -342,13 +382,20 @@
                   <div class="input-container">
                     <span>اللون</span>
                     <div class="input">
-                      <input
-                        type="text"
-                        placeholder="مثال : تويوتا"
-                        name=""
-                        value=""
+                      <Dropdown
+                        v-model="selectedCountry"
+                        :options="countries"
+                        filter
+                        optionLabel="name"
+                        placeholder="مثال : شركة"
                         class=""
-                      />
+                      >
+                        <template #option="slotProps">
+                          <div class="flex align-items-center">
+                            <div>{{ slotProps.option.name }}</div>
+                          </div>
+                        </template>
+                      </Dropdown>
                     </div>
                   </div>
                 </div>
@@ -870,7 +917,7 @@
           </div>
           <div v-if="paymentMethod == 2" class="row">
             <div class="col-12 col-xl-5 col-lg-5">
-              <div class="main-pagination-container">
+              <div class="main-pagination-container finance">
                 <div class="pagination-container">
                   <div class="contain">
                     <div class="icon" :class="{ active: paymentBtn2 == 1 }">
@@ -913,7 +960,7 @@
                   </div>
                 </div>
 
-                <div class="content-pagination">
+                <div class="content-pagination ">
                   <div>
                     <h5 :class="{ active: paymentBtn1 == 1 }">
                       بيانات السيارة
@@ -1375,23 +1422,23 @@ let pending2 = ref(false);
 const v2$ = useValidate(rules2, form2);
 
 const paymentFunc1 = async() => {
-  let formBody = new FormData();
-  formBody.append("first_batch", sliderValue1.value);
-  formBody.append("installment", sliderValue2.value);
-  formBody.append("last_batch", sliderValue3.value);
-  let result = await axios.post(`${getUrl()}/finance-Order`, formBody , {
-    params: {
-        type: paymentMethod.value == 1 ? 'individual' : 'company',
-        step: 1
-    },
-    headers: {
-      "Content-Language": `${locale.value}`,
-    },
-  });
-  if(result.status >= 200){
-    paymentBtn2.value = 1;
-  checkBtn1.value = 1;
-  }
+  // let formBody = new FormData();
+  // formBody.append("first_batch", sliderValue1.value);
+  // formBody.append("installment", sliderValue2.value);
+  // formBody.append("last_batch", sliderValue3.value);
+  // let result = await axios.post(`${getUrl()}/finance-Order`, formBody , {
+  //   params: {
+  //       type: paymentMethod.value == 1 ? 'individual' : 'company',
+  //       step: 1
+  //   },
+  //   headers: {
+  //     "Content-Language": `${locale.value}`,
+  //   },
+  // });
+  // if(result.status >= 200){
+  // }
+  paymentBtn2.value = 1;
+checkBtn1.value = 1;
 };
 const paymentFunc2 = async() => {
   paymentBtn3.value = 1;

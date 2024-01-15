@@ -2199,9 +2199,11 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
 .paymentType .main-pagination-container.finance {
   align-items: flex-start;
 }
-.paymentType .main-pagination-container.finance .pagination-container {
+.paymentType .main-pagination-container.finance .pagination-container .contain {
   height: 200px;
+  min-height: 200px;
   justify-content: space-between;
+  flex-direction: column;
 }
 .paymentType .main-pagination-container.finance .content-pagination {
   display: flex;
@@ -2552,11 +2554,11 @@ html[dir=ltr] .payment-method button.two {
     justify-content: flex-start;
     min-height: -moz-fit-content !important;
     min-height: fit-content !important;
-    height: -moz-fit-content;
-    height: fit-content;
+    height: -moz-fit-content !important;
+    height: fit-content !important;
   }
   .paymentType .main-pagination-container .pagination-container .contain.second {
-    display: none;
+    display: none !important;
   }
   .paymentType .main-pagination-container .pagination-container .contain .icon {
     z-index: 11;
@@ -2579,7 +2581,7 @@ html[dir=ltr] .payment-method button.two {
     top: 50%;
   }
   .paymentType .main-pagination-container .pagination-container .text {
-    display: flex;
+    display: flex !important;
     width: 100%;
     gap: 60px;
     position: relative;
@@ -2606,8 +2608,8 @@ html[dir=ltr] .payment-method button.two {
     gap: 60px;
     min-height: -moz-fit-content !important;
     min-height: fit-content !important;
-    height: -moz-fit-content;
-    height: fit-content;
+    height: -moz-fit-content !important;
+    height: fit-content !important;
   }
   .paymentType .main-pagination-container .content-pagination span {
     display: none;
