@@ -52,6 +52,7 @@
                           :type="passType"
                           placeholder="***************"
                           name=""
+                          @keypress.enter="loginFunc()"
                           v-model="form.password"
                         />
                         <div @click="changePass1()" class="icon">
@@ -80,7 +81,10 @@
                     </div>
              
                     <div class="d-flex align-item-center justify-content-center">
-                      <button @click="loginFunc()"  type="">تسجيل دخول</button>
+                      <button @click="loginFunc()"  class="gap-3"  type="">
+                      تسجيل دخول
+                      <v-progress-circular v-if="pending1" indeterminate :size="30" :width="5"></v-progress-circular>
+                      </button>
                     </div>
                     <div class="d-flex align-item-center justify-content-center">
                       <div class="d-flex align-items-center gap-2 linkk">
@@ -767,6 +771,7 @@ let form = ref({
     password: '',
 });
 
+let pending1 = ref(false);
 
 let value1 = ref("value is required");
 let value2 = ref("The email field is required");
@@ -807,6 +812,7 @@ const loginFunc = async () => {
     formBody.append("password", form.value.password);
     if (check) {
         console.log('login');
+        pending1.value = true;
         try {
             let result = await axios.post(`${getUrl()}/login`, formBody, {
                 headers: {
@@ -817,6 +823,7 @@ const loginFunc = async () => {
             if (result.status >= 200) {
                 console.log(result.data.data);
                 if (process.client) {
+                  pending1.value = false;
                     document.cookie = `token=${result.data.data.token}; path=/;`; // Set token in cookie
                     store.state.user = result.data.data.user;
                     store.state.authenticated = true;
@@ -834,6 +841,7 @@ const loginFunc = async () => {
         } catch (errorss) {
             console.log(errorss);
             if (errorss.response) {
+              pending1.value = false;
                 errors.value = errorss.response.data.errors;
             }
 

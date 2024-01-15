@@ -146,10 +146,6 @@
         <h4 class="heading-text">الماركات</h4>
         <p class="p-text">
           {{ brandsArr.description }}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga sequi
-          nihil, corporis est placeat optio voluptatum, at ex expedita debitis
-          labore porro accusantium consequatur neque animi explicabo, autem
-          incidunt deserunt.
         </p>
         <!-- <p class="p-text " v-html="brandsArr.description">
         </p> -->

@@ -2,12 +2,12 @@
   <div>
     <div v-if="!pending" class="container careers-page">
       <div class="text">
-        <h3>التوظيف</h3>
+        <h3 class="heading-text">التوظيف</h3>
       </div>
 
       <div class="careers">
         <div class="row justify-content-around">
-          <div class="col-5">
+          <div class="col-12 col-xl-5 col-lg-5">
             <div>
               <h4>الوظائف المتاحة</h4>
               <div class="boxes">
@@ -43,7 +43,8 @@
               </div>
               <div class="contact">
                 <h4>تواصل معنا</h4>
-                <div v-if="socials" class="icons">
+                <div v-if="socials" class="icons row">
+                <div class="col-4 col-xl-2 col-lg-2 col-md-4">
                   <div class="iconn">
                     <a :href="socials.youtube" target="_blank">
                       <svg
@@ -60,6 +61,9 @@
                       </svg>
                     </a>
                   </div>
+                
+                </div>
+                <div class="col-4 col-xl-2 col-lg-2 col-md-4">
                   <div class="iconn">
                     <a :href="socials.instagram" target="_blank">
                       <svg
@@ -91,6 +95,10 @@
                       </svg>
                     </a>
                   </div>
+                
+                </div>
+
+                <div class="col-4 col-xl-2 col-lg-2 col-md-4">
                   <div class="iconn">
                     <a :href="socials.facebook" target="_blank">
                       <svg
@@ -114,6 +122,10 @@
                       </svg>
                     </a>
                   </div>
+                
+                </div>
+
+                <div class="col-4 col-xl-2 col-lg-2 col-md-4">
                   <div class="iconn">
                     <a :href="socials.snapchat" target="_blank">
                       <svg
@@ -130,6 +142,9 @@
                       </svg>
                     </a>
                   </div>
+                
+                </div>
+                <div class="col-4 col-xl-2 col-lg-2 col-md-4">
                   <div class="iconn">
                     <a :href="socials.twitter" target="_blank">
                       <svg
@@ -146,6 +161,8 @@
                       </svg>
                     </a>
                   </div>
+                </div>
+                <div class="col-4 col-xl-2 col-lg-2 col-md-4">
                   <div class="iconn">
                     <a :href="socials.twitter" target="_blank">
                       <svg
@@ -163,10 +180,11 @@
                     </a>
                   </div>
                 </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-5">
+          <div class="col-12 col-xl-5 col-lg-5">
             <div class="form">
               <div class="inputs">
                 <div class="input">
@@ -237,7 +255,9 @@
                     errors.cv[0]
                   }}</span>
                 </div>
+                <div class="d-flex justify-content-center justify-content-xl-start justify-content-lg-start">
                 <button @click="sendContact()">تقديم</button>
+                </div>
               </div>
             </div>
           </div>

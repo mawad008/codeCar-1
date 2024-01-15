@@ -35,6 +35,9 @@
 
             </div>
         </div>
+
+        <Loader v-if="pending"></Loader> 
+
     </div>
 </template>
 
@@ -46,8 +49,11 @@ const { locale } = useI18n();
 
 const router = useRouter();
 
+let pending = ref(false);
+
 let offersArr = ref([]);
 const getOffersData = async ()=>{
+    pending.value = true;
   let result = await axios.get(`${getUrl()}/offer`, {
     headers: {
       "Content-Language": `${locale.value}`,
@@ -55,6 +61,7 @@ const getOffersData = async ()=>{
   });
 
 if(result.status == 200){
+    pending.value = false;
     offersArr.value = result.data.data;
 }
 

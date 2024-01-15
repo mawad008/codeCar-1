@@ -54,6 +54,9 @@
                 </div>
             </div>
         </div>
+
+        <Loader v-if="pending"></Loader> 
+        
     </div>
 </template>
 
@@ -64,8 +67,11 @@ const { locale } = useI18n();
 
 const router = useRouter();
 
+let pending = ref(false);
+
 let newsArr = ref([]);
 const getNewsData = async ()=>{
+    pending.value = true;
   let result = await axios.get(`${getUrl()}/cars-news`, {
     headers: {
       "Content-Language": `${locale.value}`,
@@ -73,7 +79,9 @@ const getNewsData = async ()=>{
   });
 
 if(result.status == 200){
+    pending.value = false;
     newsArr.value = result.data.data;
+
 }
 
 }

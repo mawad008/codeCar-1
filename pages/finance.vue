@@ -870,66 +870,80 @@
           </div>
           <div v-if="paymentMethod == 2" class="row">
             <div class="col-12 col-xl-5 col-lg-5">
-              <div class="main-pagination-container finance">
+              <div class="main-pagination-container">
                 <div class="pagination-container">
-                  <div
-                    class="icon"
-                    :class="{ active: paymentIndividualBtn2 == 1 }"
-                  >
-                    <img
-                      class="def"
-                      src="@/assets/images/calc-icon1.svg"
-                      alt=""
-                    />
-                    <img
-                      class="active"
-                      src="@/assets/images/calc-icon-active1.svg"
-                      alt=""
-                    />
+                  <div class="contain">
+                    <div class="icon" :class="{ active: paymentBtn2 == 1 }">
+                      <img
+                        class="def"
+                        src="@/assets/images/calc-icon2.svg"
+                        alt=""
+                      />
+                      <img
+                        class="active"
+                        src="@/assets/images/calc-icon-active2.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="icon" :class="{ active: paymentBtn3 == 1 }">
+                      <img
+                        class="def"
+                        src="@/assets/images/calc-icon2.svg"
+                        alt=""
+                      />
+                      <img
+                        class="active"
+                        src="@/assets/images/calc-icon-active2.svg"
+                        alt=""
+                      />
+                    </div>
                   </div>
-                  <div
-                    class="icon"
-                    :class="{ active: paymentIndividualBtn2 == 2 }"
-                  >
-                    <img
-                      class="def"
-                      src="@/assets/images/calc-icon2.svg"
-                      alt=""
-                    />
-                    <img
-                      class="active"
-                      src="@/assets/images/calc-icon-active2.svg"
-                      alt=""
-                    />
+                  <div class="text">
+                    <div>
+                      <h5 :class="{ active: paymentBtn1 == 1 }">
+                        بيانات السيارة
+                      </h5>
+                    </div>
+                    <div>
+                      <h5 :class="{ active: paymentBtn2 == 1 }">
+                        بيانات المنشأة
+                      </h5>
+                    </div>
+               
                   </div>
                 </div>
+
                 <div class="content-pagination">
                   <div>
-                    <h5 :class="{ active: paymentIndividualBtn2 == 1 }">
-                      خيارات التمويل
+                    <h5 :class="{ active: paymentBtn1 == 1 }">
+                      بيانات السيارة
                     </h5>
                     <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                   </div>
                   <div>
-                    <h5 :class="{ active: paymentIndividualBtn2 == 2 }">
-                      خيارات التمويل
+                    <h5 :class="{ active: paymentBtn2 == 1 }">
+                      بيانات المنشأة
                     </h5>
                     <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                   </div>
                 </div>
-                <div class="pagination-container">
+                <div class="pagination-container ">
+                <div class="contain second">
                   <div
                     class="dot"
-                    :class="{ active: paymentIndividualBtn2 == 1 }"
+                    :class="{ active: paymentBtn1 == 1 , check: checkBtn1 == 1 }"
                   >
                     <i class="fa-solid fa-check"></i>
                   </div>
                   <div
                     class="dot"
-                    :class="{ active: paymentIndividualBtn2 == 2 }"
+                    :class="{ active: paymentBtn2 == 1 , check: checkBtn2 == 1}"
                   >
                     <i class="fa-solid fa-check"></i>
                   </div>
+                
+                
+                </div>
                 </div>
               </div>
             </div>
@@ -1283,9 +1297,9 @@ let store = useStore;
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let paymentMethod = ref(1);
-let sliderValue1 = ref(0);
+let sliderValue1 = ref(20000);
 let sliderValue2 = ref(5);
-let sliderValue3 = ref(0);
+let sliderValue3 = ref(20000);
 let showConfirm = ref(false);
 let minNum = ref(0);
 let maxNum = ref(0);
@@ -1448,6 +1462,10 @@ const countries = ref([
   { name: "Spain", code: "ES" },
   { name: "United States", code: "US" },
 ]);
+
+const getCites = async () =>{
+  let result = await axios.get(`${getUrl()}/`)
+}
 
 let paymentIndividualBtn = ref(1);
 let paymentIndividualBtn2 = ref(1);

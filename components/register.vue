@@ -128,7 +128,7 @@
             <div class="input">
               <label for=""> المدينة </label>
               <Dropdown
-                v-model="selectedCountry"
+                v-model="form.city_id"
                 :options="countries"
                 filter
                 optionLabel="name"
@@ -541,18 +541,18 @@ let passType = ref("password");
 let passConfType = ref("password");
 
 const selectedCountry = ref();
-const countries = ref([
-  { name: "Australia", code: "AU" },
-  { name: "Brazil", code: "BR" },
-  { name: "China", code: "CN" },
-  { name: "Egypt", code: "EG" },
-  { name: "France", code: "FR" },
-  { name: "Germany", code: "DE" },
-  { name: "India", code: "IN" },
-  { name: "Japan", code: "JP" },
-  { name: "Spain", code: "ES" },
-  { name: "United States", code: "US" },
-]);
+const countries = ref([]);
+
+
+const getCites = async ()=>{
+  let result = await axios.get(`${getUrl()}/cities`,{
+    headers:{
+      "Content-Language": `${locale.value}`,
+    }
+  });
+
+  countries.value = result.data.data;
+}
 
 const changePass1 = () => {
   passType.value = passType.value === "password" ? "text" : "password";
@@ -577,7 +577,7 @@ let form = ref({
   name: "",
   phone: "",
   id_number: "",
-  city_id: 1,
+  city_id: '',
   commercial_register_namber: "",
   password: "",
   password_confirmation: "",
@@ -635,7 +635,7 @@ const registerFunc = async () => {
   formBody.append("phone", form.value.phone);
 
   formBody.append("type", typeForm.value);
-  formBody.append("city_id", form.value.city_id);
+  formBody.append("city_id", form.value.city_id.id);
   formBody.append("password", form.value.password);
   formBody.append("password_confirmation", form.value.password_confirmation);
   if (typeForm.value != "individual") {
@@ -703,7 +703,7 @@ const otpFunc = async () => {
 };
 
 onMounted(() => {
-
+  getCites();
 });
 
 

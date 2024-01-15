@@ -1,6 +1,6 @@
 <template>
     <div style="">
-        <div class="brands">
+        <div class="brands market">
           <div
             class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column"
           >
@@ -29,7 +29,8 @@
               </div>
             </div>
           </div>
-        </div> 
+        </div>
+        <Loader v-if="pending"></Loader> 
     </div>
 </template>
 
@@ -38,9 +39,10 @@ import axios from "axios";
 const localePath = useLocalePath();
 let { locale } = useI18n();
 
-
+let pending = ref(false);
 let brandsArr = ref([]);
 const getBrands = async () => {
+  pending.value = true;
   let result = await axios.get(`${getUrl()}/brand`, {
     headers: {
       "Content-Language": `${locale.value}`,
@@ -48,6 +50,7 @@ const getBrands = async () => {
   });
   if (result.status == 200) {
     brandsArr.value = result.data.data;
+    pending.value = false;
   }
  
 };

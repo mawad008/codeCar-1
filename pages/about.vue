@@ -14,7 +14,7 @@
 
             <div class="about-container">
                 <div class="row">
-                    <div class="col-7">
+                    <div class="col-12 col-xl-7 col-lg-7 order-2 order-xl-1 order-lg-1">
                         <div class="text-container">
                             <div class="text">
                                 <h6>عننا !</h6>
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-5">
+                    <div class="col-12 col-xl-5 col-lg-5 order-1 order-xl-2 order-lg-2">
                         <div class="image">
                             <div class="overlay"></div>
                         </div>
@@ -54,7 +54,7 @@
             <div class="faqs">
             <h5> {{ $t("faq") }}</h5>
                 <v-expansion-panels class="row justify-content-start"   multiple  variant="popout">
-                    <div v-for="i in 8" :key="i" class="col-6 my-2">
+                    <div v-for="i in 8" :key="i" class="col-12 col-xl-6 col-lg-6 my-2">
                         <v-expansion-panel >
 
                             <template v-slot:title>

@@ -425,7 +425,7 @@
               {{ $t("mail2") }}
              </span>
             <div class="search-input">
-              <div class="input">
+              <div class="inputt">
                 <img src="~/assets/images/sms.svg" alt="" />
                 <input
                   type="email"

@@ -15,12 +15,12 @@
             </div>
             <div class="contact-container">
                 <div class="row justify-content-between">
-                    <div class="col-6">
+                    <div class="col-12 col-xl-6 col-lg-6">
                         <div class="text-container">
                             <h4>معلومات الاتصال</h4>
                             <span class="word">سيتم الرد عليكم خلال مدة اقصاها 24 ساعة .</span>
                             <div class="row mt-4">
-                                <div class="col-6 my-3">
+                                <div class="col-12 col-xl-6 col-lg-6 my-3">
                                     <div class="icon-container">
                                         <div class="icon">
                                             <img src="~/assets/images/contact-1.svg" alt="">
@@ -29,7 +29,7 @@
                                         <h6>{{ contactArr.email }}</h6>
                                     </div>
                                 </div>
-                                <div class="col-6 my-3">
+                                <div class="col-12 col-xl-6 col-lg-6 my-3">
                                     <div class="icon-container">
                                         <div class="icon">
                                             <img src="~/assets/images/contact-2.svg" alt="">
@@ -38,7 +38,7 @@
                                         <h6>{{ contactArr.phone }}</h6>
                                     </div>
                                 </div>
-                                <div class="col-6 my-3">
+                                <div class="col-12 col-xl-6 col-lg-6 my-3">
                                     <div class="icon-container">
                                         <div class="icon">
                                             <img src="~/assets/images/contact-3.svg" alt="">
@@ -47,10 +47,10 @@
                                         <h6>{{ contactArr.address }}</h6>
                                     </div>
                                 </div>
-                                <div class="col-6 my-3">
+                                <div class="col-12 col-xl-6 col-lg-6 my-3">
                                     <div class="icon-container">
                                         <div class="icon">
-                                            <img src="~/assets/images/contact-2.svg" alt="">
+                                            <img src="~/assets/images/_x30_4_world.svg" alt="">
                                         </div>
                                         <span>مواقع التواصل</span>
                                         <div class="icons">
@@ -170,7 +170,7 @@
 
 
                     </div>
-                    <div class="col-5">
+                    <div class="col-12 col-xl-5 col-lg-5">
                         <div class="form-container">
                          <div class="input">
                           <label> الاسم </label>
@@ -196,12 +196,20 @@
                           <span class="error-msg" v-if="v$.message.$error">{{ v$.message.$errors[0].$message }}</span>
                             <span class="error-msg" v-if="errors.message">{{ errors.message[0] }}</span>
                          </div>
-                         <button @click="sendContact()">ارسال طلب</button>
+                         <div class="d-flex justify-content-center justify-content-xl-start justify-content-lg-start">
+                         <button class="gap-3" @click="sendContact()">
+                         ارسال طلب
+                      <v-progress-circular v-if="pendingBtn"  indeterminate :size="25" :width="4"></v-progress-circular>
+                          
+                         </button>
+                         </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <Loader v-if="pending"></Loader> 
     </div>
 </template>
 
@@ -214,6 +222,10 @@ import 'mosha-vue-toastify/dist/style.css'
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
 let route = useRoute();
+
+let pending = ref(false);
+
+let pendingBtn = ref(false);
 let items = ref([
     {
         title: 'الرئيسية',
@@ -256,6 +268,7 @@ const sendContact = async()=>{
     formBody.append("email", form.value.email);
     formBody.append("message", form.value.message);
   if(check){
+    pendingBtn.value = true;
     try{
       let result = await axios.post(
       `${getUrl()}/contact`,formBody,
@@ -267,6 +280,7 @@ const sendContact = async()=>{
     );
 
       if(result.status >= 200){
+    pendingBtn.value = false;
         errors.value = [];
         console.log('dasdas');
         createToast({
@@ -283,6 +297,7 @@ const sendContact = async()=>{
 
     }catch(errorss){
       if (errorss.response) {
+    pendingBtn.value = false;
                 errors.value = errorss.response.data.errors;
             }
 
@@ -295,12 +310,14 @@ const sendContact = async()=>{
 
 const contactArr = ref([]);
 const getContactData =  async()=>{
+    pending.value = true;
     let result = await axios.get(`${getUrl()}/contact-us`,{
         headers:{
             "Content-Language": `${locale.value}`,
         }
     });
     if(result.status == 200){
+    pending.value = false;
      contactArr.value = result.data.data;
     }
 }

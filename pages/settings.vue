@@ -1,450 +1,771 @@
 <template>
-    <div>
-        <div class="container settings-page">
-            <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
-                <h4 class="heading-text">الاعدادت</h4>
-                <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
+  <div>
+    <div class="container settings-page">
+      <div
+        class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column"
+      >
+        <h4 class="heading-text">الاعدادت</h4>
+        <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
 
-                <v-breadcrumbs :items="items">
-                    <template v-slot:divider>
-                        <v-icon icon="mdi-chevron-left"></v-icon>
+        <v-breadcrumbs :items="items">
+          <template v-slot:divider>
+            <v-icon icon="mdi-chevron-left"></v-icon>
+          </template>
+        </v-breadcrumbs>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-xl-3 col-lg-3" style="position: relative">
+          <div class="setting-nav">
+            <div
+              @click="settingNav = 1"
+              class="item"
+              :class="{ active: settingNav == 1 }"
+            >
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <path
+                    d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512
+                      29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+                  />
+                </svg>
+              </div>
+              <span> الملف الشخصي </span>
+            </div>
+            <div
+              @click="settingNav = 2"
+              class="item justify-content-between"
+              :class="{ active: settingNav == 2 }"
+            >
+              <div class="d-flex align-items-center gap-2">
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path
+                      d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512
+                      29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+                    />
+                  </svg>
+                </div>
+                <span> اعلاناتي </span>
+              </div>
+              <div class="num">
+                <span> 6 </span>
+              </div>
+            </div>
+            <div
+              @click="settingNav = 3"
+              class="item"
+              :class="{ active: settingNav == 3 }"
+            >
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12.3812 6.13413C14.1606 4.35535 17.0457 4.35535 18.8252 6.13413C20.6047 7.91302 20.6047 10.7972 18.8252 12.5761L12.3392 19.0595C12.1518 19.2469 11.8479 19.2469 11.6605 19.0595L5.17453 12.5761C3.39495 10.7972 3.39495 7.91302 5.17453 6.13413C6.95401 4.35535 9.83904 4.35535 11.6185 6.13413L11.9998 6.5153L12.3812 6.13413Z"
+                    fill="#90A3BF"
+                  />
+                </svg>
+              </div>
+              <span> المفضلة </span>
+            </div>
+            <div
+              @click="settingNav = 4"
+              class="item"
+              :class="{ active: settingNav == 4 }"
+            >
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M11.409 23.2499C12.0751 23.2501 12.7224 23.0285 13.2488 22.6202C13.7751 22.2119 14.1506 21.6399 14.316 20.9946L9.26172 22.3446C9.5422 22.6297 9.87633 22.8565 10.2449 23.0119C10.6134 23.1672 11.009 23.2481 11.409 23.2499Z"
+                    fill="#90A3BF"
+                  />
+                  <path
+                    d="M20.9573 14.9461C20.8327 14.4752 20.5787 14.0487 20.2241 13.7148C19.8696 13.3809 19.4286 13.1529 18.9511 13.0568C18.9296 13.0525 18.9097 13.0423 18.8936 13.0274C18.8776 13.0124 18.8661 12.9932 18.8603 12.9721L17.8238 9.10206C17.3918 7.5034 16.4479 6.09035 15.1364 5.07919C13.825 4.06804 12.2183 3.5145 10.5623 3.50331C10.645 3.14922 10.6401 2.78033 10.5481 2.42856C10.387 1.855 10.0063 1.36805 9.48861 1.07325C8.9709 0.778458 8.35787 0.699576 7.7824 0.853705C7.20693 1.00784 6.71539 1.38256 6.41433 1.89664C6.11327 2.41073 6.02695 3.02276 6.17408 3.60006C6.26883 3.95093 6.44717 4.27364 6.69383 4.54056C5.26735 5.37894 4.1546 6.66132 3.52565 8.19173C2.89669 9.72213 2.78612 11.4164 3.21083 13.0156L4.24733 16.8878C4.25299 16.9087 4.25268 16.9307 4.24645 16.9514C4.24022 16.972 4.22831 16.9906 4.21208 17.0048C3.84544 17.3272 3.57673 17.7461 3.43657 18.2138C3.29641 18.6815 3.29044 19.1791 3.41933 19.6501C3.60758 20.3164 4.04843 20.883 4.64809 21.2293C5.24774 21.5756 5.95885 21.6741 6.63008 21.5041L19.1041 18.1576C19.7752 17.9767 20.3473 17.537 20.6947 16.935C21.0421 16.3329 21.1366 15.6177 20.9573 14.9461ZM7.62308 3.21306C7.58331 3.06712 7.58773 2.91267 7.63579 2.76925C7.68385 2.62583 7.77338 2.4999 7.89306 2.4074C8.01273 2.3149 8.15717 2.25999 8.30807 2.24962C8.45897 2.23926 8.60955 2.27391 8.74075 2.34918C8.87195 2.42445 8.97786 2.53696 9.04508 2.67246C9.11229 2.80796 9.13779 2.96036 9.11834 3.11036C9.09889 3.26036 9.03536 3.40122 8.9358 3.51509C8.83625 3.62897 8.70514 3.71074 8.55908 3.75006C8.36379 3.80181 8.15597 3.77445 7.98073 3.67391C7.80549 3.57337 7.67697 3.40777 7.62308 3.21306Z"
+                    fill="#90A3BF"
+                  />
+                </svg>
+              </div>
+              <span> الاشعارات </span>
+            </div>
+            <div
+              @click="settingNav = 5"
+              class="item"
+              :class="{ active: settingNav == 5 }"
+            >
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M7.78125 14.7656C8.16958 14.7656 8.48438 14.4508 8.48438 14.0625C8.48438 13.6742 8.16958 13.3594 7.78125 13.3594C7.39292 13.3594 7.07812 13.6742 7.07812 14.0625C7.07812 14.4508 7.39292 14.7656 7.78125 14.7656Z"
+                    fill="#90A3BF"
+                  />
+                  <path
+                    d="M11.5312 12.9844C11.5312 11.8213 12.4775 10.875 13.6406 10.875C13.9984 10.875 14.3075 10.684 14.4675 10.364L14.5665 10.166C14.6261 10.0467 14.6966 9.93563 14.775 9.83208C14.4801 9.54933 14.0805 9.375 13.6406 9.375H1.92188C1.01723 9.375 0.28125 10.111 0.28125 11.0156V18.5156C0.28125 19.4203 1.01723 20.1562 1.92188 20.1562H12.1232C11.733 19.1588 11.5312 18.093 11.5312 16.9967V12.9844ZM8.48438 16.0509V16.875C8.48438 17.2633 8.16956 17.5781 7.78125 17.5781C7.39294 17.5781 7.07812 17.2633 7.07812 16.875V16.0509C6.25973 15.7607 5.67188 14.9791 5.67188 14.0625C5.67188 12.8994 6.61814 11.9531 7.78125 11.9531C8.94436 11.9531 9.89062 12.8994 9.89062 14.0625C9.89062 14.9791 9.30277 15.7607 8.48438 16.0509Z"
+                    fill="#90A3BF"
+                  />
+                  <path
+                    d="M23.0156 12.2812C22.1271 12.2812 21.3283 11.7876 20.931 10.9929L20.832 10.795C20.7129 10.5567 20.4695 10.4062 20.2031 10.4062H16.4531C16.1868 10.4062 15.9433 10.5567 15.8242 10.7949L15.7252 10.9928C15.3279 11.7876 14.5291 12.2812 13.6406 12.2812C13.2523 12.2812 12.9375 12.5961 12.9375 12.9844V16.9967C12.9375 18.5743 13.4353 20.0771 14.3769 21.3428C15.3186 22.6084 16.6151 23.517 18.1261 23.9703C18.192 23.9901 18.2601 24 18.3281 24C18.3962 24 18.4643 23.9901 18.5302 23.9703C20.0412 23.517 21.3376 22.6084 22.2793 21.3428C23.221 20.0771 23.7188 18.5743 23.7188 16.9967V12.9844C23.7188 12.5961 23.4039 12.2812 23.0156 12.2812ZM20.814 16.3745L18.1624 19.0261C18.0251 19.1634 17.8452 19.2321 17.6653 19.2321C17.4854 19.2321 17.3054 19.1634 17.1681 19.0261L15.8423 17.7003C15.5677 17.4257 15.5677 16.9805 15.8423 16.7059C16.1168 16.4313 16.5621 16.4313 16.8367 16.7059L17.6653 17.5345L19.8198 15.3801C20.0943 15.1055 20.5395 15.1055 20.8141 15.3801C21.0886 15.6547 21.0886 16.0999 20.814 16.3745Z"
+                    fill="#90A3BF"
+                  />
+                  <path
+                    d="M4.96875 5.625C4.96875 4.0717 6.22795 2.8125 7.78125 2.8125C9.33455 2.8125 10.5938 4.0717 10.5938 5.625V7.96875H13.4062V5.625C13.4062 2.51841 10.8878 0 7.78125 0C4.67466 0 2.15625 2.51841 2.15625 5.625V7.96875H4.96875V5.625Z"
+                    fill="#90A3BF"
+                  />
+                </svg>
+              </div>
+              <span> الامان </span>
+            </div>
+            <button
+              data-bs-toggle="modal"
+              data-bs-target="#logout-modal"
+              class="item"
+            >
+              <div class="out">
+                <span> تسجيل الخروج </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    d="M12.6 16.5L10.65 16.5C8.25 16.5 6.75 15 6.75 12.6L6.75 9.5625L10.08 9.5625L8.5275 11.115C8.415 11.2275 8.3625 11.37 8.3625 11.5125C8.3625 11.655 8.415 11.7975 8.5275 11.91C8.745 12.1275 9.105 12.1275 9.3225 11.91L11.835 9.3975C12.0525 9.18 12.0525 8.82 11.835 8.6025L9.3225 6.09C9.105 5.8725 8.745 5.8725 8.5275 6.09C8.31 6.3075 8.31 6.6675 8.5275 6.885L10.08 8.4375L6.75 8.4375L6.75 5.4C6.75 3 8.25 1.5 10.65 1.5L12.5925 1.5C14.9925 1.5 16.4925 3 16.4925 5.4L16.4925 12.6C16.5 15 15 16.5 12.6 16.5Z"
+                    fill="#90A3BF"
+                  />
+                  <path
+                    d="M2.0625 9.5625C1.755 9.5625 1.5 9.3075 1.5 9C1.5 8.6925 1.755 8.4375 2.0625 8.4375L6.75 8.4375L6.75 9.5625L2.0625 9.5625Z"
+                    fill="#90A3BF"
+                  />
+                </svg>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-12 col-xl-9 col-lg-9">
+          <div class="setting-content">
+            <div v-if="settingNav == 1" class="personal">
+              <div class="d-flex flex-column align-items-center justify-content-center align-items-xl-start justify-content-xl-start  align-items-lg-start justify-content-lg-start">
+                <label for="img-file" class="image">
+                  <div v-if="!selectedFile">
+                    <img src="~/assets/images/person.png" />
+                  </div>
+                  <div v-if="selectedFile">
+                    <img :src="selectedFileUrl" alt="Selected Image" />
+                  </div>
+                  <div class="overlay">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="22"
+                      height="21"
+                      viewBox="0 0 22 21"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M1.75 4.75008C1.75 3.02994 3.20507 1.6355 5 1.6355H14C14.4142 1.6355 14.75 1.3137 14.75 0.916748C14.75 0.519793 14.4142 0.197998 14 0.197998H5C2.37665 0.197998 0.25 2.23604 0.25 4.75008V16.2501C0.25 18.7641 2.37665 20.8022 5 20.8022H17C19.6234 20.8022 21.75 18.7641 21.75 16.2501V7.62508C21.75 7.22813 21.4142 6.90633 21 6.90633C20.5858 6.90633 20.25 7.22813 20.25 7.62508V11.951C20.1948 11.9069 20.1371 11.8654 20.0768 11.8269L17.6504 10.2767C16.0951 9.28305 14.0618 9.48254 12.7292 10.7596L9.27077 14.0739C7.93822 15.351 5.90492 15.5504 4.34959 14.5568L1.75 12.8959V4.75008ZM10 7.14592C10 8.4691 8.88071 9.54175 7.5 9.54175C6.11929 9.54175 5 8.4691 5 7.14592C5 5.82273 6.11929 4.75008 7.5 4.75008C8.88071 4.75008 10 5.82273 10 7.14592ZM18.1292 1.33778L14.7081 4.61634C14.5791 4.73992 14.4879 4.89494 14.4442 5.06463L14.015 6.73357C13.925 7.08344 14.255 7.39972 14.6201 7.31349L16.3616 6.90211C16.5387 6.86029 16.7004 6.77286 16.8294 6.64928L20.2505 3.37071C20.8363 2.80933 20.8363 1.89916 20.2505 1.33778C19.6647 0.776403 18.715 0.776403 18.1292 1.33778Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </div>
+                  <input id="img-file" type="file" @change="handleFileChange" />
+                </label>
+                <span class="img-span">الصورة الشخصية</span>
+              </div>
+              <div class="personal-form">
+                <div class="input">
+                  <label for="">
+                    <h6>الاسم</h6>
+                    <span>اسمك بالكامل</span>
+                  </label>
+                  <input type="text" placeholder="فهمي سوادة" />
+                </div>
+                <div class="input">
+                  <label for="">
+                    <h6>رقم الهاتف</h6>
+                    <span>رقم الهاتف الخاص بك</span>
+                  </label>
+                  <input type="text" placeholder="01012151698+" />
+                </div>
+                <div class="input">
+                  <label for="">
+                    <h6>رقم الهوية</h6>
+                    <span> رقم الهوية الخاص بك </span>
+                  </label>
+                  <input type="text" placeholder="8418988989-5894848-878" />
+                </div>
+                <div class="input">
+                  <label for="">
+                    <h6>رقم السجل التجاري</h6>
+                    <span> رقم السجل التجاري الخاص بك</span>
+                  </label>
+                  <input type="text" placeholder="8418988989-5894848-878" />
+                </div>
+                <div class="input">
+                  <label for="">
+                    <h6>المدينة</h6>
+                    <span> المدينة الخاصة بك</span>
+                  </label>
+                  <Dropdown
+                    v-model="selectedCity"
+                    :options="cities"
+                    filter
+                    optionLabel="name"
+                    placeholder="المدينة"
+                    class=""
+                  >
+                    <template #option="slotProps">
+                      <div class="flex align-items-center">
+                        <div>{{ slotProps.option.name }}</div>
+                      </div>
                     </template>
-                </v-breadcrumbs>
+                  </Dropdown>
+                </div>
+                <div class="d-flex justify-content-center justify-content-xl-start justify-content-lg-start">
+                <button>حفظ التعديلات</button> 
+                 </div>              </div>
             </div>
-
-            <div class="row">
-                <div class="col-12 col-xl-3 col-lg-3" style="position: relative">
-                    <div class="setting-nav">
-
-                        <div @click="settingNav = 1" class="item" :class="{ 'active': settingNav == 1 }">
-
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512
-                      29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
-                                </svg>
-                            </div>
-                            <span> الملف الشخصي </span>
-                        </div>
-                        <div @click="settingNav = 2" class="item justify-content-between"
-                            :class="{ 'active': settingNav == 2 }">
-
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                        <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512
-                      29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
-                                    </svg>
-                                </div>
-                                <span> اعلاناتي </span>
-                            </div>
-                            <div class="num">
-                                <span>
-                                    6
-                                </span>
-                            </div>
-                        </div>
-                        <div @click="settingNav = 3" class="item" :class="{ 'active': settingNav == 3 }">
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M12.3812 6.13413C14.1606 4.35535 17.0457 4.35535 18.8252 6.13413C20.6047 7.91302 20.6047 10.7972 18.8252 12.5761L12.3392 19.0595C12.1518 19.2469 11.8479 19.2469 11.6605 19.0595L5.17453 12.5761C3.39495 10.7972 3.39495 7.91302 5.17453 6.13413C6.95401 4.35535 9.83904 4.35535 11.6185 6.13413L11.9998 6.5153L12.3812 6.13413Z"
-                                        fill="#90A3BF" />
-                                </svg>
-                            </div>
-                            <span> المفضلة </span>
-                        </div>
-                        <div @click="settingNav = 4" class="item" :class="{ 'active': settingNav == 4 }">
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path
-                                        d="M11.409 23.2499C12.0751 23.2501 12.7224 23.0285 13.2488 22.6202C13.7751 22.2119 14.1506 21.6399 14.316 20.9946L9.26172 22.3446C9.5422 22.6297 9.87633 22.8565 10.2449 23.0119C10.6134 23.1672 11.009 23.2481 11.409 23.2499Z"
-                                        fill="#90A3BF" />
-                                    <path
-                                        d="M20.9573 14.9461C20.8327 14.4752 20.5787 14.0487 20.2241 13.7148C19.8696 13.3809 19.4286 13.1529 18.9511 13.0568C18.9296 13.0525 18.9097 13.0423 18.8936 13.0274C18.8776 13.0124 18.8661 12.9932 18.8603 12.9721L17.8238 9.10206C17.3918 7.5034 16.4479 6.09035 15.1364 5.07919C13.825 4.06804 12.2183 3.5145 10.5623 3.50331C10.645 3.14922 10.6401 2.78033 10.5481 2.42856C10.387 1.855 10.0063 1.36805 9.48861 1.07325C8.9709 0.778458 8.35787 0.699576 7.7824 0.853705C7.20693 1.00784 6.71539 1.38256 6.41433 1.89664C6.11327 2.41073 6.02695 3.02276 6.17408 3.60006C6.26883 3.95093 6.44717 4.27364 6.69383 4.54056C5.26735 5.37894 4.1546 6.66132 3.52565 8.19173C2.89669 9.72213 2.78612 11.4164 3.21083 13.0156L4.24733 16.8878C4.25299 16.9087 4.25268 16.9307 4.24645 16.9514C4.24022 16.972 4.22831 16.9906 4.21208 17.0048C3.84544 17.3272 3.57673 17.7461 3.43657 18.2138C3.29641 18.6815 3.29044 19.1791 3.41933 19.6501C3.60758 20.3164 4.04843 20.883 4.64809 21.2293C5.24774 21.5756 5.95885 21.6741 6.63008 21.5041L19.1041 18.1576C19.7752 17.9767 20.3473 17.537 20.6947 16.935C21.0421 16.3329 21.1366 15.6177 20.9573 14.9461ZM7.62308 3.21306C7.58331 3.06712 7.58773 2.91267 7.63579 2.76925C7.68385 2.62583 7.77338 2.4999 7.89306 2.4074C8.01273 2.3149 8.15717 2.25999 8.30807 2.24962C8.45897 2.23926 8.60955 2.27391 8.74075 2.34918C8.87195 2.42445 8.97786 2.53696 9.04508 2.67246C9.11229 2.80796 9.13779 2.96036 9.11834 3.11036C9.09889 3.26036 9.03536 3.40122 8.9358 3.51509C8.83625 3.62897 8.70514 3.71074 8.55908 3.75006C8.36379 3.80181 8.15597 3.77445 7.98073 3.67391C7.80549 3.57337 7.67697 3.40777 7.62308 3.21306Z"
-                                        fill="#90A3BF" />
-                                </svg>
-                            </div>
-                            <span> الاشعارات </span>
-                        </div>
-                        <div @click="settingNav = 5" class="item" :class="{ 'active': settingNav == 5 }">
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path
-                                        d="M7.78125 14.7656C8.16958 14.7656 8.48438 14.4508 8.48438 14.0625C8.48438 13.6742 8.16958 13.3594 7.78125 13.3594C7.39292 13.3594 7.07812 13.6742 7.07812 14.0625C7.07812 14.4508 7.39292 14.7656 7.78125 14.7656Z"
-                                        fill="#90A3BF" />
-                                    <path
-                                        d="M11.5312 12.9844C11.5312 11.8213 12.4775 10.875 13.6406 10.875C13.9984 10.875 14.3075 10.684 14.4675 10.364L14.5665 10.166C14.6261 10.0467 14.6966 9.93563 14.775 9.83208C14.4801 9.54933 14.0805 9.375 13.6406 9.375H1.92188C1.01723 9.375 0.28125 10.111 0.28125 11.0156V18.5156C0.28125 19.4203 1.01723 20.1562 1.92188 20.1562H12.1232C11.733 19.1588 11.5312 18.093 11.5312 16.9967V12.9844ZM8.48438 16.0509V16.875C8.48438 17.2633 8.16956 17.5781 7.78125 17.5781C7.39294 17.5781 7.07812 17.2633 7.07812 16.875V16.0509C6.25973 15.7607 5.67188 14.9791 5.67188 14.0625C5.67188 12.8994 6.61814 11.9531 7.78125 11.9531C8.94436 11.9531 9.89062 12.8994 9.89062 14.0625C9.89062 14.9791 9.30277 15.7607 8.48438 16.0509Z"
-                                        fill="#90A3BF" />
-                                    <path
-                                        d="M23.0156 12.2812C22.1271 12.2812 21.3283 11.7876 20.931 10.9929L20.832 10.795C20.7129 10.5567 20.4695 10.4062 20.2031 10.4062H16.4531C16.1868 10.4062 15.9433 10.5567 15.8242 10.7949L15.7252 10.9928C15.3279 11.7876 14.5291 12.2812 13.6406 12.2812C13.2523 12.2812 12.9375 12.5961 12.9375 12.9844V16.9967C12.9375 18.5743 13.4353 20.0771 14.3769 21.3428C15.3186 22.6084 16.6151 23.517 18.1261 23.9703C18.192 23.9901 18.2601 24 18.3281 24C18.3962 24 18.4643 23.9901 18.5302 23.9703C20.0412 23.517 21.3376 22.6084 22.2793 21.3428C23.221 20.0771 23.7188 18.5743 23.7188 16.9967V12.9844C23.7188 12.5961 23.4039 12.2812 23.0156 12.2812ZM20.814 16.3745L18.1624 19.0261C18.0251 19.1634 17.8452 19.2321 17.6653 19.2321C17.4854 19.2321 17.3054 19.1634 17.1681 19.0261L15.8423 17.7003C15.5677 17.4257 15.5677 16.9805 15.8423 16.7059C16.1168 16.4313 16.5621 16.4313 16.8367 16.7059L17.6653 17.5345L19.8198 15.3801C20.0943 15.1055 20.5395 15.1055 20.8141 15.3801C21.0886 15.6547 21.0886 16.0999 20.814 16.3745Z"
-                                        fill="#90A3BF" />
-                                    <path
-                                        d="M4.96875 5.625C4.96875 4.0717 6.22795 2.8125 7.78125 2.8125C9.33455 2.8125 10.5938 4.0717 10.5938 5.625V7.96875H13.4062V5.625C13.4062 2.51841 10.8878 0 7.78125 0C4.67466 0 2.15625 2.51841 2.15625 5.625V7.96875H4.96875V5.625Z"
-                                        fill="#90A3BF" />
-                                </svg>
-                            </div>
-                            <span> الامان </span>
-                        </div>
-                        <button data-bs-toggle="modal" data-bs-target="#logout-modal" class="item">
-                            <div class="out">
-                                <span> تسجيل الخروج </span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
-                                    fill="none">
-                                    <path
-                                        d="M12.6 16.5L10.65 16.5C8.25 16.5 6.75 15 6.75 12.6L6.75 9.5625L10.08 9.5625L8.5275 11.115C8.415 11.2275 8.3625 11.37 8.3625 11.5125C8.3625 11.655 8.415 11.7975 8.5275 11.91C8.745 12.1275 9.105 12.1275 9.3225 11.91L11.835 9.3975C12.0525 9.18 12.0525 8.82 11.835 8.6025L9.3225 6.09C9.105 5.8725 8.745 5.8725 8.5275 6.09C8.31 6.3075 8.31 6.6675 8.5275 6.885L10.08 8.4375L6.75 8.4375L6.75 5.4C6.75 3 8.25 1.5 10.65 1.5L12.5925 1.5C14.9925 1.5 16.4925 3 16.4925 5.4L16.4925 12.6C16.5 15 15 16.5 12.6 16.5Z"
-                                        fill="#90A3BF" />
-                                    <path
-                                        d="M2.0625 9.5625C1.755 9.5625 1.5 9.3075 1.5 9C1.5 8.6925 1.755 8.4375 2.0625 8.4375L6.75 8.4375L6.75 9.5625L2.0625 9.5625Z"
-                                        fill="#90A3BF" />
-                                </svg>
-
-                            </div>
-                        </button>
+            <div v-if="settingNav == 2" class="offers">
+              <div class="">
+                <div class="header">
+                  <div class="filter">
+                    <div class="icon">
+                      <img src="~/assets/images/sort.svg" />
                     </div>
+                    <Dropdown
+                      v-model="selectedStat"
+                      :options="carBody"
+                      filter
+                      optionLabel="name"
+                      placeholder="حالة السيارة"
+                      class=""
+                    >
+                      <template #option="slotProps">
+                        <div class="flex align-items-center">
+                          <div>{{ slotProps.option.name }}</div>
+                        </div>
+                      </template>
+                    </Dropdown>
+                    <Dropdown
+                      v-model="selectedBrand"
+                      :options="brands"
+                      filter
+                      optionLabel="name"
+                      placeholder="الماركة"
+                      class=""
+                    >
+                      <template #option="slotProps">
+                        <div class="flex align-items-center">
+                          <div>{{ slotProps.option.title }}</div>
+                        </div>
+                      </template>
+                    </Dropdown>
+                    <Dropdown
+                      v-model="selectedCountry"
+                      :options="countries"
+                      filter
+                      optionLabel="name"
+                      placeholder="حالة الاعلان"
+                      class=""
+                    >
+                      <template #option="slotProps">
+                        <div class="flex align-items-center">
+                          <div>{{ slotProps.option.name }}</div>
+                        </div>
+                      </template>
+                    </Dropdown>
+                  </div>
+                  <nuxt-link :to="localePath('/ad')"  class="add">
+                    <div class="icon">
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <span>اضافة اعلان </span>
+                  </nuxt-link>
                 </div>
 
-                <div class="col-12 col-xl-9 col-lg-9">
-                    <div class="setting-content">
-                        <div v-if="settingNav == 1" class="personal">
-                            <div class="d-flex flex-column">
-                                <label for="img-file" class="image">
-                                    <div v-if="!selectedFile">
-                                        <img src="~/assets/images/person.png" />
-                                    </div>
-                                    <div v-if="selectedFile">
-                                        <img :src="selectedFileUrl" alt="Selected Image" />
-                                    </div>
-                                    <div class="overlay">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 22 21"
-                                            fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M1.75 4.75008C1.75 3.02994 3.20507 1.6355 5 1.6355H14C14.4142 1.6355 14.75 1.3137 14.75 0.916748C14.75 0.519793 14.4142 0.197998 14 0.197998H5C2.37665 0.197998 0.25 2.23604 0.25 4.75008V16.2501C0.25 18.7641 2.37665 20.8022 5 20.8022H17C19.6234 20.8022 21.75 18.7641 21.75 16.2501V7.62508C21.75 7.22813 21.4142 6.90633 21 6.90633C20.5858 6.90633 20.25 7.22813 20.25 7.62508V11.951C20.1948 11.9069 20.1371 11.8654 20.0768 11.8269L17.6504 10.2767C16.0951 9.28305 14.0618 9.48254 12.7292 10.7596L9.27077 14.0739C7.93822 15.351 5.90492 15.5504 4.34959 14.5568L1.75 12.8959V4.75008ZM10 7.14592C10 8.4691 8.88071 9.54175 7.5 9.54175C6.11929 9.54175 5 8.4691 5 7.14592C5 5.82273 6.11929 4.75008 7.5 4.75008C8.88071 4.75008 10 5.82273 10 7.14592ZM18.1292 1.33778L14.7081 4.61634C14.5791 4.73992 14.4879 4.89494 14.4442 5.06463L14.015 6.73357C13.925 7.08344 14.255 7.39972 14.6201 7.31349L16.3616 6.90211C16.5387 6.86029 16.7004 6.77286 16.8294 6.64928L20.2505 3.37071C20.8363 2.80933 20.8363 1.89916 20.2505 1.33778C19.6647 0.776403 18.715 0.776403 18.1292 1.33778Z"
-                                                fill="white" />
-                                        </svg>
-                                    </div>
-                                    <input id="img-file" type="file" @change="handleFileChange" />
-                                </label>
-                                <span class="img-span">الصورة الشخصية</span>
-                            </div>
-                            <div class="personal-form">
-                                <div class="input">
-                                    <label for="">
-                                        <h6>الاسم</h6>
-                                        <span>اسمك بالكامل</span>
-                                    </label>
-                                    <input type="text" placeholder="فهمي سوادة">
-                                </div>
-                                <div class="input">
-                                    <label for="">
-                                        <h6>رقم الهاتف</h6>
-                                        <span>رقم الهاتف الخاص بك</span>
-                                    </label>
-                                    <input type="text" placeholder="01012151698+">
-                                </div>
-                                <div class="input">
-                                    <label for="">
-                                        <h6>رقم الهوية</h6>
-                                        <span> رقم الهوية الخاص بك </span>
-                                    </label>
-                                    <input type="text" placeholder="8418988989-5894848-878">
-                                </div>
-                                <div class="input">
-                                    <label for="">
-                                        <h6>رقم السجل التجاري</h6>
-                                        <span> رقم السجل التجاري الخاص بك</span>
-                                    </label>
-                                    <input type="text" placeholder="8418988989-5894848-878">
-                                </div>
-                                <div class="input">
-                                    <label for="">
-                                        <h6>المدينة</h6>
-                                        <span> المدينة الخاصة بك</span>
-                                    </label>
-                                    <Dropdown v-model="selectedCountry" :options="countries" filter optionLabel="name"
-                                        placeholder="مثال : مصرف الجارحي" class="">
+                <div class="filter-table">
+                  <div class="head">
+                    <span>الاسم الصورة</span>
+                    <span>السعر</span>
+                    <span>تاريخ النشر</span>
+                    <span>حالة السيارة</span>
+                    <span>حالة الاعلان</span>
+                    <!-- <span>الاسم الصورة</span> -->
+                  </div>
 
-                                        <template #option="slotProps">
-                                            <div class="flex align-items-center">
-                                                <div>{{ slotProps.option.name }}</div>
-                                            </div>
-                                        </template>
-                                    </Dropdown>
-                                </div>
-                                <button>حفظ التعديلات</button>
-                            </div>
-                        </div>
-                        <div v-if="settingNav == 2" class="offers">
-                        <div class="">
-                            <div class="header">
-                                <div class="filter">
-                                    <div class="icon">
-                                        <img src="~/assets/images/sort.svg" />
-                                    </div>
-                                    <Dropdown v-model="selectedCountry" :options="countries" filter optionLabel="name"
-                                        placeholder="مثال : مصرف الجارحي" class="">
-
-                                        <template #option="slotProps">
-                                            <div class="flex align-items-center">
-                                                <div>{{ slotProps.option.name }}</div>
-                                            </div>
-                                        </template>
-                                    </Dropdown>
-                                    <Dropdown v-model="selectedCountry" :options="countries" filter optionLabel="name"
-                                        placeholder="مثال : مصرف الجارحي" class="">
-
-                                        <template #option="slotProps">
-                                            <div class="flex align-items-center">
-                                                <div>{{ slotProps.option.name }}</div>
-                                            </div>
-                                        </template>
-                                    </Dropdown>
-                                    <Dropdown v-model="selectedCountry" :options="countries" filter optionLabel="name"
-                                        placeholder="مثال : مصرف الجارحي" class="">
-
-                                        <template #option="slotProps">
-                                            <div class="flex align-items-center">
-                                                <div>{{ slotProps.option.name }}</div>
-                                            </div>
-                                        </template>
-                                    </Dropdown>
-                                </div>
-                                <div class="add">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </div>
-                                    <span>اضافة اعلان </span>
-                                </div>
-                            </div>
-
-                            <div class="filter-table">
-                                <div class="head">
-                                    <span>الاسم الصورة</span>
-                                    <span>الاسم الصورة</span>
-                                    <span>الاسم الصورة</span>
-                                    <span>الاسم الصورة</span>
-                                    <span>الاسم الصورة</span>
-                                    <span>الاسم الصورة</span>
-                                </div>
-
-                                <div v-for="i in 6" class="content">
-                                    <div class="img-container">
-                                        <div class="image">
-                                            <img src="~/assets/images/car1.png" alt="">
-                                        </div>
-                                        <h5>هيونداي ستاندر 2024</h5>
-                                    </div>
-                                    <span class="price">25,000 ر.س</span>
-                                    <span class="date">25 ديسمبر 2024</span>
-                                    <span class="stat">مستعمل</span>
-                                    <span class="date">450</span>
-                                    <v-switch color="#38A2A4"></v-switch>
-                                    <button>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                            fill="none">
-                                            <path
-                                                d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM8 13C7.44 13 7 12.55 7 12C7 11.45 7.45 11 8 11C8.55 11 9 11.45 9 12C9 12.55 8.56 13 8 13ZM12 13C11.44 13 11 12.55 11 12C11 11.45 11.45 11 12 11C12.55 11 13 11.45 13 12C13 12.55 12.56 13 12 13ZM16 13C15.44 13 15 12.55 15 12C15 11.45 15.45 11 16 11C16.55 11 17 11.45 17 12C17 12.55 16.56 13 16 13Z"
-                                                fill="#90A3BF" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        
-                        </div>
-
-                              <div class="empty d-none">
-                                 <div class="main">
-                                  <h4> لا توجد حاليًا أي إعلانات </h4>
-                                  <span>  يمكنك بسهولة إضافة سيارتك للبيع وإدارة إعلاناتك من هنا. ابدأ الآن في نشر إعلانك وجذب المزيد من الاهتمام! </span>
-                                  <button>اضف اعلانك</button>
-                                 </div>
-                                </div>
-                        </div>
-                        <div v-if="settingNav == 3" class="fav-cars">
-                            <div class="row">
-                                <div v-for="i in 6" class="col-12 col-xl-4 col-lg-4 col-md-6 my-3">
-                                    <CarCard style="border: 1px solid #EBEAED; border-radius: 16px;" />
-                                </div>
-                            </div>
-
-                            <div class="empty d-none">
-                             <div class="main">
-                              <h4>يبدو أن ليس لديك أي سيارة في قائمة المفضلة </h4>
-                              <span>أضف مفضلتك الأولى الآن، سنكون هنا لمساعدتك في العثور على السيارة المثالية لتكمل رحلتك على الطريق </span>
-                              <button>تصفح السيارت</button>
-                             </div>
-                            </div>
-                        </div>
-
-                        <div  v-if="settingNav == 4" class="notifications">
-                            <div class="item active">
-                                <div class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                                        fill="none">
-                                        <path
-                                            d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
-                                            fill="#90A3BF" />
-                                        <path
-                                            d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
-                                            fill="#90A3BF" />
-                                    </svg>
-                                </div>
-                                <div class="text d-flex w-100 flex-column">
-                                    <div class="d-flex  w-100 align-items-center justify-content-between">
-                                        <h6>تتبع طلبك!</h6>
-                                        <span class="date">12:56 P:M</span>
-                                    </div>
-                                    <span>نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span>
-                                </div>
-                            </div>
-                            <div class="item active">
-                                <div class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                                        fill="none">
-                                        <path
-                                            d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
-                                            fill="#90A3BF" />
-                                        <path
-                                            d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
-                                            fill="#90A3BF" />
-                                    </svg>
-                                </div>
-                                <div class="text d-flex w-100 flex-column">
-                                    <div class="d-flex  w-100 align-items-center justify-content-between">
-                                        <h6>تتبع طلبك!</h6>
-                                        <span class="date">12:56 P:M</span>
-                                    </div>
-                                    <span>نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span>
-                                </div>
-                            </div>
-                            <div class="item active">
-                                <div class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                                        fill="none">
-                                        <path
-                                            d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
-                                            fill="#90A3BF" />
-                                        <path
-                                            d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
-                                            fill="#90A3BF" />
-                                    </svg>
-                                </div>
-                                <div class="text d-flex w-100 flex-column">
-                                    <div class="d-flex  w-100 align-items-center justify-content-between">
-                                        <h6>تتبع طلبك!</h6>
-                                        <span class="date">12:56 P:M</span>
-                                    </div>
-                                    <span>نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                                        fill="none">
-                                        <path
-                                            d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
-                                            fill="#90A3BF" />
-                                        <path
-                                            d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
-                                            fill="#90A3BF" />
-                                    </svg>
-                                </div>
-                                <div class="text d-flex w-100 flex-column">
-                                    <div class="d-flex  w-100 align-items-center justify-content-between">
-                                        <h6>تتبع طلبك!</h6>
-                                        <span class="date">12:56 P:M</span>
-                                    </div>
-                                    <span>نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                                        fill="none">
-                                        <path
-                                            d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
-                                            fill="#90A3BF" />
-                                        <path
-                                            d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
-                                            fill="#90A3BF" />
-                                    </svg>
-                                </div>
-                                <div class="text d-flex w-100 flex-column">
-                                    <div class="d-flex  w-100 align-items-center justify-content-between">
-                                        <h6>تتبع طلبك!</h6>
-                                        <span class="date">12:56 P:M</span>
-                                    </div>
-                                    <span>نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                                        fill="none">
-                                        <path
-                                            d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
-                                            fill="#90A3BF" />
-                                        <path
-                                            d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
-                                            fill="#90A3BF" />
-                                    </svg>
-                                </div>
-                                <div class="text d-flex w-100 flex-column">
-                                    <div class="d-flex  w-100 align-items-center justify-content-between">
-                                        <h6>تتبع طلبك!</h6>
-                                        <span class="date">12:56 P:M</span>
-                                    </div>
-                                    <span>نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span>
-                                </div>
-                            </div>
-                        </div>
-
-                          <div v-if="settingNav == 5" class="personal">
-                                <div class="personal-form">
-                                    <div class="input">
-                                        <label for="">
-                                            <h6>كلمة المرور</h6>
-                                            <span>كلمة المرور الحالية</span>
-                                        </label>
-                                        <input type="password" placeholder="">
-                                    </div>
-                                    <div class="input">
-                                        <label for="">
-                                            <h6>كلمة المرور الجديدة</h6>
-                                            <span>كلمة المرور الجديدة</span>
-                                        </label>
-                                        <input type="password" placeholder="">
-                                    </div>
-                                    <div class="input">
-                                        <label for="">
-                                            <h6>تأكيد كلمة المرور الجديدة</h6>
-                                            <span>كلمة المرور الجديدة</span>
-                                        </label>
-                                        <input type="password" placeholder="">
-                                    </div>
-                                   
-                               
-                                    <button>حفظ التعديلات</button>
-                                </div>
-                            </div>
+                  <div v-for="(item, index) in itemss" :key="index" class="content">
+                    <div class="img-container">
+                      <div class="image">
+                        <img src="~/assets/images/car1.png" alt="" />
+                      </div>
+                      <h5>هيونداي ستاندر 2024</h5>
                     </div>
-                </div>
-            </div>
+                    <span class="price">25,000 ر.س</span>
+                    <span class="date">25 ديسمبر 2024</span>
+                    <span class="stat">مستعمل</span>
+                    <span class="date">450</span>
+                    
+                    <div class="switch-container d-flex align-items-center gap-2">
+                    <span :class="{ 'active': item.value }">{{ item.value ? 'مفعل' : 'غير مفعل' }}</span>
+                    <v-switch v-model="item.value" color="#38A2A4" ></v-switch>
+                    
+                    </div>
+                    <button>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM8 13C7.44 13 7 12.55 7 12C7 11.45 7.45 11 8 11C8.55 11 9 11.45 9 12C9 12.55 8.56 13 8 13ZM12 13C11.44 13 11 12.55 11 12C11 11.45 11.45 11 12 11C12.55 11 13 11.45 13 12C13 12.55 12.56 13 12 13ZM16 13C15.44 13 15 12.55 15 12C15 11.45 15.45 11 16 11C16.55 11 17 11.45 17 12C17 12.55 16.56 13 16 13Z"
+                          fill="#90A3BF"
+                        />
+                      </svg>
+                      <v-menu activator="parent">
+                        <div class="settings-control">
+                          <v-dialog>
+                            <template v-slot:activator="{ props }">
+                              <button v-bind="props" class="link">
+                                <span class="f1">التقارير</span>
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                >
+                                  <path
+                                    d="M21.67 6.95039C21.03 4.78039 19.22 2.97039 17.05 2.33039C15.4 1.85039 14.26 1.89039 13.47 2.48039C12.52 3.19039 12.41 4.47039 12.41 5.38039V7.87039C12.41 10.3304 13.53 11.5804 15.73 11.5804H18.6C19.5 11.5804 20.79 11.4704 21.5 10.5204C22.11 9.74039 22.16 8.60039 21.67 6.95039Z"
+                                    fill="#2D3A4A"
+                                  />
+                                  <path
+                                    d="M18.91 13.3601C18.65 13.0601 18.27 12.8902 17.88 12.8902H14.3C12.54 12.8902 11.11 11.4601 11.11 9.70015V6.12015C11.11 5.73015 10.94 5.35015 10.64 5.09015C10.35 4.83015 9.95002 4.71015 9.57002 4.76015C7.22002 5.06015 5.06002 6.35015 3.65002 8.29015C2.23002 10.2401 1.71002 12.6201 2.16002 15.0001C2.81002 18.4401 5.56002 21.1902 9.01002 21.8402C9.56002 21.9502 10.11 22.0002 10.66 22.0002C12.47 22.0002 14.22 21.4401 15.71 20.3502C17.65 18.9402 18.94 16.7801 19.24 14.4302C19.29 14.0401 19.17 13.6501 18.91 13.3601Z"
+                                    fill="#2D3A4A"
+                                  />
+                                </svg>
+                              </button>
+                            </template>
 
-            <div class="modal fade" id="logout-modal" tabindex="-1" aria-labelledby="logout-modal" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content log-out-modal">
+                            <template v-slot:default="{ isActive }">
+                              <div class="reports-container">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="104"
+                                  height="104"
+                                  viewBox="0 0 104 104"
+                                  fill="none"
+                                >
+                                  <path
+                                    d="M0 58.5C0 71.11 5.0702 82.42 13.325 90.675L29.25 87.75L31.7113 72.2887C28.1824 68.7602 26 63.8848 26 58.5L13 52L0 58.5Z"
+                                    fill="#DCB63B"
+                                  />
+                                  <path
+                                    d="M45.5 13C20.345 13 0 33.345 0 58.5H26C26 47.7303 34.7303 39 45.5 39C56.2697 39 65 47.7303 65 58.5C65 69.2697 56.2697 78 45.5 78C40.1152 78 35.2397 75.8176 31.7113 72.2887L13.325 90.675C21.58 98.9298 32.89 104 45.5 104C70.655 104 91 83.655 91 58.5C91 33.345 70.655 13 45.5 13Z"
+                                    fill="#EDCB5F"
+                                  />
+                                  <path
+                                    d="M86.84 17.16C76.31 6.565 61.6198 0 45.5 0V13L91 58.5H104C104 42.3798 97.435 27.69 86.84 17.16Z"
+                                    fill="#C49E25"
+                                  />
+                                  <path
+                                    d="M45.5 13V39C56.2697 39 65 47.7303 65 58.5H91C91 33.345 70.655 13 45.5 13Z"
+                                    fill="#DCB63B"
+                                  />
+                                </svg>
+                                <div class="text">
+                                  <div class="item">
+                                    <span>طلبات الشراء</span>
+                                    <h5>1150 طلب</h5>
+                                  </div>
+                                  <div class="item">
+                                    <span>طلبات التمويل</span>
+                                    <h5>1150 طلب</h5>
+                                  </div>
+                                  <div class="item">
+                                    <span>المشاهدات</span>
+                                    <h5>1150 طلب</h5>
+                                  </div>
+                                </div>
+                                <button @click="isActive.value = false" type="">الرجوع</button>
+                                <i @click="isActive.value = false" class="fa-solid fa-xmark"></i>
+                              </div>
+                            </template>
+                          </v-dialog>
+                          <div class="link">
+                            <span class="f2">تعديل الاعلان</span>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                            >
+                              <path
+                                d="M21 22H3C2.59 22 2.25 21.66 2.25 21.25C2.25 20.84 2.59 20.5 3 20.5H21C21.41 20.5 21.75 20.84 21.75 21.25C21.75 21.66 21.41 22 21 22Z"
+                                fill="#DCB63B"
+                              />
+                              <path
+                                d="M19.02 3.47967C17.08 1.53967 15.18 1.48967 13.19 3.47967L11.98 4.68967C11.88 4.78967 11.84 4.94967 11.88 5.08967C12.64 7.73967 14.76 9.85967 17.41 10.6197C17.45 10.6297 17.49 10.6397 17.53 10.6397C17.64 10.6397 17.74 10.5997 17.82 10.5197L19.02 9.30967C20.01 8.32967 20.49 7.37967 20.49 6.41967C20.5 5.42967 20.02 4.46967 19.02 3.47967Z"
+                                fill="#DCB63B"
+                              />
+                              <path
+                                d="M15.61 11.5298C15.32 11.3898 15.04 11.2498 14.77 11.0898C14.55 10.9598 14.34 10.8198 14.13 10.6698C13.96 10.5598 13.76 10.3998 13.57 10.2398C13.55 10.2298 13.48 10.1698 13.4 10.0898C13.07 9.8098 12.7 9.4498 12.37 9.0498C12.34 9.0298 12.29 8.9598 12.22 8.8698C12.12 8.7498 11.95 8.5498 11.8 8.3198C11.68 8.1698 11.54 7.9498 11.41 7.7298C11.25 7.4598 11.11 7.1898 10.97 6.9098C10.9488 6.86441 10.9283 6.81924 10.9084 6.77434C10.7608 6.44102 10.3262 6.34358 10.0684 6.60133L4.33995 12.3298C4.20995 12.4598 4.08995 12.7098 4.05995 12.8798L3.51995 16.7098C3.41995 17.3898 3.60995 18.0298 4.02995 18.4598C4.38995 18.8098 4.88995 18.9998 5.42995 18.9998C5.54995 18.9998 5.66995 18.9898 5.78995 18.9698L9.62995 18.4298C9.80995 18.3998 10.06 18.2798 10.18 18.1498L15.9013 12.4285C16.1608 12.1689 16.0629 11.7235 15.7253 11.5794C15.6873 11.5632 15.6489 11.5467 15.61 11.5298Z"
+                                fill="#DCB63B"
+                              />
+                            </svg>
+                          </div>
+
+                          <v-dialog>
+                            <template v-slot:activator="{ props }">
+                              <button v-bind="props" class="link">
+                                <span class="f3">حذف الاعلان</span>
+                                <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                            >
+                              <path
+                                d="M21.07 5.23C19.46 5.07 17.85 4.95 16.23 4.86V4.85L16.01 3.55C15.86 2.63 15.64 1.25 13.3 1.25H10.68C8.35004 1.25 8.13003 2.57 7.97004 3.54L7.76004 4.82C6.83004 4.88 5.90004 4.94 4.97004 5.03L2.93004 5.23C2.51004 5.27 2.21004 5.64 2.25004 6.05C2.29004 6.46 2.65004 6.76 3.07004 6.72L5.11004 6.52C10.35 6 15.63 6.2 20.93 6.73C20.96 6.73 20.98 6.73 21.01 6.73C21.39 6.73 21.72 6.44 21.76 6.05C21.79 5.64 21.49 5.27 21.07 5.23Z"
+                                fill="#ED3F3F"
+                              />
+                              <path
+                                d="M19.23 8.14C18.99 7.89 18.66 7.75 18.32 7.75H5.67999C5.33999 7.75 4.99999 7.89 4.76999 8.14C4.53999 8.39 4.40999 8.73 4.42999 9.08L5.04999 19.34C5.15999 20.86 5.29999 22.76 8.78999 22.76H15.21C18.7 22.76 18.84 20.87 18.95 19.34L19.57 9.09C19.59 8.73 19.46 8.39 19.23 8.14ZM13.66 17.75H10.33C9.91999 17.75 9.57999 17.41 9.57999 17C9.57999 16.59 9.91999 16.25 10.33 16.25H13.66C14.07 16.25 14.41 16.59 14.41 17C14.41 17.41 14.07 17.75 13.66 17.75ZM14.5 13.75H9.49999C9.08999 13.75 8.74999 13.41 8.74999 13C8.74999 12.59 9.08999 12.25 9.49999 12.25H14.5C14.91 12.25 15.25 12.59 15.25 13C15.25 13.41 14.91 13.75 14.5 13.75Z"
+                                fill="#ED3F3F"
+                              />
+                            </svg>
+                              </button>
+                            </template>
+
+                            <template v-slot:default="{ isActive }">
+                              <div class="modal-dialog">
+                      <div class="modal-content log-out-modal">
                         <h3>هل أنت متأكد من رغبتك في تسجيل الخروج؟</h3>
 
                         <div class="btns">
-                            <button class="out">تسجيل خروج</button>
-                            <button class="back" data-bs-dismiss="modal" aria-label="Close"> العودة </button>
+                          <button @click="isActive.value = false" class="back">
+                              رجوع
+                            </button>
+                          <button class="out">حذف</button>
                         </div>
+                      </div>
                     </div>
-                    <!-- <div class="modal-content">
+                            </template>
+                          </v-dialog>
+                        </div>
+                      </v-menu>
+                    </button>
+             
+                  </div>
+                </div>
+              </div>
+
+
+             
+              <div class="empty d-none">
+                <div class="main">
+                  <h4>لا توجد حاليًا أي إعلانات</h4>
+                  <span>
+                    يمكنك بسهولة إضافة سيارتك للبيع وإدارة إعلاناتك من هنا. ابدأ
+                    الآن في نشر إعلانك وجذب المزيد من الاهتمام!
+                  </span>
+                  <button>اضف اعلانك</button>
+                </div>
+              </div>
+            </div>
+            <div v-if="settingNav == 3" class="fav-cars">
+              <div class="row">
+                <div
+                  v-for="i in 6"
+                  class="col-12 col-xl-4 col-lg-4 col-md-6 my-3"
+                >
+                  <CarCard
+                    style="border: 1px solid #ebeaed; border-radius: 16px"
+                  />
+                </div>
+              </div>
+
+              <div class="empty d-none">
+                <div class="main">
+                  <h4>يبدو أن ليس لديك أي سيارة في قائمة المفضلة</h4>
+                  <span
+                    >أضف مفضلتك الأولى الآن، سنكون هنا لمساعدتك في العثور على
+                    السيارة المثالية لتكمل رحلتك على الطريق
+                  </span>
+                  <button>تصفح السيارت</button>
+                </div>
+              </div>
+            </div>
+
+            <div v-if="settingNav == 4" class="notifications">
+              <div class="item active">
+                <div class="icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                  >
+                    <path
+                      d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
+                      fill="#90A3BF"
+                    />
+                    <path
+                      d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
+                      fill="#90A3BF"
+                    />
+                  </svg>
+                </div>
+                <div class="text d-flex w-100 flex-column">
+                  <div
+                    class="d-flex w-100 align-items-center justify-content-between"
+                  >
+                    <h6>تتبع طلبك!</h6>
+                    <span class="date">12:56 P:M</span>
+                  </div>
+                  <span
+                    >نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد
+                    لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span
+                  >
+                </div>
+              </div>
+              <div class="item active">
+                <div class="icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                  >
+                    <path
+                      d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
+                      fill="#90A3BF"
+                    />
+                    <path
+                      d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
+                      fill="#90A3BF"
+                    />
+                  </svg>
+                </div>
+                <div class="text d-flex w-100 flex-column">
+                  <div
+                    class="d-flex w-100 align-items-center justify-content-between"
+                  >
+                    <h6>تتبع طلبك!</h6>
+                    <span class="date">12:56 P:M</span>
+                  </div>
+                  <span
+                    >نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد
+                    لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span
+                  >
+                </div>
+              </div>
+              <div class="item active">
+                <div class="icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                  >
+                    <path
+                      d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
+                      fill="#90A3BF"
+                    />
+                    <path
+                      d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
+                      fill="#90A3BF"
+                    />
+                  </svg>
+                </div>
+                <div class="text d-flex w-100 flex-column">
+                  <div
+                    class="d-flex w-100 align-items-center justify-content-between"
+                  >
+                    <h6>تتبع طلبك!</h6>
+                    <span class="date">12:56 P:M</span>
+                  </div>
+                  <span
+                    >نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد
+                    لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span
+                  >
+                </div>
+              </div>
+              <div class="item">
+                <div class="icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                  >
+                    <path
+                      d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
+                      fill="#90A3BF"
+                    />
+                    <path
+                      d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
+                      fill="#90A3BF"
+                    />
+                  </svg>
+                </div>
+                <div class="text d-flex w-100 flex-column">
+                  <div
+                    class="d-flex w-100 align-items-center justify-content-between"
+                  >
+                    <h6>تتبع طلبك!</h6>
+                    <span class="date">12:56 P:M</span>
+                  </div>
+                  <span
+                    >نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد
+                    لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span
+                  >
+                </div>
+              </div>
+              <div class="item">
+                <div class="icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                  >
+                    <path
+                      d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
+                      fill="#90A3BF"
+                    />
+                    <path
+                      d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
+                      fill="#90A3BF"
+                    />
+                  </svg>
+                </div>
+                <div class="text d-flex w-100 flex-column">
+                  <div
+                    class="d-flex w-100 align-items-center justify-content-between"
+                  >
+                    <h6>تتبع طلبك!</h6>
+                    <span class="date">12:56 P:M</span>
+                  </div>
+                  <span
+                    >نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد
+                    لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span
+                  >
+                </div>
+              </div>
+              <div class="item">
+                <div class="icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                  >
+                    <path
+                      d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
+                      fill="#90A3BF"
+                    />
+                    <path
+                      d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
+                      fill="#90A3BF"
+                    />
+                  </svg>
+                </div>
+                <div class="text d-flex w-100 flex-column">
+                  <div
+                    class="d-flex w-100 align-items-center justify-content-between"
+                  >
+                    <h6>تتبع طلبك!</h6>
+                    <span class="date">12:56 P:M</span>
+                  </div>
+                  <span
+                    >نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد
+                    لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div v-if="settingNav == 5" class="personal">
+              <div class="personal-form">
+                <div class="input">
+                  <label for="">
+                    <h6>كلمة المرور</h6>
+                    <span>كلمة المرور الحالية</span>
+                  </label>
+                  <input type="password" placeholder="" />
+                </div>
+                <div class="input">
+                  <label for="">
+                    <h6>كلمة المرور الجديدة</h6>
+                    <span>كلمة المرور الجديدة</span>
+                  </label>
+                  <input type="password" placeholder="" />
+                </div>
+                <div class="input">
+                  <label for="">
+                    <h6>تأكيد كلمة المرور الجديدة</h6>
+                    <span>كلمة المرور الجديدة</span>
+                  </label>
+                  <input type="password" placeholder="" />
+                </div>
+                 <div class="d-flex justify-content-center justify-content-xl-start justify-content-lg-start">
+                <button>حفظ التعديلات</button> 
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="logout-modal"
+        tabindex="-1"
+        aria-labelledby="logout-modal"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content log-out-modal">
+            <h3>هل أنت متأكد من رغبتك في تسجيل الخروج؟</h3>
+
+            <div class="btns">
+              <button class="out">تسجيل خروج</button>
+              <button class="back" data-bs-dismiss="modal" aria-label="Close">
+                العودة
+              </button>
+            </div>
+          </div>
+          <!-- <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -466,52 +787,230 @@
                             <button type="button" class="btn btn-primary">Send message</button>
                         </div>
                     </div> -->
-
-                </div>
-            </div>
         </div>
+      </div>
+      
     </div>
+  </div>
 </template>
-k
+
 <script setup>
+import axios from 'axios';
 let settingNav = ref(1);
 let selectedFile = ref(null);
 let selectedFileUrl = ref(null);
-
+const localePath = useLocalePath();
+const { locale, setLocale } = useI18n();
 const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-        selectedFile.value = file;
-        selectedFileUrl.value = URL.createObjectURL(file);
-    }
+  const file = event.target.files[0];
+  if (file) {
+    selectedFile.value = file;
+    selectedFileUrl.value = URL.createObjectURL(file);
+  }
+};
 
-}
 
+let itemss = ref([
+        { value: false },
+        { value: true },
+        { value: true },
+        { value: true },
+        { value: true },
+        { value: true }
+]);
+     
+       
 const selectedCountry = ref();
 const countries = ref([
-    { name: 'Australia', code: 'AU' },
-    { name: 'Brazil', code: 'BR' },
-    { name: 'China', code: 'CN' },
-    { name: 'Egypt', code: 'EG' },
-    { name: 'France', code: 'FR' },
-    { name: 'Germany', code: 'DE' },
-    { name: 'India', code: 'IN' },
-    { name: 'Japan', code: 'JP' },
-    { name: 'Spain', code: 'ES' },
-    { name: 'United States', code: 'US' }
+  { name: "Australia", code: "AU" },
+  { name: "Brazil", code: "BR" },
+  { name: "China", code: "CN" },
+  { name: "Egypt", code: "EG" },
+  { name: "France", code: "FR" },
+  { name: "Germany", code: "DE" },
+  { name: "India", code: "IN" },
+  { name: "Japan", code: "JP" },
+  { name: "Spain", code: "ES" },
+  { name: "United States", code: "US" },
 ]);
+
+let carBody = ref([
+  {
+    name: "مستعمل",
+    value: 0,
+  },
+  {
+    name: "جديد",
+    value: 1,
+  },
+]);
+
+let selectedStat = ref();
+
+
+let selectedBrand = ref();
+let selectedCity = ref();
+let brands = ref([]);
+let cities = ref([]);
+
+const getOptions = async () =>{
+  let result1 = await axios.get(`${getUrl()}/cities`,{
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  let result = await axios.get(`${getUrl()}/car-option`,{
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  cities.value = result1.data.data;
+  brands.value = result.data.data.brands;
+}
+
 let items = ref([
-    {
-        title: "الرئيسية",
-        disabled: true,
-        href: "/",
-    },
-    {
-        title: "الاعدادت",
-        disabled: false,
-        href: "settings",
-    },
+  {
+    title: "الرئيسية",
+    disabled: true,
+    href: "/",
+  },
+  {
+    title: "الاعدادت",
+    disabled: false,
+    href: "settings",
+  },
 ]);
+
+onMounted(() => {
+  getOptions();
+})
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" >
+
+.switch-container{
+    span{
+        color: #959EAD;
+font-size: 12px;
+font-weight: 700;
+&.active{
+    color:#38A2A4;
+}
+    }
+}
+.settings-control {
+  border-radius: 16px;
+  background: #fff;
+  //   padding: 16px;
+  padding: 16px 16px 16px 16px;
+
+  box-shadow: 0px 12px 30px 0px rgba(70, 87, 147, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+  .link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    span {
+      font-size: 14px;
+      font-weight: 400;
+      &.f1 {
+        color: #2d3a4a;
+      }
+      &.f2 {
+        color: #dcb63b;
+      }
+      &.f3 {
+        color: #ed3f3f;
+      }
+    }
+  }
+}
+
+ .v-overlay__content {
+  align-items: center !important;
+  justify-content: center !important;
+}
+.reports-container {
+  width: 611px;
+//   height: 391px;
+  padding: 32px;
+  border-radius: 24px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position:relative;
+  i{
+    position:absolute;
+    top:32px;
+    left:32px;
+    color:#2D3A4A;
+    cursor:pointer;
+    font-size:20px;
+  }
+  svg{
+    margin-bottom:32px;
+  }
+  button{
+    width: 350px;
+height: 56px;
+border-radius: 10px;
+border: 1px solid  #2D3A4A;
+margin-top:48px;
+font-size: 16px;
+font-weight: 700;
+  }
+  .text {
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+    gap:25px;
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      span {
+        font-size: 16px;
+        font-weight: 400;
+        color: #5a7184;
+      }
+      h5{
+        font-size: 24px;
+        font-weight: 700;
+        color:#2D3A4A;
+      }
+      &:not(:last-child){
+        border-right: 1px solid  #EBEAED;
+        padding-right: 20px;
+      }
+    }
+  }
+}
+@media(max-width:800px){
+    .reports-container{
+        width:100%;
+        .text{
+            flex-direction:column;
+            align-items:center;
+            text-align:center;
+            .item{
+                border:none !important;
+                padding:0px !important;
+               h5{
+                font-size:20px;
+               }
+            }
+        }
+        button{
+            width:100%;
+            height:44px;
+        }
+    }  
+}
+</style>
