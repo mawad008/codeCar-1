@@ -300,6 +300,8 @@ html[dir="rtl"] input[type="tel"] {
 }
 .error-msg {
   color: #ed3f3f !important;
+  font-size: 13px !important;
+  white-space: nowrap;
 }
 .main-auth {
   // height: 100vh;
