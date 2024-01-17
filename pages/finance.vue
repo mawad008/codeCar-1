@@ -18,7 +18,7 @@
         <div
           class="payment-container cash"
           :class="{
-            'd-none': paymentIndividualBtn == 6 || paymentIndividualBtn == 7,
+            'd-none': showConfirm,
           }"
         >
           <div class="textt">
@@ -206,6 +206,7 @@
             <div class="col-12 col-xl-7 col-lg-7">
               <div v-if="paymentIndividualBtn == 1" class="range-container">
                 <div class="d-flex flex-column range-slider">
+                
                   <span class="word">المقدم</span>
                   <v-slider
                     v-model="sliderValue1"
@@ -215,7 +216,7 @@
                     thumb-label="always"
                     class="custom-slider mt-5"
                     @input="updateRange()"
-                    :reverse="true"
+                    :reverse="checkSlider"
                   >
                     <template v-slot:thumb-label="{ value }">
                       <div class="d-flex align-items-center gap-2">
@@ -235,7 +236,7 @@
                     thumb-label="always"
                     class="custom-slider mt-5"
                     @input="updateRange()"
-                    :reverse="true"
+                    :reverse="checkSlider"
                   >
                     <template v-slot:thumb-label="{ value }">
                       <div class="d-flex align-items-center gap-2">
@@ -256,7 +257,7 @@
                     thumb-label="always"
                     class="custom-slider mt-5"
                     @input="updateRange()"
-                    :reverse="true"
+                    :reverse="checkSlider"
                   >
                     <template v-slot:thumb-label="{ value }">
                       <div class="d-flex align-items-center gap-2">
@@ -459,9 +460,9 @@
                        v-model="form3.client_name"
                         class=""
                       />
-                      <!-- <span class="error-msg" v-if="v3$.client_name.$error">{{
+                      <span class="error-msg" v-if="v3$.client_name.$error">{{
                 v3$.client_name.$errors[0].$message
-              }}</span> -->
+              }}</span>
               <span class="error-msg" v-if="errors3.client_name">{{
                 errors3.client_name[0]
               }}</span>
@@ -472,9 +473,9 @@
                     <span> رقم الجوال </span>
                     <div class="input">
                       <input v-model="form3.phone" type="tel" name="" class="" />
-                      <!-- <span class="error-msg" v-if="v3$.phone.$error">{{
+                      <span class="error-msg" v-if="v3$.phone.$error">{{
                 v3$.phone.$errors[0].$message
-              }}</span> -->
+              }}</span>
               <span class="error-msg" v-if="errors3.phone">{{
                 errors3.phone[0]
               }}</span>
@@ -500,9 +501,9 @@
                           </div>
                         </template>
                       </Dropdown>
-                      <!-- <span class="error-msg" v-if="v3$.sex.$error">{{
+                      <span class="error-msg" v-if="v3$.sex.$error">{{
                 v3$.sex.$errors[0].$message
-              }}</span> -->
+              }}</span>
               <span class="error-msg" v-if="errors3.sex">{{
                 errors3.sex[0]
               }}</span>
@@ -512,9 +513,9 @@
                     <span> تاريخ الميلاد </span>
                     <div class="input">
                       <input type="date" name="" v-model="form3.birth_date"  class="" />
-                      <!-- <span class="error-msg" v-if="v3$.birth_date.$error">{{
+                      <span class="error-msg" v-if="v3$.birth_date.$error">{{
                 v3$.birth_date.$errors[0].$message
-              }}</span> -->
+              }}</span>
               <span class="error-msg" v-if="errors3.birth_date">{{
                 errors3.birth_date[0]
               }}</span>
@@ -540,9 +541,9 @@
                           </div>
                         </template>
                       </Dropdown>
-                      <!-- <span class="error-msg" v-if="v3$.city_id.$error">{{
+                      <span class="error-msg" v-if="v3$.city_id.$error">{{
                 v3$.city_id.$errors[0].$message
-              }}</span> -->
+              }}</span>
               <span class="error-msg" v-if="errors3.city_id">{{
                 errors3.city_id[0]
               }}</span>
@@ -552,9 +553,9 @@
                     <span> رقم الهوية </span>
                     <div class="input">
                       <input type="tel" v-model="form3.identity_no"  name=""  class="" />
-                      <!-- <span class="error-msg" v-if="v3$.identity_no.$error">{{
+                      <span class="error-msg" v-if="v3$.identity_no.$error">{{
                 v3$.identity_no.$errors[0].$message
-              }}</span> -->
+              }}</span>
               <span class="error-msg" v-if="errors3.identity_no">{{
                 errors3.identity_no[0]
               }}</span>
@@ -580,9 +581,9 @@
                           </div>
                         </template>
                       </Dropdown>
-                      <!-- <span class="error-msg" v-if="v3$.sector.$error">{{
+                      <span class="error-msg" v-if="v3$.sector.$error">{{
                 v3$.sector.$errors[0].$message
-              }}</span> -->
+              }}</span>
               <span class="error-msg" v-if="errors3.sector">{{
                 errors3.sector[0]
               }}</span>
@@ -599,9 +600,9 @@
                         name=""
                         class=""
                       />
-                      <!-- <span class="error-msg" v-if="v3$.salary.$error">{{
+                      <span class="error-msg" v-if="v3$.salary.$error">{{
                 v3$.salary.$errors[0].$message
-              }}</span> -->
+              }}</span>
               <span class="error-msg" v-if="errors3.salary">{{
                 errors3.salary[0]
               }}</span>
@@ -628,9 +629,9 @@
                           </div>
                         </template>
                       </Dropdown>
-                      <!-- <span class="error-msg" v-if="v3$.bank.$error">{{
+                      <span class="error-msg" v-if="v3$.bank.$error">{{
                 v3$.bank.$errors[0].$message
-              }}</span> -->
+              }}</span>
               <span class="error-msg" v-if="errors3.bank">{{
                 errors3.bank[0]
               }}</span>
@@ -647,9 +648,9 @@
                       v-model="form3.Monthly_cometment"
                         class=""
                       />
-                      <!-- <span class="error-msg" v-if="v3$.Monthly_cometment.$error">{{
+                      <span class="error-msg" v-if="v3$.Monthly_cometment.$error">{{
                 v3$.Monthly_cometment.$errors[0].$message
-              }}</span> -->
+              }}</span>
               <span class="error-msg" v-if="errors3.Monthly_cometment">{{
                 errors3.Monthly_cometment[0]
               }}</span>
@@ -675,9 +676,9 @@
                           </div>
                         </template>
                       </Dropdown>
-                      <!-- <span class="error-msg" v-if="v3$.transferd_type.$error">{{
+                      <span class="error-msg" v-if="v3$.transferd_type.$error">{{
                 v3$.transferd_type.$errors[0].$message
-              }}</span> -->
+              }}</span>
               <span class="error-msg" v-if="errors3.transferd_type">{{
                 errors3.transferd_type[0]
               }}</span>
@@ -709,9 +710,9 @@
                         name=""
                         class=""
                       />
-                      <!-- <span class="error-msg" v-if="v3$.email.$error">{{
+                      <span class="error-msg" v-if="v3$.email.$error">{{
                 v3$.email.$errors[0].$message
-              }}</span> -->
+              }}</span>
               <span class="error-msg" v-if="errors3.email">{{
                 errors3.email[0]
               }}</span>
@@ -1148,7 +1149,10 @@
             </div>
             <div class="col-12 col-xl-7 col-lg-7">
               <div v-if="paymentIndividualBtn2 == 1" v-for="item , index in form" class="form-ind">
-                <div class="d-flex gap-3">
+              <div v-if="form.length > 1" class="d-flex justify-content-end">
+                <i @click="removeRow(index)" class="fa-solid fa-trash"></i>
+              </div>
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> ماركة السيارة </span>
                     <div class="input">
@@ -1156,13 +1160,14 @@
                         v-model="item.brand"
                         :options="brands"
                         filter
-                        optionLabel="name"
+                        optionLabel="title"
+                        optionValue="id"
                         placeholder="مثال : شركة"
                         class=""
                       >
                         <template #option="slotProps">
                           <div class="flex align-items-center">
-                            <div>{{ slotProps.option.name }}</div>
+                            <div>{{ slotProps.option.title }}</div>
                           </div>
                         </template>
                       </Dropdown>
@@ -1175,8 +1180,8 @@
                     <span> موديل السيارة</span>
                     <div class="input">
                       <Dropdown
-                        v-model="item.brand"
-                        :options="item.brand != '' ? getmodels[0].models : ''"
+                        v-model="item.model"
+                        :options="getmodels2[index][0] ? getmodels2[index][0].models : ''"
                         filter
                         optionLabel="name"
                         optionValue="id"
@@ -1195,7 +1200,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span> سنة الصنع </span>
                     <div class="input">
@@ -1245,7 +1250,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
                     <span>اللون</span>
                     <div class="input">
@@ -1281,11 +1286,13 @@
                         name=""
                         class=""
                       />
-                      <span class="error-msg" v-if="item.car_count < 1">{{value2}}</span>
+                      <span class="error-msg" v-if="v$[index].car_count.$error">{{
+                                v$[index].car_count.$errors[0].$message
+                              }}</span>
                     </div>
                   </div>
                 </div>
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-column flex-xl-row flex-lg-row justify-content-between align-items-center">
                 <div @click="addRow()" class="add d-flex align-items-center gap-2 mb-3" style="cursor:pointer;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
   <path d="M11.9997 0.833374H3.99968C2.25077 0.833374 0.833008 2.25114 0.833008 4.00004V12C0.833008 13.7489 2.25077 15.1667 3.99968 15.1667H11.9997C13.7486 15.1667 15.1663 13.7489 15.1663 12V4.00004C15.1663 2.25114 13.7486 0.833374 11.9997 0.833374Z" fill="#DCB63B"/>
@@ -1298,7 +1305,10 @@
               </div>
               <div class="d-flex justify-content-end">
               
-                  <button v-if="paymentIndividualBtn2 == 1" class="corpBtn" @click=" sendCorporate1()">التالي</button>
+                  <button v-if="paymentIndividualBtn2 == 1" :disabled="pendingCorp1" class="corpBtn d-flex align-items-center gap-2" @click=" sendCorporate1()">
+                  التالي
+                  <v-progress-circular v-if="pendingCorp1"   indeterminate :size="25" :width="4"></v-progress-circular>
+                  </button>
               </div>
               <div v-if="paymentIndividualBtn2 == 2" class="form-ind">
                 <div class="d-flex gap-3">
@@ -1307,31 +1317,30 @@
                     <div class="input">
                       <input
                         type="text"
-                        placeholder="مثال : تويوتا"
+                        placeholder=""
                         name=""
-                        value=""
+                        v-model="form4.organization_name"
                         class=""
                       />
+                      <span class="error-msg" v-if="v4$.organization_name.$error">{{
+                v4$.organization_name.$errors[0].$message
+              }}</span>
                     </div>
                   </div>
 
                   <div class="input-container">
                     <span> نوع المنشأة </span>
                     <div class="input">
-                      <Dropdown
-                        v-model="selectedCountry"
-                        :options="countries"
-                        filter
-                        optionLabel="name"
-                        placeholder="مثال : شركة"
+                      <input
+                        type="text"
+                        placeholder=""
+                        name=""
+                        v-model="form4.organization_type"
                         class=""
-                      >
-                        <template #option="slotProps">
-                          <div class="flex align-items-center">
-                            <div>{{ slotProps.option.name }}</div>
-                          </div>
-                        </template>
-                      </Dropdown>
+                      />
+                      <span class="error-msg" v-if="v4$.organization_type.$error">{{
+                v4$.organization_type.$errors[0].$message
+              }}</span>
                     </div>
                   </div>
                 </div>
@@ -1340,32 +1349,31 @@
                     <span> رقم السجل التجاري</span>
                     <div class="input">
                       <input
-                        type="text"
+                        type="tel"
                         placeholder="مثال : 3333-5555-9999-55"
                         name=""
-                        value=""
+                        v-model="form4.commercial_registration_no"
                         class=""
                       />
+                      <span class="error-msg" v-if="v4$.commercial_registration_no.$error">{{
+                v4$.commercial_registration_no.$errors[0].$message
+              }}</span>
                     </div>
                   </div>
 
                   <div class="input-container">
                     <span> نشاط المنشأة </span>
                     <div class="input">
-                      <Dropdown
-                        v-model="selectedCountry"
-                        :options="countries"
-                        filter
-                        optionLabel="name"
-                        placeholder="تأجير سيارات"
+                      <input
+                        type="text"
+                        placeholder=""
+                        name=""
+                        v-model="form4.organization_activity"
                         class=""
-                      >
-                        <template #option="slotProps">
-                          <div class="flex align-items-center">
-                            <div>{{ slotProps.option.name }}</div>
-                          </div>
-                        </template>
-                      </Dropdown>
+                      />
+                      <span class="error-msg" v-if="v4$.organization_activity.$error">{{
+                v4$.organization_activity.$errors[0].$message
+              }}</span>
                     </div>
                   </div>
                 </div>
@@ -1377,9 +1385,12 @@
                         type="text"
                         placeholder="مثال : محمد سيد"
                         name=""
-                        value=""
+                        v-model="form4.name"
                         class=""
                       />
+                      <span class="error-msg" v-if="v4$.name.$error">{{
+                v4$.name.$errors[0].$message
+              }}</span>
                     </div>
                   </div>
 
@@ -1387,12 +1398,15 @@
                     <span> رقم الهاتف </span>
                     <div class="input">
                       <input
-                        type="text"
+                        type="tel"
                         placeholder="مثال : 3333-5555-9999-55"
                         name=""
-                        value=""
+                        v-model="form4.phone"
                         class=""
                       />
+                      <span class="error-msg" v-if="v4$.phone.$error">{{
+                v4$.phone.$errors[0].$message
+              }}</span>
                     </div>
                   </div>
                 </div>
@@ -1405,9 +1419,12 @@
                         min="1"
                         placeholder="مثال : 4 سنوات"
                         name=""
-                        value=""
+                        v-model="form4.organization_age"
                         class=""
                       />
+                      <span class="error-msg" v-if="v4$.organization_age.$error">{{
+                v4$.organization_age.$errors[0].$message
+              }}</span>
                     </div>
                   </div>
 
@@ -1415,10 +1432,11 @@
                     <span> المدينة </span>
                     <div class="input">
                       <Dropdown
-                        v-model="selectedCountry"
-                        :options="countries"
+                        v-model="form4.city_id"
+                        :options="cities"
                         filter
                         optionLabel="name"
+                        optionValue="id"
                         placeholder="ابها"
                         class=""
                       >
@@ -1428,6 +1446,9 @@
                           </div>
                         </template>
                       </Dropdown>
+                      <span class="error-msg" v-if="v4$.city_id.$error">{{
+                v4$.city_id.$errors[0].$message
+              }}</span>
                     </div>
                   </div>
                 </div>
@@ -1436,10 +1457,11 @@
                     <span> حساب المنشأة لدي البنك</span>
                     <div class="input">
                       <Dropdown
-                        v-model="selectedCountry"
-                        :options="countries"
+                        v-model="form4.bank_id"
+                        :options="optionsCars.banks"
                         filter
                         optionLabel="name"
+                        optionValue="id"
                         placeholder="مثال : مصرف الجارحي"
                         class=""
                       >
@@ -1449,6 +1471,9 @@
                           </div>
                         </template>
                       </Dropdown>
+                      <span class="error-msg" v-if="v4$.bank_id.$error">{{
+                v4$.bank_id.$errors[0].$message
+              }}</span>
                     </div>
                   </div>
                 </div>
@@ -1457,10 +1482,12 @@
                     الرجوع
                   </button>
                   <button
-                    @click="(paymentIndividualBtn = 6), (showConfirm = true)"
-                    class="next"
+                    @click="sendCorporate2()"
+                    class="next gap-2"
+                    :disabled="pendingCorp2"
                   >
                     ارسال الطلب
+                  <v-progress-circular v-if="pendingCorp2"   indeterminate :size="25" :width="4"></v-progress-circular>
                   </button>
                 </div>
               </div>
@@ -1470,7 +1497,7 @@
       </div>
 
       <div v-if="showConfirm" class="confirm-container">
-        <div v-if="paymentIndividualBtn == 6" class="confirm-text">
+        <div v-if="paymentOtp == 1" class="confirm-text">
           <client-only>
             <Vue3Lottie :animation-data="otpp" :height="200" :width="200" />
           </client-only>
@@ -1487,7 +1514,7 @@
 
           <button @click="paymentIndividualBtn = 7" class="send">متابعة</button>
         </div>
-        <div v-if="paymentIndividualBtn == 7" class="confirm-text">
+        <div v-if="paymentOtp == 2" class="confirm-text">
           <client-only>
             <Vue3Lottie :animation-data="success" :height="200" :width="200" />
           </client-only>
@@ -1542,6 +1569,8 @@ const selectedFileName4 = ref(null);
 let otp = ref("");
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
+
+let paymentOtp = ref(1);
 let years = ref([]);
 for (let i = currentYear; i >= currentYear - 14; i--) {
   years.value.push(i);
@@ -1645,14 +1674,18 @@ let form3 = ref({
 let value1 = ref("value is required");
 let value2 = ref("The email field is required");
 let value3 = ref("Invalid email format");
+let value5 = ref("يجب أن يكون عدد السيارات 1 سيارة على الأقل");
+let checkSlider = ref(locale.value == "ar" ? true : false);
 if (locale.value == "ar") {
   value1.value = "هذا الحقل مطلوبة";
   value2.value = "حقل البريد الإلكتروني مطلوب";
   value3.value = "تنسيق البريد الإلكتروني غير صالح";
+  value5.value = "يجب أن يكون عدد السيارات 1 سيارة على الأقل";
 } else {
   value1.value = "value is required";
   value2.value = "The email field is required";
   value3.value = "Invalid email format";
+  value5.value = "The number of cars must be at least 1 car";
 }
 
 const rules2 = computed(()=>{
@@ -1697,7 +1730,21 @@ const v2$ = useValidate(rules2, form2);
 const v3$ = useValidate(rules3, form3);
 // const v4$ = useValidate(rules4, form4);
 
+const isFormFilled3 = () => {
+  // Iterate through each object in the form array
+  for (const car of form3.value) {
+    // Check if any key in the object has an empty value
+    for (const key in car) {
+      if (car[key] === '') {
+        // If any key is empty, return false
+        return false;
+      }
+    }
+  }
 
+  // If all keys in all objects have values, return true
+  return true;
+};
 let offers = ref([]);
 let theOffer = ref();
 let theCar = ref();
@@ -1786,32 +1833,36 @@ const paymentFunc3 = async() => {
   formBody.append("traffic_violations", form3.value.traffic_violations);
   formBody.append("department_loan", form3.value.department_loan);
   formBody.append("driving_license", form3.value.driving_license);
-  // let check = await v3$.value.$validate();
-  // pending3.value = true;
-  try {
-    let result = await axios.post(`${getUrl()}/finance-Order`,formBody, {
-      params: {
-        type: paymentMethod.value == 1 ? 'individual' : 'company',
-        step: 3
-      },
-      headers: {
-        "Content-Language": `${locale.value}`,
-      },
-    });
-    if (result.status >= 200) {
-      paymentIndividualBtn.value = 4;
-      paymentBtn4.value = 1;
-     checkBtn3.value = 1;
-      // pending3.value = false;
-      errors3.value = [];
-      offers.value = result.data.data;
+   v3$.value.$validate();
+  pending3.value = true;
+  if(isFormFilled3()){
+    try {
+      let result = await axios.post(`${getUrl()}/finance-Order`,formBody, {
+        params: {
+          type: paymentMethod.value == 1 ? 'individual' : 'company',
+          step: 3
+        },
+        headers: {
+          "Content-Language": `${locale.value}`,
+        },
+      });
+      if (result.status >= 200) {
+        paymentIndividualBtn.value = 4;
+        paymentBtn4.value = 1;
+       checkBtn3.value = 1;
+        pending3.value = false;
+        errors3.value = [];
+        offers.value = result.data.data;
+      }
+    } catch (errorss) {
+      console.log(errorss);
+      if (errorss.response) {
+        pending3.value = false;
+        errors3.value = errorss.response.data.errors;
+      }
     }
-  } catch (errorss) {
-    console.log(errorss);
-    if (errorss.response) {
-      pending3.value = false;
-      errors3.value = errorss.response.data.errors;
-    }
+
+
   }
   // if (check) {
   // } else{
@@ -1976,6 +2027,7 @@ const getmodels = computed(()=>{
   });
 });
 
+
 let paymentIndividualBtn = ref(1);
 let paymentIndividualBtn2 = ref(1);
 
@@ -1990,6 +2042,8 @@ let form = ref([
   }
 ]);
 
+
+
 const addRow = () => {
    form.value.push(
     { 
@@ -2003,6 +2057,42 @@ const addRow = () => {
    );
 }
 
+const removeRow = (index) => {
+   if (form.value.length > 1) {
+      form.value.splice(index, 1);
+   }
+
+}
+
+
+const isFormFilled = () => {
+  // Iterate through each object in the form array
+  for (const car of form.value) {
+    // Check if any key in the object has an empty value
+    for (const key in car) {
+      if (car[key] === '' || car[key] == 0) {
+        // If any key is empty, return false
+        return false;
+      }
+    }
+  }
+
+  // If all keys in all objects have values, return true
+  return true;
+};
+
+
+
+const getmodels2 = computed(()=>{
+
+return form.value.map((ele)=>{
+return optionsCars.value.brands.filter((e)=>{
+  return ele.brand == e.id
+})
+});
+});
+
+
 // const rules = computed(()=>{
 //     return form.value.map(()=>{
 //       brand: { required: helpers.withMessage(value1.value, required) },
@@ -2011,11 +2101,10 @@ const addRow = () => {
 //       gear_shifter: { required: helpers.withMessage(value1.value, required) },
 //       color: { required: helpers.withMessage(value1.value, required) },
 //     }) 
-//     // car_count: { required: helpers.withMessage(value1.value, required) },
 // });
 
 
-
+let errors4 = ref([]);
 const rules = computed(() => form.value.map(() => ({
       name: { required },
       email: { required, email },
@@ -2024,18 +2113,137 @@ const rules = computed(() => form.value.map(() => ({
       year: { required: helpers.withMessage(value1.value, required) },
       gear_shifter: { required: helpers.withMessage(value1.value, required) },
       color: { required: helpers.withMessage(value1.value, required) },
+          car_count: { required: helpers.withMessage(value1.value, required) , minLength: helpers.withMessage(value5.value , minLength(1))  },
     })));
 
+
+    let form4 = ref(
+   { 
+    organization_name: '', 
+    organization_type: '',
+    commercial_registration_no:'',
+    organization_activity:'',
+    name:'',
+    phone:'',
+    organization_age:'',
+    city_id:'',
+    bank_id:''
+  }
+);
+    const rules4 = computed(()=>{
+    return {
+      organization_name: { required: helpers.withMessage(value1.value, required) },
+      organization_type: { required: helpers.withMessage(value1.value, required) },
+      commercial_registration_no: { required: helpers.withMessage(value1.value, required) },
+      organization_activity: { required: helpers.withMessage(value1.value, required) },
+      name: { required: helpers.withMessage(value1.value, required) },
+      city_id: { required: helpers.withMessage(value1.value, required) },
+      phone: { required: helpers.withMessage(value1.value, required) },
+      organization_age: { required: helpers.withMessage(value1.value, required) },
+      bank_id: { required: helpers.withMessage(value1.value, required) },
+      // email: { required: helpers.withMessage(value2.value, required) , email: helpers.withMessage(value3.value, email) },
+  }
+});
+
+
+const isFormFilled2 = () => {
+  // Iterate through each object in the form array
+  for (const key in form4.value) {
+    // Check if any key in the object has an empty value
+    if (form4.value[key] === '') {
+      // If any value is empty, return false
+      return false;
+    }
+  }
+
+  // If all keys in all objects have values, return true
+  return true;
+};
+
     const v$ = useValidate(rules, form);
-const sendCorporate1 = async () =>{
-  let formBody = new FormData();
-  formBody.append("brand", form2.value.brand);
-  formBody.append("model", form2.value.model);
-  formBody.append("year", form2.value.year);
-  formBody.append("gear_shifter", form2.value.gear_shifter);
-  formBody.append("color_id", form2.value.color_id);
-  let check = await v$.value.$validate();
-  // let result = await axios.post(`${getUrl()}/finance-Order` , )
+    const v4$ = useValidate(rules4, form4);
+
+    let pendingCorp1 = ref(false);
+    let pendingCorp2 = ref(false);
+const sendCorporate1 = async() =>{
+  // let formBody = new FormData();
+  // formBody.append("brand", form2.value.brand);
+  // formBody.append("model", form2.value.model);
+  // formBody.append("year", form2.value.year);
+  // formBody.append("gear_shifter", form2.value.gear_shifter);
+  // formBody.append("color_id", form2.value.color_id);
+  // let check = await v$.value.$validate();
+   v$.value.$validate();
+
+  if(isFormFilled()){
+    pendingCorp1.value = true;
+    let result = await axios.post(`${getUrl()}/finance-Order`, {cars:JSON.stringify(form.value)} ,  {
+      params: {
+          type:'organization',
+          step: 1
+      },
+      headers: {
+        "Content-Language": `${locale.value}`,
+      },
+    });
+    
+    if(result.status >= 200){
+      pendingCorp1.value = false;
+      paymentSec2.value = 1
+      checkBtnSec1.value = 1;
+      paymentIndividualBtn2.value = 2;
+    }
+
+  }
+}
+const sendCorporate2 = async() =>{
+  // let formBody = new FormData();
+  // formBody.append("brand", form2.value.brand);
+  // formBody.append("model", form2.value.model);
+  // formBody.append("year", form2.value.year);
+  // formBody.append("gear_shifter", form2.value.gear_shifter);
+  // formBody.append("color_id", form2.value.color_id);
+  // let check = await v$.value.$validate();
+   v4$.value.$validate();
+
+  if(isFormFilled2()){
+    pendingCorp2.value = true;
+    try{
+      let result = await axios.post(`${getUrl()}/finance-Order`, 
+      {
+        cars:form.value,
+        organization_name: form4.value.organization_name,
+        organization_type: form4.value.organization_type,
+        commercial_registration_no: form4.value.commercial_registration_no,
+        organization_activity: form4.value.organization_activity,
+        name: form4.value.name,
+        phone: form4.value.phone,
+        organization_age: form4.value.organization_age,
+        city_id: form4.value.city_id,
+        bank_id: form4.value.bank_id,
+      } ,  
+      {
+        params: {
+            type:'organization',
+            step: 2
+        },
+        headers: {
+          "Content-Language": `${locale.value}`,
+        },
+      });
+      
+      if(result.status >= 200){
+        pendingCorp2.value = false
+        showConfirm.value = true;
+      }
+
+    } catch(errorss){
+      if (errorss.response) {
+        pendingCorp2.value = false;
+        errors4.value = errorss.response.data.errors;
+      }
+    }
+  }
 }
 
 

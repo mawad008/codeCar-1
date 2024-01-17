@@ -921,6 +921,42 @@ html[dir="rtl"] input[type="tel"] {
 
 // end hero section
 
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 10px;
+
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #a3a3a3;
+  transition:  0.5s all;
+  &:hover{
+    background-color: #dcb63b;  
+  }
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+
+@media(max-width:900px){
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 10px;
+     display: none;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #a3a3a3;
+    transition:  0.5s all;
+    &:hover{
+      background-color: #dcb63b;  
+    }
+  }
+}
 // start search section
 
 .search-section {
@@ -936,6 +972,7 @@ html[dir="rtl"] input[type="tel"] {
   justify-content: space-between;
   position: relative;
   top: -50px;
+ 
   .search {
     display: flex;
     width: 160px;
@@ -979,7 +1016,7 @@ html[dir="rtl"] input[type="tel"] {
     }
     .v-input {
       direction: rtl;
-
+       
       .mdi-menu-down::before,
       .mdi-set {
         font-size: 12px !important;
@@ -1179,7 +1216,7 @@ html[dir="rtl"] input[type="tel"] {
       // background-image: url("~/assets/images/brand1.png");
       background-position: center;
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: contain;
       margin-top: 11px;
       img {
         height: 100%;
@@ -1637,10 +1674,11 @@ html[dir="rtl"] .explore {
     }
   }
   .box {
+    // background-color: red;
     img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
     }
     margin-bottom: 88px;
   }
@@ -1701,6 +1739,12 @@ html[dir="rtl"] .explore {
     }
     .row{
       gap: 0px !important;
+    }
+    .box{
+      img{
+        width: 100%;
+        height: 100%;
+      }
     }
   }
   .careers-page{
@@ -2262,6 +2306,10 @@ html[dir="rtl"] .explore {
     flex-direction: column;
     justify-content: flex-start;
     gap: 30px;
+    i{
+      cursor: pointer;
+      color: #ED3F3F;
+    }
     button {
       display: flex;
       width: 350px;
@@ -2549,6 +2597,9 @@ html[dir="rtl"] .explore {
           justify-content: space-between;
         flex-direction: column;
 
+        }
+        .text{
+         
         }
       }
       .content-pagination {
@@ -2968,12 +3019,12 @@ html[dir="ltr"] .payment-method{
         .text{
           display: flex !important;
           width: 100%;
-          gap: 60px;
+          gap: 68px;
           position: relative;
           justify-content: flex-start;
           text-align: center;
           h5 {
-            font-size: 16px;
+            font-size: 14px;
             font-style: normal;
             color: $body-text;
             font-weight: 400;
@@ -2985,7 +3036,7 @@ html[dir="ltr"] .payment-method{
         }
       }
       .content-pagination{
-        display: none;
+        display: none !important;
         flex-direction: row;
         width: 330px;
         justify-content: flex-start;
@@ -2996,6 +3047,22 @@ html[dir="ltr"] .payment-method{
         height: fit-content !important;
         span{
           display: none;
+        }
+      }
+      &.finance{
+        .pagination-container{
+          width: 100% !important;
+          // overflow: hidden !important;
+        }
+        .contain{
+          &::before {
+            content: "";
+            width: 100% !important;
+          }
+       
+        }
+        .text{
+          justify-content: space-between;
         }
       }
     }
@@ -4367,7 +4434,7 @@ html[dir="ltr"] {
           display: flex;
           align-items: center;
           width: 100%;
-          justify-content: space-between;
+          justify-content: space-evenly;
           margin-bottom: 20px;
           span {
             font-size: 12px;
@@ -4589,96 +4656,136 @@ html[dir="ltr"] {
   margin-bottom: 140px;
   min-height: 100vh;
   .ad-container {
+    margin-bottom: 0px !important;
     border-radius: 24px;
     background: #fff;
     padding: 32px;
 
-    .main-pagination-container {
-      display: flex;
-      // align-items: center;
-      gap: 10px;
-      .pagination-container {
-        width: 6px;
-        border-radius: 32px;
-        background-color: #fafafa;
-        // height: 503px;
-        margin: 0px 50px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 70px;
-        justify-content: space-between;
-        .dot {
-          width: 18px;
-          height: 18px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 50%;
-          background-color: #fff;
-          border: 2px solid #dbe3ee;
-          i {
-            font-size: 10px;
-            color: #fff;
-            display: none;
-          }
-          &.active {
-            background-color: #dcb63b;
-            border: 2px solid #fcebc5;
-            i {
-              display: block;
-            }
-          }
-        }
-        .icon {
-          width: 48px;
-          height: 48px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: #f6f7f9;
-          border-radius: 50%;
-          img {
-            &.active {
-              display: none;
-            }
-          }
-          &.active {
-            img {
-              &.active {
-                display: block;
-              }
-              &.def {
-                display: none;
-              }
-            }
-          }
-        }
-      }
-      .content-pagination {
-        // height: 503px;
-        display: flex;
-        flex-direction: column;
-        gap: 70px;
-        justify-content: space-around;
-        h5 {
-          font-size: 16px;
-          font-style: normal;
-          color: $body-text;
-          font-weight: 400;
-          &.active {
-            color: #dcb63b;
-            font-weight: 700;
-          }
-        }
-        span {
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 400;
-          color: $body-text;
-        }
-      }
-    }
+    // .main-pagination-container {
+    //   display: flex;
+    //   // align-items: center;
+    //   gap: 10px;
+    
+
+    //   .pagination-container {
+    //     .contain{
+    //       width: 6px;
+    //       border-radius: 32px;
+    //       background-color: #fafafa;
+    //       min-height: 503px;
+    //       margin: 0px 50px;
+    //       display: flex;
+    //       flex-direction: column;
+    //       align-items: center;
+    //       justify-content: space-around;
+          
+    //     }
+    //     .text{
+    //       display: none;
+    //     }
+    //     .dot {
+    //       width: 18px;
+    //       height: 18px;
+    //       display: flex;
+    //       align-items: center;
+    //       justify-content: center;
+    //       border-radius: 50%;
+    //       background-color: #fff;
+    //       border: 2px solid #dbe3ee;
+    //       i {
+    //         font-size: 10px;
+    //         color: #fff;
+    //         display: none;
+    //       }
+    //       &.active {
+    //         background-color: #dcb63b;
+    //         border: 2px solid #fcebc5;
+    //       }
+    //       &.check{
+    //         i {
+    //           display: block;
+    //         }
+    //       }
+    //     }
+    //     .icon-div{
+    //       position: relative;
+       
+    //     }
+    //     .icon {
+    //       width: 48px;
+    //       height: 48px;
+    //       display: flex;
+    //       align-items: center;
+    //       justify-content: center;
+    //       background-color: #f6f7f9;
+    //       border-radius: 50%;
+    //       position: relative;
+         
+    //       img {
+    //         &.active {
+    //           display: none;
+    //         }
+    //       }
+    //       &.active {
+    //         background-color: #FCF4E2;
+    //         img {
+    //           &.active {
+    //             display: block;
+    //           }
+    //           &.def {
+    //             display: none;
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    //   .content-pagination {
+    //     height: 503px;
+    //     display: flex;
+    //     flex-direction: column;
+    //     justify-content: space-around;
+    //     h5 {
+    //       font-size: 16px;
+    //       font-style: normal;
+    //       color: $body-text;
+    //       font-weight: 400;
+    //       &.active {
+    //         color: #dcb63b;
+    //         font-weight: 700;
+    //       }
+    //     }
+    //     span {
+    //       font-size: 14px;
+    //       font-style: normal;
+    //       font-weight: 400;
+    //       color: $body-text;
+    //     }
+    //   }
+    //   &.finance {
+    //     align-items: flex-start;
+    //     .pagination-container {
+  
+    //       .contain{
+    //         height: 200px;
+    //         min-height: 200px;
+    //         // gap: 80px;
+    //         justify-content: space-between;
+    //       flex-direction: column;
+  
+    //       }
+    //       .text{
+           
+    //       }
+    //     }
+    //     .content-pagination {
+    //       display: flex;
+    //       height: 200px;
+    //       flex-direction: column;
+    //       // gap: 70px;
+    //       justify-content: space-between;
+    //     }
+    //   }
+    // }
 
     .ad-content {
       h5 {
@@ -4883,19 +4990,19 @@ html[dir="ltr"] {
 
 @media (max-width: 900px) {
   .advertisement-container {
-    .main-pagination-container {
-      flex-direction: column;
-      .pagination-container {
-        flex-direction: row !important;
-        width: 100% !important;
-        height: 6px;
-        margin: 0px !important;
-      }
-      .content-pagination {
-        gap: 40px !important;
-        margin-top: 30px;
-      }
-    }
+    // .main-pagination-container {
+    //   flex-direction: column;
+    //   .pagination-container {
+    //     flex-direction: row !important;
+    //     width: 100% !important;
+    //     height: 6px;
+    //     margin: 0px !important;
+    //   }
+    //   .content-pagination {
+    //     gap: 40px !important;
+    //     margin-top: 30px;
+    //   }
+    // }
   }
 }
 // end advertisement page

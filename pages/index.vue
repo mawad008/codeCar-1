@@ -98,7 +98,7 @@
       </div>
       <img class="mask" src="~/assets/images/mask-hero.png" alt="" />
     </div>
-
+       
     <div class="container d-flex align-items-center justify-content-center">
       <div class="search-section">
         <div class="select">
@@ -109,6 +109,7 @@
             item-title="name"
             item-value="value"
             variant="underlined"
+            v-model="selectedBody"
             label="اختر نوع السيارة"
           ></v-autocomplete>
         </div>
@@ -117,8 +118,9 @@
           <v-autocomplete
             clearable
             chips
-            :items="brandsArr.brands"
-            item-title="name"
+            v-model="selectedBrand"
+            :items="brands"
+            item-title="title"
             item-value="id"
             variant="underlined"
             label="اختر ماركة السيارة"
@@ -128,17 +130,20 @@
           <span class="type"> الموديل </span>
           <v-autocomplete
             chips
-            :items="categArr"
-            item-title="title"
+            v-model="selectedmodel"
+            :items="selectedBrand ? categArr[0].models : '' "
+            item-title="name"
             item-value="id"
             variant="underlined"
             label="اختر موديل السيارة"
           ></v-autocomplete>
         </div>
+        <nuxt-link :to="localePath({path:'/cars', query:{type:selectedBody , id:selectedBrand , model: selectedmodel}})">
         <button class="search">ابحث</button>
+        </nuxt-link>
       </div>
     </div>
-
+   
     <div class="brands">
       <div
         class="text d-flex align-items-center justify-content-center text-center flex-column"
@@ -603,13 +608,13 @@
     </div>
 
     <div class="container all-marks">
-      <div class="header d-flex align-items-center justify-content-center">
+      <div class="header d-flex align-items-center justify-content-c">
         <div class="text d-flex text-center flex-column">
           <h3 class="heading-text">معتمدون لدى جهات التمويل</h3>
           <span class="p-text">{{ financingbodyArr.description }}</span>
         </div>
       </div>
-      <div class="row gap-3 align-items-center">
+      <div class="row gap- align-items-center">
         <div
           v-for="item in financingbodyArr.banks"
           class="col-6 col-xl-2 col-lg-2 col-md-4"
@@ -631,11 +636,11 @@ import { Vue3Lottie } from "vue3-lottie";
 import loader from "~/assets/animations/Loader.json";
 let tab = ref(1);
 let tabNav = ref(0);
+const localePath = useLocalePath();
 
 let { locale } = useI18n();
 
 let brandsArr = ref([]);
-let categArr = ref([]);
 let financingbodyArr = ref([]);
 let whyCodeCarArr = ref([]);
 let financingAdv = ref();
@@ -650,23 +655,27 @@ let carBody = ref([
     value: 1,
   },
 ]);
+
+let selectedBrand = ref();
+let selectedmodel = ref();
+let selectedBody = ref();
 const getBrands = async () => {
   let result = await axios.get(`${getUrl()}/brand`, {
     headers: {
       "Content-Language": `${locale.value}`,
     },
   });
-  let result1 = await axios.get(`${getUrl()}/categories`, {
-    headers: {
-      "Content-Language": `${locale.value}`,
-    },
-  });
+  // let result1 = await axios.get(`${getUrl()}/categories`, {
+  //   headers: {
+  //     "Content-Language": `${locale.value}`,
+  //   },
+  // });
 
   if (result.status == 200) {
     brandsArr.value = result.data.data;
   }
 
-  categArr.value = result1.data.data;
+  // categArr.value = result1.data.data;
 };
 const getfinancingbody = async () => {
   let result = await axios.get(`${getUrl()}/financing-body`, {
@@ -703,6 +712,33 @@ const whyCodeCar = async () => {
   }
 };
 
+
+
+let optionsCars = ref([]);
+let brands = ref([]);
+
+let bank_offer_id = ref(null);
+const getOptions = async () => {
+  let result = await axios.get(`${getUrl()}/car-option`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  optionsCars.value = result.data.data;
+  brands.value = result.data.data.brands;
+};
+
+
+const categArr = computed(()=>{
+  if(optionsCars.value.brands){
+    return optionsCars.value.brands.filter((ele)=>{
+      return selectedBrand.value == ele.id
+    });
+  }
+});
+
+
 let spinnerProducts = ref(false);
 let productsTags = ref([]);
 const getProducts = async () => {
@@ -732,6 +768,7 @@ const customFilter = (itemTitle, queryText, item) => {
 };
 
 onMounted(() => {
+  getOptions();
   getBrands();
   whyCodeCar();
   getfinancingbody();

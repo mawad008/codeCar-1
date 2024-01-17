@@ -12,44 +12,85 @@
                 </v-breadcrumbs>
             </div>
 
-            <div class="ad-container">
+            <div class="ad-container paymentType">
                 <div class="row" :class="{'d-none': adNavBtn == 3 }">
                     <div class="col-12 col-xl-5 col-lg-5">
-                        <div class="main-pagination-container">
-                            <div class="pagination-container">
-                                <div class="icon" :class="{ active: adNavBtn == 1 }">
-                                    <img class="def" src="@/assets/images/calc-icon4.svg" alt="" />
-                                    <img class="active" src="@/assets/images/calc-icon-active4.svg" alt="" />
-                                </div>
-                                <div class="icon" :class="{ active: adNavBtn == 2 }">
-                                    <img class="def" src="@/assets/images/calc-icon2.svg" alt="" />
-                                    <img class="active" src="@/assets/images/calc-icon-active2.svg" alt="" />
-                                </div>
+                        <div class="main-pagination-container finance">
+                <div class="pagination-container">
+                  <div class="contain">
+                    <div class="icon" :class="{ active: paymentSec1 == 1 }">
+                      <img
+                        class="def"
+                        src="@/assets/images/calc-icon2.svg"
+                        alt=""
+                      />
+                      <img
+                        class="active"
+                        src="@/assets/images/calc-icon-active2.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="icon" :class="{ active: paymentSec2 == 1 }">
+                      <img
+                        class="def"
+                        src="@/assets/images/calc-icon2.svg"
+                        alt=""
+                      />
+                      <img
+                        class="active"
+                        src="@/assets/images/calc-icon-active2.svg"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <div class="text">
+                    <div>
+                      <h5 :class="{ active: paymentSec1 == 1 }">
+                        بيانات السيارة
+                      </h5>
+                    </div>
+                    <div>
+                      <h5 :class="{ active: paymentSec2 == 1 }">
+                        بيانات المنشأة
+                      </h5>
+                    </div>
+               
+                  </div>
+                </div>
 
-                            </div>
-                            <div class="content-pagination">
-                                <div>
-                                    <h5 :class="{ active: adNavBtn == 1 }">
-                                        {{ $t('carDet') }}                                    </h5>
-                                    <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
-                                </div>
-                                <div>
-                                    <h5 :class="{ active: adNavBtn == 2 }">
-                                        {{ $t("carImgs") }}
-                                    </h5>
-                                    <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
-                                </div>
-                            </div>
-                            <div class="pagination-container">
-                                <div class="dot" :class="{ active: adNavBtn == 1 }">
-                                    <i class="fa-solid fa-check"></i>
-                                </div>
-                                <div class="dot" :class="{ active: adNavBtn == 2 }">
-                                    <i class="fa-solid fa-check"></i>
-                                </div>
-
-                            </div>
-                        </div>
+                <div class="content-pagination ">
+                  <div>
+                    <h5 :class="{ active: paymentSec1 == 1 }">
+                      بيانات السيارة
+                    </h5>
+                    <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                  </div>
+                  <div>
+                    <h5 :class="{ active: paymentSec2 == 1 }">
+                      بيانات المنشأة
+                    </h5>
+                    <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                  </div>
+                </div>
+                <div class="pagination-container ">
+                <div class="contain second">
+                  <div
+                    class="dot"
+                    :class="{ active: paymentSec1 == 1 , check: checkBtnSec1 == 1 }"
+                  >
+                    <i class="fa-solid fa-check"></i>
+                  </div>
+                  <div
+                    class="dot"
+                    :class="{ active: paymentSec2 == 1 , check: checkBtnSec2 == 1}"
+                  >
+                    <i class="fa-solid fa-check"></i>
+                  </div>
+                
+                
+                </div>
+                </div>
+              </div>
                     </div>
 
                     <div class="col-12 col-xl-7 col-lg-7">
@@ -307,6 +348,11 @@ import axios from 'axios';
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let inputValue = ref('');
+
+let paymentSec1 = ref(1);
+let paymentSec2 = ref(0);
+let checkBtnSec1 = ref(0);
+let checkBtnSec2 = ref(0);
 
 // const handleKeyUp = (event) => {
 //     if (process.client) {

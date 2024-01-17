@@ -323,7 +323,7 @@
                     <span class="price">25,000 ر.س</span>
                     <span class="date">25 ديسمبر 2024</span>
                     <span class="stat">مستعمل</span>
-                    <span class="date">450</span>
+                    <!-- <span class="date">450</span> -->
                     
                     <div class="switch-container d-flex align-items-center gap-2">
                     <span :class="{ 'active': item.value }">{{ item.value ? 'مفعل' : 'غير مفعل' }}</span>
@@ -887,13 +887,19 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" >
+<style lang="scss"  scoped>
 
 .switch-container{
+  width:130px;
+  // background-color:red;
+  display:flex;
+  position:relative;
+  justify-content: flex-end;
     span{
         color: #959EAD;
 font-size: 12px;
 font-weight: 700;
+// position:absolute;
 &.active{
     color:#38A2A4;
 }
