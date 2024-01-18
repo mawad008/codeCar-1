@@ -34,7 +34,8 @@
                 <div class="row justify-content-center justify-content-xl-between justify-content-lg-between">
                     <div class="col-12 col-xl-7 col-lg-7">
                         <div v-if="newsArr.news" class="img-box">
-                            <div class="image" :style="{backgroundImage: 'url(' +( newsArr.news.main_image  ?  newsArr.news.main_image :'https://placehold.co/600'   ) + ')' }">
+                            <div class="image" >
+                            <img :src="newsArr.news.main_image" alt="">
                                 <div class="overlay"></div>
                             </div>
 
@@ -48,7 +49,9 @@
                             <h5>احدث الاخبار</h5>
                             <div class="boxes">
                                 <div v-for="item in newsArr.latest" class="box my-2">
-                                    <div class="image" :style="{backgroundImage: 'url(' +( item.main_image  ?  item.main_image :'https://placehold.co/600'   ) + ')' }"></div>
+                                    <div class="image">
+                                     <img :src="item.main_image" alt="">
+                                    </div>
                                     <div class="text w-100">
                                         <h6>{{ item.title }}</h6>
                                         <div class="d-flex w-100 align-items-center justify-content-between">

@@ -609,7 +609,7 @@
 
     <div class="container all-marks">
       <div class="header d-flex align-items-center justify-content-c">
-        <div class="text d-flex text-center flex-column">
+        <div class="text d-flex text-center w-100 align-items-center flex-column">
           <h3 class="heading-text">معتمدون لدى جهات التمويل</h3>
           <span class="p-text">{{ financingbodyArr.description }}</span>
         </div>

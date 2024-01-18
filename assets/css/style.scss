@@ -298,7 +298,7 @@ html[dir="ltr"] body {
 html[dir="rtl"] input[type="tel"] {
   direction: rtl;
 }
-.error-msg {
+.error-msg , .error-msg2 {
   color: #ed3f3f !important;
   font-size: 13px !important;
   white-space: nowrap;
@@ -1685,6 +1685,14 @@ html[dir="rtl"] .explore {
 }
 // end all marks section
 
+
+.p-dropdown-filter{
+  outline: none !important;
+  padding: 3px;
+  &::placeholder{
+    font-size: 14px !important;
+  }
+}
 @media (max-width: 800px) {
   .search-section,
   .explore,
@@ -3508,11 +3516,16 @@ html[dir="ltr"] {
   .box {
     height: 400px;
     // background-image: url("~/assets/images/new1.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    // background-size: cover;
+    // background-position: center;
+    // background-repeat: no-repeat;
     border-radius: 16px;
     position: relative;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
     .overlay {
       border-radius: 16px;
       background: linear-gradient(180deg, #000 0%, rgba(38, 139, 202, 0) 100%);
@@ -3568,13 +3581,19 @@ html[dir="ltr"] {
       width: 100%;
       .image {
         // background-image: url("~/assets/images/new1.png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: scroll;
+        // background-size: cover;
+        // background-position: center;
+        // background-repeat: no-repeat;
+        // background-attachment: scroll;
         border-radius: 16px;
         position: relative;
         height: 400px;
+        img{
+        border-radius: 16px;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
 
         .overlay {
           position: absolute;
@@ -3631,13 +3650,18 @@ html[dir="ltr"] {
       }
     }
     .image {
-      background-image: url("~/assets/images/new1.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      // background-image: url("~/assets/images/new1.png");
+      // background-size: cover;
+      // background-position: center;
+      // background-repeat: no-repeat;
       height: 72px;
       width: 90px;
-      border-radius: 6px;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 6px;
+      }
     }
     h5 {
       font-size: 20px;
@@ -4655,6 +4679,13 @@ html[dir="ltr"] {
   margin-top: 72px;
   margin-bottom: 140px;
   min-height: 100vh;
+  .error-msg{
+    position: absolute;
+    top: 101%;
+  }
+  .error-msg2{
+    white-space: normal !important;
+  }
   .ad-container {
     margin-bottom: 0px !important;
     border-radius: 24px;
@@ -4817,6 +4848,7 @@ html[dir="ltr"] {
           font-style: normal;
           font-weight: 700;
           color: $secondary-black;
+          position: relative;
         }
         input,
         .p-dropdown,
@@ -4955,9 +4987,11 @@ html[dir="ltr"] {
       gap: 18px;
       flex-direction: column;
       text-align: center;
-      height: 100vh;
+      // height: 100vh;
+      // height:  406px;
       border-radius: 16px;
       background: #fff;
+      padding: 53px 0px;
       h4 {
         font-size: 24px;
         font-style: normal;
@@ -5003,6 +5037,20 @@ html[dir="ltr"] {
     //     margin-top: 30px;
     //   }
     // }
+
+    .confirm{
+      padding: 30px 10px !important;
+      h4{
+        font-size: 20px !important;
+        line-height: 30px;
+      }
+      span , a , button{
+        width: 100% !important;
+      }
+    }
+  }
+  .advertisement-container .ad-container .ad-content .det .half{
+    width: auto !important;
   }
 }
 // end advertisement page
@@ -5016,6 +5064,9 @@ html[dir="ltr"] {
     border-radius: 16px;
     background: #fff;
     padding: 32px;
+    .payment-method{
+      margin: 0px;
+    }
     h3 {
       color: $secondary-black;
       font-size: 24px;
@@ -5086,6 +5137,7 @@ html[dir="ltr"] {
     }
 
     .the-order {
+      // min-height: 300px;
       border-radius: 8px;
       border: 1px solid #ebeaed;
       padding: 16px;
@@ -5111,11 +5163,36 @@ html[dir="ltr"] {
           font-style: normal;
           font-weight: 700;
           color: $secondary-black;
+          margin-bottom: 8px;
+          span{
+            color: #DCB63B;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400
+          }
         }
         span {
           font-size: 14px;
           color: $body-text;
           font-weight: 400;
+        }
+      }
+
+      &.corp{
+        direction: ltr;
+        .main{
+          height: 257px;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          overflow-y: auto;
+          &::-webkit-scrollbar{
+            width: 4px;
+          }
+          .image-container{
+          direction: rtl !important;
+
+          }
         }
       }
 
@@ -5368,8 +5445,15 @@ html[dir="ltr"] {
 
 
 
-@media (max-width: 800px) {
-
+@media (max-width: 900px) {
+.orders-page{
+  .box{
+    margin-bottom: 20px;
+  }
+  .stat{
+    top: 0px !important;
+  }
+}
   .text-breadcrumbs{
     margin-bottom: 40px !important;
   }

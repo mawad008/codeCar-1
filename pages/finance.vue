@@ -1544,6 +1544,9 @@ import success from "~/assets/animations/success.json";
 import { Vue3Lottie } from "vue3-lottie";
 import useValidate from "@vuelidate/core";
 import axios from "axios";
+import Cookies from "js-cookie";
+const tokenCookie = Cookies.get("token");
+
 import {
   required,
   email,

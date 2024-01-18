@@ -16,7 +16,8 @@
 
             <div class="row">
                 <div v-for="item in newsArr.news" class="col-12 col-xl-4 col-lg-4 col-md-6 my-2">
-                    <div class="box" :style="{backgroundImage: 'url(' +( item.main_image  ?  item.main_image :'https://placehold.co/600'   ) + ')' }">
+                    <div class="box">
+                    <img :src="item.main_image" alt="">
                         <div class="overlay">
                             <div class="w-100">
                                 <div class=" w-100">
