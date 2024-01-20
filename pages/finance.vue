@@ -720,7 +720,7 @@
                   </div>
                 </div>
                 <div
-                  class="d-flex main-radio align-items-center w-100 justify-content-between"
+                  class="d-flex main-radio align-items-center flex-column flex-xl-row flex-lg-row w-100 justify-content-between"
                 >
                   <div>
                     <span>هل يوجد تعثرات</span>
@@ -824,10 +824,10 @@
                   </div>
                 </div>
                 <div class="btns">
-                  <button @click="paymentIndividualBtn = 2" class="back">
+                  <button @click="paymentIndividualBtn = 2 , pending3 = false" class="back">
                     الرجوع
                   </button>
-                  <button @click="paymentFunc3()" :disabled="pending3" class="next">
+                  <button @click="paymentFunc3()" :disabled="pending3" class="next gap-2">
                     التالي
                     <v-progress-circular v-if="pending3"  indeterminate :size="25" :width="4"></v-progress-circular>
                   </button>
@@ -1654,19 +1654,19 @@ let form2 = ref({
     color_id:'',
 });
 let form3 = ref({
-  client_name:'OmarMahran',
-  phone:'0588666453',
-  sex:'male',
-  birth_date:'13/4/1997',
-  city_id:2,
-  identity_no:334,
-  sector:1,
-  salary:10000,
-  bank:1,
-  Monthly_cometment:1000,
+  client_name:'',
+  phone:'',
+  sex:'',
+  birth_date:'',
+  city_id:'',
+  identity_no:'',
+  sector:'',
+  salary:'',
+  bank:'',
+  Monthly_cometment:'',
   transferd_type :'transfer',
-  email:'oamr@gmail.com',
-  have_life_problem:0,
+  email: '',
+  have_life_problem:1,
   traffic_violations:1,
   department_loan:1,
   driving_license:1,
@@ -1735,13 +1735,11 @@ const v3$ = useValidate(rules3, form3);
 
 const isFormFilled3 = () => {
   // Iterate through each object in the form array
-  for (const car of form3.value) {
+  for (const key in form3.value) {
     // Check if any key in the object has an empty value
-    for (const key in car) {
-      if (car[key] === '') {
-        // If any key is empty, return false
-        return false;
-      }
+    if (form3.value[key] === '') {
+      // If any value is empty, return false
+      return false;
     }
   }
 
@@ -1813,7 +1811,7 @@ const paymentFunc2 = async() => {
   }
 };
 const paymentFunc3 = async() => {
-
+   v3$.value.$validate();
   let formBody = new FormData();
   formBody.append("brand", form2.value.brand);
   formBody.append("model", form2.value.model);
@@ -1836,7 +1834,6 @@ const paymentFunc3 = async() => {
   formBody.append("traffic_violations", form3.value.traffic_violations);
   formBody.append("department_loan", form3.value.department_loan);
   formBody.append("driving_license", form3.value.driving_license);
-   v3$.value.$validate();
   pending3.value = true;
   if(isFormFilled3()){
     try {

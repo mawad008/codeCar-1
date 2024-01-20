@@ -619,6 +619,8 @@
             </v-progress-linear>
             
             </div>
+                
+
             <button>تصفح المزيد</button>
           </div>
         </div>
@@ -639,6 +641,11 @@ import loader from "~/assets/animations/Loader.json";
 let { locale } = useI18n();
 const localePath = useLocalePath();
 
+let route = useRoute();
+
+let brandId = ref(route.query.id);
+let modelId = ref(route.query.model);
+let typeCar = ref(route.query.type);
 let valuePrice = ref([]);
 let minNum = ref(0);
 let maxNum = ref(0);
@@ -654,12 +661,12 @@ for (let i = currentYear; i >= currentYear - 14; i--) {
 }
 
 let optYears = ref(years.value.slice(0, 6));
-let selected1 = ref(["all"]);
+let selected1 = ref(typeCar.value ? [typeCar.value] : ["all"]);
 let selected2 = ref(["all"]);
 let selected3 = ref(["all"]);
 let selected4 = ref(["all"]);
-let selected5 = ref([]);
-let selected6 = ref(["all"]);
+let selected5 = ref(brandId.value ? [parseInt(brandId.value)] : []);
+let selected6 = ref(modelId.value ? [parseInt(modelId.value)] : []);
 let selected7 = ref(["all"]);
 let selected8 = ref([]);
 let selected9 = ref(["all"]);
@@ -671,7 +678,7 @@ const resetFunc = ()=>{
     selected3.value = ["all"];  
     selected4.value = ["all"];  
     selected5.value = [];  
-    selected6.value = ["all"];  
+    selected6.value = [];  
     selected7.value = ["all"];  
     selected8.value = [];  
     selected9.value = ["all"];

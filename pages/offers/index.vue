@@ -17,7 +17,9 @@
             <div class="row">
                 <div v-for="item in offersArr.offers" class="col-12 col-xl-6 col-lg-6 my-2">
                     <div class="offer-box">
-                        <div class="image" :style="{backgroundImage: 'url(' +( item.image  ?  item.image :'https://placehold.co/600'   ) + ')' }"></div>
+                        <div class="image">
+                          <img  :src="item.image" />
+                        </div>
                         <div class="text w-100">
                             <h6>{{ item.title }}</h6>
                             <p> {{ item.description }} </p>

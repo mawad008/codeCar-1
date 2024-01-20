@@ -83,9 +83,14 @@
                         <div class="news-box">
                             <h5>احدث الاخبار</h5>
                             <div class="icons">
-                             <div class="iconn">
-                              <img src="~/assets/images/share1.svg" alt="">
-                             </div>
+                             <button @click="copyToClipboard();" class="iconn">
+                              <img v-if="check" src="~/assets/images/share1.svg" alt="">
+                               <svg v-else xmlns="http://www.w3.org/2000/svg" fill="#90a3bf" height="20" width="20"
+                              viewBox="0 0 448 512">
+                              <path
+                                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                            </svg> 
+                             </button>
                              <div class="iconn">
                               <img src="~/assets/images/share2.svg" alt="">
                              </div>
@@ -137,19 +142,43 @@ if(result.status == 200){
 }
 
 }
+
+
+let routee = ref(route.fullPath);
+if (process.client) {
+    routee.value = window.location.href;
+}
+const router = useRouter();
+let check = ref(true);
+
+function copyToClipboard() {
+    /* Copy the text */
+    if (process.client) {
+        check.value = false;
+        const clipBoard = navigator.clipboard;
+        clipBoard.writeText(routee.value).then(() => {
+        });
+
+        setTimeout(() => {
+            check.value = true;
+        }, 1000);
+    }
+
+}
+
 let items = ref([
     {
-        title: 'الرئيسية',
+        title: locale.value == 'ar' ? 'الرئيسية' : 'home',
         disabled: true,
         href: '/',
     },
     {
-        title: 'اخبار السيارات',
+        title: locale.value == 'ar' ? 'اخبار السيارات' : 'car news',
         disabled: true,
         href: 'news',
     },
     {
-        title: 'الخبر',
+        title: locale.value == 'ar' ? 'الخبر' : 'new',
         disabled: true,
     },
 ]);

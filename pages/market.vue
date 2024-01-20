@@ -19,13 +19,13 @@
           <div class="container">
             <div class="row">
               <div v-for="item in brandsArr.brands" class="col-6 col-xl-2 col-lg-2 col-md-3 my-4">
-                <div class="box">
+                <nuxt-link :to="localePath({path:'/cars', query:{id:item.id}})" class="box">
               <div class="image" :style="{backgroundImage: 'url(' +( item.cover  ?  item.cover :'https://placehold.co/600'   ) + ')' }">
                 <!-- <img src="~/assets/images/brand1.png" alt=""> -->
               </div>
               <span class="name"> {{ item.name }} </span>
               <span class="num"> {{ item.count_cars_count }} سيارة </span>
-            </div>
+            </nuxt-link>
               </div>
             </div>
           </div>

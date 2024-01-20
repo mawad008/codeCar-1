@@ -21,7 +21,7 @@
              <h5>سيارات العرض</h5>
             </div>
              <div class="row">
-              <div v-for="item in offerArr.cars" class="col-12 col-xl-3 col-lg-3 col-md-6 my-3">
+              <div v-for="item in cars" class="col-12 col-xl-3 col-lg-3 col-md-6 my-3">
                <CarCard/> 
               </div>
              </div>
@@ -42,6 +42,7 @@ const { locale } = useI18n();
 let route = useRoute();
 let id = route.query.id;
 
+let cars = ref([]);
 
 let pending = ref(false);
 let offerArr = ref([]);
