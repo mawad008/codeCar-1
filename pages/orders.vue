@@ -492,8 +492,8 @@ import success from "~/assets/animations/success.json";
 import { Vue3Lottie } from "vue3-lottie";
 import useValidate from "@vuelidate/core";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { useStore } from "~/store";
+import Cookies from "js-cookie";
 const tokenCookie = Cookies.get("token");
 let store = useStore;
 let user = store.state.user
@@ -546,7 +546,7 @@ let items = ref([
 ]);
 
 onMounted(() => {
-  console.log(user);  
+  //console.log(user);  
 })
 
 </script>

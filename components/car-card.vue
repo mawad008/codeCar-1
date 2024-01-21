@@ -62,7 +62,7 @@
             
                 <button>
               
-                <nuxt-link class="w-100" :to="localePath('/car')">  شراء الان</nuxt-link>
+                <nuxt-link class="w-100" :to="localePath({path:'/car',query:{id:car.id}})">  شراء الان</nuxt-link>
                 </button>
                 <div class="icon">
                     <img src="~/assets/images/heart.png" />
@@ -73,9 +73,10 @@
 </template>
 
 <script setup>
-const localePath = useLocalePath();
 const props = defineProps(["car"]);
-
+import axios from 'axios';
+const { locale } = useI18n();
+const localePath = useLocalePath();
 </script>
 
 <style lang="scss" scoped></style>

@@ -4,7 +4,7 @@ export const useStore = createStore({
   state: {
     favArr: [],
     authenticated: false,
-    checkForm: 1,
+    checkForm: 2,
     isInFav: [],
     user: {},
   },

@@ -131,6 +131,7 @@
                 v-model="form.city_id"
                 :options="countries"
                 filter
+                :filter-placeholder="$t('search')"
                 optionLabel="name"
                 placeholder="ابها"
                 class=""
@@ -227,7 +228,11 @@
             </p>
           </div>
           <div class="d-flex align-item-center justify-content-center">
-            <button @click="registerFunc()" type="">متابعة</button>
+            <button @click="registerFunc()" :disabled="pending1" type="" class="gap-3">
+            متابعة
+            <v-progress-circular v-if="pending1" indeterminate :size="27" :width="4"></v-progress-circular>
+            
+            </button>
           </div>
           <div class="d-flex align-item-center justify-content-center">
             <div class="d-flex align-items-center gap-2 linkk">
@@ -394,7 +399,7 @@
               style="direction: ltr !important; margin-bottom: 14px"
             ></v-otp-input>
             <span class="error-msg" v-if="error">{{error}}</span>
-            <span>اعد ارسال الكود</span>
+            <span @click="resendOtp()">اعد ارسال الكود</span>
             <div>
               <button @click="otpFunc()">انشاء حساب</button>
               <div class="icons-container">
@@ -543,6 +548,7 @@ let passConfType = ref("password");
 const selectedCountry = ref();
 const countries = ref([]);
 
+let pending1 = ref(false);
 
 const getCites = async ()=>{
   let result = await axios.get(`${getUrl()}/cities`,{
@@ -646,6 +652,7 @@ const registerFunc = async () => {
     );
   }
   if (check) {
+    pending1.value= true;
     try {
       let result = await axios.post(`${getUrl()}/register`, formBody, {
         headers: {
@@ -657,13 +664,13 @@ const registerFunc = async () => {
         // phoneNum.value = result.data.data.vendor.phone;
         signNav.value = 2;
         otp.value = result.data.data.vendor.verification_code;
-        pending.value = false;
+        pending1.value= false;
         errors.value = [];
       }
     } catch (errorss) {
       console.log(errorss);
       if (errorss.response) {
-        pending.value = false;
+       pending1.value= false;
         errors.value = errorss.response.data.errors;
       }
     }
@@ -701,6 +708,36 @@ const otpFunc = async () => {
     }
   }
 };
+const resendOtp = async () => {
+  pending.value = true;
+  let formBody = new FormData();
+  formBody.append("phone", form.value.phone);
+  try {
+    let result = await axios.post(`${getUrl()}/resend-otp`, formBody,
+    {
+      // params: {
+      //   otp: parseInt(otp.value),
+      //   phone: form.value.phone
+      // },
+      headers: {
+        "Content-Language": `${locale.value}`,
+      },
+    });
+    if (result.status >= 200) {
+      // store.commit("changeFormCheck", 2);
+      otp.value = result.data.data.verification_code;
+      pending.value = false;
+      error.value = '';
+   
+    }
+  } catch (errorss) {
+    if (errorss.response) {
+      pending.value = false;
+      error.value = errorss.response.data.errors;
+    }
+  }
+};
+
 
 onMounted(() => {
   getCites();

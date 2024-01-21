@@ -799,7 +799,7 @@
             <h3>هل أنت متأكد من رغبتك في تسجيل الخروج؟</h3>
 
             <div class="btns">
-              <button class="out">تسجيل خروج</button>
+              <button class="out" @click="logOut()" aria-label="Close">تسجيل خروج</button>
               <button class="back" data-bs-dismiss="modal" aria-label="Close">
                 العودة
               </button>
@@ -835,11 +835,18 @@
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: "auth",
+});
 import axios from 'axios';
+import Cookies from "js-cookie";
+import { useStore } from "~/store";
+const store = useStore;
 let settingNav = ref(1);
 let selectedFile = ref(null);
 let selectedFileUrl = ref(null);
 const localePath = useLocalePath();
+let router = useRouter();
 const { locale, setLocale } = useI18n();
 const handleFileChange = (event) => {
   const file = event.target.files[0];
@@ -908,6 +915,17 @@ const getOptions = async () =>{
   cities.value = result1.data.data;
   brands.value = result.data.data.brands;
 }
+
+const logOut = ()=>{
+  store.state.user = {};
+    store.state.authenticated = false;
+    Cookies.remove("user");
+    Cookies.remove("token");
+    Cookies.remove("auth");
+    const localee = localePath("/");
+    router.push(localee);
+}
+
 
 let items = ref([
   {

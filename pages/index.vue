@@ -72,7 +72,6 @@
           class="mySwiper"
         >
           <swiper-slide
-            v-for="i in 5"
             class="flex-column flex-xl-row flex-lg-row"
           >
             <div class="text">
@@ -96,6 +95,9 @@
           </swiper-slide>
         </swiper>
       </div>
+      <!-- <video class="mask" src="~/assets/videos/hero-section-video.mp4"  autoplay loop muted>
+        
+      </video> -->
       <img class="mask" src="~/assets/images/mask-hero.png" alt="" />
     </div>
        
@@ -159,10 +161,10 @@
       <div class="container">
         <div class="row">
           <div
-            v-for="item in brandsArr.brands"
+            v-for="item , index in brandsArr.brands"
             class="col-6 col-xl-2 col-lg-2 col-md-3"
           >
-            <nuxt-link class="box" :to="localePath({path:'/cars', query:{id:item.id}})">
+            <nuxt-link class="box"  data-aos="zoom-in-up" :to="localePath({path:'/cars', query:{id:item.id}})">
               <div
                 class="image"
                 :style="{
@@ -185,15 +187,15 @@
     <div class="explore">
       <div class="container">
         <div class="text">
-          <span>{{ whyCodeCarArr.description }}</span>
-          <h3 class="heading-text">اكتشف المزيد مما نقدمه</h3>
+          <span data-aos="fade-left"  data-aos-offset="300" data-aos-duration="300">{{ whyCodeCarArr.description }}</span>
+          <h3 class="heading-text" data-aos="fade-left"  data-aos-offset="500" data-aos-duration="500" data-aos-delay="300">اكتشف المزيد مما نقدمه</h3>
         </div>
         
         <road />
 
         <div class="row w-100 align-items-center">
           <div class="col-12 col-xl-4 col-lg-4">
-            <div class="box">
+            <div class="box" data-aos="fade-up"  data-aos-anchor-placement="top-center">
               <div class="image">
                 <!-- <img src="~/assets/images/explore1.png" alt="" /> -->
                 <img :src="whyCodeCarArr.icon_card_1" alt="" />
@@ -205,7 +207,7 @@
             </div>
           </div>
           <div class="col-12 col-xl-4 col-lg-4 my-3">
-            <div class="box">
+            <div class="box" data-aos="fade-up"  data-aos-anchor-placement="top-center" data-aos-delay="200">
               <div class="image">
                 <!-- <img src="~/assets/images/explore2.png" alt="" /> -->
                 <img :src="whyCodeCarArr.icon_card_2" alt="" />
@@ -217,7 +219,7 @@
             </div>
           </div>
           <div class="col-12 col-xl-4 col-lg-4 my-3">
-            <div class="box">
+            <div class="box" data-aos="fade-up"  data-aos-anchor-placement="top-center" data-aos-delay="400">
               <div class="image">
                 <!-- <img src="~/assets/images/explore3.png" alt="" /> -->
                 <img :src="whyCodeCarArr.icon_card_3" alt="" />
@@ -267,6 +269,8 @@
               @click="(tabNav = 1), (tab = 2), getProducts()"
               :class="{ active: tab == 2 }"
               class="tab"
+              
+
             >
               <span class="choose"> افضل العروض </span>
               <border />
@@ -309,8 +313,8 @@
               }"
               :modules="[SwiperNavigation, SwiperAutoplay]"
             >
-              <swiper-slide v-for="item in productsTags">
-                <car-card :car="item" />
+              <swiper-slide v-for="item , index in productsTags">
+                <car-card :car="item"    />
               </swiper-slide>
             </swiper>
 
@@ -357,7 +361,7 @@
     <div class="best-offers">
       <div class="container">
         <div v-if="financingAdv" class="row">
-          <div class="col-12 col-xl-5 col-lg-5">
+          <div class="col-12 col-xl-5 col-lg-5" data-aos="fade-right"  data-aos-delay="300">
             <div class="text-container">
               <span class="special"> عن ميزة التمويل </span>
               <h4>{{ financingAdv.description }}</h4>
@@ -397,6 +401,7 @@
           </div>
           <div
             class="col-12 bg-dange col-xl-7 col-lg-7 d-flex justify-content-end"
+            data-aos="fade-left"
           >
             <img class="big-img" :src="financingAdv.image" />
           </div>
@@ -413,12 +418,12 @@
       </div>
       <div class="row gap- align-items-center">
         <div
-          v-for="item in financingbodyArr.banks"
+          v-for="item , index in financingbodyArr.banks"
           class="col-6 col-xl-2 col-lg-2 col-md-4"
         >
-          <div class="box">
+          <div class="box " data-aos="fade-down" data-aos-delay="300">
             <div>
-              <img :src="item.image" />
+              <img :src="item.image" clss="" />
             </div>
           </div>
         </div>
@@ -444,14 +449,17 @@ let financingAdv = ref();
 
 let carBody = ref([
   {
-    name: "مستعمل",
+    name: locale.value == 'ar' ? "مستعمل" : 'used',
     value: 0,
   },
   {
-    name: "جديد",
+    name: locale.value == 'ar' ? "جديد" : 'new',
     value: 1,
   },
 ]);
+
+
+const calculateDelay = (index) => `${index * 300}`;
 
 let selectedBrand = ref();
 let selectedmodel = ref();

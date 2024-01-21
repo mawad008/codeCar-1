@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div class="container about-us">
+        <div v-if="aboutArr" class="container about-us">
             <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
                 <h4 class="heading-text"> {{ $t("about") }} </h4>
-                <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
+                <p>{{ aboutArr.description }}</p>
 
                 <v-breadcrumbs :items="items">
                     <template v-slot:divider>
@@ -18,31 +18,30 @@
                         <div class="text-container">
                             <div class="text">
                                 <h6>عننا !</h6>
-                                <span>منصة موقع كود كار تختص في بيع وشراء وتمويل السيارات بطرق حديثة ومتطورة لتصل الى كل من
-                                    يرغب أن يعلن او يبحث عن سيارة أحلامه نقداً او عن طريق التمويل التأجيري مع أفضل جهات
-                                    التمويل بالمملكة العربية السعودية . نحن ثقتكم التي نفتخر بها و التميز الذي نضعه بين
-                                    أيديكم لننال رضاكم ولنكون الطريق المتميز لأيصالكم لأهدافكم بالحصول على طلبك بكل سهولة
-                                    وسرعة وبشكل مرضي ..</span>
+                                <div></div>
+                                <span> {{ aboutArr.description_card }} </span>
                             </div>
 
                             <div class="icons">
                                 <div class="icon">
-                                    <img src="~/assets/images/target_802036 1.svg" alt="">
-                                    <h6>اهدافنا</h6>
-                                    <span>نسعي لتقديم خدمات فائقة المستوى وتجربة فريدة، لتحقيق تطلعات عشاق السيارات بكفاءة
-                                        وراحة.</span>
+                                    <!-- <img src="~/assets/images/target_802036 1.svg" alt=""> -->
+                                    <img :src="aboutArr.icon_card_right" alt="">
+                                    <h6>{{ aboutArr.text_card_right }}</h6>
+                                    <span>{{ aboutArr.card_right }}</span>
                                 </div>
                                 <div class="icon">
-                                    <img src="~/assets/images/starfish_515990 1.svg" />
-                                    <h6>ما يميزنا</h6>
-                                    <span>حلول تمويلية فريدة هي ما يميزنا، نقدم لك حلاً متخصصاً يلبي احتياجاتك في عالم
-                                        السيارات.</span>
+                                    <!-- <img src="~/assets/images/starfish_515990 1.svg" /> -->
+                                    <img :src="aboutArr.icon_card_left" alt="">
+
+                                    <h6>{{ aboutArr.text_card_left }}</h6>
+                                    <span>{{ aboutArr.card_left }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-xl-5 col-lg-5 order-1 order-xl-2 order-lg-2">
                         <div class="image">
+                        <img :src="aboutArr.image" alt="">
                             <div class="overlay"></div>
                         </div>
 
@@ -54,14 +53,14 @@
             <div class="faqs">
             <h5> {{ $t("faq") }}</h5>
                 <v-expansion-panels class="row justify-content-start"   multiple  variant="popout">
-                    <div v-for="i in 8" :key="i" class="col-12 col-xl-6 col-lg-6 my-2">
+                    <div v-for="item in aboutArr.faq" :key="i" class="col-12 col-xl-6 col-lg-6 my-2">
                         <v-expansion-panel >
 
                             <template v-slot:title>
-                                <span>هل يمكنني الإعلان عن سيارتي للبيع على الموقع؟</span>
+                                <span>{{ item.question }}</span>
                             </template>
                             <template v-slot:text>
-                                <span>نعم، يمكن للأفراد الإعلان عن سياراتهم للبيع عبر موقع "كود كار" بسهولة.</span>
+                                <span> {{ item.answer }}</span>
                             </template>
                         </v-expansion-panel>
 
@@ -69,6 +68,8 @@
                 </v-expansion-panels>
             </div>
         </div>
+    <Loader v-if="pending"></Loader>
+
     </div>
 </template>
 
@@ -78,6 +79,28 @@ const localePath = useLocalePath();
 const { locale } = useI18n();
 
 const router = useRouter();
+
+
+let pending = ref(false);
+let aboutArr = ref();
+const getAboutData = async ()=>{
+    pending.value = true;
+  let result = await axios.get(`${getUrl()}/about`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+if(result.status == 200){
+    pending.value = false;
+    aboutArr.value = result.data.data;
+}
+
+}
+
+onMounted(() => {
+    getAboutData();
+});
 
 let items = ref([
     {

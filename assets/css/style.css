@@ -1244,14 +1244,15 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
 .our-products .tabs .tab.active svg {
   display: block;
 }
-.our-products .icons-arrow {
+
+.icons-arrow {
   margin-top: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 15px;
 }
-.our-products .icons-arrow .icon {
+.icons-arrow .icon {
   width: 48px;
   height: 48px;
   display: flex;
@@ -1262,13 +1263,13 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   background-color: white;
   transition: 0.4s;
 }
-.our-products .icons-arrow .icon svg {
+.icons-arrow .icon svg {
   fill: #2D3A4A;
 }
-.our-products .icons-arrow .icon:hover {
+.icons-arrow .icon:hover {
   background-color: #90A3BF;
 }
-.our-products .icons-arrow .icon:hover svg {
+.icons-arrow .icon:hover svg {
   fill: #fff;
 }
 
@@ -1407,8 +1408,8 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   margin-bottom: 88px;
 }
 .all-marks .box img {
-  width: 180px;
-  height: 180px;
+  width: 100%;
+  height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -1538,7 +1539,7 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   cursor: pointer;
 }
 .main-car-page .car-details .images-text .mySwiper .swiper-slide {
-  width: 80px !important;
+  width: 80px;
   height: 80px;
   border-radius: 8px;
   border: 1px solid #ebeaed;
@@ -1564,8 +1565,8 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
 }
 .main-car-page .car-details .images-text .slider__prev,
 .main-car-page .car-details .images-text .slider__next {
-  width: 50px;
-  height: 33px;
+  width: 32px;
+  height: 32px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1700,27 +1701,29 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   color: #2d3a4a;
   font-weight: 400;
 }
+.main-car-page .car-details .description .descDiv {
+  overflow-y: auto;
+  height: 70px;
+}
+.main-car-page .car-details .description .descDiv::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+.main-car-page .car-details .description .descDiv::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #a3a3a3;
+}
+.main-car-page .car-details .description .descDiv::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
 .main-car-page .car-details .description p {
   margin-top: 14px;
   font-size: 14px;
   margin-bottom: 0px !important;
   font-style: normal;
-  height: 75px;
-  overflow-y: auto;
   font-weight: 400;
   color: #5a7184;
   line-height: 24px;
-}
-.main-car-page .car-details .description p::-webkit-scrollbar {
-  width: 5px;
-  height: 10px;
-}
-.main-car-page .car-details .description p::-webkit-scrollbar-thumb {
-  border-radius: 5px;
-  background-color: #a3a3a3;
-}
-.main-car-page .car-details .description p::-webkit-scrollbar-track {
-  border-radius: 5px;
 }
 .main-car-page .car-details .description p span {
   cursor: pointer;
@@ -2559,12 +2562,11 @@ html[dir=ltr] .payment-method button.two {
     height: 120px;
   }
   .main-car-page .car-details .images-text .main-images .mySwiper .swiper-slide {
-    width: 64px !important;
-    height: 52px;
+    height: 60px;
   }
   .main-car-page .car-details .images-text .main-images .mySwiper .swiper-slide .image {
-    width: 52px;
-    height: 24px;
+    width: 80%;
+    height: 50px;
   }
   .main-car-page .car-details .time {
     margin-top: 10px !important;
@@ -3248,14 +3250,15 @@ html[dir=ltr] .p-accordion-header-action {
   min-height: 100vh;
 }
 .offer-page .main-offer-img {
-  background-image: url("~/assets/images/offer-car.png");
   height: 370px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   position: relative;
   border-radius: 16px;
   margin-bottom: 72px;
+}
+.offer-page .main-offer-img img {
+  border-radius: 16px;
+  width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -3516,12 +3519,18 @@ html[dir=ltr] .p-accordion-header-action {
   line-height: 32px;
 }
 .about-us .about-container .image {
-  background-image: url("~/assets/images/about.png");
   border-radius: 24px 0px 0px 24px;
   height: 100%;
   background-position: center;
   background-size: cover;
   position: relative;
+}
+.about-us .about-container .image img {
+  width: 100%;
+  border-radius: 24px 0px 0px 24px;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .about-us .about-container .image .overlay {
   width: 100%;
@@ -4791,6 +4800,9 @@ html[dir=ltr] .p-accordion-header-action {
   }
   .about-us .about-container .image {
     height: 350px;
+    border-radius: 24px !important;
+  }
+  .about-us .about-container .image img {
     border-radius: 24px !important;
   }
   .about-us .about-container .image .overlay {

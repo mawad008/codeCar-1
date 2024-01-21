@@ -13,6 +13,7 @@
             </div>
 
             <div class="main-offer-img">
+            <img :src="image" alt="">
              <div class="overlay"></div>
             </div>
 
@@ -22,7 +23,7 @@
             </div>
              <div class="row">
               <div v-for="item in cars" class="col-12 col-xl-3 col-lg-3 col-md-6 my-3">
-               <CarCard/> 
+               <CarCard :car="item" /> 
               </div>
              </div>
             </div>
@@ -44,6 +45,8 @@ let id = route.query.id;
 
 let cars = ref([]);
 
+let image = ref('');
+
 let pending = ref(false);
 let offerArr = ref([]);
 const getOfferData = async ()=>{
@@ -57,13 +60,15 @@ const getOfferData = async ()=>{
 if(result.status == 200){
     pending.value = false;
     offerArr.value = result.data.data.Offers;
+    cars.value = result.data.data.RelatedCars;
+    image.value = result.data.data.fullPathImage
 }
 
 }
 
 onMounted(() => {
     getOfferData();
-})
+});
 
 let items = ref([
     {

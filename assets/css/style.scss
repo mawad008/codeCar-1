@@ -1489,31 +1489,31 @@ html[dir="rtl"] .explore {
       }
     }
   }
-  .icons-arrow{
-    margin-top: 30px;
+}
+.icons-arrow{
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  .icon{
+    width: 48px;
+    height: 48px;
     display: flex;
+    cursor: pointer;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    .icon{
-      width: 48px;
-      height: 48px;
-      display: flex;
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background-color: #ffff;
-      svg{
-        fill: #2D3A4A;
-      }
-      transition: 0.4s;
-      &:hover{
-       background-color: #90A3BF;
-       svg{
-        fill: #fff;
-       }
-      }
+    border-radius: 50%;
+    background-color: #ffff;
+    svg{
+      fill: #2D3A4A;
+    }
+    transition: 0.4s;
+    &:hover{
+     background-color: #90A3BF;
+     svg{
+      fill: #fff;
+     }
     }
   }
 }
@@ -1676,8 +1676,10 @@ html[dir="rtl"] .explore {
   .box {
     // background-color: red;
     img {
-      width: 180px;
-      height: 180px;
+      width: 100%;
+      height: 100% ;
+      // height: 180px;
+      // background-color: red;
       object-fit: contain;
     }
     margin-bottom: 88px;
@@ -1831,7 +1833,7 @@ html[dir="rtl"] .explore {
       }
 
       .mySwiper .swiper-slide {
-        width: 80px !important;
+        width: 80px;
         height: 80px;
         border-radius: 8px;
         border: 1px solid #ebeaed;
@@ -1861,8 +1863,8 @@ html[dir="rtl"] .explore {
 
       .slider__prev,
       .slider__next {
-        width: 50px;
-        height: 33px;
+        width: 32px;
+        height: 32px;
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -2005,31 +2007,34 @@ html[dir="rtl"] .explore {
         color: $secondary-black;
         font-weight: 400;
       }
+       
+      .descDiv{
+        overflow-y: auto;
+        height: 70px;
+        &::-webkit-scrollbar {
+          width: 5px;
+          height: 10px;
+        }
+  
+        &::-webkit-scrollbar-thumb {
+          border-radius: 5px;
+          background-color: #a3a3a3;
+        }
+  
+        &::-webkit-scrollbar-track {
+          border-radius: 5px;
+        }
 
+      }
       p {
         margin-top: 14px;
         font-size: 14px;
         margin-bottom: 0px !important;
         font-style: normal;
-        height: 75px;
-        overflow-y: auto;
         font-weight: 400;
         color: $body-text;
         // padding: 0px 15px;
         line-height: 24px;
-        &::-webkit-scrollbar {
-          width: 5px;
-          height: 10px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-          border-radius: 5px;
-          background-color: #a3a3a3;
-        }
-
-        &::-webkit-scrollbar-track {
-          border-radius: 5px;
-        }
         span {
           cursor: pointer;
           color: #dcb63b;
@@ -2938,11 +2943,11 @@ html[dir="ltr"] .payment-method{
           }
           .mySwiper{
             .swiper-slide{
-              width: 64px !important;
-              height: 52px;
+              // width: auto !important;
+              height: 60px;
               .image{
-                width: 52px;
-               height: 24px;
+                width: 80%;
+               height: 50px;
               }
             }
           }
@@ -3811,16 +3816,21 @@ margin: 50px 0px!important;
   min-height: 100vh;
 
   .main-offer-img {
-    background-image: url("~/assets/images/offer-car.png");
+    // background-image: url("~/assets/images/offer-car.png");
     height: 370px;
     // width: 750px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    // background-size: cover;
+    // background-position: center;
+    // background-repeat: no-repeat;
     position: relative;
     border-radius: 16px;
     margin-bottom: 72px;
-    object-fit: cover;
+    img{
+      border-radius: 16px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     .overlay {
       position: absolute;
       top: 0;
@@ -4098,12 +4108,19 @@ margin: 50px 0px!important;
       }
     }
     .image {
-      background-image: url("~/assets/images/about.png");
+      // background-image: url("~/assets/images/about.png");
       border-radius: 24px 0px 0px 24px;
       height: 100%;
       background-position: center;
       background-size: cover;
       position: relative;
+      img{
+        width: 100%;
+        border-radius: 24px 0px 0px 24px;
+      height: 100%;
+       object-fit: cover;
+
+      }
       .overlay {
         width: 100%;
         height: 100%;
@@ -5589,6 +5606,9 @@ margin: 50px 0px!important;
       .image{
         height: 350px;
         border-radius: 24px !important;
+        img{
+          border-radius: 24px !important;
+        }
         .overlay{
           border-radius: 24px !important;
         }

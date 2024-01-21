@@ -1,6 +1,6 @@
 <template>
   <div style="min-height: 100vh">
-    <div class="main-car-page container">
+    <div v-if="mainCar" class="main-car-page container">
       <div class="car-details">
         <div class="images-text">
           <div class="row">
@@ -68,9 +68,9 @@
                 :modules="[SwiperFreeMode, SwiperThumbs]"
                 class="mySwiper2"
               >
-                <swiper-slide v-for="i in 8">
+                <swiper-slide v-for="image in mainCar.images">
                 <div class="image">
-                <img src="~/assets/images/car.png" alt="">
+                <img :src="image" alt="">
                 
                 </div>
                   <div @click="showMultiple" class="zoom">
@@ -95,7 +95,7 @@
                   }"
                   :breakpoints="{
                     '300': {
-                      slidesPerView: 2,
+                      slidesPerView: 3.2,
                       spaceBetween: 20,
                     },
                     '768': {
@@ -110,9 +110,9 @@
                   :modules="[SwiperNavigation]"
                   class="mySwiper"
                 >
-                  <swiper-slide v-for="i in 8">
+                  <swiper-slide v-for="image in mainCar.images">
                     <div class="image">
-                     <img src="~/assets/images/car.png" alt="">
+                     <img :src="image" alt="">
                     </div>
                   </swiper-slide>
                 </swiper>
@@ -194,19 +194,19 @@
                   </div>
                 </div>
               </div>
-              <p class="time">{{$t('datee')}} : 24 / 10 / 2023</p>
+              <p class="time">{{$t('datee')}} {{ mainCar.publish_date }}</p>
               <div class="name">
-                <h4>هيونداي اكسنت ستاندر 2024</h4>
+                <h4>{{ mainCar.main_title }}</h4>
                 <div class="model">
-                  <span>جديد</span>
-                  <span>ستاندر</span>
+                  <span>{{ mainCar.statue }}</span>
+                  <span>{{ mainCar.brand.title }}</span>
                   <!-- <img src="@/assets/images/brand1.png" alt="" /> -->
-                  <span>اكسنت</span>
+                  <span>{{ mainCar.model.title }}</span>
                 </div>
               </div>
               <div class="description">
                 <span class="word">{{$t('disc1')}}</span>
-                <p>
+                <!-- <p>
                   استمتع بتجربة القيادة الفريدة مع هذه السيارة الفاخرة. تجمع
                   الأداء العالي والتصميم الأنيق في سيارة تضيف لمسة من الرفاهية
                   إلى رحلاتك اليومية. اكتشف قوة المحرك، والراحة في الداخل،
@@ -219,21 +219,22 @@
                   الأداء العالي والتصميم الأنيق في سيارة تضيف لمسة من الرفاهية
                   إلى رحلاتك اليومية. اكتشف قوة المحرك، والراحة في الداخل،
                   والتكنولوجيا المتقدمة التي تجعل هذه السيارة فريدة من نوعها
-                </p>
+                </p> -->
+                <div class="descDiv" v-html="mainCar.description"></div>
               </div>
 
               <div class="price">
                 <span class="word">{{ $t('price') }}</span>
                 <div class="main-price">
-                  <h5>2500 {{$t('curr')}}</h5>
-                  <span class="disc">4000  {{$t('curr')}}</span>
-                  <span>( 700,000 {{ $t('curr') }} {{$t('taxx')}})</span>
+                  <h5>{{ mainCar.price }} {{$t('curr')}}</h5>
+                  <span v-if="discount_price" class="disc">{{ mainCar.discount_price }}  {{$t('curr')}}</span>
+                  <span>( {{ mainCar.price_after_tax }} {{ $t('curr') }} {{$t('taxx')}})</span>
                 </div>
               </div>
               <div class="colors">
                 <span class="word">{{$t('colorr')}}</span>
                 <div class="main">
-                  <span> اسود </span>
+                  <span> {{ mainCar.color.title }} </span>
                 </div>
               </div>
 
@@ -263,7 +264,7 @@
                 <img src="@/assets/images/s1.svg" alt="" />
               </div>
               <span class="label">{{$t('engine')}}</span>
-              <span class="type">اوتوماتيك</span>
+              <span class="type">{{ mainCar.gear_shifter }}</span>
             </div>
           </div>
           <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
@@ -272,7 +273,7 @@
                 <img src="@/assets/images/s2.svg" alt="" />
               </div>
               <span class="label"> {{ $t('gaz') }} </span>
-              <span class="type">بنزين</span>
+              <span class="type">{{ mainCar.fuel_type }}</span>
             </div>
           </div>
           <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
@@ -280,8 +281,8 @@
               <div class="icon">
                 <img src="@/assets/images/s3.svg" alt="" />
               </div>
-              <span class="label">{{ $t('model') }}</span>
-              <span class="type">2024</span>
+              <span class="label">سنة الصنع</span>
+              <span class="type">{{ mainCar.year }}</span>
             </div>
           </div>
           <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
@@ -290,7 +291,7 @@
                 <img src="@/assets/images/s4.svg" alt="" />
               </div>
               <span class="label">{{$t('road')}}</span>
-              <span class="type">25,000 كم</span>
+              <span class="type">{{ mainCar.kilometer ? mainCar.kilometer : 0 }} كم</span>
             </div>
           </div>
           <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
@@ -299,7 +300,7 @@
                 <img src="@/assets/images/s5.svg" alt="" />
               </div>
               <span class="label">{{ $t('tra') }}</span>
-              <span class="type">سعودي</span>
+              <span class="type">{{ mainCar.supplier }}</span>
             </div>
           </div>
           <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
@@ -308,7 +309,7 @@
                 <img src="@/assets/images/s6.svg" alt="" />
               </div>
               <span class="label">{{ $t('adNum') }}</span>
-              <span class="type">561</span>
+              <span class="type">{{ mainCar.id }}</span>
             </div>
           </div>
         </div>
@@ -1951,13 +1952,68 @@
         <div class="head">
           <h4>السيارات المشابهة</h4>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div v-for="i in 5" class="col-12 col-xl-3 col-lg-3 col-md-6">
             <car-card />
           </div>
-        </div>
+        </div> -->
+        <swiper
+            :navigation="{
+          nextEl: '.slider-product1-next',
+          prevEl: '.slider-product1-prev',
+        }"
+              :breakpoints="{
+                '300': {
+                  slidesPerView: 1.3,
+                  spaceBetween: 30,
+                },
+                '768': {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+                '1024': {
+                  slidesPerView: 4,
+                  spaceBetween: 30,
+                },
+              }"
+              :autoplay="{
+                delay: 4500,
+                disableOnInteraction: false,
+              }"
+              :modules="[SwiperNavigation, SwiperAutoplay]"
+            >
+              <swiper-slide v-for="item in RelatedCars">
+                <car-card :car="item" />
+              </swiper-slide>
+            </swiper>
+
+            <div v-if="RelatedCars.length >= 1" class="icons-arrow">
+              <div class="icon slider-product1-next">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="17"
+                  viewBox="0 0 16 17"
+                  fill="none"
+                  class="arrow-icon"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M4.29289 1.3384C3.90237 1.72995 3.90237 2.36479 4.29289 2.75634L9.58579 8.06316L4.29289 13.37C3.90237 13.7615 3.90237 14.3964 4.29289 14.7879C4.68342 15.1795 5.31658 15.1795 5.70711 14.7879L11.7071 8.77213C12.0976 8.38058 12.0976 7.74574 11.7071 7.35419L5.70711 1.3384C5.31658 0.946851 4.68342 0.946851 4.29289 1.3384Z"
+                    
+                  />
+                </svg>
+              </div>
+              <div class="icon slider-product1-prev">
+                <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7071 1.3384C12.0976 1.72995 12.0976 2.36479 11.7071 2.75634L6.41421 8.06316L11.7071 13.37C12.0976 13.7615 12.0976 14.3964 11.7071 14.7879C11.3166 15.1795 10.6834 15.1795 10.2929 14.7879L4.29289 8.77213C3.90237 8.38058 3.90237 7.74574 4.29289 7.35419L10.2929 1.3384C10.6834 0.946851 11.3166 0.946851 11.7071 1.3384Z" />
+            </svg>
+              </div>
+            </div>
       </div>
     </div>
+    <Loader v-if="pendingLoader"></Loader> 
   </div>
 </template>
 
@@ -1968,10 +2024,12 @@ import loader from "~/assets/animations/Loader.json";
 import otpp from "~/assets/animations/otp.json";
 import success from "~/assets/animations/success.json";
 import { Vue3Lottie } from "vue3-lottie";
+import axios from 'axios';
 const { locale } = useI18n();
 
 let slide = ref(true);
-
+let mainCar = ref(null);
+let RelatedCars = ref([]);
 if(locale.value == 'ar'){
   slide.value = true;
 } else{
@@ -2135,6 +2193,37 @@ const setThumbsSwiper = (swiper) => {
   thumbsSwiper.value = swiper;
 };
 
+
+const route = useRoute();
+let pendingLoader = ref(false);
+ 
+
+let id = ref(route.query.id);
+
+watch(
+  () => route.query.id,
+  (newId) => {
+    id.value = newId;
+    getCar();
+  }
+);
+
+const getCar = async ()=>{
+  pendingLoader.value = true;
+  let result = await axios.get(`${getUrl()}/car/${id.value}`,{
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  if(result.status == 200){
+    pendingLoader.value = false;
+    mainCar.value = result.data.data.carDetails;
+    RelatedCars.value = result.data.data.Relatedcars;
+  }
+}
+
+
 // start lightbox images
 
 const visibleRef = ref(false);
@@ -2145,18 +2234,7 @@ const onShow = () => {
   visibleRef.value = true;
 };
 const showMultiple = () => {
-  imgsRef.value = [
-    "https://swiperjs.com/demos/images/nature-1.jpg",
-    "https://swiperjs.com/demos/images/nature-2.jpg",
-    "https://swiperjs.com/demos/images/nature-3.jpg",
-    "https://swiperjs.com/demos/images/nature-4.jpg",
-    "https://swiperjs.com/demos/images/nature-5.jpg",
-    "https://swiperjs.com/demos/images/nature-6.jpg",
-    "https://swiperjs.com/demos/images/nature-7.jpg",
-    "https://swiperjs.com/demos/images/nature-8.jpg",
-    "https://swiperjs.com/demos/images/nature-9.jpg",
-    "https://swiperjs.com/demos/images/nature-10.jpg",
-  ];
+  imgsRef.value = mainCar.value.images;
   indexRef.value = 0;
   onShow();
 };
@@ -2164,5 +2242,7 @@ const onHide = () => (visibleRef.value = false);
 
 // end lightbox images
 
-onMounted(() => {});
+onMounted(() => {
+  getCar();
+});
 </script>

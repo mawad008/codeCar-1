@@ -583,6 +583,10 @@
 </template>
 
 <script setup>
+
+definePageMeta({
+  middleware: "auth",
+});
 import { Vue3Lottie } from "vue3-lottie";
 import success from "~/assets/animations/success.json";
 

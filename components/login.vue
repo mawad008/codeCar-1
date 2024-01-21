@@ -247,10 +247,14 @@
                     <div class="form">
                      <div class="input">
                      <label for="">رقم الهاتف</label>
-                     <input type="tel" placeholder="مثال : 3333-5555-9999-55" />
+                     <input type="tel" v-model="phone" placeholder="3333-5555-9999-55" />
+                     <span class="error-msg" v-if="error2">{{ error2 }}</span>
                      </div>
                     </div>
-                    <button @click="loginNav = 3" style="margin-top:72px;">متابعة</button>
+                    <button @click="sendOtp()" :disabled="pending2" style="margin-top:72px;">
+                    متابعة
+                    <v-progress-circular v-if="pending2" indeterminate :size="30" :width="5"></v-progress-circular>
+                    </button>
                   <div class="icons-container">
                      <div class="icons">
                         <div class="icon">
@@ -395,13 +399,18 @@
                     </div>
                      <div class="mainform">
                       <div class="d-flex otp-container align-items-center flex-column justify-content-center text-center">
-                      <h3 style="margin-top: 32px;">رمز التفعيل</h3>
-                      <p style="margin-top: 16px; margin-bottom: 56px;">ارسلنا كود تحقق عبر رسالة نصية إلى {{ '019555594451' }} يرجى إدخال الكود في الخانة المخصصة أدناه</p>
-                         <v-otp-input v-model="otp" :length="6" placeholder="-"
+                      <h3 style="margin-top: 32px; font-weight:700;">رمز التفعيل</h3>
+                      <p style="margin-top: 16px; margin-bottom: 56px;">ارسلنا كود تحقق عبر رسالة نصية إلى {{ phone }} يرجى إدخال الكود في الخانة المخصصة أدناه</p>
+                         <v-otp-input v-model="otp" :length="4" placeholder="-"
                       style="direction: ltr !important; margin-bottom: 14px;"></v-otp-input>
-                  <span>اعد ارسال الكود</span>
+                  <span @click="resendOtp();">اعد ارسال الكود</span>
+                  <span class="error-msg" v-if="error3">{{error3}}</span>
                   <div>
-                      <button @click="loginNav = 4">متابعة</button>
+                      <button @click="otpFunc()" :disabled="pending3">
+                      متابعة
+                    <v-progress-circular v-if="pending3" indeterminate :size="30" :width="5"></v-progress-circular>
+                      
+                      </button>
                   <div class="icons-container">
                      <div class="icons">
                         <div class="icon">
@@ -560,7 +569,7 @@
                               :type="passType1"
                               placeholder="***************"
                               name=""
-                              value=""
+                              v-model="pass"
                             />
                             <div @click="changePass2()" class="icon">
                               <svg
@@ -581,6 +590,9 @@
                               </svg>
                             </div>
                           </div>
+                          <span class="error-msg" v-if="errors4.password">{{
+                errors4.password[0]
+              }}</span>
                           
                           <div class="input pass">
                             <label for="">تاكيد كلمة المرور</label>
@@ -588,8 +600,9 @@
                               :type="passType2"
                               placeholder="***************"
                               name=""
-                              value=""
+                              v-model="newPass"
                             />
+            
                             <div @click="changePass3()" class="icon">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -609,8 +622,14 @@
                               </svg>
                             </div>
                           </div>
+                          <span class="error-msg" v-if="errors4.password_confirmation">{{
+                errors4.password_confirmation[0]
+              }}</span>
                         </div>
-                        <button @click="loginNav = 1" style="margin-top:72px;">تأكيد</button>
+                        <button @click="resetPass()" :disabled="pending4" style="margin-top:72px;">
+                        تأكيد
+                    <v-progress-circular v-if="pending4" indeterminate :size="30" :width="5"></v-progress-circular>
+                        </button>
                       <div class="icons-container">
                          <div class="icons">
                             <div class="icon">
@@ -735,7 +754,8 @@
 </template>
 
 <script setup>
-
+import { createToast } from "mosha-vue-toastify";
+import "mosha-vue-toastify/dist/style.css";
 import Cookies from 'js-cookie';
 import { useStore } from "~/store";
 import axios from 'axios';
@@ -771,7 +791,12 @@ let form = ref({
     password: '',
 });
 
+let phone = ref('');
+
 let pending1 = ref(false);
+let pending2 = ref(false);
+let pending3 = ref(false);
+let pending4 = ref(false);
 
 let value1 = ref("value is required");
 let value2 = ref("The email field is required");
@@ -802,9 +827,18 @@ const rules = computed(() => {
 });
 
 let errors = ref([]);
+let error2 = ref();
+let error3 = ref();
+let errors4 = ref([]);
 const v$ = useValidate(rules, form);
 
+let title = ref("هذا الحساب ليس مفعل ");
 
+if (locale.value == 'ar') {
+  title.value = 'هذا الحساب ليس مفعل  ';
+} else {
+  title.value = 'You have successfully subscribed'
+}
 const loginFunc = async () => {
     let check = await v$.value.$validate();
     let formBody = new FormData();
@@ -836,13 +870,28 @@ const loginFunc = async () => {
                     // localStorage.setItem("auth", true);
                     router.push(localePath('/'));
                 }
-            }
+              }
+          
 
         } catch (errorss) {
             console.log(errorss);
             if (errorss.response) {
               pending1.value = false;
                 errors.value = errorss.response.data.errors;
+                if(!errorss.response.data.success){
+                createToast(
+                {
+                  title: title.value,
+                },
+                {
+                  type: "danger",
+                  transition: "bounce",
+                  showIcon: "true",
+                  timeout: 4000,
+                  toastBackgroundColor: "#2d3a4a",
+                }
+              );
+                    }
             }
 
 
@@ -857,6 +906,133 @@ const loginFunc = async () => {
         console.log('not login');
     }
 }
+
+const sendOtp = async () => {
+  pending2.value = true;
+  let formBody = new FormData();
+  formBody.append("phone",phone.value);
+  try {
+    let result = await axios.post(`${getUrl()}/send-otp`, formBody,
+    {
+     
+      headers: {
+        "Content-Language": `${locale.value}`,
+      },
+    });
+    if (result.status >= 200) {
+      if (process.client) {
+        loginNav.value = 3;
+        pending2.value = false;
+        error2.value = '';
+        otp.value = result.data.data.verification_code;
+      }
+    }
+  } catch (errorss) {
+    if (errorss.response) {
+      pending2.value = false;
+      error2.value = errorss.response.data.errors.phone[0];
+    }
+  }
+};
+const otpFunc = async () => {
+  pending3.value = true;
+  let formBody = new FormData();
+  formBody.append("otp", parseInt(otp.value));
+  formBody.append("phone", phone.value);
+  try {
+    let result = await axios.post(`${getUrl()}/verify-otp`, formBody,
+    {
+      // params: {
+      //   otp: parseInt(otp.value),
+      //   phone: form.value.phone
+      // },
+      headers: {
+        "Content-Language": `${locale.value}`,
+      },
+    });
+    if (result.status >= 200) {
+      if (process.client) {
+        loginNav.value = 4;
+        pending3.value = false;
+        error3.value = '';
+      }
+    }
+    console.log(result.data.data);
+  } catch (errorss) {
+    if (errorss.response) {
+      pending3.value = false;
+      error3.value = errorss.response.data.errors;
+    }
+  }
+};
+
+const resendOtp = async () => {
+  // pending.value = true;
+  let formBody = new FormData();
+  formBody.append("phone", phone.value);
+  try {
+    let result = await axios.post(`${getUrl()}/resend-otp`, formBody,
+    {
+      // params: {
+      //   otp: parseInt(otp.value),
+      //   phone: form.value.phone
+      // },
+      headers: {
+        "Content-Language": `${locale.value}`,
+      },
+    });
+    if (result.status >= 200) {
+      // store.commit("changeFormCheck", 2);
+      otp.value = result.data.data.verification_code;
+      // pending.value = false;
+      error.value = '';
+   
+    }
+  } catch (errorss) {
+    if (errorss.response) {
+      // pending.value = false;
+      // error.value = errorss.response.data.errors;
+    }
+  }
+};
+
+
+let newPass = ref('');
+let pass = ref('');
+
+const resetPass = async ()=>{
+  pending4.value = false;
+  let formBody = new FormData();
+  formBody.append("password", pass.value);
+  formBody.append("password_confirmation", newPass.value);
+  formBody.append("phone", phone.value);
+  try {
+    let result = await axios.post(`${getUrl()}/reset-password`, formBody,
+    {
+      // params: {
+      //   otp: parseInt(otp.value),
+      //   phone: form.value.phone
+      // },
+      headers: {
+        "Content-Language": `${locale.value}`,
+      },
+    });
+    if (result.status >= 200) {
+      // store.commit("changeFormCheck", 2);
+      // otp.value = result.data.data.verification_code;
+      loginNav.value = 1;
+      pending4.value = false;
+      errors4.value = [];
+   
+    }
+  } catch (errorss) {
+    if (errorss.response) {
+      pending4.value = false;
+      errors4.value = errorss.response.data.errors;
+    }
+  }
+}
+
 
 </script>
 
