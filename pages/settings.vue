@@ -39,12 +39,8 @@
             >
               <div class="d-flex align-items-center gap-2">
                 <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                    <path
-                      d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512
-                      29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
-                    />
-                  </svg>
+                  <img class="img1" src="~/assets/images/ads.svg" />
+                  <img class="img2" src="~/assets/images/ads-active.svg" />
                 </div>
                 <span> اعلاناتي </span>
               </div>
@@ -52,29 +48,7 @@
                 <span> 6 </span>
               </div>
             </div>
-            <div
-              @click="settingNav = 3"
-              class="item"
-              :class="{ active: settingNav == 3 }"
-            >
-              <div class="icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M12.3812 6.13413C14.1606 4.35535 17.0457 4.35535 18.8252 6.13413C20.6047 7.91302 20.6047 10.7972 18.8252 12.5761L12.3392 19.0595C12.1518 19.2469 11.8479 19.2469 11.6605 19.0595L5.17453 12.5761C3.39495 10.7972 3.39495 7.91302 5.17453 6.13413C6.95401 4.35535 9.83904 4.35535 11.6185 6.13413L11.9998 6.5153L12.3812 6.13413Z"
-                    fill="#90A3BF"
-                  />
-                </svg>
-              </div>
-              <span> المفضلة </span>
-            </div>
+          
             <div
               @click="settingNav = 4"
               class="item"
@@ -159,6 +133,20 @@
               </div>
             </button>
           </div>
+          <!-- <div class="mobile-settings">
+           <div>
+            <span class="icon">الملف الشخصي</span>
+           </div>
+           <div>
+            <span class="icon">اعلاناتي</span>
+           </div>
+           <div>
+            <span class="icon">الاشعارات</span>
+           </div>
+           <div>
+            <span class="icon">الامان</span>
+           </div>
+          </div> -->
         </div>
 
         <div class="col-12 col-xl-9 col-lg-9">
@@ -198,28 +186,28 @@
                     <h6>الاسم</h6>
                     <span>اسمك بالكامل</span>
                   </label>
-                  <input type="text" placeholder="فهمي سوادة" />
+                  <input type="text" v-model="form.name" placeholder="فهمي سوادة" />
                 </div>
                 <div class="input">
                   <label for="">
                     <h6>رقم الهاتف</h6>
                     <span>رقم الهاتف الخاص بك</span>
                   </label>
-                  <input type="text" placeholder="01012151698+" />
+                  <input type="tel" v-model="form.phone" placeholder="01012151698+" />
                 </div>
                 <div class="input">
                   <label for="">
                     <h6>رقم الهوية</h6>
                     <span> رقم الهوية الخاص بك </span>
                   </label>
-                  <input type="text" placeholder="8418988989-5894848-878" />
+                  <input type="tel" readonly v-model="form.identity_no"  placeholder="8418988989-5894848-878" />
                 </div>
                 <div class="input">
                   <label for="">
                     <h6>رقم السجل التجاري</h6>
                     <span> رقم السجل التجاري الخاص بك</span>
                   </label>
-                  <input type="text" placeholder="8418988989-5894848-878" />
+                  <input type="text" readonly v-model="form.commercial_registration_no" placeholder="8418988989-5894848-878" />
                 </div>
                 <div class="input">
                   <label for="">
@@ -227,7 +215,7 @@
                     <span> المدينة الخاصة بك</span>
                   </label>
                   <Dropdown
-                    v-model="selectedCity"
+                    v-model="form.city_id"
                     :options="cities"
                     filter
                     optionLabel="name"
@@ -369,6 +357,7 @@
                             </template>
 
                             <template v-slot:default="{ isActive }">
+                            <div class="d-flex align-items-center justify-content-center">
                               <div class="reports-container">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -411,6 +400,8 @@
                                 <button @click="isActive.value = false" type="">الرجوع</button>
                                 <i @click="isActive.value = false" class="fa-solid fa-xmark"></i>
                               </div>
+                            
+                            </div>
                             </template>
                           </v-dialog>
                         
@@ -470,8 +461,9 @@
                                       </v-btn>
                                     </v-toolbar-items>
                                   </v-toolbar>
-                                  <div class="adModalForm">
+                                  <div class="adModalForm advertisement-container">
                                   
+                                  <ads />
                                   
                                   </div>
                             </template>
@@ -536,30 +528,6 @@
                 </div>
               </div>
             </div>
-            <div v-if="settingNav == 3" class="fav-cars">
-              <div class="row">
-                <div
-                  v-for="i in 6"
-                  class="col-12 col-xl-4 col-lg-4 col-md-6 my-3"
-                >
-                  <CarCard
-                    style="border: 1px solid #ebeaed; border-radius: 16px"
-                  />
-                </div>
-              </div>
-
-              <div class="empty d-none">
-                <div class="main">
-                  <h4>يبدو أن ليس لديك أي سيارة في قائمة المفضلة</h4>
-                  <span
-                    >أضف مفضلتك الأولى الآن، سنكون هنا لمساعدتك في العثور على
-                    السيارة المثالية لتكمل رحلتك على الطريق
-                  </span>
-                  <button>تصفح السيارت</button>
-                </div>
-              </div>
-            </div>
-
             <div v-if="settingNav == 4" class="notifications">
               <div class="item active">
                 <div class="icon">
@@ -784,6 +752,25 @@
               </div>
             </div>
           </div>
+            <button  data-bs-toggle="modal" data-bs-target="#logout-modal" class="log-out-btn">
+            تسجيل الخروج
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    d="M12.6 16.5L10.65 16.5C8.25 16.5 6.75 15 6.75 12.6L6.75 9.5625L10.08 9.5625L8.5275 11.115C8.415 11.2275 8.3625 11.37 8.3625 11.5125C8.3625 11.655 8.415 11.7975 8.5275 11.91C8.745 12.1275 9.105 12.1275 9.3225 11.91L11.835 9.3975C12.0525 9.18 12.0525 8.82 11.835 8.6025L9.3225 6.09C9.105 5.8725 8.745 5.8725 8.5275 6.09C8.31 6.3075 8.31 6.6675 8.5275 6.885L10.08 8.4375L6.75 8.4375L6.75 5.4C6.75 3 8.25 1.5 10.65 1.5L12.5925 1.5C14.9925 1.5 16.4925 3 16.4925 5.4L16.4925 12.6C16.5 15 15 16.5 12.6 16.5Z"
+                    fill="#90A3BF"
+                  />
+                  <path
+                    d="M2.0625 9.5625C1.755 9.5625 1.5 9.3075 1.5 9C1.5 8.6925 1.755 8.4375 2.0625 8.4375L6.75 8.4375L6.75 9.5625L2.0625 9.5625Z"
+                    fill="#90A3BF"
+                  />
+                </svg>
+            </button>
         </div>
       </div>
 
@@ -799,34 +786,12 @@
             <h3>هل أنت متأكد من رغبتك في تسجيل الخروج؟</h3>
 
             <div class="btns">
-              <button class="out" @click="logOut()" aria-label="Close">تسجيل خروج</button>
+              <button class="out" @click="logOut()" data-bs-dismiss="modal" aria-label="Close">تسجيل خروج</button>
               <button class="back" data-bs-dismiss="modal" aria-label="Close">
                 العودة
               </button>
             </div>
           </div>
-          <!-- <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">Message:</label>
-                                    <textarea class="form-control" id="message-text"></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Send message</button>
-                        </div>
-                    </div> -->
         </div>
       </div>
       
@@ -838,9 +803,21 @@
 definePageMeta({
   middleware: "auth",
 });
+import { createToast } from "mosha-vue-toastify";
+import "mosha-vue-toastify/dist/style.css";
 import axios from 'axios';
 import Cookies from "js-cookie";
+import useValidate from "@vuelidate/core";
+import {
+  required,
+  email,
+  sameAs,
+  minLength,
+  helpers,
+} from "@vuelidate/validators";
+
 import { useStore } from "~/store";
+const tokenCookie = Cookies.get("token");
 const store = useStore;
 let settingNav = ref(1);
 let selectedFile = ref(null);
@@ -856,6 +833,15 @@ const handleFileChange = (event) => {
   }
 };
 
+let user = ref(store.state.user);
+
+let form = ref({
+name: user.value ? user.value.name : '',
+phone: user.value ? user.value.phone : '',
+city_id: user.value ? user.value.city_id : '',
+commercial_registration_no: user.value ? user.value.commercial_registration_no : '',
+identity_no: user.value ? user.value.identity_no : '',
+});
 
 let itemss = ref([
         { value: false },
@@ -866,7 +852,8 @@ let itemss = ref([
         { value: true }
 ]);
      
-       
+   
+
 const selectedCountry = ref();
 const countries = ref([
   { name: "Australia", code: "AU" },
@@ -881,6 +868,39 @@ const countries = ref([
   { name: "United States", code: "US" },
 ]);
 
+let value1 = ref("value is required");
+let value2 = ref("The email field is required");
+let value3 = ref("Invalid email format");
+let value5 = ref("يجب أن يكون عدد السيارات 1 سيارة على الأقل");
+let title = ref("تم تحديث البايانات بنجاح");
+if (locale.value == "ar") {
+  value1.value = "هذا الحقل مطلوبة";
+  value2.value = "حقل البريد الإلكتروني مطلوب";
+  value3.value = "تنسيق البريد الإلكتروني غير صالح";
+  value5.value = "يجب أن يكون عدد السيارات 1 سيارة على الأقل";
+  title.value = "تم تحديث البايانات بنجاح";
+} else {
+  value1.value = "value is required";
+  value2.value = "The email field is required";
+  value3.value = "Invalid email format";
+  value5.value = "The number of cars must be at least 1 car";
+  value5.value = "Data updated successfully";
+}
+
+
+const rules1 = computed(() => {
+  return {
+    name: { required: helpers.withMessage(value1.value, required) },
+    phone: { required: helpers.withMessage(value1.value, required) },
+    city_id: { required: helpers.withMessage(value1.value, required) },
+  };
+});
+
+let errors1 = ref([]);
+let errors2 = ref([]);
+let pending1 = ref(false);
+let pending2 = ref(false);
+const v1$ = useValidate(rules1, form);
 let carBody = ref([
   {
     name: "مستعمل",
@@ -893,12 +913,49 @@ let carBody = ref([
 ]);
 
 let selectedStat = ref();
-
-
 let selectedBrand = ref();
 let selectedCity = ref();
 let brands = ref([]);
 let cities = ref([]);
+
+
+const updateProfile = async ()=>{
+    //     let formBody = new FormData();
+  //   formBody.append("brand", form2.value.brand);
+  //   formBody.append("model", form2.value.model);
+  //   formBody.append("year", form2.value.year);
+  //   formBody.append("gear_shifter", form2.value.gear_shifter);
+  //   formBody.append("color_id", form2.value.color_id);
+  let check = await v1$.value.$validate();
+  if(check){
+    let result = await axios.post(`${getUrl()}/update-profile`,{
+      // params: {
+      //       step: 0,
+      //     },
+          headers: {
+            "Content-Language": `${locale.value}`,
+            Authorization: `Bearer ${tokenCookie}`,
+          },
+    });
+
+    if(result.status >= 200){
+      
+      createToast(
+          {
+            title: title.value,
+          },
+          {
+            type: "success",
+            transition: "bounce",
+            showIcon: "true",
+            timeout: 3000,
+            toastBackgroundColor: "#dcb63b",
+          }
+        );
+    }
+
+  }
+}
 
 const getOptions = async () =>{
   let result1 = await axios.get(`${getUrl()}/cities`,{
@@ -941,6 +998,7 @@ let items = ref([
 ]);
 
 onMounted(() => {
+  console.log(user.value);
   getOptions();
 })
 </script>
@@ -1002,6 +1060,7 @@ font-weight: 700;
   align-items: center !important;
   justify-content: center !important;
 }
+
 .reports-container {
   width: 611px;
 //   height: 391px;
@@ -1059,6 +1118,7 @@ font-weight: 700;
     }
   }
 }
+
 @media(max-width:800px){
     .reports-container{
         width:100%;

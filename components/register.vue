@@ -387,7 +387,7 @@
           <div
             class="d-flex otp-container align-items-center flex-column justify-content-center text-center"
           >
-            <h3 style="margin-top: 32px">رمز التفعيل</h3>
+            <h3 style="margin-top: 32px; font-weight: 700;">رمز التفعيل</h3>
             <p style="margin-top: 16px; margin-bottom: 56px">
               ارسلنا كود تحقق عبر رسالة نصية إلى {{ form.phone }} يرجى إدخال
               الكود في الخانة المخصصة أدناه

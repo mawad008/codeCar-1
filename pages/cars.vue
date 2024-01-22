@@ -606,6 +606,14 @@
               <car-card :car="item" />
             </div>
           </div>
+          <div v-if="pendingState" class="empty-state">
+            <client-only >
+            <Vue3Lottie  :animation-data="search" :height="200" :width="200" />
+          </client-only>
+          <h4>  لا توجد نتائج بحث </h4>
+          <p> "عذرًا، لا توجد نتائج لعرضها. جرّب توسيع معايير البحث أو استمتع بتصفح مجموعتنا الواسعة للعثور على السيارة التي قد تلفت انتباهك." </p>
+          <!-- <button></button> -->
+          </div>
           <div class="progress-container">
             <span>لقد شاهدت 50 سيارة من اصل 200</span>
             <div class="line">
@@ -634,6 +642,7 @@ import axios from "axios";
 
 import { Vue3Lottie } from "vue3-lottie";
 import loader from "~/assets/animations/Loader.json";
+import search from "~/assets/animations/search.json";
 
 // import Accordion from 'primevue/accordion';
 // import AccordionTab from 'primevue/accordiontab';
@@ -649,6 +658,7 @@ let typeCar = ref(route.query.type);
 let valuePrice = ref([]);
 let minNum = ref(0);
 let maxNum = ref(0);
+let pendingState = ref(false);
 let spinnerProducts = ref(false);
 const rangeLabel = (value) => {
   return `${value} SAR`;
@@ -702,6 +712,7 @@ valuePrice.value = [parseInt(optionsCars.value.Slider.minPrice) , parseInt(optio
 let filterCarsArr = ref([]);
 const filterCars = async () => {
     spinnerProducts.value = true;
+    pendingState.value = false;
     filterCarsArr.value = [];
   let result = await axios.get(`${getUrl()}/filter`, {
     params: {
@@ -725,6 +736,11 @@ const filterCars = async () => {
   if(result.status == 200){
     spinnerProducts.value = false;
     filterCarsArr.value = result.data.data;
+    if(filterCarsArr.value.length < 1){
+      pendingState.value = true;
+    } else{
+      pendingState.value = false;
+    }
   }
 };
 

@@ -103,7 +103,7 @@
                       spaceBetween: 10,
                     },
                     '1024': {
-                      slidesPerView: 5,
+                      slidesPerView:  mainCar.images.length <= 4 ? 3 : 5 ,
                       spaceBetween: 20,
                     },
                   }"
@@ -1946,6 +1946,47 @@
           <nuxt-link to="/">
             <button class="send home">الرجوع للرئيسية</button>
           </nuxt-link>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="vendor-whatsapp-modal"
+        tabindex="-1"
+        aria-labelledby="logout-modal"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content log-out-modal">
+            <h3>هل أنت متأكد من رغبتك في تسجيل الخروج؟</h3>
+
+            <div class="btns">
+              <button class="out" @click="logOut()" aria-label="Close">تسجيل خروج</button>
+              <button class="back" data-bs-dismiss="modal" aria-label="Close">
+                العودة
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="vendor-phone-modal"
+        tabindex="-1"
+        aria-labelledby="logout-modal"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content log-out-modal">
+            <h3>هل أنت متأكد من رغبتك في تسجيل الخروج؟</h3>
+
+            <div class="btns">
+              <button class="out" @click="logOut()" aria-label="Close">تسجيل خروج</button>
+              <button class="back" data-bs-dismiss="modal" aria-label="Close">
+                العودة
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="similar-cars">

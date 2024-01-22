@@ -423,6 +423,12 @@
     </div> -->
     <slot />
     <Loader2 v-if="checkInt"></Loader2>
+
+    <div @click="scrollUp()" class="up-arrow-icon" :class="{'active':arrowActive}">
+      <client-only>
+        <Vue3Lottie :animation-data="arrow" :height="100" :width="100" />
+      </client-only>
+    </div>
     <footer>
       <div class="footer-container">
         <div class="container">
@@ -708,12 +714,15 @@ import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
 import Cookies from "js-cookie";
 const tokenCookie = Cookies.get("token");
+import { Vue3Lottie } from "vue3-lottie";
+import arrow from "~/assets/animations/arrow.json";
 let activeNav = ref(false);
 let activeItemsContainer = ref(false);
 
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
 
+let arrowActive = ref(false);
 let overlay = ref(false);
 let route = useRoute();
 const changeLang = async () => {
@@ -836,6 +845,15 @@ const subscripe = async () => {
   }
 };
 
+const scrollUp = () => {
+  if (process.client) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+};
+
 let checkInt = ref(false);
 onMounted(() => {
   window.addEventListener("online", function () {
@@ -854,6 +872,11 @@ onMounted(() => {
       activeNav.value = false;
       activeItemsContainer.value = false;
     }
+    if (this.window.scrollY >= 1000) {
+      arrowActive.value = true;
+    } else if (window.scrollY == 0) {
+      arrowActive.value = false;
+    }
   });
   getFooterData();
   
@@ -866,7 +889,7 @@ onBeforeMount(() => {
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 
 
 .search-nav{
@@ -932,4 +955,7 @@ onBeforeMount(() => {
   -webkit-transform: translateY(-301%) rotate(-45deg);
   transform: translateY(-330%) rotate(-45deg);
 }
+
+
+
 </style>

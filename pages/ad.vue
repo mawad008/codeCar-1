@@ -587,6 +587,9 @@
 definePageMeta({
   middleware: "auth",
 });
+
+import Cookies from "js-cookie";
+const tokenCookie = Cookies.get("token");
 import { Vue3Lottie } from "vue3-lottie";
 import success from "~/assets/animations/success.json";
 
@@ -876,6 +879,8 @@ const addFunc1 = async () => {
         },
         headers: {
           "Content-Language": `${locale.value}`,
+          Authorization: `Bearer ${tokenCookie}`,
+
         },
       });
       if (result.status >= 200) {
@@ -932,6 +937,8 @@ const addFunc2 = async () => {
         },
         headers: {
           "Content-Language": `${locale.value}`,
+          Authorization: `Bearer ${tokenCookie}`,
+
         },
       });
       if (result.status >= 200) {

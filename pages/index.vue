@@ -95,9 +95,7 @@
           </swiper-slide>
         </swiper>
       </div>
-      <!-- <video class="mask" src="~/assets/videos/hero-section-video.mp4"  autoplay loop muted>
-        
-      </video> -->
+      <!-- <video class="mask" src="~/assets/videos/hero-section-video.mp4"  autoplay loop muted></video> -->
       <img class="mask" src="~/assets/images/mask-hero.png" alt="" />
     </div>
        
