@@ -101,12 +101,12 @@
                     <div class="icon" :class="{ active: paymentBtn5 == 1 }">
                       <img
                         class="def"
-                        src="@/assets/images/calc-icon5.svg"
+                        src="@/assets/images/package.svg"
                         alt=""
                       />
                       <img
                         class="active"
-                        src="@/assets/images/calc-icon-active5.svg"
+                        src="@/assets/images/package-active.svg"
                         alt=""
                       />
                     </div>
@@ -1081,19 +1081,19 @@
                       />
                       <img
                         class="active"
-                        src="@/assets/images/calc-icon-active2.svg"
+                        src="@/assets/images/calc-icon-active4.svg"
                         alt=""
                       />
                     </div>
                     <div class="icon" :class="{ active: paymentSec2 == 1 }">
                       <img
                         class="def"
-                        src="@/assets/images/calc-icon2.svg"
+                        src="@/assets/images/org.svg"
                         alt=""
                       />
                       <img
                         class="active"
-                        src="@/assets/images/calc-icon-active2.svg"
+                        src="@/assets/images/org-active.svg"
                         alt=""
                       />
                     </div>

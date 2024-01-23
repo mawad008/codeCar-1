@@ -103,7 +103,7 @@
                       spaceBetween: 10,
                     },
                     '1024': {
-                      slidesPerView:  mainCar.images.length <= 4 ? 3 : 5 ,
+                      slidesPerView:  mainCar.images.length <= 2 ? 2 : 5 ,
                       spaceBetween: 20,
                     },
                   }"

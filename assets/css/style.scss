@@ -2881,6 +2881,9 @@ html[dir="ltr"] .payment-method{
   align-items: center;
   justify-content: center;
   margin-bottom: 70px;
+  img{
+    margin-bottom: 32px;
+  }
   .confirm-text {
     display: flex;
     align-items: center;
@@ -4368,7 +4371,7 @@ width: 100%;
 .settings-page {
   margin-top: 72px;
   margin-bottom: 140px;
-  min-height: 100vh;
+  // min-height: 100vh;
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -4388,7 +4391,7 @@ width: 100%;
     border-radius: 16px;
     background: #fff;
     position: sticky;
-    top: 10px;
+    top: 80px;
     padding: 16px;
     display: flex;
     flex-direction: column;
@@ -4588,6 +4591,7 @@ width: 100%;
     }
 
     .offers {
+      height: 100%;
       .header {
         display: flex;
         align-items: center;
@@ -4653,6 +4657,7 @@ width: 100%;
           align-items: center;
           width: 100%;
           justify-content: space-evenly;
+          // gap: 130px;
           margin-bottom: 20px;
           span {
             font-size: 12px;
@@ -4666,7 +4671,14 @@ width: 100%;
           display: flex;
           align-items: center;
           margin: 20px 0px;
+          padding: 0px 16px;
           justify-content: space-evenly;
+          // gap: 60px;
+          position: relative;
+          .setting-btn{
+            position: absolute;
+            left: 30px;
+          }
           .img-container {
             display: flex;
             align-items: center;
@@ -4771,7 +4783,7 @@ width: 100%;
       }
     }
     .empty {
-      height: 100vh;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -4810,7 +4822,7 @@ width: 100%;
     }
   }
   .log-out-btn{
-    margin-top: 50px;
+    margin-top: 20px;
     display: none;
     align-items: center;
     justify-content: center;
@@ -5287,8 +5299,16 @@ width: 100%;
  width: 100%;
 }
 .settings-page{
+  .setting-content{
+    padding: 20px;
+  }
   .log-out-btn{
     display: flex;
+  }
+  .empty{
+    span{
+     width: 100% !important;
+    }
   }
 }
 }

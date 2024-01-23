@@ -35,12 +35,12 @@
                   <div class="icon" :class="{ active: paymentSec2 == 1 }">
                     <img
                       class="def"
-                      src="@/assets/images/calc-icon2.svg"
+                      src="@/assets/images/image-ad.svg"
                       alt=""
                     />
                     <img
                       class="active"
-                      src="@/assets/images/calc-icon-active2.svg"
+                      src="@/assets/images/image-ad-active.svg"
                       alt=""
                     />
                   </div>
@@ -48,12 +48,12 @@
                 <div class="text">
                   <div>
                     <h5 :class="{ active: paymentSec1 == 1 }">
-                      بيانات السيارة
+                      تفاصيل السيارة
                     </h5>
                   </div>
                   <div>
                     <h5 :class="{ active: paymentSec2 == 1 }">
-                      بيانات المنشأة
+                      صور السيارة
                     </h5>
                   </div>
                 </div>
@@ -61,11 +61,11 @@
 
               <div class="content-pagination">
                 <div>
-                  <h5 :class="{ active: paymentSec1 == 1 }">بيانات السيارة</h5>
+                  <h5 :class="{ active: paymentSec1 == 1 }"> تفاصيل السيارة</h5>
                   <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                 </div>
                 <div>
-                  <h5 :class="{ active: paymentSec2 == 1 }">بيانات المنشأة</h5>
+                  <h5 :class="{ active: paymentSec2 == 1 }">صور السيارة</h5>
                   <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                 </div>
               </div>
@@ -564,9 +564,10 @@
         </div>
 
         <div v-if="adNavBtn == 3" class="confirm">
-            <client-only>
+            <!-- <client-only>
             <Vue3Lottie :animation-data="success" :height="300" :width="300" />
-          </client-only>
+          </client-only> -->
+          <img src="~/assets/images/frame-ads.png" alt="">
           <h4>
             {{ $t("adThank1") }}
           </h4>
@@ -848,6 +849,8 @@ const getmodels = computed(() => {
     });
   }
 });
+
+
 const isFormFilled2 = () => {
   // Iterate through each object in the form array
   for (const key in form4.value) {

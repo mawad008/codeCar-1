@@ -13,7 +13,6 @@
           </template>
         </v-breadcrumbs>
       </div>
-
       <div class="row">
         <div class="col-12 col-xl-3 col-lg-3" style="position: relative">
           <div class="setting-nav">
@@ -45,7 +44,7 @@
                 <span> اعلاناتي </span>
               </div>
               <div class="num">
-                <span> 6 </span>
+                <span> {{ carsAds.length }} </span>
               </div>
             </div>
           
@@ -150,12 +149,13 @@
         </div>
 
         <div class="col-12 col-xl-9 col-lg-9">
-          <div class="setting-content">
+          <div class="setting-content h-100">
             <div v-if="settingNav == 1" class="personal">
               <div class="d-flex flex-column align-items-center justify-content-center align-items-xl-start justify-content-xl-start  align-items-lg-start justify-content-lg-start">
                 <label for="img-file" class="image">
                   <div v-if="!selectedFile">
-                    <img src="~/assets/images/person.png" />
+                    <!-- <img v-if="user.image" src="~/assets/images/person.png" /> -->
+                    <img  :src="user.image" />
                   </div>
                   <div v-if="selectedFile">
                     <img :src="selectedFileUrl" alt="Selected Image" />
@@ -188,12 +188,19 @@
                   </label>
                   <input type="text" v-model="form.name" placeholder="فهمي سوادة" />
                 </div>
+                  <span class="error-msg mb-3" v-if="errors1.name">{{
+                errors1.name[0]
+              }}</span>
                 <div class="input">
                   <label for="">
                     <h6>رقم الهاتف</h6>
                     <span>رقم الهاتف الخاص بك</span>
                   </label>
                   <input type="tel" v-model="form.phone" placeholder="01012151698+" />
+             
+                  <span class="error-msg" v-if="errors1.phone">{{
+                errors1.phone[0]
+              }}</span>
                 </div>
                 <div class="input">
                   <label for="">
@@ -214,9 +221,11 @@
                     <h6>المدينة</h6>
                     <span> المدينة الخاصة بك</span>
                   </label>
+                  <div>
                   <Dropdown
                     v-model="form.city_id"
                     :options="cities"
+                    :filter-placeholder="$t('search')"
                     filter
                     optionLabel="name"
                     placeholder="المدينة"
@@ -228,13 +237,21 @@
                       </div>
                     </template>
                   </Dropdown>
+                  <span class="error-msg" v-if="errors1.city_id">{{
+                errors1.city_id[0]
+              }}</span>
+                  </div>
                 </div>
                 <div class="d-flex justify-content-center justify-content-xl-start justify-content-lg-start">
-                <button>حفظ التعديلات</button> 
+                <button @click="updateProfile()" class="d-flex gap-3" :disabled="pending1">
+                حفظ التعديلات
+                <v-progress-circular v-if="pending1" indeterminate :size="27" :width="4"></v-progress-circular>
+                
+                </button> 
                  </div>              </div>
             </div>
             <div v-if="settingNav == 2" class="offers">
-              <div class="">
+              <div v-if="carsAds.length >= 1" class="">
                 <div class="header">
                   <div class="filter">
                     <div class="icon">
@@ -242,6 +259,7 @@
                     </div>
                     <Dropdown
                       v-model="selectedStat"
+                      :filter-placeholder="$t('search')"
                       :options="carBody"
                       filter
                       optionLabel="name"
@@ -257,6 +275,7 @@
                     <Dropdown
                       v-model="selectedBrand"
                       :options="brands"
+                      :filter-placeholder="$t('search')"
                       filter
                       optionLabel="name"
                       placeholder="الماركة"
@@ -270,6 +289,7 @@
                     </Dropdown>
                     <Dropdown
                       v-model="selectedCountry"
+                      :filter-placeholder="$t('search')"
                       :options="countries"
                       filter
                       optionLabel="name"
@@ -298,27 +318,24 @@
                     <span>تاريخ النشر</span>
                     <span>حالة السيارة</span>
                     <span>حالة الاعلان</span>
-                    <!-- <span>الاسم الصورة</span> -->
                   </div>
-
-                  <div v-for="(item, index) in itemss" :key="index" class="content">
+                  <div v-for="(item, index) in carsAds" :key="index" class="content">
                     <div class="img-container">
                       <div class="image">
-                        <img src="~/assets/images/car1.png" alt="" />
+                        <img :src="item.main_image" alt="" />
                       </div>
-                      <h5>هيونداي ستاندر 2024</h5>
+                      <h5>{{ item.main_title }}</h5>
                     </div>
-                    <span class="price">25,000 ر.س</span>
-                    <span class="date">25 ديسمبر 2024</span>
-                    <span class="stat">مستعمل</span>
-                    <!-- <span class="date">450</span> -->
-                    
-                    <div class="switch-container d-flex align-items-center gap-2">
-                    <span :class="{ 'active': item.value }">{{ item.value ? 'مفعل' : 'غير مفعل' }}</span>
-                    <v-switch v-model="item.value" color="#38A2A4" ></v-switch>
-                    
+                    <span class="price">{{ item.price }} ر.س</span>
+                    <span class="date">{{ item.publish_date }}</span>
+                    <span class="stat">{{ item.statue }}</span>
+                    <div v-if="item.statusCar == 2" class="switch-container d-flex align-items-center gap-2">
+                    <span :class="{ 'active': item.show_in_home_page }">{{ item.show_in_home_page ? 'مفعل' : 'غير مفعل' }}</span>
+                    <v-switch v-model="item.show_in_home_page" color="#38A2A4" @change="activeCar(item.id , item.show_in_home_page )"></v-switch>
                     </div>
-                    <button>
+                    <span  v-else-if="item.statusCar == 1 "> قيد المراجعة </span>
+                    <span  v-else> مرفوض </span>
+                    <button class="setting-btn">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -386,15 +403,15 @@
                                 <div class="text">
                                   <div class="item">
                                     <span>طلبات الشراء</span>
-                                    <h5>1150 طلب</h5>
+                                    <h5>{{ item.reports.Orders }} طلب</h5>
                                   </div>
                                   <div class="item">
                                     <span>طلبات التمويل</span>
-                                    <h5>1150 طلب</h5>
+                                    <h5>{{ item.reports.financerequests }}  طلب</h5>
                                   </div>
                                   <div class="item">
                                     <span>المشاهدات</span>
-                                    <h5>1150 طلب</h5>
+                                    <h5>{{ item.reports.viewers }}</h5>
                                   </div>
                                 </div>
                                 <button @click="isActive.value = false" type="">الرجوع</button>
@@ -463,7 +480,7 @@
                                   </v-toolbar>
                                   <div class="adModalForm advertisement-container">
                                   
-                                  <ads />
+                                  <ads :id="item.id" />
                                   
                                   </div>
                             </template>
@@ -501,7 +518,7 @@
                           <button @click="isActive.value = false" class="back">
                               رجوع
                             </button>
-                          <button class="out">حذف</button>
+                          <button @click="deleteCar(item.id), isActive.value = false" class="out">حذف</button>
                         </div>
                       </div>
                     </div>
@@ -517,14 +534,16 @@
 
 
              
-              <div class="empty d-none">
+              <div v-else class="empty">
                 <div class="main">
                   <h4>لا توجد حاليًا أي إعلانات</h4>
                   <span>
                     يمكنك بسهولة إضافة سيارتك للبيع وإدارة إعلاناتك من هنا. ابدأ
                     الآن في نشر إعلانك وجذب المزيد من الاهتمام!
                   </span>
+                  <nuxt-link :to="localePath('/ad')">
                   <button>اضف اعلانك</button>
+                  </nuxt-link>
                 </div>
               </div>
             </div>
@@ -843,16 +862,9 @@ commercial_registration_no: user.value ? user.value.commercial_registration_no :
 identity_no: user.value ? user.value.identity_no : '',
 });
 
-let itemss = ref([
-        { value: false },
-        { value: true },
-        { value: true },
-        { value: true },
-        { value: true },
-        { value: true }
-]);
      
-   
+
+let carsAds = ref([]);
 
 const selectedCountry = ref();
 const countries = ref([
@@ -873,18 +885,21 @@ let value2 = ref("The email field is required");
 let value3 = ref("Invalid email format");
 let value5 = ref("يجب أن يكون عدد السيارات 1 سيارة على الأقل");
 let title = ref("تم تحديث البايانات بنجاح");
+let title1 = ref("تم الحذف بنجاح");
 if (locale.value == "ar") {
   value1.value = "هذا الحقل مطلوبة";
   value2.value = "حقل البريد الإلكتروني مطلوب";
   value3.value = "تنسيق البريد الإلكتروني غير صالح";
   value5.value = "يجب أن يكون عدد السيارات 1 سيارة على الأقل";
   title.value = "تم تحديث البايانات بنجاح";
+  title.value = "تم الحذف بنجاح";
 } else {
   value1.value = "value is required";
   value2.value = "The email field is required";
   value3.value = "Invalid email format";
   value5.value = "The number of cars must be at least 1 car";
-  value5.value = "Data updated successfully";
+  title.value = "Data updated successfully";
+  title1.value = "removed successfully";
 }
 
 
@@ -920,18 +935,14 @@ let cities = ref([]);
 
 
 const updateProfile = async ()=>{
-    //     let formBody = new FormData();
-  //   formBody.append("brand", form2.value.brand);
-  //   formBody.append("model", form2.value.model);
-  //   formBody.append("year", form2.value.year);
-  //   formBody.append("gear_shifter", form2.value.gear_shifter);
-  //   formBody.append("color_id", form2.value.color_id);
-  let check = await v1$.value.$validate();
-  if(check){
-    let result = await axios.post(`${getUrl()}/update-profile`,{
-      // params: {
-      //       step: 0,
-      //     },
+        let formBody = new FormData();
+    formBody.append("name", form.value.name);
+    formBody.append("phone", form.value.phone);
+    formBody.append("imageProfile", selectedFile.value);
+    formBody.append("city_id", form.value.city_id);
+  pending1.value = true;
+  try{
+    let result = await axios.post(`${getUrl()}/update-profile`, formBody ,{
           headers: {
             "Content-Language": `${locale.value}`,
             Authorization: `Bearer ${tokenCookie}`,
@@ -939,7 +950,11 @@ const updateProfile = async ()=>{
     });
 
     if(result.status >= 200){
-      
+            pending1.value = false;
+            errors1.value = [];
+               store.state.user = result.data.data;
+                  const userObjectString = JSON.stringify(result.data.data);
+                  Cookies.set('user', userObjectString);
       createToast(
           {
             title: title.value,
@@ -954,7 +969,63 @@ const updateProfile = async ()=>{
         );
     }
 
+  } catch(errorss){
+    if (errorss.response) {
+            pending1.value = false;
+              errors1.value = errorss.response.data.errors;
   }
+  }
+}
+const getCars = async ()=>{
+  let result = await axios.get(`${getUrl()}/ads`,{
+          headers: {
+            "Content-Language": `${locale.value}`,
+            Authorization: `Bearer ${tokenCookie}`,
+          },
+    });
+
+    if(result.status >= 200){
+      carsAds.value = result.data.data.cars
+      console.log(carsAds.value);
+    }
+}
+const activeCar = async (id , statusCar)=>{
+  let formBody = new FormData();
+    formBody.append("status", statusCar);
+  let result = await axios.post(`${getUrl()}/update-status/${id}`,formBody ,{
+      // params: {
+      //   status: statusCar
+      // },
+          headers: {
+            "Content-Language": `${locale.value}`,
+            Authorization: `Bearer ${tokenCookie}`,
+          },
+    });
+
+}
+const deleteCar = async (id)=>{
+  let result = await axios.delete(`${getUrl()}/ads/delete/${id}`,{
+          headers: {
+            "Content-Language": `${locale.value}`,
+            Authorization: `Bearer ${tokenCookie}`,
+          },
+    });
+    if(result.status >= 200){
+      getCars();
+      createToast(
+          {
+            title: title1.value,
+          },
+          {
+            type: "success",
+            transition: "bounce",
+            showIcon: "true",
+            timeout: 3000,
+            toastBackgroundColor: "#dcb63b",
+          }
+        );
+    }
+
 }
 
 const getOptions = async () =>{
@@ -998,8 +1069,8 @@ let items = ref([
 ]);
 
 onMounted(() => {
-  console.log(user.value);
   getOptions();
+  getCars();
 })
 </script>
 
@@ -1019,6 +1090,7 @@ onMounted(() => {
 font-size: 12px;
 font-weight: 700;
 // position:absolute;
+// right: 20px;
 &.active{
     color:#38A2A4;
 }

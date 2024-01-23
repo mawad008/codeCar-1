@@ -569,6 +569,7 @@
 
 
 <script setup>
+const props = defineProps(["id"]);
 import Cookies from "js-cookie";
 const tokenCookie = Cookies.get("token");
 import { Vue3Lottie } from "vue3-lottie";
@@ -593,6 +594,7 @@ let paymentSec1 = ref(1);
 let paymentSec2 = ref(0);
 let checkBtnSec1 = ref(0);
 let checkBtnSec2 = ref(0);
+let dataform = ref();
 
 
 // const handleKeyUp = (event) => {
@@ -630,19 +632,19 @@ let selectedFileUrl = ref(null);
 let selectedMainImg = ref(null);
 
 let form4 = ref({
-  Car_Name: "",
-  Car_Description: "",
+  Car_Name:  "" ,
+  Car_Description:  "",
   Car_Brand: "",
   Car_Model: "",
-  Car_Year: "",
+  Car_Year:  "",
   Car_Statue: "",
   Gear_shifter: "",
   Killometer: "",
   Fuel_Type: "",
-  Supplier: "",
-  Car_Color: "",
+  Supplier:  "",
+  Car_Color:  "",
   Car_Price: "",
-  Car_Price_after_Discount: "",
+  Car_Price_after_Discount:  "",
 });
 
 const rules1 = computed(() => {
@@ -678,10 +680,17 @@ const handleFileChange = (event) => {
     selectedMainImg.value = file;
   }
 };
-const images = ref([
-  { url: "", file: null },
-  { url: "", file: null },
-]);
+// const images = ref(dataform.value[
+//   { url: "", file: null },
+//   { url: "", file: null },
+// ]);
+const images = ref([]);
+
+if(dataform.value){
+  for(let i = 0; i < dataform.value.images; i++){
+    images.value.push({url:dataform.value.images[i], file:null});
+  }
+}
 
 let filterImages = computed(()=>{
     return images.value.map(image => image.file)
@@ -843,6 +852,30 @@ const isFormFilled2 = () => {
   return true;
 };
 
+const getCarDetails = async ()=>{
+  let result = await axios.get(`${getUrl()}/ads/edit/${props.id}`,{
+   headers:{
+         "Content-Language": `${locale.value}`,
+          Authorization: `Bearer ${tokenCookie}`,
+   }
+  });
+  dataform.value = result.data.data;
+  console.log(dataform.value);
+  form4.value.Car_Name = dataform.value.main_title;
+  form4.value.Car_Brand = dataform.value.brand.id;
+  form4.value.Car_Color = dataform.value.color.id;
+  form4.value.Car_Model = dataform.value.model.id;
+  form4.value.Car_Price = dataform.value.price;
+  form4.value.Car_Price_after_Discount = dataform.value.discount_price;
+  form4.value.Car_Year = dataform.value.year;
+  form4.value.Car_Statue = dataform.value.statuekey;
+  form4.value.Fuel_Type = dataform.value.fuel_typekey;
+  form4.value.Gear_shifter = dataform.value.gear_shifterkey;
+  form4.value.Supplier = dataform.value.supplier;
+  form4.value.Killometer = dataform.value.kilometer;
+  form4.value.Car_Description = dataform.value.description;
+  console.log(form4.value);
+}
 const addFunc1 = async () => {
   //     let formBody = new FormData();
   //   formBody.append("brand", form2.value.brand);
@@ -854,7 +887,7 @@ const addFunc1 = async () => {
   if (check) {
     pending1.value = true;
     try {
-      let result = await axios.post(`${getUrl()}/add-Your-Ad`, form4.value, {
+      let result = await axios.post(`${getUrl()}/ads/update/${props.id}`, form4.value, {
         params: {
           step: 0,
         },
@@ -888,7 +921,7 @@ const addFunc2 = async () => {
     formBody.append("Car_Name", form4.value.Car_Name);
     formBody.append("Car_Description", form4.value.Car_Description);
     formBody.append("Car_Brand", form4.value.Car_Brand);
-    formBody.append("Car_Model", form4.value.Car_Model);
+    // formBody.append("Car_Model", form4.value.Car_Model);
     formBody.append("Car_Year", form4.value.Car_Year);
     formBody.append("Car_Statue", form4.value.Car_Statue);
     formBody.append("Gear_shifter", form4.value.Gear_shifter);
@@ -953,6 +986,7 @@ let items = ref([
 ]);
 onMounted(() => {
     // loopImages();
+    getCarDetails();
   getOptions();
 });
 </script>
