@@ -175,9 +175,10 @@ a {
       margin-bottom: 0px;
     }
     span {
-      font-size: 12px;
+      font-size: 14px;
       font-style: normal;
       font-weight: 400;
+      white-space:nowrap;
       color: #90a3bf;
     }
   }
@@ -322,7 +323,7 @@ html[dir="rtl"] input[type="tel"] {
 
 .up-arrow-icon{
   position: fixed;
-  top: 90%;
+  top: 84%;
   right: 30px;
   cursor: pointer;
   transition: 0.4s all;
@@ -630,6 +631,20 @@ p{
   .white-img {
     display: none;
   }
+  .logo-container{
+    position:relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    span{
+      // position: absolute;
+      // top:100%;
+        // left: 50%;
+        // transform: translateX(-50%);
+      font-size:12px;
+      color:#dcb63b;
+    }
+  }
   &.active {
     transition: 0.4s all;
     position: sticky;
@@ -652,6 +667,7 @@ p{
       a {
         color: #fff;
         font-size: 16px;
+        white-space: nowrap;
         font-weight: 400;
         &.spe{
           color: #dcb63b !important;
@@ -662,8 +678,9 @@ p{
       position: relative;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 13px;
       color: #fff;
+      margin-right: 20px;
       .icon {
         position: relative;
         width: 44px;
@@ -4512,7 +4529,7 @@ width: 100%;
 
     .personal {
       .image {
-        margin-bottom: 24px;
+        // margin-bottom: 24px;
         width: 100px;
         height: 100px;
         border-radius: 100px;

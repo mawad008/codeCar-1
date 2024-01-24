@@ -151,7 +151,8 @@
         <div class="col-12 col-xl-9 col-lg-9">
           <div class="setting-content h-100">
             <div v-if="settingNav == 1" class="personal">
-              <div class="d-flex flex-column align-items-center justify-content-center align-items-xl-start justify-content-xl-start  align-items-lg-start justify-content-lg-start">
+              <div class="d-flex flex-column align-items-center mb-3 justify-content-center align-items-xl-start justify-content-xl-start  align-items-lg-start justify-content-lg-start">
+                <div class="d-flex  align-items-center mb-2 gap-2 flex-column">
                 <label for="img-file" class="image">
                   <div v-if="!selectedFile">
                     <!-- <img v-if="user.image" src="~/assets/images/person.png" /> -->
@@ -160,7 +161,7 @@
                   <div v-if="selectedFile">
                     <img :src="selectedFileUrl" alt="Selected Image" />
                   </div>
-                  <div class="overlay">
+                  <div class="overlay d-none">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="22"
@@ -178,6 +179,22 @@
                   </div>
                   <input id="img-file" type="file" @change="handleFileChange" />
                 </label>
+                  <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="22"
+                        height="21"
+                        viewBox="0 0 22 21"
+                        fill="none"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M1.75 4.75008C1.75 3.02994 3.20507 1.6355 5 1.6355H14C14.4142 1.6355 14.75 1.3137 14.75 0.916748C14.75 0.519793 14.4142 0.197998 14 0.197998H5C2.37665 0.197998 0.25 2.23604 0.25 4.75008V16.2501C0.25 18.7641 2.37665 20.8022 5 20.8022H17C19.6234 20.8022 21.75 18.7641 21.75 16.2501V7.62508C21.75 7.22813 21.4142 6.90633 21 6.90633C20.5858 6.90633 20.25 7.22813 20.25 7.62508V11.951C20.1948 11.9069 20.1371 11.8654 20.0768 11.8269L17.6504 10.2767C16.0951 9.28305 14.0618 9.48254 12.7292 10.7596L9.27077 14.0739C7.93822 15.351 5.90492 15.5504 4.34959 14.5568L1.75 12.8959V4.75008ZM10 7.14592C10 8.4691 8.88071 9.54175 7.5 9.54175C6.11929 9.54175 5 8.4691 5 7.14592C5 5.82273 6.11929 4.75008 7.5 4.75008C8.88071 4.75008 10 5.82273 10 7.14592ZM18.1292 1.33778L14.7081 4.61634C14.5791 4.73992 14.4879 4.89494 14.4442 5.06463L14.015 6.73357C13.925 7.08344 14.255 7.39972 14.6201 7.31349L16.3616 6.90211C16.5387 6.86029 16.7004 6.77286 16.8294 6.64928L20.2505 3.37071C20.8363 2.80933 20.8363 1.89916 20.2505 1.33778C19.6647 0.776403 18.715 0.776403 18.1292 1.33778Z"
+                          fill="#ccc"
+                        />
+                      </svg>
+                
+                </div>
                 <span class="img-span">الصورة الشخصية</span>
               </div>
               <div class="personal-form">

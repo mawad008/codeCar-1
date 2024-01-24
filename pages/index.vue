@@ -110,7 +110,7 @@
             item-value="value"
             variant="underlined"
             v-model="selectedBody"
-            label="اختر نوع السيارة"
+            label="حالة السيارة"
           ></v-autocomplete>
         </div>
         <div class="select">

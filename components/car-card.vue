@@ -9,7 +9,7 @@
                 <span class="used"> خصم {{ Math.round(car.discount_percentage) }} % </span>
                 <h4>{{ car.title }}</h4>
             </div>
-            <div class="price d-flex align-items-center w-100 justify-content-center gap-4">
+            <div class="price d-flex align-items-center w-100 justify-content-center gap-3">
                 <h6>{{ car.price }} ر.س</h6>
                 <span> {{Math.round(car.price_after_tax)}} ر.س شامل ضريبة </span>
             </div>
