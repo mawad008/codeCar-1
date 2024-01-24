@@ -535,8 +535,11 @@ html[dir=rtl] input[type=tel] {
 }
 .navbar .items .links a {
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
+}
+.navbar .items .links a.spe {
+  color: #dcb63b !important;
 }
 .navbar .items .icons {
   position: relative;
@@ -698,6 +701,10 @@ html[dir=rtl] input[type=tel] {
   align-items: center;
   border-radius: 30px;
   background: rgba(255, 255, 255, 0.2);
+}
+.footer-container .box-container .head {
+  color: #dcb63b;
+  font-weight: 700;
 }
 .footer-container .box-container p {
   font-size: 16px;
@@ -1577,6 +1584,13 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   border-radius: 24px;
   background: #fff;
   padding: 30px;
+  min-height: 584px;
+}
+.main-car-page .car-details .images-text .main-images {
+  height: 100% !important;
+}
+.main-car-page .car-details .images-text .mySwiper2 {
+  margin-bottom: 40px;
 }
 .main-car-page .car-details .images-text .mySwiper2 .swiper-slide {
   width: 100%;
@@ -1609,13 +1623,15 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   cursor: pointer;
 }
 .main-car-page .car-details .images-text .mySwiper .swiper-slide {
-  width: 80px;
   height: 80px;
   border-radius: 8px;
   border: 1px solid #ebeaed;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.main-car-page .car-details .images-text .mySwiper .swiper-slide.auto-width {
+  width: auto !important;
 }
 .main-car-page .car-details .images-text .mySwiper .swiper-slide .image {
   width: 68px;
@@ -1652,6 +1668,7 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
 }
 .main-car-page .car-details .header .vendor {
   width: 301px;
+  height: 69px;
   border-radius: 8px;
   padding: 13px;
   display: flex;
@@ -4084,8 +4101,9 @@ html[dir=ltr] .p-accordion-header-action {
 }
 .settings-page .setting-content .offers .filter-table .content .img-container .image img {
   width: 45px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  height: 45px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .settings-page .setting-content .offers .filter-table .content .price {
   font-size: 14px;
@@ -4129,6 +4147,10 @@ html[dir=ltr] .p-accordion-header-action {
   padding: 20px;
   border-radius: 12px;
   border: 1px solid #eceaea;
+}
+.settings-page .setting-content .notifications .item h6 {
+  font-weight: 700;
+  color: #323548;
 }
 .settings-page .setting-content .notifications .item .text {
   border-right: 1px solid #eceaea;
@@ -4232,11 +4254,42 @@ html[dir=ltr] .p-accordion-header-action {
   border-radius: 16px;
   background: #fff;
   text-align: center;
+  position: relative;
+}
+.log-out-modal.car {
+  min-width: 446px;
+  min-height: 600px;
+}
+.log-out-modal .close {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  cursor: pointer;
+}
+.log-out-modal .close i {
+  color: #2d3a4a;
+  font-size: 20px;
 }
 .log-out-modal h3 {
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
+}
+.log-out-modal h4 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+.log-out-modal p {
+  width: 302px;
+  color: #5A7184;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  margin-bottom: 50px;
 }
 .log-out-modal .btns {
   display: flex;
@@ -4259,6 +4312,53 @@ html[dir=ltr] .p-accordion-header-action {
 }
 .log-out-modal .btns button.out {
   background: #f6f7f9;
+}
+.log-out-modal .btns1 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.log-out-modal .btns1 button, .log-out-modal .btns1 .copy {
+  width: 350px;
+  height: 56px;
+  border-radius: 10px;
+  padding: 16px;
+}
+.log-out-modal .btns1 button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border: 1px solid #2D3A4A;
+  color: #2d3a4a;
+}
+.log-out-modal .btns1 .copy {
+  border: 1px solid #EBEAED;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.log-out-modal .btns1 .copy .icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #DCB63B;
+  cursor: pointer;
+}
+.log-out-modal .btns1 .copy i {
+  font-size: 20px;
+  color: #90A3BF;
+}
+.log-out-modal .btns1 .copy svg {
+  cursor: pointer;
+}
+.log-out-modal .btns1 .copy span {
+  color: #2D3A4A;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .v-toolbar__content, .v-toolbar__extension {
@@ -4934,7 +5034,17 @@ html[dir=ltr] .p-accordion-header-action {
     margin-top: 40px;
   }
   .modal .log-out-modal {
-    height: 250px;
+    min-height: 250px;
+    min-width: 100%;
+  }
+  .modal .log-out-modal .btns1 {
+    width: 100%;
+  }
+  .modal .log-out-modal .btns1 .copy, .modal .log-out-modal .btns1 button {
+    width: 100%;
+  }
+  .modal .log-out-modal p {
+    width: 100%;
   }
   .modal .log-out-modal .btns {
     margin-top: 20px;

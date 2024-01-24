@@ -862,9 +862,9 @@ const getCarDetails = async ()=>{
   dataform.value = result.data.data;
   console.log(dataform.value);
   form4.value.Car_Name = dataform.value.main_title;
-  form4.value.Car_Brand = dataform.value.brand.id;
+  // form4.value.Car_Brand = dataform.value.brand.id;
   form4.value.Car_Color = dataform.value.color.id;
-  form4.value.Car_Model = dataform.value.model.id;
+  // form4.value.Car_Model = dataform.value.model.id;
   form4.value.Car_Price = dataform.value.price;
   form4.value.Car_Price_after_Discount = dataform.value.discount_price;
   form4.value.Car_Year = dataform.value.year;

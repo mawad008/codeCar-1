@@ -155,7 +155,7 @@
                 <label for="img-file" class="image">
                   <div v-if="!selectedFile">
                     <!-- <img v-if="user.image" src="~/assets/images/person.png" /> -->
-                    <img  :src="user.image" />
+                    <img  v-if="user.image_url" :src="user.image_url" />
                   </div>
                   <div v-if="selectedFile">
                     <img :src="selectedFileUrl" alt="Selected Image" />
@@ -422,8 +422,31 @@
                             </template>
                           </v-dialog>
                         
-
-                          <v-dialog
+                            <nuxt-link :to="localePath({path:'/ad-edit',query:{id:item.id}})" class="link">
+                                <span class="f2">تعديل الاعلان</span>
+                          <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                              >
+                                <path
+                                  d="M21 22H3C2.59 22 2.25 21.66 2.25 21.25C2.25 20.84 2.59 20.5 3 20.5H21C21.41 20.5 21.75 20.84 21.75 21.25C21.75 21.66 21.41 22 21 22Z"
+                                  fill="#DCB63B"
+                                />
+                                <path
+                                  d="M19.02 3.47967C17.08 1.53967 15.18 1.48967 13.19 3.47967L11.98 4.68967C11.88 4.78967 11.84 4.94967 11.88 5.08967C12.64 7.73967 14.76 9.85967 17.41 10.6197C17.45 10.6297 17.49 10.6397 17.53 10.6397C17.64 10.6397 17.74 10.5997 17.82 10.5197L19.02 9.30967C20.01 8.32967 20.49 7.37967 20.49 6.41967C20.5 5.42967 20.02 4.46967 19.02 3.47967Z"
+                                  fill="#DCB63B"
+                                />
+                                <path
+                                  d="M15.61 11.5298C15.32 11.3898 15.04 11.2498 14.77 11.0898C14.55 10.9598 14.34 10.8198 14.13 10.6698C13.96 10.5598 13.76 10.3998 13.57 10.2398C13.55 10.2298 13.48 10.1698 13.4 10.0898C13.07 9.8098 12.7 9.4498 12.37 9.0498C12.34 9.0298 12.29 8.9598 12.22 8.8698C12.12 8.7498 11.95 8.5498 11.8 8.3198C11.68 8.1698 11.54 7.9498 11.41 7.7298C11.25 7.4598 11.11 7.1898 10.97 6.9098C10.9488 6.86441 10.9283 6.81924 10.9084 6.77434C10.7608 6.44102 10.3262 6.34358 10.0684 6.60133L4.33995 12.3298C4.20995 12.4598 4.08995 12.7098 4.05995 12.8798L3.51995 16.7098C3.41995 17.3898 3.60995 18.0298 4.02995 18.4598C4.38995 18.8098 4.88995 18.9998 5.42995 18.9998C5.54995 18.9998 5.66995 18.9898 5.78995 18.9698L9.62995 18.4298C9.80995 18.3998 10.06 18.2798 10.18 18.1498L15.9013 12.4285C16.1608 12.1689 16.0629 11.7235 15.7253 11.5794C15.6873 11.5632 15.6489 11.5467 15.61 11.5298Z"
+                                  fill="#DCB63B"
+                                />
+                              </svg>
+                         
+                            </nuxt-link>
+                          <!-- <v-dialog
                                 transition="dialog-bottom-transition"
                                     fullscreen
                                           :scrim="false"
@@ -484,7 +507,7 @@
                                   
                                   </div>
                             </template>
-                          </v-dialog>
+                          </v-dialog> -->
 
                           <v-dialog>
                             <template v-slot:activator="{ props }">
@@ -749,24 +772,37 @@
                     <h6>كلمة المرور</h6>
                     <span>كلمة المرور الحالية</span>
                   </label>
-                  <input type="password" placeholder="" />
+                  <input type="password" v-model="form1.old_password" placeholder="***********" />
                 </div>
+                <span v-if="errors2.old_password" class="error-msg d-block mb-3">{{
+                errors2.old_password[0]
+              }}</span>
                 <div class="input">
                   <label for="">
                     <h6>كلمة المرور الجديدة</h6>
                     <span>كلمة المرور الجديدة</span>
                   </label>
-                  <input type="password" placeholder="" />
+                  <input type="password" v-model="form1.password" placeholder="*********" />
                 </div>
+                <span v-if="errors2.password" class="error-msg d-block mb-3">{{
+                errors2.password[0]
+              }}</span>
                 <div class="input">
                   <label for="">
                     <h6>تأكيد كلمة المرور الجديدة</h6>
                     <span>كلمة المرور الجديدة</span>
                   </label>
-                  <input type="password" placeholder="" />
+                  <input type="password" v-model="form1.password_confirmation" placeholder="**********" />
                 </div>
+                <span v-if="errors2.password_confirmation" class="error-msg">{{
+                errors2.password_confirmation[0]
+              }}</span>
                  <div class="d-flex justify-content-center justify-content-xl-start justify-content-lg-start">
-                <button>حفظ التعديلات</button> 
+                <button @click="updatePassword()" class="gap-3">
+                حفظ التعديلات
+                <v-progress-circular v-if="pending2" indeterminate :size="27" :width="4"></v-progress-circular>
+                
+                </button> 
                  </div>
               </div>
             </div>
@@ -886,13 +922,15 @@ let value3 = ref("Invalid email format");
 let value5 = ref("يجب أن يكون عدد السيارات 1 سيارة على الأقل");
 let title = ref("تم تحديث البايانات بنجاح");
 let title1 = ref("تم الحذف بنجاح");
+let title2 = ref("تم تحديث كلمة السر بنجاح");
 if (locale.value == "ar") {
   value1.value = "هذا الحقل مطلوبة";
   value2.value = "حقل البريد الإلكتروني مطلوب";
   value3.value = "تنسيق البريد الإلكتروني غير صالح";
   value5.value = "يجب أن يكون عدد السيارات 1 سيارة على الأقل";
   title.value = "تم تحديث البايانات بنجاح";
-  title.value = "تم الحذف بنجاح";
+  title1.value = "تم الحذف بنجاح";
+  title2.value = "تم تحديث كلمة السر بنجاح";
 } else {
   value1.value = "value is required";
   value2.value = "The email field is required";
@@ -900,6 +938,7 @@ if (locale.value == "ar") {
   value5.value = "The number of cars must be at least 1 car";
   title.value = "Data updated successfully";
   title1.value = "removed successfully";
+  title2.value = "password updated successfully";
 }
 
 
@@ -973,6 +1012,51 @@ const updateProfile = async ()=>{
     if (errorss.response) {
             pending1.value = false;
               errors1.value = errorss.response.data.errors;
+  }
+  }
+}
+
+let form1 = ref({
+  old_password: '',
+  password: '',
+  password_confirmation: '',
+});
+const updatePassword = async ()=>{
+    //     let formBody = new FormData();
+    // formBody.append("name", form.value.name);
+    // formBody.append("phone", form.value.phone);
+    // formBody.append("imageProfile", selectedFile.value);
+    // formBody.append("city_id", form.value.city_id);
+  pending2.value = true;
+  try{
+    let result = await axios.post(`${getUrl()}/change-password`, form1.value ,{
+          headers: {
+            "Content-Language": `${locale.value}`,
+            Authorization: `Bearer ${tokenCookie}`,
+          },
+    });
+
+    if(result.status >= 200){
+            pending2.value = false;
+            errors2.value = [];
+      createToast(
+          {
+            title: title2.value,
+          },
+          {
+            type: "success",
+            transition: "bounce",
+            showIcon: "true",
+            timeout: 3000,
+            toastBackgroundColor: "#dcb63b",
+          }
+        );
+    }
+
+  } catch(errorss){
+    if (errorss.response) {
+            pending2.value = false;
+              errors2.value = errorss.response.data.errors;
   }
   }
 }
@@ -1069,6 +1153,7 @@ let items = ref([
 ]);
 
 onMounted(() => {
+  console.log(user.value);
   getOptions();
   getCars();
 })

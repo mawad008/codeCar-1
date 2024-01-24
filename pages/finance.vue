@@ -381,7 +381,7 @@
                     </div>
                   </div>
                   <div class="input-container">
-                    <span> نوع المحرك </span>
+                    <span> نوع الجير </span>
                     <div class="input">
                       <Dropdown
                         v-model="form2.gear_shifter"
@@ -1225,7 +1225,7 @@
                     </div>
                   </div>
                   <div class="input-container">
-                    <span> نوع المحرك </span>
+                    <span> نوع الجير </span>
                     <div class="input">
                     <Dropdown
                         v-model="item.gear_shifter"
@@ -1615,7 +1615,7 @@ let checkBtnSec2 = ref(0);
 let gear_shifterArr = ref([
   {
     value:"manual",
-    name: locale.value == 'ar' ? 'مانوال' : 'manual'
+    name: locale.value == 'ar' ? 'جير عادي' : 'manual'
   },
   {
     value:"automatic",

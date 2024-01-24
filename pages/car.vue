@@ -103,14 +103,14 @@
                       spaceBetween: 10,
                     },
                     '1024': {
-                      slidesPerView:  mainCar.images.length <= 2 ? 2 : 5 ,
+                      slidesPerView: 5,
                       spaceBetween: 20,
                     },
                   }"
                   :modules="[SwiperNavigation]"
                   class="mySwiper"
                 >
-                  <swiper-slide v-for="image in mainCar.images">
+                  <swiper-slide v-for="image in mainCar.images" :class="{'auto-width': mainCar.images.length <= 4}">
                     <div class="image">
                      <img :src="image" alt="">
                     </div>
@@ -136,7 +136,9 @@
                   <div>
                     <div class="vendor-icon">
                       <img src="@/assets/images/vendor-icon.svg" alt="" />
-                      <span> متجر كود كار </span>
+                      <!-- <img :src="mainCar.vendor.image" alt="" /> -->
+                      <!-- <span> متجر كود كار </span> -->
+                      <span> {{ mainCar.vendor.name }} </span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -150,13 +152,14 @@
                         />
                       </svg>
                     </div>
-                    <span class="city"> الرياض </span>
+                    <span class="city"> {{ mainCar.vendor.city.name }} </span>
                   </div>
                   <div class="d-flex align-items-center gap-3">
-                    <div class="icon">
+                    <button data-bs-toggle="modal" data-bs-target="#vendor-phone-modal" class="icon">
                       <img src="@/assets/images/call.svg" alt="" />
-                    </div>
+                    </button>
                     <div>
+                    <button data-bs-toggle="modal" data-bs-target="#vendor-whatsapp-modal">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="28"
@@ -180,6 +183,8 @@
                           fill="white"
                         />
                       </svg>
+                    
+                    </button>
                     </div>
                   </div>
                 </div>
@@ -1957,14 +1962,24 @@
         aria-hidden="true"
       >
         <div class="modal-dialog">
-          <div class="modal-content log-out-modal">
-            <h3>هل أنت متأكد من رغبتك في تسجيل الخروج؟</h3>
-
-            <div class="btns">
-              <button class="out" @click="logOut()" aria-label="Close">تسجيل خروج</button>
-              <button class="back" data-bs-dismiss="modal" aria-label="Close">
-                العودة
-              </button>
+          <div class="modal-content log-out-modal car">
+          <img src="~/assets/images/whats.svg" />
+            <h4>تواصل مع التاجر</h4>
+            <p>للتواصل مع التاجر والحصول على مزيد من المعلومات عبر WhatsApp، انسخ الرابط التالي</p>
+         
+            <button class="close" data-bs-dismiss="modal" aria-label="Close">
+            <i class=" fa-solid fa-xmark"></i>
+            </button>
+            <div class="btns1">
+            <div class="copy">
+               <a :href="mainCar.vendor.whatsapp_link" target="_blank" class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.08146 3.33146C9.26451 3.1484 9.26451 2.8516 9.08146 2.66854L6.58146 0.168544C6.3984 -0.0145143 6.1016 -0.0145144 5.91854 0.168544C5.73549 0.351602 5.73549 0.648398 5.91854 0.831457L7.61834 2.53125L1.25 2.53125C0.991116 2.53125 0.781249 2.74112 0.781249 3C0.781249 3.25888 0.991116 3.46875 1.25 3.46875L7.61834 3.46875L5.91854 5.16854C5.73549 5.3516 5.73549 5.6484 5.91854 5.83146C6.1016 6.01451 6.3984 6.01451 6.58146 5.83146L9.08146 3.33146Z" fill="#DCB63B"/>
+</svg>
+               </a>
+              <span>{{`https://wa.me/${mainCar.vendor.phone}`}}</span>
+            </div>
+             <button data-bs-dismiss="modal" aria-label="Close">الرجوع</button>
             </div>
           </div>
         </div>
@@ -1977,14 +1992,23 @@
         aria-hidden="true"
       >
         <div class="modal-dialog">
-          <div class="modal-content log-out-modal">
-            <h3>هل أنت متأكد من رغبتك في تسجيل الخروج؟</h3>
-
-            <div class="btns">
-              <button class="out" @click="logOut()" aria-label="Close">تسجيل خروج</button>
-              <button class="back" data-bs-dismiss="modal" aria-label="Close">
-                العودة
-              </button>
+          <div class="modal-content log-out-modal car">
+          <img src="~/assets/images/Phone_Call_5_.svg" />
+            <h4>تواصل مع التاجر</h4>
+            <p>للتحدث مع التاجر والاستفسار عن تفاصيل السيارة أو الصفقة، يُرجى الاتصال بالرقم التالي: {{ mainCar.vendor.phone }}.</p>
+         
+            <button class="close" data-bs-dismiss="modal" aria-label="Close">
+            <i class=" fa-solid fa-xmark"></i>
+            </button>
+            <div class="btns1">
+            <div class="copy">
+              <svg v-if="copyPhone" @click="copyToClipboard()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3417 6.2714V1.91992H9.11988C7.7944 1.91992 6.71988 2.99444 6.71988 4.31992V16.7999C6.71988 18.1254 7.7944 19.1999 9.11988 19.1999H18.7199C20.0454 19.1999 21.1199 18.1254 21.1199 16.7999V7.69566H17.8035C17.0003 7.69566 16.3417 7.06227 16.3417 6.2714ZM17.5764 2.48677C17.4967 2.38227 17.4041 2.2904 17.3017 2.21272V6.2714C17.3017 6.52352 17.5223 6.73566 17.8035 6.73566H20.8163L17.5764 2.48677ZM5.27988 22.0799H14.8799C16.041 22.0799 17.0095 21.2554 17.2319 20.1599H9.11988C7.26421 20.1599 5.75988 18.6556 5.75988 16.7999V4.79992H5.27988C3.9544 4.79992 2.87988 5.87444 2.87988 7.19992V19.6799C2.87988 21.0054 3.9544 22.0799 5.27988 22.0799Z" fill="#90A3BF"/>
+</svg>
+<i v-else class="fa-solid fa-check"></i>
+              <span>{{ mainCar.vendor.phone }}</span>
+            </div>
+             <button data-bs-dismiss="modal" aria-label="Close">الرجوع</button>
             </div>
           </div>
         </div>
@@ -2088,6 +2112,23 @@ const selectedFileName2 = ref(null);
 const selectedFileName3 = ref(null);
 const selectedFileName4 = ref(null);
 let otp = ref("");
+
+let copyPhone = ref(true);
+
+function copyToClipboard() {
+    if (process.client) {
+      copyPhone.value = false;
+        const clipBoard = navigator.clipboard;
+        clipBoard.writeText(mainCar.value.vendor.phone).then(() => {
+        });
+
+        setTimeout(() => {
+          copyPhone.value = true;
+        }, 1000);
+    }
+
+}
+
 
 let options = ref({
   minimizable: false,
@@ -2235,6 +2276,18 @@ const setThumbsSwiper = (swiper) => {
 };
 
 
+const contactArr = ref([]);
+const getContactData =  async()=>{
+    let result = await axios.get(`${getUrl()}/contact-us`,{
+        headers:{
+            "Content-Language": `${locale.value}`,
+        }
+    });
+    if(result.status == 200){
+     contactArr.value = result.data.data;
+    }
+}
+
 const route = useRoute();
 let pendingLoader = ref(false);
  
@@ -2285,5 +2338,6 @@ const onHide = () => (visibleRef.value = false);
 
 onMounted(() => {
   getCar();
+  getContactData();
 });
 </script>

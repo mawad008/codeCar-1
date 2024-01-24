@@ -1,20 +1,7 @@
 <template>
-  <div>
+    <div>
     <div class="container advertisement-container">
-      <div
-        class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column"
-      >
-        <h4 class="heading-text">{{ $t("ad") }}</h4>
-        <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
-
-        <v-breadcrumbs :items="items">
-          <template v-slot:divider>
-            <v-icon icon="mdi-chevron-left"></v-icon>
-          </template>
-        </v-breadcrumbs>
-      </div>
-
-      <div class="ad-container paymentType">
+        <div class="ad-container paymentType">
         <div class="row" :class="{ 'd-none': adNavBtn == 3 }">
           <div class="col-12 col-xl-5 col-lg-5">
             <div class="main-pagination-container finance">
@@ -35,12 +22,12 @@
                   <div class="icon" :class="{ active: paymentSec2 == 1 }">
                     <img
                       class="def"
-                      src="@/assets/images/image-ad.svg"
+                      src="@/assets/images/calc-icon2.svg"
                       alt=""
                     />
                     <img
                       class="active"
-                      src="@/assets/images/image-ad-active.svg"
+                      src="@/assets/images/calc-icon-active2.svg"
                       alt=""
                     />
                   </div>
@@ -48,12 +35,12 @@
                 <div class="text">
                   <div>
                     <h5 :class="{ active: paymentSec1 == 1 }">
-                      تفاصيل السيارة
+                      بيانات السيارة
                     </h5>
                   </div>
                   <div>
                     <h5 :class="{ active: paymentSec2 == 1 }">
-                      صور السيارة
+                      بيانات المنشأة
                     </h5>
                   </div>
                 </div>
@@ -61,11 +48,11 @@
 
               <div class="content-pagination">
                 <div>
-                  <h5 :class="{ active: paymentSec1 == 1 }"> تفاصيل السيارة</h5>
+                  <h5 :class="{ active: paymentSec1 == 1 }">بيانات السيارة</h5>
                   <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                 </div>
                 <div>
-                  <h5 :class="{ active: paymentSec2 == 1 }">صور السيارة</h5>
+                  <h5 :class="{ active: paymentSec2 == 1 }">بيانات المنشأة</h5>
                   <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                 </div>
               </div>
@@ -465,9 +452,8 @@
                       </span>
                     </div>
                     <img
-                      v-if="selectedFileUrl"
                       class="main-img"
-                      :src="selectedFileUrl"
+                      :src="dataform ? dataform.main_image : selectedFileUrl "
                     />
                     <input
                       id="big-img"
@@ -524,7 +510,7 @@
                             <span>{{ $t("img1") }}</span>
                           </div>
                           <img
-                            v-if="image.file"
+                            
                             class="main-img"
                             :src="image.url"
                           />
@@ -537,7 +523,7 @@
                         <span class="word">{{ $t("img2") }}</span>
                         <!-- <span class="error-msg" v-if="v3$[index]?.file?.required">{{v3$[index]?.file?.required}}</span> -->
                         <!-- <span class="error-msg" v-if="!check11">fsdfsdffsd</span> -->
-                        <span class="d-block word" v-if="!isImage(image.file)">{{ $t('imgCheck') }}</span>
+                        <span class="d-block word" v-if="!isImage(image.file , image.url)">{{ $t('imgCheck') }}</span>
                       </div>
 
                     </div>
@@ -579,16 +565,14 @@
           </nuxt-link>
         </div>
       </div>
+      
     </div>
-  </div>
+    </div>
 </template>
 
+
 <script setup>
-
-definePageMeta({
-  middleware: "auth",
-});
-
+const props = defineProps(["id"]);
 import Cookies from "js-cookie";
 const tokenCookie = Cookies.get("token");
 import { Vue3Lottie } from "vue3-lottie";
@@ -608,11 +592,14 @@ let store = useStore;
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let inputValue = ref("");
+let route = useRoute();
+let id = ref(route.query.id);
 
 let paymentSec1 = ref(1);
 let paymentSec2 = ref(0);
 let checkBtnSec1 = ref(0);
 let checkBtnSec2 = ref(0);
+let dataform = ref();
 
 
 // const handleKeyUp = (event) => {
@@ -646,23 +633,23 @@ if (locale.value == "ar") {
   value5.value = "The number of cars must be at least 1 car";
 }
 
-let selectedFileUrl = ref(null);
+let selectedFileUrl = ref(dataform.value ? dataform.value.main_image : null);
 let selectedMainImg = ref(null);
 
 let form4 = ref({
-  Car_Name: "",
-  Car_Description: "",
+  Car_Name:  "" ,
+  Car_Description:  "",
   Car_Brand: "",
   Car_Model: "",
-  Car_Year: "",
+  Car_Year:  "",
   Car_Statue: "",
   Gear_shifter: "",
   Killometer: "",
   Fuel_Type: "",
-  Supplier: "",
-  Car_Color: "",
+  Supplier:  "",
+  Car_Color:  "",
   Car_Price: "",
-  Car_Price_after_Discount: "",
+  Car_Price_after_Discount:  "",
 });
 
 const rules1 = computed(() => {
@@ -684,13 +671,7 @@ const rules1 = computed(() => {
     },
   };
 });
-watch(form4, (newForm, oldForm) => {
-      // Check if Car_Statue has changed to 0
-      if (newForm.Car_Statue === 0) {
-        // Set Killometer to 0
-        form4.value.Killometer = 0;
-      }
-    }, { deep: true });
+
 let errors1 = ref([]);
 let errors2 = ref([]);
 let pending1 = ref(false);
@@ -704,14 +685,13 @@ const handleFileChange = (event) => {
     selectedMainImg.value = file;
   }
 };
-const images = ref([
-  { url: "", file: null },
-  { url: "", file: null },
-]);
+// const images = ref(dataform.value[
+//   { url: "", file: null },
+//   { url: "", file: null },
+// ]);
+const images = ref([]);
 
-let filterImages = computed(()=>{
-    return images.value.map(image => image.file)
-});
+
 
 
 
@@ -728,7 +708,7 @@ const handleFilesChange = (event, index) => {
     const imageUrl = URL.createObjectURL(file);
     images.value[index].url = imageUrl;
     images.value[index].file = file;
-    checkImagesFunc();
+    // checkImagesFunc();
   }
 };
 
@@ -739,6 +719,11 @@ const addImage = () => {
 //   loopImages();
 console.log(checkImages.value);
 };
+
+let filterImages = computed(()=>{
+    return images.value.map(image => image.file)
+});
+
 
 const selectedCountry = ref();
 const countries = ref([
@@ -841,10 +826,10 @@ const v3$ = useValidate(validations2, {images});
 let check11 = v3$.value.$validate();
 
 let checkImg = ref(false);
-const isImage = (file) => {
+const isImage = (file , img) => {
       let theFile =  file && file.type.startsWith('image/');
       checkImg.value = theFile;
-      return theFile;
+      return theFile || (img ? true : false);
     };
 
 
@@ -855,8 +840,6 @@ const getmodels = computed(() => {
     });
   }
 });
-
-
 const isFormFilled2 = () => {
   // Iterate through each object in the form array
   for (const key in form4.value) {
@@ -871,6 +854,34 @@ const isFormFilled2 = () => {
   return true;
 };
 
+const getCarDetails = async ()=>{
+  let result = await axios.get(`${getUrl()}/ads/edit/${id.value}`,{
+   headers:{
+         "Content-Language": `${locale.value}`,
+          Authorization: `Bearer ${tokenCookie}`,
+   }
+  });
+  dataform.value = result.data.data;
+  form4.value.Car_Name = dataform.value.main_title;
+  form4.value.Car_Brand = dataform.value.brand.id;
+  form4.value.Car_Color = dataform.value.color.id;
+  form4.value.Car_Model = dataform.value.model.id;
+  form4.value.Car_Price = dataform.value.price;
+  form4.value.Car_Price_after_Discount = dataform.value.discount_price;
+  form4.value.Car_Year = dataform.value.year;
+  form4.value.Car_Statue = dataform.value.statuekey;
+  form4.value.Fuel_Type = dataform.value.fuel_typekey;
+  form4.value.Gear_shifter = dataform.value.gear_shifterkey;
+  form4.value.Supplier = dataform.value.supplier;
+  form4.value.Killometer = dataform.value.kilometer;
+  form4.value.Car_Description = dataform.value.description;
+//   selectedMainImg.value = dataform.value.main_image;
+  for(let i = 0; i < dataform.value.images.length; i++){
+    images.value.push({url:dataform.value.images[i], file:null});
+    console.log(dataform.value.images[i])
+  }
+  console.log(images.value);
+}
 const addFunc1 = async () => {
   //     let formBody = new FormData();
   //   formBody.append("brand", form2.value.brand);
@@ -882,7 +893,7 @@ const addFunc1 = async () => {
   if (check) {
     pending1.value = true;
     try {
-      let result = await axios.post(`${getUrl()}/add-Your-Ad`, form4.value, {
+      let result = await axios.post(`${getUrl()}/ads/update/${id.value}`, form4.value, {
         params: {
           step: 0,
         },
@@ -910,7 +921,7 @@ const addFunc1 = async () => {
 };
 const addFunc2 = async () => {
     checkImagesFunc();
-    // console.log(filterImages.value);
+    console.log(filterImages.value);
     // console.log(checkImg.value);
           let formBody = new FormData();
     formBody.append("Car_Name", form4.value.Car_Name);
@@ -920,7 +931,7 @@ const addFunc2 = async () => {
     formBody.append("Car_Year", form4.value.Car_Year);
     formBody.append("Car_Statue", form4.value.Car_Statue);
     formBody.append("Gear_shifter", form4.value.Gear_shifter);
-    formBody.append("Killometer",form4.value.Car_Statue == 1 ? 0 : form4.value.Killometer);
+    formBody.append("Killometer", form4.value.Car_Statue == 1 ? 0 : form4.value.Killometer);
     formBody.append("Fuel_Type", form4.value.Fuel_Type);
     formBody.append("Supplier", form4.value.Supplier);
     formBody.append("Car_Color", form4.value.Car_Color);
@@ -938,32 +949,32 @@ const addFunc2 = async () => {
     // for (let i = 0; i < images.value.length; i++) {
     //   filterImages.value.push(images.value[i].file);
     // }
-    pending2.value = true;
-    try {
-      let result = await axios.post(`${getUrl()}/add-Your-Ad`, formBody , {
-        params: {
-          step: 1,
-        },
-        headers: {
-          "Content-Language": `${locale.value}`,
-          Authorization: `Bearer ${tokenCookie}`,
+}
+pending2.value = true;
+try {
+  let result = await axios.post(`${getUrl()}/ads/update/${id.value}`, formBody , {
+    params: {
+      step: 1,
+    },
+    headers: {
+      "Content-Language": `${locale.value}`,
+      Authorization: `Bearer ${tokenCookie}`,
 
-        },
-      });
-      if (result.status >= 200) {
-        adNavBtn.value = 3;
-        checkBtnSec2.value = 1;
-        pending2.value = false;
-        errors2.value = [];
-      }
-    } catch (errorss) {
-      console.log(errorss);
-      if (errorss.response) {
-        pending2.value = false;
-        errors2.value = errorss.response.data.errors;
-      }
-    }
+    },
+  });
+  if (result.status >= 200) {
+    adNavBtn.value = 3;
+    checkBtnSec2.value = 1;
+    pending2.value = false;
+    errors2.value = [];
   }
+} catch (errorss) {
+  console.log(errorss);
+  if (errorss.response) {
+    pending2.value = false;
+    errors2.value = errorss.response.data.errors;
+  }
+}
 
 };
 
@@ -981,8 +992,12 @@ let items = ref([
 ]);
 onMounted(() => {
     // loopImages();
+    getCarDetails();
   getOptions();
 });
 </script>
 
-<style lang="scss" scoped></style>
+
+<style>
+
+</style>

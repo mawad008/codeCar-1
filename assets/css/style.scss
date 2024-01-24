@@ -651,8 +651,11 @@ p{
       gap: 32px;
       a {
         color: #fff;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 400;
+        &.spe{
+          color: #dcb63b !important;
+        }
       }
     }
     .icons {
@@ -823,6 +826,10 @@ p{
     }
   }
   .box-container {
+    .head{
+      color: #dcb63b;
+      font-weight: 700;
+    }
     p {
       font-size: 16px;
       font-style: normal;
@@ -1870,11 +1877,17 @@ html[dir="rtl"] .explore {
     border-radius: 24px;
     background: #fff;
     padding: 30px;
+    min-height: 584px;
     .images-text {
       .main-images {
         // width: 578px;
+        height: 100% !important;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
       }
       .mySwiper2 {
+        margin-bottom: 40px;
         .swiper-slide {
           width: 100%;
           height: 416px;
@@ -1909,7 +1922,9 @@ html[dir="rtl"] .explore {
       }
 
       .mySwiper .swiper-slide {
-        width: 80px;
+        &.auto-width{
+          width: auto !important;
+        }
         height: 80px;
         border-radius: 8px;
         border: 1px solid #ebeaed;
@@ -1955,7 +1970,7 @@ html[dir="rtl"] .explore {
     .header {
       .vendor {
         width: 301px;
-        // height: 69px;
+        height: 69px;
         border-radius: 8px;
         padding: 13px;
         display: flex;
@@ -1979,6 +1994,11 @@ html[dir="rtl"] .explore {
           display: flex;
           align-items: center;
           gap: 8px;
+          img{
+            // width: 50px;
+            // height: 50px;
+            // object-fit: contain;
+          }
           span {
             font-size: 14px;
             color: $secondary-black;
@@ -4701,7 +4721,8 @@ width: 100%;
               border-radius: 6px;
               img {
                 width: 45px;
-                object-fit: cover;
+                height: 45px;
+                object-fit: contain;
               }
             }
           }
@@ -4756,6 +4777,10 @@ width: 100%;
         padding: 20px;
         border-radius: 12px;
         border: 1px solid #eceaea;
+        h6{
+          font-weight: 700;
+          color: #323548;
+        }
         .text {
           border-right: 1px solid #eceaea;
           padding-right: 15px;
@@ -4861,13 +4886,45 @@ width: 100%;
   justify-content: space-evenly;
   flex-direction: column;
   height: 197px;
+  &.car{
+    min-width: 446px;
+   min-height: 600px;
+  }
+
   border-radius: 16px;
   background: #fff;
   text-align: center;
+  position: relative;
+  .close{
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    cursor: pointer;
+    i{
+      color: $secondary-black;
+      font-size: 20px;
+    }
+  }
   h3 {
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
+  }
+  h4{
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    margin-top: 35px;
+    margin-bottom: 20px;
+  }
+  p{
+    width: 302px;
+    color:  #5A7184;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    margin-bottom: 50px;
   }
   .btns {
     display: flex;
@@ -4888,6 +4945,53 @@ width: 100%;
       }
       &.out {
         background: #f6f7f9;
+      }
+    }
+  }
+  .btns1{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    button , .copy{
+      width: 350px;
+      height: 56px;
+      border-radius: 10px;
+      padding: 16px;
+    }
+    button{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+border: 1px solid  #2D3A4A;
+color: $secondary-black;
+    }
+    .copy{
+      border: 1px solid  #EBEAED;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .icon{
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+border: 1px solid  #DCB63B;
+        cursor: pointer;
+      }
+      i{
+        font-size: 20px;
+        color: #90A3BF;
+      }
+      svg{
+        cursor: pointer;
+      }
+      span{
+        color: #2D3A4A;
+font-size: 16px;
+font-weight: 700;
       }
     }
   }
@@ -5751,7 +5855,17 @@ width: 100%;
   }
   .modal {
     .log-out-modal {
-      height: 250px;
+      min-height: 250px;
+      min-width: 100%;
+      .btns1{
+        width: 100%;
+        .copy , button{
+          width: 100%;
+        }
+      }
+      p{
+        width: 100%;
+      }
       .btns {
         margin-top: 20px;
         flex-direction: column;
