@@ -48,12 +48,13 @@
                 <div class="text">
                   <div>
                     <h5 :class="{ active: paymentSec1 == 1 }">
-                      تفاصيل السيارة
+                  {{ $t('carData') }}
                     </h5>
                   </div>
                   <div>
                     <h5 :class="{ active: paymentSec2 == 1 }">
-                      صور السيارة
+                     {{ $t('carImgs') }}
+
                     </h5>
                   </div>
                 </div>
@@ -61,11 +62,11 @@
 
               <div class="content-pagination">
                 <div>
-                  <h5 :class="{ active: paymentSec1 == 1 }"> تفاصيل السيارة</h5>
+                  <h5 :class="{ active: paymentSec1 == 1 }"> {{ $t('carData') }} </h5>
                   <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                 </div>
                 <div>
-                  <h5 :class="{ active: paymentSec2 == 1 }">صور السيارة</h5>
+                  <h5 :class="{ active: paymentSec2 == 1 }">{{ $t('carImgs') }}</h5>
                   <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                 </div>
               </div>
@@ -105,7 +106,7 @@
                   <input
                     v-model="form4.Car_Name"
                     type="text"
-                    placeholder="هيونداي ستاندر 2024"
+                    :placeholder="$t('examplee1')"
                   />
                   <span class="error-msg" v-if="v1$.Car_Name.$error">{{
                     v1$.Car_Name.$errors[0].$message
@@ -154,7 +155,7 @@
                           :options="brands"
                           filter
                           optionLabel="title"
-                          placeholder="مثال : تويوتا"
+                          :placeholder="$t('examplee2')"
                           class=""
                         >
                           <template #option="slotProps">
@@ -183,7 +184,7 @@
                           "
                           filter
                           optionLabel="name"
-                          placeholder="كامري"
+                          placeholder=""
                           class=""
                         >
                           <template #option="slotProps">
@@ -204,7 +205,7 @@
                   <div class="half row">
                     <div class="col-12 col-l-6 col-lg-6">
                       <div class="input">
-                        <label for=""> سنة الصنع </label>
+                        <label for=""> {{ $t('theYear') }}</label>
 
                         <Dropdown
                           v-model="form4.Car_Year"
@@ -212,7 +213,7 @@
                           :options="optionsCars.year"
                           filter
                           optionLabel=""
-                          placeholder="مثال : 2024"
+                          placeholder="2024"
                           class=""
                         >
                           <template #option="slotProps">
@@ -298,9 +299,9 @@
                           v-model="form4.Killometer"
                           :placeholder="$t('example3')"
                         />
-                        <span class="error-msg" v-if="v1$.Killometer.$error">{{
+                        <!-- <span class="error-msg" v-if="v1$.Killometer.$error">{{
                           v1$.Killometer.$errors[0].$message
-                        }}</span>
+                        }}</span> -->
                         <span class="error-msg2" v-if="errors1.Killometer">{{
                           errors1.Killometer[0]
                         }}</span>
@@ -541,7 +542,7 @@
                       </div>
 
                     </div>
-                      <span v-if="!checkImages" class="d-block text-center mt-2 text-danger" >  يجب اختيار الصور بطريقة صحيحة </span>
+                      <span v-if="!checkImages" class="d-block text-center mt-2 text-danger" > {{$t('warn1')}} </span>
                   </div>
                 </div>
                 <div class="btns d-flex align-items-center justify-content-end">
@@ -657,7 +658,7 @@ let form4 = ref({
   Car_Year: "",
   Car_Statue: "",
   Gear_shifter: "",
-  Killometer: "",
+  Killometer: 0,
   Fuel_Type: "",
   Supplier: "",
   Car_Color: "",
@@ -674,7 +675,7 @@ const rules1 = computed(() => {
     Car_Year: { required: helpers.withMessage(value1.value, required) },
     Car_Statue: { required: helpers.withMessage(value1.value, required) },
     Gear_shifter: { required: helpers.withMessage(value1.value, required) },
-    Killometer: { required: helpers.withMessage(value1.value, required) },
+    // Killometer: { required: helpers.withMessage(value1.value, required) },
     Fuel_Type: { required: helpers.withMessage(value1.value, required) },
     Supplier: { required: helpers.withMessage(value1.value, required) },
     Car_Color: { required: helpers.withMessage(value1.value, required) },
@@ -684,13 +685,17 @@ const rules1 = computed(() => {
     },
   };
 });
-watch(form4, (newForm, oldForm) => {
-      // Check if Car_Statue has changed to 0
-      if (newForm.Car_Statue === 0) {
-        // Set Killometer to 0
-        form4.value.Killometer = 0;
-      }
-    }, { deep: true });
+// watch(form4, (newForm, oldForm) => {
+//       // Check if Car_Statue has changed to 0
+//       if (newForm.Car_Statue === 1) {
+//         // Set Killometer to 0
+//         form4.value.Killometer = 0;
+//       } else {
+//         form4.value.Killometer = '';
+//       }
+// }, { deep: true });
+
+
 let errors1 = ref([]);
 let errors2 = ref([]);
 let pending1 = ref(false);
@@ -739,20 +744,6 @@ const addImage = () => {
 //   loopImages();
 console.log(checkImages.value);
 };
-
-const selectedCountry = ref();
-const countries = ref([
-  { name: "Australia", code: "AU" },
-  { name: "Brazil", code: "BR" },
-  { name: "China", code: "CN" },
-  { name: "Egypt", code: "EG" },
-  { name: "France", code: "FR" },
-  { name: "Germany", code: "DE" },
-  { name: "India", code: "IN" },
-  { name: "Japan", code: "JP" },
-  { name: "Spain", code: "ES" },
-  { name: "United States", code: "US" },
-]);
 
 let gear_shifterArr = ref([
   {

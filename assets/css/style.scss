@@ -663,7 +663,7 @@ p{
     .links {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 20px;
       a {
         color: #fff;
         font-size: 16px;
@@ -2528,7 +2528,7 @@ html[dir="rtl"] .explore {
   }
 
 
-  @media(max-width:760px){
+  @media(max-width:800px){
       .v-slider-thumb__label {
         height: 44px !important;
         border-radius: 32px;
@@ -3060,6 +3060,9 @@ html[dir="ltr"] .payment-method{
           .mySwiper{
             .swiper-slide{
               // width: auto !important;
+                &.auto-width{
+          width: 85px !important;
+        }
               height: 60px;
               .image{
                 width: 80%;
@@ -4980,8 +4983,14 @@ width: 100%;
       align-items: center;
       justify-content: center;
       font-weight: 700;
+&.stroke{
 border: 1px solid  #2D3A4A;
 color: $secondary-black;
+  }
+    &.fill{
+      background-color:$secondary-black;
+        color:#fff; 
+      }
     }
     .copy{
       border: 1px solid  #EBEAED;
@@ -5874,6 +5883,10 @@ font-weight: 700;
     .log-out-modal {
       min-height: 250px;
       min-width: 100%;
+      &.car{
+      min-height: fit-content;
+      height: fit-content;
+        }
       .btns1{
         width: 100%;
         .copy , button{

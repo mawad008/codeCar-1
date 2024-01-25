@@ -80,7 +80,7 @@
         
               </swiper>
               <div class="d-flex align-items-center gap-3 mt-3">
-                <div class="slider__prev">
+                <div v-if=" mainCar.images.length > 5" class="slider__prev">
                   <img src="~/assets/images/arrow-right.svg" alt="" />
                 </div>
                 <swiper
@@ -116,7 +116,7 @@
                     </div>
                   </swiper-slide>
                 </swiper>
-                <div class="slider__next">
+                <div  v-if=" mainCar.images.length > 5" class="slider__next">
                   <img src="~/assets/images/arrow-left.svg" alt="" />
                 </div>
               </div>
@@ -250,7 +250,7 @@
                   class="cash"
                   >{{$t('cash')}}</a
                 >
-                <a href="#finance-payment-container" @click="paymentType = 2" class="finance">تمويل</a>
+                <a href="#finance-payment-container" @click="paymentType = 2" class="finance">{{$t('finance')}}</a>
               </div>
             
             </div>
@@ -286,7 +286,7 @@
               <div class="icon">
                 <img src="@/assets/images/s3.svg" alt="" />
               </div>
-              <span class="label">سنة الصنع</span>
+              <span class="label">{{$t('theYear')}}</span>
               <span class="type">{{ mainCar.year }}</span>
             </div>
           </div>
@@ -365,9 +365,8 @@
                     <div class="input">
                       <input
                         type="text"
-                        placeholder="مثال : تويوتا"
+                        placeholder=""
                         name=""
-                        value=""
                         class=""
                       />
                     </div>
@@ -696,9 +695,9 @@
           class="payment-container cash"
         >
         <div class="textt">
-          <h4>التمويل</h4>
+          <h4>{{$t('finance')}}</h4>
           <span class="word">
-            قم بإتمام عمليتك بشكل سلس وفوري مع السداد النقدي
+            {{$t('financeText')}}
           </span>
         </div>
 
@@ -708,14 +707,14 @@
               class="one"
               :class="{ active: paymentMethod == 1 }"
             >
-              افراد
+              {{$t('ind')}}
             </button>
             <button
               @click="paymentMethod = 2"
               class="two"
               :class="{ active: paymentMethod == 2 }"
             >
-              شركات
+              {{$t('comp')}}
             </button>
           </div>
 
@@ -797,1121 +796,16 @@
                   </button>
                 </div>
               </div> -->
-
-          <div v-if="paymentMethod == 1" class="row">
-            <div class="col-12 col-xl-5 col-lg-5">
-              <div class="main-pagination-container">
-                <div class="pagination-container">
-                <div class="contain">
-                  <div
-                    class="icon"
-                    :class="{ active: paymentBtn1 == 1 }"
-                  >
-                    <img
-                      class="def"
-                      src="@/assets/images/calc-icon1.svg"
-                      alt=""
-                    />
-                    <img
-                      class="active"
-                      src="@/assets/images/calc-icon-active1.svg"
-                      alt=""
-                    />
-                    
-                  </div>
-                  <div
-                    class="icon"
-                    :class="{ active: paymentBtn2 == 1 }"
-                  >
-                    <img
-                      class="def"
-                      src="@/assets/images/calc-icon2.svg"
-                      alt=""
-                    />
-                    <img
-                      class="active"
-                      src="@/assets/images/calc-icon-active2.svg"
-                      alt=""
-                    />
-                  </div>
-                  <div
-                    class="icon"
-                    :class="{ active: paymentBtn3 == 1 }"
-                  >
-                    <img
-                      class="def"
-                      src="@/assets/images/calc-icon3.svg"
-                      alt=""
-                    />
-                    <img
-                      class="active"
-                      src="@/assets/images/calc-icon-active3.svg"
-                      alt=""
-                    />
-                  </div>
-                  <div
-                    class="icon"
-                    :class="{ active: paymentBtn4 == 1 }"
-                  >
-                    <img
-                      class="def"
-                      src="@/assets/images/calc-icon4.svg"
-                      alt=""
-                    />
-                    <img
-                      class="active"
-                      src="@/assets/images/calc-icon-active4.svg"
-                      alt=""
-                    />
-                  </div>
-                  <div
-                    class="icon"
-                    :class="{ active: paymentBtn5 == 1 }"
-                  >
-                    <img
-                      class="def"
-                      src="@/assets/images/calc-icon5.svg"
-                      alt=""
-                    />
-                    <img
-                      class="active"
-                      src="@/assets/images/calc-icon-active5.svg"
-                      alt=""
-                    />
-                  </div>
-                
-                </div>
-                <div class="text">
-                  <div>
-                    <h5 :class="{ active: paymentBtn1 == 1 }">
-                      خيارات التمويل
-                    </h5>
-                  </div>
-                  <div>
-                    <h5 :class="{ active: paymentBtn2 == 1 }">
-                      بيانات السيارة
-                    </h5>
-                  </div>
-                  <div>
-                    <h5 :class="{ active: paymentBtn3 == 1 }">
-                      البيانات الشخصية
-                    </h5>
-                  </div>
-                  <div>
-                    <h5 :class="{ active: paymentBtn4 == 1 }">
-                      العروض
-                    </h5>
-                  </div>
-                  <div >
-                    <h5 :class="{ active: paymentBtn5 == 1 }">اكمال الطلب</h5>
-                  </div>
-                </div>
-                </div>
-                <div class="content-pagination">
-                  <div>
-                    <h5 :class="{ active: paymentBtn1 == 1 }">
-                      خيارات التمويل
-                    </h5>
-                    <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
-                  </div>
-                  <div>
-                    <h5 :class="{ active: paymentBtn2 == 1 }">
-                      بيانات السيارة
-                    </h5>
-                    <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
-                  </div>
-                  <div>
-                    <h5 :class="{ active: paymentBtn3 == 1 }">
-                      البيانات الشخصية
-                    </h5>
-                    <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
-                  </div>
-                  <div>
-                    <h5 :class="{ active: paymentBtn4 == 1 }">
-                      العروض
-                    </h5>
-                    <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
-                  </div>
-                  <div >
-                    <h5 :class="{ active: paymentBtn5 == 1 }">اكمال الطلب</h5>
-                    <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
-                  </div>
-                </div>
-                <div class="pagination-container ">
-                <div class="contain second">
-                  <div
-                    class="dot"
-                    :class="{ active: paymentBtn1 == 1 , check: checkBtn1 == 1 }"
-                  >
-                    <i class="fa-solid fa-check"></i>
-                  </div>
-                  <div
-                    class="dot"
-                    :class="{ active: paymentBtn2 == 1 , check: checkBtn2 == 1}"
-                  >
-                    <i class="fa-solid fa-check"></i>
-                  </div>
-                  <div
-                    class="dot"
-                    :class="{ active: paymentBtn3 == 1 , check: checkBtn3 == 1}"
-                  >
-                    <i class="fa-solid fa-check"></i>
-                  </div>
-                  <div
-                    class="dot"
-                    :class="{ active: paymentBtn4 == 1 , check: checkBtn4 == 1}"
-                  >
-                    <i class="fa-solid fa-check"></i>
-                  </div>
-                  <div
-                    class="dot"
-                    :class="{ active: paymentBtn5 == 1 , check: checkBtn5 == 1}"
-                  >
-                    <i class="fa-solid fa-check"></i>
-                  </div>
-                
-                </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-xl-7 col-lg-7">
-              <div v-if="paymentIndividualBtn == 1" class="range-container">
-                <div class="d-flex flex-column range-slider">
-                  <span class="word"> المقدم </span>
-                  <v-slider
-                    v-model="sliderValue1"
-                    min="100000"
-                    max="500000"
-                    step="10000"
-                    thumb-label="always"
-                    class="custom-slider mt-5"
-                    @input="updateRange()"
-                    :reverse="slide"
-                  >
-                    <template v-slot:thumb-label="{ value }">
-                      <div class="d-flex align-items-center gap-2">
-                        <span> ر.س </span>
-                        {{ sliderValue1 }}
-                      </div>
-                    </template>
-                  </v-slider>
-                </div>
-                <div class="d-flex flex-column range-slider">
-                  <span class="word">مدة التقسيط</span>
-                  <v-slider
-                    v-model="sliderValue2"
-                    min="1"
-                    max="160"
-                    step="1"
-                    thumb-label="always"
-                    class="custom-slider mt-5"
-                    @input="updateRange()"
-                    :reverse="slide"
-                  >
-                    <template v-slot:thumb-label="{ value }">
-                      <div class="d-flex align-items-center gap-2">
-                        <span> شهر </span>
-                        {{ sliderValue2 }}
-                      </div>
-                    </template>
-                  </v-slider>
-                </div>
-                <div class="d-flex flex-column range-slider">
-                  <span class="word"> الدفعة الاخيرة </span>
-                  <v-slider
-                    v-model="sliderValue2"
-                    min="1"
-                    max="160"
-                    step="1"
-                    thumb-label="always"
-                    class="custom-slider mt-5"
-                    @input="updateRange()"
-                    :reverse="slide"
-                  >
-                    <template v-slot:thumb-label="{ value }">
-                      <div class="d-flex align-items-center gap-2">
-                        <span> شهر </span>
-                        {{ sliderValue2 }}
-                      </div>
-                    </template>
-                  </v-slider>
-                </div>
-
-                <div class="total-container">
-                  <div
-                    class="w-100 d-flex align-items-center justify-content-between"
-                  >
-                    <span> الدفعة الاولي </span>
-                    <span> 500,000 رس </span>
-                  </div>
-                  <div
-                    class="w-100 d-flex align-items-center justify-content-between"
-                  >
-                    <span> مدة التقسيط </span>
-                    <span> 10% </span>
-                  </div>
-                  <div
-                    class="w-100 d-flex align-items-center justify-content-between"
-                  >
-                    <span>الدفعة الاخيرة</span>
-                    <span> 30% </span>
-                  </div>
-                </div>
-                <div class="d-flex justify-content-center justify-content-xl-end justify-content-lg-end">
-                  <button @click="paymentIndividualBtn = 2 , paymentFunc1()" class="next-step">
-                    التالي
-                  </button>
-                </div>
-              </div>
-
-              <div
-                v-if="paymentIndividualBtn == 2"
-                class="d-flex flex-column gap-4"
-              >
-                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
-                  <div class="input-container">
-                    <span> ماركة السيارة </span>
-                    <div class="input">
-                      <input
-                        type="text"
-                        placeholder="مثال : تويوتا"
-                        name=""
-                        value=""
-                        class=""
-                      />
-                    </div>
-                  </div>
-                  <div class="input-container">
-                    <span> نوع السيارة </span>
-                    <div class="input">
-                      <input type="text" name="" value="" class="" />
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
-                  <div class="input-container">
-                    <span> موديل السيارة </span>
-                    <div class="input">
-                      <input
-                        type="text"
-                        placeholder="مثال : تويوتا"
-                        name=""
-                        value=""
-                        class=""
-                      />
-                    </div>
-                  </div>
-                  <div class="input-container">
-                    <span> المواصفات </span>
-                    <div class="input">
-                      <input type="text" name="" value="" class="" />
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
-                  <div class="input-container">
-                    <span>اللون</span>
-                    <div class="input">
-                      <input
-                        type="text"
-                        placeholder="مثال : تويوتا"
-                        name=""
-                        value=""
-                        class=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="btns">
-                  <button @click="paymentIndividualBtn = 1" class="back">
-                    الرجوع
-                  </button>
-                  <button @click="paymentIndividualBtn = 3 , paymentFunc2()" class="next">
-                    التالي
-                  </button>
-                </div>
-              </div>
-              <div
-                v-if="paymentIndividualBtn == 3"
-                class="d-flex flex-column gap-4"
-              >
-                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
-                  <div class="input-container">
-                    <span> اسم العميل </span>
-                    <div class="input">
-                      <input
-                        type="text"
-                        placeholder="خالد سوادة"
-                        name=""
-                        value=""
-                        class=""
-                      />
-                    </div>
-                  </div>
-                  <div class="input-container">
-                    <span> رقم الجوال </span>
-                    <div class="input">
-                      <input type="tel" name="" value="" class="" />
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
-                  <div class="input-container">
-                    <span> رقم الهوية </span>
-                    <div class="input">
-                      <input
-                        type="tel"
-                        placeholder="مثال : 3333-5555-9999-55"
-                        name=""
-                        value=""
-                        class=""
-                      />
-                    </div>
-                  </div>
-                  <div class="input-container">
-                    <span> تاريخ الميلاد </span>
-                    <div class="input">
-                      <input type="date" name="" value="" class="" />
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
-                  <div class="input-container">
-                    <span>جهة تحويل الراتب</span>
-                    <div class="input">
-                      <Dropdown
-                        v-model="selectedCountry"
-                        :options="countries"
-                        filter
-                        optionLabel="name"
-                        placeholder="مثال : مصرف الجارحي"
-                        class=""
-                      >
-                        <template #option="slotProps">
-                          <div class="flex align-items-center">
-                            <div>{{ slotProps.option.name }}</div>
-                          </div>
-                        </template>
-                      </Dropdown>
-                    </div>
-                  </div>
-                  <div class="input-container">
-                    <span>جهة العمل</span>
-                    <div class="input">
-                      <Dropdown
-                        v-model="selectedCountry"
-                        :options="countries"
-                        filter
-                        optionLabel="name"
-                        placeholder="مثال : حكومي"
-                        class=""
-                      >
-                        <template #option="slotProps">
-                          <div class="flex align-items-center">
-                            <div>{{ slotProps.option.name }}</div>
-                          </div>
-                        </template>
-                      </Dropdown>
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
-                  <div class="input-container">
-                    <span>مبلغ الراتب</span>
-                    <div class="input">
-                      <input
-                        type="number"
-                        min="1"
-                        placeholder="مثال : 25000 ر.س"
-                        name=""
-                        value=""
-                        class=""
-                      />
-                    </div>
-                  </div>
-                  <div class="input-container">
-                    <span> اجمالي الالتزامات الشهرية في سمة </span>
-                    <div class="input">
-                      <input
-                        type="number"
-                        min="1"
-                        placeholder="مثال : 25000 ر.س"
-                        name=""
-                        value=""
-                        class=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
-                  <div class="input-container">
-                    <span> المدينة </span>
-                    <div class="input">
-                      <Dropdown
-                        v-model="selectedCountry"
-                        :options="countries"
-                        filter
-                        optionLabel="name"
-                        placeholder="مثال : مصرف الجارحي"
-                        class=""
-                      >
-                        <template #option="slotProps">
-                          <div class="flex align-items-center">
-                            <div>{{ slotProps.option.name }}</div>
-                          </div>
-                        </template>
-                      </Dropdown>
-                    </div>
-                  </div>
-                  <div class="input-container">
-                    <div class="d-flex align-items-center gap-3">
-                      <span> البريد الالكتروني</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M18.3337 9.99999C18.3337 14.6024 14.6027 18.3333 10.0003 18.3333C5.39795 18.3333 1.66699 14.6024 1.66699 9.99999C1.66699 5.39762 5.39795 1.66666 10.0003 1.66666C14.6027 1.66666 18.3337 5.39762 18.3337 9.99999ZM10.8337 5.83332C10.8337 6.29356 10.4606 6.66666 10.0003 6.66666C9.54009 6.66666 9.16699 6.29356 9.16699 5.83332C9.16699 5.37309 9.54009 4.99999 10.0003 4.99999C10.4606 4.99999 10.8337 5.37309 10.8337 5.83332ZM9.16699 7.70832C8.82182 7.70832 8.54199 7.98815 8.54199 8.33332C8.54199 8.6785 8.82182 8.95832 9.16699 8.95832H9.37533V14.1667C9.37533 14.5118 9.65515 14.7917 10.0003 14.7917C10.3455 14.7917 10.6253 14.5118 10.6253 14.1667V8.33332C10.6253 7.98815 10.3455 7.70832 10.0003 7.70832H9.16699Z"
-                          fill="#90A3BF"
-                        />
-                      </svg>
-                    </div>
-                    <div class="input">
-                      <input
-                        type="email"
-                        placeholder="مثال : Demo@gmail.com"
-                        name=""
-                        value=""
-                        class=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="d-flex main-radio flex-column flex-xl-row flex-lg-row align-items-start align-items-xl-center align-items-lg-center w-100 justify-content-between"
-                >
-                  <div>
-                    <span>هل يوجد تعثرات</span>
-                    <v-radio-group>
-                      <div class="d-flex">
-                        <div class="d-flex align-items-center">
-                          <label for="radio-1">نعم</label>
-                          <v-radio
-                            id="radio-1"
-                            color="#DCB63B"
-                            name="radio-1"
-                            value="one"
-                          ></v-radio>
-                        </div>
-                        <div class="d-flex align-items-center">
-                          <label for="radio-2"> لا </label>
-                          <v-radio
-                            id="radio-2"
-                            color="#DCB63B"
-                            name="radio-1"
-                            value="two"
-                          ></v-radio>
-                        </div>
-                      </div>
-                    </v-radio-group>
-                  </div>
-                  <div>
-                    <span> هل يوجد مخالفات مرورية </span>
-                    <v-radio-group>
-                      <div class="d-flex">
-                        <div class="d-flex align-items-center">
-                          <label for="radio-1">نعم</label>
-                          <v-radio
-                            id="radio-1"
-                            color="#DCB63B"
-                            name="radio-1"
-                            value="one"
-                          ></v-radio>
-                        </div>
-                        <div class="d-flex align-items-center">
-                          <label for="radio-2"> لا </label>
-                          <v-radio
-                            id="radio-2"
-                            color="#DCB63B"
-                            name="radio-1"
-                            value="two"
-                          ></v-radio>
-                        </div>
-                      </div>
-                    </v-radio-group>
-                  </div>
-                  <div>
-                    <span> هل يوجد رخصة القيادة </span>
-                    <v-radio-group>
-                      <div class="d-flex">
-                        <div class="d-flex align-items-center">
-                          <label for="radio-1">نعم</label>
-                          <v-radio
-                            id="radio-1"
-                            color="#DCB63B"
-                            name="radio-1"
-                            value="one"
-                          ></v-radio>
-                        </div>
-                        <div class="d-flex align-items-center">
-                          <label for="radio-2"> لا </label>
-                          <v-radio
-                            id="radio-2"
-                            color="#DCB63B"
-                            name="radio-1"
-                            value="two"
-                          ></v-radio>
-                        </div>
-                      </div>
-                    </v-radio-group>
-                  </div>
-                  <div>
-                    <span>هل يوجد قرض عقاري ( اختياري )</span>
-                    <v-radio-group>
-                      <div class="d-flex">
-                        <div class="d-flex align-items-center">
-                          <label for="radio-1">نعم</label>
-                          <v-radio
-                            id="radio-1"
-                            color="#DCB63B"
-                            name="radio-1"
-                            value="one"
-                          ></v-radio>
-                        </div>
-                        <div class="d-flex align-items-center">
-                          <label for="radio-2"> لا </label>
-                          <v-radio
-                            id="radio-2"
-                            color="#DCB63B"
-                            name="radio-1"
-                            value="two"
-                          ></v-radio>
-                        </div>
-                      </div>
-                    </v-radio-group>
-                  </div>
-                </div>
-                <div class="btns">
-                  <button @click="paymentIndividualBtn = 2" class="back">
-                    الرجوع
-                  </button>
-                  <button
-                    @click="(paymentIndividualBtn = 4) , paymentFunc3()"
-                    class="next"
-                  >
-                    التالي
-                  </button>
-                </div>
-              </div>
-
-              <div v-if="paymentIndividualBtn == 4" class="offers h-50">
-                <!-- <div
-                  v-if="pending"
-                  class="d-flex justify-content-center align-items-center h-100"
-                >
-                  <Vue3Lottie
-                    :animation-data="loader"
-                    :height="180"
-                    :width="180"
-                  />
-                </div> -->
-                <!-- !pending -->
-                <!-- bankOffers.banks -->
-                <v-radio-group >
-                  <div class="row">
-                    <div
-                      v-for="(offer, index) in 4"
-                      class="col-12 col-xl-6 col-lg-6"
-                    >
-                      <label :for="`offer-id-${index}`" class="offer w-100">
-                        <div
-                          class="d-flex align-items-center justify-content-between w-100"
-                        >
-                          <!-- <span v-if="offer.bank_offer == null" class="name">{{
-                            offer.bank.name
-                          }}</span> -->
-                          <span v-if="offer.bank_offer == null" class="name">asjkhdasd</span>
-                          <!-- <span class="name" v-else>{{
-                            offer.bank_offer
-                          }}</span> -->
-                          <v-radio
-                            class="radio-input"
-                            :id="`offer-id-${index}`"
-                            color="#DCB63B"
-                            name="offer-id"
-                            :value="index"
-                          ></v-radio>
-                        </div>
-                        <!-- <div class="price">
-                          <h4>14,340 ريال</h4>
-                          <span> اجمالي مبلغ التمويل </span>
-                        </div> -->
-                        <v-divider></v-divider>
-                        <div class="details">
-                          <div class="detail">
-                            <div class="d-flex align-items-center gap-2">
-                              <img src="~/assets/images/det1.png" alt="" />
-                              <span class="name">القسط الشهري</span>
-                            </div>
-                            <p class="price">
-                              <!-- {{ offer.monthly_installment }} رس -->
-                              dasd
-                            </p>
-                          </div>
-                          <div class="detail">
-                            <div class="d-flex align-items-center gap-2">
-                              <img src="~/assets/images/det2.png" alt="" />
-                              <span class="name">الدفعة الاولي</span>
-                            </div>
-                            <p class="price">
-                              <!-- {{ bankOffers.first_installment }} رس -->
-                              fdsa
-                            </p>
-                          </div>
-                          <div class="detail">
-                            <div class="d-flex align-items-center gap-2">
-                              <img src="~/assets/images/det3.png" alt="" />
-                              <span class="name">مدة الاقساط</span>
-                            </div>
-                            <!-- <p class="price">{{ bankOffers.years }}</p> -->
-                            <p class="price">44654</p>
-                          </div>
-                          <div class="detail">
-                            <div class="d-flex align-items-center gap-2">
-                              <img src="~/assets/images/det4.png" alt="" />
-                              <span class="name">الدفعة الاخيرة</span>
-                            </div>
-                            <p class="price">
-                              <!-- {{ bankOffers.last_installment }} رس -->
-                              dsfsd
-                            </p>
-                          </div>
-                          <div class="detail">
-                            <div class="d-flex align-items-center gap-2">
-                              <img src="~/assets/images/det5.png" alt="" />
-                              <span class="name">الرسوم الادارية</span>
-                            </div>
-                            <p class="price">
-                              <!-- {{ offer.administrative_fees }} رس -->
-                              4354
-                            </p>
-                          </div>
-                        </div>
-                      </label>
-                    </div>
-                  </div>
-                </v-radio-group>
-                <!-- v-if="!pending" -->
-                <div  class="btns">
-                  <button @click="paymentIndividualBtn = 3" class="back">
-                    الرجوع
-                  </button>
-                  <button @click="paymentIndividualBtn = 5 , paymentFunc4()" class="next">
-                    التالي
-                  </button>
-                </div>
-              </div>
-
-              <div v-if="paymentIndividualBtn == 5" class="final-review">
-                <div class="offer">
-                  <span class="word">العرض</span>
-                  <div class="main-container">
-                    <div class="name-price">
-                      <div class="d-flex main flex-column">
-                        <span class="name">العرض</span>
-                        <p class="type mt-2">عرض رقم : 562</p>
-                      </div>
-                      <div class="d-flex main flex-column">
-                        <h6>14,340 ريال</h6>
-                        <p class="type">اجمالي مبلغ التمويل</p>
-                      </div>
-                    </div>
-                    <div class="offer-det">
-                      <div class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3">
-                        <div class="d-flex align-items-center gap-4">
-                          <div class="d-flex align-items-center gap-2">
-                            <img src="~/assets/images/det1.png" alt="" />
-                            <span>القسط الشهري</span>
-                          </div>
-                          <h6>40,000 ريال سعودي</h6>
-                        </div>
-                        <div class="d-flex align-items-center gap-3">
-                          <div class="d-flex align-items-center gap-2">
-                            <img src="~/assets/images/det2.png" alt="" />
-                            <span>الدفعة الاخيرة</span>
-                          </div>
-                          <h6>40,000 ريال سعودي</h6>
-                        </div>
-                      </div>
-                      <div class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3">
-                        <div class="d-flex align-items-center gap-3">
-                          <div class="d-flex align-items-center gap-2">
-                            <img src="~/assets/images/det3.png" alt="" />
-                            <span> الدفعة الاولي </span>
-                          </div>
-                          <h6>40,000 ريال سعودي</h6>
-                        </div>
-                        <div class="d-flex align-items-center gap-3">
-                          <div class="d-flex align-items-center gap-2">
-                            <img src="~/assets/images/det4.png" alt="" />
-                            <span>الرسوم الادارية</span>
-                          </div>
-                          <h6>40,000 ريال سعودي</h6>
-                        </div>
-                      </div>
-                      <div class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3">
-                        <div class="d-flex align-items-center gap-3">
-                          <div class="d-flex align-items-center gap-2">
-                            <img src="~/assets/images/det3.png" alt="" />
-                            <span> مدة الاقساط </span>
-                          </div>
-                          <h6>40,000 ريال سعودي</h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="offer">
-                  <span class="word"> بيانات السيارة </span>
-                  <div class="main-container">
-                    <div class="img-container">
-                      <div class="image">
-                        <img src="~/assets/images/small-car.png" />
-                      </div>
-                      <div class="d-flex flex-column gap-2">
-                        <h6>تويوتا كامري 2024</h6>
-                        <span>كامري - GLX - رصاصي - 2024</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div class="files-span">
-                    <span class="f1">المرفقات</span>
-                    <span class="f2">( اختياري )</span>
-                  </div>
-                  <div class="row">
-                    <div class="col-6 col-xl-3 col-lg-3 col-md-4">
-                      <label for="fileInput1" class="custom-file-upload">
-                        <!-- <span>{{ buttonText }}</span> -->
-                        <img src="~/assets/images/file1.png" />
-                        <h6>صورة الهوية</h6>
-                        <span>يمكنك تحميل المرفق بصيغة PDF أو JPG.</span>
-                        <span v-if="selectedFileName1">{{
-                          selectedFileName1
-                        }}</span>
-                        <input
-                          type="file"
-                          @change="handleFileChange1"
-                          id="fileInput1"
-                        />
-                      </label>
-                    </div>
-                    <div class="col-6 col-xl-3 col-lg-3 col-md-4">
-                      <label for="fileInput2" class="custom-file-upload">
-                        <!-- <span>{{ buttonText }}</span> -->
-                        <img src="~/assets/images/file2.png" />
-                        <h6>صورة الرخصة</h6>
-                        <span>يمكنك تحميل المرفق بصيغة PDF أو JPG.</span>
-                        <span v-if="selectedFileName2">{{
-                          selectedFileName2
-                        }}</span>
-                        <input
-                          type="file"
-                          @change="handleFileChange2"
-                          id="fileInput2"
-                        />
-                      </label>
-                    </div>
-                    <div class="col-6 col-xl-3 col-lg-3 col-md-4">
-                      <label for="fileInput3" class="custom-file-upload">
-                        <!-- <span>{{ buttonText }}</span> -->
-                        <img src="~/assets/images/file3.png" />
-                        <h6>تعريف الراتب</h6>
-                        <span>يمكنك تحميل المرفق بصيغة PDF أو JPG.</span>
-                        <span v-if="selectedFileName3">{{
-                          selectedFileName3
-                        }}</span>
-                        <input
-                          type="file"
-                          @change="handleFileChange3"
-                          id="fileInput3"
-                        />
-                      </label>
-                    </div>
-                    <div class="col-6 col-xl-3 col-lg-3 col-md-4">
-                      <label for="fileInput4" class="custom-file-upload">
-                        <!-- <span>{{ buttonText }}</span> -->
-                        <img src="~/assets/images/file4.png" />
-                        <h6>برنت التأمينات</h6>
-                        <span>يمكنك تحميل المرفق بصيغة PDF أو JPG.</span>
-                        <span v-if="selectedFileName4">{{
-                          selectedFileName4
-                        }}</span>
-                        <input
-                          type="file"
-                          @change="handleFileChange4"
-                          id="fileInput4"
-                        />
-                      </label>
-                    </div>
-                  </div>
-                  <div class="btns">
-                    <button @click="paymentIndividualBtn = 4" class="back">
-                      العودة للعروض
-                    </button>
-                    <button
-                      @click="(paymentIndividualBtn = 6), (showConfirm = true)"
-                      class="next"
-                    >
-                      ارسال الطلب
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+          
+          <div v-if="paymentMethod == 1">
+           <finance1/>
+          
           </div>
-          <div v-if="paymentMethod == 2" class="row">
-            <div class="col-12 col-xl-8 col-lg-8">
-              <div class="form-ind">
-                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
-                  <div class="input-container">
-                    <span> اسم المنشأة</span>
-                    <div class="input">
-                      <input
-                        type="text"
-                        placeholder="مثال : تويوتا"
-                        name=""
-                        value=""
-                        class=""
-                      />
-                    </div>
-                  </div>
+          <div v-if="paymentMethod == 2">
+           <finance2 />
 
-                  <div class="input-container">
-                    <span> نوع المنشأة </span>
-                    <div class="input">
-                      <Dropdown
-                        v-model="selectedCountry"
-                        :options="countries"
-                        filter
-                        optionLabel="name"
-                        placeholder="مثال : شركة"
-                        class=""
-                      >
-                        <template #option="slotProps">
-                          <div class="flex align-items-center">
-                            <div>{{ slotProps.option.name }}</div>
-                          </div>
-                        </template>
-                      </Dropdown>
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
-                  <div class="input-container">
-                    <span> رقم السجل التجاري</span>
-                    <div class="input">
-                      <input
-                        type="text"
-                        placeholder="مثال : 3333-5555-9999-55"
-                        name=""
-                        value=""
-                        class=""
-                      />
-                    </div>
-                  </div>
-
-                  <div class="input-container">
-                    <span> نشاط المنشأة </span>
-                    <div class="input">
-                      <Dropdown
-                        v-model="selectedCountry"
-                        :options="countries"
-                        filter
-                        optionLabel="name"
-                        placeholder="تأجير سيارات"
-                        class=""
-                      >
-                        <template #option="slotProps">
-                          <div class="flex align-items-center">
-                            <div>{{ slotProps.option.name }}</div>
-                          </div>
-                        </template>
-                      </Dropdown>
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
-                  <div class="input-container">
-                    <span> اسم الشخص المسؤول </span>
-                    <div class="input">
-                      <input
-                        type="text"
-                        placeholder="مثال : محمد سيد"
-                        name=""
-                        value=""
-                        class=""
-                      />
-                    </div>
-                  </div>
-
-                  <div class="input-container">
-                    <span> رقم الهاتف </span>
-                    <div class="input">
-                      <input
-                        type="text"
-                        placeholder="مثال : 3333-5555-9999-55"
-                        name=""
-                        value=""
-                        class=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
-                  <div class="input-container">
-                    <span> عمر المنشأة </span>
-                    <div class="input">
-                      <input
-                        type="number"
-                        min="1"
-                        placeholder="مثال : 4 سنوات"
-                        name=""
-                        value=""
-                        class=""
-                      />
-                    </div>
-                  </div>
-
-                  <div class="input-container">
-                    <span> المدينة </span>
-                    <div class="input">
-                      <Dropdown
-                        v-model="selectedCountry"
-                        :options="countries"
-                        filter
-                        optionLabel="name"
-                        placeholder="ابها"
-                        class=""
-                      >
-                        <template #option="slotProps">
-                          <div class="flex align-items-center">
-                            <div>{{ slotProps.option.name }}</div>
-                          </div>
-                        </template>
-                      </Dropdown>
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
-                  <div class="input-container">
-                    <span> حساب المنشأة لدي البنك</span>
-                    <div class="input">
-                      <Dropdown
-                        v-model="selectedCountry"
-                        :options="countries"
-                        filter
-                        optionLabel="name"
-                        placeholder="مثال : مصرف الجارحي"
-                        class=""
-                      >
-                        <template #option="slotProps">
-                          <div class="flex align-items-center">
-                            <div>{{ slotProps.option.name }}</div>
-                          </div>
-                        </template>
-                      </Dropdown>
-                    </div>
-                  </div>
-
-                  <div class="input-container">
-                    <span> عدد السيارات المطلوبة</span>
-                    <div class="input">
-                      <input
-                        type="number"
-                        min="1"
-                        placeholder="3 سيارات"
-                        name=""
-                        value=""
-                        class=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <button
-                  @click="(paymentIndividualBtn = 6), (showConfirm = true)"
-                >
-                  ارسال الطلب
-                </button>
-              </div>
-            </div>
-            <div class="col-12 col-xl-4 col-lg-4" style="position: relative">
-              <div class="info-data">
-                <h4>معلومات الاتصال</h4>
-                <p>سيتم الرد عليكم خلال مدة اقصاها 24 ساعة .</p>
-                <div class="icons">
-                  <div class="icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M20.0002 10.999H22.0002C22.0002 5.869 18.1272 2 12.9902 2V4C17.0522 4 20.0002 6.943 20.0002 10.999Z"
-                        fill="#90A3BF"
-                      />
-                      <path
-                        d="M13.0003 7.99999C15.1033 7.99999 16.0003 8.89699 16.0003 11H18.0003C18.0003 7.77499 16.2253 5.99999 13.0003 5.99999V7.99999ZM16.4223 13.443C16.2301 13.2683 15.9776 13.1752 15.7181 13.1832C15.4585 13.1912 15.2123 13.2998 15.0313 13.486L12.6383 15.947C12.0623 15.837 10.9043 15.476 9.71228 14.287C8.52028 13.094 8.15928 11.933 8.05228 11.361L10.5113 8.96699C10.6977 8.78612 10.8064 8.53982 10.8144 8.2802C10.8225 8.02059 10.7292 7.76804 10.5543 7.57599L6.85928 3.51299C6.68432 3.32035 6.44116 3.2035 6.18143 3.18725C5.92171 3.17101 5.66588 3.25665 5.46828 3.42599L3.29828 5.28699C3.12539 5.46051 3.0222 5.69145 3.00828 5.93599C2.99328 6.18599 2.70728 12.108 7.29928 16.702C11.3053 20.707 16.3233 21 17.7053 21C17.9073 21 18.0313 20.994 18.0643 20.992C18.3088 20.9783 18.5396 20.8747 18.7123 20.701L20.5723 18.53C20.7417 18.3325 20.8276 18.0768 20.8115 17.817C20.7954 17.5573 20.6788 17.3141 20.4863 17.139L16.4223 13.443Z"
-                        fill="#90A3BF"
-                      />
-                    </svg>
-                    <span>+1012 3456 789</span>
-                  </div>
-                  <div class="icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="18"
-                      viewBox="0 0 20 18"
-                      fill="none"
-                    >
-                      <path
-                        d="M15 0.5H5C2 0.5 0 2 0 5.5V12.5C0 16 2 17.5 5 17.5H15C18 17.5 20 16 20 12.5V5.5C20 2 18 0.5 15 0.5ZM15.47 6.59L12.34 9.09C11.68 9.62 10.84 9.88 10 9.88C9.16 9.88 8.31 9.62 7.66 9.09L4.53 6.59C4.21 6.33 4.16 5.85 4.41 5.53C4.67 5.21 5.14 5.15 5.46 5.41L8.59 7.91C9.35 8.52 10.64 8.52 11.4 7.91L14.53 5.41C14.85 5.15 15.33 5.2 15.58 5.53C15.84 5.85 15.79 6.33 15.47 6.59Z"
-                        fill="#90A3BF"
-                      />
-                    </svg>
-                    <span>demo@gmail.com</span>
-                  </div>
-                  <div class="icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M12 1.5C9.81276 1.50258 7.71584 2.3726 6.16923 3.91922C4.62261 5.46584 3.75259 7.56276 3.75001 9.75C3.74739 11.5374 4.33124 13.2763 5.41201 14.7C5.41201 14.7 5.63701 14.9963 5.67376 15.039L12 22.5L18.3293 15.0353C18.3623 14.9955 18.588 14.7 18.588 14.7L18.5888 14.6978C19.669 13.2747 20.2526 11.5366 20.25 9.75C20.2474 7.56276 19.3774 5.46584 17.8308 3.91922C16.2842 2.3726 14.1873 1.50258 12 1.5ZM12 12.75C11.4067 12.75 10.8266 12.5741 10.3333 12.2444C9.83995 11.9148 9.45543 11.4462 9.22837 10.8981C9.00131 10.3499 8.9419 9.74667 9.05765 9.16473C9.17341 8.58279 9.45913 8.04824 9.87869 7.62868C10.2982 7.20912 10.8328 6.9234 11.4147 6.80764C11.9967 6.69189 12.5999 6.7513 13.1481 6.97836C13.6962 7.20542 14.1648 7.58994 14.4944 8.08329C14.8241 8.57664 15 9.15666 15 9.75C14.999 10.5453 14.6826 11.3078 14.1202 11.8702C13.5578 12.4326 12.7954 12.749 12 12.75Z"
-                        fill="#90A3BF"
-                      />
-                    </svg>
-                    <span
-                      >المملكة العربية السعودية - شارع الوحدة - الوحدة
-                      الخامسة</span
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
+        
         </div>
       </div>
 
@@ -1963,14 +857,35 @@
       >
         <div class="modal-dialog">
           <div class="modal-content log-out-modal car">
-          <img src="~/assets/images/whats.svg" />
-            <h4>تواصل مع التاجر</h4>
-            <p>للتواصل مع التاجر والحصول على مزيد من المعلومات عبر WhatsApp، انسخ الرابط التالي</p>
+          <img v-if="mainCar.vendor.type == 'individual'" src="~/assets/images/whats-model.svg" />
+          <img v-else src="~/assets/images/whats.svg" />
+            <h4  v-if="mainCar.vendor.type == 'individual'">يهمنا امانك</h4>
+            <h4 v-else>تواصل مع التاجر</h4>
+            <p v-if="mainCar.vendor.type == 'individual'">  نود التنويه إلى أن كود كار تعتبر مجرد وسيط للعروض ولا تتحمل أي مسؤولية عن التفاعلات بين الأفراد أو التجار. </p> 
+            <p v-else>للتواصل مع التاجر والحصول على مزيد من المعلومات عبر WhatsApp، انسخ الرابط التالي</p>
          
             <button class="close" data-bs-dismiss="modal" aria-label="Close">
             <i class=" fa-solid fa-xmark"></i>
             </button>
             <div class="btns1">
+            <div v-if="mainCar.vendor.type == 'individual'">
+            <button class="fill gap-3" v-if="btnModel2 == 1" @click="btnModel2 = 2">
+            مراسلة عبر الواتس اب
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+    <path d="M0.310059 17.6915L1.54049 13.2282C0.781776 11.9191 0.382712 10.4364 0.382991 8.92735C0.382991 4.18279 4.26579 0.317825 9.03222 0.317825C11.3472 0.317825 13.5163 1.21608 15.1566 2.83982C15.9627 3.63992 16.6014 4.58943 17.0361 5.63399C17.4709 6.67856 17.6932 7.79769 17.6904 8.92735C17.6904 13.6724 13.8081 17.5374 9.04115 17.5374C7.59242 17.5374 6.17048 17.1741 4.90333 16.485L0.310059 17.6915Z" fill="white"/>
+    <path d="M0 18L1.27607 13.3821C0.491536 12.0258 0.0799591 10.4898 0.0823594 8.92711C0.0729327 4.00093 4.09217 0 9.03225 0C11.4291 0 13.6801 0.925254 15.3754 2.6128C17.0707 4.30035 18 6.54108 18 8.92711C18 13.8445 13.9813 17.8459 9.04118 17.8459C7.54328 17.8478 6.06945 17.4732 4.75799 16.7572L0 18ZM4.96786 15.1511L5.24123 15.3146C6.38803 15.9904 7.69788 16.3477 9.03274 16.3488C13.1338 16.3488 16.4788 13.0188 16.4788 8.93643C16.4788 6.9583 15.7044 5.08964 14.3008 3.69218C12.8962 2.29571 11.0188 1.51526 9.03175 1.51526C4.92122 1.51526 1.57624 4.84519 1.57624 8.9276C1.57624 10.3251 1.96819 11.695 2.71588 12.874L2.88903 13.1558L2.13241 15.8957L4.96687 15.1516L4.96786 15.1511Z" fill="white"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.79902 5.18928C6.6353 4.81722 6.45272 4.80838 6.29792 4.80838C6.16099 4.79906 6.01512 4.79906 5.86032 4.79906C5.71446 4.79906 5.46837 4.85354 5.259 5.08031C5.04913 5.30709 4.4751 5.84261 4.4751 6.94064C4.4751 8.03818 5.27736 9.0999 5.38651 9.2447C5.49566 9.38999 6.93596 11.7127 9.21424 12.611C11.11 13.3546 11.493 13.2098 11.9033 13.1641C12.3131 13.119 13.2245 12.6291 13.4161 12.1024C13.5981 11.5856 13.5981 11.132 13.5436 11.0412C13.489 10.9504 13.3337 10.8959 13.1149 10.7781C12.8872 10.6691 11.7937 10.1253 11.5838 10.0521C11.3744 9.9795 11.2286 9.94318 11.0827 10.1611C10.9368 10.3879 10.5087 10.8871 10.3717 11.0319C10.2442 11.1772 10.1078 11.1953 9.88899 11.0864C9.66076 10.9779 8.94136 10.7418 8.08403 9.9795C7.4192 9.38999 6.97267 8.65518 6.83574 8.43725C6.70823 8.21047 6.81738 8.09267 6.93596 7.9837C7.03618 7.88406 7.16418 7.7206 7.27333 7.59347C7.38248 7.46634 7.4187 7.3667 7.50106 7.22141C7.57399 7.07661 7.53728 6.94015 7.48271 6.83167C7.42813 6.73154 6.99946 5.63399 6.79902 5.18928Z" fill="#2D3A4A"/>
+  </svg>
+            </button>
+                        <div v-if="btnModel2 == 2" class="copy">
+                 <a :href="mainCar.vendor.whatsapp_link" target="_blank" class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.08146 3.33146C9.26451 3.1484 9.26451 2.8516 9.08146 2.66854L6.58146 0.168544C6.3984 -0.0145143 6.1016 -0.0145144 5.91854 0.168544C5.73549 0.351602 5.73549 0.648398 5.91854 0.831457L7.61834 2.53125L1.25 2.53125C0.991116 2.53125 0.781249 2.74112 0.781249 3C0.781249 3.25888 0.991116 3.46875 1.25 3.46875L7.61834 3.46875L5.91854 5.16854C5.73549 5.3516 5.73549 5.6484 5.91854 5.83146C6.1016 6.01451 6.3984 6.01451 6.58146 5.83146L9.08146 3.33146Z" fill="#DCB63B"/>
+  </svg>
+                 </a>
+                <span>{{ `https://wa.me/${mainCar.vendor.phone}` }}</span>
+              </div>
+            </div>
             <div class="copy">
                <a :href="mainCar.vendor.whatsapp_link" target="_blank" class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
@@ -1979,7 +894,7 @@
                </a>
               <span>{{`https://wa.me/${mainCar.vendor.phone}`}}</span>
             </div>
-             <button data-bs-dismiss="modal" aria-label="Close">الرجوع</button>
+             <button class="stroke" data-bs-dismiss="modal" aria-label="Close">الرجوع</button>
             </div>
           </div>
         </div>
@@ -1993,29 +908,44 @@
       >
         <div class="modal-dialog">
           <div class="modal-content log-out-modal car">
-          <img src="~/assets/images/Phone_Call_5_.svg" />
-            <h4>تواصل مع التاجر</h4>
-            <p>للتحدث مع التاجر والاستفسار عن تفاصيل السيارة أو الصفقة، يُرجى الاتصال بالرقم التالي: {{ mainCar.vendor.phone }}.</p>
+          <img v-if="mainCar.vendor.type == 'individual'" src="~/assets/images/phone-model.svg" />
+          <img v-else src="~/assets/images/Phone_Call_5_.svg" />
+            <h4  v-if="mainCar.vendor.type == 'individual'">يهمنا امانك</h4>
+            <h4 v-else>تواصل مع التاجر</h4>
+
+            <p v-if="mainCar.vendor.type == 'individual'">  نود التنويه إلى أن كود كار تعتبر مجرد وسيط للعروض ولا تتحمل أي مسؤولية عن التفاعلات بين الأفراد أو التجار. </p>
+            <p v-else>للتحدث مع التاجر والاستفسار عن تفاصيل السيارة أو الصفقة، يُرجى الاتصال بالرقم التالي: {{ mainCar.vendor.phone }}.</p>
          
             <button class="close" data-bs-dismiss="modal" aria-label="Close">
             <i class=" fa-solid fa-xmark"></i>
             </button>
             <div class="btns1">
-            <div class="copy">
+            <div v-if="mainCar.vendor.type == 'individual'">
+            <button class="fill" v-if="btnModel == 1" @click="btnModel = 2"> الحصول علي رقم الهاتف </button>
+            <div v-if="btnModel == 2" class="copy">
               <svg v-if="copyPhone" @click="copyToClipboard()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3417 6.2714V1.91992H9.11988C7.7944 1.91992 6.71988 2.99444 6.71988 4.31992V16.7999C6.71988 18.1254 7.7944 19.1999 9.11988 19.1999H18.7199C20.0454 19.1999 21.1199 18.1254 21.1199 16.7999V7.69566H17.8035C17.0003 7.69566 16.3417 7.06227 16.3417 6.2714ZM17.5764 2.48677C17.4967 2.38227 17.4041 2.2904 17.3017 2.21272V6.2714C17.3017 6.52352 17.5223 6.73566 17.8035 6.73566H20.8163L17.5764 2.48677ZM5.27988 22.0799H14.8799C16.041 22.0799 17.0095 21.2554 17.2319 20.1599H9.11988C7.26421 20.1599 5.75988 18.6556 5.75988 16.7999V4.79992H5.27988C3.9544 4.79992 2.87988 5.87444 2.87988 7.19992V19.6799C2.87988 21.0054 3.9544 22.0799 5.27988 22.0799Z" fill="#90A3BF"/>
 </svg>
 <i v-else class="fa-solid fa-check"></i>
               <span>{{ mainCar.vendor.phone }}</span>
             </div>
-             <button data-bs-dismiss="modal" aria-label="Close">الرجوع</button>
+            
+            </div>
+            <div v-else class="copy">
+              <svg v-if="copyPhone" @click="copyToClipboard()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3417 6.2714V1.91992H9.11988C7.7944 1.91992 6.71988 2.99444 6.71988 4.31992V16.7999C6.71988 18.1254 7.7944 19.1999 9.11988 19.1999H18.7199C20.0454 19.1999 21.1199 18.1254 21.1199 16.7999V7.69566H17.8035C17.0003 7.69566 16.3417 7.06227 16.3417 6.2714ZM17.5764 2.48677C17.4967 2.38227 17.4041 2.2904 17.3017 2.21272V6.2714C17.3017 6.52352 17.5223 6.73566 17.8035 6.73566H20.8163L17.5764 2.48677ZM5.27988 22.0799H14.8799C16.041 22.0799 17.0095 21.2554 17.2319 20.1599H9.11988C7.26421 20.1599 5.75988 18.6556 5.75988 16.7999V4.79992H5.27988C3.9544 4.79992 2.87988 5.87444 2.87988 7.19992V19.6799C2.87988 21.0054 3.9544 22.0799 5.27988 22.0799Z" fill="#90A3BF"/>
+</svg>
+<i v-else class="fa-solid fa-check"></i>
+              <span>{{ mainCar.vendor.phone }}</span>
+            </div>
+             <button class="stroke" data-bs-dismiss="modal" aria-label="Close">الرجوع</button>
             </div>
           </div>
         </div>
       </div>
       <div class="similar-cars">
         <div class="head">
-          <h4>السيارات المشابهة</h4>
+          <h4> {{ $t("similar") }} </h4>
         </div>
         <!-- <div class="row">
           <div v-for="i in 5" class="col-12 col-xl-3 col-lg-3 col-md-6">
@@ -2100,6 +1030,9 @@ if(locale.value == 'ar'){
 } else{
   slide.value = false;
 }
+
+let btnModel = ref(1);
+let btnModel2 = ref(1);
 let paymentMethod = ref(1);
 let paymentMethod2 = ref(1);
 let paymentType = ref(0);
@@ -2112,7 +1045,6 @@ const selectedFileName2 = ref(null);
 const selectedFileName3 = ref(null);
 const selectedFileName4 = ref(null);
 let otp = ref("");
-
 let copyPhone = ref(true);
 
 function copyToClipboard() {

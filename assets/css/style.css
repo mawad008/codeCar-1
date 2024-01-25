@@ -542,7 +542,7 @@ html[dir=rtl] input[type=tel] {
 .navbar .items .links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 20px;
 }
 .navbar .items .links a {
   color: #fff;
@@ -2187,7 +2187,7 @@ html[dir=rtl] .explore .col-12:not(:first-child) .box::before {
   border: 1px solid #2d3a4a;
   color: #2d3a4a;
 }
-@media (max-width: 760px) {
+@media (max-width: 800px) {
   .paymentType .v-slider-thumb__label {
     height: 44px !important;
     border-radius: 32px;
@@ -2666,6 +2666,9 @@ html[dir=ltr] .payment-method button.two {
   }
   .main-car-page .car-details .images-text .main-images .mySwiper .swiper-slide {
     height: 60px;
+  }
+  .main-car-page .car-details .images-text .main-images .mySwiper .swiper-slide.auto-width {
+    width: 85px !important;
   }
   .main-car-page .car-details .images-text .main-images .mySwiper .swiper-slide .image {
     width: 80%;
@@ -4341,8 +4344,14 @@ html[dir=ltr] .p-accordion-header-action {
   align-items: center;
   justify-content: center;
   font-weight: 700;
+}
+.log-out-modal .btns1 button.stroke {
   border: 1px solid #2D3A4A;
   color: #2d3a4a;
+}
+.log-out-modal .btns1 button.fill {
+  background-color: #2d3a4a;
+  color: #fff;
 }
 .log-out-modal .btns1 .copy {
   border: 1px solid #EBEAED;
@@ -5048,6 +5057,12 @@ html[dir=ltr] .p-accordion-header-action {
   .modal .log-out-modal {
     min-height: 250px;
     min-width: 100%;
+  }
+  .modal .log-out-modal.car {
+    min-height: -moz-fit-content;
+    min-height: fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
   }
   .modal .log-out-modal .btns1 {
     width: 100%;

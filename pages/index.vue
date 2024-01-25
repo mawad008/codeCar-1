@@ -76,12 +76,10 @@
           >
             <div class="text">
               <h1 class="head">
-                منصة تختص في بيع وشراء وتمويل <span> السيارات</span> بطرق حديثة
+               {{ $t('hero1') }}<span> {{ $t('hero2') }}</span> {{ $t('hero3') }}
               </h1>
               <p>
-                تكنولوجيا التمويل والبيع تلتقي هنا! استكشف عالم كود كار، حيث
-                يمكنك بسهولة شراء سيارات أحلامك. انضم إلينا واستفد من أفضل
-                العروض
+               {{ $t('hero4') }}
               </p>
             </div>
 
@@ -102,7 +100,7 @@
     <div class="container d-flex align-items-center justify-content-center">
       <div class="search-section">
         <div class="select">
-          <span class="type"> النوع </span>
+          <span class="type"> {{ $t('kind') }} </span>
           <v-autocomplete
             chips
             :items="carBody"
@@ -110,11 +108,11 @@
             item-value="value"
             variant="underlined"
             v-model="selectedBody"
-            label="حالة السيارة"
+            :label="$t('carStat')"
           ></v-autocomplete>
         </div>
         <div class="select">
-          <span class="type"> الماركة </span>
+          <span class="type"> {{ $t('brand') }} </span>
           <v-autocomplete
             clearable
             chips
@@ -123,11 +121,11 @@
             item-title="title"
             item-value="id"
             variant="underlined"
-            label="اختر ماركة السيارة"
+            :label="$t('search1')"
           ></v-autocomplete>
         </div>
         <div class="select">
-          <span class="type"> الموديل </span>
+          <span class="type"> {{ $t('model') }} </span>
           <v-autocomplete
             chips
             v-model="selectedmodel"
@@ -135,11 +133,11 @@
             item-title="name"
             item-value="id"
             variant="underlined"
-            label="اختر موديل السيارة"
+            :label="$t('search2')"
           ></v-autocomplete>
         </div>
         <nuxt-link :to="localePath({path:'/cars', query:{type:selectedBody , id:selectedBrand , model: selectedmodel}})">
-        <button class="search">ابحث</button>
+        <button class="search">{{ $t('searchh') }}</button>
         </nuxt-link>
       </div>
     </div>
@@ -148,7 +146,7 @@
       <div
         class="text d-flex align-items-center justify-content-center text-center flex-column"
       >
-        <h4 class="heading-text">الماركات</h4>
+        <h4 class="heading-text">{{ $t('brands') }}</h4>
         <p class="p-text">
           {{ brandsArr.description }}
         </p>
@@ -175,7 +173,7 @@
                 <!-- <img src="~/assets/images/brand1.png" alt=""> -->
               </div>
               <span class="name"> {{ item.name }} </span>
-              <span class="num"> {{ item.count_cars_count }} سيارة </span>
+              <span class="num"> {{ item.count_cars_count }} {{ $t('car') }} </span>
             </nuxt-link>
           </div>
         </div>
@@ -186,7 +184,9 @@
       <div class="container">
         <div class="text">
           <span data-aos="fade-left"  data-aos-offset="300" data-aos-duration="300">{{ whyCodeCarArr.description }}</span>
-          <h3 class="heading-text" data-aos="fade-left"  data-aos-offset="500" data-aos-duration="500" data-aos-delay="300">اكتشف المزيد مما نقدمه</h3>
+          <h3 class="heading-text" data-aos="fade-left"  data-aos-offset="500" data-aos-duration="500" data-aos-delay="300">
+           {{ $t('exploree') }}
+           </h3>
         </div>
         
         <road />
@@ -237,7 +237,7 @@
         <div
           class="header mb-4 d-flex flex-column align-items-center justify-content-center w-100"
         >
-          <h3 class="mb-5 heading-text">السيارات</h3>
+          <h3 class="mb-5 heading-text">{{ $t('cars') }}</h3>
 
           <!-- <v-tabs v-model="tabNav" align-tabs="center">
             <v-tab :value="0" class="head">
@@ -260,7 +260,7 @@
               :class="{ active: tab == 1 }"
               class="tab"
             >
-              <span class="choose"> الاكثر مبيعا </span>
+              <span class="choose"> {{ $t('tab1') }} </span>
               <border />
             </div>
             <div
@@ -270,7 +270,7 @@
               
 
             >
-              <span class="choose"> افضل العروض </span>
+              <span class="choose">{{ $t('tab2') }}</span>
               <border />
             </div>
             <div
@@ -278,7 +278,7 @@
               :class="{ active: tab == 3 }"
               class="tab"
             >
-              <span class="choose"> موديل السنة </span>
+              <span class="choose"> {{ $t('tab3') }} </span>
               <border />
             </div>
           </div>
@@ -361,7 +361,7 @@
         <div v-if="financingAdv" class="row">
           <div class="col-12 col-xl-5 col-lg-5" data-aos="fade-right"  data-aos-delay="300">
             <div class="text-container">
-              <span class="special"> عن ميزة التمويل </span>
+              <span class="special"> {{ $t('about1') }}</span>
               <h4>{{ financingAdv.description }}</h4>
               <div class="main-image">
                 <div class="main d-flex">
@@ -393,7 +393,7 @@
                 </div>
               </div>
               <nuxt-link :to="localePath('/finance')">
-              <button>التمويل</button>
+              <button>{{ $t('finance') }}</button>
               </nuxt-link>
             </div>
           </div>
@@ -410,7 +410,7 @@
     <div class="container all-marks">
       <div class="header d-flex align-items-center justify-content-c">
         <div class="text d-flex text-center w-100 align-items-center flex-column">
-          <h3 class="heading-text">معتمدون لدى جهات التمويل</h3>
+          <h3 class="heading-text">{{ $t('markss') }}</h3>
           <span class="p-text">{{ financingbodyArr.description }}</span>
         </div>
       </div>

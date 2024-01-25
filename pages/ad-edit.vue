@@ -35,12 +35,12 @@
                 <div class="text">
                   <div>
                     <h5 :class="{ active: paymentSec1 == 1 }">
-                      بيانات السيارة
+                      {{ $t('carData') }}
                     </h5>
                   </div>
                   <div>
                     <h5 :class="{ active: paymentSec2 == 1 }">
-                      بيانات المنشأة
+                      {{ $t('carImgs') }}
                     </h5>
                   </div>
                 </div>
@@ -48,11 +48,11 @@
 
               <div class="content-pagination">
                 <div>
-                  <h5 :class="{ active: paymentSec1 == 1 }">بيانات السيارة</h5>
+                  <h5 :class="{ active: paymentSec1 == 1 }"> {{ $t('carData') }}  </h5>
                   <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                 </div>
                 <div>
-                  <h5 :class="{ active: paymentSec2 == 1 }">بيانات المنشأة</h5>
+                  <h5 :class="{ active: paymentSec2 == 1 }">  {{ $t('carImgs') }} </h5>
                   <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                 </div>
               </div>
@@ -92,7 +92,7 @@
                   <input
                     v-model="form4.Car_Name"
                     type="text"
-                    placeholder="هيونداي ستاندر 2024"
+                    :placeholder="$t('examplee1')" 
                   />
                   <span class="error-msg" v-if="v1$.Car_Name.$error">{{
                     v1$.Car_Name.$errors[0].$message
@@ -141,7 +141,7 @@
                           :options="brands"
                           filter
                           optionLabel="title"
-                          placeholder="مثال : تويوتا"
+                          :placeholder="$t('examplee2')"
                           class=""
                         >
                           <template #option="slotProps">
@@ -170,7 +170,7 @@
                           "
                           filter
                           optionLabel="name"
-                          placeholder="كامري"
+                          placeholder=""
                           class=""
                         >
                           <template #option="slotProps">
@@ -191,7 +191,7 @@
                   <div class="half row">
                     <div class="col-12 col-l-6 col-lg-6">
                       <div class="input">
-                        <label for=""> سنة الصنع </label>
+                        <label for=""> {{ $t('theYear') }} </label>
 
                         <Dropdown
                           v-model="form4.Car_Year"
@@ -199,7 +199,7 @@
                           :options="optionsCars.year"
                           filter
                           optionLabel=""
-                          placeholder="مثال : 2024"
+                          placeholder="2024"
                           class=""
                         >
                           <template #option="slotProps">
@@ -527,7 +527,7 @@
                       </div>
 
                     </div>
-                      <span v-if="!checkImages" class="d-block text-center mt-2 text-danger" >  يجب اختيار الصور بطريقة صحيحة </span>
+                      <span v-if="!checkImages" class="d-block text-center mt-2 text-danger" > {{$t('warn1')}} </span>
                   </div>
                 </div>
                 <div class="btns d-flex align-items-center justify-content-end">

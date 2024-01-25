@@ -69,24 +69,32 @@
                       <div class="text">
                         <div>
                           <h5 :class="{ active: paymentBtn1 == 1 }">
-                            خيارات التمويل
+                            {{$t('finance1')}}
                           </h5>
                         </div>
                         <div>
                           <h5 :class="{ active: paymentBtn2 == 1 }">
-                            بيانات السيارة
+                            {{$t('finance2')}}
+                            
                           </h5>
                         </div>
                         <div>
                           <h5 :class="{ active: paymentBtn3 == 1 }">
-                            البيانات الشخصية
+                            {{$t('finance3')}}
+                            
                           </h5>
                         </div>
                         <div>
-                          <h5 :class="{ active: paymentBtn4 == 1 }">العروض</h5>
+                          <h5 :class="{ active: paymentBtn4 == 1 }">
+                            {{$t('finance4')}}
+                           
+                          </h5>
                         </div>
                         <div>
-                          <h5 :class="{ active: paymentBtn5 == 1 }">اكمال الطلب</h5>
+                          <h5 :class="{ active: paymentBtn5 == 1 }">
+                            {{ $t('finance5') }}
+                          
+                          </h5>
                         </div>
                       </div>
                     </div>
@@ -94,30 +102,37 @@
                     <div class="content-pagination">
                       <div>
                         <h5 :class="{ active: paymentBtn1 == 1 }">
-                          خيارات التمويل
+                            {{$t('finance1')}}
+                
                         </h5>
                         <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                       </div>
                       <div>
                         <h5 :class="{ active: paymentBtn2 == 1 }">
-                          بيانات السيارة
+                         {{ $t('finance2') }}
+
                         </h5>
                         <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                       </div>
                       <div>
                         <h5 :class="{ active: paymentBtn3 == 1 }">
-                          البيانات الشخصية
+                          {{ $t('finance3') }}
+
                         </h5>
                         <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                       </div>
                       <div>
                         <h5 :class="{ active: paymentBtn4 == 1 }">
-                          العروض
+                            {{$t('finance4')}}
+                        
                         </h5>
                         <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                       </div>
                       <div >
-                        <h5 :class="{ active: paymentBtn5 == 1 }">اكمال الطلب</h5>
+                        <h5 :class="{ active: paymentBtn5 == 1 }">
+                            {{ $t('finance5') }}
+                        
+                        </h5>
                         <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                       </div>
                     </div>
@@ -162,7 +177,7 @@
                   <div v-if="paymentIndividualBtn == 1" class="range-container">
                     <div class="d-flex flex-column range-slider">
                 
-                      <span class="word">المقدم</span>
+                      <span class="word">{{$t('calc1')}}</span>
                       <v-slider
                         v-model="sliderValue1"
                         :min="minNum"
@@ -182,7 +197,9 @@
                       </v-slider>
                     </div>
                     <div class="d-flex flex-column range-slider">
-                      <span class="word">مدة التقسيط</span>
+                      <span class="word">
+                      {{$t('calc2')}}
+                      </span>
                       <v-slider
                         v-model="sliderValue2"
                         min="1"
@@ -195,14 +212,16 @@
                       >
                         <template v-slot:thumb-label="{ value }">
                           <div class="d-flex align-items-center gap-2">
-                            <span> سنة </span>
+                            <span> {{$t('year')}} </span>
                             {{ sliderValue2 }}
                           </div>
                         </template>
                       </v-slider>
                     </div>
                     <div class="d-flex flex-column range-slider">
-                      <span class="word">الدفعة الاخيرة</span>
+                      <span class="word">
+                       {{$t('calc3')}}
+                      </span>
 
                       <v-slider
                         v-model="sliderValue3"
@@ -257,7 +276,7 @@
                   >
                     <div class="d-flex gap-3">
                       <div class="input-container">
-                        <span> ماركة السيارة </span>
+                        <span> {{$t('carBrand')}}</span>
                         <div class="input">
                           <Dropdown
                             v-model="form2.brand"
@@ -265,7 +284,7 @@
                             filter
                             optionValue="id"
                             optionLabel="title"
-                            placeholder="مثال : شركة"
+                            :placeholder="$t('examplee2')"
                             class=""
                           >
                             <template #option="slotProps">
@@ -283,7 +302,7 @@
                         </div>
                       </div>
                       <div class="input-container">
-                        <span> موديل السيارة </span>
+                        <span> {{$t('carModel')}} </span>
                         <div class="input">
                           <Dropdown
                             v-model="form2.model"
@@ -291,7 +310,7 @@
                             filter
                             optionLabel="name"
                             optionValue="id"
-                            placeholder="مثال : شركة"
+                            placeholder=""
                             class=""
                           >
                             <template #option="slotProps">
@@ -311,14 +330,14 @@
                     </div>
                     <div class="d-flex gap-3">
                       <div class="input-container">
-                        <span> سنة الصنع </span>
+                        <span> {{$t('theYear')}}</span>
                         <div class="input">
                           <Dropdown
                             v-model="form2.year"
                             :options="optionsCars.year"
                             filter
                             optionLabel=""
-                            placeholder="مثال : شركة"
+                            placeholder="2024"
                             class=""
                           >
                             <template #option="slotProps">
@@ -336,7 +355,7 @@
                         </div>
                       </div>
                       <div class="input-container">
-                        <span> نوع الجير </span>
+                        <span>{{$t('gear')}}</span>
                         <div class="input">
                           <Dropdown
                             v-model="form2.gear_shifter"
@@ -364,7 +383,7 @@
                     </div>
                     <div class="d-flex gap-3">
                       <div class="input-container">
-                        <span>اللون</span>
+                        <span>{{$t('color')}}</span>
                         <div class="input">
                           <Dropdown
                             v-model="form2.color_id"
@@ -372,7 +391,7 @@
                             filter
                             optionLabel="title"
                             optionValue="id"
-                            placeholder="مثال : شركة"
+                            :placeholder="$t('example6')"
                             class=""
                           >
                             <template #option="slotProps">
@@ -392,10 +411,10 @@
                     </div>
                     <div class="btns">
                       <button @click="paymentIndividualBtn = 1" class="back">
-                        الرجوع
+                       {{$t('back')}}
                       </button>
                       <button @click=" paymentFunc2()" :disabled="pending2" class="next gap-3">
-                        التالي
+                        {{$t('next')}}
                         <v-progress-circular v-if="pending2"  indeterminate :size="25" :width="4"></v-progress-circular>
                       </button>
                     </div>
@@ -406,11 +425,11 @@
                   >
                     <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                       <div class="input-container">
-                        <span> اسم العميل </span>
+                        <span> {{$t('name1')}} </span>
                         <div class="input">
                           <input
                             type="text"
-                            placeholder="خالد سوادة"
+                            placeholder=""
                             name=""
                            v-model="form3.client_name"
                             class=""
@@ -425,7 +444,7 @@
                       </div>
                       <!-- {{ form3 }} -->
                       <div class="input-container">
-                        <span> رقم الجوال </span>
+                        <span> {{$t('phone')}}</span>
                         <div class="input">
                           <input v-model="form3.phone" type="tel" name="" class="" />
                           <span class="error-msg" v-if="v3$.phone.$error">{{
@@ -439,7 +458,7 @@
                     </div>
                     <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                       <div class="input-container">
-                        <span> الجنس </span>
+                        <span> {{ $t('sex') }} </span>
                         <div class="input">
                           <Dropdown
                             v-model="form3.sex"
@@ -465,7 +484,7 @@
                         </div>
                       </div>
                       <div class="input-container">
-                        <span> تاريخ الميلاد </span>
+                        <span> {{$t('birth')}}</span>
                         <div class="input">
                           <input type="date" name="" v-model="form3.birth_date"  class="" />
                           <span class="error-msg" v-if="v3$.birth_date.$error">{{
@@ -479,7 +498,7 @@
                     </div>
                     <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                       <div class="input-container">
-                        <span> المدينة </span>
+                        <span> {{$t('city')}} </span>
                         <div class="input">
                           <Dropdown
                             v-model="form3.city_id"
@@ -505,7 +524,7 @@
                         </div>
                       </div>
                       <div class="input-container">
-                        <span> رقم الهوية </span>
+                        <span> {{ $t('ident') }}</span>
                         <div class="input">
                           <input type="tel" v-model="form3.identity_no"  name=""  class="" />
                           <span class="error-msg" v-if="v3$.identity_no.$error">{{
@@ -519,7 +538,9 @@
                     </div>
                     <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                       <div class="input-container">
-                        <span>جهة العمل</span>
+                        <span>
+                        {{ $t('sector') }}
+                       </span>
                         <div class="input">
                           <Dropdown
                             v-model="form3.sector"
@@ -527,7 +548,7 @@
                             filter
                             optionLabel="name"
                             optionValue="id"
-                            placeholder="مثال : حكومي"
+                            :placeholder="$t('example7')"
                             class=""
                           >
                             <template #option="slotProps">
@@ -545,12 +566,14 @@
                         </div>
                       </div>
                       <div class="input-container">
-                        <span>مبلغ الراتب</span>
+                        <span>
+                       {{$t('sal')}}
+                        </span>
                         <div class="input">
                           <input
                             type="number"
                             min="1"
-                            placeholder="مثال : 25000 ر.س"
+                            placeholder=" 25000"
                           v-model="form3.salary"
                             name=""
                             class=""
@@ -567,7 +590,9 @@
                     </div>
                     <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                       <div class="input-container">
-                        <span>جهة تحويل الراتب</span>
+                        <span>
+                         {{$t('sal2')}}    
+                        </span>
                         <div class="input">
                           <Dropdown
                             v-model="form3.bank"
@@ -575,7 +600,7 @@
                             filter
                             optionLabel="name"
                             optionValue="id"
-                            placeholder="مثال : مصرف الجارحي"
+                            :placeholder="$t('example8')"
                             class=""
                           >
                             <template #option="slotProps">
@@ -593,12 +618,12 @@
                         </div>
                       </div>
                       <div class="input-container">
-                        <span> اجمالي الالتزامات الشهرية في سمة </span>
+                        <span> {{ $t('sal3') }} </span>
                         <div class="input">
                           <input
                             type="number"
                             min="1"
-                            placeholder="مثال : 25000 ر.س"
+                            placeholder="25000"
                             name=""
                           v-model="form3.Monthly_cometment"
                             class=""
@@ -614,7 +639,7 @@
                     </div>
                     <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                       <div class="input-container">
-                        <span> التحويل </span>
+                        <span> {{$t('tran')}} </span>
                         <div class="input">
                           <Dropdown
                             v-model="form3.transferd_type"
@@ -641,7 +666,7 @@
                       </div>
                       <div class="input-container">
                         <div class="d-flex align-items-center gap-3">
-                          <span> البريد الالكتروني</span>
+                          <span> {{ $t('emailE') }}</span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"
@@ -660,7 +685,7 @@
                         <div class="input">
                           <input
                             type="email"
-                            placeholder="مثال : Demo@gmail.com"
+                            placeholder=" Demo@gmail.com"
                           v-model="form3.email"
                             name=""
                             class=""
@@ -678,11 +703,11 @@
                       class="d-flex main-radio align-items-center flex-column flex-xl-row flex-lg-row w-100 justify-content-between"
                     >
                       <div>
-                        <span>هل يوجد تعثرات</span>
+                        <span> {{ $t('problem') }} </span>
                         <v-radio-group v-model="form3.have_life_problem">
                           <div class="d-flex">
                             <div class="d-flex align-items-center">
-                              <label for="radio-first-1">نعم</label>
+                              <label for="radio-first-1">{{$t('yes')}}</label>
                               <v-radio
                                 id="radio-first-1"
                                 color="#DCB63B"
@@ -691,7 +716,7 @@
                               ></v-radio>
                             </div>
                             <div class="d-flex align-items-center">
-                              <label for="radio-sec-2"> لا </label>
+                              <label for="radio-sec-2"> {{$t('no')}} </label>
                               <v-radio
                                 id="radio-sec-2"
                                 color="#DCB63B"
@@ -703,11 +728,11 @@
                         </v-radio-group>
                       </div>
                       <div>
-                        <span> هل يوجد مخالفات مرورية </span>
+                        <span> {{ $t('traffic') }} </span>
                         <v-radio-group v-model="form3.traffic_violations">
                           <div class="d-flex">
                             <div class="d-flex align-items-center">
-                              <label for="radio-first-3">نعم</label>
+                              <label for="radio-first-3">{{$t('yes')}}</label>
                               <v-radio
                                 id="radio-first-3"
                                 color="#DCB63B"
@@ -716,7 +741,7 @@
                               ></v-radio>
                             </div>
                             <div class="d-flex align-items-center">
-                              <label for="radio-sec-4"> لا </label>
+                              <label for="radio-sec-4"> {{$t('no')}} </label>
                               <v-radio
                                 id="radio-sec-4"
                                 color="#DCB63B"
@@ -728,11 +753,11 @@
                         </v-radio-group>
                       </div>
                       <div>
-                        <span> هل يوجد رخصة القيادة </span>
+                        <span> {{$t('driv')}} </span>
                         <v-radio-group v-model="form3.driving_license">
                           <div class="d-flex">
                             <div class="d-flex align-items-center">
-                              <label for="radio-first-5">نعم</label>
+                              <label for="radio-first-5">{{$t('yes')}}</label>
                               <v-radio
                                 id="radio-first-5"
                                 color="#DCB63B"
@@ -741,7 +766,7 @@
                               ></v-radio>
                             </div>
                             <div class="d-flex align-items-center">
-                              <label for="radio-sec-6"> لا </label>
+                              <label for="radio-sec-6"> {{$t('no')}} </label>
                               <v-radio
                                 id="radio-sec-6"
                                 color="#DCB63B"
@@ -753,11 +778,11 @@
                         </v-radio-group>
                       </div>
                       <div>
-                        <span>هل يوجد قرض عقاري</span>
+                        <span> {{$t('loan')}} </span>
                         <v-radio-group v-model="form3.department_loan">
                           <div class="d-flex">
                             <div class="d-flex align-items-center">
-                              <label for="radio-first-7">نعم</label>
+                              <label for="radio-first-7">{{$t('yes')}}</label>
                               <v-radio
                                 id="radio-first-7"
                                 color="#DCB63B"
@@ -766,7 +791,7 @@
                               ></v-radio>
                             </div>
                             <div class="d-flex align-items-center">
-                              <label for="radio-sec-8"> لا </label>
+                              <label for="radio-sec-8"> {{$t('no')}} </label>
                               <v-radio
                                 id="radio-sec-8"
                                 color="#DCB63B"
@@ -780,10 +805,10 @@
                     </div>
                     <div class="btns">
                       <button @click="paymentIndividualBtn = 2, pending3 = false" class="back">
-                        الرجوع
+                        {{$t('back')}}
                       </button>
                       <button @click="paymentFunc3()" :disabled="pending3" class="next gap-2">
-                        التالي
+                        {{$t('next')}}
                         <v-progress-circular v-if="pending3"  indeterminate :size="25" :width="4"></v-progress-circular>
                       </button>
                     </div>
@@ -809,44 +834,44 @@
                             </div>
                             <div class="price">
                               <h4>{{ item.monthly_installment }}</h4>
-                              <span> اجمالي القسط الشهري </span>
+                              <span> {{$t('offer1')}} </span>
                             </div>
                             <v-divider></v-divider>
                             <div class="details">
                               <div class="detail">
                                 <div class="d-flex align-items-center gap-2">
                                   <img src="~/assets/images/det1.png" alt="" />
-                                  <span class="name">مبلغ التمويل</span>
+                                  <span class="name"> {{$t('offer2')}} </span>
                                 </div>
-                                <p class="price">{{ item.fundingAmount }} ريال سعودي</p>
+                                <p class="price">{{ item.fundingAmount }} {{$t('curr')}}</p>
                               </div>
                               <div class="detail">
                                 <div class="d-flex align-items-center gap-2">
                                   <img src="~/assets/images/det2.png" alt="" />
-                                  <span class="name">الدفعة الاولي</span>
+                                  <span class="name"> {{$t('offer3')}}</span>
                                 </div>
-                                <p class="price">{{ item.firs_installment }} ريال سعودي</p>
+                                <p class="price">{{ item.firs_installment }} {{$t('curr')}}</p>
                               </div>
                               <div class="detail">
                                 <div class="d-flex align-items-center gap-2">
                                   <img src="~/assets/images/det3.png" alt="" />
-                                  <span class="name">مدة الاقساط</span>
+                                  <span class="name"> {{$t('offer4')}} </span>
                                 </div>
-                                <p class="price">{{ item.years }} سنة</p>
+                                <p class="price">{{ item.years }} {{$t('year')}}</p>
                               </div>
                               <div class="detail">
                                 <div class="d-flex align-items-center gap-2">
                                   <img src="~/assets/images/det4.png" alt="" />
-                                  <span class="name">الدفعة الاخيرة</span>
+                                  <span class="name"> {{$t('calc3')}}</span>
                                 </div>
-                                <p class="price">{{ item.last_installment }} ريال سعودي</p>
+                                <p class="price">{{ item.last_installment }} {{$t('curr')}}</p>
                               </div>
                               <div class="detail">
                                 <div class="d-flex align-items-center gap-2">
                                   <img src="~/assets/images/det5.png" alt="" />
-                                  <span class="name">الرسوم الادارية</span>
+                                  <span class="name"> {{ $t('offer5') }} </span>
                                 </div>
-                                <p class="price">{{ item.sectorAdministrative_fees }} ريال سعودي</p>
+                                <p class="price">{{ item.sectorAdministrative_fees }} {{$t('curr')}}</p>
                               </div>
                             </div>
                           </label>
@@ -855,26 +880,26 @@
                     </v-radio-group>
                     <div class="btns">
                       <button @click="paymentIndividualBtn = 3" class="back">
-                        الرجوع
+                        {{ $t('back') }}
                       </button>
                       <button @click="paymentFunc4()" class="next">
-                        التالي
+                        {{ $t('next') }}
                       </button>
                     </div>
                   </div>
 
                   <div v-if="paymentIndividualBtn == 5" class="final-review">
                     <div class="offer">
-                      <span class="word">العرض</span>
+                      <span class="word">{{$t('offer')}}</span>
                       <div class="main-container">
                         <div class="name-price">
                           <div class="d-flex main flex-column">
-                            <span class="name">العرض</span>
-                            <p class="type mt-2">عرض رقم : {{ theOffer.bank_offer_id }}</p>
+                            <span class="name">{{$t('offer')}}</span>
+                            <p class="type mt-2"> {{ $t('offernum') }} : {{ theOffer.bank_offer_id }}</p>
                           </div>
                           <div class="d-flex main flex-column">
-                            <h6>{{ theOffer.monthly_installment }} ريال</h6>
-                            <p class="type">اجمالي القسط الشهري</p>
+                            <h6>{{ theOffer.monthly_installment }} {{ $t('curr') }}</h6>
+                            <p class="type"> {{$t('offer1')}} </p>
                           </div>
                         </div>
                         <div class="offer-det">
@@ -882,30 +907,30 @@
                             <div class="d-flex align-items-center gap-4">
                               <div class="d-flex align-items-center gap-2">
                                 <img src="~/assets/images/det1.png" alt="" />
-                                <span>مبلغ التمويل</span>
+                                <span> {{$t('offer2')}} </span>
                               </div>
-                              <h6>{{ theOffer.fundingAmount }} ريال سعودي</h6>
+                              <h6>{{ theOffer.fundingAmount }} {{$t('curr')}}</h6>
                             </div>
                             <div class="d-flex align-items-center gap-3">
                               <div class="d-flex align-items-center gap-2">
                                 <img src="~/assets/images/det2.png" alt="" />
-                                <span>الدفعة الاخيرة</span>
+                                <span>{{$t('calc3')}}</span>
                               </div>
-                              <h6>{{ theOffer.last_installment }} ريال سعودي</h6>
+                              <h6>{{ theOffer.last_installment }} {{$t('curr')}}</h6>
                             </div>
                           </div>
                           <div class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3">
                             <div class="d-flex align-items-center gap-3">
                               <div class="d-flex align-items-center gap-2">
                                 <img src="~/assets/images/det3.png" alt="" />
-                                <span> الدفعة الاولي </span>
+                                <span> {{ $t('offer3') }} </span>
                               </div>
-                              <h6>{{ theOffer.firs_installment }} ريال سعودي</h6>
+                              <h6>{{ theOffer.firs_installment }} {{$t('curr')}}</h6>
                             </div>
                             <div class="d-flex align-items-center gap-3">
                               <div class="d-flex align-items-center gap-2">
                                 <img src="~/assets/images/det4.png" alt="" />
-                                <span>الرسوم الادارية</span>
+                                <span>{{$t('offer5')}}</span>
                               </div>
                               <h6>{{ theOffer.sectorAdministrative_fees }} ريال سعودي</h6>
                             </div>
@@ -914,16 +939,16 @@
                             <div class="d-flex align-items-center gap-3">
                               <div class="d-flex align-items-center gap-2">
                                 <img src="~/assets/images/det3.png" alt="" />
-                                <span> مدة الاقساط </span>
+                                <span> {{$t('offer4')}} </span>
                               </div>
-                              <h6>{{ theOffer.years }} ريال سعودي</h6>
+                              <h6>{{ theOffer.years }} {{$t('year')}}</h6>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="offer">
-                      <span class="word"> بيانات السيارة </span>
+                      <span class="word"> {{$t('carData')}} </span>
                       <div class="main-container">
                         <div class="img-container">
                           <div class="image">
@@ -939,16 +964,16 @@
                     </div>
                     <div>
                       <div class="files-span">
-                        <span class="f1">المرفقات</span>
-                        <span class="f2">( اختياري )</span>
+                        <span class="f1"> {{ $t('uti') }} </span>
+                        <span class="f2">( {{$t('opt')}} )</span>
                       </div>
                       <div class="row">
                         <div class="col-6 col-xl-3 col-lg-3 col-md-4">
                           <label for="fileInput1" class="custom-file-upload">
                             <!-- <span>{{ buttonText }}</span> -->
                             <img src="~/assets/images/file1.png" />
-                            <h6>صورة الهوية</h6>
-                            <span>يمكنك تحميل المرفق بصيغة PDF أو JPG.</span>
+                            <h6> {{$t('immg1')}} </h6>
+                            <span> {{ $t('immg2') }} </span>
                             <span v-if="selectedFileName1">{{
                                 selectedFileName1
                             }}</span>
@@ -963,8 +988,8 @@
                           <label for="fileInput2" class="custom-file-upload">
                             <!-- <span>{{ buttonText }}</span> -->
                             <img src="~/assets/images/file2.png" />
-                            <h6>صورة الرخصة</h6>
-                            <span>يمكنك تحميل المرفق بصيغة PDF أو JPG.</span>
+                            <h6> {{$t('immg3')}} </h6>
+                            <span> {{$t('immg2')}} </span>
                             <span v-if="selectedFileName2">{{
                                 selectedFileName2
                             }}</span>
@@ -979,8 +1004,8 @@
                           <label for="fileInput3" class="custom-file-upload">
                             <!-- <span>{{ buttonText }}</span> -->
                             <img src="~/assets/images/file3.png" />
-                            <h6>تعريف الراتب</h6>
-                            <span>يمكنك تحميل المرفق بصيغة PDF أو JPG.</span>
+                            <h6> {{ $t('immg4') }} </h6>
+                            <span>{{$t('immg2')}}</span>
                             <span v-if="selectedFileName3">{{
                                 selectedFileName3
                             }}</span>
@@ -995,8 +1020,8 @@
                           <label for="fileInput4" class="custom-file-upload">
                             <!-- <span>{{ buttonText }}</span> -->
                             <img src="~/assets/images/file4.png" />
-                            <h6>برنت التأمينات</h6>
-                            <span>يمكنك تحميل المرفق بصيغة PDF أو JPG.</span>
+                            <h6> {{$t('immg5')}} </h6>
+                            <span> {{$t('immg2')}} </span>
                             <span v-if="selectedFileName4">{{
                                 selectedFileName4
                             }}</span>
@@ -1010,13 +1035,13 @@
                       </div>
                       <div class="btns">
                         <button @click="paymentIndividualBtn = 4" class="back">
-                          العودة للعروض
+                          {{ $t('backOf') }}
                         </button>
                         <button
                           @click="paymentFunc5()"
                           class="next"
                         >
-                          ارسال الطلب
+                          {{$t('sendOrd')}}
                         </button>
                       </div>
                     </div>

@@ -33,12 +33,12 @@
                       <div class="text">
                         <div>
                           <h5 :class="{ active: paymentSec1 == 1 }">
-                            بيانات السيارة
+                            {{ $t('carData') }}
                           </h5>
                         </div>
                         <div>
                           <h5 :class="{ active: paymentSec2 == 1 }">
-                            بيانات المنشأة
+                            {{ $t('orgData') }}
                           </h5>
                         </div>
                
@@ -48,13 +48,13 @@
                     <div class="content-pagination ">
                       <div>
                         <h5 :class="{ active: paymentSec1 == 1 }">
-                          بيانات السيارة
+                          {{ $t('carData') }}
                         </h5>
                         <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                       </div>
                       <div>
                         <h5 :class="{ active: paymentSec2 == 1 }">
-                          بيانات المنشأة
+                           {{ $t('orgData') }}
                         </h5>
                         <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
                       </div>
@@ -86,7 +86,7 @@
                   </div>
                     <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                       <div class="input-container">
-                        <span> ماركة السيارة </span>
+                        <span> {{ $t('carBrand') }} </span>
                         <div class="input">
                           <Dropdown
                             v-model="item.brand"
@@ -94,7 +94,7 @@
                             filter
                             optionLabel="title"
                             optionValue="id"
-                            placeholder="مثال : شركة"
+                            placeholder=""
                             class=""
                           >
                             <template #option="slotProps">
@@ -109,7 +109,7 @@
                         </div>
                       </div>
                       <div class="input-container">
-                        <span> موديل السيارة</span>
+                        <span> {{ $t('carModel') }} </span>
                         <div class="input">
                           <Dropdown
                             v-model="item.model"
@@ -134,14 +134,14 @@
                     </div>
                     <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                       <div class="input-container">
-                        <span> سنة الصنع </span>
+                        <span> {{ $t('theYear') }} </span>
                         <div class="input">
                           <Dropdown
                             v-model="item.year"
                             :options="optionsCars.year"
                             filter
                             optionLabel=""
-                            placeholder=""
+                            placeholder="2024"
                             class=""
                           >
                             <template #option="slotProps">
@@ -157,7 +157,7 @@
                         </div>
                       </div>
                       <div class="input-container">
-                        <span> نوع الجير </span>
+                        <span> {{ $t('gear') }} </span>
                         <div class="input">
                         <Dropdown
                             v-model="item.gear_shifter"
@@ -184,7 +184,7 @@
                     </div>
                     <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                       <div class="input-container">
-                        <span>اللون</span>
+                        <span>{{ $t('color') }}</span>
                         <div class="input">
                           <Dropdown
                             v-model="item.color"
@@ -192,7 +192,7 @@
                             filter
                             optionLabel="title"
                             optionValue="id"
-                            placeholder="رصاصي"
+                            :placeholder="$t('example6')"
                             class=""
                           >
                             <template #option="slotProps">
@@ -208,13 +208,13 @@
                       </div>
 
                       <div class="input-container">
-                        <span> عدد السيارات المطلوبة</span>
+                        <span> {{ $t('numCars') }} </span>
                         <div class="input">
                           <input
                             type="number"
                             min="1"
                             v-model="item.car_count"
-                            placeholder="3 سيارات"
+                            placeholder="3"
                             name=""
                             class=""
                           />
@@ -231,21 +231,21 @@
       <path d="M7.99967 11.3334C7.82286 11.3334 7.65329 11.2632 7.52827 11.1382C7.40325 11.0131 7.33301 10.8436 7.33301 10.6667V5.33341C7.33301 5.1566 7.40325 4.98703 7.52827 4.86201C7.65329 4.73699 7.82286 4.66675 7.99967 4.66675C8.17649 4.66675 8.34605 4.73699 8.47108 4.86201C8.5961 4.98703 8.66634 5.1566 8.66634 5.33341V10.6667C8.66634 10.8436 8.5961 11.0131 8.47108 11.1382C8.34605 11.2632 8.17649 11.3334 7.99967 11.3334Z" fill="white"/>
       <path d="M5.33268 8.66671C5.15587 8.66671 4.9863 8.59647 4.86128 8.47144C4.73625 8.34642 4.66602 8.17685 4.66602 8.00004C4.66602 7.82323 4.73625 7.65366 4.86128 7.52864C4.9863 7.40361 5.15587 7.33337 5.33268 7.33337H10.666C10.8428 7.33337 11.0124 7.40361 11.1374 7.52864C11.2624 7.65366 11.3327 7.82323 11.3327 8.00004C11.3327 8.17685 11.2624 8.34642 11.1374 8.47144C11.0124 8.59647 10.8428 8.66671 10.666 8.66671H5.33268Z" fill="white"/>
     </svg>
-                     <span style="color:#DCB63B; font-size: 14px;">اضافة سيارة اخري </span>
+                     <span style="color:#DCB63B; font-size: 14px;"> {{$t('addCar')}}</span>
                     </div>
                     </div>
                   </div>
                   <div class="d-flex justify-content-end">
               
                       <button v-if="paymentIndividualBtn2 == 1" :disabled="pendingCorp1" class="corpBtn d-flex align-items-center gap-2" @click=" sendCorporate1()">
-                      التالي
+                        {{ $t('next') }}
                       <v-progress-circular v-if="pendingCorp1"   indeterminate :size="25" :width="4"></v-progress-circular>
                       </button>
                   </div>
                   <div v-if="paymentIndividualBtn2 == 2" class="form-ind">
                     <div class="d-flex gap-3">
                       <div class="input-container">
-                        <span> اسم المنشأة</span>
+                        <span> {{ $t('name3') }} </span>
                         <div class="input">
                           <input
                             type="text"
@@ -261,7 +261,7 @@
                       </div>
 
                       <div class="input-container">
-                        <span> نوع المنشأة </span>
+                        <span> {{ $t('orgType') }} </span>
                         <div class="input">
                           <input
                             type="text"
@@ -278,11 +278,11 @@
                     </div>
                     <div class="d-flex gap-3">
                       <div class="input-container">
-                        <span> رقم السجل التجاري</span>
+                        <span> {{ $t('nummm') }} </span>
                         <div class="input">
                           <input
                             type="tel"
-                            placeholder="مثال : 3333-5555-9999-55"
+                            placeholder=" 3333-5555-9999-55"
                             name=""
                             v-model="form4.commercial_registration_no"
                             class=""
@@ -294,7 +294,7 @@
                       </div>
 
                       <div class="input-container">
-                        <span> نشاط المنشأة </span>
+                        <span> {{ $t('orgAct') }} </span>
                         <div class="input">
                           <input
                             type="text"
@@ -311,11 +311,11 @@
                     </div>
                     <div class="d-flex gap-3">
                       <div class="input-container">
-                        <span> اسم الشخص المسؤول </span>
+                        <span> {{ $t('name4') }} </span>
                         <div class="input">
                           <input
                             type="text"
-                            placeholder="مثال : محمد سيد"
+                            placeholder=""
                             name=""
                             v-model="form4.name"
                             class=""
@@ -327,11 +327,11 @@
                       </div>
 
                       <div class="input-container">
-                        <span> رقم الهاتف </span>
+                        <span> {{ $t('phone') }} </span>
                         <div class="input">
                           <input
                             type="tel"
-                            placeholder="مثال : 3333-5555-9999-55"
+                            placeholder=" 3333-5555-9999-55"
                             name=""
                             v-model="form4.phone"
                             class=""
@@ -344,12 +344,12 @@
                     </div>
                     <div class="d-flex gap-3">
                       <div class="input-container">
-                        <span> عمر المنشأة </span>
+                        <span> {{ $t('orgAge') }} </span>
                         <div class="input">
                           <input
                             type="number"
                             min="1"
-                            placeholder="مثال : 4 سنوات"
+                            placeholder="4"
                             name=""
                             v-model="form4.organization_age"
                             class=""
@@ -361,7 +361,7 @@
                       </div>
 
                       <div class="input-container">
-                        <span> المدينة </span>
+                        <span> {{ $t('city') }} </span>
                         <div class="input">
                           <Dropdown
                             v-model="form4.city_id"
@@ -369,7 +369,7 @@
                             filter
                             optionLabel="name"
                             optionValue="id"
-                            placeholder="ابها"
+                            :placeholder="$t('city')"
                             class=""
                           >
                             <template #option="slotProps">
@@ -386,7 +386,7 @@
                     </div>
                     <div class="d-flex gap-3">
                       <div class="input-container">
-                        <span> حساب المنشأة لدي البنك</span>
+                        <span> {{ $t('bankk') }} </span>
                         <div class="input">
                           <Dropdown
                             v-model="form4.bank_id"
@@ -394,7 +394,7 @@
                             filter
                             optionLabel="name"
                             optionValue="id"
-                            placeholder="مثال : مصرف الجارحي"
+                            :placeholder="$t('example8')"
                             class=""
                           >
                             <template #option="slotProps">
@@ -411,14 +411,14 @@
                     </div>
                     <div class="btns">
                       <button @click="paymentIndividualBtn2 = 1" class="back">
-                        الرجوع
+                        {{ $t('back') }}
                       </button>
                       <button
                         @click="sendCorporate2()"
                         class="next gap-2"
                         :disabled="pendingCorp2"
                       >
-                        ارسال الطلب
+                       {{ $t('sendOrd') }}
                       <v-progress-circular v-if="pendingCorp2"   indeterminate :size="25" :width="4"></v-progress-circular>
                       </button>
                     </div>

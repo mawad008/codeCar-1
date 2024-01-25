@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["nuxt-swiper", "@nuxtjs/i18n", "nuxt-primevue" , 'nuxt-aos'],
+  modules: ["nuxt-swiper", "@nuxtjs/i18n", "nuxt-primevue", "nuxt-aos"],
   plugins: [{ src: "~/plugins/lottie.js", mode: "client" }],
   i18n: {
     lazy: true,
@@ -25,6 +25,13 @@ export default defineNuxtConfig({
       },
     ],
     defaultLocale: "ar",
+  },
+  ssr: true,
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      failOnError: false,
+    },
   },
   app: {
     head: {

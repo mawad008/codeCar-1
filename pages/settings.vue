@@ -1055,6 +1055,7 @@ const updatePassword = async ()=>{
 
     if(result.status >= 200){
             pending2.value = false;
+      form1.value = '';
             errors2.value = [];
       createToast(
           {
