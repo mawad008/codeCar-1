@@ -8,7 +8,7 @@
         <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
-            <v-icon icon="mdi-chevron-left"></v-icon>
+            <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
           </template>
         </v-breadcrumbs>
       </div>
@@ -165,20 +165,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 
-.corpBtn{
-  display: flex;
-width: 200px;
-height: 48px;
-padding: 8px 16px;
-justify-content: center;
-align-items: center;
-align-content: center;
-gap: 8px;
-border-radius: 12px;
-color: #fff;
-font-weight: 700;
-background:  #2D3A4A;
-}
+
 .finance-container {
   margin-top: 72px !important;
   margin-bottom: 140px;

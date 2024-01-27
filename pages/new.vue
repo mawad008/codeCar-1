@@ -25,7 +25,7 @@
                 </div>
                 <v-breadcrumbs :items="items">
                     <template v-slot:divider>
-                        <v-icon icon="mdi-chevron-left"></v-icon>
+                        <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
                     </template>
                 </v-breadcrumbs>
             </div>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-12 col-xl-4 col-lg-4">
                         <div class="news-box">
-                            <h5>احدث الاخبار</h5>
+                            <h5>{{ $t('newss1') }}</h5>
                             <div class="boxes">
                                 <div v-for="item in newsArr.latest" class="box my-2">
                                     <div class="image">
@@ -73,7 +73,7 @@
                                                 <span>{{ item.created_at }}</span>
                                             </div>
                                             <div @click="id = item.id , getNewsData()" class="icon">
-                                                <i class="fa-solid fa-arrow-left"></i>
+                                                <i class="fa-solid fa-arrow-left arrow-icon"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -81,7 +81,7 @@
                             </div>
                         </div>
                         <div class="news-box">
-                            <h5>احدث الاخبار</h5>
+                            <h5>{{ $t('newss2') }}</h5>
                             <div class="icons">
                              <button @click="copyToClipboard();" class="iconn">
                               <img v-if="check" src="~/assets/images/share1.svg" alt="">

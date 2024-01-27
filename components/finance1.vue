@@ -264,7 +264,7 @@
                 </div> -->
                     <div class="d-flex justify-content-end">
                       <button @click=" paymentFunc1()" :disabled="pending1" class="next-step gap-3">
-                        التالي
+                         {{$t('next')}}
                         <v-progress-circular v-if="pending1"  indeterminate :size="25" :width="4"></v-progress-circular>
                       </button>
                     </div>
@@ -281,6 +281,7 @@
                           <Dropdown
                             v-model="form2.brand"
                             :options="brands"
+                          :filter-placeholder="$t('search')"
                             filter
                             optionValue="id"
                             optionLabel="title"
@@ -306,6 +307,7 @@
                         <div class="input">
                           <Dropdown
                             v-model="form2.model"
+                          :filter-placeholder="$t('search')"
                             :options="form2.brand != '' ? getmodels[0].models : ''"
                             filter
                             optionLabel="name"
@@ -333,6 +335,8 @@
                         <span> {{$t('theYear')}}</span>
                         <div class="input">
                           <Dropdown
+                          :filter-placeholder="$t('search')"
+
                             v-model="form2.year"
                             :options="optionsCars.year"
                             filter
@@ -361,6 +365,8 @@
                             v-model="form2.gear_shifter"
                             :options="gear_shifterArr"
                             filter
+                          :filter-placeholder="$t('search')"
+
                             optionLabel="name"
                             optionValue="value"
                             placeholder=""
@@ -389,6 +395,8 @@
                             v-model="form2.color_id"
                             :options="optionsCars.colors"
                             filter
+                          :filter-placeholder="$t('search')"
+
                             optionLabel="title"
                             optionValue="id"
                             :placeholder="$t('example6')"
@@ -450,7 +458,7 @@
                           <span class="error-msg" v-if="v3$.phone.$error">{{
                               v3$.phone.$errors[0].$message
                           }}</span>
-                  <span class="error-msg2 position-relative" style="position:relative;" v-if="errors3.phone">{{
+                  <span class="error-msg2 d-block position-relative" style="position:relative;" v-if="errors3.phone">{{
                       errors3.phone[0]
                   }}</span>
                         </div>
@@ -464,6 +472,8 @@
                             v-model="form3.sex"
                             :options="sexArr"
                             filter
+                          :filter-placeholder="$t('search')"
+
                             optionLabel="name"
                             optionValue="value"
                             placeholder=""
@@ -504,6 +514,8 @@
                             v-model="form3.city_id"
                             :options="cities"
                             filter
+                          :filter-placeholder="$t('search')"
+                          
                             optionLabel="name"
                             optionValue="id"
                             placeholder=""
@@ -546,6 +558,8 @@
                             v-model="form3.sector"
                             :options="optionsCars.sectors"
                             filter
+                          :filter-placeholder="$t('search')"
+
                             optionLabel="name"
                             optionValue="id"
                             :placeholder="$t('example7')"
@@ -598,6 +612,8 @@
                             v-model="form3.bank"
                             :options="optionsCars.banks"
                             filter
+                          :filter-placeholder="$t('search')"
+
                             optionLabel="name"
                             optionValue="id"
                             :placeholder="$t('example8')"
@@ -645,6 +661,8 @@
                             v-model="form3.transferd_type"
                             :options="transferArr"
                             filter
+                          :filter-placeholder="$t('search')"
+
                             optionValue="value"
                             optionLabel="name"
                             placeholder="محول"
@@ -815,8 +833,8 @@
                   </div>
 
                   <div v-if="paymentIndividualBtn == 4" class="offers">
-                    <v-radio-group v-model="bank_offer_id">
-                      <div class="row">
+                    <v-radio-group  v-model="bank_offer_id">
+                      <div v-if="offers.length >= 1" class="row">
                         <div v-for="item, index in offers" class="col-12 col-xl-6 col-lg-6">
                           <label :for="`offer-${index}-1`" class="offer">
                             <div
@@ -1123,7 +1141,7 @@ let checkBtn5 = ref(0);
 let gear_shifterArr = ref([
     {
         value: "manual",
-        name: locale.value == 'ar' ? 'جير عادي' : 'manual'
+        name: locale.value == 'ar' ? ' جير عادي ' : 'manual'
     },
     {
         value: "automatic",

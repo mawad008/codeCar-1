@@ -4,7 +4,7 @@
       <div
         class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column"
       >
-        <h4 class="heading-text">الاعدادت</h4>
+        <h4 class="heading-text"> {{ $t('settings') }} </h4>
         <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
 
         <v-breadcrumbs :items="items">
@@ -29,7 +29,7 @@
                   />
                 </svg>
               </div>
-              <span> الملف الشخصي </span>
+              <span> {{$t('personal')}} </span>
             </div>
             <div
               @click="settingNav = 2"
@@ -41,7 +41,7 @@
                   <img class="img1" src="~/assets/images/ads.svg" />
                   <img class="img2" src="~/assets/images/ads-active.svg" />
                 </div>
-                <span> اعلاناتي </span>
+                <span> {{$t('Ads')}} </span>
               </div>
               <div class="num">
                 <span> {{ carsAds.length }} </span>
@@ -71,7 +71,7 @@
                   />
                 </svg>
               </div>
-              <span> الاشعارات </span>
+              <span> {{$t('noti')}}  </span>
             </div>
             <div
               @click="settingNav = 5"
@@ -104,7 +104,7 @@
                   />
                 </svg>
               </div>
-              <span> الامان </span>
+              <span> {{$t('sec')}} </span>
             </div>
             <button
               data-bs-toggle="modal"
@@ -112,7 +112,7 @@
               class="item"
             >
               <div class="out">
-                <span> تسجيل الخروج </span>
+                <span> {{ $t('out') }} </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -195,23 +195,23 @@
                       </svg>
                 
                 </div>
-                <span class="img-span">الصورة الشخصية</span>
+                <span class="img-span"> {{ $t('pimg') }} </span>
               </div>
               <div class="personal-form">
                 <div class="input">
                   <label for="">
-                    <h6>الاسم</h6>
-                    <span>اسمك بالكامل</span>
+                    <h6>{{$t('name0')}}</h6>
+                    <span> {{ $t('name10') }}</span>
                   </label>
-                  <input type="text" v-model="form.name" placeholder="فهمي سوادة" />
+                  <input type="text" v-model="form.name" :placeholder="$t('name')" />
                 </div>
                   <span class="error-msg mb-3" v-if="errors1.name">{{
                 errors1.name[0]
               }}</span>
                 <div class="input">
                   <label for="">
-                    <h6>رقم الهاتف</h6>
-                    <span>رقم الهاتف الخاص بك</span>
+                    <h6>{{ $t('phone') }}</h6>
+                    <span> {{ $t('phone10') }} </span>
                   </label>
                   <input type="tel" v-model="form.phone" placeholder="01012151698+" />
              
@@ -221,22 +221,22 @@
                 </div>
                 <div class="input">
                   <label for="">
-                    <h6>رقم الهوية</h6>
-                    <span> رقم الهوية الخاص بك </span>
+                    <h6> {{ $t('ident') }} </h6>
+                    <span> {{ $t('ident10') }} </span>
                   </label>
                   <input type="tel" readonly v-model="form.identity_no"  placeholder="8418988989-5894848-878" />
                 </div>
                 <div class="input">
                   <label for="">
-                    <h6>رقم السجل التجاري</h6>
-                    <span> رقم السجل التجاري الخاص بك</span>
+                    <h6> {{ $t('nummm') }} </h6>
+                    <span> {{ $t('nummm10') }} </span>
                   </label>
                   <input type="text" readonly v-model="form.commercial_registration_no" placeholder="8418988989-5894848-878" />
                 </div>
                 <div class="input">
                   <label for="">
-                    <h6>المدينة</h6>
-                    <span> المدينة الخاصة بك</span>
+                    <h6>{{ $t('city') }}</h6>
+                    <span> {{ $t('city10') }} </span>
                   </label>
                   <div>
                   <Dropdown
@@ -245,7 +245,7 @@
                     :filter-placeholder="$t('search')"
                     filter
                     optionLabel="name"
-                    placeholder="المدينة"
+                    :placeholder="$t('city')"
                     class=""
                   >
                     <template #option="slotProps">
@@ -261,7 +261,7 @@
                 </div>
                 <div class="d-flex justify-content-center justify-content-xl-start justify-content-lg-start">
                 <button @click="updateProfile()" class="d-flex gap-3" :disabled="pending1">
-                حفظ التعديلات
+                 {{ $t('save') }}
                 <v-progress-circular v-if="pending1" indeterminate :size="27" :width="4"></v-progress-circular>
                 
                 </button> 
@@ -280,7 +280,7 @@
                       :options="carBody"
                       filter
                       optionLabel="name"
-                      placeholder="حالة السيارة"
+                      :placeholder="$t('carStat')"
                       class=""
                     >
                       <template #option="slotProps">
@@ -295,7 +295,7 @@
                       :filter-placeholder="$t('search')"
                       filter
                       optionLabel="name"
-                      placeholder="الماركة"
+                      :placeholder="$t('brand')"
                       class=""
                     >
                       <template #option="slotProps">
@@ -310,7 +310,7 @@
                       :options="countries"
                       filter
                       optionLabel="name"
-                      placeholder="حالة الاعلان"
+                      :placeholder="$t('adS')"
                       class=""
                     >
                       <template #option="slotProps">
@@ -324,17 +324,17 @@
                     <div class="icon">
                       <i class="fa-solid fa-plus"></i>
                     </div>
-                    <span>اضافة اعلان </span>
+                    <span> {{ $t('adAd') }} </span>
                   </nuxt-link>
                 </div>
 
                 <div class="filter-table">
                   <div class="head">
-                    <span>الاسم الصورة</span>
-                    <span>السعر</span>
-                    <span>تاريخ النشر</span>
-                    <span>حالة السيارة</span>
-                    <span>حالة الاعلان</span>
+                    <span> {{ $t('nameimg') }}</span>
+                    <span>{{$t('price')}}</span>
+                    <span>{{$t('datee')}}</span>
+                    <span>{{ $t('carStat') }}</span>
+                    <span>{{$t('adS')}}</span>
                   </div>
                   <div v-for="(item, index) in carsAds" :key="index" class="content">
                     <div class="img-container">
@@ -343,15 +343,15 @@
                       </div>
                       <h5>{{ item.main_title }}</h5>
                     </div>
-                    <span class="price">{{ item.price }} ر.س</span>
-                    <span class="date">{{ item.publish_date }}</span>
+                    <span class="price">{{ item.price }} {{$t('curr')}}</span>
+                    <span class="date">{{ item.publish_date }}</span>  
                     <span class="stat">{{ item.statue }}</span>
                     <div v-if="item.statusCar == 2" class="switch-container d-flex align-items-center gap-2">
-                    <span :class="{ 'active': item.show_in_home_page }">{{ item.show_in_home_page ? 'مفعل' : 'غير مفعل' }}</span>
+                    <span :class="{ 'active': item.show_in_home_page }">{{ item.show_in_home_page ? active : unActive }}</span>
                     <v-switch v-model="item.show_in_home_page" color="#38A2A4" @change="activeCar(item.id , item.show_in_home_page )"></v-switch>
                     </div>
-                    <span  v-else-if="item.statusCar == 1 "> قيد المراجعة </span>
-                    <span  v-else> مرفوض </span>
+                    <span  v-else-if="item.statusCar == 1 "> {{ $t('under') }} </span>
+                    <span  v-else> {{$t('rej')}} </span>
                     <button class="setting-btn">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -370,7 +370,7 @@
                           <v-dialog>
                             <template v-slot:activator="{ props }">
                               <button v-bind="props" class="link">
-                                <span class="f1">التقارير</span>
+                                <span class="f1"> {{$t('stat')}} </span>
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   width="24"
@@ -419,19 +419,19 @@
                                 </svg>
                                 <div class="text">
                                   <div class="item">
-                                    <span>طلبات الشراء</span>
-                                    <h5>{{ item.reports.Orders }} طلب</h5>
+                                    <span> {{ $t('order2') }} </span>
+                                    <h5>{{ item.reports.Orders }} {{ $t('order1') }}</h5>
                                   </div>
                                   <div class="item">
-                                    <span>طلبات التمويل</span>
-                                    <h5>{{ item.reports.financerequests }}  طلب</h5>
+                                    <span> {{ $t('order3') }} </span>
+                                    <h5>{{ item.reports.financerequests }}  {{ $t('order1') }}</h5>
                                   </div>
                                   <div class="item">
-                                    <span>المشاهدات</span>
+                                    <span> {{$t('views')}}</span>
                                     <h5>{{ item.reports.viewers }}</h5>
                                   </div>
                                 </div>
-                                <button @click="isActive.value = false" type="">الرجوع</button>
+                                <button @click="isActive.value = false" type="">{{ $t('back') }}</button>
                                 <i @click="isActive.value = false" class="fa-solid fa-xmark"></i>
                               </div>
                             
@@ -440,7 +440,7 @@
                           </v-dialog>
                         
                             <nuxt-link :to="localePath({path:'/ad-edit',query:{id:item.id}})" class="link">
-                                <span class="f2">تعديل الاعلان</span>
+                                <span class="f2"> {{$t('editAd')}} </span>
                           <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -529,7 +529,7 @@
                           <v-dialog>
                             <template v-slot:activator="{ props }">
                               <button v-bind="props" class="link">
-                                <span class="f3">حذف الاعلان</span>
+                                <span class="f3"> {{ $t('deleteAd') }} </span>
                                 <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="24"
@@ -552,13 +552,13 @@
                             <template v-slot:default="{ isActive }">
                               <div class="modal-dialog">
                       <div class="modal-content log-out-modal">
-                        <h3>هل أنت متأكد من رغبتك في تسجيل الخروج؟</h3>
+                        <h3> {{ $t('sure1') }} </h3>
 
                         <div class="btns">
                           <button @click="isActive.value = false" class="back">
-                              رجوع
+                              {{ $t('back') }}
                             </button>
-                          <button @click="deleteCar(item.id), isActive.value = false" class="out">حذف</button>
+                          <button @click="deleteCar(item.id), isActive.value = false" class="out">{{ $t('delete') }}</button>
                         </div>
                       </div>
                     </div>
@@ -576,13 +576,12 @@
              
               <div v-else class="empty">
                 <div class="main">
-                  <h4>لا توجد حاليًا أي إعلانات</h4>
+                  <h4> {{ $t('stateAd1') }} </h4>
                   <span>
-                    يمكنك بسهولة إضافة سيارتك للبيع وإدارة إعلاناتك من هنا. ابدأ
-                    الآن في نشر إعلانك وجذب المزيد من الاهتمام!
+                   {{$t('')}}
                   </span>
                   <nuxt-link :to="localePath('/ad')">
-                  <button>اضف اعلانك</button>
+                  <button>{{$t('adAd')}}</button>
                   </nuxt-link>
                 </div>
               </div>
@@ -786,8 +785,8 @@
               <div class="personal-form">
                 <div class="input">
                   <label for="">
-                    <h6>كلمة المرور</h6>
-                    <span>كلمة المرور الحالية</span>
+                    <h6> {{ $t('pass1') }}</h6>
+                    <span> {{ $t('pass2') }} </span>
                   </label>
                   <input type="password" v-model="form1.old_password" placeholder="***********" />
                 </div>
@@ -796,8 +795,8 @@
               }}</span>
                 <div class="input">
                   <label for="">
-                    <h6>كلمة المرور الجديدة</h6>
-                    <span>كلمة المرور الجديدة</span>
+                    <h6> {{ $t('pass3') }} </h6>
+                    <span> {{ $t('pass3') }} </span>
                   </label>
                   <input type="password" v-model="form1.password" placeholder="*********" />
                 </div>
@@ -806,8 +805,8 @@
               }}</span>
                 <div class="input">
                   <label for="">
-                    <h6>تأكيد كلمة المرور الجديدة</h6>
-                    <span>كلمة المرور الجديدة</span>
+                    <h6> {{ $t('pass4') }} </h6>
+                    <span> {{ $t('pass3') }}</span>
                   </label>
                   <input type="password" v-model="form1.password_confirmation" placeholder="**********" />
                 </div>
@@ -816,7 +815,7 @@
               }}</span>
                  <div class="d-flex justify-content-center justify-content-xl-start justify-content-lg-start">
                 <button @click="updatePassword()" class="gap-3">
-                حفظ التعديلات
+                  {{ $t('save') }}
                 <v-progress-circular v-if="pending2" indeterminate :size="27" :width="4"></v-progress-circular>
                 
                 </button> 
@@ -825,7 +824,7 @@
             </div>
           </div>
             <button  data-bs-toggle="modal" data-bs-target="#logout-modal" class="log-out-btn">
-            تسجيل الخروج
+             {{ $t('out') }}
             <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -855,12 +854,12 @@
       >
         <div class="modal-dialog">
           <div class="modal-content log-out-modal">
-            <h3>هل أنت متأكد من رغبتك في تسجيل الخروج؟</h3>
+            <h3> {{ $t('sure2') }} </h3>
 
             <div class="btns">
-              <button class="out" @click="logOut()" data-bs-dismiss="modal" aria-label="Close">تسجيل خروج</button>
+              <button class="out" @click="logOut()" data-bs-dismiss="modal" aria-label="Close"> {{ $t('out') }} </button>
               <button class="back" data-bs-dismiss="modal" aria-label="Close">
-                العودة
+                {{ $t('back') }}
               </button>
             </div>
           </div>
@@ -933,6 +932,8 @@ const countries = ref([
   { name: "United States", code: "US" },
 ]);
 
+let active = ref('مفعل');
+let unActive = ref('غير مفعل')
 let value1 = ref("value is required");
 let value2 = ref("The email field is required");
 let value3 = ref("Invalid email format");
@@ -948,6 +949,8 @@ if (locale.value == "ar") {
   title.value = "تم تحديث البايانات بنجاح";
   title1.value = "تم الحذف بنجاح";
   title2.value = "تم تحديث كلمة السر بنجاح";
+  active.value = "مفعل";
+  unActive.value = " غير مفعل";
 } else {
   value1.value = "value is required";
   value2.value = "The email field is required";
@@ -956,6 +959,8 @@ if (locale.value == "ar") {
   title.value = "Data updated successfully";
   title1.value = "removed successfully";
   title2.value = "password updated successfully";
+    active.value = "active";
+  unActive.value = "unActive";
 }
 
 
@@ -974,11 +979,11 @@ let pending2 = ref(false);
 const v1$ = useValidate(rules1, form);
 let carBody = ref([
   {
-    name: "مستعمل",
+    name: locale.value == "ar" ? "مستعمل" : "used",
     value: 0,
   },
   {
-    name: "جديد",
+    name: locale.value == "ar" ? "جديد" : "new",
     value: 1,
   },
 ]);
@@ -1159,12 +1164,12 @@ const logOut = ()=>{
 
 let items = ref([
   {
-    title: "الرئيسية",
+    title: locale.value == "ar" ? "الرئيسية" : "home",
     disabled: true,
     href: "/",
   },
   {
-    title: "الاعدادت",
+    title: locale.value == "ar" ? "الاعدادت" : "settings",
     disabled: false,
     href: "settings",
   },

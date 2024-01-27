@@ -9,7 +9,7 @@
 
                 <v-breadcrumbs :items="items">
                     <template v-slot:divider>
-                        <v-icon icon="mdi-chevron-left"></v-icon>
+                        <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
                     </template>
                 </v-breadcrumbs>
             </div>
@@ -45,7 +45,7 @@
                                     <div class="d-flex align-items-center justify-content-between">
                                     <h4>{{ item.title }}</h4>
                                       <div @click="goToNewPage(item.id , item.title)" class="icon" >
-                                      <i class="fa-solid fa-arrow-left"></i>
+                                      <i class="fa-solid fa-arrow-left arrow-icon"></i>
                                       </div>
                                     </div>
                                 </div>

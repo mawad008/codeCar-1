@@ -7,7 +7,7 @@
 
                 <v-breadcrumbs :items="items">
                     <template v-slot:divider>
-                        <v-icon icon="mdi-chevron-left"></v-icon>
+                        <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
                     </template>
                 </v-breadcrumbs>
             </div>
@@ -17,7 +17,7 @@
                     <div class="col-12 col-xl-7 col-lg-7 order-2 order-xl-1 order-lg-1">
                         <div class="text-container">
                             <div class="text">
-                                <h6>عننا !</h6>
+                                <h6>{{ $t('about2') }}</h6>
                                 <div></div>
                                 <span> {{ aboutArr.description_card }} </span>
                             </div>

@@ -113,7 +113,7 @@
                         <div class="input">
                           <Dropdown
                             v-model="item.model"
-                            :options="getmodels2[index][0] ? getmodels2[index][0].models : ''"
+                            :options="getmodels2(index) ? getmodels2(index) : []"
                             filter
                             optionLabel="name"
                             optionValue="id"
@@ -604,14 +604,27 @@ const isFormFilled = () => {
 
 
 
-const getmodels2 = computed(() => {
+// const getmodels2 = computed(() => {
+//   if (optionsCars.value.brands) {
+//     let temp =  form.value.map((ele) => {
+//         return optionsCars.value.brands.filter((e) => {
+//             return ele.brand == e.id
+//         })
+//     });
+//     return temp[0].models;
+// }
+// });
 
-    return form.value.map((ele) => {
-        return optionsCars.value.brands.filter((e) => {
-            return ele.brand == e.id
-        })
+const getmodels2 = (index) => {
+    if (optionsCars.value.brands) {
+    let temp = form.value.map((ele) => {
+      return optionsCars.value.brands.filter((e) => {
+        return ele.brand == e.id
+      })
     });
-});
+    return temp[index][0] ? temp[index][0].models : [];
+  }
+}
 
 let errors4 = ref([]);
 const rules = computed(() => form.value.map(() => ({
@@ -750,7 +763,20 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss" >
+.corpBtn{
+  display: flex;
+width: 200px;
+height: 48px;
+padding: 8px 16px;
+justify-content: center;
+align-items: center;
+align-content: center;
+gap: 8px;
+border-radius: 12px;
+color: #fff;
+font-weight: 700;
+background:  #2D3A4A;
+}
 
 </style>

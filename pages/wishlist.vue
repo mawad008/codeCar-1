@@ -2,12 +2,12 @@
     <div>
        <div class="container wishlist">
         <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
-                <h4 class="heading-text"> قائمة المفضلة </h4>
+                <h4 class="heading-text"> {{ $t('fav') }} </h4>
                 <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
 
                 <v-breadcrumbs :items="items">
                     <template v-slot:divider>
-                        <v-icon icon="mdi-chevron-left"></v-icon>
+                        <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
                     </template>
                 </v-breadcrumbs>
             </div>
@@ -27,16 +27,19 @@
 
 <script setup>
 
+const localePath = useLocalePath();
+const { locale } = useI18n();
+
 let items = ref([
     {
-        title: "الرئيسية",
+        title: locale.value == "ar" ? "الرئيسية" : "home",
         disabled: true,
         href: "/",
     },
     {
-        title: "تتبع طلبك",
+        title: locale.value == "ar" ? "قائمة المفضلة" : "wishlist",
         disabled: false,
-        href: "orders",
+        href: "wishlist",
     },
 ]);
 </script>

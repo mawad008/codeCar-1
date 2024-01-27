@@ -6,12 +6,12 @@
             </div>
             <span class="namee">{{ car.statue }}</span>
             <div class="name d-flex flex-column">
-                <span class="used"> خصم {{ Math.round(car.discount_percentage) }} % </span>
+                <span class="used"> {{ $t('discc') }} {{ Math.round(car.discount_percentage) }} % </span>
                 <h4>{{ car.title }}</h4>
             </div>
             <div class="price d-flex align-items-center w-100 justify-content-center gap-3">
-                <h6>{{ car.price }} ر.س</h6>
-                <span> {{Math.round(car.price_after_tax)}} ر.س شامل ضريبة </span>
+                <h6>{{ car.price }} {{ $t('curr') }}</h6>
+                <span> {{Math.round(car.price_after_tax)}} {{ $t('curr') }} {{ $t('taxes') }}</span>
             </div>
             <div class="types">
                 <div class="type">
@@ -62,7 +62,7 @@
             
                 <button>
               
-                <nuxt-link class="w-100" :to="localePath({path:'/car',query:{id:car.id}})">  شراء الان</nuxt-link>
+                <nuxt-link class="w-100" :to="localePath({path:'/car',query:{id:car.id}})">  {{ $t('buy') }} </nuxt-link>
                 </button>
                 <div class="icon">
                     <img src="~/assets/images/heart.png" />

@@ -71,6 +71,7 @@ $margin-bottom-mobile: 50px;
 
 html[dir="ltr"] .arrow-icon{
  transform: scaleX(-1);
+ cursor: pointer;
 }
 
 @media (max-width: 760px) {
@@ -116,7 +117,8 @@ a {
   // width: 100%;
   height: fit-content;
   .used {
-    width: 66px;
+    width: fit-content;
+    padding: 0px 4px;
     height: 33px;
     display: flex;
     align-items: center;
@@ -319,6 +321,7 @@ html[dir="rtl"] input[type="tel"] {
   color: #ed3f3f !important;
   font-size: 13px !important;
   white-space: nowrap;
+  display: block;
 }
 
 .up-arrow-icon{
@@ -599,6 +602,25 @@ p{
   }
 }
 
+  html[dir="ltr"] .main-auth{
+    .form-inputs{
+      
+      .form{
+        
+            .input {
+      &.pass {
+        .icon {
+          left: auto;
+          right: 20px;
+        }
+      }
+        }
+      
+      }
+    
+    }
+
+    }
 .input {
   input {
     outline: none;
@@ -770,6 +792,14 @@ p{
   }
 }
 
+  html[dir="ltr"] .navbar {
+    .searchBar{
+    left: auto;
+    right: 58px;
+
+      }
+    
+    }
 .footer-container {
   background-color: #1b2126;
   color: #fff;
@@ -876,6 +906,18 @@ p{
   }
 }
 
+
+  html[dir="ltr"] .footer-container{
+    .search{
+       button{
+         left:auto;
+          right:5px;
+         font-size: 14px;
+        }
+      }
+    
+    }
+
 @media (max-width: 920px) {
   .footer-container {
     padding: 31px 16px;
@@ -885,6 +927,10 @@ p{
     .search {
       .search-input {
         width: 100%;
+        .inputt{
+          width: 70%; 
+          
+          }
       }
     }
     .main-link {
@@ -932,7 +978,7 @@ p{
     height: 100%;
     object-fit: cover;
     top: 0;
-    left: 30%;
+    
     // opacity: 0.4;
   }
   .container {
@@ -1019,6 +1065,23 @@ p{
   }
 }
 
+
+  html[dir="rtl"] .hero-section{
+    .mask{
+      left: 30%;}
+    }
+  html[dir="ltr"] .hero-section{
+     .mask{
+      right: 30%;
+      }
+      .swiper{
+        img{
+          // transform: scaleX(-1);
+          
+          }
+          
+          }
+    }
 // end hero section
 
 
@@ -1115,7 +1178,7 @@ p{
       // min-height: fit-content !important;
     }
     .v-input {
-      direction: rtl;
+      // direction: ltr;
        
       .mdi-menu-down::before,
       .mdi-set {
@@ -1130,7 +1193,7 @@ p{
         opacity: 0;
       }
       .v-field {
-        direction: rtl;
+        // direction: rtl;
         .v-label {
           color: #2d3a4a;
           font-size: 20px;
@@ -1160,6 +1223,28 @@ p{
     }
   }
 }
+
+
+ html[dir="rtl"] .search-section{
+    .v-input{
+      direction: rtl;
+        .v-field{
+      direction: rtl;
+          
+          }
+        }
+    
+    }
+ html[dir="ltr"] .search-section{
+    
+  .v-input{
+      direction: ltr;
+        .v-field{
+      direction: ltr;
+          
+          }
+        }
+    }
 
 // .v-field.v-field--appended{
 //   direction: rtl;
@@ -1193,7 +1278,7 @@ p{
   gap: 26px;
   padding: 16px;
   .inputt {
-    width: 305px;
+    width: 100%;
     border-radius: 8px;
     border: 1px solid #ebeaed;
     display: flex;
@@ -1219,6 +1304,15 @@ p{
     padding: 18px 30px;
     .swiper {
       .swiper-slide {
+        h1{
+          width:100% !important;
+          span {
+            color: #dcb63b;
+            position: relative;
+            @include border-line(100% , 12px !important , 80% !important);
+          }
+         
+            }
         .text {
           width: 100%;
           gap: 20px;
@@ -1749,6 +1843,9 @@ html[dir="rtl"] .explore {
     }
   }
   .our-products{
+    .tabs{
+      gap:25px;
+        }
     .icons-arrow{
       display: none;
     }
@@ -2310,8 +2407,10 @@ html[dir="rtl"] .explore {
   }
   .main-radio {
     span {
+      // white-space: nowrap;
+      text-align: center;
       color: $secondary-black;
-      font-size: 13px;
+      font-size: 12px;
       font-style: normal;
       font-weight: 700;
     }
@@ -3616,6 +3715,7 @@ html[dir="ltr"] .payment-method{
       border: 1px solid #dcb63b;
       color: #dcb63b;
       font-weight: 700;
+      white-space: nowrap;
     }
   }
   .search-btn{
@@ -4404,6 +4504,26 @@ width: 100%;
   }
 }
 
+
+  html[dir="ltr"] .about-us{
+   
+    .about-container{
+      .image{
+      border-radius: 0px 24px 24px 24px;
+
+        img{
+      border-radius: 0px 24px 24px 24px;
+          
+          }
+            .overlay{
+      border-radius: 0px 24px 24px 24px;
+              
+              
+              }
+        }
+      }
+    }
+
 // end about us page
 
 // start settings page
@@ -4886,6 +5006,10 @@ width: 100%;
   }
 }
 
+  html[dir="ltr"] .setting-btn{
+    left: auto !important;
+    right:30px;
+    }
 .modal {
   background: #2d3a4a72;
   overflow: hidden !important;

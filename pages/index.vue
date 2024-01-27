@@ -76,7 +76,7 @@
           >
             <div class="text">
               <h1 class="head">
-               {{ $t('hero1') }}<span> {{ $t('hero2') }}</span> {{ $t('hero3') }}
+               {{ $t('hero1') }} <span> {{ $t('hero2') }} </span> {{ $t('hero3') }}
               </h1>
               <p>
                {{ $t('hero4') }}
@@ -359,7 +359,7 @@
     <div class="best-offers">
       <div class="container">
         <div v-if="financingAdv" class="row">
-          <div class="col-12 col-xl-5 col-lg-5" data-aos="fade-right"  data-aos-delay="300">
+          <div class="col-12 col-xl-5 col-lg-5 order-2 order-xl-1 order-lg-1" data-aos="fade-right"  data-aos-delay="300">
             <div class="text-container">
               <span class="special"> {{ $t('about1') }}</span>
               <h4>{{ financingAdv.description }}</h4>
@@ -398,7 +398,7 @@
             </div>
           </div>
           <div
-            class="col-12 bg-dange col-xl-7 col-lg-7 d-flex justify-content-end"
+            class="col-12 bg-dange col-xl-7 col-lg-7 order-1 order-xl-2 order-lg-2 d-flex justify-content-end"
             data-aos="fade-left"
           >
             <img class="big-img" :src="financingAdv.image" />

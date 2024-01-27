@@ -7,7 +7,7 @@
 
                 <v-breadcrumbs :items="items">
                     <template v-slot:divider>
-                        <v-icon icon="mdi-chevron-left"></v-icon>
+                        <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
                     </template>
                 </v-breadcrumbs>
             </div>
@@ -19,7 +19,7 @@
 
             <div class="cars">
             <div class="head">
-             <h5>سيارات العرض</h5>
+             <h5> {{ $t('carOffer') }} </h5>
             </div>
              <div class="row">
               <div v-for="item in cars" class="col-12 col-xl-3 col-lg-3 col-md-6 my-3">
@@ -72,17 +72,17 @@ onMounted(() => {
 
 let items = ref([
     {
-        title: 'الرئيسية',
+        title: locale.value == "ar" ? 'الرئيسية' : 'home',
         disabled: true,
         href: '/',
     },
     {
-        title: 'العروض',
+        title: locale.value == "ar" ? 'العروض' : 'offers',
         disabled: true,
         href: 'offers',
     },
     {
-        title: 'العرض',
+        title: locale.value == "ar" ? 'العرض' : 'offer',
         disabled: true,
     },
 ]);

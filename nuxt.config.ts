@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   modules: ["nuxt-swiper", "@nuxtjs/i18n", "nuxt-primevue", "nuxt-aos"],
   plugins: [{ src: "~/plugins/lottie.js", mode: "client" }],
   i18n: {
-    lazy: true,
+    // lazy: true,
     langDir: "locales",
     strategy: "prefix_and_default",
     detectBrowserLanguage: false,

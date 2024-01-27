@@ -2,14 +2,14 @@
   <div>
     <div v-if="!pending" class="container careers-page">
       <div class="text">
-        <h3 class="heading-text">التوظيف</h3>
+        <h3 class="heading-text">{{$t('emp')}}</h3>
       </div>
 
       <div class="careers">
         <div class="row justify-content-around">
           <div class="col-12 col-xl-5 col-lg-5">
             <div>
-              <h4>الوظائف المتاحة</h4>
+              <h4> {{ $t('emp2') }} </h4>
               <div class="boxes">
                 <div
                   v-for="item in contactData"
@@ -42,7 +42,7 @@
                 </div>
               </div>
               <div class="contact">
-                <h4>تواصل معنا</h4>
+                <h4> {{ $t('contct2') }} </h4>
                 <div v-if="socials" class="icons row">
                 <div class="col-4 col-xl-2 col-lg-2 col-md-4">
                   <div class="iconn">
@@ -164,7 +164,7 @@
                 </div>
                 <div class="col-4 col-xl-2 col-lg-2 col-md-4">
                   <div class="iconn">
-                    <a :href="socials.twitter" target="_blank">
+                    <a :href="socials.tiktok" target="_blank">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -188,8 +188,8 @@
             <div class="form">
               <div class="inputs">
                 <div class="input">
-                  <label for="">الاسم</label>
-                  <input type="text" v-model="form.name" placeholder="مثال : رضا" />
+                  <label for="">{{ $t('name0') }}</label>
+                  <input type="text" v-model="form.name" :placeholder="$t('name0')" />
                   <span class="error-msg" v-if="v$.name.$error">{{
                     v$.name.$errors[0].$message
                   }}</span>
@@ -198,8 +198,8 @@
                   }}</span>
                 </div>
                 <div class="input">
-                  <label for="">رقم الهاتف</label>
-                  <input type="tel" v-model="form.phone" placeholder=" مثال : 3333-5555-9999-55" />
+                  <label for="">{{ $t('phone') }}</label>
+                  <input type="tel" v-model="form.phone" placeholder=" 3333-5555-9999-55" />
                   <span class="error-msg" v-if="v$.phone.$error">{{
                     v$.phone.$errors[0].$message
                   }}</span>
@@ -208,8 +208,8 @@
                   }}</span>
                 </div>
                 <div class="input">
-                  <label for="">البريد الالكتروني</label>
-                  <input type="email" v-model="form.email" placeholder="مثال : Demo@icloud.com" />
+                  <label for="">{{ $t('email') }}</label>
+                  <input type="email" v-model="form.email" placeholder="Demo@icloud.com" />
                   <span class="error-msg" v-if="v$.email.$error">{{
                     v$.email.$errors[0].$message
                   }}</span>
@@ -218,7 +218,7 @@
                   }}</span>
                 </div>
                 <div class="input">
-                  <span>السيرة الذاتية</span>
+                  <span> {{ $t('cv') }} </span>
                   <label class="resume" for="resume-career">
                     <div class="icon">
                       <svg
@@ -241,12 +241,12 @@
                           fill="#90A3BF"
                         />
                       </svg>
-                      <span>برجاء ارفاق السيرة الذاتية</span>
+                      <span> {{ $t('cv2') }} </span>
                     </div>
                     <input type="file" @change="onFileChange" id="resume-career" />
                   </label>
                   <span class="word"
-                    >الصيغة : pdf ,docs, pnj ( اقصي تحميل 5 ميجا بايت )</span
+                     >{{ $t('cv3') }} </span
                   >
                   <span class="error-msg" v-if="v$.cv.$error">{{
                     v$.cv.$errors[0].$message
@@ -256,7 +256,7 @@
                   }}</span>
                 </div>
                 <div class="d-flex justify-content-center justify-content-xl-start justify-content-lg-start">
-                <button @click="sendContact()">تقديم</button>
+                <button @click="sendContact()">{{ $t('conf') }}</button>
                 </div>
               </div>
             </div>

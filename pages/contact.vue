@@ -2,14 +2,14 @@
     <div>
         <div class="container contact-us">
             <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
-                <h4 class="heading-text"> اتصل بنا </h4>
+                <h4 class="heading-text"> {{ $t('contact') }} </h4>
                 <p>
                   {{ contactArr.description }}
                 </p>
 
                 <v-breadcrumbs class="" :items="items">
                     <template v-slot:divider>
-                        <v-icon icon="mdi-chevron-left"></v-icon>
+                        <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
                     </template>
                 </v-breadcrumbs>
             </div>
@@ -17,15 +17,15 @@
                 <div class="row justify-content-between">
                     <div class="col-12 col-xl-6 col-lg-6">
                         <div class="text-container">
-                            <h4>معلومات الاتصال</h4>
-                            <span class="word">سيتم الرد عليكم خلال مدة اقصاها 24 ساعة .</span>
+                            <h4> {{ $t('info1') }} </h4>
+                            <span class="word">{{ $t('info2') }}</span>
                             <div class="row mt-4">
                                 <div class="col-12 col-xl-6 col-lg-6 my-3">
                                     <div class="icon-container">
                                         <div class="icon">
                                             <img src="~/assets/images/contact-1.svg" alt="">
                                         </div>
-                                        <span>البريد الالكتروني</span>
+                                        <span>{{ $t('email') }}</span>
                                         <h6>{{ contactArr.email }}</h6>
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                                         <div class="icon">
                                             <img src="~/assets/images/contact-2.svg" alt="">
                                         </div>
-                                        <span>رقم التواصل</span>
+                                        <span> {{ $t('phoneNum') }}</span>
                                         <h6>{{ contactArr.phone }}</h6>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                         <div class="icon">
                                             <img src="~/assets/images/contact-3.svg" alt="">
                                         </div>
-                                        <span>العنوان</span>
+                                        <span> {{ $t('address') }}</span>
                                         <h6>{{ contactArr.address }}</h6>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                                         <div class="icon">
                                             <img src="~/assets/images/_x30_4_world.svg" alt="">
                                         </div>
-                                        <span>مواقع التواصل</span>
+                                        <span> {{ $t('websites') }} </span>
                                         <div class="icons">
                                             <div class="iconn">
                                             <a :href="contactArr.youtube" target="_blank">
@@ -162,7 +162,7 @@
                                                 d="M21.5223 5.74723C22.3809 3.68663 20.3136 1.61941 18.253 2.478L4.0366 8.40151C1.25632 9.55996 1.72626 13.6348 4.69725 14.1299L9.13133 14.8689L9.87034 19.303C10.3655 22.274 14.4403 22.7439 15.5988 19.9637L21.5223 5.74723Z"
                                                 fill="white" />
                                         </svg>
-                                        <span>العنوان علي الخريطة</span>
+                                        <span> {{ $t('address2') }} </span>
                                     </div>
                                 </div>
                             </div>
@@ -173,32 +173,32 @@
                     <div class="col-12 col-xl-5 col-lg-5">
                         <div class="form-container">
                          <div class="input">
-                          <label> الاسم </label>
-                          <input type="text" v-model="form.name" placeholder="مثال : رضا">
+                          <label> {{ $t('name0') }} </label>
+                          <input type="text" v-model="form.name" :placeholder="$t('name0')" >
                           <span class="error-msg" v-if="v$.name.$error">{{ v$.name.$errors[0].$message }}</span>
                             <span class="error-msg" v-if="errors.name">{{ errors.name[0] }}</span>
                          </div>
                          <div class="input">
-                          <label> رقم الهاتف </label>
-                          <input type="tel" v-model="form.phone" placeholder="مثال : 3333-5555-9999-55">
+                          <label> {{ $t('phone') }} </label>
+                          <input type="tel" v-model="form.phone" placeholder=" 3333-5555-9999-55">
                           <span class="error-msg" v-if="v$.phone.$error">{{ v$.phone.$errors[0].$message }}</span>
                             <span class="error-msg" v-if="errors.phone">{{ errors.phone[0] }}</span>
                          </div>
                          <div class="input">
-                          <label> البريد الالكتروني </label>
-                          <input type="email" v-model="form.email" placeholder="مثال : Demo@icloud.com">
+                          <label> {{ $t('email') }} </label>
+                          <input type="email" v-model="form.email" placeholder=" Demo@icloud.com">
                           <span class="error-msg" v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
                             <span class="error-msg" v-if="errors.email">{{ errors.email[0] }}</span>
                          </div>
                          <div class="input">
-                          <label> رسالتك </label>
-                          <textarea style="resize:none;" v-model="form.message" placeholder="اكتب رسالتك هنا" id="" cols="30" rows="10"></textarea>
+                          <label> {{ $t('messg') }} </label>
+                          <textarea style="resize:none;" v-model="form.message" :placeholder="$t('write')" id="" cols="30" rows="10"></textarea>
                           <span class="error-msg" v-if="v$.message.$error">{{ v$.message.$errors[0].$message }}</span>
                             <span class="error-msg" v-if="errors.message">{{ errors.message[0] }}</span>
                          </div>
                          <div class="d-flex justify-content-center justify-content-xl-start justify-content-lg-start">
                          <button class="gap-3" @click="sendContact()">
-                         ارسال طلب
+                         {{ $t('send') }}
                       <v-progress-circular v-if="pendingBtn"  indeterminate :size="25" :width="4"></v-progress-circular>
                           
                          </button>
@@ -228,12 +228,12 @@ let pending = ref(false);
 let pendingBtn = ref(false);
 let items = ref([
     {
-        title: 'الرئيسية',
+        title: locale.value == 'ar' ? 'الرئيسية' : 'home',
         disabled: true,
         href: '/',
     },
     {
-        title: 'اتصل بنا',
+        title: locale.value == 'ar' ? 'اتصل بنا' : 'contact us',
         disabled: false,
         href: 'contact',
     },
@@ -245,15 +245,31 @@ let form = ref({
     email: '',
     message: '',
 });
+
+let value1 = ref("value is required");
+let value2 = ref("The email field is required");
+let value3 = ref("Invalid email format");
+let title = ref('تم التواصل بنجاح  ');
+if (locale.value == "ar") {
+    value1.value = "هذا الحقل مطلوبة";
+    value2.value = "حقل البريد الإلكتروني مطلوب";
+    value3.value = "تنسيق البريد الإلكتروني غير صالح";
+    title.value = "تم التواصل بنجاح  ";
+} else {
+    value1.value = "value is required";
+    value2.value = "The email field is required";
+    value3.value = "Invalid email format";
+    title.value = "Communication was successful"
+}
 const rules = computed(() => {
     return {
-        name: { required },
+        name: { required: helpers.withMessage(value1.value, required) },
         phone: { required },
         email: {
-            required: helpers.withMessage('The email field is required', required),
-            email: helpers.withMessage('Invalid email format', email),
+            required: helpers.withMessage(value2.value, required),
+            email: helpers.withMessage(value3.value, email),
         },
-        message: { required },
+        message: { required: helpers.withMessage(value1.value, required)  },
 
     };
 });
@@ -284,7 +300,7 @@ const sendContact = async()=>{
         errors.value = [];
         console.log('dasdas');
         createToast({
-          title:'تم الاشتراك بنجاح'
+          title: title.value
         },
         {
         type: 'success',

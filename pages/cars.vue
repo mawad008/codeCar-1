@@ -4,12 +4,12 @@
       <div
         class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column"
       >
-        <h4 class="heading-text">المعرض</h4>
+        <h4 class="heading-text">{{ $t('market') }}</h4>
         <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
 
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
-            <v-icon icon="mdi-chevron-left"></v-icon>
+            <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
           </template>
         </v-breadcrumbs>
       </div>
@@ -32,16 +32,16 @@
                   fill="#2D3A4A"
                 />
               </svg>
-              <span>اعادة الظبط</span>
+              <span> {{$t('reset')}}</span>
             </div>
             <div class="sort">
               <div class="image">
                 <img src="~/assets/images/sort.svg" />
               </div>
-              <h6>خيارات التصفية</h6>
+              <h6> {{$t('sort')}} </h6>
             </div>
             <Accordion :multiple="true" :activeIndex="0">
-              <AccordionTab header="تصفية عامة">
+              <AccordionTab :header="$t('filter1')">
                 <div class="d-flex flex-column gap-2">
                   <div class="d-flex align-items-center gap-2">
                     <v-checkbox
@@ -52,7 +52,7 @@
                       color="#DCB63B"
                       value="all"
                     ></v-checkbox>
-                    <label for="All-1">الكل</label>
+                    <label for="All-1">{{$t('all')}}</label>
                   </div>
                   <div
                     class="d-flex align-items-center justify-content-between"
@@ -66,7 +66,7 @@
                         color="#DCB63B"
                         value="0"
                       ></v-checkbox>
-                      <label for="used1">مستعمل</label>
+                      <label for="used1">{{ $t('used') }}</label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -82,13 +82,13 @@
                         color="#DCB63B"
                         value="1"
                       ></v-checkbox>
-                      <label for="new-1"> جديد </label>
+                      <label for="new-1"> {{ $t('new') }} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
                 </div>
               </AccordionTab>
-              <AccordionTab header="نوع المحرك">
+              <AccordionTab :header="$t('gear')">
                 <div class="d-flex flex-column gap-2">
                   <div class="d-flex align-items-center gap-2">
                     <v-checkbox
@@ -99,7 +99,7 @@
                       color="#DCB63B"
                       value="all"
                     ></v-checkbox>
-                    <label for="All-2">الكل</label>
+                    <label for="All-2">{{$t('all')}}</label>
                   </div>
                   <div
                     class="d-flex align-items-center justify-content-between"
@@ -113,7 +113,7 @@
                         color="#DCB63B"
                         value="automatic"
                       ></v-checkbox>
-                      <label for="auto-1"> اوتوماتيك </label>
+                      <label for="auto-1"> {{$t('gear1')}} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -129,13 +129,13 @@
                         color="#DCB63B"
                         value="manual"
                       ></v-checkbox>
-                      <label for="manu-1"> مانوال </label>
+                      <label for="manu-1">  {{ $t('manual') }} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
                 </div>
               </AccordionTab>
-              <AccordionTab header="نوع الوقود">
+              <AccordionTab :header="$t('filter3')">
                 <div class="d-flex flex-column gap-2">
                   <div class="d-flex align-items-center gap-2">
                     <v-checkbox
@@ -146,7 +146,7 @@
                       color="#DCB63B"
                       value="all"
                     ></v-checkbox>
-                    <label for="All-3">الكل</label>
+                    <label for="All-3">{{ $t('all') }}</label>
                   </div>
                   <div
                     class="d-flex align-items-center justify-content-between"
@@ -160,7 +160,7 @@
                         color="#DCB63B"
                         value="used"
                       ></v-checkbox>
-                      <label for="label-1"> بنزين </label>
+                      <label for="label-1"> {{$t('benz')}} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -176,7 +176,7 @@
                         color="#DCB63B"
                         value="new"
                       ></v-checkbox>
-                      <label for="label-2"> كهربائي </label>
+                      <label for="label-2"> {{$t('elct')}} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -192,7 +192,7 @@
                         color="#DCB63B"
                         value="hybrid"
                       ></v-checkbox>
-                      <label for="label-77"> هايبرد </label>
+                      <label for="label-77"> {{ $t('hyp') }} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -208,13 +208,13 @@
                         color="#DCB63B"
                         value="diesel "
                       ></v-checkbox>
-                      <label for="label-7"> ديزل </label>
+                      <label for="label-7"> {{$t('dis')}} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
                 </div>
               </AccordionTab>
-              <AccordionTab header="هيكل السيارة">
+              <AccordionTab :header="$t('filter4')">
                 <div class="d-flex flex-column gap-2">
                   <div
                     class="d-flex align-items-center justify-content-between"
@@ -228,7 +228,7 @@
                         color="#DCB63B"
                         value="all"
                       ></v-checkbox>
-                      <label for="All-3">الكل</label>
+                      <label for="All-3">{{ $t('all') }}</label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -244,7 +244,7 @@
                         color="#DCB63B"
                         value="hatchback"
                       ></v-checkbox>
-                      <label for="label-3"> هاتشباك </label>
+                      <label for="label-3"> {{ $t('hatchback') }}  </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -260,7 +260,7 @@
                         color="#DCB63B"
                         value="sedan"
                       ></v-checkbox>
-                      <label for="label-4"> سيدان </label>
+                      <label for="label-4"> {{ $t('sedan') }} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -276,7 +276,7 @@
                         color="#DCB63B"
                         value="our-wheel-drive"
                       ></v-checkbox>
-                      <label for="label-5"> دفع رباعي </label>
+                      <label for="label-5"> {{$t('our-wheel-drive')}} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -292,7 +292,7 @@
                         color="#DCB63B"
                         value="family"
                       ></v-checkbox>
-                      <label for="label-6"> عائلي </label>
+                      <label for="label-6"> {{ $t('family') }} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -308,13 +308,13 @@
                         color="#DCB63B"
                         value="commercial"
                       ></v-checkbox>
-                      <label for="label-7"> تجاري</label>
+                      <label for="label-7"> {{ $t('commercial') }} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
                 </div>
               </AccordionTab>
-              <AccordionTab header="الماركات">
+              <AccordionTab :header="$t('brands')">
                 <div class="d-flex flex-column all-marks-container">
                   <!-- <div class="d-flex align-items-center mt-3 gap-2 ">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -377,7 +377,7 @@
                   </div>
                 </div>
               </AccordionTab>
-              <AccordionTab header="سنة الصنع">
+              <AccordionTab :header="$t('theYear')">
                 <div class="accordtion-container">
                   <div class="mainn d-flex flex-column gap-3">
                     <div
@@ -392,7 +392,7 @@
                           color="#DCB63B"
                           value="all"
                         ></v-checkbox>
-                        <label for="All-l-3">الكل</label>
+                        <label for="All-l-3">{{$t('all')}}</label>
                       </div>
                       <span class="num">(25)</span>
                     </div>
@@ -419,7 +419,7 @@
                       style="font-size: 12px; color: #dcb63b; cursor: pointer"
                       @click="optYears = years"
                     >
-                      عرض المزيد
+                      {{ $t('more') }}
                     </span>
                     <div
                       class="d-flex align-items-center justify-content-between"
@@ -433,14 +433,14 @@
                           color="#DCB63B"
                           :value="1"
                         ></v-checkbox>
-                        <label :for="`labelll-less`"> اقل من 2010 </label>
+                        <label :for="`labelll-less`"> {{$t('less1')}} </label>
                       </div>
                       <span class="num">(25)</span>
                     </div>
                   </div>
                 </div>
               </AccordionTab>
-              <AccordionTab header="اللون">
+              <AccordionTab :header="$t('color')">
                 <div class="d-flex flex-column gap-3">
                   <div
                     v-for="(item, index) in optionsCars.colors"
@@ -463,7 +463,7 @@
                   </div>
                 </div>
               </AccordionTab>
-              <AccordionTab header="سعة المحرك">
+              <AccordionTab :header="$t('engi')">
                 <div class="d-flex flex-column gap-3">
                   <div
                     class="d-flex align-items-center justify-content-between"
@@ -477,7 +477,7 @@
                         color="#DCB63B"
                         value="all"
                       ></v-checkbox>
-                      <label for="All-t-3">الكل</label>
+                      <label for="All-t-3">{{$t('all')}}</label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -493,7 +493,7 @@
                         color="#DCB63B"
                         value="0"
                       ></v-checkbox>
-                      <label for="cc-label-1"> من 800 الي 1200 </label>
+                      <label for="cc-label-1"> {{$t('from1')}} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -509,7 +509,7 @@
                         color="#DCB63B"
                         value="1"
                       ></v-checkbox>
-                      <label for="cc-label-2"> من 1300 الي 1400 </label>
+                      <label for="cc-label-2"> {{$t('from2')}} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -525,7 +525,7 @@
                         color="#DCB63B"
                         value="2"
                       ></v-checkbox>
-                      <label for="cc-label-3"> من 1500 الي 1600 </label>
+                      <label for="cc-label-3"> {{$t('from3')}} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -541,7 +541,7 @@
                         color="#DCB63B"
                         value="3"
                       ></v-checkbox>
-                      <label for="cc-label-4"> من 1800 الي 2000 </label>
+                      <label for="cc-label-4"> {{ $t('from4') }} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -557,7 +557,7 @@
                         color="#DCB63B"
                         value="4"
                       ></v-checkbox>
-                      <label for="cc-label-5"> من 2200 الي 3000 </label>
+                      <label for="cc-label-5"> {{$t('from5')}} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -573,13 +573,13 @@
                         color="#DCB63B"
                         value="5"
                       ></v-checkbox>
-                      <label for="cc-label-6"> اكثر من 3000 </label>
+                      <label for="cc-label-6"> {{ $t('from6') }} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
                 </div>
               </AccordionTab>
-              <AccordionTab header="السعر">
+              <AccordionTab :header="$t('price')">
                 <div class="range">
                   <v-range-slider
                     class=""
@@ -593,7 +593,7 @@
                 </div>
               </AccordionTab>
             </Accordion>
-            <button @click="filterCars();" class="search-btn">بحث</button>
+            <button @click="filterCars();" class="search-btn">{{ $t('searchh') }}</button>
             
           </div>
         </div>
@@ -610,15 +610,15 @@
             <client-only >
             <Vue3Lottie  :animation-data="search" :height="200" :width="200" />
           </client-only>
-          <h4>  لا توجد نتائج بحث </h4>
-          <p> "عذرًا، لا توجد نتائج لعرضها. جرّب توسيع معايير البحث أو استمتع بتصفح مجموعتنا الواسعة للعثور على السيارة التي قد تلفت انتباهك." </p>
+          <h4> {{ $t('not1') }} </h4>
+          <p> {{$t('not2')}} </p>
           <!-- <button></button> -->
           </div>
           <div class="progress-container">
-            <span>لقد شاهدت 50 سيارة من اصل 200</span>
+            <span> {{ $t('watch') }} 50 {{$t('car')}} {{ $t('from0') }} 200 </span>
             <div class="line">
             <v-progress-linear
-              reverse
+              :reverse="reverse"
               rounded
               color="#DCB63B"
               model-value="20"
@@ -629,7 +629,7 @@
             </div>
                 
 
-            <button>تصفح المزيد</button>
+            <button> {{$t('searchMore')}} </button>
           </div>
         </div>
       </div>
@@ -651,7 +651,7 @@ let { locale } = useI18n();
 const localePath = useLocalePath();
 
 let route = useRoute();
-
+let reverse = ref(locale.value == "ar" ? true : false);
 let brandId = ref(route.query.id);
 let modelId = ref(route.query.model);
 let typeCar = ref(route.query.type);
@@ -746,14 +746,14 @@ const filterCars = async () => {
 
 let items = ref([
   {
-    title: "الرئيسية",
+    title: locale.value == 'ar' ? "الرئيسية" : "home",
     disabled: true,
     href: "/",
   },
   {
-    title: "المعرض",
+    title: locale.value == 'ar' ? "المعرض" : "market",
     disabled: false,
-    href: "wishlist",
+    href: "market",
   },
 ]);
 

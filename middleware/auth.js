@@ -3,6 +3,8 @@
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "@/store/index"; // Adjust the path based on your project structure
 const store = useStore;
+const localePath = useLocalePath();
+
 export default function () {
   const route = useRoute();
   const router = useRouter();
@@ -20,12 +22,12 @@ export default function () {
   
     // If token exists and the route is /login, redirect to the homepage
     if (token && route.name === "auth") {
-      router.push("/");
+      router.push(localePath("/"));
     }
   
     // If token doesn't exist and the route is not /login, redirect to login
     if (!token && route.name !== "auth") {
-      router.push("/auth");
+      router.push(localePath("auth"));
         }
     
   }

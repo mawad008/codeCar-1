@@ -386,7 +386,7 @@
                 </h6>
                 <div class="links d-flex flex-column gap-4">
                   <span class="head-link"> {{ $t("vendor") }} </span>
-                  <nuxt-link to="/careers">
+                  <nuxt-link :to="localePath('/careers')">
                     <span class="head-link"> {{ $t("employe") }} </span>
                   </nuxt-link>
                   <span class="head-link"> سيارات </span>

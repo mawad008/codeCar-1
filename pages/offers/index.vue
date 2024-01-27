@@ -9,7 +9,7 @@
 
                 <v-breadcrumbs :items="items">
                     <template v-slot:divider>
-                        <v-icon icon="mdi-chevron-left"></v-icon>
+                        <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
                     </template>
                 </v-breadcrumbs>
             </div>
@@ -26,7 +26,7 @@
                             <div class="det">
                                 <div @click="goToOfferPage(item.id , item.title)" class="d-flex align-items-center gap-2">
                                     <span>{{ $t("offersDetails") }}</span>
-                                    <i class="fa-solid fa-arrow-left"></i>
+                                    <i class="fa-solid fa-arrow-left arrow-icon"></i>
 
                                 </div>
                                 <img src="~/assets/images/special-offer.svg" alt="">

@@ -2,27 +2,27 @@
     <div>
         <div class="container orders-page">
             <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
-                <h4 class="heading-text">تتبع طلبك</h4>
+                <h4 class="heading-text"> {{ $t('followOrder') }} </h4>
                 <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
 
                 <v-breadcrumbs :items="items">
                     <template v-slot:divider>
-                        <v-icon icon="mdi-chevron-left"></v-icon>
+                        <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
                     </template>
                 </v-breadcrumbs>
             </div>
 
 
             <div class="orders-container">
-                <h3>طلبات التمويل</h3>
-                <span class="word">تابع طلباتك الان بسهولة</span>
+                <h3> {{ $t('order3') }} </h3>
+                <span class="word"> {{ $t('follow1') }} </span>
                 <div class="header flex-column felx-xl-row flex-lg-row">
                     <div class="payment-method">
-                        <button @click="chooseBtn = 1" class="one" :class="{ 'active': chooseBtn == 1 }">قيد المراجعة</button>
-                        <button @click="chooseBtn = 2" class="two" :class="{ 'active': chooseBtn == 2 }">مكتملة</button>
+                        <button @click="chooseBtn = 1" class="one" :class="{ 'active': chooseBtn == 1 }"> {{ $t('under') }}</button>
+                        <button @click="chooseBtn = 2" class="two" :class="{ 'active': chooseBtn == 2 }">{{$t('compelete')}}</button>
                     </div>
                     <div class="search-bar">
-                        <input type="text" v-model="orderNumber"  placeholder="ابحث برقم الطلب">
+                        <input type="text" v-model="orderNumber"  :placeholder="$t('searchOrder')">
                         <div @click="getOrders()" class="icon">
                             <img src="~/assets/images/search-icon.svg" alt="" />
                         </div>
@@ -534,12 +534,12 @@ const getOrders = async ()=>{
 let chooseBtn = ref(1);
 let items = ref([
     {
-        title: "الرئيسية",
+        title: locale.value == "ar" ? "الرئيسية" : "home",
         disabled: true,
         href: "/",
     },
     {
-        title: "تتبع طلبك",
+        title: locale.value == "ar" ? "تتبع طلبك" : "follow your order",
         disabled: false,
         href: "orders",
     },

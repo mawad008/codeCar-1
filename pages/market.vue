@@ -4,14 +4,14 @@
           <div
             class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column"
           >
-            <h4 class="heading-text"> المعرض </h4>
+            <h4 class="heading-text"> {{ $t('market') }} </h4>
             <p>
               {{ brandsArr.description }}
             </p>
 
                 <v-breadcrumbs :items="items">
               <template v-slot:divider>
-                <v-icon icon="mdi-chevron-left"></v-icon>
+                <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
               </template>
             </v-breadcrumbs>
           </div>
@@ -24,7 +24,7 @@
                 <!-- <img src="~/assets/images/brand1.png" alt=""> -->
               </div>
               <span class="name"> {{ item.name }} </span>
-              <span class="num"> {{ item.count_cars_count }} سيارة </span>
+              <span class="num"> {{ item.count_cars_count }} {{ $t('car') }} </span>
             </nuxt-link>
               </div>
             </div>
@@ -62,12 +62,12 @@ onMounted(() => {
 
 let items = ref([
     {
-        title: 'الرئيسية',
+        title: locale.value == "ar" ? 'الرئيسية' : 'home',
         disabled: true,
         href: '/',
     },
     {
-        title: 'المعرض',
+        title: locale.value == "ar" ? 'المعرض' : 'market',
         disabled: false,
         href: 'market',
     },

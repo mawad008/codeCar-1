@@ -10,7 +10,7 @@
                     <div>
                       <div class="vendor-icon">
                         <img src="@/assets/images/vendor-icon.svg" alt="" />
-                        <span> متجر كود كار </span>
+                        <span>{{ mainCar.vendor.name }}</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -24,18 +24,24 @@
                           />
                         </svg>
                       </div>
-                      <span class="city"> الرياض </span>
+                      <span class="city"> {{ mainCar.vendor.city.name }}  </span>
                     </div>
                     <div class="iconss d-flex align-items-center gap-3">
                       <div class="icon">
+                       <button data-bs-toggle="modal" data-bs-target="#vendor-phone-modal" class="icon">
                         <img src="@/assets/images/call.svg" alt="" />
+                      </button>
                       </div>
                       <div>
+                      <button data-bs-toggle="modal" data-bs-target="#vendor-whatsapp-modal">
+                      
                      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
     <path d="M0.285156 16.7086L1.42361 12.4933C0.721612 11.257 0.352378 9.85656 0.352637 8.43139C0.352637 3.95041 3.9452 0.300171 8.35533 0.300171C10.4973 0.300171 12.5043 1.14853 14.0219 2.68205C14.7677 3.43771 15.3587 4.33446 15.761 5.321C16.1632 6.30753 16.3689 7.36449 16.3663 8.43139C16.3663 12.9128 12.7742 16.5631 8.3636 16.5631C7.02316 16.5631 5.70751 16.22 4.53508 15.5692L0.285156 16.7086Z" fill="#38A3A5"/>
     <path d="M0 17L1.18069 12.6386C0.454793 11.3577 0.0739822 9.90701 0.0762031 8.43116C0.067481 3.77865 3.78628 0 8.35709 0C10.5748 0 12.6575 0.873851 14.2261 2.46764C15.7947 4.06144 16.6545 6.17769 16.6545 8.43116C16.6545 13.0753 12.9362 16.8544 8.36535 16.8544C6.97942 16.8563 5.61576 16.5024 4.40233 15.8262L0 17ZM4.59651 14.3094L4.84945 14.4637C5.91052 15.1021 7.12247 15.4395 8.35755 15.4405C12.1521 15.4405 15.247 12.2956 15.247 8.43997C15.247 6.57173 14.5305 4.80688 13.2318 3.48706C11.9322 2.16817 10.1951 1.43108 8.35663 1.43108C4.55336 1.43108 1.45842 4.57601 1.45842 8.43162C1.45842 9.75144 1.82107 11.0453 2.51286 12.1588L2.67307 12.4249L1.97302 15.0126L4.59559 14.3098L4.59651 14.3094Z" fill="white"/>
     <path fill-rule="evenodd" clip-rule="evenodd" d="M6.29084 4.90099C6.13935 4.54959 5.97042 4.54125 5.82719 4.54125C5.70049 4.53244 5.56553 4.53244 5.42231 4.53244C5.28734 4.53244 5.05965 4.5839 4.86593 4.79807C4.67175 5.01225 4.14062 5.51801 4.14062 6.55505C4.14062 7.59162 4.88292 8.59434 4.98391 8.7311C5.0849 8.86832 6.41754 11.062 8.52551 11.9103C10.2796 12.6127 10.634 12.4759 11.0136 12.4328C11.3928 12.3901 12.2361 11.9275 12.4132 11.4301C12.5817 10.9419 12.5817 10.5136 12.5312 10.4278C12.4807 10.342 12.337 10.2906 12.1346 10.1793C11.9239 10.0764 10.9121 9.56277 10.718 9.49369C10.5242 9.42508 10.3893 9.39078 10.2543 9.59661C10.1194 9.81078 9.72319 10.2822 9.59649 10.419C9.47851 10.5562 9.35227 10.5734 9.14983 10.4705C8.93866 10.368 8.27303 10.145 7.47979 9.42508C6.86466 8.86832 6.45151 8.17434 6.32481 7.96851C6.20683 7.75433 6.30782 7.64307 6.41754 7.54016C6.51026 7.44605 6.6287 7.29168 6.72969 7.17161C6.83068 7.05154 6.8642 6.95744 6.9404 6.82022C7.00788 6.68346 6.97391 6.55458 6.92341 6.45213C6.87292 6.35756 6.47629 5.32099 6.29084 4.90099Z" fill="white"/>
   </svg>
+                      
+                      </button>
                       </div>
                     </div>
                   </div>
@@ -803,7 +809,6 @@
           </div>
           <div v-if="paymentMethod == 2">
            <finance2 />
-
           </div>
         
         </div>
@@ -859,10 +864,10 @@
           <div class="modal-content log-out-modal car">
           <img v-if="mainCar.vendor.type == 'individual'" src="~/assets/images/whats-model.svg" />
           <img v-else src="~/assets/images/whats.svg" />
-            <h4  v-if="mainCar.vendor.type == 'individual'">يهمنا امانك</h4>
-            <h4 v-else>تواصل مع التاجر</h4>
-            <p v-if="mainCar.vendor.type == 'individual'">  نود التنويه إلى أن كود كار تعتبر مجرد وسيط للعروض ولا تتحمل أي مسؤولية عن التفاعلات بين الأفراد أو التجار. </p> 
-            <p v-else>للتواصل مع التاجر والحصول على مزيد من المعلومات عبر WhatsApp، انسخ الرابط التالي</p>
+            <h4  v-if="mainCar.vendor.type == 'individual'"> {{$t('loginModel1')}} </h4>
+            <h4 v-else> {{$t('loginModel2')}} </h4>
+            <p v-if="mainCar.vendor.type == 'individual'"> {{$t('loginModel4')}}  </p> 
+            <p v-else> {{$t('loginModel4')}} </p>
          
             <button class="close" data-bs-dismiss="modal" aria-label="Close">
             <i class=" fa-solid fa-xmark"></i>
@@ -870,7 +875,7 @@
             <div class="btns1">
             <div v-if="mainCar.vendor.type == 'individual'">
             <button class="fill gap-3" v-if="btnModel2 == 1" @click="btnModel2 = 2">
-            مراسلة عبر الواتس اب
+             {{$t('sendWhats')}}
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
     <path d="M0.310059 17.6915L1.54049 13.2282C0.781776 11.9191 0.382712 10.4364 0.382991 8.92735C0.382991 4.18279 4.26579 0.317825 9.03222 0.317825C11.3472 0.317825 13.5163 1.21608 15.1566 2.83982C15.9627 3.63992 16.6014 4.58943 17.0361 5.63399C17.4709 6.67856 17.6932 7.79769 17.6904 8.92735C17.6904 13.6724 13.8081 17.5374 9.04115 17.5374C7.59242 17.5374 6.17048 17.1741 4.90333 16.485L0.310059 17.6915Z" fill="white"/>
     <path d="M0 18L1.27607 13.3821C0.491536 12.0258 0.0799591 10.4898 0.0823594 8.92711C0.0729327 4.00093 4.09217 0 9.03225 0C11.4291 0 13.6801 0.925254 15.3754 2.6128C17.0707 4.30035 18 6.54108 18 8.92711C18 13.8445 13.9813 17.8459 9.04118 17.8459C7.54328 17.8478 6.06945 17.4732 4.75799 16.7572L0 18ZM4.96786 15.1511L5.24123 15.3146C6.38803 15.9904 7.69788 16.3477 9.03274 16.3488C13.1338 16.3488 16.4788 13.0188 16.4788 8.93643C16.4788 6.9583 15.7044 5.08964 14.3008 3.69218C12.8962 2.29571 11.0188 1.51526 9.03175 1.51526C4.92122 1.51526 1.57624 4.84519 1.57624 8.9276C1.57624 10.3251 1.96819 11.695 2.71588 12.874L2.88903 13.1558L2.13241 15.8957L4.96687 15.1516L4.96786 15.1511Z" fill="white"/>
@@ -879,22 +884,14 @@
             </button>
                         <div v-if="btnModel2 == 2" class="copy">
                  <a :href="mainCar.vendor.whatsapp_link" target="_blank" class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                  <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M9.08146 3.33146C9.26451 3.1484 9.26451 2.8516 9.08146 2.66854L6.58146 0.168544C6.3984 -0.0145143 6.1016 -0.0145144 5.91854 0.168544C5.73549 0.351602 5.73549 0.648398 5.91854 0.831457L7.61834 2.53125L1.25 2.53125C0.991116 2.53125 0.781249 2.74112 0.781249 3C0.781249 3.25888 0.991116 3.46875 1.25 3.46875L7.61834 3.46875L5.91854 5.16854C5.73549 5.3516 5.73549 5.6484 5.91854 5.83146C6.1016 6.01451 6.3984 6.01451 6.58146 5.83146L9.08146 3.33146Z" fill="#DCB63B"/>
   </svg>
                  </a>
                 <span>{{ `https://wa.me/${mainCar.vendor.phone}` }}</span>
               </div>
             </div>
-            <div class="copy">
-               <a :href="mainCar.vendor.whatsapp_link" target="_blank" class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.08146 3.33146C9.26451 3.1484 9.26451 2.8516 9.08146 2.66854L6.58146 0.168544C6.3984 -0.0145143 6.1016 -0.0145144 5.91854 0.168544C5.73549 0.351602 5.73549 0.648398 5.91854 0.831457L7.61834 2.53125L1.25 2.53125C0.991116 2.53125 0.781249 2.74112 0.781249 3C0.781249 3.25888 0.991116 3.46875 1.25 3.46875L7.61834 3.46875L5.91854 5.16854C5.73549 5.3516 5.73549 5.6484 5.91854 5.83146C6.1016 6.01451 6.3984 6.01451 6.58146 5.83146L9.08146 3.33146Z" fill="#DCB63B"/>
-</svg>
-               </a>
-              <span>{{`https://wa.me/${mainCar.vendor.phone}`}}</span>
-            </div>
-             <button class="stroke" data-bs-dismiss="modal" aria-label="Close">الرجوع</button>
+             <button class="stroke" data-bs-dismiss="modal" aria-label="Close">{{$t('back')}}</button>
             </div>
           </div>
         </div>
@@ -910,18 +907,18 @@
           <div class="modal-content log-out-modal car">
           <img v-if="mainCar.vendor.type == 'individual'" src="~/assets/images/phone-model.svg" />
           <img v-else src="~/assets/images/Phone_Call_5_.svg" />
-            <h4  v-if="mainCar.vendor.type == 'individual'">يهمنا امانك</h4>
-            <h4 v-else>تواصل مع التاجر</h4>
+            <h4  v-if="mainCar.vendor.type == 'individual'">{{ $t('loginModel1') }}</h4>
+            <h4 v-else>{{ $t('loginModel2') }}</h4>
 
-            <p v-if="mainCar.vendor.type == 'individual'">  نود التنويه إلى أن كود كار تعتبر مجرد وسيط للعروض ولا تتحمل أي مسؤولية عن التفاعلات بين الأفراد أو التجار. </p>
-            <p v-else>للتحدث مع التاجر والاستفسار عن تفاصيل السيارة أو الصفقة، يُرجى الاتصال بالرقم التالي: {{ mainCar.vendor.phone }}.</p>
+            <p v-if="mainCar.vendor.type == 'individual'"> {{ $t('loginModel5') }}  </p>
+            <p v-else> {{ $t('loginModel6') }} {{ mainCar.vendor.phone }}.</p>
          
             <button class="close" data-bs-dismiss="modal" aria-label="Close">
             <i class=" fa-solid fa-xmark"></i>
             </button>
             <div class="btns1">
             <div v-if="mainCar.vendor.type == 'individual'">
-            <button class="fill" v-if="btnModel == 1" @click="btnModel = 2"> الحصول علي رقم الهاتف </button>
+            <button class="fill" v-if="btnModel == 1" @click="btnModel = 2"> {{ $t('getnum') }}</button>
             <div v-if="btnModel == 2" class="copy">
               <svg v-if="copyPhone" @click="copyToClipboard()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3417 6.2714V1.91992H9.11988C7.7944 1.91992 6.71988 2.99444 6.71988 4.31992V16.7999C6.71988 18.1254 7.7944 19.1999 9.11988 19.1999H18.7199C20.0454 19.1999 21.1199 18.1254 21.1199 16.7999V7.69566H17.8035C17.0003 7.69566 16.3417 7.06227 16.3417 6.2714ZM17.5764 2.48677C17.4967 2.38227 17.4041 2.2904 17.3017 2.21272V6.2714C17.3017 6.52352 17.5223 6.73566 17.8035 6.73566H20.8163L17.5764 2.48677ZM5.27988 22.0799H14.8799C16.041 22.0799 17.0095 21.2554 17.2319 20.1599H9.11988C7.26421 20.1599 5.75988 18.6556 5.75988 16.7999V4.79992H5.27988C3.9544 4.79992 2.87988 5.87444 2.87988 7.19992V19.6799C2.87988 21.0054 3.9544 22.0799 5.27988 22.0799Z" fill="#90A3BF"/>
@@ -938,7 +935,7 @@
 <i v-else class="fa-solid fa-check"></i>
               <span>{{ mainCar.vendor.phone }}</span>
             </div>
-             <button class="stroke" data-bs-dismiss="modal" aria-label="Close">الرجوع</button>
+             <button class="stroke" data-bs-dismiss="modal" aria-label="Close">{{ $t('back') }}</button>
             </div>
           </div>
         </div>
