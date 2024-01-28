@@ -361,66 +361,89 @@
               </div>
             </div>
             <div
-              class="col-12 main-link col-xl-2 col-lg-2 d-flex justify-content-center justify-content-xl-end justify-content-lg-end col-md-6"
+              class="col-12 main-link col-xl-2 col-lg-2 d-flex justify-content-center justify-content-xl-en justify-content-lg-en col-md-6"
             >
               <div
-                class="box-container d-flex flex-column align-items-center text-center justify-content-center gap-3"
+                class="box-container d-flex flex-column align-items-center  justify-content-center justify-content-xl-start justify-content-lg-start align-items-xl-start align-items-lg-start gap-3"
               >
                 <h6 class="head">{{ $t("home") }}</h6>
                 <div class="links d-flex flex-column gap-4">
-                  <span class="head-link"> سيارات</span>
-                  <span class="head-link"> سيارات</span>
-                  <span class="head-link"> سيارات</span>
-                  <span class="head-link"> سيارات </span>
+                <nuxt-link :to="localePath('finance')">
+                  <span class="head-link"> {{$t("finance")}} </span>
+                </nuxt-link>
+                <nuxt-link :to="localePath('news')">
+                  <span class="head-link"> {{$t("news")}} </span>
+                </nuxt-link>
+                <nuxt-link :to="localePath('market')">
+                  <span class="head-link"> {{$t("market")}} </span>
+                </nuxt-link>
+                <nuxt-link :to="localePath('ad')">
+                  <span class="head-link"> {{$t("ad")}} </span>
+                </nuxt-link>
                 </div>
               </div>
             </div>
             <div
-              class="col-12 main-link col-xl-2 col-lg-2 d-flex justify-content-center justify-content-xl-end justify-content-lg-end col-md-6"
+              class="col-12 main-link col-xl-2 col-lg-2 d-flex justify-content-center justify-content-xl-en justify-content-lg-en col-md-6"
             >
               <div
-                class="box-container d-flex flex-column align-items-center text-center justify-content-center gap-3"
+                class="box-container d-flex flex-column align-items-center text-cente justify-content-center justify-content-xl-start justify-content-lg-start align-items-xl-start align-items-lg-start gap-3"
               >
                 <h6 class="head">
                 {{ $t("impLinks") }}
                 </h6>
                 <div class="links d-flex flex-column gap-4">
+                <nuxt-link :to="localePath('auth')">
                   <span class="head-link"> {{ $t("vendor") }} </span>
+                </nuxt-link>
                   <nuxt-link :to="localePath('/careers')">
                     <span class="head-link"> {{ $t("employe") }} </span>
                   </nuxt-link>
-                  <span class="head-link"> سيارات </span>
-                  <span class="head-link"> سيارات </span>
+                  <nuxt-link :to="localePath('about')">
+                  <span class="head-link"> {{$t("about")}} </span>
+                </nuxt-link>
+                  <nuxt-link :to="localePath('contact')">
+                  <span class="head-link"> {{$t("contact")}} </span>
+                </nuxt-link>
                 </div>
               </div>
             </div>
             <div
-              class="col-12 main-link col-xl-2 col-lg-2 d-flex justify-content-center justify-content-xl-end justify-content-lg-end col-md-6"
+              class="col-12 main-link col-xl-2 col-lg-2  d-flex justify-content-center justify-content-xl-en justify-content-lg-en col-md-6"
             >
               <div
-                class="box-container d-flex flex-column align-items-center justify-content-center gap-3"
+                class="box-container d-flex flex-column align-items-center text-cente justify-content-center justify-content-xl-start justify-content-lg-start align-items-xl-start align-items-lg-start gap-3"
               >
                 <h6 class="head">{{ $t("address") }}</h6>
-                <div class="links d-flex flex-column gap-4">
-                  <span class="head-link"> سيارات </span>
-                  <span class="head-link"> سيارات </span>
-                  <span class="head-link"> سيارات </span>
-                  <span class="head-link"> سيارات </span>
+                <div class="d-fle gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+  <path d="M10.5 1.25C8.6773 1.25215 6.92987 1.97717 5.64102 3.26602C4.35218 4.55486 3.62716 6.3023 3.62501 8.125C3.62282 9.61452 4.10937 11.0636 5.01001 12.25C5.01001 12.25 5.19751 12.4969 5.22813 12.5325L10.5 18.75L15.7744 12.5294C15.8019 12.4963 15.99 12.25 15.99 12.25L15.9906 12.2481C16.8908 11.0623 17.3771 9.61383 17.375 8.125C17.3729 6.3023 16.6478 4.55486 15.359 3.26602C14.0701 1.97717 12.3227 1.25215 10.5 1.25ZM10.5 10.625C10.0056 10.625 9.52221 10.4784 9.11108 10.2037C8.69996 9.92897 8.37953 9.53852 8.19031 9.08171C8.00109 8.62489 7.95158 8.12223 8.04804 7.63727C8.14451 7.15232 8.38261 6.70686 8.73224 6.35723C9.08187 6.0076 9.52733 5.7695 10.0123 5.67304C10.4972 5.57657 10.9999 5.62608 11.4567 5.8153C11.9135 6.00452 12.304 6.32495 12.5787 6.73607C12.8534 7.1472 13 7.63055 13 8.125C12.9992 8.78779 12.7355 9.42319 12.2669 9.89185C11.7982 10.3605 11.1628 10.6242 10.5 10.625Z" fill="white"/>
+</svg>
+                  <span class="head-link" style="font-size: 13px;" v-if="footerData2"> {{ footerData2.address }} </span>
                 </div>
               </div>
             </div>
             <div
-              class="col-12 main-link col-xl-2 col-lg-2 d-flex justify-content-center justify-content-xl-end justify-content-lg-end col-md-6"
+              class="col-12 main-link col-xl-2 col-lg-2 d-flex  justify-content-center justify-content-xl-en justify-content-lg-e col-md-6"
             >
               <div
-                class="box-container d-flex flex-column align-items-center justify-content-center gap-3"
+                class="box-container d-flex flex-column align-items-center justify-content-center text-cente justify-content-xl-start justify-content-lg-start align-items-xl-start align-items-lg-start gap-3"
               >
                 <h6 class="head">{{$t("contact2")}}</h6>
                 <div class="links d-flex flex-column gap-4">
-                  <span class="head-link"> سيارات </span>
-                  <span class="head-link"> سيارات </span>
-                  <span class="head-link"> سيارات </span>
-                  <span class="head-link"> سيارات </span>
+                <div class="d-flex align-items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+  <path d="M17.1666 9.16591H18.8333C18.8333 4.89091 15.6058 1.66675 11.325 1.66675V3.33341C14.71 3.33341 17.1666 5.78591 17.1666 9.16591Z" fill="white"/>
+  <path d="M11.3333 6.66678C13.0858 6.66678 13.8333 7.41428 13.8333 9.16678H15.5C15.5 6.47928 14.0208 5.00012 11.3333 5.00012V6.66678ZM14.185 11.2026C14.0249 11.0571 13.8144 10.9795 13.5982 10.9861C13.3819 10.9928 13.1767 11.0833 13.0258 11.2385L11.0317 13.2893C10.5517 13.1976 9.58666 12.8968 8.59332 11.906C7.59999 10.9118 7.29916 9.94429 7.20999 9.46762L9.25916 7.47262C9.4145 7.32189 9.5051 7.11664 9.51179 6.90029C9.51848 6.68394 9.44073 6.47349 9.29499 6.31345L6.21582 2.92762C6.07003 2.76708 5.86739 2.6697 5.65095 2.65617C5.43451 2.64263 5.22132 2.714 5.05666 2.85512L3.24832 4.40595C3.10425 4.55055 3.01826 4.74299 3.00666 4.94678C2.99416 5.15512 2.75582 10.0901 6.58249 13.9185C9.92082 17.256 14.1025 17.5001 15.2542 17.5001C15.4225 17.5001 15.5258 17.4951 15.5533 17.4935C15.7571 17.482 15.9494 17.3957 16.0933 17.251L17.6433 15.4418C17.7845 15.2772 17.8561 15.0641 17.8427 14.8477C17.8293 14.6312 17.7321 14.4285 17.5717 14.2826L14.185 11.2026Z" fill="white"/>
+</svg>
+                  <span class="head-link"  v-if="footerData2"> {{ footerData2.phone }} </span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+  <path d="M14.6667 2.91675H6.33342C3.83341 2.91675 2.16675 4.16675 2.16675 7.08342V12.9167C2.16675 15.8334 3.83341 17.0834 6.33342 17.0834H14.6667C17.1667 17.0834 18.8334 15.8334 18.8334 12.9167V7.08342C18.8334 4.16675 17.1667 2.91675 14.6667 2.91675ZM15.0584 7.99175L12.4501 10.0751C11.9001 10.5167 11.2001 10.7334 10.5001 10.7334C9.80008 10.7334 9.09175 10.5167 8.55008 10.0751L5.94175 7.99175C5.67508 7.77508 5.63341 7.37508 5.84175 7.10841C6.05841 6.84175 6.45008 6.79175 6.71675 7.00841L9.32508 9.09175C9.95842 9.60008 11.0334 9.60008 11.6667 9.09175L14.2751 7.00841C14.5417 6.79175 14.9417 6.83341 15.1501 7.10841C15.3667 7.37508 15.3251 7.77508 15.0584 7.99175Z" fill="white"/>
+</svg>
+                  <span class="head-link"  v-if="footerData2">  {{ footerData2.email }} </span>
+                </div>
                 </div>
               </div>
             </div>
@@ -536,6 +559,7 @@ const updateLang = () => {
 };
 
 let footerData = ref();
+let footerData2 = ref();
 
 const getFooterData = async () => {
   let result = await axios.get(`${getUrl()}/footer`, {
@@ -543,9 +567,15 @@ const getFooterData = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
+  let result1 = await axios.get(`${getUrl()}/contact-us`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
 
   if (result.status == 200) {
     footerData.value = result.data.data;
+    footerData2.value = result1.data.data;
   }
 };
 

@@ -19,6 +19,7 @@
         </svg>
       </div>
       <button>
+      <nuxt-link :to="localePath('search')">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="18"
@@ -59,6 +60,7 @@
             stroke-linejoin="round"
           />
         </svg>
+      </nuxt-link>
       </button>
     </div>
     <div class="hero-section">
@@ -75,8 +77,15 @@
             class="flex-column flex-xl-row flex-lg-row"
           >
             <div class="text">
+            <!-- <div class="d-flex flex-column align-items">
+            <h1  class="">{{ $t('hero1') }}</h1>
+            <h1  class="">{{ $t('and') }}</h1>
+            <h1  class="">{{ $t('fin') }}</h1>
+            <h1  class="">{{ $t('hero2') }}</h1>
+            <h1  class="">{{ $t('hero3') }}</h1>
+            </div> -->
               <h1 class="head">
-               {{ $t('hero1') }} <span> {{ $t('hero2') }} </span> {{ $t('hero3') }}
+               {{ $t('hero1') }} {{ $t('and') }} <span>{{ $t('fin') }}</span>  {{ $t('hero2') }}  {{ $t('hero3') }}
               </h1>
               <p>
                {{ $t('hero4') }}

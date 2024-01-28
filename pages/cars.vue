@@ -88,6 +88,69 @@
                   </div>
                 </div>
               </AccordionTab>
+              <AccordionTab :header="$t('brands')">
+                <div class="d-flex flex-column all-marks-container">
+                  <!-- <div class="d-flex align-items-center mt-3 gap-2 ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none">
+                                            <path
+                                                d="M13 11H0V4C0 2.346 1.346 1 3 1H13V11ZM21 20H15V3H21C22.654 3 24 4.346 24 6V17C24 18.654 22.654 20 21 20ZM13 23H5C3.346 23 2 21.654 2 20V13H13V23Z"
+                                                fill="#90A3BF" />
+                                        </svg>
+                                        <span class="all-span">كل الماركات</span>
+
+                                    </div> -->
+                  <div>
+                    <Accordion>
+                      <AccordionTab v-for="(item, index) in optionsCars.brands">
+                        <template v-slot:header>
+                          <div
+                            class="d-flex align-items-center gap-2 header-icon"
+                          >
+                            <label
+                              :for="`brand-label-${index}`"
+                              class="fw-bold"
+                              >{{ item.title }}</label
+                            >
+                            <!-- <img src="~/assets/images/brand1.png" /> -->
+                            <v-checkbox
+                              style=""
+                              class=""
+                              :id="`brand-label-${index}`"
+                              v-model="selected5"
+                              color="#DCB63B"
+                              :value="item.id"
+                            ></v-checkbox>
+                          </div>
+                        </template>
+                        <div class="accordtion-container">
+                        <div class="mainn d-flex flex-column gap-3">
+                          <div
+                            v-for="(model, index) in item.models"
+                            class="d-flex align-items-center justify-content-between"
+                          >
+                            <div class="d-flex align-items-center gap-2">
+                              <v-checkbox
+                                style=""
+                                class=""
+                                :id="`model-label-${index}`"
+                                v-model="selected6"
+                                color="#DCB63B"
+                                :value="model.id"
+                              ></v-checkbox>
+                              <label :for="`model-label-${index}`">
+                                {{ model.name }}
+                              </label>
+                            </div>
+                            <span class="num">(25)</span>
+                          </div>
+                        </div>
+                        </div>
+                      </AccordionTab>
+                    </Accordion>
+                  </div>
+                </div>
+              </AccordionTab>
               <AccordionTab :header="$t('gear')">
                 <div class="d-flex flex-column gap-2">
                   <div class="d-flex align-items-center gap-2">
@@ -314,69 +377,6 @@
                   </div>
                 </div>
               </AccordionTab>
-              <AccordionTab :header="$t('brands')">
-                <div class="d-flex flex-column all-marks-container">
-                  <!-- <div class="d-flex align-items-center mt-3 gap-2 ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                            fill="none">
-                                            <path
-                                                d="M13 11H0V4C0 2.346 1.346 1 3 1H13V11ZM21 20H15V3H21C22.654 3 24 4.346 24 6V17C24 18.654 22.654 20 21 20ZM13 23H5C3.346 23 2 21.654 2 20V13H13V23Z"
-                                                fill="#90A3BF" />
-                                        </svg>
-                                        <span class="all-span">كل الماركات</span>
-
-                                    </div> -->
-                  <div>
-                    <Accordion>
-                      <AccordionTab v-for="(item, index) in optionsCars.brands">
-                        <template v-slot:header>
-                          <div
-                            class="d-flex align-items-center gap-2 header-icon"
-                          >
-                            <label
-                              :for="`brand-label-${index}`"
-                              class="fw-bold"
-                              >{{ item.title }}</label
-                            >
-                            <!-- <img src="~/assets/images/brand1.png" /> -->
-                            <v-checkbox
-                              style=""
-                              class=""
-                              :id="`brand-label-${index}`"
-                              v-model="selected5"
-                              color="#DCB63B"
-                              :value="item.id"
-                            ></v-checkbox>
-                          </div>
-                        </template>
-                        <div class="accordtion-container">
-                        <div class="mainn d-flex flex-column gap-3">
-                          <div
-                            v-for="(model, index) in item.models"
-                            class="d-flex align-items-center justify-content-between"
-                          >
-                            <div class="d-flex align-items-center gap-2">
-                              <v-checkbox
-                                style=""
-                                class=""
-                                :id="`model-label-${index}`"
-                                v-model="selected6"
-                                color="#DCB63B"
-                                :value="model.id"
-                              ></v-checkbox>
-                              <label :for="`model-label-${index}`">
-                                {{ model.name }}
-                              </label>
-                            </div>
-                            <span class="num">(25)</span>
-                          </div>
-                        </div>
-                        </div>
-                      </AccordionTab>
-                    </Accordion>
-                  </div>
-                </div>
-              </AccordionTab>
               <AccordionTab :header="$t('theYear')">
                 <div class="accordtion-container">
                   <div class="mainn d-flex flex-column gap-3">
@@ -463,6 +463,10 @@
                   </div>
                 </div>
               </AccordionTab>
+            
+           
+             
+          
               <AccordionTab :header="$t('engi')">
                 <div class="d-flex flex-column gap-3">
                   <div

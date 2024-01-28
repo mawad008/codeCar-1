@@ -454,7 +454,8 @@
                       <div class="input-container">
                         <span> {{$t('phone')}}</span>
                         <div class="input">
-                          <input v-model="form3.phone" type="tel" name="" class="" />
+                          <input v-model="form3.phone" type="tel" maxlength="11" name="" class="" />
+                          <span class="numm act">+966</span>
                           <span class="error-msg" v-if="v3$.phone.$error">{{
                               v3$.phone.$errors[0].$message
                           }}</span>
@@ -538,7 +539,7 @@
                       <div class="input-container">
                         <span> {{ $t('ident') }}</span>
                         <div class="input">
-                          <input type="tel" v-model="form3.identity_no"  name=""  class="" />
+                          <input type="tel" v-model="form3.identity_no" maxlength="11"  name=""  class="" />
                           <span class="error-msg" v-if="v3$.identity_no.$error">{{
                               v3$.identity_no.$errors[0].$message
                           }}</span>
@@ -655,7 +656,7 @@
                     </div>
                     <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                       <div class="input-container">
-                        <span> {{$t('tran')}} </span>
+                        <span> {{$t('nat')}} </span>
                         <div class="input">
                           <Dropdown
                             v-model="form3.transferd_type"
@@ -665,7 +666,7 @@
 
                             optionValue="value"
                             optionLabel="name"
-                            placeholder="محول"
+                            :placeholder="$t('nat')"
                             class=""
                           >
                             <template #option="slotProps">

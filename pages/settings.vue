@@ -151,9 +151,18 @@
         <div class="col-12 col-xl-9 col-lg-9">
           <div class="setting-content h-100">
             <div v-if="settingNav == 1" class="personal">
+           
+              <vue-easy-lightbox
+      escDisabled
+      moveDisabled
+      :visible="visibleRef"
+      :imgs="imgs"
+      :index="indexRef"
+      @hide="onHide"
+    ></vue-easy-lightbox>
               <div class="d-flex flex-column align-items-center mb-3 justify-content-center align-items-xl-start justify-content-xl-start  align-items-lg-start justify-content-lg-start">
                 <div class="d-flex  align-items-center mb-2 gap-2 flex-column">
-                <label for="img-file" class="image">
+                <label @click="onShow"  class="image">
                   <div v-if="!selectedFile">
                     <!-- <img v-if="user.image" src="~/assets/images/person.png" /> -->
                     <img  v-if="user.image_url" :src="user.image_url" />
@@ -177,9 +186,19 @@
                       />
                     </svg>
                   </div>
-                  <input id="img-file" type="file" @change="handleFileChange" />
+                  <!-- <input id="img-file" type="file" @change="handleFileChange" /> -->
                 </label>
-                  <svg
+            
+                
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                <span class="img-span"> {{ $t('pimg') }} </span>
+                <label for="img-file" class="image file ">
+                  <input id="img-file" class="" type="file" @change="handleFileChange" />
+
+                <svg
+                  
+                  style="cursor:pointer;"
                         xmlns="http://www.w3.org/2000/svg"
                         width="22"
                         height="21"
@@ -194,8 +213,8 @@
                         />
                       </svg>
                 
+                </label>
                 </div>
-                <span class="img-span"> {{ $t('pimg') }} </span>
               </div>
               <div class="personal-form">
                 <div class="input">
@@ -213,8 +232,8 @@
                     <h6>{{ $t('phone') }}</h6>
                     <span> {{ $t('phone10') }} </span>
                   </label>
-                  <input type="tel" v-model="form.phone" placeholder="01012151698+" />
-             
+                  <input type="tel" v-model="form.phone" maxlength="11" placeholder="01012151698+" />
+                   <span class="numm">+966</span>
                   <span class="error-msg" v-if="errors1.phone">{{
                 errors1.phone[0]
               }}</span>
@@ -224,14 +243,14 @@
                     <h6> {{ $t('ident') }} </h6>
                     <span> {{ $t('ident10') }} </span>
                   </label>
-                  <input type="tel" readonly v-model="form.identity_no"  placeholder="8418988989-5894848-878" />
+                  <input type="tel" readonly v-model="form.identity_no" maxlength="10"  placeholder="8418988989-5894848-878" />
                 </div>
-                <div class="input">
+                <div v-if="user.type != 'individual' " class="input">
                   <label for="">
                     <h6> {{ $t('nummm') }} </h6>
                     <span> {{ $t('nummm10') }} </span>
                   </label>
-                  <input type="text" readonly v-model="form.commercial_registration_no" placeholder="8418988989-5894848-878" />
+                  <input type="text" readonly v-model="form.commercial_registration_no" maxlength="10" placeholder="8418988989-5894848-878" />
                 </div>
                 <div class="input">
                   <label for="">
@@ -576,9 +595,12 @@
              
               <div v-else class="empty">
                 <div class="main">
+                    <client-only>
+            <Vue3Lottie :animation-data="ani" :height="300" :width="300" />
+          </client-only>
                   <h4> {{ $t('stateAd1') }} </h4>
                   <span>
-                   {{$t('')}}
+                   {{$t('stateAd2')}}
                   </span>
                   <nuxt-link :to="localePath('/ad')">
                   <button>{{$t('adAd')}}</button>
@@ -879,6 +901,8 @@ import "mosha-vue-toastify/dist/style.css";
 import axios from 'axios';
 import Cookies from "js-cookie";
 import useValidate from "@vuelidate/core";
+import { Vue3Lottie } from "vue3-lottie";
+import ani from "~/assets/animations/ani.json";
 import {
   required,
   email,
@@ -886,6 +910,7 @@ import {
   minLength,
   helpers,
 } from "@vuelidate/validators";
+import VueEasyLightbox from "vue-easy-lightbox";
 
 import { useStore } from "~/store";
 const tokenCookie = Cookies.get("token");
@@ -905,7 +930,7 @@ const handleFileChange = (event) => {
 };
 
 let user = ref(store.state.user);
-
+let toggler = ref(false);
 let form = ref({
 name: user.value ? user.value.name : '',
 phone: user.value ? user.value.phone : '',
@@ -914,6 +939,15 @@ commercial_registration_no: user.value ? user.value.commercial_registration_no :
 identity_no: user.value ? user.value.identity_no : '',
 });
 
+let imgs = ref(user.value.image_url);
+const visibleRef = ref(false);
+const indexRef = ref(0);
+const imgsRef = ref([]);
+
+const onShow = () => {
+  visibleRef.value = true;
+};
+const onHide = () => (visibleRef.value = false);
      
 
 let carsAds = ref([]);

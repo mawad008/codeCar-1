@@ -602,26 +602,15 @@ p{
   }
 }
 
-  html[dir="ltr"] .main-auth{
-    .form-inputs{
-      
-      .form{
-        
-            .input {
-      &.pass {
-        .icon {
-          left: auto;
-          right: 20px;
-        }
-      }
-        }
-      
-      }
-    
-    }
-
-    }
 .input {
+  position: relative;
+  .numm{
+    // position: absolute;
+    // left: 10px;
+    // color: $body-text;
+    // border-right: 1px solid $body-text;
+    // padding-right: 5px;
+  }
   input {
     outline: none;
     border-style: solid;
@@ -633,6 +622,56 @@ p{
     }
   }
 }
+
+html[dir="rtl"] {
+  .input{
+    position: relative;
+    .numm{
+      position: absolute;
+      left: 10px;
+      &.act{
+        top: 50%;
+        transform: translateY(-50%);
+
+      }
+      color: $body-text;
+      border-right: 1px solid $body-text;
+      padding-right: 5px;
+    }
+  }
+}
+html[dir="ltr"] {
+  .input{
+    position: relative;
+    .numm{
+      position: absolute;
+      right: 10px;
+      color: $body-text;
+      border-left: 1px solid $body-text;
+      padding-left: 5px;
+    }
+  }
+}
+html[dir="ltr"] .main-auth{
+  .form-inputs{
+    
+    .form{
+      
+          .input {
+    &.pass {
+      .icon {
+        left: auto;
+        right: 20px;
+      }
+    }
+      }
+    
+    }
+  
+  }
+
+  }
+
 .p-dropdown {
   &.p-inputwrapper-focus {
     svg {
@@ -679,6 +718,7 @@ p{
 
   .nav-link {
     padding: 0px !important;
+    transition: 0.4s all;
   }
   .items {
     position: relative;
@@ -743,6 +783,10 @@ p{
     }
     a {
       color: #5a7184 !important;
+      transition: 0.4s all;
+      &:hover{
+        font-weight: 700;
+      }
     }
   }
   .router-link-active {
@@ -1051,6 +1095,8 @@ p{
           span {
             color: #dcb63b;
             position: relative;
+            width: fit-content;
+            display: inline-block;
             @include border-line(100% , 20px , 95%);
           }
         }
@@ -1309,7 +1355,7 @@ p{
           span {
             color: #dcb63b;
             position: relative;
-            @include border-line(100% , 12px !important , 80% !important);
+            @include border-line(100% , 9px !important , 82% !important);
           }
          
             }
@@ -1345,6 +1391,10 @@ p{
   .search-section {
     top: 0px;
     margin-top: 50px;
+    display: none;
+    &.mobile{
+      display: flex;
+    }
     .v-field {
       .v-label {
         font-size: 18px !important;
@@ -4658,6 +4708,11 @@ width: 100%;
         border-radius: 100px;
         position: relative;
         cursor: pointer;
+        &.file{
+          width: fit-content;
+          height: fit-content;
+          border-radius: 0px;
+        }
         img {
           width: 100px;
           height: 100px;
