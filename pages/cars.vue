@@ -602,13 +602,34 @@
           </div>
         </div>
         <div class="col-12 col-xl-9 col-lg-9">
-            <client-only >
-            <Vue3Lottie v-if="spinnerProducts" :animation-data="loader" :height="200" :width="200" />
-          </client-only>
+          <div v-if="!pendingState">
           <div class="row">
             <div v-for="item in filterCarsArr" class="col-12 col-xl-4 col-lg-4 col-md-6">
               <car-card :car="item" />
             </div>
+          </div>
+          <client-only >
+            <Vue3Lottie v-if="spinnerProducts" :animation-data="loader" :height="200" :width="200" />
+          </client-only>
+          <div class="progress-container">
+            <span> {{ $t('watch') }} {{ filterCarsArr.length }} {{$t('car')}} {{ $t('from0') }} {{ total }} </span>
+            <div class="line">
+            <v-progress-linear
+              :reverse="reverse"
+              rounded
+              color="#DCB63B"
+              :model-value="progressValue"
+              :height="6"
+            >
+            </v-progress-linear>
+            
+            </div>
+                
+
+            <button @click="loadMore()"> {{$t('searchMore')}} </button>
+          </div>
+          
+          
           </div>
           <div v-if="pendingState" class="empty-state">
             <client-only >
@@ -617,23 +638,6 @@
           <h4> {{ $t('not1') }} </h4>
           <p> {{$t('not2')}} </p>
           <!-- <button></button> -->
-          </div>
-          <div class="progress-container">
-            <span> {{ $t('watch') }} 50 {{$t('car')}} {{ $t('from0') }} 200 </span>
-            <div class="line">
-            <v-progress-linear
-              :reverse="reverse"
-              rounded
-              color="#DCB63B"
-              model-value="20"
-              :height="6"
-            >
-            </v-progress-linear>
-            
-            </div>
-                
-
-            <button> {{$t('searchMore')}} </button>
           </div>
         </div>
       </div>
@@ -659,11 +663,15 @@ let reverse = ref(locale.value == "ar" ? true : false);
 let brandId = ref(route.query.id);
 let modelId = ref(route.query.model);
 let typeCar = ref(route.query.type);
+let searchh  = ref(route.query.search);
 let valuePrice = ref([]);
 let minNum = ref(0);
 let maxNum = ref(0);
 let pendingState = ref(false);
 let spinnerProducts = ref(false);
+let page = ref(1);
+let itemsPerPage = ref();
+let total = ref();
 const rangeLabel = (value) => {
   return `${value} SAR`;
 };
@@ -714,10 +722,13 @@ valuePrice.value = [parseInt(optionsCars.value.Slider.minPrice) , parseInt(optio
 };
 
 let filterCarsArr = ref([]);
+
+
+
 const filterCars = async () => {
     spinnerProducts.value = true;
     pendingState.value = false;
-    filterCarsArr.value = [];
+    // filterCarsArr.value = [];
   let result = await axios.get(`${getUrl()}/filter`, {
     params: {
         type: selected1.value,
@@ -730,7 +741,9 @@ const filterCars = async () => {
         color_id: selected8.value,
         fuel_tank_capacity: selected9.value,
         min_price: valuePrice.value[0],
-        max_price: valuePrice.value[1]
+        max_price: valuePrice.value[1],
+        search: searchh.value ? searchh.value : '',
+        page: page.value
     },
     headers: {
       "Content-Language": `${locale.value}`,
@@ -739,7 +752,12 @@ const filterCars = async () => {
 
   if(result.status == 200){
     spinnerProducts.value = false;
-    filterCarsArr.value = result.data.data;
+    filterCarsArr.value = [...filterCarsArr.value, ...result.data.data];
+    itemsPerPage.value = result.data.meta.per_page;
+    total.value = result.data.meta.total;
+    if(result.data.data.length < 1){
+      filterCarsArr.value = [];
+    }
     if(filterCarsArr.value.length < 1){
       pendingState.value = true;
     } else{
@@ -747,6 +765,30 @@ const filterCars = async () => {
     }
   }
 };
+
+
+const pageCount = computed(() => {
+  return Math.ceil(total.value / itemsPerPage.value);
+});
+const progressValue = computed(() => {
+  return (page.value / total.value) * 100;
+});
+
+const loadMore = async () => {
+  if (page.value < pageCount.value) {
+    page.value++;
+    await filterCars();
+  }
+};
+
+
+watch(
+  () => route.query.search,
+  (newSearch) => {
+    searchh.value = newSearch;
+    filterCars();
+  }
+);
 
 let items = ref([
   {

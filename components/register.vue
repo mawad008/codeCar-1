@@ -445,10 +445,10 @@ const registerFunc = async () => {
   formBody.append("city_id", form.value.city_id.id);
   formBody.append("password", form.value.password);
   formBody.append("password_confirmation", form.value.password_confirmation);
-  if (typeForm.value != "individual") {
-    formBody.append("id_number", form.value.id_number);
+  if (typeForm.value == "agency" || typeForm.value == "exhibition" ) {
+    formBody.append("identity_no", form.value.id_number);
     formBody.append(
-      "commercial_register_namber",
+      "commercial_registration_no",
       form.value.commercial_register_namber
     );
   }

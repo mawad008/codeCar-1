@@ -5,7 +5,7 @@
         class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column"
       >
         <h4 class="heading-text"> {{ $t('settings') }} </h4>
-        <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
+        <p>{{ descriptionText }}</p>
 
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
@@ -287,53 +287,57 @@
                  </div>              </div>
             </div>
             <div v-if="settingNav == 2" class="offers">
-              <div v-if="carsAds.length >= 1" class="">
+              <div  class="">
                 <div class="header">
+
                   <div class="filter">
-                    <div class="icon">
+                    <div    class="icon">
                       <img src="~/assets/images/sort.svg" />
                     </div>
                     <Dropdown
-                      v-model="selectedStat"
+                      v-model="formCar.status_car"
                       :filter-placeholder="$t('search')"
                       :options="carBody"
                       filter
+                      optionValue="value"
                       optionLabel="name"
                       :placeholder="$t('carStat')"
                       class=""
                     >
                       <template #option="slotProps">
-                        <div class="flex align-items-center">
+                        <div @click="getCars()" class="flex align-items-center">
                           <div>{{ slotProps.option.name }}</div>
                         </div>
                       </template>
                     </Dropdown>
                     <Dropdown
-                      v-model="selectedBrand"
+                      v-model="formCar.brand"
                       :options="brands"
                       :filter-placeholder="$t('search')"
                       filter
-                      optionLabel="name"
+                      optionValue="id"
+                      optionLabel="title"
                       :placeholder="$t('brand')"
                       class=""
                     >
                       <template #option="slotProps">
-                        <div class="flex align-items-center">
+                        <div @click="getCars()" class="flex align-items-center">
                           <div>{{ slotProps.option.title }}</div>
                         </div>
                       </template>
                     </Dropdown>
                     <Dropdown
-                      v-model="selectedCountry"
+                      v-model="formCar.status_ad"
                       :filter-placeholder="$t('search')"
-                      :options="countries"
+                      :options="statusAds"
                       filter
                       optionLabel="name"
+                      optionValue="value"
                       :placeholder="$t('adS')"
                       class=""
                     >
                       <template #option="slotProps">
-                        <div class="flex align-items-center">
+                        <div @click="getCars()" class="flex align-items-center">
                           <div>{{ slotProps.option.name }}</div>
                         </div>
                       </template>
@@ -346,8 +350,7 @@
                     <span> {{ $t('adAd') }} </span>
                   </nuxt-link>
                 </div>
-
-                <div class="filter-table">
+                <div v-if="carsAds.length >= 1" class="filter-table">
                   <div class="head">
                     <span> {{ $t('nameimg') }}</span>
                     <span>{{$t('price')}}</span>
@@ -589,11 +592,7 @@
              
                   </div>
                 </div>
-              </div>
-
-
-             
-              <div v-else class="empty">
+                <div v-else class="empty">
                 <div class="main">
                     <client-only>
             <Vue3Lottie :animation-data="ani" :height="300" :width="300" />
@@ -607,6 +606,24 @@
                   </nuxt-link>
                 </div>
               </div>
+              </div>
+
+
+             
+              <!-- <div v-else class="empty">
+                <div class="main">
+                    <client-only>
+            <Vue3Lottie :animation-data="ani" :height="300" :width="300" />
+          </client-only>
+                  <h4> {{ $t('stateAd1') }} </h4>
+                  <span>
+                   {{$t('stateAd2')}}
+                  </span>
+                  <nuxt-link :to="localePath('/ad')">
+                  <button>{{$t('adAd')}}</button>
+                  </nuxt-link>
+                </div>
+              </div> -->
             </div>
             <div v-if="settingNav == 4" class="notifications">
               <div class="item active">
@@ -920,6 +937,7 @@ let selectedFile = ref(null);
 let selectedFileUrl = ref(null);
 const localePath = useLocalePath();
 let router = useRouter();
+let descriptionText = ref('');
 const { locale, setLocale } = useI18n();
 const handleFileChange = (event) => {
   const file = event.target.files[0];
@@ -952,19 +970,16 @@ const onHide = () => (visibleRef.value = false);
 
 let carsAds = ref([]);
 
-const selectedCountry = ref();
-const countries = ref([
-  { name: "Australia", code: "AU" },
-  { name: "Brazil", code: "BR" },
-  { name: "China", code: "CN" },
-  { name: "Egypt", code: "EG" },
-  { name: "France", code: "FR" },
-  { name: "Germany", code: "DE" },
-  { name: "India", code: "IN" },
-  { name: "Japan", code: "JP" },
-  { name: "Spain", code: "ES" },
-  { name: "United States", code: "US" },
-]);
+const statusAds = ref([
+  {
+    name: locale.value == "ar" ? 'مفعل' : 'active',
+    value:1
+  },
+  {
+    name: locale.value == "ar" ? 'غير مفعل' : 'unActive',
+    value:0
+  }
+])
 
 let active = ref('مفعل');
 let unActive = ref('غير مفعل')
@@ -1028,6 +1043,11 @@ let selectedCity = ref();
 let brands = ref([]);
 let cities = ref([]);
 
+let formCar = ref({
+  status_car: '',
+  brand: '',
+  status_ad:''
+});
 
 const updateProfile = async ()=>{
         let formBody = new FormData();
@@ -1119,6 +1139,10 @@ const updatePassword = async ()=>{
 }
 const getCars = async ()=>{
   let result = await axios.get(`${getUrl()}/ads`,{
+    params: {
+      status_car: formCar.value.status_car ,
+      brand: formCar.value.brand
+        },
           headers: {
             "Content-Language": `${locale.value}`,
             Authorization: `Bearer ${tokenCookie}`,
@@ -1126,8 +1150,9 @@ const getCars = async ()=>{
     });
 
     if(result.status >= 200){
-      carsAds.value = result.data.data.cars
-      console.log(carsAds.value);
+      carsAds.value = result.data.data.cars;
+      descriptionText.value = result.data.data.description;
+      // console.log(carsAds.value);
     }
 }
 const activeCar = async (id , statusCar)=>{

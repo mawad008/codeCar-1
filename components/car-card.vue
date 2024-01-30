@@ -1,15 +1,30 @@
 <template>
     <div>
         <div class="car-card" v-if="car">
-            <div class="image">
+            <Swiper
+        :spaceBetween="30"
+        :slidesPerView="1"
+        :centeredSlides="true"
+        :autoplay="{
+          delay: 5500,
+          disableOnInteraction: false,
+        }"
+        :modules="[SwiperAutoplay]"
+        class="image"
+      >
+        <swiper-slide v-for="item , index in car.images" :key="index">
+          <img :src="item" alt="" />
+        </swiper-slide>
+      </Swiper>
+            <!-- <div class="image">
                 <img :src="car.main_image" alt="" />
-            </div>
+            </div> -->
             <span class="namee">{{ car.statue }}</span>
             <div class="name d-flex flex-column">
                 <span class="used"> {{ $t('discc') }} {{ Math.round(car.discount_percentage) }} % </span>
                 <h4>{{ car.title }}</h4>
             </div>
-            <div class="price d-flex align-items-center w-100 justify-content-center gap-3">
+            <div class="price d-flex flex-column align-items-cente w-100 justify-content-cente ">
                 <h6>{{ car.price }} {{ $t('curr') }}</h6>
                 <span> {{Math.round(car.price_after_tax)}} {{ $t('curr') }} {{ $t('taxes') }}</span>
             </div>
@@ -64,8 +79,14 @@
               
                 <nuxt-link class="w-100" :to="localePath({path:'/car',query:{id:car.id}})">  {{ $t('buy') }} </nuxt-link>
                 </button>
-                <div class="icon">
-                    <img src="~/assets/images/heart.png" />
+                <div @click="addFavFunc(car.id , car.is_fav)" class="icon heart">
+                    <!-- <img src="~/assets/images/heart.png" /> -->
+                    <svg :class="{'active': favBtn}" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.3812 6.13389C14.1606 4.35511 17.0457 4.35511 18.8252 6.13389C20.6047 7.91277 
+  20.6047 10.797 18.8252 12.5759L12.3392 19.0593C12.1518 19.2466 11.8479 19.2466 11.6605 
+  19.0593L5.17453 12.5759C3.39495 10.797 3.39495 7.91277 5.17453 6.13389C6.95401
+   4.35511 9.83904 4.35511 11.6185 6.13389L11.9998 6.51506L12.3812 6.13389Z" fill="#90A3BF"/>
+</svg>
                 </div>
             </div>
         </div>
@@ -73,10 +94,62 @@
 </template>
 
 <script setup>
-const props = defineProps(["car"]);
+import { createToast } from "mosha-vue-toastify";
+import "mosha-vue-toastify/dist/style.css";
+const props = defineProps(["car" , "myFunction" , "check"]);
 import axios from 'axios';
 const { locale } = useI18n();
 const localePath = useLocalePath();
+
+import Cookies from "js-cookie";
+const tokenCookie = Cookies.get("token");
+
+let value1 = ref(" تم الاضافة الي قائمة المفضلات ");
+let value2 = ref(" تم الحذف من قائمة المفضلات ");
+
+let favBtn = ref(props.car.is_fav);
+
+if (locale.value == "ar") {
+  value1.value = "تم الاضافة الي قائمة المفضلات ";
+  value2.value = "تم الحذف من قائمة المفضلات ";
+
+} else {
+    value1.value = 'value is required';
+  value2.value = "The email field is required";
+
+}
+const addFavFunc = async (id , success) =>{
+    favBtn.value = !favBtn.value;
+    let formBody = new FormData();
+  formBody.append("car_id", id);
+    let result = await axios.post(
+      `${getUrl()}/${tokenCookie ? 'add-favorite-withauth' : 'add-favorite-withoutauth'}`,
+      { car_id: id },
+      {
+        headers: {
+          "Content-Language": `${locale.value}`,
+          Authorization: `Bearer ${tokenCookie}`,
+        },
+      }
+    );
+    if(result.status >= 200){
+          if(props.check){
+              props.myFunction();
+          }
+            createToast(
+              {
+                title: favBtn.value ? value1.value : value2.value,
+              },
+              {
+                type: "success",
+                transition: "bounce",
+                showIcon: "true",
+                timeout: 3000,
+                toastBackgroundColor: "#dcb63b",
+              }
+            );
+    }
+}
 </script>
 
 <style lang="scss" scoped></style>

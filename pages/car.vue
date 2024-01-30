@@ -231,7 +231,8 @@
                   إلى رحلاتك اليومية. اكتشف قوة المحرك، والراحة في الداخل،
                   والتكنولوجيا المتقدمة التي تجعل هذه السيارة فريدة من نوعها
                 </p> -->
-                <div class="descDiv" v-html="mainCar.description"></div>
+                <div class="descDiv" v-html="mainCar.description" :class="{'active':mainCar.description.length >= 235}"></div>
+                
               </div>
 
               <div class="price">

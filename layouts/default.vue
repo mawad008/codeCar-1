@@ -100,8 +100,8 @@
               </svg>
             </div>
             <div v-if="overlay" class="searchBar">
-              <input type="text" :placeholder="$t('search')" />
-              <div  class="iconn">
+              <input type="text"  @keypress.enter="goCarsFilterByName()"  v-model="searchValue" :placeholder="$t('search')" />
+              <div @click="goCarsFilterByName()" class="iconn">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -499,6 +499,7 @@ const { locale, setLocale } = useI18n();
 let arrowActive = ref(false);
 let overlay = ref(false);
 let route = useRoute();
+let router = useRouter();
 const changeLang = async () => {
   locale.value = locale.value === "en" ? "ar" : "en";
   if (locale.value == "ar") {
@@ -625,6 +626,14 @@ const subscripe = async () => {
     }
   }
 };
+
+
+let searchValue = ref('');
+const goCarsFilterByName = () =>{
+  router.push(localePath({path:'/cars', query:{search:searchValue.value}}));
+  overlay.value = false;
+
+}
 
 const scrollUp = () => {
   if (process.client) {
