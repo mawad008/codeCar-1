@@ -1355,16 +1355,19 @@ html[dir="ltr"] .main-auth{
           span {
             color: #dcb63b;
             position: relative;
-            @include border-line(100% , 9px !important , 82% !important);
+            @include border-line(100% , 9px !important , 96% !important);
           }
          
             }
+            .image{
+              margin-top:20px;
+              }
         .text {
           width: 100%;
           gap: 20px;
           text-align: center;
           h1 {
-            line-height: 150%;
+            line-height: 40px;
             font-size: 24px;
             width: 273px;
             margin-bottom: 0px;
@@ -1607,8 +1610,12 @@ html[dir="ltr"] .explore {
   }
 }
 html[dir="rtl"] .explore {
+  direction: ltr;
+  .row{
+    }
+    // direction: rtl;
   .col-12 {
-    &:not(:first-child) {
+    &:not(:last-child) {
       .box {
         &::before {
           content: "";
@@ -1625,6 +1632,9 @@ html[dir="rtl"] .explore {
   }
 }
 
+
+  html[dir="rtl"] , html[dir="ltr"]{
+    
 @media (max-width: 1000px) {
   .explore {
     padding: 50px 0px;
@@ -1632,14 +1642,16 @@ html[dir="rtl"] .explore {
     .text {
       margin-bottom: 20px !important;
     }
-    .box {
+  
+
+        .col-12 {
+    &:not(:last-child) {
+      .box {
       margin-bottom: 30px;
       p {
         width: 100%;
       }
       &::before {
-        content: "";
-
         content: "";
         position: absolute;
         width: 152px;
@@ -1651,9 +1663,14 @@ html[dir="rtl"] .explore {
         transform: translateX(50%) !important;
         height: 1.5px;
       }
+        
+    }
+      }
     }
   }
-}
+  }
+    }
+
 // end explore section
 
 // start our products section
@@ -1869,7 +1886,14 @@ html[dir="rtl"] .explore {
     }
     .main-image {
       margin-top: 30px !important;
+      .main{
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+        
+        }
       .image {
+        width: 70px;
       }
       .choose {
         h6 {
@@ -1880,8 +1904,12 @@ html[dir="rtl"] .explore {
     button {
       width: 100% !important;
     }
+      .theImg{
+        display: none !important;
+        }
     .big-img {
       width: 100%;
+      // display: none;
       object-fit: contain;
     }
     .text-container {
@@ -1900,6 +1928,13 @@ html[dir="rtl"] .explore {
       display: none;
     }
   }
+    .footer-container{
+      .box-container{
+        
+         text-align: center;
+        }
+      
+      }
 }
 
 // end best offer section
@@ -1964,7 +1999,7 @@ html[dir="rtl"] .explore {
     }
   }
   .brands {
-    margin-top: 0px;
+    margin-top: 50px;
     margin-bottom: $margin-bottom-mobile;
     &.market{
       margin-top: 50px;
