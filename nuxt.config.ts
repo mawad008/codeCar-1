@@ -54,6 +54,12 @@ export default defineNuxtConfig({
         {
           src: "/js/bootstrap.bundle.min.js",
         },
+        {
+          src: "/js/three1.js",
+        },
+        {
+          src: "/js/three2.js",
+        },
         // {
         //   src: "/chart.utils.js",
         //   body: true

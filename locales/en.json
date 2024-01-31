@@ -288,5 +288,11 @@
 "reg4": "Please enter",
 "reg5": "By creating an account, you agree to our ",
 "policy1": "Privacy Policy",
-"policy2": "Terms and Conditions"
+"policy2": "Terms and Conditions",
+"emptyfav1": "It seems you don't have any cars in your favorites list.",
+"emptyfav2": "Add your first favorite now. We're here to help you find the perfect car to continue your journey on the road.",
+"emptyfav3": "Browse Cars",
+"exmp": "Example: 4 years",
+"offerName1": "No offers currently match your criteria.",
+"offerName2": "Sorry, it appears there are currently no financing offers that suit your needs. Explore our wide range of cars or search for another car that fits your financial and personal requirements."
 }

@@ -76,7 +76,7 @@
           <swiper-slide
             class="flex-column flex-xl-row flex-lg-row"
           >
-            <div class="text">
+            <div data-aos="zoom-in"  class="text">
             <!-- <div class="d-flex flex-column align-items">
             <h1  class="">{{ $t('hero1') }}</h1>
             <h1  class="">{{ $t('and') }}</h1>
@@ -92,7 +92,7 @@
               </p>
             </div>
 
-            <div class="image">
+            <div data-aos="zoom-in-up"  class="image">
               <img
                 class="img-fluid"
                 src="~/assets/images/hero-car.png"
@@ -103,9 +103,30 @@
         </swiper>
       </div>
       <!-- <video class="mask" src="~/assets/videos/hero-section-video.mp4"  autoplay loop muted></video> -->
-      <img class="mask" src="~/assets/images/mask-hero.png" alt="" />
+      <!-- <img class="mask" src="~/assets/images/mask-hero.png" alt="" /> -->
+      <div class="mask one">
+        <client-only>
+              <Vue3Lottie :animation-data="hero" :height="750" :width="1300" />
+          </client-only>
+       <!-- <div id="hero-section-back" class="back" ></div> -->
+
+      </div>
+      <div class="mask two">
+        <client-only>
+              <Vue3Lottie :animation-data="hero" :height="750" :width="1300" />
+          </client-only>
+       <!-- <div id="hero-section-back" class="back" ></div> -->
+
+      </div>
+      <div class="mask three">
+        <client-only>
+              <Vue3Lottie :animation-data="hero" :height="750" :width="1300" />
+          </client-only>
+       <!-- <div id="hero-section-back" class="back" ></div> -->
+
+      </div>
     </div>
-       
+       <!-- <div id="hero-section-back" style="width: 100vw; height: 100vh;"></div> -->
     <div class="container d-flex align-items-center justify-content-center">
       <div class="search-section">
         <div class="select">
@@ -442,7 +463,7 @@
 <script setup>
 import axios from "axios";
 import { Vue3Lottie } from "vue3-lottie";
-import loader from "~/assets/animations/Loader.json";
+import hero from "~/assets/animations/hero.json";
 let tab = ref(1);
 let tabNav = ref(0);
 const localePath = useLocalePath();
@@ -586,6 +607,18 @@ onMounted(() => {
   getfinancingbody();
   getfinancingAdv();
   getProducts();
+  VANTA.WAVES({
+  el: "#hero-section-back",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  // minHeight: 100.00,
+  // minWidth: 100.00,
+  scale: 1.00,
+  scaleMobile: 1.00,
+  // shininess: 0.00,
+  color: 0x1b2126
+})
 });
 </script>
 

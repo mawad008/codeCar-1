@@ -834,8 +834,9 @@
                   </div>
 
                   <div v-if="paymentIndividualBtn == 4" class="offers">
+                  <div v-if="offers.length >= 1">
                     <v-radio-group  v-model="bank_offer_id">
-                      <div v-if="offers.length >= 1" class="row">
+                      <div  class="row">
                         <div v-for="item, index in offers" class="col-12 col-xl-6 col-lg-6">
                           <label :for="`offer-${index}-1`" class="offer">
                             <div
@@ -905,6 +906,21 @@
                         {{ $t('next') }}
                       </button>
                     </div>
+                  </div>
+                  <div v-else class="empty">
+                <div class="main">
+                    <client-only>
+            <Vue3Lottie :animation-data="emptyoffers" :height="300" :width="300" />
+          </client-only>
+                  <h4> {{ $t('stateAd1') }} </h4>
+                  <span>
+                   {{$t('stateAd2')}}
+                  </span>
+                  <nuxt-link :to="localePath('/')">
+                  <button>{{$t('backHome')}}</button>
+                  </nuxt-link>
+                </div>
+              </div>
                   </div>
 
                   <div v-if="paymentIndividualBtn == 5" class="final-review">
@@ -1091,9 +1107,9 @@ let store = useStore;
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let paymentMethod = ref(1);
-let sliderValue1 = ref(20000);
+let sliderValue1 = ref(0);
 let sliderValue2 = ref(5);
-let sliderValue3 = ref(20000);
+let sliderValue3 = ref(0);
 let showConfirm = ref(false);
 let minNum = ref(0);
 let maxNum = ref(0);
@@ -1126,6 +1142,8 @@ const getOptions = async () => {
     brands.value = result.data.data.brands;
     minNum.value = parseInt(result.data.data.Slider.minPrice);
     maxNum.value = parseInt(result.data.data.Slider.maxPrice);
+    // sliderValue1.value = parseInt(result.data.data.Slider.minPrice) + 20000;
+    // sliderValue3.value = parseInt(result.data.data.Slider.minPrice) + 20000;
 };
 let paymentBtn1 = ref(1);
 let paymentBtn2 = ref(0);

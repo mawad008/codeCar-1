@@ -626,6 +626,7 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
   transition: 0.4s all;
   height: -moz-fit-content;
   height: fit-content;
+  z-index: 55555;
 }
 .navbar .white-img {
   display: none;
@@ -913,10 +914,22 @@ html[dir=ltr] .footer-container .search button {
 .hero-section .mask {
   position: absolute;
   width: 100%;
-  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  transform: rotate(167deg);
   top: 0;
+}
+.hero-section .mask.one {
+  left: 35%;
+  top: 50px;
+}
+.hero-section .mask.two {
+  top: -100px;
+  left: 15%;
+}
+.hero-section .mask.three {
+  left: 0%;
+  top: -50px;
 }
 .hero-section .container {
   height: 100%;
@@ -1014,13 +1027,6 @@ html[dir=ltr] .footer-container .search button {
   line-height: 30px;
 }
 
-html[dir=rtl] .hero-section .mask {
-  left: 30%;
-}
-
-html[dir=ltr] .hero-section .mask {
-  right: 30%;
-}
 ::-webkit-scrollbar {
   width: 9px;
   height: 10px;
@@ -2681,8 +2687,8 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   border-radius: 6px;
 }
 .paymentType .final-review .main-container .image img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
   width: 38.411px;
   height: 17.438px;
   border-radius: 6px;
@@ -4411,44 +4417,6 @@ html[dir=ltr] .about-us .about-container .image .overlay {
 .settings-page .setting-content .notifications .item.active svg path {
   fill: #dcb63b !important;
 }
-.settings-page .setting-content .empty {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.settings-page .setting-content .empty .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 16px;
-}
-.settings-page .setting-content .empty .main h4 {
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  color: #2d3a4a;
-}
-.settings-page .setting-content .empty .main span {
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  width: 426px;
-  color: #5a7184;
-}
-.settings-page .setting-content .empty .main button {
-  display: flex;
-  width: 200px;
-  height: 48px;
-  padding: 8px 16px;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  border-radius: 12px;
-  border: 1px solid #2d3a4a;
-  margin-top: 32px;
-}
 .settings-page .log-out-btn {
   margin-top: 20px;
   display: none;
@@ -4463,6 +4431,49 @@ html[dir=ltr] .about-us .about-container .image .overlay {
   border: 1px solid #5a7184;
   color: #5a7184;
   font-weight: 700;
+}
+
+.empty {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.empty .main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+.empty .main h4 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  color: #2d3a4a;
+}
+.empty .main span {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  width: 426px;
+  color: #5a7184;
+}
+.empty .main a {
+  width: 200px;
+}
+.empty .main button {
+  width: 100%;
+  display: flex;
+  height: 48px;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-weight: 700;
+  border-radius: 12px;
+  border: 1px solid #2d3a4a;
+  margin-top: 32px;
 }
 
 html[dir=ltr] .setting-btn {
@@ -4850,6 +4861,12 @@ html[dir=ltr] .setting-btn {
   }
   .advertisement-container .confirm span, .advertisement-container .confirm a, .advertisement-container .confirm button {
     width: 100% !important;
+  }
+  .empty span {
+    width: 100% !important;
+  }
+  .empty a {
+    width: 100%;
   }
   .advertisement-container .ad-container .ad-content .det .half {
     width: auto !important;

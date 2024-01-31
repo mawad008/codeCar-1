@@ -104,11 +104,11 @@
                       slidesPerView: 3.2,
                       spaceBetween: 20,
                     },
-                    '768': {
+                    '900': {
                       slidesPerView: 4,
                       spaceBetween: 10,
                     },
-                    '1024': {
+                    '1400': {
                       slidesPerView: 5,
                       spaceBetween: 20,
                     },
@@ -217,20 +217,7 @@
               </div>
               <div class="description">
                 <span class="word">{{$t('disc1')}}</span>
-                <!-- <p>
-                  استمتع بتجربة القيادة الفريدة مع هذه السيارة الفاخرة. تجمع
-                  الأداء العالي والتصميم الأنيق في سيارة تضيف لمسة من الرفاهية
-                  إلى رحلاتك اليومية. اكتشف قوة المحرك، والراحة في الداخل،
-                  والتكنولوجيا المتقدمة التي تجعل هذه السيارة فريدة من نوعها
-                  استمتع بتجربة القيادة الفريدة مع هذه السيارة الفاخرة. تجمع
-                  الأداء العالي والتصميم الأنيق في سيارة تضيف لمسة من الرفاهية
-                  إلى رحلاتك اليومية. اكتشف قوة المحرك، والراحة في الداخل،
-                  والتكنولوجيا المتقدمة التي تجعل هذه السيارة فريدة من نوعها
-                  استمتع بتجربة القيادة الفريدة مع هذه السيارة الفاخرة. تجمع
-                  الأداء العالي والتصميم الأنيق في سيارة تضيف لمسة من الرفاهية
-                  إلى رحلاتك اليومية. اكتشف قوة المحرك، والراحة في الداخل،
-                  والتكنولوجيا المتقدمة التي تجعل هذه السيارة فريدة من نوعها
-                </p> -->
+        
                 <div class="descDiv" v-html="mainCar.description" :class="{'active':mainCar.description.length >= 235}"></div>
                 
               </div>
@@ -329,7 +316,7 @@
 
       <div
         :class="{
-          'd-none': paymentIndividualBtn == 6 || paymentIndividualBtn == 7,
+          'd-none': showConfirmCash ,
         }"
         class="paymentType"
       >
@@ -348,22 +335,22 @@
 
           <div class="payment-method">
             <button
-              @click="paymentMethod2 = 1"
-              :class="{ active: paymentMethod2 == 1 }"
+              @click="btnCash = 1"
+              :class="{ active: btnCash == 1 }"
               class="one"
             >
               {{$t('ind')}}
             </button>
             <button
-              @click="paymentMethod2 = 2"
-              :class="{ active: paymentMethod2 == 2 }"
+              @click="btnCash = 2"
+              :class="{ active: btnCash == 2 }"
               class="two"
             >
               {{$t('comp')}}
             </button>
           </div>
 
-          <div v-if="paymentMethod2 == 1" class="row">
+          <div v-if="btnCash == 1" class="row">
             <div class="col-12 col-xl-8 col-lg-8">
               <div class="form-ind">
                 <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
@@ -375,8 +362,15 @@
                         placeholder=""
                         name=""
                         class=""
+                        v-model="formCash1.name"
                       />
                     </div>
+                    <span class="error-msg" v-if="v1$.name.$error">{{
+                              v1$.name.$errors[0].$message
+                          }}</span>
+                  <span class="error-msg" v-if="errors1.name">{{
+                      errors1.name[0]
+                  }}</span>
                   </div>
                   <div class="input-container">
                     <span> {{$t('phone')}} </span>
@@ -385,16 +379,25 @@
                         type="text"
                         placeholder="+021093051515"
                         name=""
-                        value=""
+                        v-model="formCash1.phone"
                         class=""
                       />
+                      <span class="error-msg" v-if="v1$.phone.$error">{{
+                              v1$.phone.$errors[0].$message
+                          }}</span>
+                  <span class="error-msg" v-if="errors1.phone">{{
+                      errors1.phone[0]
+                  }}</span>
                     </div>
                   </div>
                 </div>
                 <button
-                  @click="(paymentIndividualBtn = 6), (showConfirm = true)"
+                  @click="cashFunc1()"
+                  class="gap-3"
                 >
                   {{$t('send')}}
+                  <v-progress-circular v-if="pending1"  indeterminate :size="25" :width="4"></v-progress-circular>
+
                 </button>
               </div>
             </div>
@@ -420,7 +423,7 @@
                         fill="#90A3BF"
                       />
                     </svg>
-                    <span>+1012 3456 789</span>
+                    <span v-if="contactArr.phone">{{ contactArr.phone }}</span>
                   </div>
                   <div class="icon">
                     <svg
@@ -435,7 +438,7 @@
                         fill="#90A3BF"
                       />
                     </svg>
-                    <span>demo@gmail.com</span>
+                    <span v-if="contactArr.email">{{ contactArr.email }}</span>
                   </div>
                   <div class="icon">
                     <svg
@@ -450,16 +453,14 @@
                         fill="#90A3BF"
                       />
                     </svg>
-                    <span
-                      >المملكة العربية السعودية - شارع الوحدة - الوحدة
-                      الخامسة</span
+                    <span v-if="contactArr.address">{{ contactArr.address }}</span
                     >
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div v-if="paymentMethod2 == 2" class="row">
+          <div v-if="btnCash == 2" class="row">
             <div class="col-12 col-xl-8 col-lg-8">
               <div class="form-ind">
                 <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
@@ -468,23 +469,30 @@
                     <div class="input">
                       <input
                         type="text"
-                        placeholder="مثال : تويوتا"
+                        :placeholder="$t('name3')"
                         name=""
-                        value=""
+                        v-model="formCash2.organization_name"
                         class=""
                       />
+                      <span class="error-msg" v-if="v2$.organization_name.$error">{{
+                              v2$.organization_name.$errors[0].$message
+                          }}</span>
+                          <span class="error-msg" v-if="errors2.name">{{
+                      errors2.name[0]
+                  }}</span>
                     </div>
                   </div>
 
                   <div class="input-container">
-                    <span> نوع المنشأة </span>
+                    <span> {{ $t('orgType') }}</span>
                     <div class="input">
                       <Dropdown
-                        v-model="selectedCountry"
+                        v-model="formCash2.organization_type"
                         :options="countries"
                         filter
+                        :filter-placeholder="$t('search')"
                         optionLabel="name"
-                        placeholder="مثال : شركة"
+                        :placeholder="$t('orgType')"
                         class=""
                       >
                         <template #option="slotProps">
@@ -493,32 +501,46 @@
                           </div>
                         </template>
                       </Dropdown>
+                      <span class="error-msg" v-if="v2$.organization_type.$error">{{
+                              v2$.organization_type.$errors[0].$message
+                          }}</span>
+                          <span class="error-msg" v-if="errors2.organization_type">{{
+                      errors2.organization_type[0]
+                  }}</span>
                     </div>
                   </div>
                 </div>
                 <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
-                    <span> رقم السجل التجاري</span>
+                    <span> {{ $t('nummm') }} </span>
                     <div class="input">
                       <input
                         type="text"
-                        placeholder="مثال : 3333-5555-9999-55"
+                        placeholder="3333-5555-9999-55"
                         name=""
-                        value=""
+                        v-model="formCash2.commercial_registration_no"
                         class=""
                       />
+                      <span class="error-msg" v-if="v2$.commercial_registration_no.$error">{{
+                              v2$.commercial_registration_no.$errors[0].$message
+                          }}</span>
+                          <span class="error-msg" v-if="errors2.commercial_registration_no">{{
+                      errors2.commercial_registration_no[0]
+                  }}</span>
                     </div>
                   </div>
 
                   <div class="input-container">
-                    <span> نشاط المنشأة </span>
+                    <span> {{ $t('orgAct') }}</span>
                     <div class="input">
                       <Dropdown
-                        v-model="selectedCountry"
+                        v-model="formCash2.organization_activity"
                         :options="countries"
                         filter
                         optionLabel="name"
-                        placeholder="تأجير سيارات"
+                        :filter-placeholder="$t('search')"
+
+                        :placeholder="$t('orgAct')"
                         class=""
                       >
                         <template #option="slotProps">
@@ -527,60 +549,86 @@
                           </div>
                         </template>
                       </Dropdown>
+                      <span class="error-msg" v-if="v2$.organization_activity.$error">{{
+                              v2$.organization_activity.$errors[0].$message
+                          }}</span>
+                          <span class="error-msg" v-if="errors2.organization_activity">{{
+                      errors2.organization_activity[0]
+                  }}</span>
                     </div>
                   </div>
                 </div>
                 <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
-                    <span> اسم الشخص المسؤول </span>
+                    <span> {{ $t('name4') }} </span>
                     <div class="input">
                       <input
                         type="text"
-                        placeholder="مثال : محمد سيد"
+                        :placeholder="$t('name4')"
                         name=""
-                        value=""
                         class=""
+                        v-model="formCash2.name"
                       />
+                      <span class="error-msg" v-if="v2$.name.$error">{{
+                              v2$.name.$errors[0].$message
+                          }}</span>
+                          <span class="error-msg" v-if="errors2.name">{{
+                      errors2.name[0]
+                  }}</span>
                     </div>
                   </div>
 
                   <div class="input-container">
-                    <span> رقم الهاتف </span>
+                    <span> {{ $t('phone') }} </span>
                     <div class="input">
                       <input
                         type="text"
-                        placeholder="مثال : 3333-5555-9999-55"
+                        placeholder="3333-5555-9999-55"
                         name=""
-                        value=""
+                        v-model="formCash2.phone"
                         class=""
                       />
+                      <span class="error-msg" v-if="v2$.phone.$error">{{
+                              v2$.phone.$errors[0].$message
+                          }}</span>
+                          <span class="error-msg" v-if="errors2.phone">{{
+                      errors2.phone[0]
+                  }}</span>
                     </div>
                   </div>
                 </div>
                 <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
-                    <span> عمر المنشأة </span>
+                    <span> {{ $t('orgAge') }}</span>
                     <div class="input">
                       <input
                         type="number"
                         min="1"
-                        placeholder="مثال : 4 سنوات"
+                        :placeholder="$t('exmp')"
                         name=""
-                        value=""
+                        v-model="formCash2.organization_age"
                         class=""
                       />
+                      <span class="error-msg" v-if="v2$.organization_age.$error">{{
+                              v2$.organization_age.$errors[0].$message
+                          }}</span>
+                          <span class="error-msg" v-if="errors2.organization_age">{{
+                      errors2.organization_age[0]
+                  }}</span>
                     </div>
                   </div>
 
                   <div class="input-container">
-                    <span> المدينة </span>
+                    <span> {{ $t('city') }} </span>
                     <div class="input">
                       <Dropdown
-                        v-model="selectedCountry"
-                        :options="countries"
+                        v-model="formCash2.city_id"
+                        :options="cities"
                         filter
+                        :filter-placeholder="$t('search')"
                         optionLabel="name"
-                        placeholder="ابها"
+                            optionValue="id"
+                        :placeholder="$t('city')"
                         class=""
                       >
                         <template #option="slotProps">
@@ -589,19 +637,27 @@
                           </div>
                         </template>
                       </Dropdown>
+                      <span class="error-msg" v-if="v2$.city_id.$error">{{
+                              v2$.city_id.$errors[0].$message
+                          }}</span>
+                          <span class="error-msg" v-if="errors2.city_id">{{
+                      errors2.city_id[0]
+                  }}</span>
                     </div>
                   </div>
                 </div>
                 <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
                   <div class="input-container">
-                    <span> حساب المنشأة لدي البنك</span>
+                    <span> {{ $t('bankk') }}</span>
                     <div class="input">
                       <Dropdown
-                        v-model="selectedCountry"
-                        :options="countries"
+                        v-model="formCash2.bank_id"
+                        :options="optionsCars.banks"
                         filter
+                        :filter-placeholder="$t('search')"
                         optionLabel="name"
-                        placeholder="مثال : مصرف الجارحي"
+                        optionValue="id"
+                        :placeholder="$t('example8')"
                         class=""
                       >
                         <template #option="slotProps">
@@ -610,27 +666,42 @@
                           </div>
                         </template>
                       </Dropdown>
+                      <span class="error-msg" v-if="v2$.bank_id.$error">{{
+                              v2$.bank_id.$errors[0].$message
+                          }}</span>
+                          <span class="error-msg" v-if="errors2.bank_id">{{
+                      errors2.bank_id[0]
+                  }}</span>
                     </div>
                   </div>
 
                   <div class="input-container">
-                    <span> عدد السيارات المطلوبة</span>
+                    <span> {{ $t('numCars') }} </span>
                     <div class="input">
                       <input
                         type="number"
                         min="1"
-                        placeholder="3 سيارات"
+                        placeholder=" "
                         name=""
-                        value=""
+                        v-model="formCash2.car_count"
                         class=""
                       />
+                      <span class="error-msg" v-if="v2$.car_count.$error">{{
+                              v2$.car_count.$errors[0].$message
+                          }}</span>
+                          <span class="error-msg" v-if="errors2.car_count">{{
+                      errors2.car_count[0]
+                  }}</span>
                     </div>
                   </div>
                 </div>
                 <button
-                  @click="(paymentIndividualBtn = 6), (showConfirm = true)"
+                  @click="cashFunc2()"
+                  class="gap-3"
                 >
                   {{$t('send')}}
+                  <v-progress-circular v-if="pending2"  indeterminate :size="25" :width="4"></v-progress-circular>
+
                 </button>
               </div>
             </div>
@@ -656,7 +727,7 @@
                         fill="#90A3BF"
                       />
                     </svg>
-                    <span>+1012 3456 789</span>
+                    <span v-if="contactArr.phone">{{ contactArr.phone }}</span>
                   </div>
                   <div class="icon">
                     <svg
@@ -671,7 +742,7 @@
                         fill="#90A3BF"
                       />
                     </svg>
-                    <span>demo@gmail.com</span>
+                    <span v-if="contactArr.email">{{ contactArr.email }}</span>
                   </div>
                   <div class="icon">
                     <svg
@@ -686,9 +757,7 @@
                         fill="#90A3BF"
                       />
                     </svg>
-                    <span
-                      >المملكة العربية السعودية - شارع الوحدة - الوحدة
-                      الخامسة</span
+                    <span v-if="contactArr.address">{{ contactArr.address }}</span
                     >
                   </div>
                 </div>
@@ -725,87 +794,10 @@
             </button>
           </div>
 
-          <!-- <div v-if="paymentIndividualBtn == 4" class="offers h-50">
-              <div  v-if="pending"  class="d-flex justify-content-center align-items-center h-100">
-            <Vue3Lottie  :animation-data="loader" :height="180" :width="180" />
-              </div>
-               
-              <v-radio-group  v-if="!pending"  >
-                  <div class="row">
-                    <div v-for="offer,index in bankOffers.banks" class="col-6">
-                      <label :for="`offer-id-${index}`" class="offer w-100">
-                        <div
-                          class="d-flex align-items-center justify-content-between w-100"
-                        >
-                          <span v-if="offer.bank_offer == null" class="name">{{ offer.bank.name }}</span>
-                          <span class="name" v-else>{{ offer.bank_offer }}</span>
-                          <v-radio
-                            class="radio-input"
-                            :id="`offer-id-${index}`"
-                            color="#DCB63B"
-                            name="offer-id"
-                            :value="offer.id"
-                          ></v-radio>
-                        </div>
-                        <div class="price">
-                          <h4>14,340 ريال</h4>
-                          <span> اجمالي مبلغ التمويل </span>
-                        </div>
-                        <v-divider></v-divider>
-                        <div class="details">
-                          <div class="detail">
-                            <div class="d-flex align-items-center gap-2">
-                              <img src="~/assets/images/det1.png" alt="" />
-                              <span class="name">القسط الشهري</span>
-                            </div>
-                            <p class="price">{{ offer.monthly_installment }}  رس</p>
-                          </div>
-                          <div class="detail">
-                            <div class="d-flex align-items-center gap-2">
-                              <img src="~/assets/images/det2.png" alt="" />
-                              <span class="name">الدفعة الاولي</span>
-                            </div>
-                            <p class="price">{{ bankOffers.first_installment }}  رس</p>
-                          </div>
-                          <div class="detail">
-                            <div class="d-flex align-items-center gap-2">
-                              <img src="~/assets/images/det3.png" alt="" />
-                              <span class="name">مدة الاقساط</span>
-                            </div>
-                            <p class="price">{{ bankOffers.years }}</p>
-                          </div>
-                          <div class="detail">
-                            <div class="d-flex align-items-center gap-2">
-                              <img src="~/assets/images/det4.png" alt="" />
-                              <span class="name">الدفعة الاخيرة</span>
-                            </div>
-                            <p class="price">{{ bankOffers.last_installment }}  رس</p>
-                          </div>
-                          <div class="detail">
-                            <div class="d-flex align-items-center gap-2">
-                              <img src="~/assets/images/det5.png" alt="" />
-                              <span class="name">الرسوم الادارية</span>
-                            </div>
-                            <p class="price">{{ offer.administrative_fees }}  رس</p>
-                          </div>
-                        </div>
-                      </label>
-                    </div>
-               
-                  </div>
-                </v-radio-group>
-                <div v-if="!pending"  class="btns">
-                  <button @click="paymentIndividualBtn = 3" class="back">
-                    الرجوع
-                  </button>
-                  <button @click="paymentIndividualBtn = 5" class="next">
-                    التالي
-                  </button>
-                </div>
-              </div> -->
+        
           
           <div v-if="paymentMethod == 1">
-           <finance1/>
+           <financecar1 :carid="id"/>
           
           </div>
           <div v-if="paymentMethod == 2">
@@ -815,45 +807,50 @@
         </div>
       </div>
 
-      <div v-if="showConfirm" class="confirm-container">
-        <div v-if="paymentIndividualBtn == 6" class="confirm-text">
+      
+       
+
+      <div v-if="showConfirmCash" class="confirm-container">
+        <div v-if="otpCash == 1" class="confirm-text">
           <client-only>
-            <Vue3Lottie :animation-data="otpp" :height="200" :width="200" />
+            <Vue3Lottie :animation-data="otpp" :height="250" :width="250" />
           </client-only>
-          <h4>تم ارسال الكود!</h4>
+          <h4>
+          {{ $t('otp1') }}
+        </h4>
           <p>
-            شكرًا لثقتك في كود كار! لضمان أمان معلوماتك وتأكيد طلبك، ارسلنا كود
-            تحقق عبر رسالة نصية إلى رقم هاتفك المسجل. يرجى إدخال الكود في الخانة
-            المخصصة أدناه
+           {{ $t('otp2') }}
           </p>
 
-          <v-otp-input v-model="otp" :length="4" placeholder="-"></v-otp-input>
+          <v-otp-input v-model="otp1" :length="4" placeholder="-"></v-otp-input>
           {{ otp }}
-          <button class="resend">اعد ارسال الكود</button>
+          <button class="resend">{{ $t('reOtp') }}</button>
 
-          <button @click="paymentIndividualBtn = 7" class="send">متابعة</button>
+          <button @click="otpCash = 2" class="send">{{ $t('follow') }}</button>
         </div>
-        <div v-if="paymentIndividualBtn == 7" class="confirm-text">
+        <div v-if="otpCash == 2" class="confirm-text">
           <client-only>
-            <Vue3Lottie :animation-data="success" :height="200" :width="200" />
+            <Vue3Lottie :animation-data="success" :height="250" :width="250" />
           </client-only>
-          <h4>تم ارسال طلبك بنجاح!</h4>
+          <h4>{{ $t('otp3') }}</h4>
           <p>
-            تم إرسال طلبك بنجاح! يمكنك متابعة حالة الطلب وجميع التفاصيل المتعلقة
-            به من خلال تتبع طلبك في الصفحة الرئيسية
+            {{ $t('otp4') }}
           </p>
 
           <div class="order-number">
-            <h5>رقم الطلب : <span>200715DXFMW0UD</span></h5>
-            <img src="~/assets/images/Copy.png" />
+            <h5>{{ $t('orderNum') }} : <span>200715DXFMW0UD</span></h5>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3417 6.27149V1.92001H9.11988C7.7944 1.92001 6.71988 2.99453 6.71988 4.32001V16.8C6.71988 18.1255 7.7944 19.2 9.11988 19.2H18.7199C20.0454 19.2 21.1199 18.1255 21.1199 16.8V7.69575H17.8035C17.0003 7.69575 16.3417 7.06237 16.3417 6.27149ZM17.5764 2.48686C17.4967 2.38236 17.4041 2.2905 17.3017 2.21281V6.27149C17.3017 6.52361 17.5223 6.73575 17.8035 6.73575H20.8163L17.5764 2.48686ZM5.27988 22.08H14.8799C16.041 22.08 17.0095 21.2555 17.2319 20.16H9.11988C7.26421 20.16 5.75988 18.6557 5.75988 16.8V4.80001H5.27988C3.9544 4.80001 2.87988 5.87453 2.87988 7.20001V19.68C2.87988 21.0055 3.9544 22.08 5.27988 22.08Z" fill="#90A3BF"/>
+</svg>
           </div>
 
-          <nuxt-link to="/">
-            <button class="send home">الرجوع للرئيسية</button>
+          <nuxt-link :to="localePath('/')">
+            <button class="send home">{{ $t('backHome') }}</button>
           </nuxt-link>
         </div>
       </div>
 
+   
       <div
         class="modal fade"
         id="vendor-whatsapp-modal"
@@ -1019,6 +1016,15 @@ import success from "~/assets/animations/success.json";
 import { Vue3Lottie } from "vue3-lottie";
 import axios from 'axios';
 const { locale } = useI18n();
+const localePath = useLocalePath();
+import useValidate from "@vuelidate/core";
+import {
+    required,
+    email,
+    sameAs,
+    minLength,
+    helpers,
+} from "@vuelidate/validators";
 
 let slide = ref(true);
 let mainCar = ref(null);
@@ -1044,6 +1050,16 @@ const selectedFileName3 = ref(null);
 const selectedFileName4 = ref(null);
 let otp = ref("");
 let copyPhone = ref(true);
+
+const route = useRoute();
+let pendingLoader = ref(false);
+let btnCash = ref(1);
+let otpCash = ref(1);
+let showConfirmCash = ref(false);
+let otp1 = ref('');
+let otp2 = ref('');
+
+let id = ref(route.query.id);
 
 function copyToClipboard() {
     if (process.client) {
@@ -1080,125 +1096,15 @@ let options = ref({
     },
   },
 });
-const handleFileChange1 = (event) => {
-  selectedFileName1.value = event.target.files[0]?.name || null;
-  console.log(selectedFileName1.value);
-};
-const handleFileChange2 = (event) => {
-  selectedFileName2.value = event.target.files[0]?.name || null;
-  console.log(selectedFileName2.value);
-};
-const handleFileChange3 = (event) => {
-  selectedFileName3.value = event.target.files[0]?.name || null;
-  console.log(selectedFileName3.value);
-};
-const handleFileChange4 = (event) => {
-  selectedFileName4.value = event.target.files[0]?.name || null;
-  console.log(selectedFileName4.value);
-};
-const selectedCountry = ref();
-const countries = ref([
-  { name: "Australia", code: "AU" },
-  { name: "Brazil", code: "BR" },
-  { name: "China", code: "CN" },
-  { name: "Egypt", code: "EG" },
-  { name: "France", code: "FR" },
-  { name: "Germany", code: "DE" },
-  { name: "India", code: "IN" },
-  { name: "Japan", code: "JP" },
-  { name: "Spain", code: "ES" },
-  { name: "United States", code: "US" },
-]);
+
+
 
 let paymentIndividualBtn = ref(1);
-let paymentBtn1 = ref(1);
-let paymentBtn2 = ref(0);
-let paymentBtn3 = ref(0);
-let paymentBtn4 = ref(0);
-let paymentBtn5 = ref(0);
-let checkBtn1 = ref(0);
-let checkBtn2 = ref(0);
-let checkBtn3 = ref(0);
-let checkBtn4 = ref(0);
-let checkBtn5 = ref(0);
 
 
-const paymentFunc1 = ()=>{
-  paymentBtn2.value = 1;
-  checkBtn1.value = 1
-}
-const paymentFunc2 = ()=>{
-  paymentBtn3.value = 1;
-  checkBtn2.value = 1
-}
-const paymentFunc3 = ()=>{
-  paymentBtn4.value = 1;
-  checkBtn3.value = 1
-}
-const paymentFunc4 = ()=> {
-  paymentBtn5.value = 1;
-  checkBtn4.value = 1
-}
 
-const updateRange = () => {
-  //console.log('Slider value:', sliderValue.value);
-};
-
-const onFileChange = (e) => {
-  var files = e.target.files || e.dataTransfer.files;
-  if (!files.length) return;
-  // cv.value = (files[0]);
-};
-
-let url = "http://192.168.1.30:3000/api/calculate-installments";
-let calc = ref({
-  brand_id: 1,
-  model_id: 1,
-  car_id: 1,
-  bank_id: 5,
-  sector_id: 1,
-  gender: "female",
-  transferred: 0,
-  salary: 10000,
-  commitments: 2000,
-  installment: 5,
-  first_installment: 5,
-  last_installment: 25,
-});
 let pending = ref(false);
-let bankOffers = ref([]);
-const SendCar = async () => {
-  pending.value = true;
-  let formData = new FormData();
-  formData.append("brand_id", calc.value.brand_id);
-  formData.append("model_id", calc.value.model_id);
-  formData.append("car_id", calc.value.car_id);
-  formData.append("bank_id", calc.value.bank_id);
-  formData.append("sector_id", calc.value.sector_id);
-  formData.append("gender", calc.value.gender);
-  formData.append("transferred", calc.value.transferred);
-  formData.append("salary", calc.value.salary);
-  formData.append("commitments", calc.value.commitments);
-  formData.append("installment", calc.value.installment);
-  formData.append("first_installment", calc.value.first_installment);
-  formData.append("last_installment", calc.value.last_installment);
-  const result = await fetch(url, {
-    method: "POST",
-    headers: {
-      // "Accept": "application/json",
-      // "Content-Type": "multipart/form-data",
-      // 'Content-Language': `${lang.value}`
-    },
-    // body: JSON.stringify(calc.value),
-    body: formData,
-  })
-    .then((response) => response.json())
-    .then((json) => {
-      pending.value = false;
-      console.log(json);
-      bankOffers.value = json;
-    });
-};
+
 const thumbsSwiper = ref(null);
 
 const setThumbsSwiper = (swiper) => {
@@ -1218,19 +1124,163 @@ const getContactData =  async()=>{
     }
 }
 
-const route = useRoute();
-let pendingLoader = ref(false);
- 
+let pending1 = ref(false);
+let pending2 = ref(false);
+let errors1 = ref([]);
+let errors2 = ref([]);
 
-let id = ref(route.query.id);
 
-watch(
-  () => route.query.id,
-  (newId) => {
-    id.value = newId;
-    getCar();
+let value1 = ref("value is required");
+let value2 = ref("The email field is required");
+let value3 = ref("Invalid email format");
+let value5 = ref("يجب أن يكون عدد السيارات 1 سيارة على الأقل");
+if (locale.value == "ar") {
+    value1.value = "هذا الحقل مطلوبة";
+    value2.value = "حقل البريد الإلكتروني مطلوب";
+    value3.value = "تنسيق البريد الإلكتروني غير صالح";
+    value5.value = "يجب أن يكون عدد السيارات 1 سيارة على الأقل";
+} else {
+    value1.value = "value is required";
+    value2.value = "The email field is required";
+    value3.value = "Invalid email format";
+    value5.value = "The number of cars must be at least 1 car";
+}
+
+
+let formCash1 = ref({
+  name:'',
+  phone:'',
+});
+let formCash2 = ref({
+  organization_name:'',
+  organization_type:'',
+  commercial_registration_no:'',
+  organization_activity:'',
+  name:'',
+  city_id:'',
+  bank_id:'',
+  phone:'',
+  organization_age:'',
+  car_count:1
+});
+
+
+const rules1 = computed(() => {
+    return {
+      name: { required: helpers.withMessage(value1.value, required) },
+      phone: { required: helpers.withMessage(value1.value, required) },
+       
+    }
+});
+const rules2 = computed(() => {
+    return {
+      name: { required: helpers.withMessage(value1.value, required) },
+      phone: { required: helpers.withMessage(value1.value, required) },
+      organization_name: { required: helpers.withMessage(value1.value, required) },
+      organization_type: { required: helpers.withMessage(value1.value, required) },
+      commercial_registration_no: { required: helpers.withMessage(value1.value, required) },
+      organization_activity: { required: helpers.withMessage(value1.value, required) },
+      city_id: { required: helpers.withMessage(value1.value, required) },
+      bank_id: { required: helpers.withMessage(value1.value, required) },
+      organization_age: { required: helpers.withMessage(value1.value, required) },
+      car_count: { required: helpers.withMessage(value1.value, required) },
+       
+    }
+});
+
+const v1$ = useValidate(rules1, formCash1);
+const v2$ = useValidate(rules2, formCash2);
+
+const cashFunc1 = async () =>{
+  let check = await v1$.value.$validate();
+if(check){
+  pending1.value = true;
+  try{
+    let result =  await axios.post(`${getUrl()}/cash-Order`, {name:formCash1.value.name , phone:formCash1.value.phone},{
+              params: {
+                     type: 'individual',
+                      id: id.value
+                  },
+                 
+                    headers: {
+                      "Content-Language": `${locale.value}`,
+                  }
+                 
+    });
+  if(result.status >= 200){
+    showConfirmCash.value = true;
+    pending1.value = false;
   }
-);
+  } catch(errors){
+    if (errors.response) {
+                pending1.value = false;
+                errors1.value = errors.response.data.errors;
+            }
+  }
+}
+}
+
+const cashFunc2 = async () =>{
+  let formBody = new FormData();
+    formBody.append("organization_name", formCash2.value.organization_name);
+    formBody.append("organization_type", formCash2.value.organization_type);
+    formBody.append("commercial_registration_no", formCash2.value.commercial_registration_no);
+    formBody.append("organization_activity", formCash2.value.organization_activity);
+    formBody.append("name", formCash2.value.name);
+    formBody.append("city_id", formCash2.value.city_id);
+    formBody.append("bank_id", formCash2.value.bank_id);
+    formBody.append("phone", formCash2.value.phone);
+    formBody.append("organization_age", formCash2.value.organization_age);
+    formBody.append("car_count", formCash2.value.car_count);
+  let check = await v2$.value.$validate();
+if(check){
+  pending2.value = true;
+  try{
+    let result =  await axios.post(`${getUrl()}/cash-Order`, formBody,{
+              params: {
+                     type: 'organization',
+                      id: id.value
+                  },
+                 
+                    headers: {
+                      "Content-Language": `${locale.value}`,
+                  }
+                 
+    });
+  if(result.status >= 200){
+    showConfirmCash.value = true;
+    pending2.value = false;
+  }
+  } catch(errors){
+    if (errors.response) {
+                pending2.value = false;
+                errors2.value = errors.response.data.errors;
+            }
+  }
+}
+}
+
+
+let optionsCars = ref([]);
+const getOptions = async () => {
+    let result = await axios.get(`${getUrl()}/car-option`, {
+        headers: {
+            "Content-Language": `${locale.value}`,
+        },
+    });
+
+    optionsCars.value = result.data.data;
+};
+
+let cities = ref([]);
+const getCites = async () => {
+    let result = await axios.get(`${getUrl()}/cities`, {
+        headers: {
+            "Content-Language": `${locale.value}`
+        }
+    });
+    cities.value = result.data.data;
+}
 
 const getCar = async ()=>{
   pendingLoader.value = true;
@@ -1247,6 +1297,13 @@ const getCar = async ()=>{
   }
 }
 
+watch(
+  () => route.query.id,
+  (newId) => {
+    id.value = newId;
+    getCar();
+  }
+);
 
 // start lightbox images
 
@@ -1269,5 +1326,8 @@ const onHide = () => (visibleRef.value = false);
 onMounted(() => {
   getCar();
   getContactData();
+  getOptions();
+  getCites();
+  
 });
 </script>

@@ -54,7 +54,7 @@
             >
             <nuxt-link class="nav-link" :to="localePath('/orders')"
               >
-              {{ $t("follow") }}
+              {{ $t("followOrder") }}
               </nuxt-link
             >
             <nuxt-link class="nav-link" :to="localePath('/contact')"
