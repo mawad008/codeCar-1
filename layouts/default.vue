@@ -13,11 +13,13 @@
         class="container items w-100 d-flex align-items-center justify-content-between"
       >
         <div class="logo navbar-brand">
+        <nuxt-link :to="localePath('/')">
         <div class="logo-container">
           <img class="dark-img" src="~/assets/images/logo-white.svg" alt="" />
            <logo2/>
           <span>منصة بيع وتمويل السيارات</span>
         </div>
+        </nuxt-link>
         </div>
         <button
           class="navbar-toggler collapsed"
@@ -199,7 +201,16 @@
                   :placeholder="$t('emailE')"
                 />
               </div>
-              <button @click="subscripe">{{$t("join")}}</button>
+              <button @click="subscripe" :disabled="pendingSub" class="">
+              <div class="d-flex align-items-center gap-2">
+              <span>
+              {{$t("join")}}
+              </span>
+              <v-progress-circular v-if="pendingSub"  indeterminate :size="22" :width="3"></v-progress-circular>
+              
+              </div>
+              
+              </button>
             </div>
             <span v-if="error" class="text-danger">{{ error.email[0] }}</span>
           </div>
@@ -227,7 +238,7 @@
                   v-if="footerData"
                   class="icons row d-flex align-items-center justify-content-center justify-content-xl-start justify-content-lg-start justify-content-lg-start"
                 >
-                  <div class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
+                  <div v-if="footerData.youtube" class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
                     <a target="_blank" :href="footerData.youtube">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -243,7 +254,7 @@
                       </svg>
                     </a>
                   </div>
-                  <div class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
+                  <div v-if="footerData.instagram" class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
                     <a target="_blank" :href="footerData.instagram">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -274,7 +285,7 @@
                       </svg>
                     </a>
                   </div>
-                  <div class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
+                  <div v-if="footerData.facebook" class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
                     <a target="_blank" :href="footerData.facebook">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -297,7 +308,7 @@
                       </svg>
                     </a>
                   </div>
-                  <div class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
+                  <div v-if="footerData.snapchat" class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
                     <a target="_blank" :href="footerData.snapchat">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -313,7 +324,7 @@
                       </svg>
                     </a>
                   </div>
-                  <div class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
+                  <div v-if="footerData.twitter" class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
                     <a target="_blank" :href="footerData.twitter">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -329,7 +340,7 @@
                       </svg>
                     </a>
                   </div>
-                  <div class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
+                  <div v-if="footerData.twitter" class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
                     <a target="_blank" :href="footerData.twitter">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -357,6 +368,11 @@
                       </svg>
                     </a>
                   </div>
+                  <div v-if="footerData.whatsapp" class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
+                    <a target="_blank" :href="footerData.whatsapp">
+                       <img src="~/assets/images/whatsapp.svg" alt="">
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -366,7 +382,9 @@
               <div
                 class="box-container d-flex flex-column align-items-center  justify-content-center justify-content-xl-start justify-content-lg-start align-items-xl-start align-items-lg-start gap-3"
               >
+              <nuxt-link :to="localePath('/')">
                 <h6 class="head">{{ $t("home") }}</h6>
+              </nuxt-link>
                 <div class="links d-flex flex-column gap-4">
                 <nuxt-link :to="localePath('finance')">
                   <span class="head-link"> {{$t("finance")}} </span>
@@ -590,9 +608,12 @@ if (locale.value == 'ar') {
 } else {
   title.value = 'You have successfully subscribed'
 }
+let pendingSub = ref(false);
+
 const subscripe = async () => {
   if (email.value != "") {
     try {
+      pendingSub.value = true;
       let result = await axios.post(
         `${getUrl()}/subscriber/store`,
         { email: email.value },
@@ -605,7 +626,8 @@ const subscripe = async () => {
 
       if (result.status >= 200) {
         error.value = "";
-        console.log("dasdas");
+        pendingSub.value = false;
+        email.value = "";
         createToast(
           {
             title: title.value,
@@ -621,6 +643,7 @@ const subscripe = async () => {
       }
     } catch (errors) {
       if (errors.response) {
+        pendingSub.value = false;
         error.value = errors.response.data.errors;
       }
     }

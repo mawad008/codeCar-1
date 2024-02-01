@@ -62,24 +62,26 @@ let check = ref(true);
 
 let pending = ref(true);
 
+
 const favFunc = async() =>{
     try {
-    let result = await axios.post(
-      `${getUrl()}/${tokenCookie ? 'favorite-auth' : 'favorite-withoutauth'}`,
-      {},
-      {
-        headers: {
-          "Content-Language": `${locale.value}`,
-          Authorization: `Bearer ${tokenCookie}`,
-        },
-      }
-    );
-
-    if(result.status >= 200){
-        pending.value = false;
-    }
-
-    favArr.value = result.data.data;
+  
+      let result = await axios.post(
+        `${getUrl()}/${tokenCookie ? 'favorite-auth' : 'favorite-withoutauth'}`,
+        {},
+        {
+          headers: {
+            "Content-Language": `${locale.value}`,
+            Authorization: `Bearer ${tokenCookie}`,
+          },
+        }
+      );
+      
+          if(result.status >= 200){
+              pending.value = false;
+          }
+      
+          favArr.value = result.data.data;
   } catch (error) {
     console.error("Error in favFunc:", error);
   }

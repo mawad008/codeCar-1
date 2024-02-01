@@ -631,6 +631,12 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
 .navbar .white-img {
   display: none;
 }
+.navbar a {
+  transition: 0.3s all;
+}
+.navbar a:hover {
+  font-weight: 700 !important;
+}
 .navbar .logo-container {
   position: relative;
   display: flex;
@@ -661,7 +667,7 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
 .navbar .items .links {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 32px;
 }
 .navbar .items .links a {
   color: #fff;
@@ -717,9 +723,6 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
 .navbar.back a, .navbar.active a {
   color: #5a7184 !important;
   transition: 0.4s all;
-}
-.navbar.back a:hover, .navbar.active a:hover {
-  font-weight: 700;
 }
 .navbar .router-link-active {
   font-weight: 700 !important;
@@ -843,6 +846,9 @@ html[dir=ltr] .navbar .searchBar {
   border-radius: 30px;
   background: rgba(255, 255, 255, 0.2);
 }
+.footer-container .search .search-input button span {
+  color: #fff;
+}
 .footer-container .box-container .head {
   color: #dcb63b;
   font-weight: 700;
@@ -910,26 +916,30 @@ html[dir=ltr] .footer-container .search button {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .hero-section .mask {
   position: absolute;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  transform: rotate(167deg);
+  opacity: 0.5;
   top: 0;
 }
 .hero-section .mask.one {
   left: 35%;
   top: 50px;
+  transform: rotate(167deg);
 }
 .hero-section .mask.two {
   top: -100px;
   left: 15%;
+  transform: rotate(328deg);
 }
 .hero-section .mask.three {
   left: 0%;
   top: -50px;
+  transform: rotate(280deg);
 }
 .hero-section .container {
   height: 100%;
@@ -1255,7 +1265,7 @@ html[dir=ltr] .search-section .v-input .v-field {
 }
 .text-breadcrumbs {
   gap: 16px;
-  margin-bottom: 70px;
+  margin-bottom: 64px;
 }
 .text-breadcrumbs .date {
   display: flex;
@@ -1342,7 +1352,7 @@ html[dir=ltr] .search-section .v-input .v-field {
 .explore .container .backGround {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-44%);
 }
 .explore .container .text {
   z-index: 1;
@@ -3067,7 +3077,7 @@ html[dir=ltr] .payment-method button.two {
   margin-bottom: 140px;
 }
 .cars-filter .filter {
-  top: 10px;
+  top: 100px;
   position: sticky;
   background-color: #fff;
   border-radius: 24px;
@@ -5269,7 +5279,7 @@ html[dir=ltr] .setting-btn {
     top: 0px !important;
   }
   .text-breadcrumbs {
-    margin-bottom: 40px !important;
+    margin-bottom: 32px !important;
   }
   .filter-table .head, .filter-table .content {
     width: 700px !important;
@@ -5412,5 +5422,9 @@ html[dir=ltr] .setting-btn {
   }
   .main-auth .input, .main-auth .d-flex, .main-auth button {
     width: 100% !important;
+  }
+  .careers-page .careers .iconn {
+    width: 40px !important;
+    height: 40px !important;
   }
 }/*# sourceMappingURL=style.css.map */

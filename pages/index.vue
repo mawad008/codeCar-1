@@ -2,8 +2,9 @@
   <div style="min-height: 100vh">
     <div class="search-mobile">
       <div class="inputt">
-        <input type="text" :placeholder="$t('search')" />
+        <input type="text" v-model="searchValue" @keypress.enter="goCarsFilterByName()" :placeholder="$t('search')" />
         <svg
+        @click="goCarsFilterByName()"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="25"
@@ -108,14 +109,12 @@
         <client-only>
               <Vue3Lottie :animation-data="hero" :height="750" :width="1300" />
           </client-only>
-       <!-- <div id="hero-section-back" class="back" ></div> -->
 
       </div>
       <div class="mask two">
         <client-only>
               <Vue3Lottie :animation-data="hero" :height="750" :width="1300" />
           </client-only>
-       <!-- <div id="hero-section-back" class="back" ></div> -->
 
       </div>
       <div class="mask three">
@@ -132,6 +131,7 @@
         <div class="select">
           <span class="type"> {{ $t('kind') }} </span>
           <v-autocomplete
+          clearable
             chips
             :items="carBody"
             item-title="name"
@@ -157,6 +157,7 @@
         <div class="select">
           <span class="type"> {{ $t('model') }} </span>
           <v-autocomplete
+          clearable
             chips
             v-model="selectedmodel"
             :items="selectedBrand ? categArr[0].models : '' "
@@ -464,6 +465,7 @@
 import axios from "axios";
 import { Vue3Lottie } from "vue3-lottie";
 import hero from "~/assets/animations/hero.json";
+import loader from "~/assets/animations/Loader.json";
 let tab = ref(1);
 let tabNav = ref(0);
 const localePath = useLocalePath();
@@ -474,6 +476,7 @@ let brandsArr = ref([]);
 let financingbodyArr = ref([]);
 let whyCodeCarArr = ref([]);
 let financingAdv = ref();
+let router = useRouter();
 
 let carBody = ref([
   {
@@ -486,6 +489,12 @@ let carBody = ref([
   },
 ]);
 
+let searchValue = ref('');
+const goCarsFilterByName = () =>{
+  router.push(localePath({path:'/cars', query:{search:searchValue.value}}));
+  overlay.value = false;
+
+}
 
 const calculateDelay = (index) => `${index * 300}`;
 
@@ -607,18 +616,18 @@ onMounted(() => {
   getfinancingbody();
   getfinancingAdv();
   getProducts();
-  VANTA.WAVES({
-  el: "#hero-section-back",
-  mouseControls: true,
-  touchControls: true,
-  gyroControls: false,
-  // minHeight: 100.00,
-  // minWidth: 100.00,
-  scale: 1.00,
-  scaleMobile: 1.00,
-  // shininess: 0.00,
-  color: 0x1b2126
-})
+//   VANTA.WAVES({
+//   el: "#hero-section-back",
+//   mouseControls: true,
+//   touchControls: true,
+//   gyroControls: false,
+//   // minHeight: 100.00,
+//   // minWidth: 100.00,
+//   scale: 1.00,
+//   scaleMobile: 1.00,
+//   // shininess: 0.00,
+//   color: 0x1b2126
+// })
 });
 </script>
 

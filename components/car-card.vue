@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div class="car-card" v-if="car">
+
+        <nuxt-link :to="localePath({path:'/car',query:{id:car.id}})" class="car-card" v-if="car">
             <Swiper
         :spaceBetween="30"
         :slidesPerView="1"
@@ -89,7 +90,7 @@
 </svg>
                 </div>
             </div>
-        </div>
+        </nuxt-link>
     </div>
 </template>
 
@@ -118,37 +119,39 @@ if (locale.value == "ar") {
   value2.value = "The email field is required";
 
 }
+
+
 const addFavFunc = async (id , success) =>{
     favBtn.value = !favBtn.value;
     let formBody = new FormData();
   formBody.append("car_id", id);
-    let result = await axios.post(
-      `${getUrl()}/${tokenCookie ? 'add-favorite-withauth' : 'add-favorite-withoutauth'}`,
-      { car_id: id },
-      {
-        headers: {
-          "Content-Language": `${locale.value}`,
-          Authorization: `Bearer ${tokenCookie}`,
-        },
-      }
-    );
-    if(result.status >= 200){
-          if(props.check){
-              props.myFunction();
-          }
-            createToast(
-              {
-                title: favBtn.value ? value1.value : value2.value,
-              },
-              {
-                type: "success",
-                transition: "bounce",
-                showIcon: "true",
-                timeout: 3000,
-                toastBackgroundColor: "#dcb63b",
-              }
-            );
+  let result = await axios.post(
+    `${getUrl()}/${tokenCookie ? 'add-favorite-withauth' : 'add-favorite-withoutauth'}`,
+    { car_id: id },
+    {
+      headers: {
+        "Content-Language": `${locale.value}`,
+        Authorization: `Bearer ${tokenCookie}`,
+      },
     }
+  );
+  if(result.status >= 200){
+        if(props.check){
+            props.myFunction();
+        }
+          createToast(
+            {
+              title: favBtn.value ? value1.value : value2.value,
+            },
+            {
+              type: "success",
+              transition: "bounce",
+              showIcon: "true",
+              timeout: 3000,
+              toastBackgroundColor: "#dcb63b",
+            }
+          );
+  }
 }
 </script>
 

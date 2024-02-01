@@ -772,6 +772,15 @@ html[dir="ltr"] .main-auth{
   .white-img {
     display: none;
   }
+
+  a {
+    transition: 0.3s all;
+    &:hover{
+      // font-size: 18px !important;
+      font-weight: 700 !important;
+    }
+  }
+
   .logo-container{
     position:relative;
       display: flex;
@@ -805,7 +814,7 @@ html[dir="ltr"] .main-auth{
     .links {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 32px;
       a {
         color: #fff;
         font-size: 16px;
@@ -864,9 +873,7 @@ html[dir="ltr"] .main-auth{
     a {
       color: #5a7184 !important;
       transition: 0.4s all;
-      &:hover{
-        font-weight: 700;
-      }
+    
     }
   }
   .router-link-active {
@@ -993,6 +1000,9 @@ html[dir="ltr"] .main-auth{
         align-items: center;
         border-radius: 30px;
         background: rgba(255, 255, 255, 0.2);
+        span{
+          color: #fff;
+        }
       }
     }
   }
@@ -1096,6 +1106,7 @@ html[dir="ltr"] .main-auth{
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   .mask {
     position: absolute;
     width: 100%;
@@ -1103,22 +1114,26 @@ html[dir="ltr"] .main-auth{
     // height: 100%;
     object-fit: cover;
     // top: -100px;
-    transform: rotate(167deg);
+    opacity: 0.5;
     top: 0;
     // z-index: 1111;
 
      &.one{
      left: 35%;
      top: 50px;
+    transform: rotate(167deg);
+
      }
      &.two{
       top: -100px;
       left: 15%;
+    transform: rotate(328deg);
 
      }
      &.three{
       left: 0%;
       top: -50px;
+    transform: rotate(280deg);
      }    
     // opacity: 0.4;
   }
@@ -1510,7 +1525,7 @@ html[dir="ltr"] .main-auth{
 }
 .text-breadcrumbs {
   gap: 16px;
-  margin-bottom: 70px;
+  margin-bottom: 64px;
   .date {
     display: flex;
     align-items: center;
@@ -1606,7 +1621,8 @@ html[dir="ltr"] .main-auth{
     .backGround {
       position: absolute;
       left: 50%;
-      transform: translateX(-50%);
+      // transform: translateX(-50%);
+      transform: translateX(-50%) translateY(-44%);
       // z-index: -1;
     }
     .text {
@@ -3576,7 +3592,7 @@ html[dir="ltr"] .payment-method{
   margin-top: 73px;
   margin-bottom: 140px;
   .filter {
-    top: 10px;
+    top: 100px;
     position: sticky;
     background-color: #fff;
     border-radius: 24px;
@@ -6181,7 +6197,7 @@ font-weight: 700;
   }
 }
   .text-breadcrumbs{
-    margin-bottom: 40px !important;
+    margin-bottom: 32px !important;
   }
   .filter-table{
     .head , .content{
@@ -6335,6 +6351,14 @@ font-weight: 700;
     }
     .input , .d-flex ,  button{
       width: 100% !important;
+    }
+  }
+  .careers-page{
+    .careers{
+      .iconn{
+        width: 40px !important;
+        height: 40px !important;
+      }
     }
   }
 }

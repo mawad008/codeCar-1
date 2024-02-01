@@ -683,15 +683,15 @@ for (let i = currentYear; i >= currentYear - 14; i--) {
 }
 
 let optYears = ref(years.value.slice(0, 6));
-let selected1 = ref(typeCar.value ? [typeCar.value] : ["all"]);
-let selected2 = ref(["all"]);
-let selected3 = ref(["all"]);
-let selected4 = ref(["all"]);
+let selected1 = ref(typeCar.value ? [typeCar.value] : []);
+let selected2 = ref([]);
+let selected3 = ref([]);
+let selected4 = ref([]);
 let selected5 = ref(brandId.value ? [parseInt(brandId.value)] : []);
 let selected6 = ref(modelId.value ? [parseInt(modelId.value)] : []);
-let selected7 = ref(["all"]);
+let selected7 = ref([]);
 let selected8 = ref([]);
-let selected9 = ref(["all"]);
+let selected9 = ref([]);
 
 
 const resetFunc = ()=>{
@@ -742,7 +742,7 @@ const filterCars = async () => {
         fuel_tank_capacity: selected9.value,
         min_price: valuePrice.value[0],
         max_price: valuePrice.value[1],
-        search: searchh.value ? searchh.value : '',
+        search: searchh.value ? searchh.value : null,
         page: page.value
     },
     headers: {

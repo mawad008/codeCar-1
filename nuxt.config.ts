@@ -40,7 +40,7 @@ export default defineNuxtConfig({
         dir: "rtl",
       },
       link: [
-        { rel: "icon", type: "image/png", href: "/favicon.svg" },
+        { rel: "icon", type: "image/png", href: "/favicon.png" },
         {
           rel: "stylesheet",
           href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",

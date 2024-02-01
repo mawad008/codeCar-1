@@ -43,8 +43,7 @@
               </div>
               <div class="contact">
                 <h4> {{ $t('contct2') }} </h4>
-                <div v-if="socials" class="icons row">
-                <div class="col-4 col-xl-2 col-lg-2 col-md-4">
+                <div v-if="socials" class="icons ">
                   <div class="iconn">
                     <a :href="socials.youtube" target="_blank">
                       <svg
@@ -61,9 +60,9 @@
                       </svg>
                     </a>
                   </div>
+                <!-- <div class="col-4 col-xl-2 col-lg-2 col-md-4">
                 
-                </div>
-                <div class="col-4 col-xl-2 col-lg-2 col-md-4">
+                </div> -->
                   <div class="iconn">
                     <a :href="socials.instagram" target="_blank">
                       <svg
@@ -95,10 +94,10 @@
                       </svg>
                     </a>
                   </div>
+                <!-- <div class="col-4 col-xl-2 col-lg-2 col-md-4">
                 
-                </div>
+                </div> -->
 
-                <div class="col-4 col-xl-2 col-lg-2 col-md-4">
                   <div class="iconn">
                     <a :href="socials.facebook" target="_blank">
                       <svg
@@ -122,10 +121,10 @@
                       </svg>
                     </a>
                   </div>
+                <!-- <div class="col-4 col-xl-2 col-lg-2 col-md-4">
                 
-                </div>
+                </div> -->
 
-                <div class="col-4 col-xl-2 col-lg-2 col-md-4">
                   <div class="iconn">
                     <a :href="socials.snapchat" target="_blank">
                       <svg
@@ -142,9 +141,9 @@
                       </svg>
                     </a>
                   </div>
+                <!-- <div class="col-4 col-xl-2 col-lg-2 col-md-4">
                 
-                </div>
-                <div class="col-4 col-xl-2 col-lg-2 col-md-4">
+                </div> -->
                   <div class="iconn">
                     <a :href="socials.twitter" target="_blank">
                       <svg
@@ -161,8 +160,8 @@
                       </svg>
                     </a>
                   </div>
-                </div>
-                <div class="col-4 col-xl-2 col-lg-2 col-md-4">
+                <!-- <div class="col-4 col-xl-2 col-lg-2 col-md-4">
+                </div> -->
                   <div class="iconn">
                     <a :href="socials.tiktok" target="_blank">
                       <svg
@@ -179,7 +178,8 @@
                       </svg>
                     </a>
                   </div>
-                </div>
+                <!-- <div class="col-4 col-xl-2 col-lg-2 col-md-4">
+                </div> -->
                 </div>
               </div>
             </div>

@@ -91,21 +91,21 @@
                                 d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
                             </svg> 
                              </button>
-                             <div class="iconn">
+                             <a v-if="contactArr.instagram" :href="contactArr.instagram" target="_blank" class="iconn">
                               <img src="~/assets/images/share2.svg" alt="">
-                             </div>
-                             <div class="iconn">
+                             </a>
+                             <a v-if="contactArr.facebook" :href="contactArr.facebook" target="_blank" class="iconn">
                               <img src="~/assets/images/share3.svg" alt="">
-                             </div>
-                             <div class="iconn">
+                             </a>
+                             <a v-if="contactArr.snapchat" :href="contactArr.snapchat" target="_blank" class="iconn">
                               <img src="~/assets/images/share4.svg" alt="">
-                             </div>
-                             <div class="iconn">
+                             </a>
+                             <a v-if="contactArr.twitter" :href="contactArr.twitter" target="_blank" class="iconn">
                               <img src="~/assets/images/share5.svg" alt="">
-                             </div>
-                             <div class="iconn">
+                             </a>
+                             <a v-if="contactArr.phone" :href="`https://wa.me/${contactArr.phone}`" target="_blank" class="iconn">
                               <img src="~/assets/images/share6.svg" alt="">
-                             </div>
+                             </a>
                             </div>
                         </div>
                     </div>
@@ -123,14 +123,15 @@ import axios from 'axios';
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let route = useRoute();
-let id = route.query.id;
+const router = useRouter();
+let id = ref(route.query.id);
 
 let pending = ref(false);
 
 let newsArr = ref([]);
 const getNewsData = async ()=>{
     pending.value = true;
-  let result = await axios.get(`${getUrl()}/news/show/${id}`, {
+  let result = await axios.get(`${getUrl()}/news/show/${id.value}`, {
     headers: {
       "Content-Language": `${locale.value}`,
     },
@@ -148,7 +149,6 @@ let routee = ref(route.fullPath);
 if (process.client) {
     routee.value = window.location.href;
 }
-const router = useRouter();
 let check = ref(true);
 
 function copyToClipboard() {
@@ -165,6 +165,23 @@ function copyToClipboard() {
     }
 
 }
+
+const contactArr = ref([]);
+const getContactData =  async()=>{
+    let result = await axios.get(`${getUrl()}/contact-us`,{
+        headers:{
+            "Content-Language": `${locale.value}`,
+        }
+    });
+    if(result.status == 200){
+     contactArr.value = result.data.data;
+    }
+}
+
+watch(id, (newId) => {
+  // Update the route with the new id
+  router.push({ query: { id: newId } })
+})
 
 let items = ref([
     {
@@ -185,6 +202,7 @@ let items = ref([
 
 onMounted(() => {
     getNewsData();  
+    getContactData();
 })
 </script>
 
