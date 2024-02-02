@@ -551,9 +551,6 @@ html[dir=rtl] input[type=tel] {
 .main-auth .form-inputs .input .p-dropdown input {
   outline: none !important;
 }
-.main-auth .form-inputs .icons-container {
-  margin-top: 196px;
-}
 .main-auth .form-inputs .otp-container span {
   cursor: pointer;
   color: #dcb63b;

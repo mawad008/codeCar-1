@@ -52,6 +52,7 @@
     "carBrand": "Car Brand",
     "carModel": "Car Model",
     "carStat": "Car Condition",
+    "carStat1": "select Car Condition",
     "example1": "Example: Used",
     "example2": "Example: Automatic",
     "example3": "Example: 25,000 km",

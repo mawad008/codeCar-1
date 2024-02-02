@@ -138,7 +138,7 @@
             item-value="value"
             variant="underlined"
             v-model="selectedBody"
-            :label="$t('carStat')"
+            :label="$t('carStat1')"
           ></v-autocomplete>
         </div>
         <div class="select">
@@ -318,11 +318,10 @@
         <v-window v-model="tabNav">
           <v-window-item v-for="i in 3">
             <swiper
-            :navigation="{
-          nextEl: '.slider-product-next',
-          prevEl: '.slider-product-prev',
-        }"
-              :breakpoints="{
+           :navigation="{
+             nextEl: '.slider-product1-next',
+             prevEl: '.slider-product1-prev',
+           }"    :breakpoints="{
                 '300': {
                   slidesPerView: 1.3,
                   spaceBetween: 30,
@@ -341,14 +340,15 @@
                 disableOnInteraction: false,
               }"
               :modules="[SwiperNavigation, SwiperAutoplay]"
+
             >
               <swiper-slide v-for="item , index in productsTags">
                 <car-card :car="item"    />
               </swiper-slide>
             </swiper>
-
-            <div v-if="!spinnerProducts && productsTags.length >= 1" class="icons-arrow">
-              <div class="icon slider-product-next">
+            <div v-if="!spinnerProducts && productsTags.length > 4" class="icons-arrow">
+            <div class="slider-product1-next">
+              <div class="icon">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -365,12 +365,17 @@
                   />
                 </svg>
               </div>
-              <div class="icon slider-product-prev">
+            </div>
+            <div class="slider-product1-prev">
+              <div class="icon">
                 <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7071 1.3384C12.0976 1.72995 12.0976 2.36479 11.7071 2.75634L6.41421 8.06316L11.7071 13.37C12.0976 13.7615 12.0976 14.3964 11.7071 14.7879C11.3166 15.1795 10.6834 15.1795 10.2929 14.7879L4.29289 8.77213C3.90237 8.38058 3.90237 7.74574 4.29289 7.35419L10.2929 1.3384C10.6834 0.946851 11.3166 0.946851 11.7071 1.3384Z" />
 </svg>
+            
+            </div>
               </div>
             </div>
+
             <!-- <div class="row">
               <div
                 v-for="item in productsTags"
