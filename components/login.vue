@@ -338,8 +338,8 @@
 </template>
 
 <script setup>
-import { createToast } from "mosha-vue-toastify";
-import "mosha-vue-toastify/dist/style.css";
+// import { createToast } from "mosha-vue-toastify";
+// import "mosha-vue-toastify/dist/style.css";
 import Cookies from 'js-cookie';
 import { useStore } from "~/store";
 import axios from 'axios';
@@ -463,18 +463,18 @@ const loginFunc = async () => {
               pending1.value = false;
                 errors.value = errorss.response.data.errors;
                 if(!errorss.response.data.success){
-                createToast(
-                {
-                  title: title.value,
-                },
-                {
-                  type: "danger",
-                  transition: "bounce",
-                  showIcon: "true",
-                  timeout: 4000,
-                  toastBackgroundColor: "#2d3a4a",
-                }
-              );
+              //   createToast(
+              //   {
+              //     title: title.value,
+              //   },
+              //   {
+              //     type: "danger",
+              //     transition: "bounce",
+              //     showIcon: "true",
+              //     timeout: 4000,
+              //     toastBackgroundColor: "#2d3a4a",
+              //   }
+              // );
                     }
             }
 

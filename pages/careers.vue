@@ -279,8 +279,8 @@ import {
   helpers,
 } from "@vuelidate/validators";
 import axios from "axios";
-import { createToast } from "mosha-vue-toastify";
-import "mosha-vue-toastify/dist/style.css";
+// import { createToast } from "mosha-vue-toastify";
+// import "mosha-vue-toastify/dist/style.css";
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
 let activeBoxId = ref(null);
@@ -329,18 +329,18 @@ const sendContact = async () => {
       if (result.status >= 200) {
         errors.value = [];
         console.log("dasdas");
-        createToast(
-          {
-            title: "تم الاشتراك بنجاح",
-          },
-          {
-            type: "success",
-            transition: "bounce",
-            showIcon: "true",
-            timeout: 3000,
-            toastBackgroundColor: "#dcb63b",
-          }
-        );
+        // createToast(
+        //   {
+        //     title: "تم الاشتراك بنجاح",
+        //   },
+        //   {
+        //     type: "success",
+        //     transition: "bounce",
+        //     showIcon: "true",
+        //     timeout: 3000,
+        //     toastBackgroundColor: "#dcb63b",
+        //   }
+        // );
       }
     } catch (errorss) {
       if (errorss.response) {

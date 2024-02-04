@@ -502,8 +502,8 @@
 import { useStore } from "~/store";
 const store = useStore;
 import axios from "axios";
-import { createToast } from "mosha-vue-toastify";
-import "mosha-vue-toastify/dist/style.css";
+// import { createToast } from "mosha-vue-toastify";
+// import "mosha-vue-toastify/dist/style.css";
 import Cookies from "js-cookie";
 const tokenCookie = Cookies.get("token");
 import { Vue3Lottie } from "vue3-lottie";
@@ -628,18 +628,18 @@ const subscripe = async () => {
         error.value = "";
         pendingSub.value = false;
         email.value = "";
-        createToast(
-          {
-            title: title.value,
-          },
-          {
-            type: "success",
-            transition: "bounce",
-            showIcon: "true",
-            timeout: 3000,
-            toastBackgroundColor: "#dcb63b",
-          }
-        );
+        // createToast(
+        //   {
+        //     title: title.value,
+        //   },
+        //   {
+        //     type: "success",
+        //     transition: "bounce",
+        //     showIcon: "true",
+        //     timeout: 3000,
+        //     toastBackgroundColor: "#dcb63b",
+        //   }
+        // );
       }
     } catch (errors) {
       if (errors.response) {

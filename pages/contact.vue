@@ -217,8 +217,8 @@
 import useValidate from '@vuelidate/core'
 import { required, email, sameAs, minLength, helpers } from '@vuelidate/validators';
 import axios from 'axios';
-import { createToast } from 'mosha-vue-toastify';
-import 'mosha-vue-toastify/dist/style.css'
+// import { createToast } from 'mosha-vue-toastify';
+// import 'mosha-vue-toastify/dist/style.css'
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
 let route = useRoute();
@@ -299,16 +299,16 @@ const sendContact = async()=>{
     pendingBtn.value = false;
         errors.value = [];
         console.log('dasdas');
-        createToast({
-          title: title.value
-        },
-        {
-        type: 'success',
-        transition: 'bounce',
-        showIcon: 'true',
-        timeout: 3000,
-        toastBackgroundColor: '#dcb63b',
-        });
+        // createToast({
+        //   title: title.value
+        // },
+        // {
+        // type: 'success',
+        // transition: 'bounce',
+        // showIcon: 'true',
+        // timeout: 3000,
+        // toastBackgroundColor: '#dcb63b',
+        // });
       }
 
     }catch(errorss){

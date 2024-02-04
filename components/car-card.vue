@@ -95,8 +95,8 @@
 </template>
 
 <script setup>
-import { createToast } from "mosha-vue-toastify";
-import "mosha-vue-toastify/dist/style.css";
+// import { createToast } from "mosha-vue-toastify";
+// import "mosha-vue-toastify/dist/style.css";
 const props = defineProps(["car" , "myFunction" , "check"]);
 import axios from 'axios';
 const { locale } = useI18n();
@@ -139,18 +139,18 @@ const addFavFunc = async (id , success) =>{
         if(props.check){
             props.myFunction();
         }
-          createToast(
-            {
-              title: favBtn.value ? value1.value : value2.value,
-            },
-            {
-              type: "success",
-              transition: "bounce",
-              showIcon: "true",
-              timeout: 3000,
-              toastBackgroundColor: "#dcb63b",
-            }
-          );
+          // createToast(
+          //   {
+          //     title: favBtn.value ? value1.value : value2.value,
+          //   },
+          //   {
+          //     type: "success",
+          //     transition: "bounce",
+          //     showIcon: "true",
+          //     timeout: 3000,
+          //     toastBackgroundColor: "#dcb63b",
+          //   }
+          // );
   }
 }
 </script>
