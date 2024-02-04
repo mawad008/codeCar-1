@@ -155,10 +155,12 @@ function copyToClipboard() {
     /* Copy the text */
     if (process.client) {
         check.value = false;
+        routee.value = window.location.href;
         const clipBoard = navigator.clipboard;
         clipBoard.writeText(routee.value).then(() => {
         });
-
+       
+        // console.log(window.location.href);
         setTimeout(() => {
             check.value = true;
         }, 1000);

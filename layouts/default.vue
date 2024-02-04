@@ -518,6 +518,17 @@ let arrowActive = ref(false);
 let overlay = ref(false);
 let route = useRoute();
 let router = useRouter();
+const removeStore = ()=>{
+  store.state.otpFin1 = null;
+  store.state.orderFin1 = null;
+  store.state.phoneFin1 = null;
+  store.state.otpFin2 = null;
+  store.state.orderFin2 = null;
+  store.state.phoneFin2 = null;
+  store.state.showConfirm1 = false;
+  store.state.showConfirm2 = false;
+  store.state.showConfirm3 = false;
+}
 const changeLang = async () => {
   locale.value = locale.value === "en" ? "ar" : "en";
   if (locale.value == "ar") {
@@ -571,6 +582,7 @@ const updateLang = () => {
       item.addEventListener("click", () => {
         const navbarCollapse = document.querySelector(".navbar-collapse");
         navbarCollapse.classList.remove("show");
+        removeStore();
         document.querySelector(".navbar-toggler").classList.add("collapsed");
       });
     });

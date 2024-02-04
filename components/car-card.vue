@@ -1,7 +1,8 @@
 <template>
     <div>
 
-        <nuxt-link :to="localePath({path:'/car',query:{id:car.id}})" class="car-card" v-if="car">
+        <div  class="car-card" v-if="car">
+        <nuxt-link :to="localePath({path:'/car',query:{id:car.id}})">
             <Swiper
         :spaceBetween="30"
         :slidesPerView="1"
@@ -17,13 +18,15 @@
           <img :src="item" alt="" />
         </swiper-slide>
       </Swiper>
+        
+        </nuxt-link>
             <!-- <div class="image">
                 <img :src="car.main_image" alt="" />
             </div> -->
             <span class="namee">{{ car.statue }}</span>
             <div class="name d-flex flex-column">
                 <span class="used"> {{ $t('discc') }} {{ Math.round(car.discount_percentage) }} % </span>
-                <h4>{{ car.title }}</h4>
+                <h4 >{{ car.title }}</h4>
             </div>
             <div class="price d-flex flex-column align-items-cente w-100 justify-content-cente ">
                 <h6>{{ car.price }} {{ $t('curr') }}</h6>
@@ -90,13 +93,13 @@
 </svg>
                 </div>
             </div>
-        </nuxt-link>
+        </div>
     </div>
 </template>
 
 <script setup>
-// import { createToast } from "mosha-vue-toastify";
-// import "mosha-vue-toastify/dist/style.css";
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 const props = defineProps(["car" , "myFunction" , "check"]);
 import axios from 'axios';
 const { locale } = useI18n();
@@ -139,20 +142,30 @@ const addFavFunc = async (id , success) =>{
         if(props.check){
             props.myFunction();
         }
-          // createToast(
-          //   {
-          //     title: favBtn.value ? value1.value : value2.value,
-          //   },
-          //   {
-          //     type: "success",
-          //     transition: "bounce",
-          //     showIcon: "true",
-          //     timeout: 3000,
-          //     toastBackgroundColor: "#dcb63b",
-          //   }
-          // );
+        
+        toast.success(favBtn.value ? value1.value : value2.value, {
+  position: "top-right",
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  draggablePercent: 0.6,
+  showCloseButtonOnHover: false,
+  hideProgressBar: true,
+  closeButton: "button",
+  icon: true,
+  class:'toast-container',
+//   rtl: false
+});
+
   }
 }
+
+const clickk = () =>{
+  
+}
+
 </script>
 
 <style lang="scss" scoped></style>

@@ -912,8 +912,9 @@
                       <button @click="paymentIndividualBtn = 3" class="back">
                         {{ $t('back') }}
                       </button>
-                      <button @click="paymentFunc4()" class="next">
+                      <button @click="paymentFunc4()" class="next gap-3">
                         {{ $t('next') }}
+                        <v-progress-circular v-if="pending4"  indeterminate :size="25" :width="4"></v-progress-circular>
                       </button>
                     </div>
                   
@@ -1086,8 +1087,9 @@
                         </button>
                         <button
                           @click="paymentFunc5()"
-                          class="next"
+                          class="next gap-3"
                         >
+                        <v-progress-circular v-if="pending5"  indeterminate :size="25" :width="4"></v-progress-circular>
                           {{$t('sendOrd')}}
                         </button>
                       </div>
@@ -1379,8 +1381,8 @@ const paymentFunc2 = async () => {
 const paymentFunc3 = async () => {
     v3$.value.$validate();
     let formBody = createFormData1(form2.value, form3.value);
-    pending3.value = true;
     if (isFormFilled3()) {
+      pending3.value = true;
         try {
             let result = await axios.post(`${getUrl()}/financecar-Order`, formBody, {
                 params: {
@@ -1427,8 +1429,8 @@ const paymentFunc4 = async () => {
     formBody.append("bank_offer_id", bank_offer_id.value);
     formBody.append("color_id", form2.value.color_id);
     formBody.append("bank", form3.value.bank);
-    pending4.value = true;
     if (bank_offer_id.value) {
+      pending4.value = true;
         let result = await axios.post(`${getUrl()}/financecar-Order`, formBody, {
             params: {
                 type: 'individual',
@@ -1501,9 +1503,10 @@ const paymentFunc4 = async () => {
 const paymentFunc5 = async () => {
     let formBody = createFormData(form2.value , form3.value , selectedFileName1.value , selectedFileName2.value , selectedFileName3.value , selectedFileName4.value , bank_offer_id.value);
     pending5.value = true;
-    let result = await axios.post(`${getUrl()}/finance-Order`, formBody, {
+    let result = await axios.post(`${getUrl()}/financecar-Order`, formBody, {
         params: {
             type: paymentMethod.value == 1 ? 'individual' : 'company',
+            id: props.carid,
             step: 5
         },
         headers: {

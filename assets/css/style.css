@@ -303,6 +303,11 @@ html[dir=rtl] input[type=tel] {
   display: block;
 }
 
+.toast-container, .Vue-Toastification__toast-body {
+  font-family: "Janna-lt", sans-serif !important;
+  font-weight: 700 !important;
+}
+
 .up-arrow-icon {
   position: fixed;
   top: 84%;

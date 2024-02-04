@@ -263,13 +263,21 @@
                       <div class="input-container">
                         <span> {{ $t('orgType') }} </span>
                         <div class="input">
-                          <input
-                            type="text"
-                            placeholder=""
-                            name=""
+                          <Dropdown
                             v-model="form4.organization_type"
+                            :options="optionsCars.OrganizationType"
+                            filter
+                            optionLabel="title"
+                            optionValue="id"
+                            :placeholder="$t('orgType')"
                             class=""
-                          />
+                          >
+                            <template #option="slotProps">
+                              <div class="flex align-items-center">
+                                <div>{{ slotProps.option.title }}</div>
+                              </div>
+                            </template>
+                          </Dropdown>
                           <span class="error-msg" v-if="v4$.organization_type.$error">{{
                               v4$.organization_type.$errors[0].$message
                           }}</span>
@@ -296,13 +304,21 @@
                       <div class="input-container">
                         <span> {{ $t('orgAct') }} </span>
                         <div class="input">
-                          <input
-                            type="text"
-                            placeholder=""
-                            name=""
+                          <Dropdown
                             v-model="form4.organization_activity"
+                            :options="optionsCars.OrganizationActive"
+                            filter
+                            optionLabel="title"
+                            optionValue="id"
+                            :placeholder="$t('orgAct')"
                             class=""
-                          />
+                          >
+                            <template #option="slotProps">
+                              <div class="flex align-items-center">
+                                <div>{{ slotProps.option.title }}</div>
+                              </div>
+                            </template>
+                          </Dropdown>
                           <span class="error-msg" v-if="v4$.organization_activity.$error">{{
                               v4$.organization_activity.$errors[0].$message
                           }}</span>
@@ -694,7 +710,7 @@ const sendCorporate1 = async () => {
 
     if (isFormFilled()) {
         pendingCorp1.value = true;
-        let result = await axios.post(`${getUrl()}/finance-Order`, { cars: JSON.stringify(form.value) }, {
+        let result = await axios.post(`${getUrl()}/finance-Order`, { cars: form.value }, {
             params: {
                 type: 'organization',
                 step: 1
@@ -744,7 +760,10 @@ const sendCorporate2 = async () => {
 
             if (result.status >= 200) {
                 pendingCorp2.value = false
-                store.state.showConfirm2  = true;
+                store.state.showConfirm1 = true;
+        store.state.otpFin1 = result.data.data.verification_code;
+        store.state.orderFin1 = result.data.data.Order_Number;
+        store.state.phoneFin1 = form4.value.phone;
             }
 
         } catch (errorss) {

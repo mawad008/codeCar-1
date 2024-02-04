@@ -902,8 +902,10 @@
                       <button @click="paymentIndividualBtn = 3" class="back">
                         {{ $t('back') }}
                       </button>
-                      <button @click="paymentFunc4()" class="next">
+                      <button @click="paymentFunc4()" class="next gap-3">
                         {{ $t('next') }}
+                        <v-progress-circular v-if="pending4"  indeterminate :size="25" :width="4"></v-progress-circular>
+
                       </button>
                     </div>
                   </div>
@@ -1077,6 +1079,7 @@
                           class="next"
                         >
                           {{$t('sendOrd')}}
+                        <v-progress-circular v-if="pending5"  indeterminate :size="25" :width="4"></v-progress-circular>
                         </button>
                       </div>
                     </div>
@@ -1358,8 +1361,8 @@ const paymentFunc2 = async () => {
 const paymentFunc3 = async () => {
     v3$.value.$validate();
     let formBody = createFormData1(form2.value, form3.value);
-    pending3.value = true;
     if (isFormFilled3()) {
+      pending3.value = true;
         try {
             let result = await axios.post(`${getUrl()}/finance-Order`, formBody, {
                 params: {
@@ -1405,8 +1408,8 @@ const paymentFunc4 = async () => {
     formBody.append("bank_offer_id", bank_offer_id.value);
     formBody.append("color_id", form2.value.color_id);
     formBody.append("bank", form3.value.bank);
-    pending4.value = true;
     if (bank_offer_id.value) {
+      pending4.value = true;
         let result = await axios.post(`${getUrl()}/finance-Order`, formBody, {
             params: {
                 type: paymentMethod.value == 1 ? 'individual' : 'company',
@@ -1488,41 +1491,19 @@ const paymentFunc5 = async () => {
         },
     });
     if (result.status >= 200) {
-        paymentIndividualBtn.value = 6;
+        // paymentIndividualBtn.value = 6;
         // paymentBtn5.value = 1;
         // checkBtn4.value = 1;
         store.state.showConfirm1 = true;
+        store.state.otpFin1 = result.data.data.verification_code;
+        store.state.orderFin1 = result.data.data.Order_Number;
+        store.state.phoneFin1 = form3.value.phone;
         pending5.value = false;
     }
 
 };
 
-const sendOtp = async () => {
-    let formBody = new FormData();
-    formBody.append("identity_Card", selectedFileName1.value);
 
-    try {
-        let result = await axios.post(`${getUrl()}/finance-Order`, formBody, {
-            params: {
-                type: paymentMethod.value == 1 ? 'individual' : 'company',
-                step: 5
-            },
-            headers: {
-                "Content-Language": `${locale.value}`,
-            },
-        });
-        if (result.status >= 200) {
-            paymentIndividualBtn.value = 7;
-            errors3.value = [];
-        }
-    } catch (errorss) {
-        console.log(errorss);
-        if (errorss.response) {
-            pending3.value = false;
-            errors3.value = errorss.response.data.errors;
-        }
-    }
-}
 
 
 const handleFileChange1 = (event) => {

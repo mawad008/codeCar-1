@@ -1191,6 +1191,7 @@ const rules2 = computed(() => {
 const v1$ = useValidate(rules1, formCash1);
 const v2$ = useValidate(rules2, formCash2);
 
+let otpCashh = ref('');
 const cashFunc1 = async () =>{
   let check = await v1$.value.$validate();
 if(check){

@@ -75,6 +75,6 @@ export default defineNuxtConfig({
     "~/assets/css/style.css",
   ],
   build: {
-    transpile: ["vuetify"],
+    transpile: ["vuetify" , 'vue-toastification'],
   },
 });

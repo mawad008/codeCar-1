@@ -64,11 +64,12 @@
            {{ $t('otp2') }}
           </p>
 
-          <v-otp-input v-model="otp" :length="4" placeholder="-"></v-otp-input>
-          {{ otp }}
+          <v-otp-input v-model="store.state.otpFin1" style="direction: ltr !important;" :length="4" placeholder="-"></v-otp-input>
+          <!-- {{ otp }}
+          {{ store.state.otpFin1 }} -->
           <button class="resend">{{ $t('reOtp') }}</button>
 
-          <button @click="paymentOtp = 7" class="send">{{ $t('follow') }}</button>
+          <button @click="sendOtp()" class="send">{{ $t('follow') }}</button>
         </div>
         <div v-if="paymentOtp == 2" class="confirm-text">
           <client-only>
@@ -80,19 +81,24 @@
           </p>
 
           <div class="order-number">
-            <h5>{{ $t('orderNum') }} : <span>200715DXFMW0UD</span></h5>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3417 6.27149V1.92001H9.11988C7.7944 1.92001 6.71988 2.99453 6.71988 4.32001V16.8C6.71988 18.1255 7.7944 19.2 9.11988 19.2H18.7199C20.0454 19.2 21.1199 18.1255 21.1199 16.8V7.69575H17.8035C17.0003 7.69575 16.3417 7.06237 16.3417 6.27149ZM17.5764 2.48686C17.4967 2.38236 17.4041 2.2905 17.3017 2.21281V6.27149C17.3017 6.52361 17.5223 6.73575 17.8035 6.73575H20.8163L17.5764 2.48686ZM5.27988 22.08H14.8799C16.041 22.08 17.0095 21.2555 17.2319 20.16H9.11988C7.26421 20.16 5.75988 18.6557 5.75988 16.8V4.80001H5.27988C3.9544 4.80001 2.87988 5.87453 2.87988 7.20001V19.68C2.87988 21.0055 3.9544 22.08 5.27988 22.08Z" fill="#90A3BF"/>
-</svg>
+            <h5>{{ $t('orderNum') }} : <span>{{ orderNum1 }}</span></h5>
+            <button @click="copyToClipboard();" class="iconn">
+                              <img v-if="check" src="~/assets/images/share1.svg" style="margin-bottom:0px" alt="">
+                               <svg v-else xmlns="http://www.w3.org/2000/svg" fill="#90a3bf" height="20" width="20"
+                              viewBox="0 0 448 512">
+                              <path
+                                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                            </svg> 
+                             </button>
           </div>
 
-          <nuxt-link :to="localePath('/')">
+          <nuxt-link :to="localePath('/')" class="nav-link">
             <button class="send home">{{ $t('backHome') }}</button>
           </nuxt-link>
         </div>
       </div>
 
-      <div v-if="store.state.showConfirm2" class="confirm-container">
+      <!-- <div v-if="store.state.showConfirm2" class="confirm-container">
         <div v-if="paymentOtp1 == 1" class="confirm-text">
            <client-only>
               <Vue3Lottie :animation-data="otpp" :height="200" :width="200" />
@@ -104,11 +110,11 @@
              {{ $t('otp2') }}
             </p>
 
-            <v-otp-input v-model="otp" :length="4" placeholder="-"></v-otp-input>
-            {{ otp }}
-            <button class="resend">{{ $t('reOtp') }}</button>
+            <v-otp-input v-model="store.state.otpFin2" :length="4" placeholder="-"></v-otp-input>
+            {{ store.state.otpFin2 }}
+            <button class="resend" >{{ $t('reOtp') }}</button>
 
-            <button @click="paymentOtp = 7" class="send">{{ $t('follow') }}</button>
+            <button @click="sendOtp()" class="send">{{ $t('follow') }}</button>
         </div>
         <div v-if="paymentOtp1 == 2" class="confirm-text">
            <client-only>
@@ -120,22 +126,28 @@
             </p>
 
             <div class="order-number">
-              <h5>{{ $t('orderNum') }} : <span>200715DXFMW0UD</span></h5>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3417 6.27149V1.92001H9.11988C7.7944 1.92001 6.71988 2.99453 6.71988 4.32001V16.8C6.71988 18.1255 7.7944 19.2 9.11988 19.2H18.7199C20.0454 19.2 21.1199 18.1255 21.1199 16.8V7.69575H17.8035C17.0003 7.69575 16.3417 7.06237 16.3417 6.27149ZM17.5764 2.48686C17.4967 2.38236 17.4041 2.2905 17.3017 2.21281V6.27149C17.3017 6.52361 17.5223 6.73575 17.8035 6.73575H20.8163L17.5764 2.48686ZM5.27988 22.08H14.8799C16.041 22.08 17.0095 21.2555 17.2319 20.16H9.11988C7.26421 20.16 5.75988 18.6557 5.75988 16.8V4.80001H5.27988C3.9544 4.80001 2.87988 5.87453 2.87988 7.20001V19.68C2.87988 21.0055 3.9544 22.08 5.27988 22.08Z" fill="#90A3BF"/>
-</svg>
+              <h5>{{ $t('orderNum') }} : <span>{{ orderNum1 }}</span></h5>
+            <button @click="copyToClipboard();" class="iconn">
+                              <img v-if="check" src="~/assets/images/share1.svg" style="margin-bottom:0px" alt="">
+                               <svg v-else xmlns="http://www.w3.org/2000/svg" fill="#90a3bf" height="20" width="20"
+                              viewBox="0 0 448 512">
+                              <path
+                                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                            </svg> 
+                             </button>
             </div>
 
             <nuxt-link :to="localePath('/')">
               <button class="send home">{{ $t('backHome') }}</button>
             </nuxt-link>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script setup>
+import axios from 'axios';
 import otpp from "~/assets/animations/otp.json";
 import success from "~/assets/animations/success.json";
 import { Vue3Lottie } from "vue3-lottie";
@@ -144,10 +156,70 @@ let store = useStore;
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let paymentMethod = ref(1);
-let otp = ref("");
+let otp = ref(store.state.otpFin1);
 
 let paymentOtp = ref(1);
 let paymentOtp1 = ref(1);
+
+let pendingOtp1 = ref(false);
+let pendingOtp2 = ref(false);
+let orderNum1 = ref();
+let error1 = ref();
+
+
+
+
+const sendOtp = async () => {
+    let formBody = new FormData();
+    formBody.append("otp", store.state.otpFin1 );
+    formBody.append("phone", store.state.phoneFin1);
+    formBody.append("order_id", store.state.orderFin1);
+    try {
+        let result = await axios.post(`${getUrl()}/verify-otp-order`, formBody, {
+            // params: {
+            //     type: paymentMethod.value == 1 ? 'individual' : 'company',
+            //     step: 5
+            // },
+            headers: {
+                "Content-Language": `${locale.value}`,
+            },
+        });
+        if (result.status >= 200) {
+          // if(store.state.orderFin1){
+          // } 
+          paymentOtp.value = 2;
+          pendingOtp1.value = false;
+          // if(store.state.orderFin2){
+          //   paymentOtp1.value = 2;
+          //   pendingOtp2.value = false;
+          // }
+          orderNum1.value = result.data.data.Order_Number;
+          error1.value = '';
+        }
+    } catch (errorss) {
+        console.log(errorss);
+        if (errorss.response) {
+          pendingOtp1.value = false;
+          error1.value = errorss.response.data.errors;
+        }
+    }
+}
+
+let check = ref(true);
+function copyToClipboard() {
+    /* Copy the text */
+    if (process.client) {
+        check.value = false;
+        const clipBoard = navigator.clipboard;
+        clipBoard.writeText(orderNum1.value).then(() => {
+        });
+
+        setTimeout(() => {
+            check.value = true;
+        }, 1000);
+    }
+
+}
 
 let items = ref([
   {
