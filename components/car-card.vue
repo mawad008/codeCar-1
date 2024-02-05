@@ -99,7 +99,7 @@
 
 <script setup>
 import { useToast } from 'vue-toastification'
-const toast = useToast()
+const toast = useToast();
 const props = defineProps(["car" , "myFunction" , "check"]);
 import axios from 'axios';
 const { locale } = useI18n();

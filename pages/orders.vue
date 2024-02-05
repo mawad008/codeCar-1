@@ -509,7 +509,7 @@ let orders2 = ref([]);
 
 const getOrders = async ()=>{
     if(tokenCookie){
-        let result = axios.get(`${getUrl()}/requests`,{
+        let result = axios.get(`${getUrl()}/requests_auth`,{
             params: {
                 order_number: orderNumber.value
             },
@@ -519,9 +519,9 @@ const getOrders = async ()=>{
             },
         });
     } else{
-        let result = axios.get(`${getUrl()}/requests_auth`,{
+        let result = axios.get(`${getUrl()}/requests-search`,{
             params: {
-                order_number: orderNumber.value
+                order_number: parseInt(orderNumber.value)
             },
             headers: {
               "Content-Language": `${locale.value}`,
@@ -535,7 +535,8 @@ let chooseBtn = ref(1);
 let items = ref([
     {
         title: locale.value == "ar" ? "الرئيسية" : "home",
-        disabled: true,
+        ddisabled: false,
+      class:"breadcrumbs-text",
         href: "/",
     },
     {

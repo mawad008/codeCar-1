@@ -3,7 +3,7 @@
     <div class="container settings-page">
       <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
         <h4 class="heading-text"> {{ $t('settings') }} </h4>
-        <p>{{ descriptionText }}</p>
+        <p v-if="descriptionText">{{ descriptionText }}</p>
 
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
@@ -26,8 +26,8 @@
             <div @click="settingNav = 2" class="item justify-content-between" :class="{ active: settingNav == 2 }">
               <div class="d-flex align-items-center gap-2">
                 <div class="icon">
-                  <img class="img1" src="~/assets/images/ads.svg" />
-                  <img class="img2" src="~/assets/images/ads-active.svg" />
+                  <img class="img1" src="~/assets/images/addss.svg" />
+                  <img class="img2" src="~/assets/images/addss-active.svg" />
                 </div>
                 <span> {{ $t('Ads') }} </span>
               </div>
@@ -241,7 +241,7 @@
                       </template>
                     </Dropdown>
                   </div>
-                  <nuxt-link :to="localePath('/ad')" class="add">
+                  <nuxt-link :to="localePath('/addCar')" class="add">
                     <div class="icon">
                       <i class="fa-solid fa-plus"></i>
                     </div>
@@ -914,7 +914,7 @@ const updatePassword = async () => {
   }
 }
 const getCars = async () => {
-  let result = await axios.get(`${getUrl()}/ads`, {
+  let result = await axios.get(`${getUrl()}/addss`, {
     params: {
       status_car: formCar.value.status_car,
       brand: formCar.value.brand
@@ -946,7 +946,7 @@ const activeCar = async (id, statusCar) => {
 
 }
 const deleteCar = async (id) => {
-  let result = await axios.delete(`${getUrl()}/ads/delete/${id}`, {
+  let result = await axios.delete(`${getUrl()}/adds/delete/${id}`, {
     headers: {
       "Content-Language": `${locale.value}`,
       Authorization: `Bearer ${tokenCookie}`,
@@ -1000,7 +1000,8 @@ const logOut = () => {
 let items = ref([
   {
     title: locale.value == "ar" ? "الرئيسية" : "home",
-    disabled: true,
+    disabled: false,
+    class:"breadcrumbs-text",
     href: "/",
   },
   {

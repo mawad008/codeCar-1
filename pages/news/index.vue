@@ -110,7 +110,8 @@ const goToNewPage = (id , name) =>{
 let items = ref([
     {
         title: locale.value == 'ar' ? 'الرئيسية' : 'home',
-        disabled: true,
+        disabled: false,
+    class:"breadcrumbs-text",
         href: '/',
     },
     {

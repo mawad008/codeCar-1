@@ -95,7 +95,7 @@
                             optionLabel="title"
                             optionValue="id"
                           :filter-placeholder="$t('search')"
-                            :placeholder="$t('carBrand')"
+                            :placeholder="$('carBrand')"
                             class=""
                           >
                             <template #option="slotProps">

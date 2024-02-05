@@ -68,7 +68,7 @@
               {{ $t("about") }}
               </nuxt-link
             >
-            <nuxt-link class="nav-link spe" :to="localePath('/ad')"
+            <nuxt-link class="nav-link spe" :to="localePath('/addCar')"
               >
               {{ $t("ad") }}
               </nuxt-link

@@ -1,6 +1,6 @@
 <template>
     <div>
-    <div class="container advertisement-container">
+    <div class="container advertisementtt-container">
     <div class="d-flex justify-content-end mb-4">
     
       <nuxt-link :to="localePath('/settings')" class="arrow">
@@ -876,7 +876,7 @@ const isFormFilled2 = () => {
 };
 
 const getCarDetails = async ()=>{
-  let result = await axios.get(`${getUrl()}/ads/edit/${id.value}`,{
+  let result = await axios.get(`${getUrl()}/addss/edit/${id.value}`,{
    headers:{
          "Content-Language": `${locale.value}`,
           Authorization: `Bearer ${tokenCookie}`,
@@ -914,7 +914,7 @@ const addFunc1 = async () => {
   if (check) {
     pending1.value = true;
     try {
-      let result = await axios.post(`${getUrl()}/ads/update/${id.value}`, form4.value, {
+      let result = await axios.post(`${getUrl()}/addss/update/${id.value}`, form4.value, {
         params: {
           step: 0,
         },
@@ -973,7 +973,7 @@ const addFunc2 = async () => {
 }
 pending2.value = true;
 try {
-  let result = await axios.post(`${getUrl()}/ads/update/${id.value}`, formBody , {
+  let result = await axios.post(`${getUrl()}/addss/update/${id.value}`, formBody , {
     params: {
       step: 1,
     },
@@ -999,18 +999,18 @@ try {
 
 };
 
-let items = ref([
-  {
-    title: locale.value == "ar" ? "الرئيسية" : "home",
-    disabled: true,
-    href: "/",
-  },
-  {
-    title: locale.value == "ar" ? "اضف اعلانك" : "add your ad",
-    disabled: false,
-    href: "ad",
-  },
-]);
+// let items = ref([
+//   {
+//     title: locale.value == "ar" ? "الرئيسية" : "home",
+//     disabled: true,
+//     href: "/",
+//   },
+//   {
+//     title: locale.value == "ar" ? "اضف اعلانك" : "add your ad",
+//     disabled: false,
+//     href: "ad",
+//   },
+// ]);
 onMounted(() => {
     // loopImages();
     getCarDetails();

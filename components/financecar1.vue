@@ -182,7 +182,7 @@
                         v-model="sliderValue1"
                         :min="minNum"
                         :max="maxNum"
-                        step="10000"
+                        step="5"
                         thumb-label="always"
                         class="custom-slider mt-5"
                         @input="updateRange()"
@@ -190,8 +190,8 @@
                       >
                         <template v-slot:thumb-label="{ value }">
                           <div class="d-flex align-items-center gap-2">
-                            <span> {{ $t('curr') }} </span>
-                            {{ sliderValue1 }}
+                            <!-- <span> {{ $t('curr') }} </span> -->
+                           % {{ sliderValue1 }}
                           </div>
                         </template>
                       </v-slider>
@@ -227,7 +227,7 @@
                         v-model="sliderValue3"
                         :min="minNum"
                         :max="maxNum"
-                        step="10000"
+                        step="5"
                         thumb-label="always"
                         class="custom-slider mt-5"
                         @input="updateRange()"
@@ -235,8 +235,8 @@
                       >
                         <template v-slot:thumb-label="{ value }">
                           <div class="d-flex align-items-center gap-2">
-                            <span> {{ $t('curr') }} </span>
-                            {{ sliderValue3 }}
+                            <!-- <span> {{ $t('curr') }} </span> -->
+                           % {{ sliderValue3 }}
                           </div>
                         </template>
                       </v-slider>
@@ -246,20 +246,20 @@
                   <div
                     class="w-100 d-flex align-items-center justify-content-between"
                   >
-                    <span>سعر السيارة</span>
-                    <span> 500,000 ريال سعودي </span>
+                    <span>{{ $t('carPrice') }}</span>
+                    <span> {{ price }} {{ $t('curr') }} </span>
                   </div>
                   <div
                     class="w-100 d-flex align-items-center justify-content-between"
                   >
-                    <span>الدفعة الاولي</span>
-                    <span> 10% </span>
+                    <span>{{ $t('offer3') }}</span>
+                    <span> {{ (price * sliderValue1) / 100 }} </span>
                   </div>
                   <div
                     class="w-100 d-flex align-items-center justify-content-between"
                   >
-                    <span>الدفعة الاخيرة</span>
-                    <span> 30% </span>
+                    <span>{{ $t('calc3') }}</span>
+                    <span> {{ (price * sliderValue3) / 100 }} </span>
                   </div>
                 </div>
                     <div class="d-flex justify-content-end">
@@ -980,7 +980,7 @@
                                 <img src="~/assets/images/det4.png" alt="" />
                                 <span>{{$t('offer5')}}</span>
                               </div>
-                              <h6>{{ theOffer.sectorAdministrative_fees }} ريال سعودي</h6>
+                              <h6>{{ theOffer.sectorAdministrative_fees }} {{ $t('curr') }}</h6>
                             </div>
                           </div>
                           <div class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3">
@@ -1101,7 +1101,6 @@
 </template>
 
 <script setup>
-import otpp from "~/assets/animations/otp.json";
 import emptyoffers from "~/assets/animations/empty-offer.json";
 import { Vue3Lottie } from "vue3-lottie";
 import useValidate from "@vuelidate/core";
@@ -1117,7 +1116,7 @@ import {
     helpers,
 } from "@vuelidate/validators";
 import { useStore } from "~/store";
-const props = defineProps(["carid"]);
+const props = defineProps(["carid" , "price"]);
 
 let store = useStore;
 const localePath = useLocalePath();
@@ -1128,7 +1127,7 @@ let sliderValue2 = ref(5);
 let sliderValue3 = ref(0);
 let showConfirm = ref(false);
 let minNum = ref(0);
-let maxNum = ref(0);
+let maxNum = ref(100);
 const selectedFileName1 = ref(null);
 const selectedFileName2 = ref(null);
 const selectedFileName3 = ref(null);
@@ -1156,8 +1155,8 @@ const getOptions = async () => {
 
     optionsCars.value = result.data.data;
     brands.value = result.data.data.brands;
-    minNum.value = parseInt(result.data.data.Slider.minPrice);
-    maxNum.value = parseInt(result.data.data.Slider.maxPrice);
+    // minNum.value = parseInt(result.data.data.Slider.minPrice);
+    // maxNum.value = parseInt(result.data.data.Slider.maxPrice);
     // sliderValue1.value = parseInt(result.data.data.Slider.minPrice) + 20000;
     // sliderValue3.value = parseInt(result.data.data.Slider.minPrice) + 20000;
 };
@@ -1518,7 +1517,9 @@ const paymentFunc5 = async () => {
         // paymentBtn5.value = 1;
         // checkBtn4.value = 1;
         store.state.showConfirm1 = true;
-        pending5.value = false;
+        store.state.otpFin1 = result.data.data.verification_code;
+        store.state.orderFin1 = result.data.data.Order_Number;
+        store.state.phoneFin1 = form3.value.phone;
     }
 
 };

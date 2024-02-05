@@ -2237,7 +2237,7 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   font-style: normal;
   font-weight: 700;
   color: #dcb63b;
-  min-width: 150px !important;
+  min-width: 90px !important;
   padding: 0px 20px;
 }
 .paymentType .range-container .range-slider .v-slider-thumb__label::before {
@@ -2727,6 +2727,10 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   color: #dcb63b;
   font-weight: 700;
   background-color: #fcf4e2;
+}
+
+.breadcrumbs-text {
+  color: #959EAD !important;
 }
 
 html[dir=rtl] .payment-method button.one {
@@ -3663,6 +3667,9 @@ html[dir=ltr] .p-accordion-header-action {
   background: #fff;
   padding: 32px;
 }
+.contact-us .contact-container iframe {
+  background-color: red !important;
+}
 .contact-us .contact-container .text-container h4 {
   font-size: 24px;
   font-style: normal;
@@ -3799,6 +3806,13 @@ html[dir=ltr] .p-accordion-header-action {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
+  color: #000;
+}
+.contact-us .contact-container .form-container .input input::-moz-placeholder, .contact-us .contact-container .form-container .input textarea::-moz-placeholder {
+  color: #959ead;
+}
+.contact-us .contact-container .form-container .input input::placeholder,
+.contact-us .contact-container .form-container .input textarea::placeholder {
   color: #959ead;
 }
 .contact-us .contact-container .form-container button {
@@ -4642,65 +4656,65 @@ html[dir=ltr] .setting-btn {
   direction: rtl;
   overflow: auto;
 }
-.adModalForm.advertisement-container {
+.adModalForm.advertisementtt-container {
   margin: 0px !important;
   min-height: -moz-fit-content !important;
   min-height: fit-content !important;
 }
 
-.advertisement-container {
+.advertisementtt-container {
   margin-top: 72px;
   margin-bottom: 140px;
   min-height: 100vh;
 }
-.advertisement-container .error-msg {
+.advertisementtt-container .error-msg {
   position: absolute;
   top: 101%;
 }
-.advertisement-container .error-msg2 {
+.advertisementtt-container .error-msg2 {
   white-space: normal !important;
 }
-.advertisement-container .ad-container {
+.advertisementtt-container .ad-container {
   margin-bottom: 0px !important;
   border-radius: 24px;
   background: #fff;
   padding: 32px;
 }
-.advertisement-container .ad-container .ad-content h5 {
+.advertisementtt-container .ad-container .ad-content h5 {
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   color: #2d3a4a;
   margin-bottom: 20px;
 }
-.advertisement-container .ad-container .ad-content .input {
+.advertisementtt-container .ad-container .ad-content .input {
   display: flex;
   flex-direction: column;
   position: relative;
   gap: 10px;
   margin: 30px 0px;
 }
-.advertisement-container .ad-container .ad-content .input .num {
+.advertisementtt-container .ad-container .ad-content .input .num {
   position: absolute;
   bottom: 20px;
   left: 30px;
 }
-.advertisement-container .ad-container .ad-content .input .num span {
+.advertisementtt-container .ad-container .ad-content .input .num span {
   color: #dcb63b;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
 }
-.advertisement-container .ad-container .ad-content .input label {
+.advertisementtt-container .ad-container .ad-content .input label {
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
   color: #2d3a4a;
   position: relative;
 }
-.advertisement-container .ad-container .ad-content .input input,
-.advertisement-container .ad-container .ad-content .input .p-dropdown,
-.advertisement-container .ad-container .ad-content .input textarea {
+.advertisementtt-container .ad-container .ad-content .input input,
+.advertisementtt-container .ad-container .ad-content .input .p-dropdown,
+.advertisementtt-container .ad-container .ad-content .input textarea {
   border-radius: 8px;
   background: #f6f7f9;
   font-size: 14px;
@@ -4714,29 +4728,29 @@ html[dir=ltr] .setting-btn {
   border-color: transparent;
   resize: none;
 }
-.advertisement-container .ad-container .ad-content .input input:focus,
-.advertisement-container .ad-container .ad-content .input .p-dropdown:focus,
-.advertisement-container .ad-container .ad-content .input textarea:focus {
+.advertisementtt-container .ad-container .ad-content .input input:focus,
+.advertisementtt-container .ad-container .ad-content .input .p-dropdown:focus,
+.advertisementtt-container .ad-container .ad-content .input textarea:focus {
   background-color: #fff;
   border-color: #dcb63b;
 }
-.advertisement-container .ad-container .ad-content .det {
+.advertisementtt-container .ad-container .ad-content .det {
   border-top: 1px solid #ebeaed;
   padding-top: 20px;
 }
-.advertisement-container .ad-container .ad-content .det .half {
+.advertisementtt-container .ad-container .ad-content .det .half {
   display: flex;
   align-items: center;
   width: 100%;
 }
-.advertisement-container .ad-container .ad-content .price {
+.advertisementtt-container .ad-container .ad-content .price {
   border-top: 1px solid #ebeaed;
   padding-top: 20px;
 }
-.advertisement-container .ad-container .ad-content .main-btn {
+.advertisementtt-container .ad-container .ad-content .main-btn {
   margin-top: 56px;
 }
-.advertisement-container .ad-container .ad-content .main-btn button {
+.advertisementtt-container .ad-container .ad-content .main-btn button {
   display: flex;
   width: 200px;
   height: 48px;
@@ -4748,24 +4762,24 @@ html[dir=ltr] .setting-btn {
   color: #fff;
   font-weight: 700;
 }
-.advertisement-container .ad-container .ad-content .images .word {
+.advertisementtt-container .ad-container .ad-content .images .word {
   font-size: 12px;
   font-weight: 400;
   color: #959ead;
 }
-.advertisement-container .ad-container .ad-content .images .add {
+.advertisementtt-container .ad-container .ad-content .images .add {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
 }
-.advertisement-container .ad-container .ad-content .images .add span {
+.advertisementtt-container .ad-container .ad-content .images .add span {
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   color: #dcb63b;
 }
-.advertisement-container .ad-container .ad-content .images .image {
+.advertisementtt-container .ad-container .ad-content .images .image {
   border-radius: 14px;
   border: 1px dashed #90a3bf;
   position: relative;
@@ -4774,7 +4788,7 @@ html[dir=ltr] .setting-btn {
   height: 150px;
   cursor: pointer;
 }
-.advertisement-container .ad-container .ad-content .images .image .img-icon {
+.advertisementtt-container .ad-container .ad-content .images .image .img-icon {
   position: absolute;
   top: 40%;
   left: 50%;
@@ -4783,30 +4797,30 @@ html[dir=ltr] .setting-btn {
   align-items: center;
   transform: translateX(-50%);
 }
-.advertisement-container .ad-container .ad-content .images .image .img-icon span {
+.advertisementtt-container .ad-container .ad-content .images .image .img-icon span {
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   color: #5a7184;
 }
-.advertisement-container .ad-container .ad-content .images .image input {
+.advertisementtt-container .ad-container .ad-content .images .image input {
   display: none;
 }
-.advertisement-container .ad-container .ad-content .images .image.big {
+.advertisementtt-container .ad-container .ad-content .images .image.big {
   height: 200px;
 }
-.advertisement-container .ad-container .ad-content .images .image .main-img {
+.advertisementtt-container .ad-container .ad-content .images .image .main-img {
   border-radius: 14px;
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
-.advertisement-container .ad-container .ad-content .btns {
+.advertisementtt-container .ad-container .ad-content .btns {
   gap: 30px;
   margin-top: 56px;
 }
-.advertisement-container .ad-container .ad-content .btns button {
+.advertisementtt-container .ad-container .ad-content .btns button {
   display: flex;
   width: 200px;
   height: 48px;
@@ -4816,16 +4830,16 @@ html[dir=ltr] .setting-btn {
   font-weight: 700;
   border-radius: 12px;
 }
-.advertisement-container .ad-container .ad-content .btns button.back {
+.advertisementtt-container .ad-container .ad-content .btns button.back {
   background-color: #fff;
   border: 1px solid #2d3a4a;
   color: #2d3a4a;
 }
-.advertisement-container .ad-container .ad-content .btns button.next {
+.advertisementtt-container .ad-container .ad-content .btns button.next {
   color: #fff;
   background: #2d3a4a;
 }
-.advertisement-container .ad-container .confirm {
+.advertisementtt-container .ad-container .confirm {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4836,20 +4850,20 @@ html[dir=ltr] .setting-btn {
   background: #fff;
   padding: 53px 0px;
 }
-.advertisement-container .ad-container .confirm h4 {
+.advertisementtt-container .ad-container .confirm h4 {
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
   color: #2d3a4a;
 }
-.advertisement-container .ad-container .confirm span {
+.advertisementtt-container .ad-container .confirm span {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   color: #5a7184;
   width: 361px;
 }
-.advertisement-container .ad-container .confirm button {
+.advertisementtt-container .ad-container .confirm button {
   display: flex;
   width: 350px;
   height: 48px;
@@ -4864,14 +4878,14 @@ html[dir=ltr] .setting-btn {
 }
 
 @media (max-width: 900px) {
-  .advertisement-container .confirm {
+  .advertisementtt-container .confirm {
     padding: 30px 10px !important;
   }
-  .advertisement-container .confirm h4 {
+  .advertisementtt-container .confirm h4 {
     font-size: 20px !important;
     line-height: 30px;
   }
-  .advertisement-container .confirm span, .advertisement-container .confirm a, .advertisement-container .confirm button {
+  .advertisementtt-container .confirm span, .advertisementtt-container .confirm a, .advertisementtt-container .confirm button {
     width: 100% !important;
   }
   .empty span {
@@ -4880,7 +4894,7 @@ html[dir=ltr] .setting-btn {
   .empty a {
     width: 100%;
   }
-  .advertisement-container .ad-container .ad-content .det .half {
+  .advertisementtt-container .ad-container .ad-content .det .half {
     width: auto !important;
   }
   .modal-dialog {

@@ -154,7 +154,7 @@
                                 <div v-html="contactArr.address_iframe"></div>
                             
                             </div>
-                                <div class="overlay">
+                                <!-- <div class="overlay">
                                     <div class="text">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                             fill="none">
@@ -164,7 +164,7 @@
                                         </svg>
                                         <span> {{ $t('address2') }} </span>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
 
@@ -229,7 +229,8 @@ let pendingBtn = ref(false);
 let items = ref([
     {
         title: locale.value == 'ar' ? 'الرئيسية' : 'home',
-        disabled: true,
+        disabled: false,
+    class:"breadcrumbs-text",
         href: '/',
     },
     {
@@ -264,7 +265,7 @@ if (locale.value == "ar") {
 const rules = computed(() => {
     return {
         name: { required: helpers.withMessage(value1.value, required) },
-        phone: { required },
+        phone: { required: helpers.withMessage(value1.value, required) },
         email: {
             required: helpers.withMessage(value2.value, required),
             email: helpers.withMessage(value3.value, email),

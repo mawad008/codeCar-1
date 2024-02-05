@@ -681,7 +681,7 @@
                       <input
                         type="number"
                         min="1"
-                        placeholder=" "
+                        :placeholder="$t('numCars')"
                         name=""
                         v-model="formCash2.car_count"
                         class=""
@@ -797,7 +797,7 @@
         
           
           <div v-if="paymentMethod == 1">
-           <financecar1 :carid="id"/>
+           <financecar1 :carid="id" :price="mainCar.price" />
           
           </div>
           <div v-if="paymentMethod == 2">

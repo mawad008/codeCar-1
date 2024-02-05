@@ -95,7 +95,8 @@ onMounted(() => {
 let items = ref([
     {
         title: locale.value == "ar" ? "الرئيسية" : "home",
-        disabled: true,
+        ddisabled: false,
+        class:"breadcrumbs-text",
         href: "/",
     },
     {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container advertisement-container">
+    <div class="container advertisementtt-container">
       <div
         class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column"
       >
@@ -299,9 +299,7 @@
                           v-model="form4.Killometer"
                           :placeholder="$t('example3')"
                         />
-                        <!-- <span class="error-msg" v-if="v1$.Killometer.$error">{{
-                          v1$.Killometer.$errors[0].$message
-                        }}</span> -->
+                     
                         <span class="error-msg2" v-if="errors1.Killometer">{{
                           errors1.Killometer[0]
                         }}</span>
@@ -536,8 +534,7 @@
                           />
                         </label>
                         <span class="word">{{ $t("img2") }}</span>
-                        <!-- <span class="error-msg" v-if="v3$[index]?.file?.required">{{v3$[index]?.file?.required}}</span> -->
-                        <!-- <span class="error-msg" v-if="!check11">fsdfsdffsd</span> -->
+                     
                         <span class="d-block word" v-if="!isImage(image.file)">{{ $t('imgCheck') }}</span>
                       </div>
 
@@ -565,9 +562,7 @@
         </div>
 
         <div v-if="adNavBtn == 3" class="confirm">
-            <!-- <client-only>
-            <Vue3Lottie :animation-data="success" :height="300" :width="300" />
-          </client-only> -->
+          
           <img src="~/assets/images/frame-ads.png" alt="">
           <h4>
             {{ $t("adThank1") }}
@@ -585,15 +580,14 @@
 </template>
 
 <script setup>
-
 definePageMeta({
   middleware: "auth",
 });
 
 import Cookies from "js-cookie";
 const tokenCookie = Cookies.get("token");
-import { Vue3Lottie } from "vue3-lottie";
-import success from "~/assets/animations/success.json";
+// import { Vue3Lottie } from "vue3-lottie";
+// import success from "~/assets/animations/success.json";
 
 import useValidate from "@vuelidate/core";
 import axios from "axios";
@@ -873,7 +867,7 @@ const addFunc1 = async () => {
   if (check) {
     pending1.value = true;
     try {
-      let result = await axios.post(`${getUrl()}/add-Your-Ad`, form4.value, {
+      let result = await axios.post(`${getUrl()}/add-Your-addss`, form4.value, {
         params: {
           step: 0,
         },
@@ -961,18 +955,20 @@ const addFunc2 = async () => {
 let items = ref([
   {
     title: locale.value == "ar" ? "الرئيسية" : "home",
-    disabled: true,
+    disabled: false,
+    class:"breadcrumbs-text",
     href: "/",
   },
   {
     title: locale.value == "ar" ? "اضف اعلانك" : "add your ad",
     disabled: false,
-    href: "ad",
+    href: "addCar",
   },
 ]);
 onMounted(() => {
     // loopImages();
   getOptions();
+
 });
 </script>
 

@@ -340,6 +340,8 @@
 <script setup>
 // import { createToast } from "mosha-vue-toastify";
 // import "mosha-vue-toastify/dist/style.css";
+import { useToast } from 'vue-toastification'
+const toast = useToast();
 import Cookies from 'js-cookie';
 import { useStore } from "~/store";
 import axios from 'axios';
@@ -475,6 +477,22 @@ const loginFunc = async () => {
               //     toastBackgroundColor: "#2d3a4a",
               //   }
               // );
+
+              toast.error( title.value, {
+                position: "top-right",
+                timeout: 3000,
+                closeOnClick: true,
+                pauseOnFocusLoss: true,
+                pauseOnHover: true,
+                draggable: true,
+                draggablePercent: 0.6,
+                showCloseButtonOnHover: false,
+                hideProgressBar: true,
+                closeButton: "button",
+                icon: true,
+                class:'toast-container',
+              //   rtl: false
+              });
                     }
             }
 

@@ -182,7 +182,7 @@
                         v-model="sliderValue1"
                         :min="minNum"
                         :max="maxNum"
-                        step="10000"
+                        step="5"
                         thumb-label="always"
                         class="custom-slider mt-5"
                         @input="updateRange()"
@@ -190,8 +190,8 @@
                       >
                         <template v-slot:thumb-label="{ value }">
                           <div class="d-flex align-items-center gap-2">
-                            <span> {{ $t('curr') }} </span>
-                            {{ sliderValue1 }}
+                            <!-- <span> {{ $t('curr') }} </span> -->
+                            % {{ sliderValue1 }}
                           </div>
                         </template>
                       </v-slider>
@@ -227,7 +227,7 @@
                         v-model="sliderValue3"
                         :min="minNum"
                         :max="maxNum"
-                        step="10000"
+                        step="5"
                         thumb-label="always"
                         class="custom-slider mt-5"
                         @input="updateRange()"
@@ -235,8 +235,8 @@
                       >
                         <template v-slot:thumb-label="{ value }">
                           <div class="d-flex align-items-center gap-2">
-                            <span> {{ $t('curr') }} </span>
-                            {{ sliderValue3 }}
+                            <!-- <span> {{ $t('curr') }} </span> -->
+                            % {{ sliderValue3 }}
                           </div>
                         </template>
                       </v-slider>
@@ -838,7 +838,7 @@
                     <v-radio-group  v-model="bank_offer_id">
                       <div  class="row">
                         <div v-for="item, index in offers" class="col-12 col-xl-6 col-lg-6">
-                          <label :for="`offer-${index}-1`" class="offer">
+                          <label :for="`offer-${index}-1`" class="offer w-100">
                             <div
                               class="d-flex align-items-center justify-content-between w-100"
                             >
@@ -911,7 +911,7 @@
                   </div>
                   <div v-else class="empty">
                 <div class="main">
-                    <client-only>
+                  <client-only>
             <Vue3Lottie :animation-data="emptyoffers" :height="300" :width="300" />
           </client-only>
                   <h4> {{ $t('stateAd1') }} </h4>
@@ -1090,8 +1090,8 @@
 </template>
 
 <script setup>
-import otpp from "~/assets/animations/otp.json";
-import success from "~/assets/animations/success.json";
+import emptyoffers from "~/assets/animations/empty-offer.json";
+
 import { Vue3Lottie } from "vue3-lottie";
 import useValidate from "@vuelidate/core";
 import axios from "axios";
@@ -1115,7 +1115,7 @@ let sliderValue2 = ref(5);
 let sliderValue3 = ref(0);
 let showConfirm = ref(false);
 let minNum = ref(0);
-let maxNum = ref(0);
+let maxNum = ref(100);
 const selectedFileName1 = ref(null);
 const selectedFileName2 = ref(null);
 const selectedFileName3 = ref(null);
@@ -1143,8 +1143,8 @@ const getOptions = async () => {
 
     optionsCars.value = result.data.data;
     brands.value = result.data.data.brands;
-    minNum.value = parseInt(result.data.data.Slider.minPrice);
-    maxNum.value = parseInt(result.data.data.Slider.maxPrice);
+    //minNum.value = parseInt(result.data.data.Slider.minPrice);
+    //maxNum.value = parseInt(result.data.data.Slider.maxPrice);
     // sliderValue1.value = parseInt(result.data.data.Slider.minPrice) + 20000;
     // sliderValue3.value = parseInt(result.data.data.Slider.minPrice) + 20000;
 };
