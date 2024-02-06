@@ -337,7 +337,7 @@
                             </template>
                           </v-dialog>
 
-                          <nuxt-link :to="localePath({ path: '/ad-edit', query: { id: item.id } })" class="link">
+                          <nuxt-link :to="localePath({ path: '/addCar-edit', query: { id: item.id } })" class="link">
                             <span class="f2"> {{ $t('editAd') }} </span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                               fill="none">

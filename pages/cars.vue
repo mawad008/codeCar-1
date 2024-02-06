@@ -627,6 +627,7 @@
                 
 
             <button @click="loadMore()"> {{$t('searchMore')}} </button>
+            {{ page }}
           </div>
           
           
@@ -728,6 +729,46 @@ let filterCarsArr = ref([]);
 const filterCars = async () => {
     spinnerProducts.value = true;
     pendingState.value = false;
+    filterCarsArr.value = [];
+  let result = await axios.get(`${getUrl()}/filter`, {
+    params: {
+        type: selected1.value,
+        gear_shifters: selected2.value,
+        fuel_types: selected3.value,
+        car_body: selected4.value,
+        brand_id: selected5.value,
+        model_id: selected6.value,
+        year: selected7.value,
+        color_id: selected8.value,
+        fuel_tank_capacity: selected9.value,
+        min_price: valuePrice.value[0],
+        max_price: valuePrice.value[1],
+        search: searchh.value ? searchh.value : null,
+        page: page.value
+    },
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  if(result.status == 200){
+    spinnerProducts.value = false;
+    filterCarsArr.value = result.data.data;
+    itemsPerPage.value = result.data.meta.per_page;
+    total.value = result.data.meta.total;
+    if(result.data.data.length < 1){
+      filterCarsArr.value = [];
+    }
+    if(filterCarsArr.value.length < 1){
+      pendingState.value = true;
+    } else{
+      pendingState.value = false;
+    }
+  }
+};
+const filterCar2 = async () => {
+    spinnerProducts.value = true;
+    pendingState.value = false;
     // filterCarsArr.value = [];
   let result = await axios.get(`${getUrl()}/filter`, {
     params: {
@@ -767,17 +808,19 @@ const filterCars = async () => {
 };
 
 
+
+
 const pageCount = computed(() => {
   return Math.ceil(total.value / itemsPerPage.value);
 });
 const progressValue = computed(() => {
-  return (page.value / total.value) * 100;
+  return (itemsPerPage.value / total.value) * 100;
 });
 
 const loadMore = async () => {
   if (page.value < pageCount.value) {
     page.value++;
-    await filterCars();
+    await filterCar2();
   }
 };
 

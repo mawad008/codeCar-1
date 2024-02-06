@@ -13,6 +13,8 @@ export const useStore = createStore({
     paymentCheck3:0,
     paymentCheck4:0,
     paymentCheck5: 0,
+    newActive:false,
+    offerActive:false,
     showConfirm1: false,
     showConfirm2: false,
     showConfirm3: false,

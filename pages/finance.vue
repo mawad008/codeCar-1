@@ -67,6 +67,9 @@
           <v-otp-input v-model="store.state.otpFin1" style="direction: ltr !important;" :length="4" placeholder="-"></v-otp-input>
           <!-- {{ otp }}
           {{ store.state.otpFin1 }} -->
+          <span class="error-msg2" v-if="error1">{{
+                            error1
+                  }}</span>
           <button class="resend">{{ $t('reOtp') }}</button>
 
           <button @click="sendOtp()" class="send">{{ $t('follow') }}</button>

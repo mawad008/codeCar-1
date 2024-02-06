@@ -24,7 +24,7 @@
                             <h6>{{ item.title }}</h6>
                             <p> {{ item.description }} </p>
                             <div class="det">
-                                <div @click="goToOfferPage(item.id , item.title)" class="d-flex align-items-center gap-2">
+                                <div @click="goToOfferPage(item.id , item.title) , store.state.offerActive = true" class="d-flex align-items-center gap-2">
                                     <span>{{ $t("offersDetails") }}</span>
                                     <i class="fa-solid fa-arrow-left arrow-icon"></i>
 
@@ -44,7 +44,8 @@
 </template>
 
 <script setup>
-
+import { useStore } from "~/store";
+const store = useStore;
 import axios from 'axios';
 const localePath = useLocalePath();
 const { locale } = useI18n();

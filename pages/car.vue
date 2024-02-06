@@ -29,7 +29,8 @@
                     <div class="iconss d-flex align-items-center gap-3">
                       <div class="icon">
                        <button data-bs-toggle="modal" data-bs-target="#vendor-phone-modal" class="icon">
-                        <img src="@/assets/images/call.svg" alt="" />
+                        <!-- <img src="@/assets/images/call.svg" alt="" /> -->
+                        <i class="fa-solid fa-phone"  style="color:#90A3BF; font-size:14px;"></i>
                       </button>
                       </div>
                       <div>
@@ -47,16 +48,39 @@
                   </div>
                   <div>
                     <div class="icons">
-                      <div class="icon">
+                      <div class="icon" @click="shareIcons = !shareIcons">
                         <!-- <img src="@/assets/images/share-icon.svg" alt="" /> -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M19.2233 5.28C19.2233 3.95452 18.1488 2.88 16.8233 2.88C15.4978 2.88 14.4233 3.95452 14.4233 5.28C14.4233 6.60549 15.4978 7.68 16.8233 7.68C18.1488 7.68 19.2233 6.60549 19.2233 5.28ZM19.2233 17.76C19.2233 16.4345 18.1488 15.36 16.8233 15.36C15.4978 15.36 14.4233 16.4345 14.4233 17.76C14.4233 19.0855 15.4978 20.16 16.8233 20.16C18.1488 20.16 19.2233 19.0855 19.2233 17.76ZM6.26328 9.60001C7.58876 9.60001 8.66328 10.6745 8.66328 12C8.66328 13.3255 7.58876 14.4 6.26328 14.4C4.9378 14.4 3.86328 13.3255 3.86328 12C3.86328 10.6745 4.9378 9.60001 6.26328 9.60001ZM13.6341 6.34055C13.7366 6.64885 13.8825 6.93731 14.0646 7.19868L8.7806 9.77448C8.54693 9.51038 8.27234 9.28331 7.96676 9.10322L13.6341 6.34055ZM13.6647 16.6115C13.5531 16.9184 13.4849 17.2462 13.4676 17.5874L8.04526 14.8491C8.34052 14.664 8.60496 14.4343 8.82912 14.1695L13.6647 16.6115Z" fill="#90A3BF"/>
-  </svg>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M19.2233 5.28C19.2233 3.95452 18.1488 2.88 16.8233 2.88C15.4978 2.88 14.4233 3.95452 14.4233 5.28C14.4233 6.60549 15.4978 7.68 16.8233 7.68C18.1488 7.68 19.2233 6.60549 19.2233 5.28ZM19.2233 17.76C19.2233 16.4345 18.1488 15.36 16.8233 15.36C15.4978 15.36 14.4233 16.4345 14.4233 17.76C14.4233 19.0855 15.4978 20.16 16.8233 20.16C18.1488 20.16 19.2233 19.0855 19.2233 17.76ZM6.26328 9.60001C7.58876 9.60001 8.66328 10.6745 8.66328 12C8.66328 13.3255 7.58876 14.4 6.26328 14.4C4.9378 14.4 3.86328 13.3255 3.86328 12C3.86328 10.6745 4.9378 9.60001 6.26328 9.60001ZM13.6341 6.34055C13.7366 6.64885 13.8825 6.93731 14.0646 7.19868L8.7806 9.77448C8.54693 9.51038 8.27234 9.28331 7.96676 9.10322L13.6341 6.34055ZM13.6647 16.6115C13.5531 16.9184 13.4849 17.2462 13.4676 17.5874L8.04526 14.8491C8.34052 14.664 8.60496 14.4343 8.82912 14.1695L13.6647 16.6115Z" fill="#90A3BF"/>
+                      </svg>
+                    <div v-if="shareIcons" class="share-box">
+                      <a target="_blank" :href="`https://t.me/share/url?url=${theRoute}`">
+                        <img src="~/assets/images/social1.svg" alt="" />
+                      </a>
+                      <a target="_blank" :href="`https://www.facebook.com/sharer/sharer.php?${theRoute}`">
+                        <img src="~/assets/images/social2.svg" alt="" />
+                      </a>
+                      <a target="_blank" :href="`https://twitter.com/intent/tweet?url=${theRoute}`">
+                        <img src="~/assets/images/social3.svg" alt="" />
+                      </a>
+                      <a target="_blank" :href="`https://wa.me/?text=${route}/`">
+                        <img src="~/assets/images/social4.svg" alt="" />
+                      </a>
+                      <button @click="copyToClipboard2();">
+                        <img v-if="checkCopy" src="~/assets/images/social5.svg" alt="" />
+                        <svg v-else xmlns="http://www.w3.org/2000/svg" fill="#fff" height="20" width="20"
+                          viewBox="0 0 448 512">
+                          <path
+                            d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                        </svg>
+                      </button>
+                      <!-- <i @click="closeShare()" class="fa-solid fa-xmark"></i> -->
                       </div>
-                      <div class="icon">
+                      </div>
+                      <div @click="addFavFunc()" class="icon">
                         <!-- <img src="@/assets/images/fav.svg" alt="" /> -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.3812 6.13407C14.1606 4.35529 17.0457 4.35529 18.8252 6.13407C20.6047 7.91296 20.6047 10.7972 18.8252 12.5761L12.3392 19.0595C12.1518 19.2468 11.8479 19.2468 11.6605 19.0595L5.17453 12.5761C3.39495 10.7972 3.39495 7.91296 5.17453 6.13407C6.95401 4.35529 9.83904 4.35529 11.6185 6.13407L11.9998 6.51524L12.3812 6.13407Z" fill="#90A3BF"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.3812 6.13407C14.1606 4.35529 17.0457 4.35529 18.8252 6.13407C20.6047 7.91296 20.6047 10.7972 18.8252 12.5761L12.3392 19.0595C12.1518 19.2468 11.8479 19.2468 11.6605 19.0595L5.17453 12.5761C3.39495 10.7972 3.39495 7.91296 5.17453 6.13407C6.95401 4.35529 9.83904 4.35529 11.6185 6.13407L11.9998 6.51524L12.3812 6.13407Z" :fill="`${mainCar.is_fav ? '#ED3F3F' :  '#90A3BF'}`"/>
   </svg>
                       </div>
                     </div>
@@ -87,7 +111,7 @@
               </swiper>
               <div class="d-flex align-items-center gap-3 mt-3">
                 <div v-if=" mainCar.images.length > 5" class="slider__prev">
-                  <img src="~/assets/images/arrow-right.svg" alt="" />
+                  <img class="arrow-icon" src="~/assets/images/arrow-right.svg" alt="" />
                 </div>
                 <swiper
                   @swiper="setThumbsSwiper"
@@ -123,7 +147,7 @@
                   </swiper-slide>
                 </swiper>
                 <div  v-if=" mainCar.images.length > 5" class="slider__next">
-                  <img src="~/assets/images/arrow-left.svg" alt="" />
+                  <img class="arrow-icon" src="~/assets/images/arrow-left.svg" alt="" />
                 </div>
               </div>
             
@@ -162,7 +186,8 @@
                   </div>
                   <div class="d-flex align-items-center gap-3">
                     <button data-bs-toggle="modal" data-bs-target="#vendor-phone-modal" class="icon">
-                      <img src="@/assets/images/call.svg" alt="" />
+                      <!-- <img src="@/assets/images/call.svg" alt="" /> -->
+                      <i class="fa-solid fa-phone"  style="color:#90A3BF; font-size:14px;"></i>
                     </button>
                     <div>
                     <button data-bs-toggle="modal" data-bs-target="#vendor-whatsapp-modal">
@@ -196,12 +221,38 @@
                 </div>
                 <div>
                   <div class="icons">
-                    <div class="icon">
+                    <div @click="shareIcons = !shareIcons" class="icon">
                       <img src="@/assets/images/share-icon.svg" alt="" />
+                      <div v-if="shareIcons" class="share-box">
+                      <a target="_blank" :href="`https://t.me/share/url?url=${theRoute}`">
+                        <img src="~/assets/images/social1.svg" alt="" />
+                      </a>
+                      <a target="_blank" :href="`https://www.facebook.com/sharer/sharer.php?${theRoute}`">
+                        <img src="~/assets/images/social2.svg" alt="" />
+                      </a>
+                      <a target="_blank" :href="`https://twitter.com/intent/tweet?url=${theRoute}`">
+                        <img src="~/assets/images/social3.svg" alt="" />
+                      </a>
+                      <a target="_blank" :href="`https://wa.me/?text=${route}/`">
+                        <img src="~/assets/images/social4.svg" alt="" />
+                      </a>
+                      <button @click="copyToClipboard2();">
+                        <img v-if="checkCopy" src="~/assets/images/social5.svg" alt="" />
+                        <svg v-else xmlns="http://www.w3.org/2000/svg" fill="#fff" height="20" width="20"
+                          viewBox="0 0 448 512">
+                          <path
+                            d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                        </svg>
+                      </button>
+                      <!-- <i @click="closeShare()" class="fa-solid fa-xmark"></i> -->
+                      </div>
                     </div>
-                    <div class="icon">
-                      <img src="@/assets/images/fav.svg" alt="" />
-                    </div>
+                    <div @click="addFavFunc()" class="icon">
+                        <!-- <img src="@/assets/images/fav.svg" alt="" /> -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.3812 6.13407C14.1606 4.35529 17.0457 4.35529 18.8252 6.13407C20.6047 7.91296 20.6047 10.7972 18.8252 12.5761L12.3392 19.0595C12.1518 19.2468 11.8479 19.2468 11.6605 19.0595L5.17453 12.5761C3.39495 10.7972 3.39495 7.91296 5.17453 6.13407C6.95401 4.35529 9.83904 4.35529 11.6185 6.13407L11.9998 6.51524L12.3812 6.13407Z" :fill="`${mainCar.is_fav ? '#ED3F3F' :  '#90A3BF'}`"/>
+  </svg>
+                      </div>
                   </div>
                 </div>
               </div>
@@ -290,7 +341,7 @@
                 <img src="@/assets/images/s4.svg" alt="" />
               </div>
               <span class="label">{{$t('road')}}</span>
-              <span class="type">{{ mainCar.kilometer ? mainCar.kilometer : 0 }} كم</span>
+              <span class="type">{{ mainCar.kilometer ? mainCar.kilometer : 0 }} {{ $t('km') }}</span>
             </div>
           </div>
           <div class="col-6 col-xl-2 col-lg-2 col-lg-4">
@@ -316,7 +367,7 @@
 
       <div
         :class="{
-          'd-none': showConfirmCash ,
+          'd-none': showConfirmCash || store.state.showConfirm1 ,
         }"
         class="paymentType"
       >
@@ -480,6 +531,7 @@
                           <span class="error-msg" v-if="errors2.name">{{
                       errors2.name[0]
                   }}</span>
+              
                     </div>
                   </div>
 
@@ -488,16 +540,17 @@
                     <div class="input">
                       <Dropdown
                         v-model="formCash2.organization_type"
-                        :options="countries"
+                        :options="optionsCars.OrganizationType"
                         filter
+                        optionValue="id"
                         :filter-placeholder="$t('search')"
-                        optionLabel="name"
+                        optionLabel="title"
                         :placeholder="$t('orgType')"
                         class=""
                       >
                         <template #option="slotProps">
                           <div class="flex align-items-center">
-                            <div>{{ slotProps.option.name }}</div>
+                            <div>{{ slotProps.option.title }}</div>
                           </div>
                         </template>
                       </Dropdown>
@@ -535,17 +588,17 @@
                     <div class="input">
                       <Dropdown
                         v-model="formCash2.organization_activity"
-                        :options="countries"
+                        :options="optionsCars.OrganizationActive"
                         filter
-                        optionLabel="name"
+                        optionLabel="title"
                         :filter-placeholder="$t('search')"
-
+                        optionValue="id"
                         :placeholder="$t('orgAct')"
                         class=""
                       >
                         <template #option="slotProps">
                           <div class="flex align-items-center">
-                            <div>{{ slotProps.option.name }}</div>
+                            <div>{{ slotProps.option.title }}</div>
                           </div>
                         </template>
                       </Dropdown>
@@ -696,11 +749,11 @@
                   </div>
                 </div>
                 <button
-                  @click="cashFunc2()"
+                  @click="cashFunc1()"
                   class="gap-3"
                 >
                   {{$t('send')}}
-                  <v-progress-circular v-if="pending2"  indeterminate :size="25" :width="4"></v-progress-circular>
+                  <v-progress-circular v-if="pending1"  indeterminate :size="25" :width="4"></v-progress-circular>
 
                 </button>
               </div>
@@ -801,7 +854,8 @@
           
           </div>
           <div v-if="paymentMethod == 2">
-           <finance2 />
+            <financecar2 :carid="id" :price="mainCar.price" />
+
           </div>
         
         </div>
@@ -822,11 +876,13 @@
            {{ $t('otp2') }}
           </p>
 
-          <v-otp-input v-model="otp1" :length="4" placeholder="-"></v-otp-input>
-          {{ otp }}
+          <v-otp-input v-model="otp1" :length="4" style="direction: ltr !important;" placeholder="-"></v-otp-input>
+          <span class="error-msg2" v-if="error1">{{
+                            error1
+                  }}</span>
           <button class="resend">{{ $t('reOtp') }}</button>
 
-          <button @click="otpCash = 2" class="send">{{ $t('follow') }}</button>
+          <button @click="sendOtp()" class="send">{{ $t('follow') }}</button>
         </div>
         <div v-if="otpCash == 2" class="confirm-text">
           <client-only>
@@ -838,15 +894,69 @@
           </p>
 
           <div class="order-number">
-            <h5>{{ $t('orderNum') }} : <span>200715DXFMW0UD</span></h5>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3417 6.27149V1.92001H9.11988C7.7944 1.92001 6.71988 2.99453 6.71988 4.32001V16.8C6.71988 18.1255 7.7944 19.2 9.11988 19.2H18.7199C20.0454 19.2 21.1199 18.1255 21.1199 16.8V7.69575H17.8035C17.0003 7.69575 16.3417 7.06237 16.3417 6.27149ZM17.5764 2.48686C17.4967 2.38236 17.4041 2.2905 17.3017 2.21281V6.27149C17.3017 6.52361 17.5223 6.73575 17.8035 6.73575H20.8163L17.5764 2.48686ZM5.27988 22.08H14.8799C16.041 22.08 17.0095 21.2555 17.2319 20.16H9.11988C7.26421 20.16 5.75988 18.6557 5.75988 16.8V4.80001H5.27988C3.9544 4.80001 2.87988 5.87453 2.87988 7.20001V19.68C2.87988 21.0055 3.9544 22.08 5.27988 22.08Z" fill="#90A3BF"/>
-</svg>
+            <h5>{{ $t('orderNum') }} : <span>{{ orderNum1 }}</span></h5>
+            <button @click="copyToClipboard3();" class="iconn">
+                              <img v-if="checkorder" src="~/assets/images/share1.svg" style="margin-bottom:0px" alt="">
+                               <svg v-else xmlns="http://www.w3.org/2000/svg" fill="#90a3bf" height="20" width="20"
+                              viewBox="0 0 448 512">
+                              <path
+                                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                            </svg> 
+                             </button>
           </div>
 
-          <nuxt-link :to="localePath('/')">
+          <nuxt-link :to="localePath('/')" class="nav-link">
             <button class="send home">{{ $t('backHome') }}</button>
           </nuxt-link>
+        </div>
+      </div>
+      <div v-if="store.state.showConfirm1" class="confirm-container">
+        <div v-if="paymentOtp == 1" class="confirm-text">
+          <client-only>
+            <Vue3Lottie :animation-data="otpp" :height="200" :width="200" />
+          </client-only>
+          <h4>
+          {{ $t('otp1') }}
+        </h4>
+          <p>
+           {{ $t('otp2') }}
+          </p>
+
+          <v-otp-input v-model="store.state.otpFin1" style="direction: ltr !important;" :length="4" placeholder="-"></v-otp-input>
+          
+          <span class="error-msg2" v-if="error2">{{
+                            error1
+                  }}</span>
+          <button class="resend">{{ $t('reOtp') }}</button>
+
+          <button @click="sendOtp2()" class="send">{{ $t('follow') }}</button>
+        </div>
+        <div v-if="paymentOtp == 2" class="confirm-text">
+          <client-only>
+            <Vue3Lottie :animation-data="success" :height="200" :width="200" />
+          </client-only>
+          <h4>{{ $t('otp3') }}</h4>
+          <p>
+            {{ $t('otp4') }}
+          </p>
+
+          <div class="order-number">
+            <h5>{{ $t('orderNum') }} : <span>{{ orderNum2 }}</span></h5>
+            <button @click="copyToClipboard4();" class="iconn">
+                              <img v-if="check2" src="~/assets/images/share1.svg" style="margin-bottom:0px" alt="">
+                               <svg v-else xmlns="http://www.w3.org/2000/svg" fill="#90a3bf" height="20" width="20"
+                              viewBox="0 0 448 512">
+                              <path
+                                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                            </svg> 
+                             </button>
+          </div>
+           <div @click="removeStore()">
+          <nuxt-link :to="localePath('/')" class="nav-link">
+            <button class="send home nav-link">{{ $t('backHome') }}</button>
+          </nuxt-link>
+           
+           </div>
         </div>
       </div>
 
@@ -889,6 +999,14 @@
                 <span>{{ `https://wa.me/${mainCar.vendor.phone}` }}</span>
               </div>
             </div>
+            <div v-else class="copy">
+                 <a :href="mainCar.vendor.whatsapp_link" target="_blank" class="icon">
+                  <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.08146 3.33146C9.26451 3.1484 9.26451 2.8516 9.08146 2.66854L6.58146 0.168544C6.3984 -0.0145143 6.1016 -0.0145144 5.91854 0.168544C5.73549 0.351602 5.73549 0.648398 5.91854 0.831457L7.61834 2.53125L1.25 2.53125C0.991116 2.53125 0.781249 2.74112 0.781249 3C0.781249 3.25888 0.991116 3.46875 1.25 3.46875L7.61834 3.46875L5.91854 5.16854C5.73549 5.3516 5.73549 5.6484 5.91854 5.83146C6.1016 6.01451 6.3984 6.01451 6.58146 5.83146L9.08146 3.33146Z" fill="#DCB63B"/>
+  </svg>
+                 </a>
+                <span>{{ `https://wa.me/${mainCar.vendor.phone}` }}</span>
+              </div>
              <button class="stroke" data-bs-dismiss="modal" aria-label="Close">{{$t('back')}}</button>
             </div>
           </div>
@@ -1016,7 +1134,13 @@ import success from "~/assets/animations/success.json";
 import { Vue3Lottie } from "vue3-lottie";
 import axios from 'axios';
 const { locale } = useI18n();
+import { useToast } from 'vue-toastification'
+const toast = useToast();
+import Cookies from "js-cookie";
+const tokenCookie = Cookies.get("token");
 const localePath = useLocalePath();
+import { useStore } from "~/store";
+let store = useStore;
 import useValidate from "@vuelidate/core";
 import {
     required,
@@ -1044,10 +1168,18 @@ let sliderValue1 = ref(340000);
 let sliderValue2 = ref(40);
 let sliderValue3 = ref(40);
 let showConfirm = ref(false);
+let shareIcons = ref(false);
+let checkCopy = ref(true);
 const selectedFileName1 = ref(null);
 const selectedFileName2 = ref(null);
 const selectedFileName3 = ref(null);
 const selectedFileName4 = ref(null);
+const removeStore = ()=>{
+  store.state.otpFin1 = null;
+  store.state.orderFin1 = null;
+  store.state.phoneFin1 = null;
+  store.state.showConfirm1 = false;
+}
 let otp = ref("");
 let copyPhone = ref(true);
 
@@ -1057,10 +1189,14 @@ let btnCash = ref(1);
 let otpCash = ref(1);
 let showConfirmCash = ref(false);
 let otp1 = ref('');
+let orderNumber1 = ref('');
 let otp2 = ref('');
 
+let theRoute = ref('');
 let id = ref(route.query.id);
-
+if (process.client) {
+  theRoute.value = window.location.href;
+}
 function copyToClipboard() {
     if (process.client) {
       copyPhone.value = false;
@@ -1074,6 +1210,32 @@ function copyToClipboard() {
     }
 
 }
+function copyToClipboard2() {
+  if (process.client) {
+    checkCopy.value = false;
+    const clipBoard = navigator.clipboard;
+    clipBoard.writeText(theRoute.value).then(() => {
+    });
+
+    setTimeout(() => {
+      checkCopy.value = true;
+    }, 1000);
+  }
+
+}
+let valuee1 = ref(" تم الاضافة الي قائمة المفضلات ");
+let valuee2 = ref(" تم الحذف من قائمة المفضلات ");
+if (locale.value == "ar") {
+  valuee1.value = "تم الاضافة الي قائمة المفضلات ";
+  valuee2.value = "تم الحذف من قائمة المفضلات ";
+
+} else {
+    valuee1.value = 'value is required';
+  valuee2.value = "The email field is required";
+
+}
+
+
 
 
 let options = ref({
@@ -1192,37 +1354,41 @@ const v1$ = useValidate(rules1, formCash1);
 const v2$ = useValidate(rules2, formCash2);
 
 let otpCashh = ref('');
+let orderNum1 = ref('');
+let pendingOtp1 = ref(false);
 const cashFunc1 = async () =>{
-  let check = await v1$.value.$validate();
-if(check){
-  pending1.value = true;
-  try{
-    let result =  await axios.post(`${getUrl()}/cash-Order`, {name:formCash1.value.name , phone:formCash1.value.phone},{
-              params: {
-                     type: 'individual',
-                      id: id.value
-                  },
-                 
-                    headers: {
-                      "Content-Language": `${locale.value}`,
-                  }
-                 
-    });
-  if(result.status >= 200){
-    showConfirmCash.value = true;
-    pending1.value = false;
+  if(btnCash.value == 1){
+    let check = await v1$.value.$validate();
+  if(check){
+    pending1.value = true;
+    try{
+      let result =  await axios.post(`${getUrl()}/cash-Order`, {name:formCash1.value.name , phone:formCash1.value.phone},{
+                params: {
+                       type: 'individual',
+                        id: id.value
+                    },
+                   
+                      headers: {
+                        "Content-Language": `${locale.value}`,
+                    }
+                   
+      });
+    if(result.status >= 200){
+      showConfirmCash.value = true;
+      pending1.value = false;
+      otp1.value = result.data.data.verification_code;
+      orderNumber1.value = result.data.data.Order_Number;
+    }
+    } catch(errors){
+      if (errors.response) {
+                  pending1.value = false;
+                  errors1.value = errors.response.data.errors;
+              }
+    }
   }
-  } catch(errors){
-    if (errors.response) {
-                pending1.value = false;
-                errors1.value = errors.response.data.errors;
-            }
-  }
-}
-}
 
-const cashFunc2 = async () =>{
-  let formBody = new FormData();
+  } else{
+    let formBody = new FormData();
     formBody.append("organization_name", formCash2.value.organization_name);
     formBody.append("organization_type", formCash2.value.organization_type);
     formBody.append("commercial_registration_no", formCash2.value.commercial_registration_no);
@@ -1248,19 +1414,119 @@ if(check){
                   }
                  
     });
-  if(result.status >= 200){
-    showConfirmCash.value = true;
-    pending2.value = false;
-  }
-  } catch(errors){
-    if (errors.response) {
-                pending2.value = false;
-                errors2.value = errors.response.data.errors;
-            }
-  }
+    if(result.status >= 200){
+      showConfirmCash.value = true;
+      pending1.value = false;
+      otp1.value = result.data.data.verification_code;
+      orderNumber1.value = result.data.data.Order_Number;
+    }
+    } catch(errors){
+      if (errors.response) {
+                  pending1.value = false;
+                  errors2.value = errors.response.data.errors;
+              }
+    }
 }
+  }
 }
 
+let error1 = ref();
+const sendOtp = async () => {
+    let formBody = new FormData();
+    formBody.append("otp", otp1.value );
+    formBody.append("phone", btnCash.value == 1 ? formCash1.value.phone : formCash2.value.phone);
+    formBody.append("order_id", orderNumber1.value);
+    try {
+        let result = await axios.post(`${getUrl()}/verify-otp-order`, formBody, {
+            headers: {
+                "Content-Language": `${locale.value}`,
+            },
+        });
+        if (result.status >= 200) {
+          otpCash.value = 2;
+          pendingOtp1.value = false;
+          orderNum1.value = result.data.data.Order_Number;
+          error1.value = '';
+        }
+    } catch (errorss) {
+        if (errorss.response) {
+          pendingOtp1.value = false;
+          error1.value = errorss.response.data.errors;
+        }
+    }
+}
+
+let paymentOtp = ref(1);
+let pendingOtp2 = ref(false);
+let orderNum2 = ref();
+let error2 = ref();
+
+
+
+
+const sendOtp2 = async () => {
+    let formBody = new FormData();
+    formBody.append("otp", store.state.otpFin1 );
+    formBody.append("phone", store.state.phoneFin1);
+    formBody.append("order_id", store.state.orderFin1);
+    try {
+        let result = await axios.post(`${getUrl()}/verify-otp-order`, formBody, {
+            headers: {
+                "Content-Language": `${locale.value}`,
+            },
+        });
+        if (result.status >= 200) {
+          // if(store.state.orderFin1){
+          // } 
+          paymentOtp.value = 2;
+          pendingOtp2.value = false;
+          // if(store.state.orderFin2){
+          //   paymentOtp1.value = 2;
+          //   pendingOtp2.value = false;
+          // }
+          orderNum2.value = result.data.data.Order_Number;
+          error2.value = '';
+        }
+    } catch (errorss) {
+        console.log(errorss);
+        if (errorss.response) {
+          pendingOtp2.value = false;
+          error2.value = errorss.response.data.errors;
+        }
+    }
+}
+
+let check2 = ref(true);
+function copyToClipboard4() {
+    /* Copy the text */
+    if (process.client) {
+        check2.value = false;
+        const clipBoard = navigator.clipboard;
+        clipBoard.writeText(orderNum2.value).then(() => {
+        });
+
+        setTimeout(() => {
+            check2.value = true;
+        }, 1000);
+    }
+
+}
+
+let checkorder = ref(true);
+function copyToClipboard3() {
+    /* Copy the text */
+    if (process.client) {
+      checkorder.value = false;
+        const clipBoard = navigator.clipboard;
+        clipBoard.writeText(orderNum1.value).then(() => {
+        });
+
+        setTimeout(() => {
+            checkorder.value = true;
+        }, 1000);
+    }
+
+}
 
 let optionsCars = ref([]);
 const getOptions = async () => {
@@ -1295,6 +1561,41 @@ const getCar = async ()=>{
     pendingLoader.value = false;
     mainCar.value = result.data.data.carDetails;
     RelatedCars.value = result.data.data.Relatedcars;
+  }
+}
+
+const addFavFunc = async () =>{
+  mainCar.value.is_fav = !mainCar.value.is_fav;
+    let formBody = new FormData();
+  formBody.append("car_id", id.value);
+  let result = await axios.post(
+    `${getUrl()}/${tokenCookie ? 'add-favorite-withauth' : 'add-favorite-withoutauth'}`,
+    { car_id: id.value },
+    {
+      headers: {
+        "Content-Language": `${locale.value}`,
+        Authorization: `Bearer ${tokenCookie}`,
+      },
+    }
+  );
+  if(result.status >= 200){
+        
+        toast.success(mainCar.value.is_fav ? valuee1.value : valuee2.value, {
+  position: "top-right",
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  draggablePercent: 0.6,
+  showCloseButtonOnHover: false,
+  hideProgressBar: true,
+  closeButton: "button",
+  icon: true,
+  class:'toast-container',
+//   rtl: false
+});
+
   }
 }
 

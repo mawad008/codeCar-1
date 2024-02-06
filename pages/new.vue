@@ -194,8 +194,8 @@ let items = ref([
     },
     {
         title: locale.value == 'ar' ? 'اخبار السيارات' : 'car news',
-        disabled: false,
-       class:"breadcrumbs-text",
+        disabled: true,
+    //    class:"breadcrumbs-text",
         href: 'news',
     },
     {

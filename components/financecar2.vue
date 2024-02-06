@@ -80,7 +80,7 @@
                   </div>
                 </div>
                 <div class="col-12 col-xl-7 col-lg-7">
-                  <div v-if="paymentIndividualBtn2 == 1" v-for="item, index in form" class="form-ind">
+                  <div v-if="paymentIndividualBtn2 == 1" class="form-ind">
                   <div v-if="form.length > 1" class="d-flex justify-content-end">
                     <i @click="removeRow(index)" class="fa-solid fa-trash"></i>
                   </div>
@@ -89,13 +89,13 @@
                         <span> {{ $t('carBrand') }} </span>
                         <div class="input">
                           <Dropdown
-                            v-model="item.brand"
+                            v-model="form.brand"
                             :options="brands"
                             filter
                             optionLabel="title"
                             optionValue="id"
                           :filter-placeholder="$t('search')"
-                            :placeholder="$('carBrand')"
+                            :placeholder="$t('carBrand')"
                             class=""
                           >
                             <template #option="slotProps">
@@ -104,8 +104,8 @@
                               </div>
                             </template>
                           </Dropdown>
-                          <span class="error-msg" v-if="v$[index].brand.$error">{{
-                              v$[index].brand.$errors[0].$message
+                          <span class="error-msg" v-if="v$.brand.$error">{{
+                              v$.brand.$errors[0].$message
                           }}</span>
                         </div>
                       </div>
@@ -113,8 +113,8 @@
                         <span> {{ $t('carModel') }} </span>
                         <div class="input">
                           <Dropdown
-                            v-model="item.model"
-                            :options="getmodels2(index) ? getmodels2(index) : []"
+                            v-model="form.model"
+                            :options="form.brand != '' ? getmodels[0].models : ''"
                             filter
                             optionLabel="name"
                             optionValue="id"
@@ -128,8 +128,8 @@
                               </div>
                             </template>
                           </Dropdown>
-                                    <span class="error-msg" v-if="v$[index].model.$error">{{
-                                        v$[index].model.$errors[0].$message
+                                    <span class="error-msg" v-if="v$.model.$error">{{
+                                        v$.model.$errors[0].$message
                                     }}</span>
                         </div>
                       </div>
@@ -139,7 +139,7 @@
                         <span> {{ $t('theYear') }} </span>
                         <div class="input">
                           <Dropdown
-                            v-model="item.year"
+                            v-model="form.year"
                             :options="optionsCars.year"
                             filter
                           :filter-placeholder="$t('search')"
@@ -154,8 +154,8 @@
                             </template>
                           </Dropdown>
 
-                          <span class="error-msg" v-if="v$[index].year.$error">{{
-                              v$[index].year.$errors[0].$message
+                          <span class="error-msg" v-if="v$.year.$error">{{
+                              v$.year.$errors[0].$message
                           }}</span>
                         </div>
                       </div>
@@ -163,7 +163,7 @@
                         <span> {{ $t('gear') }} </span>
                         <div class="input">
                         <Dropdown
-                            v-model="item.gear_shifter"
+                            v-model="form.gear_shifter"
                             :options="gear_shifterArr"
                             filter
                             :filter-placeholder="$t('search')"
@@ -179,8 +179,8 @@
                             </template>
                           </Dropdown>
                     
-                        <span class="error-msg" v-if="v$[index].gear_shifter.$error">{{
-                            v$[index].gear_shifter.$errors[0].$message
+                        <span class="error-msg" v-if="v$.gear_shifter.$error">{{
+                            v$.gear_shifter.$errors[0].$message
                         }}</span>
                     
                         </div>
@@ -191,7 +191,7 @@
                         <span>{{ $t('color') }}</span>
                         <div class="input">
                           <Dropdown
-                            v-model="item.color"
+                            v-model="form.color"
                             :options="optionsCars.colors"
                             filter
                             optionLabel="title"
@@ -206,8 +206,8 @@
                               </div>
                             </template>
                           </Dropdown>
-                          <span class="error-msg" v-if="v$[index].color.$error">{{
-                              v$[index].color.$errors[0].$message
+                          <span class="error-msg" v-if="v$.color.$error">{{
+                              v$.color.$errors[0].$message
                           }}</span>
                         </div>
                       </div>
@@ -218,34 +218,24 @@
                           <input
                             type="number"
                             min="1"
-                            v-model="item.car_count"
-                            placeholder="3"
+                            v-model="form.car_count"
+                            :placeholder="$t('numCars')"
                             name=""
                             class=""
                           />
-                          <span class="error-msg" v-if="v$[index].car_count.$error">{{
-                              v$[index].car_count.$errors[0].$message
+                          <span class="error-msg" v-if="v$.car_count.$error">{{
+                              v$.car_count.$errors[0].$message
                           }}</span>
                         </div>
                       </div>
                     </div>
-                    <div class="d-flex flex-column flex-xl-row flex-lg-row justify-content-between align-items-center">
-                    <div @click="addRow()" class="add d-flex align-items-center gap-2 mb-3" style="cursor:pointer;">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M11.9997 0.833374H3.99968C2.25077 0.833374 0.833008 2.25114 0.833008 4.00004V12C0.833008 13.7489 2.25077 15.1667 3.99968 15.1667H11.9997C13.7486 15.1667 15.1663 13.7489 15.1663 12V4.00004C15.1663 2.25114 13.7486 0.833374 11.9997 0.833374Z" fill="#DCB63B"/>
-      <path d="M7.99967 11.3334C7.82286 11.3334 7.65329 11.2632 7.52827 11.1382C7.40325 11.0131 7.33301 10.8436 7.33301 10.6667V5.33341C7.33301 5.1566 7.40325 4.98703 7.52827 4.86201C7.65329 4.73699 7.82286 4.66675 7.99967 4.66675C8.17649 4.66675 8.34605 4.73699 8.47108 4.86201C8.5961 4.98703 8.66634 5.1566 8.66634 5.33341V10.6667C8.66634 10.8436 8.5961 11.0131 8.47108 11.1382C8.34605 11.2632 8.17649 11.3334 7.99967 11.3334Z" fill="white"/>
-      <path d="M5.33268 8.66671C5.15587 8.66671 4.9863 8.59647 4.86128 8.47144C4.73625 8.34642 4.66602 8.17685 4.66602 8.00004C4.66602 7.82323 4.73625 7.65366 4.86128 7.52864C4.9863 7.40361 5.15587 7.33337 5.33268 7.33337H10.666C10.8428 7.33337 11.0124 7.40361 11.1374 7.52864C11.2624 7.65366 11.3327 7.82323 11.3327 8.00004C11.3327 8.17685 11.2624 8.34642 11.1374 8.47144C11.0124 8.59647 10.8428 8.66671 10.666 8.66671H5.33268Z" fill="white"/>
-    </svg>
-                     <span style="color:#DCB63B; font-size: 14px;"> {{$t('addCar')}}</span>
-                    </div>
-                    </div>
-                  </div>
+               
                   <div class="d-flex justify-content-end">
-              
                       <button v-if="paymentIndividualBtn2 == 1" :disabled="pendingCorp1" class="corpBtn d-flex align-items-center gap-2" @click=" sendCorporate1()">
                         {{ $t('next') }}
                       <v-progress-circular v-if="pendingCorp1"   indeterminate :size="25" :width="4"></v-progress-circular>
                       </button>
+                  </div>
                   </div>
                   <div v-if="paymentIndividualBtn2 == 2" class="form-ind">
                     <div class="d-flex gap-3">
@@ -466,6 +456,8 @@ import {
 } from "@vuelidate/validators";
 import { useStore } from "~/store";
 let store = useStore;
+const props = defineProps(["carid" , "price"]);
+
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let paymentMethod = ref(1);
@@ -576,7 +568,7 @@ const getCites = async () => {
 let paymentIndividualBtn = ref(1);
 let paymentIndividualBtn2 = ref(1);
 
-let form = ref([
+let form = ref(
     {
         brand: '',
         model: '',
@@ -585,74 +577,50 @@ let form = ref([
         gear_shifter: '',
         car_count: 1
     }
-]);
+);
 
 
-
-const addRow = () => {
-    form.value.push(
-        {
-            brand: '',
-            model: '',
-            year: '',
-            color: '',
-            gear_shifter: '',
-            car_count: 0
-        }
-    );
-}
-
-const removeRow = (index) => {
-    if (form.value.length > 1) {
-        form.value.splice(index, 1);
-    }
-
-}
 
 
 const isFormFilled = () => {
-    // Iterate through each object in the form array
-    for (const car of form.value) {
-        // Check if any key in the object has an empty value
-        for (const key in car) {
-            if (car[key] === '' || car[key] == 0) {
-                // If any key is empty, return false
-                return false;
-            }
-        }
+ // Iterate through each object in the form array
+ for (const key in form.value) {
+    // Check if any key in the object has an empty value
+    if (form.value[key] === "") {
+      // If any value is empty, return false
+      return false;
     }
+  }
 
-    // If all keys in all objects have values, return true
-    return true;
+  // If all keys in all objects have values, return true
+  return true;
 };
 
 
 
-// const getmodels2 = computed(() => {
-//   if (optionsCars.value.brands) {
-//     let temp =  form.value.map((ele) => {
-//         return optionsCars.value.brands.filter((e) => {
-//             return ele.brand == e.id
-//         })
-//     });
-//     return temp[0].models;
-// }
-// });
-
-const getmodels2 = (index) => {
-    if (optionsCars.value.brands) {
-    let temp = form.value.map((ele) => {
-      return optionsCars.value.brands.filter((e) => {
-        return ele.brand == e.id
-      })
+const getmodels = computed(() => {
+  if (optionsCars.value.brands) {
+    return optionsCars.value.brands.filter((ele) => {
+      return form.value.brand == ele.id;
     });
-    return temp[index][0] ? temp[index][0].models : [];
   }
-}
+});
+
+// const getmodels2 = (index) => {
+//     if (optionsCars.value.brands) {
+//     let temp = form.value.map((ele) => {
+//       return optionsCars.value.brands.filter((e) => {
+//         return ele.brand == e.id
+//       })
+//     });
+//     return temp[index][0] ? temp[index][0].models : [];
+//   }
+// }
 
 let errors4 = ref([]);
-const rules = computed(() => form.value.map(() => ({
-    name: { required },
+const rules = computed(()=>{
+  return {
+    name: { required: helpers.withMessage(value1.value, required) , email: helpers.withMessage(value3.value, required) },
     email: { required, email },
     brand: { required: helpers.withMessage(value1.value, required) },
     model: { required: helpers.withMessage(value1.value, required) },
@@ -660,7 +628,8 @@ const rules = computed(() => form.value.map(() => ({
     gear_shifter: { required: helpers.withMessage(value1.value, required) },
     color: { required: helpers.withMessage(value1.value, required) },
     car_count: { required: helpers.withMessage(value1.value, required), minLength: helpers.withMessage(value5.value, minLength(1)) },
-})));
+  }
+})
 
 
 let form4 = ref(
@@ -718,9 +687,17 @@ const sendCorporate1 = async () => {
 
     if (isFormFilled()) {
         pendingCorp1.value = true;
-        let result = await axios.post(`${getUrl()}/finance-Order`, { cars: form.value }, {
+        let result = await axios.post(`${getUrl()}/financecar-Order`, { 
+                     brand: form.value.brand,
+                      model: form.value.model,
+                      year: form.value.year,
+                      color: form.value.color,
+                      gear_shifter: form.value.gear_shifter,
+                      car_count: form.value.car_count,
+         }, {
             params: {
                 type: 'organization',
+                id: props.carid,
                 step: 1
             },
             headers: {
@@ -743,9 +720,15 @@ const sendCorporate2 = async () => {
     if (isFormFilled2()) {
         pendingCorp2.value = true;
         try {
-            let result = await axios.post(`${getUrl()}/finance-Order`,
+            let result = await axios.post(`${getUrl()}/financecar-Order`,
                 {
-                    cars: form.value,
+                    // cars: form.value,
+                    brand: form.value.brand,
+                      model: form.value.model,
+                      year: form.value.year,
+                      color: form.value.color,
+                      gear_shifter: form.value.gear_shifter,
+                      car_count: form.value.car_count,
                     organization_name: form4.value.organization_name,
                     organization_type: form4.value.organization_type,
                     commercial_registration_no: form4.value.commercial_registration_no,
@@ -759,6 +742,7 @@ const sendCorporate2 = async () => {
                 {
                     params: {
                         type: 'organization',
+                        id: props.carid,
                         step: 2
                     },
                     headers: {

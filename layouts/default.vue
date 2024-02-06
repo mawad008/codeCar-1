@@ -47,11 +47,12 @@
               >{{$t("market")}}</nuxt-link
             >
 
-            <nuxt-link class="nav-link" :to="localePath('/news')"
+            <nuxt-link class="nav-link" :to="localePath('/news')" :class="{'active':store.state.newActive}"
               >
              {{$t("news")}}
+             
             </nuxt-link>
-            <nuxt-link class="nav-link" :to="localePath('/offers')"
+            <nuxt-link class="nav-link" :to="localePath('/offers')" :class="{'active':store.state.offerActive}"
               >{{$t("offers")}}</nuxt-link
             >
             <nuxt-link class="nav-link" :to="localePath('/orders')"
@@ -528,6 +529,8 @@ const removeStore = ()=>{
   store.state.showConfirm1 = false;
   store.state.showConfirm2 = false;
   store.state.showConfirm3 = false;
+  store.state.newActive = false;
+  store.state.offerActive = false;
 }
 const changeLang = async () => {
   locale.value = locale.value === "en" ? "ar" : "en";

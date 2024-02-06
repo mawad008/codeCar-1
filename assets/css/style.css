@@ -628,7 +628,7 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
   transition: 0.4s all;
   height: -moz-fit-content;
   height: fit-content;
-  z-index: 55555;
+  z-index: 555;
 }
 .navbar .white-img {
   display: none;
@@ -726,7 +726,7 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
   color: #5a7184 !important;
   transition: 0.4s all;
 }
-.navbar .router-link-active {
+.navbar .router-link-active, .navbar .active {
   font-weight: 700 !important;
 }
 .navbar .searchBar {
@@ -1932,8 +1932,10 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   display: flex;
   align-items: center;
   gap: 8px;
+  position: relative;
 }
 .main-car-page .car-details .header .icons .icon {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1941,6 +1943,28 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   width: 44px;
   height: 44px;
   background: #fafafa;
+  cursor: pointer;
+}
+.main-car-page .car-details .header .icons .icon .share-box {
+  width: 207px;
+  padding: 13px;
+  border-radius: 8px;
+  background-color: #212832;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
+  position: absolute;
+  z-index: 11;
+  top: 100%;
+}
+.main-car-page .car-details .header .icons .icon .share-box i {
+  position: absolute;
+  top: 0px;
+  color: #fff;
+  right: 0;
+}
+.main-car-page .car-details .header .icons .icon .share-box img {
   cursor: pointer;
 }
 .main-car-page .car-details .header.mobile {
@@ -1995,15 +2019,12 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 148px;
+  gap: 5px;
+  padding: 7px 12px;
 }
 .main-car-page .car-details .name .model span {
   font-size: 12px;
   color: #5a7184;
-  padding-left: 5px;
-}
-.main-car-page .car-details .name .model span:not(:last-child) {
-  border-left: 1px solid #ebeaed;
 }
 .main-car-page .car-details .name .model img {
   width: 24px;
@@ -2739,12 +2760,24 @@ html[dir=rtl] .payment-method button.one {
 html[dir=rtl] .payment-method button.two {
   border-radius: 32px 0px 0px 32px;
 }
+html[dir=rtl] .main-car-page .name .model span {
+  padding-left: 5px;
+}
+html[dir=rtl] .main-car-page .name .model span:not(:last-child) {
+  border-left: 1px solid #ebeaed;
+}
 
 html[dir=ltr] .payment-method button.one {
   border-radius: 32px 0px 0px 32px;
 }
 html[dir=ltr] .payment-method button.two {
   border-radius: 0px 32px 32px 0px;
+}
+html[dir=ltr] .main-car-page .name .model span {
+  padding-right: 5px;
+}
+html[dir=ltr] .main-car-page .name .model span:not(:last-child) {
+  border-right: 1px solid #ebeaed;
 }
 
 .confirm-container {
@@ -2814,6 +2847,11 @@ html[dir=ltr] .payment-method button.two {
   align-items: center;
   justify-content: space-between;
   background: #f9fafb;
+}
+.confirm-container .confirm-text .order-number button {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  margin: 0px !important;
 }
 .confirm-container .confirm-text .order-number h5 {
   font-size: 16px;
@@ -3076,6 +3114,14 @@ html[dir=ltr] .payment-method button.two {
   }
   .confirm-container .resend {
     margin-top: 0px !important;
+  }
+}
+@media (max-width: 700px) and (max-width: 760px) {
+  html[dir=rtl] .share-box {
+    left: -150%;
+  }
+  html[dir=ltr] .share-box {
+    right: -150%;
   }
 }
 .cars-filter {
@@ -3667,9 +3713,6 @@ html[dir=ltr] .p-accordion-header-action {
   background: #fff;
   padding: 32px;
 }
-.contact-us .contact-container iframe {
-  background-color: red !important;
-}
 .contact-us .contact-container .text-container h4 {
   font-size: 24px;
   font-style: normal;
@@ -3766,6 +3809,7 @@ html[dir=ltr] .p-accordion-header-action {
   width: 100%;
   z-index: 11;
   display: flex;
+  cursor: pointer;
   flex-direction: column;
   gap: 10px;
 }
@@ -4995,6 +5039,7 @@ html[dir=ltr] .setting-btn {
   cursor: pointer;
 }
 .orders-page .orders-container .the-order {
+  min-height: 300px;
   border-radius: 8px;
   border: 1px solid #ebeaed;
   padding: 16px;
@@ -5068,7 +5113,6 @@ html[dir=ltr] .setting-btn {
 .orders-page .orders-container .the-order .det .box h6 {
   font-size: 13px;
   font-weight: 700;
-  margin-top: 10px;
   color: #2d3a4a;
 }
 .orders-page .orders-container .the-order .det-car {
@@ -5098,26 +5142,9 @@ html[dir=ltr] .setting-btn {
   border-bottom-right-radius: 20px;
 }
 .orders-page .orders-container .the-order .stat span {
-  font-size: 14px;
+  font-size: 13px;
+  text-align: center;
   font-weight: 700;
-}
-.orders-page .orders-container .the-order .stat.st {
-  background-color: #fcf4e2;
-}
-.orders-page .orders-container .the-order .stat.st span {
-  color: #dcb63b;
-}
-.orders-page .orders-container .the-order .stat.cancel {
-  background-color: #f9e7e7;
-}
-.orders-page .orders-container .the-order .stat.cancel span {
-  color: #ed3f3f;
-}
-.orders-page .orders-container .the-order .stat.done {
-  background-color: #f3fafa;
-}
-.orders-page .orders-container .the-order .stat.done span {
-  color: #38a3a5;
 }
 
 .careers-page {

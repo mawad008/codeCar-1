@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                     <h4>{{ item.title }}</h4>
-                                      <div @click="goToNewPage(item.id , item.title)" class="icon" >
+                                      <div @click="goToNewPage(item.id , item.title) , store.state.newActive = true" class="icon" >
                                       <i class="fa-solid fa-arrow-left arrow-icon"></i>
                                       </div>
                                     </div>
@@ -65,7 +65,8 @@
 import axios from 'axios';
 const localePath = useLocalePath();
 const { locale } = useI18n();
-
+import { useStore } from "~/store";
+let store = useStore;
 const router = useRouter();
 
 let pending = ref(false);

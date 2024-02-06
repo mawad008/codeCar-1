@@ -18,8 +18,8 @@
                 <span class="word"> {{ $t('follow1') }} </span>
                 <div class="header flex-column felx-xl-row flex-lg-row">
                     <div class="payment-method">
-                        <button @click="chooseBtn = 1" class="one" :class="{ 'active': chooseBtn == 1 }"> {{ $t('under') }}</button>
-                        <button @click="chooseBtn = 2" class="two" :class="{ 'active': chooseBtn == 2 }">{{$t('compelete')}}</button>
+                        <button @click="chooseBtn = 1 , type = 'processing' , getOrders() " class="one" :class="{ 'active': chooseBtn == 1 }"> {{ $t('under') }}</button>
+                        <button @click="chooseBtn = 2 , type = 'complete', getOrders()" class="two" :class="{ 'active': chooseBtn == 2 }">{{$t('compelete')}}</button>
                     </div>
                     <div class="search-bar">
                         <input type="text" v-model="orderNumber"  :placeholder="$t('searchOrder')">
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="row">
-                    <!-- <div class="col-12 col-xl-6 col-lg-6 my-3">
+                     <!-- <div class="col-12 col-xl-6 col-lg-6 my-3">
                         <div class="the-order" style="position:relative;">
                             <div class="image-container">
                                 <div class="image">
@@ -250,22 +250,31 @@
                         </div>
                     </div> -->
                     
-                    <div class="col-12 col-xl-6 col-lg-6 my-3">
-                        <div class="the-order corp" style="position:relative;">
-                        <div class="main" >
-                            <div v-for="i in 8" class="image-container">
+                    <div v-for="item in orders1" class="col-12 col-xl-6 col-lg-6 my-3">
+                        <div class="the-order" :class="{'corp': item.OrderType == 'organization'}" style="position:relative;">
+                        <div v-if="item.OrderType == 'organization' " class="main" >
+                            <div  v-for="i in item.cars" class="image-container">
+                                <div class="image">
+                                    <img :src="i.carimage" alt="">
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <h5>{{ i.car_title }} <span>( {{ i.carcount }} )</span></h5>
+                                    <span>{{ i.options }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="item.OrderType == 'individual' " class="image-container">
                                 <div class="image">
                                     <img src="~/assets/images/car1.png" alt="">
                                 </div>
                                 <div class="d-flex flex-column">
-                                    <h5>هيونداي ستاندر 2024 <span>( 4 )</span></h5>
-                                    <span>ستاندر - GLX - ابيض - 2024</span>
+                                    <h5>{{ item.car_title }}</h5>
+                                    <span>{{ item.options }}</span>
                                 </div>
                             </div>
-                        </div>
-                            <!-- <div class="det">
+                             <div v-if="item.OrderType == 'individual' && item.OrderPaymentType == 'finance' " class="det">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12 col-xl-6 col-lg-6">
                                         <div class="box">
                                             <div class="d-flex w-100 align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center gap-2">
@@ -276,9 +285,9 @@
                                                             fill="#90A3BF" />
                                                         <path d="M5.25 9H7.7499V11.4999H5.25V9Z" fill="#90A3BF" />
                                                     </svg>
-                                                    <span>اسم الحملة</span>
+                                                    <span>{{ $t('offers1') }}</span>
                                                 </div>
-                                                <h6>سنابل</h6>
+                                                <h6>{{ item.offer_name }}</h6>
                                             </div>
                                             <div class="d-flex w-100 align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center gap-2">
@@ -294,9 +303,9 @@
                                                             d="M12.168 8.70312C10.1874 8.70312 8.58203 10.3085 8.58203 12.2891C8.58203 14.2696 10.1874 15.875 12.168 15.875C14.1485 15.875 15.7539 14.2696 15.7539 12.2891C15.7539 10.3085 14.1485 8.70312 12.168 8.70312ZM12.6731 13.9338V13.9878C12.6731 14.2674 12.4464 14.4941 12.1668 14.4941C11.9126 14.4941 11.7112 14.3034 11.6747 14.0592C11.5121 14.0277 11.3597 13.9501 11.2393 13.8337C11.0705 13.6706 10.9772 13.4512 10.9772 13.2166C10.9772 12.9371 11.2038 12.7104 11.4834 12.7104C11.7062 12.7104 11.8952 12.8544 11.9632 13.0546C12.24 13.0304 12.398 12.9669 12.4543 12.9247C12.4031 12.8915 12.2895 12.8369 12.0532 12.7829C11.0103 12.5467 10.8236 12.0191 10.8517 11.6186C10.8714 11.321 11.0165 10.8671 11.66 10.6409V10.5909C11.66 10.3113 11.8867 10.0846 12.1663 10.0846C12.4205 10.0846 12.6225 10.2753 12.6585 10.5194C12.8182 10.5504 12.9718 10.6286 13.091 10.7433C13.2581 10.9042 13.3543 11.1303 13.3543 11.3621C13.3543 11.6416 13.1276 11.8683 12.848 11.8683C12.6253 11.8683 12.4363 11.7243 12.3682 11.5241C12.0808 11.5482 11.9267 11.6112 11.8788 11.6585C11.9278 11.69 12.0375 11.7406 12.2782 11.7952C13.2952 12.0269 13.4966 12.5354 13.4865 12.9219C13.4803 13.175 13.3695 13.6858 12.6731 13.9338Z"
                                                             fill="#90A3BF" />
                                                     </svg>
-                                                    <span>الرسوم الادارية</span>
+                                                    <span>{{ $t('offer5') }}</span>
                                                 </div>
-                                                <h6>40,000 رس</h6>
+                                                <h6>{{ item.adminstrative_fields }} {{ $t('curr') }}</h6>
                                             </div>
                                             <div class="d-flex w-100 align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center gap-2">
@@ -321,9 +330,9 @@
                                                             d="M14.1328 10.2656C12.0004 10.2656 10.2656 12.0004 10.2656 14.1328C10.2656 16.2652 12.0004 18 14.1328 18C16.2652 18 18 16.2652 18 14.1328C18 12.0004 16.2652 10.2656 14.1328 10.2656ZM14.6092 15.5391C14.6092 15.7332 14.4517 15.8906 14.2576 15.8906C14.0635 15.8906 13.9061 15.7332 13.9061 15.5391V13.0781H13.6564C13.4623 13.0781 13.3049 12.9207 13.3049 12.7266C13.3049 12.5324 13.4623 12.375 13.6564 12.375H14.2576C14.4517 12.375 14.6092 12.5324 14.6092 12.7266V15.5391Z"
                                                             fill="#90A3BF" />
                                                     </svg>
-                                                    <span>الدفعة الاولي</span>
+                                                    <span>{{ $t('offer3') }}</span>
                                                 </div>
-                                                <h6>50,000 رس</h6>
+                                                <h6>{{ item.first_installment }} {{ $t('curr') }}</h6>
                                             </div>
                                             <div class="d-flex w-100 align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center gap-2">
@@ -345,13 +354,13 @@
                                                             d="M0.799805 5.22119V12.3228C0.799805 14.1256 2.29605 15.5909 4.13262 15.5909H11.867C13.7036 15.5909 15.1998 14.1256 15.1998 12.3228V5.22119H0.799805ZM5.13387 10.5481C5.13387 11.4793 4.59105 11.6762 4.13262 11.6762C3.98355 11.6762 3.80074 11.6424 3.68824 11.5974C3.62637 11.5721 3.58981 11.5074 3.60387 11.4427L3.6573 11.1418C3.66574 11.1024 3.69105 11.0658 3.72762 11.0462C3.76418 11.0237 3.80637 11.0208 3.84574 11.0377C3.8823 11.049 3.97793 11.0827 4.10449 11.0827C4.31262 11.0827 4.48699 11.0405 4.48699 10.5174V8.64428C4.48699 8.56807 4.54887 8.50366 4.62762 8.50366H4.99324C5.07199 8.50366 5.13387 8.56807 5.13387 8.64428V10.5481ZM8.73387 10.3034C8.73387 11.1753 8.28949 11.6759 7.51606 11.6759C6.77918 11.6759 6.35449 11.1806 6.35449 10.3203V8.644C6.35449 8.56779 6.41918 8.50338 6.49512 8.50338H6.86637C6.94512 8.50338 7.00699 8.56779 7.00699 8.644V10.3287C7.00699 10.6772 7.09699 11.0937 7.53012 11.0937C7.66512 11.0937 8.08137 11.0937 8.08137 10.3287V8.644C8.08137 8.56779 8.14324 8.50338 8.22199 8.50338H8.59324C8.66918 8.50338 8.73387 8.56779 8.73387 8.644V10.3034ZM12.3986 11.4874C12.3986 11.5659 12.3367 11.6281 12.2579 11.6281H11.8867C11.8389 11.6281 11.7939 11.6025 11.7686 11.5634L10.8657 10.1206C10.7673 9.96307 10.6801 9.81963 10.6042 9.68744C10.6098 9.86463 10.6098 10.0531 10.6098 10.2724V11.4874C10.6098 11.5659 10.5479 11.6281 10.4692 11.6281H10.1232C10.0473 11.6281 9.98262 11.5659 9.98262 11.4874V8.644C9.98262 8.56779 10.0473 8.50338 10.1232 8.50338H10.5254C10.5732 8.50338 10.6182 8.52869 10.6436 8.57088L11.5548 10.0078C11.6336 10.1343 11.7095 10.2584 11.7798 10.379C11.7742 10.2018 11.7714 10.0247 11.7714 9.83341V8.644C11.7714 8.56779 11.8361 8.50338 11.912 8.50338H12.2579C12.3367 8.50338 12.3986 8.56779 12.3986 8.644V11.4874Z"
                                                             fill="#90A3BF" />
                                                     </svg>
-                                                    <span>القسط الشهري</span>
+                                                    <span>{{ $t('offer1') }}</span>
                                                 </div>
-                                                <h6>40,000 رس</h6>
+                                                <h6>{{ Math.round(item.monthly_installment) }} {{ $t('curr') }}</h6>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-xl-6 col-lg-6">
                                         <div class="box">
                                             <div class="d-flex w-100 align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center gap-2">
@@ -400,9 +409,9 @@
                                                             d="M5.09992 8.68118C4.99858 8.68514 4.90426 8.6999 4.79986 8.6999C3.55372 8.6999 2.49838 8.39156 1.7998 7.88306V8.6999C1.7998 9.52772 3.14242 10.1997 4.79986 10.1997C4.90282 10.1997 4.99966 10.1898 5.09992 10.1845V8.68118Z"
                                                             fill="#90A3BF" />
                                                     </svg>
-                                                    <span>اجمالي التمويل</span>
+                                                    <span>{{ $t('offer2') }}</span>
                                                 </div>
-                                                <h6> 40,000 رس </h6>
+                                                <h6> {{ item.funding_amount }} {{ $t('curr') }} </h6>
                                             </div>
                                             <div class="d-flex w-100 align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center gap-2">
@@ -419,9 +428,9 @@
                                                             </clipPath>
                                                         </defs>
                                                     </svg>
-                                                    <span>تاريخ الطلب</span>
+                                                    <span>{{ $t('date1') }}</span>
                                                 </div>
-                                                <h6>6 ديسمبر 2024</h6>
+                                                <h6>{{ item.order_Date }}</h6>
                                             </div>
                                             <div class="d-flex w-100 align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center gap-2">
@@ -440,9 +449,9 @@
                                                             d="M14.048 16.889C11.8686 16.889 10.0957 15.1161 10.0957 12.9368C10.0957 10.7574 11.8686 8.9845 14.048 8.9845C16.2273 8.9845 18.0002 10.7574 18.0002 12.9368C18.0002 15.1161 16.2273 16.889 14.048 16.889ZM13.5382 14.0885C13.5354 14.0885 13.5326 14.0885 13.5298 14.0885C13.4851 14.0867 13.4408 14.0706 13.4043 14.0403C13.399 14.0361 13.3941 14.0315 13.3891 14.0266L12.5268 13.1642C12.4445 13.082 12.4445 12.9484 12.5268 12.8661C12.609 12.7838 12.7426 12.7838 12.8249 12.8661L13.5382 13.5794L15.2711 11.8469C15.3533 11.7643 15.4869 11.7643 15.5692 11.8469C15.6514 11.9292 15.6514 12.0628 15.5692 12.145L13.6876 14.0266C13.6876 14.0266 13.6876 14.0266 13.6873 14.0266C13.6461 14.0681 13.5923 14.0885 13.5382 14.0885ZM14.048 15.8301C12.4526 15.8301 11.1546 14.5322 11.1546 12.9368C11.1546 11.3414 12.4526 10.0434 14.048 10.0434C15.6434 10.0434 16.9413 11.3414 16.9413 12.9368C16.9413 14.5322 15.6434 15.8301 14.048 15.8301ZM14.048 10.4653C12.6853 10.4653 11.5765 11.5741 11.5765 12.9368C11.5765 14.2998 12.6853 15.4082 14.048 15.4082C15.411 15.4082 16.5195 14.2998 16.5195 12.9368C16.5195 11.5741 15.411 10.4653 14.048 10.4653Z"
                                                             fill="#90A3BF" />
                                                     </svg>
-                                                    <span>الدفعة الاخيرة</span>
+                                                    <span>{{ $t('calc3') }}</span>
                                                 </div>
-                                                <h6>50,000 رس</h6>
+                                                <h6>{{ item.last_installment }} {{ $t('curr') }}</h6>
                                             </div>
                                             <div class="d-flex w-100 align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center gap-2">
@@ -458,14 +467,14 @@
                                                             d="M12 8C11.2089 8 10.4355 8.2346 9.77772 8.67412C9.11993 9.11365 8.60723 9.73836 8.30448 10.4693C8.00173 11.2002 7.92252 12.0044 8.07686 12.7804C8.2312 13.5563 8.61216 14.269 9.17157 14.8284C9.73098 15.3878 10.4437 15.7688 11.2196 15.9231C11.9956 16.0775 12.7998 15.9983 13.5307 15.6955C14.2616 15.3928 14.8864 14.8801 15.3259 14.2223C15.7654 13.5645 16 12.7911 16 12C15.9986 10.9396 15.5767 9.92295 14.8269 9.17311C14.0771 8.42326 13.0604 8.00139 12 8ZM12 14.5625C11.4932 14.5625 10.9978 14.4122 10.5764 14.1306C10.155 13.8491 9.82651 13.4489 9.63256 12.9806C9.43861 12.5124 9.38786 11.9972 9.48674 11.5001C9.58561 11.003 9.82967 10.5464 10.188 10.188C10.5464 9.82967 11.003 9.58561 11.5001 9.48674C11.9972 9.38786 12.5124 9.43861 12.9806 9.63256C13.4489 9.82651 13.8491 10.155 14.1306 10.5764C14.4122 10.9978 14.5625 11.4932 14.5625 12C14.5616 12.6793 14.2913 13.3306 13.8109 13.8109C13.3306 14.2913 12.6793 14.5616 12 14.5625Z"
                                                             fill="#90A3BF" />
                                                     </svg>
-                                                    <span>مدة الاقساط </span>
+                                                    <span>{{ $t('calc2') }}</span>
                                                 </div>
-                                                <h6>3 اشهر</h6>
+                                                <h6>{{ item.installment }} {{ $t('months') }}</h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="det-car">
+                                <!-- <div class="det-car">
                                     <span>تفاصيل السيارة</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"
                                         fill="none">
@@ -473,24 +482,63 @@
                                             d="M1.10225 3.60225C0.882582 3.82192 0.882582 4.17808 1.10225 4.39775L4.10225 7.39775C4.32192 7.61742 4.67808 7.61742 4.89775 7.39775C5.11742 7.17808 5.11742 6.82192 4.89775 6.60225L2.858 4.5625L10.5 4.5625C10.8107 4.5625 11.0625 4.31066 11.0625 4C11.0625 3.68934 10.8107 3.4375 10.5 3.4375L2.858 3.4375L4.89775 1.39775C5.11742 1.17808 5.11742 0.821922 4.89775 0.602253C4.67808 0.382583 4.32192 0.382583 4.10225 0.602253L1.10225 3.60225Z"
                                             fill="#2D3A4A" />
                                     </svg>
+                                </div> -->
+                            </div>
+                             <div v-if="item.OrderType == 'individual' && item.OrderPaymentType == 'cash' " class="det">
+                                <div class="row">
+                                    <div class="col-12 col-xl-6 col-lg-6 ">
+                                        <div class="box">
+                                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                        viewBox="0 0 18 18" fill="none">
+                                                        <path
+                                                            d="M3.20128 2.28516H8.57649L9.21078 0.593754C9.26137 0.458824 9.24256 0.307582 9.16047 0.189141C9.07845 0.0706992 8.94342 0 8.79931 0H8.21118C7.38769 0 6.58851 0.225598 5.8889 0.653941C5.18933 0.225598 4.39012 0 3.56662 0H2.97849C2.83439 0 2.69939 0.0706992 2.61733 0.189141C2.53524 0.307582 2.51644 0.458824 2.56703 0.593789L3.20128 2.28516Z"
+                                                            fill="#90A3BF" />
+                                                        <path
+                                                            d="M3.25195 5.44922H8.52539C9.10789 5.44922 9.58008 4.97704 9.58008 4.39453C9.58008 3.81203 9.10789 3.33984 8.52539 3.33984H3.25195C2.66945 3.33984 2.19727 3.81203 2.19727 4.39453C2.19727 4.97704 2.66945 5.44922 3.25195 5.44922Z"
+                                                            fill="#90A3BF" />
+                                                        <path
+                                                            d="M5.19615 9.64551C5.1606 9.83402 5.20849 10.0114 5.31807 10.0973C5.37372 10.141 5.43844 10.1833 5.50925 10.2243V9.20374C5.32362 9.29929 5.22599 9.48692 5.19615 9.64551Z"
+                                                            fill="#90A3BF" />
+                                                        <path
+                                                            d="M6.22449 11.2926C6.22052 11.2912 6.21683 11.2899 6.21289 11.2885V12.7345C6.49853 12.6082 6.66739 12.3388 6.71018 12.0843C6.73327 11.947 6.76646 11.4841 6.22449 11.2926Z"
+                                                            fill="#90A3BF" />
+                                                        <path
+                                                            d="M11.3193 10.0967C10.8919 8.76164 10.1766 7.53332 9.23017 6.50391H2.54879C1.90459 7.20439 1.36178 7.99991 0.950555 8.85554C0.328711 10.1494 0 11.592 0 13.0276C0 14.9552 1.56821 16.5234 3.49587 16.5234H8.28151C8.77004 16.5234 9.24374 16.4233 9.68147 16.2315C9.37993 15.5945 9.21094 14.8831 9.21094 14.1328C9.21094 12.4643 10.0457 10.9872 11.3193 10.0967ZM7.4032 12.2009C7.30986 12.7562 6.88082 13.3191 6.21253 13.471V13.7988C6.21253 13.993 6.0551 14.1504 5.86097 14.1504C5.66684 14.1504 5.50941 13.993 5.50941 13.7988V13.5027C5.1718 13.4793 4.90155 13.3973 4.51213 13.1425C4.34964 13.0363 4.30411 12.8184 4.41039 12.6559C4.51663 12.4934 4.73456 12.4478 4.89705 12.5541C5.14227 12.7145 5.29161 12.776 5.50941 12.7976V11.0119C5.24187 10.8913 5.04443 10.7762 4.88433 10.6506C4.56574 10.4007 4.42051 9.96567 4.50538 9.51525C4.59819 9.02275 4.94047 8.63111 5.39873 8.49305C5.43621 8.48176 5.47298 8.47206 5.50941 8.46313V8.17379C5.50941 7.97966 5.66684 7.82223 5.86097 7.82223C6.0551 7.82223 6.21253 7.97966 6.21253 8.17379V8.42235C6.61103 8.48043 6.89115 8.67291 7.02418 8.82562C7.15173 8.97202 7.1364 9.19406 6.99001 9.32161C6.84415 9.4487 6.62309 9.434 6.49529 9.28891C6.48879 9.2823 6.39556 9.19005 6.21253 9.1401V10.5403C6.29504 10.5712 6.37762 10.6011 6.45848 10.6296C7.15166 10.8747 7.52249 11.4914 7.4032 12.2009Z"
+                                                            fill="#90A3BF" />
+                                                        <path
+                                                            d="M14.1328 10.2656C12.0004 10.2656 10.2656 12.0004 10.2656 14.1328C10.2656 16.2652 12.0004 18 14.1328 18C16.2652 18 18 16.2652 18 14.1328C18 12.0004 16.2652 10.2656 14.1328 10.2656ZM14.6092 15.5391C14.6092 15.7332 14.4517 15.8906 14.2576 15.8906C14.0635 15.8906 13.9061 15.7332 13.9061 15.5391V13.0781H13.6564C13.4623 13.0781 13.3049 12.9207 13.3049 12.7266C13.3049 12.5324 13.4623 12.375 13.6564 12.375H14.2576C14.4517 12.375 14.6092 12.5324 14.6092 12.7266V15.5391Z"
+                                                            fill="#90A3BF" />
+                                                    </svg>
+                                                    <span>{{ $t('priceCash') }}</span>
+                                                </div>
+                                                <h6>{{ item.cash_order }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div> -->
-                                <div class="stat cancel">
-                                    <span>ملغي</span>
+                            </div>
+                            
+                                <div class="stat cancel" :style="{backgroundColor: item.orderStatue.color}">
+                                    <span>{{ item.orderStatue.name }}</span>
                                 </div>
                         </div>
                     </div>
                 </div>
+            <client-only >
+            <Vue3Lottie v-if="pendingLoader2"  :animation-data="loader" :height="200" :width="200" />
+          </client-only>
             </div>
+           
         </div>
+    <!-- <Loader v-if="pendingLoader"></Loader>  -->
     </div>
 </template>
 
 <script setup>
-import otpp from "~/assets/animations/otp.json";
-import success from "~/assets/animations/success.json";
 import { Vue3Lottie } from "vue3-lottie";
-import useValidate from "@vuelidate/core";
+import loader from "~/assets/animations/Loader.json";
 import axios from "axios";
 import { useStore } from "~/store";
 import Cookies from "js-cookie";
@@ -499,25 +547,35 @@ let store = useStore;
 let user = store.state.user
 const localePath = useLocalePath();
 const { locale } = useI18n();
-
-
+let pendingLoader = ref(false);
+let pendingLoader2 = ref(false);
 
 let orderNumber = ref('');
 
 let orders1 = ref([]);
+let type = ref('processing');
 let orders2 = ref([]);
 
 const getOrders = async ()=>{
     if(tokenCookie){
-        let result = axios.get(`${getUrl()}/requests_auth`,{
+        pendingLoader.value = true;
+        pendingLoader2.value = true;
+        orders1.value = [];
+        let result =  await axios.get(`${getUrl()}/requests_auth`,{
             params: {
-                order_number: orderNumber.value
+                order_number: orderNumber.value,
+                filter: type.value
             },
             headers: {
               "Content-Language": `${locale.value}`,
               Authorization: `Bearer ${tokenCookie}`,
             },
         });
+        if(result.status == 200){
+            pendingLoader.value = false;
+            pendingLoader2.value = false;
+        }
+        orders1.value = result.data.data;
     } else{
         let result = axios.get(`${getUrl()}/requests-search`,{
             params: {
@@ -547,7 +605,10 @@ let items = ref([
 ]);
 
 onMounted(() => {
-  //console.log(user);  
+  console.log(user);
+  if(tokenCookie){
+      getOrders();  
+  }
 })
 
 </script>
