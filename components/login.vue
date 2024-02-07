@@ -7,7 +7,9 @@
                     <div
                       class="header w-100 d-flex align-items-center justify-content-between"
                     >
+                    <nuxt-link :to="localePath('/')">
                       <logo />
+                    </nuxt-link>
                       <nuxt-link :to="localePath('/')" class="arrow">
                         <svg
                         class="arrow-icon"
@@ -45,6 +47,7 @@
                           name=""
                          v-model="form.phone"
                         />
+                  <span class="numm login">+966</span>
                       </div>
               
                       <div class="input pass">
@@ -121,7 +124,7 @@
                       <div
                         class="header w-100 d-flex align-items-center justify-content-between"
                       >
-                        <logo />
+                      C
                         <div @click="loginNav = 1" class="arrow">
                           <svg
                           class="arrow-icon"
@@ -162,7 +165,7 @@
                       <icons />
                       <div class="d-flex align-item-center justify-content-center">
                        <a target="_blank" href="https://webstdy.com/ar?utm_source=codeCar-foorter&utm_medium=referral" class="d-flex align-items-center gap-3 logo">
-                        <span>تم تطويره بواسطة</span>
+                        <span>{{ $t('powred') }}</span>
                         <img class="" src="~/assets/images/blue-logo.png" alt="">
                        </a>
                       </div>
@@ -174,7 +177,9 @@
                       <div
                         class="header w-100 d-flex align-items-center justify-content-between"
                       >
+                          <nuxt-link :to="localePath('/')">
                         <logo />
+                      </nuxt-link>
                         <div @click="loginNav = 2" class="arrow">
                           <svg
                           class="arrow-icon"
@@ -226,7 +231,9 @@
                           <div
                             class="header w-100 d-flex align-items-center justify-content-between"
                           >
-                            <logo />
+                              <nuxt-link :to="localePath('/')">
+                        <logo />
+                      </nuxt-link>
                             <div @click="loginNav = 3" class="arrow">
                               <svg
                               class="arrow-icon"

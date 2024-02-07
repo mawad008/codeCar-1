@@ -20,7 +20,7 @@
                           
                       
                           </a>
-                          <a  :href="contactArr.instagram"   class="icon">
+                          <a  :href="contactArr.instagram" target="_blank"  class="icon">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="20"
@@ -49,7 +49,7 @@
                               </defs>
                             </svg>
                           </a>
-                          <a :href="contactArr.facebook"  class="icon">
+                          <a :href="contactArr.facebook" target="_blank"  class="icon">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="20"
@@ -70,7 +70,7 @@
                               </defs>
                             </svg>
                           </a>
-                          <a  :href="contactArr.snapchat" class="icon">
+                          <a  :href="contactArr.snapchat" target="_blank" class="icon">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="20"
@@ -84,7 +84,7 @@
                               />
                             </svg>
                           </a>
-                          <a  :href="contactArr.twitter" class="icon">
+                          <a  :href="contactArr.twitter" target="_blank" class="icon">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="20"
@@ -98,7 +98,7 @@
                               />
                             </svg>
                           </a>
-                          <a  :href="contactArr.tiktok" class="icon">
+                          <a  :href="contactArr.tiktok" target="_blank" class="icon">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="20"

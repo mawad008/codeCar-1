@@ -17,7 +17,7 @@
         <div class="logo-container">
           <img class="dark-img" src="~/assets/images/logo-white.svg" alt="" />
            <logo2/>
-          <span>منصة بيع وتمويل السيارات</span>
+          <span> {{$t('slogan')}}  </span>
         </div>
         </nuxt-link>
         </div>
@@ -412,7 +412,7 @@
                 {{ $t("impLinks") }}
                 </h6>
                 <div class="links d-flex flex-column gap-4">
-                <nuxt-link :to="localePath('auth')">
+                <nuxt-link :to="localePath('auth')" @click="store.state.checkForm = 1">
                   <span class="head-link"> {{ $t("vendor") }} </span>
                 </nuxt-link>
                   <nuxt-link :to="localePath('/careers')">
@@ -482,7 +482,7 @@
             >
               <span> {{ $t('policy') }} </span>
               <span> | </span>
-              <span> {{ $t('cop') }}  © 2023</span>
+              <span> {{ $t('cop') }}  © {{ currentYear }}</span>
             </div>
             <div>
               <img src="~/assets/images/webstdy-white.png" alt="" />
@@ -511,6 +511,8 @@ import { Vue3Lottie } from "vue3-lottie";
 import arrow from "~/assets/animations/arrow.json";
 let activeNav = ref(false);
 let activeItemsContainer = ref(false);
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
 
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
@@ -553,6 +555,7 @@ const changeLang = async () => {
   }
   console.log(route);
   const query = useRoute().query;
+  getFooterData();
   await navigateTo(
     localePath({ path: useRoute().path, query: query }, undefined, {
       preserveQuery: true,

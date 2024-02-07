@@ -854,7 +854,7 @@
           
           </div>
           <div v-if="paymentMethod == 2">
-            <financecar2 :carid="id" :price="mainCar.price" />
+            <financecar2 :carid="id" :price="mainCar.price" :car="mainCar" />
 
           </div>
         
@@ -1084,10 +1084,7 @@
                   spaceBetween: 30,
                 },
               }"
-              :autoplay="{
-                delay: 4500,
-                disableOnInteraction: false,
-              }"
+           
               :modules="[SwiperNavigation, SwiperAutoplay]"
             >
               <swiper-slide v-for="item in RelatedCars">

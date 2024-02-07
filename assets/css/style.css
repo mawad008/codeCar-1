@@ -570,6 +570,9 @@ html[dir=rtl] input[type=tel] {
 .input {
   position: relative;
 }
+.input .numm {
+  top: 56%;
+}
 .input input {
   outline: none;
   border-style: solid;
@@ -669,12 +672,12 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
 .navbar .items .links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 25px;
 }
 .navbar .items .links a {
   color: #fff;
   font-size: 16px;
-  white-space: nowrap;
+  text-align: center;
   font-weight: 400;
 }
 .navbar .items .links a.spe {
@@ -686,7 +689,6 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
   align-items: center;
   gap: 13px;
   color: #fff;
-  margin-right: 20px;
 }
 .navbar .items .icons .icon {
   position: relative;
@@ -702,8 +704,6 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
 .navbar .items .icons span {
   text-transform: uppercase;
   cursor: pointer;
-  padding-left: 20px;
-  border-left: 1px solid white;
 }
 .navbar.back, .navbar.active {
   background-color: #fff;
@@ -711,7 +711,6 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
 }
 .navbar.back .icons span, .navbar.active .icons span {
   color: #5a7184;
-  border-left: 1px solid #ebeaed;
 }
 .navbar.back .icon, .navbar.active .icon {
   border: 1px solid #ebeaed !important;
@@ -776,9 +775,33 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
   z-index: 11;
 }
 
+html[dir=rtl] .navbar .icons {
+  margin-right: 20px;
+}
+html[dir=rtl] .navbar .icons span {
+  padding-left: 20px;
+  border-left: 1px solid white;
+}
+html[dir=rtl] .navbar.back .icons span, html[dir=rtl] .navbar.active .icons span {
+  border-left: 1px solid #ebeaed;
+}
+
 html[dir=ltr] .navbar .searchBar {
   left: auto;
   right: 58px;
+}
+html[dir=ltr] .navbar .items .links a {
+  font-size: 14px !important;
+}
+html[dir=ltr] .navbar .icons {
+  margin-left: 20px;
+}
+html[dir=ltr] .navbar .icons span {
+  padding-right: 20px;
+  border-right: 1px solid white;
+}
+html[dir=ltr] .navbar.back .icons span, html[dir=ltr] .navbar.active .icons span {
+  border-right: 1px solid #ebeaed;
 }
 
 .footer-container {
@@ -1101,7 +1124,6 @@ html[dir=ltr] .footer-container .search button {
 }
 .search-section .select {
   width: 190px;
-  direction: rtl;
 }
 .search-section .select .type {
   color: #5a7184;
@@ -1149,11 +1171,17 @@ html[dir=rtl] .search-section .v-input {
 html[dir=rtl] .search-section .v-input .v-field {
   direction: rtl;
 }
+html[dir=rtl] .search-section .select {
+  direction: rtl;
+}
 
 html[dir=ltr] .search-section .v-input {
   direction: ltr;
 }
 html[dir=ltr] .search-section .v-input .v-field {
+  direction: ltr;
+}
+html[dir=ltr] .search-section .select {
   direction: ltr;
 }
 

@@ -6,7 +6,9 @@
           <div
             class="header w-100 d-flex align-items-center justify-content-between"
           >
-            <logo />
+            <nuxt-link :to="localePath('/')">
+                      <logo />
+                    </nuxt-link>
             <nuxt-link :to="localePath('/')" class="arrow">
               <svg
               class="arrow-icon"
@@ -34,7 +36,6 @@
         <v-radio-group
           class="d-flex align-items-center justify-content-center main-radio"
           v-model="typeForm"
-          inline
         >
           <div class="d-flex align-items-center radio">
             <v-radio
@@ -101,6 +102,7 @@
                 name=""
                 v-model="form.phone"
               />
+                  <span class="numm login">+966</span>
               <span class="error-msg" v-if="v$.phone.$error">{{
                 v$.phone.$errors[0].$message
               }}</span>
@@ -272,7 +274,9 @@
           <div
             class="header w-100 d-flex align-items-center justify-content-between"
           >
-            <logo />
+           <nuxt-link :to="localePath('/')">
+                      <logo />
+                    </nuxt-link>
             <div @click="signNav = 1" class="arrow">
               <svg
               class="arrow-icon"

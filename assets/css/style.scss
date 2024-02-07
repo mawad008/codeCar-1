@@ -692,6 +692,7 @@ p{
     // color: $body-text;
     // border-right: 1px solid $body-text;
     // padding-right: 5px;
+    top:56%;
   }
   input {
     outline: none;
@@ -818,11 +819,12 @@ html[dir="ltr"] .main-auth{
     .links {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 25px;
       a {
         color: #fff;
         font-size: 16px;
-        white-space: nowrap;
+        text-align: center;
+        // white-space: nowrap;
         font-weight: 400;
         &.spe{
           color: #dcb63b !important;
@@ -835,7 +837,6 @@ html[dir="ltr"] .main-auth{
       align-items: center;
       gap: 13px;
       color: #fff;
-      margin-right: 20px;
       .icon {
         position: relative;
         width: 44px;
@@ -850,8 +851,6 @@ html[dir="ltr"] .main-auth{
       span {
         text-transform: uppercase;
         cursor: pointer;
-        padding-left: 20px;
-        border-left: 1px solid #ffff;
       }
     }
   }
@@ -862,7 +861,7 @@ html[dir="ltr"] .main-auth{
     .icons {
       span {
         color: #5a7184;
-        border-left: 1px solid #ebeaed;
+        // border-left: 1px solid #ebeaed;
       }
     }
     .icon {
@@ -927,14 +926,62 @@ html[dir="ltr"] .main-auth{
   }
 }
 
+  html[dir="rtl"] .navbar {
+
+              .icons {
+      margin-right: 20px;
+      span {
+        padding-left: 20px;
+        border-left: 1px solid #ffff;
+      }
+    }
+
+       &.back,
+  &.active {
+    .icons {
+      span {
+        border-left: 1px solid #ebeaed;
+      }
+    }
+   
+  }
+    
+    }
   html[dir="ltr"] .navbar {
     .searchBar{
     left: auto;
     right: 58px;
 
       }
-    
+        .items{
+           .links{
+            a{
+              font-size: 14px !important;
+              }
+            }     
+          
+          }
+
+              .icons {
+      margin-left: 20px;
+      span {
+        padding-right: 20px;
+        border-right: 1px solid #ffff;
+      }
     }
+    
+           &.back,
+  &.active {
+    .icons {
+      span {
+        border-right: 1px solid #ebeaed;
+      }
+    }
+   
+  }
+    }
+
+
 .footer-container {
   background-color: #1b2126;
   color: #fff;
@@ -1316,7 +1363,6 @@ html[dir="ltr"] .main-auth{
   .select {
     width: 190px;
     // height: 57px;
-    direction: rtl;
     .type {
       color: $body-text;
       font-size: 14px;
@@ -1396,6 +1442,9 @@ html[dir="ltr"] .main-auth{
           
           }
         }
+          .select{
+            direction: rtl;
+            }
     
     }
  html[dir="ltr"] .search-section{
@@ -1407,6 +1456,10 @@ html[dir="ltr"] .main-auth{
           
           }
         }
+
+          .select{
+            direction: ltr;
+            }
     }
 
 // .v-field.v-field--appended{
