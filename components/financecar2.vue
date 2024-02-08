@@ -199,6 +199,9 @@
                 <span class="error-msg" v-if="v4$.organization_name.$error">{{
                   v4$.organization_name.$errors[0].$message
                 }}</span>
+                    <span class="error-msg2" v-if="errors4.organization_name">{{
+                      errors4.organization_name[0]
+                    }}</span>
               </div>
             </div>
 
@@ -217,6 +220,9 @@
                 <span class="error-msg" v-if="v4$.organization_type.$error">{{
                   v4$.organization_type.$errors[0].$message
                 }}</span>
+                  <span class="error-msg2" v-if="errors4.organization_type">{{
+                    errors4.organization_type[0]
+                  }}</span>
               </div>
             </div>
           </div>
@@ -226,9 +232,9 @@
               <div class="input">
                 <input type="tel" placeholder=" 3333-5555-9999-55" name="" v-model="form4.commercial_registration_no"
                   class="" />
-                <span class="error-msg" v-if="v4$.commercial_registration_no.$error">{{
-                  v4$.commercial_registration_no.$errors[0].$message
-                }}</span>
+                 <span class="error-msg2" v-if="errors4.commercial_registration_no">{{
+                   errors4.commercial_registration_no[0]
+                 }}</span>
               </div>
             </div>
 
@@ -247,6 +253,9 @@
                 <span class="error-msg" v-if="v4$.organization_activity.$error">{{
                   v4$.organization_activity.$errors[0].$message
                 }}</span>
+                <span class="error-msg2" v-if="errors4.organization_activity">{{
+                  errors4.organization_activity[0]
+                }}</span>
               </div>
             </div>
           </div>
@@ -258,6 +267,9 @@
                 <span class="error-msg" v-if="v4$.name.$error">{{
                   v4$.name.$errors[0].$message
                 }}</span>
+                <span class="error-msg2" v-if="errors4.name">{{
+                  errors4.name[0]
+                }}</span>
               </div>
             </div>
 
@@ -268,6 +280,9 @@
                 <span class="error-msg" v-if="v4$.phone.$error">{{
                   v4$.phone.$errors[0].$message
                 }}</span>
+                 <span class="error-msg2" v-if="errors4.phone">{{
+                   errors4.phone[0]
+                 }}</span>
               </div>
             </div>
           </div>
@@ -278,6 +293,9 @@
                 <input type="number" min="1" placeholder="4" name="" v-model="form4.organization_age" class="" />
                 <span class="error-msg" v-if="v4$.organization_age.$error">{{
                   v4$.organization_age.$errors[0].$message
+                }}</span>
+                <span class="error-msg2" v-if="errors4.organization_age">{{
+                  errors4.organization_age[0]
                 }}</span>
               </div>
             </div>
@@ -296,6 +314,9 @@
                 <span class="error-msg" v-if="v4$.city_id.$error">{{
                   v4$.city_id.$errors[0].$message
                 }}</span>
+                <span class="error-msg2" v-if="errors4.city_id">{{
+                  errors4.city_id[0]
+                }}</span>
               </div>
             </div>
           </div>
@@ -313,6 +334,9 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v4$.bank_id.$error">{{
                   v4$.bank_id.$errors[0].$message
+                }}</span>
+                <span class="error-msg2" v-if="errors4.bank_id">{{
+                  errors4.bank_id[0]
                 }}</span>
               </div>
             </div>

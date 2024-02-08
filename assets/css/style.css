@@ -570,9 +570,6 @@ html[dir=rtl] input[type=tel] {
 .input {
   position: relative;
 }
-.input .numm {
-  top: 56%;
-}
 .input input {
   outline: none;
   border-style: solid;
@@ -587,24 +584,48 @@ html[dir=rtl] input[type=tel] {
 html[dir=rtl] .input {
   position: relative;
 }
+html[dir=rtl] .input .phonenum {
+  border-radius: 8px;
+  background: #f6f7f9;
+  padding: 0px 16px;
+  position: relative;
+}
+html[dir=rtl] .input .phonenum:focus-within {
+  background-color: #fff;
+  border: 1px solid #dcb63b;
+}
+html[dir=rtl] .input .phonenum:focus-within input {
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+}
 html[dir=rtl] .input .numm {
-  position: absolute;
-  left: 10px;
   color: #5a7184;
   border-right: 1px solid #5a7184;
   padding-right: 5px;
 }
-html[dir=rtl] .input .numm.act {
+html[dir=rtl] .input .numm.set {
+  position: absolute;
+  left: 10px;
   top: 50%;
-  transform: translateY(-50%);
 }
 
 html[dir=ltr] .input {
   position: relative;
 }
-html[dir=ltr] .input .numm {
-  position: absolute;
-  right: 10px;
+html[dir=ltr] .input .phonenum {
+  border-radius: 8px;
+  background: #f6f7f9;
+  padding: 0px 16px;
+}
+html[dir=ltr] .input .phonenum:focus-within {
+  background-color: #fff;
+  border: 1px solid #dcb63b;
+}
+html[dir=ltr] .input .phonenum:focus-within input {
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+}
+html[dir=ltr] .input .phonenum .numm {
   color: #5a7184;
   border-left: 1px solid #5a7184;
   padding-left: 5px;
@@ -4276,10 +4297,13 @@ html[dir=ltr] .about-us .about-container .image .overlay {
   width: 600px;
   align-items: center;
   justify-content: space-between;
-  gap: 50px;
+  flex-direction: column;
   margin-bottom: 16px;
   padding-bottom: 15px;
   border-bottom: 1px solid #ebeaed;
+}
+.settings-page .setting-content .personal .personal-form .input .phoneContainer {
+  gap: 50px;
 }
 .settings-page .setting-content .personal .personal-form .input label {
   display: flex;
@@ -4315,6 +4339,10 @@ html[dir=ltr] .about-us .about-container .image .overlay {
 .settings-page .setting-content .personal .personal-form .input .p-dropdown:focus {
   background-color: #fff;
   border: 1px solid #dcb63b;
+}
+.settings-page .setting-content .personal .personal-form .input .phonenum {
+  width: 400px;
+  height: 48px;
 }
 .settings-page .setting-content .personal button {
   font-weight: 700;
@@ -4975,6 +5003,9 @@ html[dir=ltr] .setting-btn {
   .settings-page .setting-content .personal .personal-form .input {
     width: 100%;
   }
+  .settings-page .setting-content .personal .personal-form .input input, .settings-page .setting-content .personal .personal-form .input .p-dropdown, .settings-page .setting-content .personal .personal-form .input .phonenum {
+    width: 100% !important;
+  }
   .settings-page .setting-content {
     padding: 20px;
   }
@@ -5371,6 +5402,9 @@ html[dir=ltr] .setting-btn {
     width: 100%;
     gap: 20px !important;
     align-items: flex-start !important;
+  }
+  .setting-content .personal .personal-form .input .phoneContainer {
+    gap: 20px !important;
   }
   .setting-content .personal .personal-form .input input {
     width: 100% !important;

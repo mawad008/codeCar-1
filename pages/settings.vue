@@ -3,7 +3,7 @@
     <div class="container settings-page">
       <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
         <h4 class="heading-text"> {{ $t('settings') }} </h4>
-        <p v-if="descriptionText">{{ descriptionText }}</p>
+        <p>{{ desc }}</p>
 
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
@@ -144,33 +144,46 @@
               </div>
               <div class="personal-form">
                 <div class="input">
-                  <label for="">
-                    <h6>{{ $t('name0') }}</h6>
-                    <span> {{ $t('name10') }}</span>
-                  </label>
-                  <input type="text" v-model="form.name" :placeholder="$t('name')" />
+                  <div
+                    class="d-flex w-100 flex-column flex-xl-row flex-lg-row phoneContainer align-items-start align-items-xl-center align-items-lg-center justify-content-between">
+                    <label for="">
+                      <h6>{{ $t('name0') }}</h6>
+                      <span> {{ $t('name10') }}</span>
+                    </label>
+                    <input type="text" v-model="form.name" :placeholder="$t('name')" />
+
+                  </div>
+                  <span class="error-msg mb-3" v-if="errors1.name">{{
+                    errors1.name[0]
+                  }}</span>
                 </div>
-                <span class="error-msg mb-3" v-if="errors1.name">{{
-                  errors1.name[0]
-                }}</span>
                 <div class="input">
-                  <label for="">
-                    <h6>{{ $t('phone') }}</h6>
-                    <span> {{ $t('phone10') }} </span>
-                  </label>
-                  <input type="tel" v-model="form.phone" maxlength="11" placeholder="01012151698+" />
-                  <span class="numm">+966</span>
+                  <div
+                    class="d-flex w-100 flex-column flex-xl-row flex-lg-row phoneContainer align-items-start align-items-xl-center align-items-lg-center justify-content-between">
+                    <label for="">
+                      <h6>{{ $t('phone') }}</h6>
+                      <span> {{ $t('phone10') }} </span>
+                    </label>
+                    <div class=" d-flex  align-items-center justify-content-between phonenum">
+                      <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="form.phone" />
+                      <span class="numm ">+966</span>
+                    </div>
+                  </div>
                   <span class="error-msg" v-if="errors1.phone">{{
                     errors1.phone[0]
                   }}</span>
                 </div>
                 <div class="input">
-                  <label for="">
-                    <h6> {{ $t('ident') }} </h6>
-                    <span> {{ $t('ident10') }} </span>
-                  </label>
-                  <input type="tel" readonly v-model="form.identity_no" maxlength="10"
-                    placeholder="8418988989-5894848-878" />
+                  <div
+                    class="d-flex w-100 flex-column flex-xl-row flex-lg-row phoneContainer align-items-start align-items-xl-center align-items-lg-center justify-content-between">
+                    <label for="">
+                      <h6> {{ $t('ident') }} </h6>
+                      <span> {{ $t('ident10') }} </span>
+                    </label>
+                    <input type="tel" readonly v-model="form.identity_no" maxlength="10"
+                      placeholder="8418988989-5894848-878" />
+
+                  </div>
                 </div>
                 <div v-if="user.type != 'individual'" class="input">
                   <label for="">
@@ -181,11 +194,12 @@
                     placeholder="8418988989-5894848-878" />
                 </div>
                 <div class="input">
-                  <label for="">
-                    <h6>{{ $t('city') }}</h6>
-                    <span> {{ $t('city10') }} </span>
-                  </label>
-                  <div>
+                  <div
+                    class="d-flex w-100 flex-column flex-xl-row flex-lg-row phoneContainer align-items-start align-items-xl-center align-items-lg-center justify-content-between">
+                    <label for="">
+                      <h6>{{ $t('city') }}</h6>
+                      <span> {{ $t('city10') }} </span>
+                    </label>
                     <Dropdown v-model="form.city_id" :options="cities" :filter-placeholder="$t('search')" filter
                       optionLabel="name" :placeholder="$t('city')" class="">
                       <template #option="slotProps">
@@ -194,10 +208,10 @@
                         </div>
                       </template>
                     </Dropdown>
-                    <span class="error-msg" v-if="errors1.city_id">{{
-                      errors1.city_id[0]
-                    }}</span>
                   </div>
+                  <span class="error-msg" v-if="errors1.city_id">{{
+                    errors1.city_id[0]
+                  }}</span>
                 </div>
                 <div class="d-flex justify-content-center justify-content-xl-start justify-content-lg-start">
                   <button @click="updateProfile()" class="d-flex gap-3" :disabled="pending1">
@@ -488,7 +502,7 @@
               </div> -->
             </div>
             <div v-if="settingNav == 4" class="notifications">
-              <div class="item active">
+              <div class="item " v-for="item in notificationsArr" :class="{ 'active': item.is_read == 0 }">
                 <div class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                     <path
@@ -502,146 +516,58 @@
                 <div class="text d-flex w-100 flex-column">
                   <div class="d-flex w-100 align-items-center justify-content-between">
                     <h6>تتبع طلبك!</h6>
-                    <span class="date">12:56 P:M</span>
+                    <span class="date">{{ item.time }}</span>
                   </div>
                   <span>نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد
                     لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span>
                 </div>
               </div>
-              <div class="item active">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <path
-                      d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
-                      fill="#90A3BF" />
-                    <path
-                      d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
-                      fill="#90A3BF" />
-                  </svg>
-                </div>
-                <div class="text d-flex w-100 flex-column">
-                  <div class="d-flex w-100 align-items-center justify-content-between">
-                    <h6>تتبع طلبك!</h6>
-                    <span class="date">12:56 P:M</span>
-                  </div>
-                  <span>نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد
-                    لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span>
-                </div>
-              </div>
-              <div class="item active">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <path
-                      d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
-                      fill="#90A3BF" />
-                    <path
-                      d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
-                      fill="#90A3BF" />
-                  </svg>
-                </div>
-                <div class="text d-flex w-100 flex-column">
-                  <div class="d-flex w-100 align-items-center justify-content-between">
-                    <h6>تتبع طلبك!</h6>
-                    <span class="date">12:56 P:M</span>
-                  </div>
-                  <span>نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد
-                    لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span>
-                </div>
-              </div>
-              <div class="item">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <path
-                      d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
-                      fill="#90A3BF" />
-                    <path
-                      d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
-                      fill="#90A3BF" />
-                  </svg>
-                </div>
-                <div class="text d-flex w-100 flex-column">
-                  <div class="d-flex w-100 align-items-center justify-content-between">
-                    <h6>تتبع طلبك!</h6>
-                    <span class="date">12:56 P:M</span>
-                  </div>
-                  <span>نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد
-                    لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span>
-                </div>
-              </div>
-              <div class="item">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <path
-                      d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
-                      fill="#90A3BF" />
-                    <path
-                      d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
-                      fill="#90A3BF" />
-                  </svg>
-                </div>
-                <div class="text d-flex w-100 flex-column">
-                  <div class="d-flex w-100 align-items-center justify-content-between">
-                    <h6>تتبع طلبك!</h6>
-                    <span class="date">12:56 P:M</span>
-                  </div>
-                  <span>نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد
-                    لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span>
-                </div>
-              </div>
-              <div class="item">
-                <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <path
-                      d="M15.2107 30.9999C16.0989 31.0002 16.9619 30.7048 17.6637 30.1604C18.3655 29.6159 18.8662 28.8533 19.0867 27.9929L12.3477 29.7929C12.7216 30.1731 13.1671 30.4754 13.6585 30.6826C14.1499 30.8897 14.6774 30.9976 15.2107 30.9999Z"
-                      fill="#90A3BF" />
-                    <path
-                      d="M27.9438 19.928C27.7776 19.3002 27.439 18.7315 26.9662 18.2863C26.4934 17.8411 25.9054 17.5372 25.2688 17.409C25.2401 17.4033 25.2135 17.3897 25.1922 17.3697C25.1708 17.3498 25.1554 17.3242 25.1478 17.296L23.7658 12.136C23.1898 10.0044 21.9311 8.12038 20.1825 6.77218C18.4339 5.42397 16.2917 4.68592 14.0838 4.67099C14.194 4.19888 14.1875 3.70702 14.0648 3.23799C13.85 2.47325 13.3424 1.82398 12.6521 1.43092C11.9619 1.03786 11.1445 0.932686 10.3772 1.13819C9.6099 1.3437 8.95451 1.84333 8.5531 2.52878C8.15168 3.21423 8.03659 4.03026 8.23276 4.8C8.35909 5.26783 8.59687 5.6981 8.92576 6.054C7.02379 7.17183 5.54012 8.88168 4.70151 10.9222C3.8629 12.9628 3.71548 15.2218 4.28176 17.354L5.66376 22.517C5.6713 22.5448 5.67089 22.5741 5.66258 22.6017C5.65427 22.6293 5.6384 22.654 5.61676 22.673C5.1279 23.1029 4.76962 23.6614 4.58274 24.285C4.39586 24.9086 4.3879 25.5721 4.55976 26.2C4.81075 27.0885 5.39856 27.844 6.1981 28.3056C6.99764 28.7673 7.94578 28.8988 8.84076 28.672L25.4728 24.21C26.3677 23.9689 27.1304 23.3826 27.5936 22.5799C28.0568 21.7772 28.1828 20.8235 27.9438 19.928ZM10.1648 4.28399C10.1117 4.08942 10.1176 3.88348 10.1817 3.69225C10.2458 3.50103 10.3652 3.33312 10.5247 3.20978C10.6843 3.08645 10.8769 3.01323 11.0781 2.99942C11.2793 2.9856 11.4801 3.03179 11.655 3.13215C11.8299 3.23251 11.9711 3.38253 12.0608 3.5632C12.1504 3.74387 12.1844 3.94707 12.1584 4.14707C12.1325 4.34707 12.0478 4.53488 11.9151 4.68671C11.7823 4.83854 11.6075 4.94757 11.4128 4.99999C11.1524 5.069 10.8753 5.03252 10.6416 4.89847C10.408 4.76441 10.2366 4.54361 10.1648 4.28399Z"
-                      fill="#90A3BF" />
-                  </svg>
-                </div>
-                <div class="text d-flex w-100 flex-column">
-                  <div class="d-flex w-100 align-items-center justify-content-between">
-                    <h6>تتبع طلبك!</h6>
-                    <span class="date">12:56 P:M</span>
-                  </div>
-                  <span>نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد
-                    لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span>
-                </div>
-              </div>
+
             </div>
 
             <div v-if="settingNav == 5" class="personal">
               <div class="personal-form">
                 <div class="input">
+                  <div class="d-flex w-100 flex-column flex-xl-row flex-lg-row phoneContainer align-items-start align-items-xl-center align-items-lg-center justify-content-between">
                   <label for="">
                     <h6> {{ $t('pass1') }}</h6>
                     <span> {{ $t('pass2') }} </span>
                   </label>
                   <input type="password" v-model="form1.old_password" placeholder="***********" />
-                </div>
+    
+                
+                  </div>
                 <span v-if="errors2.old_password" class="error-msg d-block mb-3">{{
                   errors2.old_password[0]
                 }}</span>
+                  
+                </div>
                 <div class="input">
+                <div class="d-flex w-100 flex-column flex-xl-row flex-lg-row phoneContainer align-items-start align-items-xl-center align-items-lg-center justify-content-between">
                   <label for="">
                     <h6> {{ $t('pass3') }} </h6>
                     <span> {{ $t('pass3') }} </span>
                   </label>
                   <input type="password" v-model="form1.password" placeholder="*********" />
+                
                 </div>
                 <span v-if="errors2.password" class="error-msg d-block mb-3">{{
                   errors2.password[0]
                 }}</span>
+                </div>
                 <div class="input">
+                <div class="d-flex w-100 flex-column flex-xl-row flex-lg-row phoneContainer align-items-start align-items-xl-center align-items-lg-center justify-content-between">
                   <label for="">
                     <h6> {{ $t('pass4') }} </h6>
                     <span> {{ $t('pass3') }}</span>
                   </label>
                   <input type="password" v-model="form1.password_confirmation" placeholder="**********" />
+                
                 </div>
                 <span v-if="errors2.password_confirmation" class="error-msg">{{
                   errors2.password_confirmation[0]
                 }}</span>
+                </div>
                 <div class="d-flex justify-content-center justify-content-xl-start justify-content-lg-start">
                   <button @click="updatePassword()" class="gap-3">
                     {{ $t('save') }}
@@ -706,6 +632,9 @@ import {
 import VueEasyLightbox from "vue-easy-lightbox";
 
 import { useStore } from "~/store";
+import { useToast } from 'vue-toastification'
+const toast = useToast();
+
 const tokenCookie = Cookies.get("token");
 const store = useStore;
 let settingNav = ref(1);
@@ -725,9 +654,12 @@ const handleFileChange = (event) => {
 
 let user = ref(store.state.user);
 let toggler = ref(false);
+let phoneNumber = ref(user.value.phone ? user.value.phone : '');
+let countryCode = "966";
+let formattedNumber = phoneNumber.value.slice(countryCode.length);
 let form = ref({
   name: user.value ? user.value.name : '',
-  phone: user.value ? user.value.phone : '',
+  phone: user.value.phone ? formattedNumber : '',
   city_id: user.value ? user.value.city_id : '',
   commercial_registration_no: user.value ? user.value.commercial_registration_no : '',
   identity_no: user.value ? user.value.identity_no : '',
@@ -846,18 +778,21 @@ const updateProfile = async () => {
       store.state.user = result.data.data;
       const userObjectString = JSON.stringify(result.data.data);
       Cookies.set('user', userObjectString);
-      // createToast(
-      //     {
-      //       title: title.value,
-      //     },
-      //     {
-      //       type: "success",
-      //       transition: "bounce",
-      //       showIcon: "true",
-      //       timeout: 3000,
-      //       toastBackgroundColor: "#dcb63b",
-      //     }
-      //   );
+            toast.success(title.value, {
+        position: "top-right",
+        timeout: 3000,
+        closeOnClick: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        draggable: true,
+        draggablePercent: 0.6,
+        showCloseButtonOnHover: false,
+        hideProgressBar: true,
+        closeButton: "button",
+        icon: true,
+        class: 'toast-container',
+        rtl: false
+      });
     }
 
   } catch (errorss) {
@@ -873,6 +808,44 @@ let form1 = ref({
   password: '',
   password_confirmation: '',
 });
+
+
+
+let notificationsArr = ref([]);
+
+let desc = ref('');
+const getDesc = async () => {
+  let result = await axios.get(`${getUrl()}/allsettings`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  desc.value = result.data.data.ProfileDescription;
+}
+const getNotifications = async () => {
+  let result = await axios.get(`${getUrl()}/notification`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+      Authorization: `Bearer ${tokenCookie}`,
+    }
+  });
+
+  if (result.status == 200) {
+    notificationsArr.value = result.data.data;
+    if (process.client) {
+      setTimeout(async () => {
+        let result2 = await axios.get(`${getUrl()}/changestatuenotificaton`, {
+          headers: {
+            "Content-Language": `${locale.value}`,
+            Authorization: `Bearer ${tokenCookie}`,
+          }
+        });
+      }, 800);
+    }
+  }
+}
+
+
 const updatePassword = async () => {
   //     let formBody = new FormData();
   // formBody.append("name", form.value.name);
@@ -892,18 +865,21 @@ const updatePassword = async () => {
       pending2.value = false;
       form1.value = '';
       errors2.value = [];
-      // createToast(
-      //     {
-      //       title: title2.value,
-      //     },
-      //     {
-      //       type: "success",
-      //       transition: "bounce",
-      //       showIcon: "true",
-      //       timeout: 3000,
-      //       toastBackgroundColor: "#dcb63b",
-      //     }
-      //   );
+            toast.success(title2.value, {
+        position: "top-right",
+        timeout: 3000,
+        closeOnClick: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        draggable: true,
+        draggablePercent: 0.6,
+        showCloseButtonOnHover: false,
+        hideProgressBar: true,
+        closeButton: "button",
+        icon: true,
+        class: 'toast-container',
+        rtl: false
+      });
     }
 
   } catch (errorss) {
@@ -1001,7 +977,7 @@ let items = ref([
   {
     title: locale.value == "ar" ? "الرئيسية" : "home",
     disabled: false,
-    class:"breadcrumbs-text",
+    class: "breadcrumbs-text",
     href: "/",
   },
   {
@@ -1014,7 +990,9 @@ let items = ref([
 onMounted(() => {
   console.log(user.value);
   getOptions();
+  getDesc();
   getCars();
+  getNotifications();
 })
 </script>
 

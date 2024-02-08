@@ -5,7 +5,7 @@
         class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column"
       >
         <h4 class="heading-text">{{ $t('finance') }}</h4>
-        <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
+        <p>{{desc}}</p>
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
             <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
@@ -169,7 +169,15 @@ let pendingOtp2 = ref(false);
 let orderNum1 = ref();
 let error1 = ref();
 
-
+let desc = ref('');
+const getDesc = async () => {
+  let result = await axios.get(`${getUrl()}/allsettings`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  desc.value = result.data.data.financeDescription;
+}
 
 
 const sendOtp = async () => {
@@ -240,6 +248,7 @@ let items = ref([
 
 
 onMounted(() => {
+  getDesc();
 })
 </script>
 

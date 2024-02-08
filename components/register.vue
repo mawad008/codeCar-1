@@ -96,13 +96,10 @@
             </div>
             <div class="input">
               <label for=""> {{ $t('phone') }} </label>
-              <input
-                type="tel"
-                placeholder=" 3333-5555-9999-55"
-                name=""
-                v-model="form.phone"
-              />
+            <div class="w-100 d-flex align-items-center justify-content-between phonenum">
+                  <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="form.phone" />
                   <span class="numm login">+966</span>
+                </div>
               <span class="error-msg" v-if="v$.phone.$error">{{
                 v$.phone.$errors[0].$message
               }}</span>

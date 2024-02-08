@@ -156,7 +156,7 @@ const addFavFunc = async (id , success) =>{
   closeButton: "button",
   icon: true,
   class:'toast-container',
-//   rtl: false
+  rtl: false
 });
 
   }

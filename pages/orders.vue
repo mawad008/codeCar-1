@@ -3,7 +3,7 @@
         <div class="container orders-page">
             <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
                 <h4 class="heading-text"> {{ $t('followOrder') }} </h4>
-                <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
+                <p>{{ desc }}</p>
 
                 <v-breadcrumbs :items="items">
                     <template v-slot:divider>
@@ -17,12 +17,15 @@
                 <h3> {{ $t('order3') }} </h3>
                 <span class="word"> {{ $t('follow1') }} </span>
                 <div class="header flex-column felx-xl-row flex-lg-row">
-                    <div class="payment-method">
-                        <button @click="chooseBtn = 1 , type = 'processing' , getOrders() " class="one" :class="{ 'active': chooseBtn == 1 }"> {{ $t('under') }}</button>
-                        <button @click="chooseBtn = 2 , type = 'complete', getOrders()" class="two" :class="{ 'active': chooseBtn == 2 }">{{$t('compelete')}}</button>
+                     
+                    <div v-if="tokenCookie" class="payment-method">
+                        <button @click="chooseBtn = 1, type = 'processing', getOrders()" class="one"
+                            :class="{ 'active': chooseBtn == 1 }"> {{ $t('under') }}</button>
+                        <button @click="chooseBtn = 2, type = 'complete', getOrders()" class="two"
+                            :class="{ 'active': chooseBtn == 2 }">{{ $t('compelete') }}</button>
                     </div>
-                    <div class="search-bar">
-                        <input type="text" v-model="orderNumber"  :placeholder="$t('searchOrder')">
+                    <div v-else class="search-bar">
+                        <input type="text" v-model="orderNumber" :placeholder="$t('searchOrder')">
                         <div @click="getOrders()" class="icon">
                             <img src="~/assets/images/search-icon.svg" alt="" />
                         </div>
@@ -30,7 +33,7 @@
                 </div>
 
                 <div class="row">
-                     <!-- <div class="col-12 col-xl-6 col-lg-6 my-3">
+                    <!-- <div class="col-12 col-xl-6 col-lg-6 my-3">
                         <div class="the-order" style="position:relative;">
                             <div class="image-container">
                                 <div class="image">
@@ -249,21 +252,22 @@
                             </div>
                         </div>
                     </div> -->
-                    
+
                     <div v-for="item in orders1" class="col-12 col-xl-6 col-lg-6 my-3">
-                        <div class="the-order" :class="{'corp': item.OrderType == 'organization'}" style="position:relative;">
-                        <div v-if="item.OrderType == 'organization' " class="main" >
-                            <div  v-for="i in item.cars" class="image-container">
-                                <div class="image">
-                                    <img :src="i.carimage" alt="">
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <h5>{{ i.car_title }} <span>( {{ i.carcount }} )</span></h5>
-                                    <span>{{ i.options }}</span>
+                        <div class="the-order" :class="{ 'corp': item.OrderType == 'organization' }"
+                            style="position:relative;">
+                            <div v-if="item.OrderType == 'organization'" class="main">
+                                <div v-for="i in item.cars" class="image-container">
+                                    <div class="image">
+                                        <img :src="i.carimage" alt="">
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <h5>{{ i.car_title }} <span>( {{ i.carcount }} )</span></h5>
+                                        <span>{{ i.options }}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div v-if="item.OrderType == 'individual' " class="image-container">
+                            <div v-if="item.OrderType == 'individual'" class="image-container">
                                 <div class="image">
                                     <img src="~/assets/images/car1.png" alt="">
                                 </div>
@@ -272,7 +276,7 @@
                                     <span>{{ item.options }}</span>
                                 </div>
                             </div>
-                             <div v-if="item.OrderType == 'individual' && item.OrderPaymentType == 'finance' " class="det">
+                            <div v-if="item.OrderType == 'individual' && item.OrderPaymentType == 'finance'" class="det">
                                 <div class="row">
                                     <div class="col-12 col-xl-6 col-lg-6">
                                         <div class="box">
@@ -484,7 +488,7 @@
                                     </svg>
                                 </div> -->
                             </div>
-                             <div v-if="item.OrderType == 'individual' && item.OrderPaymentType == 'cash' " class="det">
+                            <div v-if="item.OrderType == 'individual' && item.OrderPaymentType == 'cash'" class="det">
                                 <div class="row">
                                     <div class="col-12 col-xl-6 col-lg-6 ">
                                         <div class="box">
@@ -519,20 +523,20 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                                <div class="stat cancel" :style="{backgroundColor: item.orderStatue.color}">
-                                    <span>{{ item.orderStatue.name }}</span>
-                                </div>
+
+                            <div class="stat cancel" :style="{ backgroundColor: item.orderStatue.color }">
+                                <span>{{ item.orderStatue.name }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            <client-only >
-            <Vue3Lottie v-if="pendingLoader2"  :animation-data="loader" :height="200" :width="200" />
-          </client-only>
+                <client-only>
+                    <Vue3Lottie v-if="pendingLoader2" :animation-data="loader" :height="200" :width="200" />
+                </client-only>
             </div>
-           
+
         </div>
-    <!-- <Loader v-if="pendingLoader"></Loader>  -->
+        <!-- <Loader v-if="pendingLoader"></Loader>  -->
     </div>
 </template>
 
@@ -556,36 +560,46 @@ let orders1 = ref([]);
 let type = ref('processing');
 let orders2 = ref([]);
 
-const getOrders = async ()=>{
-    if(tokenCookie){
+let desc = ref('');
+const getDesc = async () => {
+       let result = await axios.get(`${getUrl()}/allsettings`, {
+        headers: {
+            "Content-Language": `${locale.value}`,
+        },
+       });
+    desc.value = result.data.data.followyourOrder;
+}
+const getOrders = async () => {
+    if (tokenCookie) {
         pendingLoader.value = true;
         pendingLoader2.value = true;
         orders1.value = [];
-        let result =  await axios.get(`${getUrl()}/requests_auth`,{
+        let result = await axios.get(`${getUrl()}/requests_auth`, {
             params: {
                 order_number: orderNumber.value,
                 filter: type.value
             },
             headers: {
-              "Content-Language": `${locale.value}`,
-              Authorization: `Bearer ${tokenCookie}`,
+                "Content-Language": `${locale.value}`,
+                Authorization: `Bearer ${tokenCookie}`,
             },
         });
-        if(result.status == 200){
+        if (result.status == 200) {
             pendingLoader.value = false;
             pendingLoader2.value = false;
         }
         orders1.value = result.data.data;
-    } else{
-        let result = axios.get(`${getUrl()}/requests-search`,{
+    } else {
+        let result = await axios.get(`${getUrl()}/requests-search`, {
             params: {
                 order_number: parseInt(orderNumber.value)
             },
             headers: {
-              "Content-Language": `${locale.value}`,
-            
+                "Content-Language": `${locale.value}`,
+
             },
         });
+        orders1.value = result.data;
 
     }
 }
@@ -594,7 +608,7 @@ let items = ref([
     {
         title: locale.value == "ar" ? "الرئيسية" : "home",
         ddisabled: false,
-      class:"breadcrumbs-text",
+        class: "breadcrumbs-text",
         href: "/",
     },
     {
@@ -605,10 +619,11 @@ let items = ref([
 ]);
 
 onMounted(() => {
-  console.log(user);
-  if(tokenCookie){
-      getOrders();  
-  }
+    console.log(user);
+    if (tokenCookie) {
+        getOrders();
+    }
+    getDesc();
 })
 
 </script>
