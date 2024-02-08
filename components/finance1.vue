@@ -659,27 +659,27 @@
                         <span> {{$t('nat')}} </span>
                         <div class="input">
                           <Dropdown
-                            v-model="form3.transferd_type"
-                            :options="transferArr"
+                            v-model="form3.nationality_id"
+                            :options="optionsCars.nationalities"
                             filter
                           :filter-placeholder="$t('search')"
 
-                            optionValue="value"
-                            optionLabel="name"
+                            optionValue="id"
+                            optionLabel="title"
                             :placeholder="$t('nat')"
                             class=""
                           >
                             <template #option="slotProps">
                               <div class="flex align-items-center">
-                                <div>{{ slotProps.option.name }}</div>
+                                <div>{{ slotProps.option.title }}</div>
                               </div>
                             </template>
                           </Dropdown>
-                          <span class="error-msg" v-if="v3$.transferd_type.$error">{{
-                              v3$.transferd_type.$errors[0].$message
+                          <span class="error-msg" v-if="v3$.nationality_id.$error">{{
+                              v3$.nationality_id.$errors[0].$message
                           }}</span>
-                  <span class="error-msg" v-if="errors3.transferd_type">{{
-                      errors3.transferd_type[0]
+                  <span class="error-msg" v-if="errors3.nationality_id">{{
+                      errors3.nationality_id[0]
                   }}</span>
                         </div>
                       </div>
@@ -1212,7 +1212,7 @@ let form3 = ref({
     salary: '',
     bank: '',
     Monthly_cometment: '',
-    transferd_type: 'transfer',
+    nationality_id: '',
     email: '',
     have_life_problem: 0,
     traffic_violations: 0,
@@ -1259,7 +1259,7 @@ const rules3 = computed(() => {
         identity_no: { required: helpers.withMessage(value1.value, required) },
         sector: { required: helpers.withMessage(value1.value, required) },
         salary: { required: helpers.withMessage(value1.value, required) },
-        transferd_type: { required: helpers.withMessage(value1.value, required) },
+        nationality_id: { required: helpers.withMessage(value1.value, required) },
         bank: { required: helpers.withMessage(value1.value, required) },
         Monthly_cometment: { required: helpers.withMessage(value1.value, required) },
         have_life_problem: { required: helpers.withMessage(value1.value, required) },
