@@ -117,7 +117,9 @@
       <div v-if="loginNav == 2" class="otp">
         <div class="">
           <div class="header w-100 d-flex align-items-center justify-content-between">
-            C
+               <nuxt-link :to="localePath('/')">
+              <logo />
+            </nuxt-link>
             <div @click="loginNav = 1" class="arrow">
               <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="6" height="12" viewBox="0 0 6 12"
                 fill="none">
@@ -135,10 +137,17 @@
         <div class="mainform">
           <div class="form">
             <div class="input">
-              <label for=""> {{ $t('phone') }}</label>
-              <input type="tel" v-model="phone" placeholder="3333-5555-9999-55" />
-              <span class="error-msg" v-if="error2">{{ error2 }}</span>
+              <label for=""> {{ $t('phone') }} </label>
+            <div class="w-100 d-flex align-items-center justify-content-between phonenum">
+                  <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="phone" />
+                  <span class="numm login">+966</span>
+                </div>
+             
+              <span class="error-msg" v-if="error2">{{
+                error2
+              }}</span>
             </div>
+         
           </div>
           <button @click="sendOtp()" :disabled="pending2" style="margin-top:72px;">
             {{ $t('follow') }}

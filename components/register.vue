@@ -107,14 +107,21 @@
                 errors.phone[0]
               }}</span>
             </div>
-            <div v-if="typeForm != 'individual'" class="input">
+            <div v-if="typeForm == 'individual'" class="input">
               <label for=""> {{ $t('ident') }}</label>
               <input
-                type="text"
-                placeholder="مثال : 3333-5555-9999-55"
-                name=""
-                v-model="form.id_number"
+              type="text"
+              placeholder="3333-5555-9999-55"
+              name=""
+              v-model="form.id_number"
               />
+              <span class="error-msg" v-if="v$.id_number.$error">{{
+                v$.id_number.$errors[0].$message
+              }}</span>
+              <span class="error-msg" v-if="errors.identity_no">{{
+                errors.identity_no[0]
+              }}</span>
+           
             </div>
             <div v-if="typeForm != 'individual'" class="input">
               <label for=""> {{ $t('nummm') }} </label>
@@ -124,6 +131,12 @@
                 name=""
                 v-model="form.commercial_register_namber"
               />
+               <span class="error-msg" v-if="v$.commercial_register_namber.$error">{{
+                 v$.commercial_register_namber.$errors[0].$message
+               }}</span>
+                 <span class="error-msg" v-if="errors.commercial_registration_no">{{
+                   errors.commercial_registration_no[0]
+                 }}</span>
             </div>
             <div class="input">
               <label for=""> {{ $t('city') }} </label>
@@ -418,6 +431,8 @@ const rules = {
   name: { required: helpers.withMessage(value1.value, required) },
   city_id: { required: helpers.withMessage(value1.value, required) },
   phone: { required: helpers.withMessage(value1.value, required) },
+  id_number: { required: helpers.withMessage(value1.value, required) },
+  commercial_register_namber: { required: helpers.withMessage(value1.value, required) },
   // email: {
   //   required: helpers.withMessage(value2.value, required),
   //   email: helpers.withMessage(value3.value, email),
@@ -447,11 +462,12 @@ const registerFunc = async () => {
   formBody.append("password", form.value.password);
   formBody.append("password_confirmation", form.value.password_confirmation);
   if (typeForm.value == "agency" || typeForm.value == "exhibition" ) {
-    formBody.append("identity_no", form.value.id_number);
     formBody.append(
       "commercial_registration_no",
       form.value.commercial_register_namber
-    );
+      );
+    } else{
+    formBody.append("identity_no", form.value.id_number);
   }
   if (check) {
     pending1.value= true;
