@@ -99,7 +99,7 @@
             <div class="ad-content">
               <div v-if="adNavBtn == 1">
                 <h5>{{ $t("namee") }}</h5>
-                <div class="input">
+                <!-- <div class="input">
                   <label for="">
                     {{ $t("carName") }}
                   </label>
@@ -114,7 +114,7 @@
                   <span class="error-msg2" v-if="errors1.Car_Name">{{
                     errors1.Car_Name[0]
                   }}</span>
-                </div>
+                </div> -->
                 <div class="input">
                   <label for="">
                     <span> {{ $t("car_det") }} </span>
@@ -140,6 +140,33 @@
                   }}</span>
                   <span class="error-msg2" v-if="errors1.Car_Description">{{
                     errors1.Car_Description[0]
+                  }}</span>
+                </div>
+                <div class="input">
+                  <label for="">
+                    <span> {{ $t("car_det2") }} </span>
+                  </label>
+                  <textarea
+                    v-model="form4.Car_Description_en"
+                    :maxlength="500"
+                    name=""
+                    id=""
+                    cols="30"
+                    rows="10"
+                  ></textarea>
+                  <div class="num d-flex align-items-center gap-3">
+                    <span> 500 / {{ form4.Car_Description_en.length }} </span>
+                    <v-progress-circular
+                      :model-value="form4.Car_Description_en.length"
+                      color="#dcb63b"
+                      :size="25"
+                    ></v-progress-circular>
+                  </div>
+                  <span class="error-msg" v-if="v1$.Car_Description_en.$error">{{
+                    v1$.Car_Description_en.$errors[0].$message
+                  }}</span>
+                  <span class="error-msg2" v-if="errors1.Car_Description_en">{{
+                    errors1.Car_Description_en[0]
                   }}</span>
                 </div>
                 <div class="det">
@@ -362,6 +389,79 @@
                       </div>
                     </div>
                   </div>
+                     <div class="half row">
+                      <div class="col-12 col-l-6 col-lg-6">
+                        <div class="input">
+                          <label for=""> {{ $t('filter4') }}</label>
+
+                          <Dropdown v-model="form4.Car_style" optionValue="value" :filter-placeholder="$t('search')" :options="carStyle"
+                            filter optionLabel="name" :placeholder="$t('filter4')" class="">
+                            <template #option="slotProps">
+                              <div class="flex align-items-center">
+                                <div>{{ slotProps.option.name }}</div>
+                              </div>
+                            </template>
+                          </Dropdown>
+                          <span class="error-msg" v-if="v1$.Car_style.$error">{{
+                            v1$.Car_style.$errors[0].$message
+                          }}</span>
+                          <span class="error-msg2" v-if="errors1.Car_style">{{
+                            errors1.Car_style[0]
+                          }}</span>
+                        </div>
+                      </div>
+                      <div class="col-12 col-l-6 col-lg-6">
+                        <div class="input">
+                          <label for="">{{ $t("carCategory") }}</label>
+                          <Dropdown v-model="form4.Category" optionValue="id" :filter-placeholder="$t('search')"
+                            :options="optionsCars.Category" filter optionLabel="title" :placeholder="$t('carCategory')" class="">
+                            <template #option="slotProps">
+                              <div class="flex align-items-center">
+                                <div>{{ slotProps.option.title }}</div>
+                              </div>
+                            </template>
+                          </Dropdown>
+                          <span class="error-msg" v-if="v1$.Category.$error">{{
+                            v1$.Category.$errors[0].$message
+                          }}</span>
+                          <span class="error-msg2" v-if="errors1.Category">{{
+                            errors1.Category[0]
+                          }}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="half row">
+                      <div class="col-12 col-l-6 col-lg-6">
+                        <div class="input">
+                          <label for="">
+                            {{ $t("engi") }}
+                          </label>
+                          <input type="number" :placeholder="$t('engi')" min="1" v-model="form4.fuel_tank_capacity" />
+                          <span class="error-msg" v-if="v1$.fuel_tank_capacity.$error">{{
+                            v1$.fuel_tank_capacity.$errors[0].$message }}</span>
+                          <span class="error-msg2" v-if="errors1.fuel_tank_capacity">{{
+                            errors1.fuel_tank_capacity[0]
+                          }}</span>
+                        </div>
+                      </div>
+                      <div class="col-12 col-l-6 col-lg-6">
+                        <div class="input">
+                          <label for="">{{ $t("city") }}</label>
+                          <Dropdown v-model="form4.City" optionValue="id" :filter-placeholder="$t('search')"
+                            :options="cities" filter optionLabel="name" :placeholder="$t('city')" class="">
+                            <template #option="slotProps">
+                              <div class="flex align-items-center">
+                                <div>{{ slotProps.option.name }}</div>
+                              </div>
+                            </template>
+                          </Dropdown>
+                          <span class="error-msg" v-if="v1$.City.$error">{{ v1$.City.$errors[0].$message }}</span>
+                          <span class="error-msg2" v-if="errors1.City">{{
+                            errors1.City[0]
+                          }}</span>
+                        </div>
+                      </div>
+                    </div>
                   <div class="half row">
                     <div class="col-12 col-l-6 col-lg-6">
                       <div class="input">
@@ -539,7 +639,7 @@
                       </div>
 
                     </div>
-                      <span v-if="!checkImages" class="d-block text-center mt-2 text-danger" > {{$t('warn1')}} </span>
+                      <!-- <span v-if="!checkImages" class="d-block text-center mt-2 text-danger" > {{$t('warn1')}} </span> -->
                   </div>
                 </div>
                 <div class="btns d-flex align-items-center justify-content-end">
@@ -645,8 +745,13 @@ let selectedFileUrl = ref(null);
 let selectedMainImg = ref(null);
 
 let form4 = ref({
-  Car_Name: "",
+  // Car_Name: "",
   Car_Description: "",
+  Car_Description_en: "",
+  Car_style: "",
+  fuel_tank_capacity: "",
+  City: "",
+  Category: "",
   Car_Brand: "",
   Car_Model: "",
   Car_Year: "",
@@ -662,12 +767,17 @@ let form4 = ref({
 
 const rules1 = computed(() => {
   return {
-    Car_Name: { required: helpers.withMessage(value1.value, required) },
+    // Car_Name: { required: helpers.withMessage(value1.value, required) },
     Car_Description: { required: helpers.withMessage(value1.value, required) },
     Car_Brand: { required: helpers.withMessage(value1.value, required) },
     Car_Model: { required: helpers.withMessage(value1.value, required) },
     Car_Year: { required: helpers.withMessage(value1.value, required) },
     Car_Statue: { required: helpers.withMessage(value1.value, required) },
+    Category: { required: helpers.withMessage(value1.value, required) },
+    City: { required: helpers.withMessage(value1.value, required) },
+    fuel_tank_capacity: { required: helpers.withMessage(value1.value, required) },
+    Car_style: { required: helpers.withMessage(value1.value, required) },
+    Car_Description_en: { required: helpers.withMessage(value1.value, required) },
     Gear_shifter: { required: helpers.withMessage(value1.value, required) },
     // Killometer: { required: helpers.withMessage(value1.value, required) },
     Fuel_Type: { required: helpers.withMessage(value1.value, required) },
@@ -750,6 +860,41 @@ let gear_shifterArr = ref([
   },
 ]);
 
+
+let carStyle = ref([
+  {
+    value: "hatchback",
+    name: locale.value == "ar" ? "هاتشباك" : "hatchback",
+  },
+  {
+    value: "sedan",
+    name: locale.value == "ar" ? "سيدان" : "sedan",
+  },
+  {
+    value: "our-wheel-drive",
+    name: locale.value == "ar" ? "دفع رباعي" : "Four-Wheel Drive",
+  },
+  {
+    value: "family",
+    name: locale.value == "ar" ? "عائلي" : "family",
+  },
+  {
+    value: "commercial",
+    name: locale.value == "ar" ? "تجاري" : "commercial",
+  }
+]);
+
+
+let cities = ref([]);
+const getCites = async () => {
+  let result = await axios.get(`${getUrl()}/cities`, {
+    headers: {
+      "Content-Language": `${locale.value}`
+    }
+  });
+  cities.value = result.data.data;
+}
+
 let carBody = ref([
   {
     value: 0,
@@ -783,7 +928,7 @@ let fuel_typeArr = ref([
 let supplierArr = ref([
   {
     value: "gulf",
-    name: locale.value == "ar" ? "خليجي" : "saudi",
+    name: locale.value == "ar" ? "خليجي" : "gulf",
   },
   {
     value: "saudi",
@@ -898,8 +1043,13 @@ const addFunc2 = async () => {
     // console.log(filterImages.value);
     // console.log(checkImg.value);
           let formBody = new FormData();
-    formBody.append("Car_Name", form4.value.Car_Name);
+    // formBody.append("Car_Name", form4.value.Car_Name);
     formBody.append("Car_Description", form4.value.Car_Description);
+    formBody.append("Car_Description_en", form4.value.Car_Description_en);
+    formBody.append("Car_style", form4.value.Car_style);
+    formBody.append("City", form4.value.City);
+    formBody.append("fuel_tank_capacity", form4.value.fuel_tank_capacity);
+    formBody.append("Category", form4.value.Category);
     formBody.append("Car_Brand", form4.value.Car_Brand);
     formBody.append("Car_Model", form4.value.Car_Model);
     formBody.append("Car_Year", form4.value.Car_Year);
@@ -925,7 +1075,7 @@ const addFunc2 = async () => {
     // }
     pending2.value = true;
     try {
-      let result = await axios.post(`${getUrl()}/add-Your-Ad`, formBody , {
+      let result = await axios.post(`${getUrl()}/add-Your-addss`, formBody , {
         params: {
           step: 1,
         },
@@ -968,7 +1118,7 @@ let items = ref([
 onMounted(() => {
     // loopImages();
   getOptions();
-
+  getCites();
 });
 </script>
 

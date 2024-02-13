@@ -115,9 +115,9 @@
               name=""
               v-model="form.id_number"
               />
-              <span class="error-msg" v-if="v$.id_number.$error">{{
+              <!-- <span class="error-msg" v-if="v$.id_number.$error">{{
                 v$.id_number.$errors[0].$message
-              }}</span>
+              }}</span> -->
               <span class="error-msg" v-if="errors.identity_no">{{
                 errors.identity_no[0]
               }}</span>
@@ -131,9 +131,9 @@
                 name=""
                 v-model="form.commercial_register_namber"
               />
-               <span class="error-msg" v-if="v$.commercial_register_namber.$error">{{
+               <!-- <span class="error-msg" v-if="v$.commercial_register_namber.$error">{{
                  v$.commercial_register_namber.$errors[0].$message
-               }}</span>
+               }}</span> -->
                  <span class="error-msg" v-if="errors.commercial_registration_no">{{
                    errors.commercial_registration_no[0]
                  }}</span>
@@ -431,8 +431,8 @@ const rules = {
   name: { required: helpers.withMessage(value1.value, required) },
   city_id: { required: helpers.withMessage(value1.value, required) },
   phone: { required: helpers.withMessage(value1.value, required) },
-  id_number: { required: helpers.withMessage(value1.value, required) },
-  commercial_register_namber: { required: helpers.withMessage(value1.value, required) },
+  //id_number: { required: helpers.withMessage(value1.value, required) },
+  //commercial_register_namber: { required: helpers.withMessage(value1.value, required) },
   // email: {
   //   required: helpers.withMessage(value2.value, required),
   //   email: helpers.withMessage(value3.value, email),

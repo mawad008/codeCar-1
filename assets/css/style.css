@@ -379,6 +379,7 @@ html[dir=rtl] input[type=tel] {
 }
 .main-auth .main-img img {
   width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -2359,6 +2360,9 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
 .paymentType .input-container .input {
   height: 48px;
   border-radius: 8px;
+}
+.paymentType .input-container .input .phonenum {
+  height: 48px;
 }
 .paymentType .input-container .input input,
 .paymentType .input-container .input .p-dropdown {
