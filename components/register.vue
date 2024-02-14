@@ -249,7 +249,7 @@
               }}</span>
             </div>
           </div>
-          <div class="d-flex align-item-center justify-content-center">
+          <div class="d-flex align-item-center justify-content-cente" style="width:400px">
             <p>
                 {{ $t('reg5') }}<span> {{$t('policy1')}} </span> -  <span> {{ $t('policy2') }} </span>
             </p>

@@ -7,7 +7,10 @@ export const createFormData = (
   selectedFileName2,
   selectedFileName3,
   selectedFileName4,
-  bank_offer_id
+  bank_offer_id,
+  sliderValue1,
+  sliderValue2,
+  sliderValue3
 ) => {
   const formData = new FormData();
 
@@ -62,6 +65,9 @@ export const createFormData = (
     ["License_Card", selectedFileName2],
     ["Hr_Letter_Image", selectedFileName3],
     ["Insurance_Image", selectedFileName4],
+    ["first_batch", sliderValue1],
+    ["installment", sliderValue2],
+    ["last_batch", sliderValue3],
   ];
 
   // Append fields and values to FormData
@@ -73,7 +79,10 @@ export const createFormData = (
 };
 export const createFormData1 = (
   form2,
-  form3
+  form3,
+  sliderValue1,
+  sliderValue2,
+  sliderValue3,
 ) => {
   const formData = new FormData();
 
@@ -97,6 +106,7 @@ export const createFormData1 = (
     traffic_violations,
     department_loan,
     driving_license,
+
   } = form3;
 
   // Fields and values
@@ -123,6 +133,9 @@ export const createFormData1 = (
     ["traffic_violations", traffic_violations],
     ["department_loan", department_loan],
     ["driving_license", driving_license],
+    ["first_batch", sliderValue1],
+    ["installment", sliderValue2],
+    ["last_batch", sliderValue3],
   ];
 
   // Append fields and values to FormData

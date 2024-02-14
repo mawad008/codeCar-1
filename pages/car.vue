@@ -46,7 +46,7 @@
                       </div>
                     </div>
                   </div>
-                  <div>
+                  <div class="h-100 d-flex flex-column justify-content-end">
                     <div class="icons">
                       <div class="icon" @click="shareIcons = !shareIcons">
                         <!-- <img src="@/assets/images/share-icon.svg" alt="" /> -->

@@ -145,14 +145,14 @@ a {
     justify-content: center;
     border-radius: 8px;
     background: #fafafa;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
     .swiper-slide{
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 8px;
       background: #fafafa;
-      margin-bottom: 20px;
+      // margin-bottom: 20px;
       width: 100% !important;
       height: 100%;
       img {
@@ -176,6 +176,7 @@ a {
       font-style: normal;
       font-weight: 700;
       color: $secondary-black;
+      margin-top: 8px;
     }
   }
   .price {
@@ -201,7 +202,7 @@ a {
     align-items: center;
     justify-content: space-around;
     gap: 10px;
-    margin-top: 14px;
+    margin-top: 18px;
     .type {
       display: flex;
       align-items: center;
@@ -477,6 +478,15 @@ p{
     height: 100%;
     // background-size: auto;
     background-color: #fff;
+    position: relative;
+    .overlay{
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
     img {
       width: 100%;
       height: 100%;
@@ -1054,6 +1064,8 @@ html[dir="ltr"] .main-auth{
     h5 {
       font-size: 24px;
       font-style: normal;
+      font-weight: 700;
+      margin-bottom: 12px;
     }
     span {
       color: #8c8c8c;
@@ -1067,6 +1079,7 @@ html[dir="ltr"] .main-auth{
       height: 60px;
       align-items: center;
       gap: 12px;
+      margin-top: 22px;
       border-radius: 40px;
       background: rgba(255, 255, 255, 0.18);
       position: relative;
@@ -1080,10 +1093,11 @@ html[dir="ltr"] .main-auth{
       input {
         border: none;
         outline: none;
-        color: #fff;
+        color: #fff !important;
         font-size: 16px;
         width: 80%;
-        ::placeholder {
+        &::placeholder {
+          color: #fff !important;
        
         }
       }
@@ -2037,12 +2051,12 @@ html[dir="rtl"] .explore {
       margin-top: 48px;
     }
     h4 {
-      width: 433px;
+      width: 400px;
       font-size: 32px;
       font-style: normal;
       font-weight: 700;
       line-height: 140%;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       color: $secondary-black;
     }
     .special {
@@ -2075,7 +2089,7 @@ html[dir="rtl"] .explore {
       span {
         color: #5a7184;
         font-size: 14px;
-        width: 370px;
+        width: 270px;
         font-style: normal;
         font-weight: 400;
         line-height: 160%;
@@ -2299,7 +2313,7 @@ html[dir="rtl"] .explore {
     border-radius: 24px;
     background: #fff;
     padding: 30px;
-    min-height: 584px;
+    // min-height: 584px;
     .images-text {
       .main-images {
         // width: 578px;
@@ -2309,10 +2323,10 @@ html[dir="rtl"] .explore {
         // justify-content: space-between;
       }
       .mySwiper2 {
-        margin-bottom: 40px;
+        // margin-bottom: 40px;
         .swiper-slide {
           width: 100%;
-          height: 416px;
+          height: 410px;
           border-radius: 16px;
           border: 1px solid #ebeaed;
           // background-image: url("~/assets/images/car.png");
@@ -3315,19 +3329,22 @@ html[dir="rtl"] .explore {
   width: 344px;
   height: 48px;
   border-radius: 32px;
-  border: 1px solid #ebeaed;
+  // border: 1px solid #ebeaed;
   button {
     width: 50%;
     font-size: 16px;
     font-weight: 400;
     height: 100%;
+    border: 1px solid #ebeaed;
     color: $body-text;
     &.active {
       color: #dcb63b;
       font-weight: 700;
       
-
+      border: none !important;
       background-color: #fcf4e2;
+    // border: 1px solid #fcf4e2;
+
     }
 
   }
@@ -3343,7 +3360,6 @@ html[dir="rtl"]{
     button{
       &.one{
         border-radius: 0px 32px 32px 0px;
-  
       }
       &.two{
         border-radius: 32px 0px 0px 32px;
@@ -4177,7 +4193,11 @@ html[dir="ltr"] {
     }
     .overlay {
       border-radius: 16px;
-      background: linear-gradient(180deg, #000 0%, rgba(38, 139, 202, 0) 100%);
+      // background: linear-gradient(180deg, #000 0%, rgba(38, 139, 202, 0) 100%);
+      background-image: url('~/assets/images/new-overlay.svg');
+      // background-color: red;
+      // background-position: center;
+      background-size: cover;
       position: absolute;
       top: 0;
       right: 0;
@@ -5487,7 +5507,7 @@ width: 100%;
     font-style: normal;
     font-weight: 700;
     margin-top: 35px;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
   }
   p{
     width: 302px;
@@ -5496,7 +5516,7 @@ width: 100%;
     font-size: 16px;
     font-weight: 400;
     line-height: 150%;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
   }
   .btns {
     display: flex;
@@ -5746,14 +5766,18 @@ font-weight: 700;
         font-style: normal;
         font-weight: 700;
         color: $secondary-black;
-        margin-bottom: 20px;
+        // margin-bottom: 20px;
+      }
+       .error-msg2{
+        position: relative !important;
+        display: block;
       }
       .input {
         display: flex;
         flex-direction: column;
         position: relative;
         gap: 10px;
-        margin: 30px 0px;
+        margin: 20px 0px;
         .num {
           position: absolute;
           bottom: 20px;
@@ -5769,7 +5793,8 @@ font-weight: 700;
           font-size: 14px;
           font-style: normal;
           font-weight: 700;
-          color: $secondary-black;
+          // color: $secondary-black;
+          color: #5A7184;
           position: relative;
         }
         input,
@@ -5856,6 +5881,9 @@ font-weight: 700;
             display: flex;
             flex-direction: column;
             align-items: center;
+            .active{
+              filter: brightness(200%);
+            }
             span {
               font-size: 12px;
               font-style: normal;

@@ -151,7 +151,8 @@
                             <div class="map">
                             <div class="image">
                                 <!-- <img src="~/assets/images/contact-map.png" alt=""> -->
-                                <div v-html="contactArr.address_iframe"></div>
+                                <iframe v-if="contactArr.address_iframe" :src="contactArr.address_iframe"></iframe>
+                                <!-- <div v-html="contactArr.address_iframe"></div> -->
                             
                             </div>
                                 <div class="overlay">

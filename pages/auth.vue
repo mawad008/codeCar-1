@@ -17,6 +17,7 @@
         <div class="col-12 col-xl-5 col-lg-5 ">
           <div class="main-img">
             <img src="~/assets/images/login-img.png" alt="" />
+            <img class="overlay" src="~/assets/images/overlay-form.svg" alt="" />
           </div>
         </div>
       </div>

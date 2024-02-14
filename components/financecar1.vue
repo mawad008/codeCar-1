@@ -1382,7 +1382,10 @@ const paymentFunc2 = async () => {
 };
 const paymentFunc3 = async () => {
     v3$.value.$validate();
-    let formBody = createFormData1(form2.value, form3.value);
+    // formBody.append("first_batch", sliderValue1.value);
+    // formBody.append("installment", sliderValue2.value);
+    // formBody.append("last_batch", sliderValue3.value);
+    let formBody = createFormData1(form2.value, form3.value , sliderValue1.value , sliderValue2.value , sliderValue3.value);
     if (isFormFilled3()) {
       pending3.value = true;
         try {
@@ -1431,6 +1434,9 @@ const paymentFunc4 = async () => {
     formBody.append("bank_offer_id", bank_offer_id.value);
     formBody.append("color_id", form2.value.color_id);
     formBody.append("bank", form3.value.bank);
+      formBody.append("first_batch", sliderValue1.value);
+    formBody.append("installment", sliderValue2.value);
+    formBody.append("last_batch", sliderValue3.value);
     if (bank_offer_id.value) {
       pending4.value = true;
         let result = await axios.post(`${getUrl()}/financecar-Order`, formBody, {
@@ -1503,7 +1509,10 @@ const paymentFunc4 = async () => {
 
 // };
 const paymentFunc5 = async () => {
-    let formBody = createFormData(form2.value , form3.value , selectedFileName1.value , selectedFileName2.value , selectedFileName3.value , selectedFileName4.value , bank_offer_id.value);
+    // formBody.append("first_batch", sliderValue1.value);
+    // formBody.append("installment", sliderValue2.value);
+    // formBody.append("last_batch", sliderValue3.value);
+    let formBody = createFormData(form2.value , form3.value , selectedFileName1.value , selectedFileName2.value , selectedFileName3.value , selectedFileName4.value , bank_offer_id.value , sliderValue1.value , sliderValue2.value , sliderValue3.value);
     pending5.value = true;
     let result = await axios.post(`${getUrl()}/financecar-Order`, formBody, {
         params: {
