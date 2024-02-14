@@ -1,6 +1,6 @@
 <template>
   <div class="loader-page">
-    <div>
+    <div class="d-flex flex-column align-items-center main">
       <client-only>
         <Vue3Lottie :animation-data="cart" :height="300" :width="300" />
       </client-only>
@@ -46,8 +46,7 @@ import cart from "~/assets/animations/car2.json";
   }
   button {
     display: flex;
-    // width: 400px;
-    width: 100%;
+    width: 400px;
     height: 56px;
     padding: 0px 8px;
     justify-content: center;
@@ -56,6 +55,21 @@ import cart from "~/assets/animations/car2.json";
     border: 1px solid #2d3a4a;
     color: #2d3a4a;
     font-weight: 700;
+  }
+}
+
+@media(max-width:900px){
+  .loader-page{
+    h4{
+      font-size: 22px;
+    }
+    .main{
+      padding: 20px;
+    }
+    button{
+    width: 100% !important;
+    height: 48px;
+    }
   }
 }
 </style>

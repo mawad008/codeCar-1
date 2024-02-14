@@ -524,11 +524,12 @@
                                 </div>
                             </div>
 
-                            <div class="stat cancel" :style="{ backgroundColor: item.orderStatue.color }">
+                            <div  v-if="item.orderStatue" class="stat cancel" :style="{ backgroundColor: item.orderStatue.color }">
                                 <span>{{ item.orderStatue.name }}</span>
                             </div>
                         </div>
                     </div>
+                    <!-- {{ orders1[0] }} -->
                 </div>
                 <client-only>
                     <Vue3Lottie v-if="pendingLoader2" :animation-data="loader" :height="200" :width="200" />
@@ -590,6 +591,9 @@ const getOrders = async () => {
         }
         orders1.value = result.data.data;
     } else {
+        pendingLoader.value = true;
+        pendingLoader2.value = true;
+        orders1.value = [];
         let result = await axios.get(`${getUrl()}/requests-search`, {
             params: {
                 order_number: parseInt(orderNumber.value)
@@ -599,7 +603,11 @@ const getOrders = async () => {
 
             },
         });
-        orders1.value = result.data;
+        if (result.status == 200) {
+            pendingLoader.value = false;
+            pendingLoader2.value = false;
+        }
+        orders1.value = result.data.data;
 
     }
 }

@@ -32,7 +32,7 @@
               {{ $t("emptyfav2") }}   
               </p>
 
-            <nuxt-link :to="localePath('/')">
+            <nuxt-link :to="localePath('/market')">
               <button> {{ $t("emptyfav3") }} </button>
 
             </nuxt-link>

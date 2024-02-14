@@ -341,8 +341,8 @@
                       </svg>
                     </a>
                   </div>
-                  <div v-if="footerData.twitter" class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
-                    <a target="_blank" :href="footerData.twitter">
+                  <div v-if="footerData.tiktok" class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
+                    <a target="_blank" :href="footerData.tiktok">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -485,7 +485,9 @@
               <span> {{ $t('cop') }}  © {{ currentYear }}</span>
             </div>
             <div>
+            <a target="_blank" href="https://webstdy.com/ar?utm_source=codeCar-foorter&utm_medium=referral">
               <img src="~/assets/images/webstdy-white.png" alt="" />
+            </a>
             </div>
             <div class="d-flex align-items-center gap-3">
               <img src="~/assets/images/footer-png-1.svg" alt="" />

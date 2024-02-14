@@ -627,7 +627,6 @@
                 
 
             <button @click="loadMore()"> {{$t('searchMore')}} </button>
-            {{ page }}
           </div>
           
           

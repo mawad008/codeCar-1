@@ -287,14 +287,15 @@
 
           <div class="tabs">
             <div
-              @click="(tabNav = 0), (tab = 1), getProducts()"
-              :class="{ active: tab == 1 }"
+            v-for="item , index in tags"
+              @click="(tabNav = index), (tab = item.id), getProducts()"
+              :class="{ active: tab == item.id }"
               class="tab"
             >
-              <span class="choose"> {{ $t('tab1') }} </span>
+              <span class="choose"> {{ item.title}} </span>
               <border />
             </div>
-            <div
+            <!-- <div
               @click="(tabNav = 1), (tab = 2), getProducts()"
               :class="{ active: tab == 2 }"
               class="tab"
@@ -311,7 +312,7 @@
             >
               <span class="choose"> {{ $t('tab3') }} </span>
               <border />
-            </div>
+            </div> -->
           </div>
         </div>
    <!-- :autoplay="{
@@ -471,7 +472,7 @@ import axios from "axios";
 import { Vue3Lottie } from "vue3-lottie";
 import hero from "~/assets/animations/hero.json";
 import loader from "~/assets/animations/Loader.json";
-let tab = ref(1);
+let tab = ref(null);
 let tabNav = ref(0);
 const localePath = useLocalePath();
 
@@ -560,6 +561,7 @@ const whyCodeCar = async () => {
 };
 
 
+let tags = ref([]);
 
 let optionsCars = ref([]);
 let brands = ref([]);
@@ -574,6 +576,11 @@ const getOptions = async () => {
 
   optionsCars.value = result.data.data;
   brands.value = result.data.data.brands;
+  tags.value = result.data.data.tags;
+  tab.value = tags.value[0].id;
+    if (tab.value) {
+      getProducts();
+    }
 };
 
 
