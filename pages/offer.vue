@@ -86,6 +86,7 @@ let items = ref([
     {
         title: locale.value == "ar" ? 'العرض' : 'offer',
         disabled: true,
+        class:"breadcrumbs-dark",
     },
 ]);
 

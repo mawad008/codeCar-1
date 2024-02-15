@@ -201,6 +201,7 @@ let items = ref([
     {
         title: locale.value == 'ar' ? 'الخبر' : 'new',
         disabled: true,
+        class:"breadcrumbs-dark",
     },
 ]);
 

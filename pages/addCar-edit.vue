@@ -422,7 +422,7 @@
                       </div>
                       <div class="col-12 col-l-6 col-lg-6">
                         <div class="input">
-                          <label for="">{{ $t("disc") }}</label>
+                          <label for="">{{ $t("disc3") }}</label>
                           <input
                             type="number"
                             v-model="form4.Car_Price_after_Discount"
@@ -1011,6 +1011,12 @@ try {
 //     href: "ad",
 //   },
 // ]);
+
+
+useHead({
+  title: locale.value == 'ar' ? 'تعديل' : 'edit'
+});
+
 onMounted(() => {
     // loopImages();
     getCarDetails();

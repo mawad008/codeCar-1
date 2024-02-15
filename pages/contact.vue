@@ -151,8 +151,8 @@
                             <div class="map">
                             <div class="image">
                                 <!-- <img src="~/assets/images/contact-map.png" alt=""> -->
-                                <iframe v-if="contactArr.address_iframe" :src="contactArr.address_iframe"></iframe>
-                                <!-- <div v-html="contactArr.address_iframe"></div> -->
+                                <!-- <iframe v-if="contactArr.address_iframe" :src="contactArr.address_iframe"></iframe> -->
+                                <div v-html="contactArr.address_iframe"></div>
                             
                             </div>
                                 <div class="overlay">
@@ -236,7 +236,8 @@ let items = ref([
     },
     {
         title: locale.value == 'ar' ? 'اتصل بنا' : 'contact us',
-        disabled: false,
+        disabled: true,
+        class:"breadcrumbs-dark",
         href: 'contact',
     },
 ]);
@@ -326,12 +327,7 @@ const sendContact = async()=>{
   }
 }
 
-const openGoogleMap = () =>{
-    if(process.client){
-        const googleMapsUrl = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.377599546711!2d31.202060976201665!3d30.05470911808314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14584177183e24c1%3A0x89be8a01ae6e26bd!2zV2ViU1REWSAtINmI2YrYqCDYs9iq2K_Zig!5e0!3m2!1sen!2seg!4v1704114810770!5m2!1sen!2seg';
-      window.open(googleMapsUrl, '_blank');
-    }
-}
+
 const contactArr = ref([]);
 const getContactData =  async()=>{
     pending.value = true;
@@ -345,6 +341,18 @@ const getContactData =  async()=>{
      contactArr.value = result.data.data;
     }
 }
+
+
+const openGoogleMap = () =>{
+    if(process.client){
+        const googleMapsUrl = contactArr.value.src;
+      window.open(googleMapsUrl, '_blank');
+    }
+}
+
+useHead({
+  title: locale.value == 'ar' ? 'تواصل معنا' : 'contact us'
+});
 
 onMounted(() => {
     getContactData();  

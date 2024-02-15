@@ -232,6 +232,11 @@ function copyToClipboard() {
 
 }
 
+
+useHead({
+  title: locale.value == 'ar' ? 'التمويل' : 'finance'
+});
+
 let items = ref([
   {
     title: locale.value == 'ar' ? "الرئيسية" : "home",
@@ -241,7 +246,8 @@ let items = ref([
   },
   {
     title: locale.value == 'ar' ? "التمويل" : "finance",
-    disabled: false,
+    disabled: true,
+        class:"breadcrumbs-dark",
     href: "finance",
   },
 ]);

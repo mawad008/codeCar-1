@@ -128,7 +128,7 @@
        <!-- <div id="hero-section-back" style="width: 100vw; height: 100vh;"></div> -->
     <div class="container d-flex align-items-center justify-content-center">
       <div class="search-section">
-        <div class="select">
+        <div class="select first">
           <span class="type"> {{ $t('kind') }} </span>
           <v-autocomplete
           clearable
@@ -621,6 +621,10 @@ const customFilter = (itemTitle, queryText, item) => {
   return textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1;
 };
 
+useHead({
+  title: locale.value == 'ar' ? 'الرئيسية' : 'home'
+});
+  
 onMounted(() => {
   getOptions();
   getBrands();

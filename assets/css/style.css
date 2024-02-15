@@ -599,7 +599,7 @@ html[dir=rtl] .input {
 html[dir=rtl] .input .phonenum {
   border-radius: 8px;
   background: #f6f7f9;
-  padding: 0px 16px;
+  padding: 0px 8px;
   position: relative;
 }
 html[dir=rtl] .input .phonenum:focus-within {
@@ -981,6 +981,32 @@ html[dir=ltr] .footer-container .search button {
     width: 100px !important;
     height: 44px !important;
   }
+  .navbar {
+    background-color: #fff;
+    color: #5a7184;
+  }
+  .navbar .icons span {
+    color: #5a7184;
+  }
+  .navbar .icon {
+    border: 1px solid #ebeaed !important;
+  }
+  .navbar .white-img {
+    display: block;
+  }
+  .navbar .dark-img {
+    display: none;
+  }
+  .navbar a {
+    color: #5a7184 !important;
+    transition: 0.4s all;
+  }
+  .navbar .icon-bar {
+    background-color: #000;
+  }
+  .navbar .navbar-toggler.collapsed .icon-bar {
+    background-color: #555;
+  }
 }
 .hero-section {
   min-height: 774px;
@@ -1222,6 +1248,9 @@ html[dir=rtl] .search-section .v-input .v-field {
 html[dir=rtl] .search-section .select {
   direction: rtl;
 }
+html[dir=rtl] .search-section .select.first .v-field__append-inner {
+  margin-left: 15px;
+}
 
 html[dir=ltr] .search-section .v-input {
   direction: ltr;
@@ -1231,6 +1260,9 @@ html[dir=ltr] .search-section .v-input .v-field {
 }
 html[dir=ltr] .search-section .select {
   direction: ltr;
+}
+html[dir=ltr] .search-section .select.first .v-field__append-inner {
+  margin-right: 15px;
 }
 
 @media (max-width: 1000px) {
@@ -1787,7 +1819,7 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   gap: 24px;
 }
 .all-marks .box {
-  margin-bottom: 88px;
+  margin-bottom: 70px;
 }
 .all-marks .box img {
   width: 100%;
@@ -1856,8 +1888,8 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
     gap: 0px !important;
   }
   .all-marks .box img {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 50px;
   }
   .careers-page {
     margin-top: 50px !important;
@@ -2826,8 +2858,27 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   background-color: #fcf4e2;
 }
 
+@media (max-width: 900px) {
+  .similar-cars .head h4 {
+    margin-bottom: 24px;
+  }
+}
 .breadcrumbs-text {
   color: #959EAD !important;
+}
+
+.breadcrumbs-dark {
+  color: #000 !important;
+  opacity: 1 !important;
+}
+
+.safety-mssg {
+  position: absolute;
+  top: 97%;
+}
+.safety-mssg span {
+  color: #959EAD;
+  font-size: 14px;
 }
 
 html[dir=rtl] .payment-method button.one {
@@ -2842,6 +2893,16 @@ html[dir=rtl] .main-car-page .name .model span {
 html[dir=rtl] .main-car-page .name .model span:not(:last-child) {
   border-left: 1px solid #ebeaed;
 }
+html[dir=rtl] .safety-mssg {
+  right: -70%;
+}
+html[dir=rtl] .paymentType .info-data .icons .icon.map {
+  display: block;
+  text-align: center;
+}
+html[dir=rtl] .paymentType .info-data .icons .icon.map svg {
+  margin-left: 15px;
+}
 
 html[dir=ltr] .payment-method button.one {
   border-radius: 32px 0px 0px 32px;
@@ -2855,7 +2916,22 @@ html[dir=ltr] .main-car-page .name .model span {
 html[dir=ltr] .main-car-page .name .model span:not(:last-child) {
   border-right: 1px solid #ebeaed;
 }
+html[dir=ltr] .safety-mssg {
+  left: -70%;
+}
+html[dir=ltr] .paymentType .info-data .icons .icon.map {
+  display: block;
+  text-align: center;
+}
+html[dir=ltr] .paymentType .info-data .icons .icon.map svg {
+  margin-right: 15px;
+}
 
+@media (max-width: 900px) {
+  .safety-mssg {
+    display: none;
+  }
+}
 .confirm-container {
   border-radius: 16px;
   background: #fff;
@@ -3632,6 +3708,20 @@ html[dir=ltr] .p-accordion-header-action {
   color: #5a7184;
 }
 
+.orders-empty-btn {
+  display: flex;
+  width: 240px;
+  height: 48px;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: #2d3a4a;
+  font-weight: 700;
+  border-radius: 12px;
+  border: 1px solid #2d3a4a;
+}
+
 @media (max-width: 900px) {
   .single-new-container, .news-container {
     margin: 50px 0px !important;
@@ -3641,6 +3731,7 @@ html[dir=ltr] .p-accordion-header-action {
   }
   .single-new-container .news-box {
     margin-top: 30px;
+    padding: 16px;
   }
   .single-new-container .news-box .icons {
     gap: 13px;
@@ -3666,11 +3757,14 @@ html[dir=ltr] .p-accordion-header-action {
     justify-content: center;
   }
   .settings-page .setting-nav .item span {
-    font-size: 11px !important;
+    font-size: 16px !important;
     white-space: nowrap;
   }
   .settings-page .setting-nav .item .icon {
     display: none !important;
+  }
+  .empty-container .empty button, .a-orders-empty, .orders-empty-btn {
+    width: 100% !important;
   }
 }
 .offers-container {
@@ -3887,7 +3981,7 @@ html[dir=ltr] .p-accordion-header-action {
   z-index: 11;
   display: flex;
   cursor: pointer;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
 }
 .contact-us .contact-container .text-container .map .overlay .text span {
@@ -4572,7 +4666,7 @@ html[dir=ltr] .about-us .about-container .image .overlay {
   fill: #dcb63b !important;
 }
 .settings-page .log-out-btn {
-  margin-top: 20px;
+  margin-top: 70px;
   display: none;
   align-items: center;
   justify-content: center;
@@ -5048,6 +5142,18 @@ html[dir=ltr] .setting-btn {
   .settings-page .empty span {
     width: 100% !important;
   }
+  .settings-page .personal button {
+    width: 100% !important;
+    margin-top: 35px !important;
+  }
+  .settings-page .lottie-animation-container {
+    width: 170px !important;
+    height: -moz-fit-content !important;
+    height: fit-content !important;
+  }
+  .contact-container .form-container button {
+    width: 100% !important;
+  }
 }
 .orders-page {
   margin-top: 72px;
@@ -5499,13 +5605,13 @@ html[dir=ltr] .setting-btn {
   }
   .about-us .about-container .image {
     height: 350px;
-    border-radius: 24px !important;
+    border-radius: 10px !important;
   }
   .about-us .about-container .image img {
-    border-radius: 24px !important;
+    border-radius: 10px !important;
   }
   .about-us .about-container .image .overlay {
-    border-radius: 24px !important;
+    border-radius: 10px !important;
   }
   .about-us .about-container .icons {
     flex-direction: column;
@@ -5525,6 +5631,7 @@ html[dir=ltr] .setting-btn {
   }
   .about-us .v-expansion-panel-text__wrapper {
     font-size: 11px !important;
+    text-align: start;
   }
   .main-auth {
     padding: 20px;

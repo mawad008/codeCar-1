@@ -513,7 +513,7 @@
                       </div>
                       <div class="col-12 col-l-6 col-lg-6">
                         <div class="input">
-                          <label for="">{{ $t("disc") }}</label>
+                          <label for="">{{ $t("disc3") }}</label>
                           <input
                             type="number"
                             v-model="form4.Car_Price_after_Discount"
@@ -1114,6 +1114,11 @@ const addFunc2 = async () => {
 
 };
 
+
+useHead({
+  title: locale.value == 'ar' ? 'اضف اعلانك' : 'add your ad'
+});
+
 let items = ref([
   {
     title: locale.value == "ar" ? "الرئيسية" : "home",
@@ -1123,7 +1128,8 @@ let items = ref([
   },
   {
     title: locale.value == "ar" ? "اضف اعلانك" : "add your ad",
-    disabled: false,
+    disabled: true,
+        class:"breadcrumbs-dark",
     href: "addCar",
   },
 ]);

@@ -108,6 +108,11 @@ const goToNewPage = (id , name) =>{
     router.push(fullLocalePath);
 }
 
+
+useHead({
+  title: locale.value == 'ar' ? 'اخبار السيارات' : 'news'
+});
+
 let items = ref([
     {
         title: locale.value == 'ar' ? 'الرئيسية' : 'home',
@@ -117,7 +122,8 @@ let items = ref([
     },
     {
         title: locale.value == 'ar' ? 'اخبار السيارات' : 'news',
-        disabled: false,
+        disabled: true,
+        class:"breadcrumbs-dark",
         href: 'news',
     },
 ]);

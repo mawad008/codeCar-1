@@ -14,7 +14,7 @@
 
 
             <div class="orders-container">
-                <h3> {{ $t('order3') }} </h3>
+                <h3> {{ $t('yourOrders') }} </h3>
                 <span class="word"> {{ $t('follow1') }} </span>
                 <div class="header flex-column felx-xl-row flex-lg-row">
                      
@@ -534,6 +534,18 @@
                 <client-only>
                     <Vue3Lottie v-if="pendingLoader2" :animation-data="loader" :height="200" :width="200" />
                 </client-only>
+
+                <div v-if="orders1.length < 1" class="d-flex align-items-center justify-content-center flex-column">
+                <client-only>
+                    <Vue3Lottie :animation-data="cart" :height="250" :width="300" />
+                </client-only>
+                <h4 class="fw-bolder mb-2"> {{ $t('ordersEmpty') }} </h4>
+                <nuxt-link class="a-orders-empty" :to="localePath('/market')">
+              <button class="mt-4 orders-empty-btn"> {{ $t("emptyfav3") }} </button>
+
+            </nuxt-link>
+                
+                </div>
             </div>
 
         </div>
@@ -544,6 +556,7 @@
 <script setup>
 import { Vue3Lottie } from "vue3-lottie";
 import loader from "~/assets/animations/Loader.json";
+import cart from "~/assets/animations/car2.json";
 import axios from "axios";
 import { useStore } from "~/store";
 import Cookies from "js-cookie";
@@ -612,6 +625,12 @@ const getOrders = async () => {
     }
 }
 let chooseBtn = ref(1);
+
+
+useHead({
+  title: locale.value == 'ar' ? 'الطلبات' : 'orders'
+});
+
 let items = ref([
     {
         title: locale.value == "ar" ? "الرئيسية" : "home",
@@ -621,7 +640,8 @@ let items = ref([
     },
     {
         title: locale.value == "ar" ? "تتبع طلبك" : "follow your order",
-        disabled: false,
+        disabled: true,
+        class:"breadcrumbs-dark",
         href: "orders",
     },
 ]);

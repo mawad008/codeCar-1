@@ -80,7 +80,7 @@
             class="icons justify-content-center justify-content-xl-start justify-content-lg-start justify-content-md-start mt-4 mt-xl-0 mt-lg-0 mt-md-0"
           >
             <span @click="changeLang()" class="lang">{{ $t("lang") }}</span>
-            <div @click="overlay = !overlay" class="icon">
+            <div @click="overlay = !overlay" class="icon d-none d-xl-flex d-lg-flex  ">
               <img
                 class="dark-img"
                 src="~/assets/images/search-icon.svg"
@@ -480,7 +480,17 @@
             <div
               class="d-flex align-items-center text-center gap-2 flex-column flex-xl-row flex-lg-row"
             >
-              <span> {{ $t('policy') }} </span>
+            <div class="d-flex align-items-center gap-2">
+            <nuxt-link :to="localePath('/terms')">
+              <span> {{ $t('policyy3') }} </span>
+            </nuxt-link>
+            /
+            <nuxt-link :to="localePath('/policy')">
+              <span> {{ $t('policyy2') }} </span>
+            </nuxt-link>
+             
+            
+            </div>
               <span> | </span>
               <span> {{ $t('cop') }}  © {{ currentYear }}</span>
             </div>

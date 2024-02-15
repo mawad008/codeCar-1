@@ -191,7 +191,7 @@
           </div>
         </div>
 
-        <div v-if="paymentIndividualBtn == 2" class="d-flex flex-column gap-4">
+        <div v-if="paymentIndividualBtn == 2" class="d-flex flex-column h-100 justify-content-between gap-4">
           <div class="d-flex gap-3">
             <div class="input-container">
               <span> {{ $t('carBrand') }}</span>
@@ -304,7 +304,7 @@
             </button>
           </div>
         </div>
-        <div v-if="paymentIndividualBtn == 3" class="d-flex flex-column gap-4">
+        <div v-if="paymentIndividualBtn == 3" class="d-flex h-100 justify-content-between flex-column gap-4 " style="position:relative;">
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t('name1') }} </span>
@@ -578,6 +578,13 @@
               </v-radio-group>
             </div>
           </div>
+
+          <div class="safety-mssg">
+           <div class="d-flex align-items-center gap-2">
+           <img src="~/assets/images/ic-security-safety.svg" alt="">
+            <span> {{ $t('safetyMsg') }} </span>
+           </div>
+          </div>
           <div class="btns">
             <button @click="paymentIndividualBtn = 2, pending3 = false" class="back">
               {{ $t('back') }}
@@ -662,9 +669,9 @@
               <client-only>
                 <Vue3Lottie :animation-data="emptyoffers" :height="300" :width="300" />
               </client-only>
-              <h4> {{ $t('stateAd1') }} </h4>
+              <h4> {{ $t('offerEmpty1') }} </h4>
               <span>
-                {{ $t('stateAd2') }}
+                {{ $t('offerEmpty2') }}
               </span>
               <nuxt-link :to="localePath('/')">
                 <button>{{ $t('backHome') }}</button>

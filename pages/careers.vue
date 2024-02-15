@@ -379,6 +379,11 @@ const getSocialsData = async () => {
   }
 };
 
+
+useHead({
+  title: locale.value == 'ar' ? 'الوظائف' : 'careers'
+});
+
 onMounted(() => {
   getContactData();
   getSocialsData();

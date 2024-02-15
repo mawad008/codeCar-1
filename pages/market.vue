@@ -58,7 +58,12 @@ const getBrands = async () => {
 
 onMounted(() => {
   getBrands();
-})
+});
+
+
+useHead({
+  title: locale.value == 'ar' ? 'السيارات' : 'brands'
+});
 
 let items = ref([
     {
@@ -69,7 +74,8 @@ let items = ref([
     },
     {
         title: locale.value == "ar" ? 'المعرض' : 'market',
-        disabled: false,
+        disabled: true,
+        class:"breadcrumbs-dark",
         href: 'market',
     },
 ]);

@@ -99,7 +99,7 @@
         </div>
 
         <div class="col-12 col-xl-9 col-lg-9">
-          <div class="setting-content h-100">
+          <div class="setting-content ">
             <div v-if="settingNav == 1" class="personal">
 
               <vue-easy-lightbox escDisabled moveDisabled :visible="visibleRef" :imgs="imgs" :index="indexRef"
@@ -477,7 +477,7 @@
                     <span>
                       {{ $t('stateAd2') }}
                     </span>
-                    <nuxt-link :to="localePath('/ad')">
+                    <nuxt-link :to="localePath('/addCar')">
                       <button>{{ $t('adAd') }}</button>
                     </nuxt-link>
                   </div>
@@ -973,6 +973,10 @@ const logOut = () => {
 }
 
 
+useHead({
+  title: locale.value == 'ar' ? 'الاعدادات' : 'settings'
+});
+
 let items = ref([
   {
     title: locale.value == "ar" ? "الرئيسية" : "home",
@@ -982,7 +986,8 @@ let items = ref([
   },
   {
     title: locale.value == "ar" ? "الاعدادت" : "settings",
-    disabled: false,
+    disabled: true,
+        class:"breadcrumbs-dark",
     href: "settings",
   },
 ]);

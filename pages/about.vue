@@ -102,6 +102,11 @@ onMounted(() => {
     getAboutData();
 });
 
+
+useHead({
+  title: locale.value == 'ar' ? 'عننا' : 'about us'
+});
+
 let items = ref([
     {
         title: locale.value == 'ar' ? 'الرئيسية' : 'home',
@@ -111,7 +116,8 @@ let items = ref([
     },
     {
         title: locale.value == 'ar' ? 'من نحن' : 'about us',
-        disabled: false,
+        disabled: true,
+        class:"breadcrumbs-dark",
         href: 'about',
     },
 ]);

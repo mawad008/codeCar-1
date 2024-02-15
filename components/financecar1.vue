@@ -928,9 +928,9 @@
                     <client-only>
             <Vue3Lottie :animation-data="emptyoffers" :height="300" :width="300" />
           </client-only>
-                  <h4> {{ $t('stateAd1') }} </h4>
+                  <h4> {{ $t('offerEmpty1') }} </h4>
                   <span>
-                   {{$t('stateAd2')}}
+                   {{$t('offerEmpty2')}}
                   </span>
                   <nuxt-link :to="localePath('/')">
                   <button>{{$t('backHome')}}</button>

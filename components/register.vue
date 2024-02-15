@@ -251,7 +251,7 @@
           </div>
           <div class="d-flex align-item-center justify-content-cente" style="width:400px">
             <p>
-                {{ $t('reg5') }}<span> {{$t('policy1')}} </span> -  <span> {{ $t('policy2') }} </span>
+                {{ $t('reg5') }}  <nuxt-link :to="localePath('/policy')"> <span> {{$t('policy1')}} </span> </nuxt-link>  -  <nuxt-link :to="localePath('/terms')"><span> {{ $t('policy2') }} </span> </nuxt-link> 
             </p>
           </div>
           <div class="d-flex align-item-center justify-content-center">

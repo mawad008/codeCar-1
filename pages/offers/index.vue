@@ -92,7 +92,13 @@ const goToOfferPage = (id , name) =>{
 
 onMounted(() => {
     getOffersData();
-})
+});
+
+
+useHead({
+  title: locale.value == 'ar' ? 'العروض' : 'offers'
+});
+
 let items = ref([
     {
         title: locale.value == 'ar' ? 'الرئيسية' : 'home',
@@ -102,7 +108,8 @@ let items = ref([
     },
     {
         title: locale.value == 'ar' ? 'العروض' : 'offers',
-        disabled: false,
+        disabled: true,
+        class:"breadcrumbs-dark",
         href: 'offers',
     },
 ]);

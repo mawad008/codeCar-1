@@ -89,6 +89,10 @@ const favFunc = async() =>{
 
 
 
+useHead({
+  title: locale.value == 'ar' ? 'قائمة المفضلة' : 'wishlist'
+});
+
 onMounted(() => {
     favFunc();
 });
@@ -101,7 +105,8 @@ let items = ref([
     },
     {
         title: locale.value == "ar" ? "قائمة المفضلة" : "wishlist",
-        disabled: false,
+        disabled: true,
+        class:"breadcrumbs-dark",
         href: "wishlist",
     },
 ]);

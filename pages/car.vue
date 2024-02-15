@@ -267,14 +267,14 @@
                 </div>
               </div>
               <div class="description">
-                <span class="word">{{$t('disc1')}}</span>
+                <span class="word fw-bold">{{$t('disc1')}}</span>
         
                 <div class="descDiv" v-html="mainCar.description" :class="{'active':mainCar.description.length >= 235}"></div>
                 
               </div>
 
               <div class="price">
-                <span class="word">{{ $t('price') }}</span>
+                <span class="word fw-bold">{{ $t('price') }}</span>
                 <div class="main-price">
                   <h5>{{ mainCar.price }} {{$t('curr')}}</h5>
                   <span v-if="discount_price" class="disc">{{ mainCar.discount_price }}  {{$t('curr')}}</span>
@@ -282,7 +282,7 @@
                 </div>
               </div>
               <div class="colors">
-                <span class="word">{{$t('colorr')}}</span>
+                <span class="word fw-bold">{{$t('colorr')}}</span>
                 <div class="main">
                   <span> {{ mainCar.color.title }} </span>
                 </div>
@@ -491,7 +491,7 @@
                     </svg>
                     <span v-if="contactArr.email">{{ contactArr.email }}</span>
                   </div>
-                  <div class="icon">
+                  <div class="icon map">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

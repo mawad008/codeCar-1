@@ -832,6 +832,11 @@ watch(
   }
 );
 
+
+useHead({
+  title: locale.value == 'ar' ? 'السيارات' : 'cars'
+});
+
 let items = ref([
   {
     title: locale.value == 'ar' ? "الرئيسية" : "home",
@@ -841,7 +846,8 @@ let items = ref([
   },
   {
     title: locale.value == 'ar' ? "المعرض" : "market",
-    disabled: false,
+    disabled: true,
+        class:"breadcrumbs-dark",
     href: "market",
   },
 ]);
