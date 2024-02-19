@@ -383,12 +383,16 @@ html[dir="rtl"] body {
   background-color: $main-bg;
   font-family: "Janna-lt", sans-serif;
   direction: rtl;
+  // cursor: none;
 }
 html[dir="ltr"] body {
   background-color: $main-bg;
   font-family: "Janna-lt", sans-serif;
   direction: ltr;
 }
+
+
+
 
 // end common classes and components
 
@@ -729,6 +733,9 @@ html[dir="rtl"] {
     background: #f6f7f9;
     padding: 0px 8px; 
     position: relative;
+    span{
+
+    }
      &:focus-within {
          background-color: #fff;
           border: 1px solid #dcb63b;
@@ -751,6 +758,7 @@ html[dir="rtl"] {
       color: $body-text;
       border-right: 1px solid $body-text;
       padding-right: 5px;
+      padding-left: 5px;
     }
   }
 
@@ -782,6 +790,7 @@ html[dir="ltr"] {
       color: $body-text;
       border-left: 1px solid $body-text;
       padding-left: 5px;
+      padding-right: 10px;
     }
   }
 }
@@ -1152,6 +1161,9 @@ html[dir="ltr"] .main-auth{
     }
   }
 }
+
+
+
 
 
   html[dir="ltr"] .footer-container{
@@ -2232,8 +2244,8 @@ html[dir="rtl"] .explore {
   .box {
     // background-color: red;
     img {
-      width: 100%;
-      height: 100% ;
+      width: 170px;
+      height: 70px;
       // height: 180px;
       // background-color: red;
       object-fit: contain;
@@ -2456,8 +2468,9 @@ html[dir="rtl"] .explore {
         justify-content: space-between;
         border: 1px solid #ebeaed;
         .city {
-          font-size: 12px;
-          color: $body-text;
+          font-size: 12px !important;
+          color: $body-text !important;
+          font-weight: 400 !important;
         }
         .icon {
           width: 28px;
@@ -6362,14 +6375,16 @@ font-weight: 700;
       .stat {
         position: absolute;
         top: 30px;
-        left: 0px;
-        width: 109px;
+        // left: 0px;
+        // width: 109px;
+        width: fit-content;
+        padding: 0px 6px;
         height: 37px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
+        // border-top-right-radius: 20px;
+        // border-bottom-right-radius: 20px;
         span {
           font-size: 13px;
           text-align: center;
@@ -6396,6 +6411,17 @@ font-weight: 700;
       }
     }
   }
+}
+
+html[dir="rtl"] .orders-page .orders-container .the-order .stat {
+       left: 0px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+}
+html[dir="ltr"] .orders-page .orders-container .the-order .stat {
+       right: 0px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
 }
 
 // end orders page
@@ -6583,6 +6609,9 @@ font-weight: 700;
   }
   .stat{
     top: 0px !important;
+  }
+  .image-container{
+    margin-top: 30px;
   }
 }
   .text-breadcrumbs{

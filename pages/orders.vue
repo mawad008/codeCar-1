@@ -535,7 +535,7 @@
                     <Vue3Lottie v-if="pendingLoader2" :animation-data="loader" :height="200" :width="200" />
                 </client-only>
 
-                <div v-if="orders1.length < 1" class="d-flex align-items-center justify-content-center flex-column">
+                <div v-if="pendingLoader3" class="d-flex align-items-center justify-content-center flex-column">
                 <client-only>
                     <Vue3Lottie :animation-data="cart" :height="250" :width="300" />
                 </client-only>
@@ -567,6 +567,7 @@ const localePath = useLocalePath();
 const { locale } = useI18n();
 let pendingLoader = ref(false);
 let pendingLoader2 = ref(false);
+let pendingLoader3 = ref(false);
 
 let orderNumber = ref('');
 
@@ -587,6 +588,7 @@ const getOrders = async () => {
     if (tokenCookie) {
         pendingLoader.value = true;
         pendingLoader2.value = true;
+        pendingLoader3.value = false;
         orders1.value = [];
         let result = await axios.get(`${getUrl()}/requests_auth`, {
             params: {
@@ -601,11 +603,15 @@ const getOrders = async () => {
         if (result.status == 200) {
             pendingLoader.value = false;
             pendingLoader2.value = false;
+            if(result.data.data.length < 1){
+                pendingLoader3.value = true;
+            }
         }
         orders1.value = result.data.data;
     } else {
         pendingLoader.value = true;
         pendingLoader2.value = true;
+        pendingLoader3.value = false;
         orders1.value = [];
         let result = await axios.get(`${getUrl()}/requests-search`, {
             params: {
@@ -619,6 +625,9 @@ const getOrders = async () => {
         if (result.status == 200) {
             pendingLoader.value = false;
             pendingLoader2.value = false;
+            if(result.data.data.length < 1){
+                pendingLoader3.value = true;
+            }
         }
         orders1.value = result.data.data;
 

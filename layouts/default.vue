@@ -176,8 +176,12 @@
     </div>
     </div> -->
     <slot />
-    <Loader2 v-if="checkInt"></Loader2>
 
+   
+
+     
+    <Loader2 v-if="checkInt"></Loader2>
+      
     <div @click="scrollUp()" class="up-arrow-icon" :class="{'active':arrowActive}">
       <client-only>
         <Vue3Lottie :animation-data="arrow" :height="100" :width="100" />
@@ -705,7 +709,7 @@ onMounted(() => {
   window.addEventListener("offline", function () {
     checkInt.value = true;
   });
-
+   
   updateLang();
   window.addEventListener("scroll", function () {
     if (this.window.scrollY >= 300) {
@@ -723,6 +727,9 @@ onMounted(() => {
   });
   getFooterData();
   
+
+
+
   store.dispatch("loadBasketFromLocalStorage");
 });
 

@@ -263,6 +263,9 @@
                               v4$.organization_name.$errors[0].$message
                           }}</span>
                         </div>
+                        <span class="error-msg mt-1" v-if="errors4.organization_name">{{
+                  errors4.organization_name[0]
+                }}</span>
                       </div>
 
                       <div class="input-container">
@@ -288,6 +291,9 @@
                               v4$.organization_type.$errors[0].$message
                           }}</span>
                         </div>
+                        <span class="error-msg mt-1" v-if="errors4.organization_type">{{
+                  errors4.organization_type[0]
+                }}</span>
                       </div>
                     </div>
                     <div class="d-flex gap-3">
@@ -305,6 +311,9 @@
                               v4$.commercial_registration_no.$errors[0].$message
                           }}</span>
                         </div>
+                        <span class="error-msg mt-1" v-if="errors4.commercial_registration_no">{{
+                  errors4.commercial_registration_no[0]
+                }}</span>
                       </div>
 
                       <div class="input-container">
@@ -330,6 +339,9 @@
                               v4$.organization_activity.$errors[0].$message
                           }}</span>
                         </div>
+                        <span class="error-msg mt-1" v-if="errors4.organization_activity">{{
+                  errors4.organization_activity[0]
+                }}</span>
                       </div>
                     </div>
                     <div class="d-flex gap-3">
@@ -346,23 +358,28 @@
                           <span class="error-msg" v-if="v4$.name.$error">{{
                               v4$.name.$errors[0].$message
                           }}</span>
+                          
                         </div>
+                        <span class="error-msg mt-1" v-if="errors4.name">{{
+                  errors4.name[0]
+                }}</span>
                       </div>
 
                       <div class="input-container">
                         <span> {{ $t('phone') }} </span>
                         <div class="input">
-                          <input
-                            type="tel"
-                            placeholder=" 3333-5555-9999-55"
-                            name=""
-                            v-model="form4.phone"
-                            class=""
-                          />
+                          <div class="w-100  d-flex align-items-center justify-content-between phonenum">
+                  <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="form4.phone" />
+                  <span class="numm login">+966</span>
+                </div>
                           <span class="error-msg" v-if="v4$.phone.$error">{{
                               v4$.phone.$errors[0].$message
                           }}</span>
                         </div>
+                        
+                        <span class="error-msg mt-1" v-if="errors4.phone">{{
+                  errors4.phone[0]
+                }}</span>
                       </div>
                     </div>
                     <div class="d-flex gap-3">
@@ -372,7 +389,7 @@
                           <input
                             type="number"
                             min="1"
-                            placeholder="4"
+                            :placeholder="$t('orgAge')"
                             name=""
                             v-model="form4.organization_age"
                             class=""
@@ -381,6 +398,9 @@
                               v4$.organization_age.$errors[0].$message
                           }}</span>
                         </div>
+                        <span class="error-msg mt-1" v-if="errors4.organization_age">{{
+                  errors4.organization_age[0]
+                }}</span>
                       </div>
 
                       <div class="input-container">
@@ -406,6 +426,9 @@
                               v4$.city_id.$errors[0].$message
                           }}</span>
                         </div>
+                        <span class="error-msg mt-1" v-if="errors4.city_id">{{
+                  errors4.city_id[0]
+                }}</span>
                       </div>
                     </div>
                     <div class="d-flex gap-3">
@@ -431,6 +454,9 @@
                               v4$.bank_id.$errors[0].$message
                           }}</span>
                         </div>
+                        <span class="error-msg mt-1" v-if="errors4.bank_id">{{
+                  errors4.bank_id[0]
+                }}</span>
                       </div>
                     </div>
                     <div class="btns">

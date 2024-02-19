@@ -106,7 +106,7 @@
             <div class="ad-content">
               <div v-if="adNavBtn == 1">
                 <h5>{{ $t("namee") }}</h5>
-                <div class="input">
+                <!-- <div class="input">
                   <label for="">
                     {{ $t("carName") }}
                   </label>
@@ -121,7 +121,7 @@
                   <span class="error-msg2" v-if="errors1.Car_Name">{{
                     errors1.Car_Name[0]
                   }}</span>
-                </div>
+                </div> -->
                 <div class="input">
                   <label for="">
                     <span> {{ $t("car_det") }} </span>

@@ -54,12 +54,6 @@ export default defineNuxtConfig({
         {
           src: "/js/bootstrap.bundle.min.js",
         },
-        {
-          src: "/js/three1.js",
-        },
-        {
-          src: "/js/three2.js",
-        },
         // {
         //   src: "/chart.utils.js",
         //   body: true
@@ -67,6 +61,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+  
   css: [
     // "primevue/resources/themes/lara-dark-green/theme.css",
     "vuetify/lib/styles/main.sass",

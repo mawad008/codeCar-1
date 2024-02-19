@@ -125,6 +125,8 @@
 
       </div>
     </div>
+
+    
        <!-- <div id="hero-section-back" style="width: 100vw; height: 100vh;"></div> -->
     <div class="container d-flex align-items-center justify-content-center">
       <div class="search-section">
@@ -392,6 +394,10 @@
         </client-only>
       </div>
     </div>
+
+
+  
+
     <!-- <img :src="financingAdv.icon_card_1" alt=""> -->
     <div class="best-offers">
       <div class="container">
@@ -402,7 +408,7 @@
               <h4>{{ financingAdv.description }}</h4>
               <div class="main-image">
                 <div class="main d-flex">
-                  <div class="image">
+                  <div class="image hover-container">
                     <img :src="financingAdv.icon_card_1" alt="" />
                   </div>
                   <div class="choose d-flex flex-column">
@@ -430,7 +436,7 @@
                 </div>
               </div>
               <nuxt-link :to="localePath('/finance')">
-              <button>{{ $t('finance') }}</button>
+              <button class="hover-container">{{ $t('finance') }}</button>
               </nuxt-link>
             </div>
           </div>

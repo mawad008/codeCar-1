@@ -178,6 +178,7 @@
                 <span class="error-msg" v-if="v$.car_count.$error">{{
                   v$.car_count.$errors[0].$message
                 }}</span>
+                
               </div>
             </div>
           </div>

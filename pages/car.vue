@@ -168,7 +168,12 @@
                       <img src="@/assets/images/vendor-icon.svg" alt="" />
                       <!-- <img :src="mainCar.vendor.image" alt="" /> -->
                       <!-- <span> متجر كود كار </span> -->
+                      <div class="d-flex flex-column">
                       <span> {{ mainCar.vendor.name }} </span>
+                      <span class="city"> {{ mainCar.vendor.city.name }} </span>
+
+                      
+                      </div>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -182,7 +187,7 @@
                         />
                       </svg>
                     </div>
-                    <span class="city"> {{ mainCar.vendor.city.name }} </span>
+                    <!-- <span class="city"> {{ mainCar.vendor.city.name }} </span> -->
                   </div>
                   <div class="d-flex align-items-center gap-3">
                     <button data-bs-toggle="modal" data-bs-target="#vendor-phone-modal" class="icon">
@@ -278,7 +283,7 @@
                 <div class="main-price">
                   <h5>{{ mainCar.price }} {{$t('curr')}}</h5>
                   <span v-if="discount_price" class="disc">{{ mainCar.discount_price }}  {{$t('curr')}}</span>
-                  <span>( {{ mainCar.price_after_tax }} {{ $t('curr') }} {{$t('taxx')}})</span>
+                  <span>( {{ mainCar.price_after_tax }}  {{ $t('curr') }}  {{$t('taxx')}} )</span>
                 </div>
               </div>
               <div class="colors">
@@ -295,7 +300,7 @@
                   class="cash"
                   >{{$t('cash')}}</a
                 >
-                <a href="#finance-payment-container" @click="paymentType = 2" class="finance">{{$t('finance')}}</a>
+                <a v-if="mainCar.statuekey == 1 " href="#finance-payment-container" @click="paymentType = 2" class="finance">{{$t('finance')}}</a>
               </div>
             
             </div>
@@ -419,10 +424,10 @@
                     <span class="error-msg" v-if="v1$.name.$error">{{
                               v1$.name.$errors[0].$message
                           }}</span>
-                  <span class="error-msg" v-if="errors1.name">{{
+                  </div>
+                  <span class="error-msg mt-1" v-if="errors1.name">{{
                       errors1.name[0]
                   }}</span>
-                  </div>
                   <div class="input-container">
                     <span> {{$t('phone')}} </span>
                     <div class="input">
@@ -436,10 +441,10 @@
                       <span class="error-msg" v-if="v1$.phone.$error">{{
                               v1$.phone.$errors[0].$message
                           }}</span>
-                  <span class="error-msg" v-if="errors1.phone">{{
+                    </div>
+                  <span class="error-msg mt-1" v-if="errors1.phone">{{
                       errors1.phone[0]
                   }}</span>
-                    </div>
                   </div>
                 </div>
                 <button
@@ -528,11 +533,11 @@
                       <span class="error-msg" v-if="v2$.organization_name.$error">{{
                               v2$.organization_name.$errors[0].$message
                           }}</span>
-                          <span class="error-msg" v-if="errors2.name">{{
-                      errors2.name[0]
-                  }}</span>
               
                     </div>
+                          <span class="error-msg mt-1" v-if="errors2.name">{{
+                      errors2.name[0]
+                  }}</span>
                   </div>
 
                   <div class="input-container">
@@ -568,7 +573,7 @@
                     <span> {{ $t('nummm') }} </span>
                     <div class="input">
                       <input
-                        type="text"
+                        type="tel"
                         placeholder="3333-5555-9999-55"
                         name=""
                         v-model="formCash2.commercial_registration_no"
@@ -577,10 +582,10 @@
                       <span class="error-msg" v-if="v2$.commercial_registration_no.$error">{{
                               v2$.commercial_registration_no.$errors[0].$message
                           }}</span>
-                          <span class="error-msg" v-if="errors2.commercial_registration_no">{{
+                    </div>
+                          <span class="error-msg mt-1" v-if="errors2.commercial_registration_no">{{
                       errors2.commercial_registration_no[0]
                   }}</span>
-                    </div>
                   </div>
 
                   <div class="input-container">
@@ -625,17 +630,17 @@
                       <span class="error-msg" v-if="v2$.name.$error">{{
                               v2$.name.$errors[0].$message
                           }}</span>
-                          <span class="error-msg" v-if="errors2.name">{{
+                    </div>
+                          <span class="error-msg mt-1" v-if="errors2.name">{{
                       errors2.name[0]
                   }}</span>
-                    </div>
                   </div>
 
                   <div class="input-container">
                     <span> {{ $t('phone') }} </span>
                     <div class="input">
                       <input
-                        type="text"
+                        type="tel"
                         placeholder="3333-5555-9999-55"
                         name=""
                         v-model="formCash2.phone"
@@ -644,10 +649,10 @@
                       <span class="error-msg" v-if="v2$.phone.$error">{{
                               v2$.phone.$errors[0].$message
                           }}</span>
-                          <span class="error-msg" v-if="errors2.phone">{{
+                    </div>
+                          <span class="error-msg mt-1" v-if="errors2.phone">{{
                       errors2.phone[0]
                   }}</span>
-                    </div>
                   </div>
                 </div>
                 <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
@@ -665,10 +670,10 @@
                       <span class="error-msg" v-if="v2$.organization_age.$error">{{
                               v2$.organization_age.$errors[0].$message
                           }}</span>
-                          <span class="error-msg" v-if="errors2.organization_age">{{
+                    </div>
+                          <span class="error-msg mt-1" v-if="errors2.organization_age">{{
                       errors2.organization_age[0]
                   }}</span>
-                    </div>
                   </div>
 
                   <div class="input-container">
@@ -742,10 +747,10 @@
                       <span class="error-msg" v-if="v2$.car_count.$error">{{
                               v2$.car_count.$errors[0].$message
                           }}</span>
-                          <span class="error-msg" v-if="errors2.car_count">{{
+                    </div>
+                          <span class="error-msg mt-1" v-if="errors2.car_count">{{
                       errors2.car_count[0]
                   }}</span>
-                    </div>
                   </div>
                 </div>
                 <button
@@ -850,11 +855,11 @@
         
           
           <div v-if="paymentMethod == 1">
-           <financecar1 :carid="id" :price="mainCar.price" />
+           <financecar1 :carid="id" :price="mainCar.price_after_tax" />
           
           </div>
           <div v-if="paymentMethod == 2">
-            <financecar2 :carid="id" :price="mainCar.price" :car="mainCar" />
+            <financecar2 :carid="id" :price="mainCar.price_after_tax" :car="mainCar" />
 
           </div>
         

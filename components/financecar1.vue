@@ -455,10 +455,10 @@
                           <span class="error-msg" v-if="v3$.client_name.$error">{{
                               v3$.client_name.$errors[0].$message
                           }}</span>
-                  <span class="error-msg" v-if="errors3.client_name">{{
+                        </div>
+                  <span class="error-msg mt-1" v-if="errors3.client_name">{{
                       errors3.client_name[0]
                   }}</span>
-                        </div>
                       </div>
                       <!-- {{ form3 }} -->
                       <div class="input-container">
@@ -472,10 +472,10 @@
                           <span class="error-msg" v-if="v3$.phone.$error">{{
                               v3$.phone.$errors[0].$message
                           }}</span>
-                  <span class="error-msg2 d-block position-relative" style="position:relative;" v-if="errors3.phone">{{
+                        </div>
+                  <span class="error-msg2 mt-1" style="position:relative;" v-if="errors3.phone">{{
                       errors3.phone[0]
                   }}</span>
-                        </div>
                       </div>
                     </div>
                     <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
@@ -514,10 +514,10 @@
                           <span class="error-msg" v-if="v3$.birth_date.$error">{{
                               v3$.birth_date.$errors[0].$message
                           }}</span>
-                  <span class="error-msg" v-if="errors3.birth_date">{{
+                        </div>
+                  <span class="error-msg mt-1" v-if="errors3.birth_date">{{
                       errors3.birth_date[0]
                   }}</span>
-                        </div>
                       </div>
                     </div>
                     <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
@@ -556,10 +556,10 @@
                           <span class="error-msg" v-if="v3$.identity_no.$error">{{
                               v3$.identity_no.$errors[0].$message
                           }}</span>
-                  <span class="error-msg" v-if="errors3.identity_no">{{
+                        </div>
+                  <span class="error-msg mt-1" v-if="errors3.identity_no">{{
                       errors3.identity_no[0]
                   }}</span>
-                        </div>
                       </div>
                     </div>
                     <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
@@ -588,10 +588,10 @@
                           <span class="error-msg" v-if="v3$.sector.$error">{{
                               v3$.sector.$errors[0].$message
                           }}</span>
-                  <span class="error-msg" v-if="errors3.sector">{{
+                        </div>
+                  <span class="error-msg mt-1" v-if="errors3.sector">{{
                       errors3.sector[0]
                   }}</span>
-                        </div>
                       </div>
                       <div class="input-container">
                         <span>
@@ -609,10 +609,10 @@
                           <span class="error-msg" v-if="v3$.salary.$error">{{
                               v3$.salary.$errors[0].$message
                           }}</span>
-                  <span class="error-msg" v-if="errors3.salary">{{
+                        </div>
+                  <span class="error-msg mt-1" v-if="errors3.salary">{{
                       errors3.salary[0]
                   }}</span>
-                        </div>
                       </div>
                  
                     </div>
@@ -661,10 +661,10 @@
                           <span class="error-msg" v-if="v3$.Monthly_cometment.$error">{{
                               v3$.Monthly_cometment.$errors[0].$message
                           }}</span>
-                  <span class="error-msg" v-if="errors3.Monthly_cometment">{{
+                        </div>
+                  <span class="error-msg mt-1" v-if="errors3.Monthly_cometment">{{
                       errors3.Monthly_cometment[0]
                   }}</span>
-                        </div>
                       </div>
                     </div>
                     <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
@@ -725,10 +725,10 @@
                           <span class="error-msg" v-if="v3$.email.$error">{{
                               v3$.email.$errors[0].$message
                           }}</span>
-                  <span class="error-msg" v-if="errors3.email">{{
+                        </div>
+                  <span class="error-msg mt-1" v-if="errors3.email">{{
                       errors3.email[0]
                   }}</span>
-                        </div>
                       </div>
                     </div>
                     <div
