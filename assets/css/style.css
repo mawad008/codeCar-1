@@ -2899,13 +2899,6 @@ html[dir=rtl] .main-car-page .name .model span:not(:last-child) {
 html[dir=rtl] .safety-mssg {
   right: -70%;
 }
-html[dir=rtl] .paymentType .info-data .icons .icon.map {
-  display: block;
-  text-align: center;
-}
-html[dir=rtl] .paymentType .info-data .icons .icon.map svg {
-  margin-left: 15px;
-}
 
 html[dir=ltr] .payment-method button.one {
   border-radius: 32px 0px 0px 32px;
@@ -2922,17 +2915,24 @@ html[dir=ltr] .main-car-page .name .model span:not(:last-child) {
 html[dir=ltr] .safety-mssg {
   left: -70%;
 }
-html[dir=ltr] .paymentType .info-data .icons .icon.map {
-  display: block;
-  text-align: center;
-}
-html[dir=ltr] .paymentType .info-data .icons .icon.map svg {
-  margin-right: 15px;
-}
 
 @media (max-width: 900px) {
   .safety-mssg {
     display: none;
+  }
+  html[dir=rtl] .paymentType .info-data .icons .icon.map {
+    display: block;
+    text-align: center;
+  }
+  html[dir=rtl] .paymentType .info-data .icons .icon.map svg {
+    margin-left: 15px;
+  }
+  html[dir=ltr] .paymentType .info-data .icons .icon.map {
+    display: block;
+    text-align: center;
+  }
+  html[dir=ltr] .paymentType .info-data .icons .icon.map svg {
+    margin-right: 15px;
   }
 }
 .confirm-container {

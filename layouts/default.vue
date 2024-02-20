@@ -400,7 +400,7 @@
                 <nuxt-link :to="localePath('market')">
                   <span class="head-link"> {{$t("market")}} </span>
                 </nuxt-link>
-                <nuxt-link :to="localePath('ad')">
+                <nuxt-link :to="localePath('addCar')">
                   <span class="head-link"> {{$t("ad")}} </span>
                 </nuxt-link>
                 </div>
@@ -516,6 +516,8 @@
 </template>
 
 <script setup>
+import { useToast } from 'vue-toastification'
+const toast = useToast();
 import { useStore } from "~/store";
 const store = useStore;
 import axios from "axios";
@@ -674,6 +676,21 @@ const subscripe = async () => {
         //     toastBackgroundColor: "#dcb63b",
         //   }
         // );
+        toast.success(title.value, {
+  position: "top-right",
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  draggablePercent: 0.6,
+  showCloseButtonOnHover: false,
+  hideProgressBar: true,
+  closeButton: "button",
+  icon: true,
+  class:'toast-container',
+  rtl: false
+});
       }
     } catch (errors) {
       if (errors.response) {

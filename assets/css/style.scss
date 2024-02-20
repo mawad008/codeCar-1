@@ -3462,22 +3462,22 @@ html[dir="rtl"]{
   right: -70%;
   }
 
- .paymentType .info-data{
-  .icons{
-   .icon{
+//  .paymentType .info-data{
+//   .icons{
+//    .icon{
     
-    &.map{
+//     &.map{
       
-      display: block;
-      text-align: center;
-      svg{
-       margin-left: 15px;
-      }
+//       display: block;
+//       text-align: center;
+//       svg{
+//        margin-left: 15px;
+//       }
     
-    }
-   }
-  }
- }
+//     }
+//    }
+//   }
+//  }
   
 }
 
@@ -3510,27 +3510,66 @@ html[dir="ltr"] {
     left: -70%;
     }
 
-    .paymentType .info-data{
-  .icons{
-   .icon{
+//     .paymentType .info-data{
+//   .icons{
+//    .icon{
     
-    &.map{
+//     &.map{
       
-      display: block;
-      text-align: center;
-      svg{
-       margin-right: 15px;
-      }
+//       display: block;
+//       text-align: center;
+//       svg{
+//        margin-right: 15px;
+//       }
     
-    }
-   }
-  }
- }
+//     }
+//    }
+//   }
+//  }
 }
 
 @media(max-width:900px){
   .safety-mssg{
      display: none;
+    }
+
+    html[dir="rtl"]{
+     .paymentType .info-data{
+      .icons{
+       .icon{
+        
+        &.map{
+          
+          display: block;
+          text-align: center;
+          svg{
+           margin-left: 15px;
+          }
+        
+        }
+       }
+      }
+     }
+      
+    }
+    
+    html[dir="ltr"] {
+        .paymentType .info-data{
+      .icons{
+       .icon{
+        
+        &.map{
+          
+          display: block;
+          text-align: center;
+          svg{
+           margin-right: 15px;
+          }
+        
+        }
+       }
+      }
+     }
     }
 }
 

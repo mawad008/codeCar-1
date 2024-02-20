@@ -395,8 +395,9 @@
       </div>
     </div>
 
-
-  
+    <!-- <div style="height:100vh;">
+      <iframe src='https://my.spline.design/kidsplaygroundphysicscopy-bc6e2942a29cbbd0a3c41e87b19e47f6/' frameborder='0' width='100%' height='100%'></iframe>
+    </div> -->
 
     <!-- <img :src="financingAdv.icon_card_1" alt=""> -->
     <div class="best-offers">

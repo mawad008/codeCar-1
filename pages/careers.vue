@@ -270,6 +270,8 @@
 </template>
 
 <script setup>
+import { useToast } from 'vue-toastification'
+const toast = useToast();
 import useValidate from "@vuelidate/core";
 import {
   required,
@@ -308,6 +310,14 @@ const rules = computed(() => {
   };
 });
 
+
+let title = ref("تم الاشتراك بنجاح");
+
+if (locale.value == 'ar') {
+  title.value = 'تم الاشتراك بنجاح';
+} else {
+  title.value = 'You have successfully subscribed'
+}
 const v$ = useValidate(rules, form);
 let pending = ref(true);
 let errors = ref([]);
@@ -328,7 +338,6 @@ const sendContact = async () => {
 
       if (result.status >= 200) {
         errors.value = [];
-        console.log("dasdas");
         // createToast(
         //   {
         //     title: "تم الاشتراك بنجاح",
@@ -341,6 +350,21 @@ const sendContact = async () => {
         //     toastBackgroundColor: "#dcb63b",
         //   }
         // );
+        toast.success(title.value, {
+  position: "top-right",
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  draggablePercent: 0.6,
+  showCloseButtonOnHover: false,
+  hideProgressBar: true,
+  closeButton: "button",
+  icon: true,
+  class:'toast-container',
+  rtl: false
+});
       }
     } catch (errorss) {
       if (errorss.response) {

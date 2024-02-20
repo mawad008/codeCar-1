@@ -215,6 +215,8 @@
 </template>
 
 <script setup>
+import { useToast } from 'vue-toastification'
+const toast = useToast();
 import useValidate from '@vuelidate/core'
 import { required, email, sameAs, minLength, helpers } from '@vuelidate/validators';
 import axios from 'axios';
@@ -223,9 +225,7 @@ import axios from 'axios';
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
 let route = useRoute();
-
 let pending = ref(false);
-
 let pendingBtn = ref(false);
 let items = ref([
     {
@@ -312,6 +312,22 @@ const sendContact = async()=>{
         // timeout: 3000,
         // toastBackgroundColor: '#dcb63b',
         // });
+
+        toast.success(title.value, {
+  position: "top-right",
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  draggablePercent: 0.6,
+  showCloseButtonOnHover: false,
+  hideProgressBar: true,
+  closeButton: "button",
+  icon: true,
+  class:'toast-container',
+  rtl: false
+});
       }
 
     }catch(errorss){
