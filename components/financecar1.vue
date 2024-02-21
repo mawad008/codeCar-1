@@ -203,7 +203,7 @@
                       <v-slider
                         v-model="sliderValue2"
                         min="1"
-                        max="10"
+                        max="5"
                         step="1"
                         thumb-label="always"
                         class="custom-slider mt-5"
@@ -1126,7 +1126,7 @@ const localePath = useLocalePath();
 const { locale } = useI18n();
 let paymentMethod = ref(1);
 let sliderValue1 = ref(0);
-let sliderValue2 = ref(5);
+let sliderValue2 = ref(3);
 let sliderValue3 = ref(0);
 let showConfirm = ref(false);
 let minNum = ref(0);

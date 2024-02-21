@@ -82,6 +82,60 @@
               </div>
             </button>
           </div>
+
+          <div class="setting-nav-mobile" :class="{'checkTabsMobile':checkTabs}">
+           <div class="d-flex flex-column boxes">
+             <a @click="settingNav = 1 , checkTabs = true" href="#personal-mobile"  class="box d-flex align-items-center w-100 justify-content-between ">
+             <div class="d-flex align-items-center  icon-container">
+               <div class="iconn" style="">
+                <img src="~/assets/images/personal-mobile.svg" alt="">
+               </div>
+               <h6>{{ $t('personal') }}</h6>             
+             </div>
+             <img src="~/assets/images/direction-left.svg" alt="">
+             </a>
+             <a @click="settingNav = 2 , checkTabs = true" href="#addds-mobile" class="box d-flex align-items-center w-100 justify-content-between ">
+             <div class="d-flex align-items-center  icon-container">
+               <div class="iconn" style="">
+                <img src="~/assets/images/addds-mobile.svg" alt="">
+               </div>
+               <h6>{{ $t('Ads') }}</h6>             
+             </div>
+             <img src="~/assets/images/direction-left.svg" alt="">
+             </a>
+             <a @click="settingNav = 4 , checkTabs = true" href="#notification-mobile" class="box d-flex align-items-center w-100 justify-content-between ">
+             <div class="d-flex align-items-center  icon-container">
+               <div class="iconn" style="">
+                <img src="~/assets/images/notification-mobile.svg" alt="">
+               </div>
+               <h6>{{ $t('noti') }}</h6>             
+             </div>
+             <img src="~/assets/images/direction-left.svg" alt="">
+             </a>
+             <a @click="settingNav = 5 , checkTabs = true" href="#safe-mobile" class="box d-flex align-items-center w-100 justify-content-between ">
+             <div class="d-flex align-items-center  icon-container">
+               <div class="iconn" style="">
+                <img src="~/assets/images/safe-mobile.svg" alt="">
+               </div>
+               <h6>{{ $t('sec') }}</h6>             
+             </div>
+             <img src="~/assets/images/direction-left.svg" alt="">
+             </a>
+           </div>
+
+           <button data-bs-toggle="modal" data-bs-target="#logout-modal" class="log-out-btn">
+            {{ $t('out') }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path
+                d="M12.6 16.5L10.65 16.5C8.25 16.5 6.75 15 6.75 12.6L6.75 9.5625L10.08 9.5625L8.5275 11.115C8.415 11.2275 8.3625 11.37 8.3625 11.5125C8.3625 11.655 8.415 11.7975 8.5275 11.91C8.745 12.1275 9.105 12.1275 9.3225 11.91L11.835 9.3975C12.0525 9.18 12.0525 8.82 11.835 8.6025L9.3225 6.09C9.105 5.8725 8.745 5.8725 8.5275 6.09C8.31 6.3075 8.31 6.6675 8.5275 6.885L10.08 8.4375L6.75 8.4375L6.75 5.4C6.75 3 8.25 1.5 10.65 1.5L12.5925 1.5C14.9925 1.5 16.4925 3 16.4925 5.4L16.4925 12.6C16.5 15 15 16.5 12.6 16.5Z"
+                fill="#90A3BF" />
+              <path
+                d="M2.0625 9.5625C1.755 9.5625 1.5 9.3075 1.5 9C1.5 8.6925 1.755 8.4375 2.0625 8.4375L6.75 8.4375L6.75 9.5625L2.0625 9.5625Z"
+                fill="#90A3BF" />
+            </svg>
+          </button>
+          
+          </div>
           <!-- <div class="mobile-settings">
            <div>
             <span class="icon">الملف الشخصي</span>
@@ -98,9 +152,13 @@
           </div> -->
         </div>
 
-        <div class="col-12 col-xl-9 col-lg-9">
+        <div class="col-12 col-xl-9 col-lg-9" :class="{'checkTabsMobile': !checkTabs}">
+        <div @click="checkTabs = false" class="d-flex d-xl-none d-lg-none justify-content-end" >
+            <img src="~/assets/images/direction-left.svg" alt="">
+        </div>
           <div class="setting-content ">
-            <div v-if="settingNav == 1" class="personal">
+
+            <div v-if="settingNav == 1" class="personal" id="personal-mobile">
 
               <vue-easy-lightbox escDisabled moveDisabled :visible="visibleRef" :imgs="imgs" :index="indexRef"
                 @hide="onHide"></vue-easy-lightbox>
@@ -201,7 +259,8 @@
                       <span> {{ $t('city10') }} </span>
                     </label>
                     <Dropdown v-model="form.city_id" :options="cities" :filter-placeholder="$t('search')" filter
-                      optionLabel="name" :placeholder="$t('city')" class="">
+                            optionValue="id"
+                      optionLabel="name"  :placeholder="$t('city')" class="">
                       <template #option="slotProps">
                         <div class="flex align-items-center">
                           <div>{{ slotProps.option.name }}</div>
@@ -222,12 +281,12 @@
                 </div>
               </div>
             </div>
-            <div v-if="settingNav == 2" class="offers">
+            <div v-if="settingNav == 2" class="offers" id="addds-mobile">
               <div class="">
                 <div class="header">
 
                   <div class="filter">
-                    <div class="icon">
+                    <div class="icon-filter">
                       <img src="~/assets/images/sort.svg" />
                     </div>
                     <Dropdown v-model="formCar.status_car" :filter-placeholder="$t('search')" :options="carBody" filter
@@ -262,32 +321,78 @@
                     <span> {{ $t('adAd') }} </span>
                   </nuxt-link>
                 </div>
+                <div class="header-mobile d-flex d-xl-none d-lg-none  align-items-center justify-content-between w-100">
+                              <button data-bs-toggle="modal" data-bs-target="#edit-adddds" class="icon-filter">
+                          <img src="~/assets/images/sort.svg" />
+                          
+                              </button>
+                
+                  <!-- <div class="icon-filter">
+                      <img src="~/assets/images/sort.svg" />
+                    </div> -->
+                    <nuxt-link :to="localePath('/addCar')" class="add">
+                    <div class="icon">
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <!-- <span> {{ $t('adAd') }} </span> -->
+                  </nuxt-link>
+                </div>
+                <div class="table-responsive">
+                <!-- <table class="table  table-borderless" >
+  <thead>
+    <tr>
+                    <th class="head-table"> {{ $t('nameimg') }}</th>
+                    <th class="head-table">{{ $t('price') }}</th>
+                    <th class="head-table">{{ $t('datee') }}</th>
+                    <th class="head-table">{{ $t('carStat') }}</th>
+                    <th class="head-table">{{ $t('adS') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+    </tr>
+  </tbody>
+                </table> -->
+
+   
+                </div>
                 <div v-if="carsAds.length >= 1" class="filter-table">
-                  <div class="head">
-                    <span> {{ $t('nameimg') }}</span>
-                    <span>{{ $t('price') }}</span>
-                    <span>{{ $t('datee') }}</span>
-                    <span>{{ $t('carStat') }}</span>
-                    <span>{{ $t('adS') }}</span>
-                  </div>
-                  <div v-for="(item, index) in carsAds" :key="index" class="content">
-                    <div class="img-container">
+                 
+
+                  <table class="table-container">
+    <thead>
+        <tr>
+            <th class="head-table">{{ $t('nameimg') }}</th>
+            <th class="head-table">{{ $t('price') }}</th>
+            <th class="head-table">{{ $t('datee') }}</th>
+            <th class="head-table">{{ $t('carStat') }}</th>
+            <th class="head-table">{{ $t('adS') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="(item, index) in carsAds" :key="index" class="content">
+          <td class="img-container flex-colum">
                       <div class="image">
                         <img :src="item.main_image" alt="" />
                       </div>
                       <h5>{{ item.main_title }}</h5>
-                    </div>
-                    <span class="price">{{ item.price }} {{ $t('curr') }}</span>
-                    <span class="date">{{ item.publish_date }}</span>
-                    <span class="stat">{{ item.statue }}</span>
-                    <div v-if="item.statusCar == 2" class="switch-container d-flex align-items-center gap-2">
+                    </td>
+                    <td class="price">{{ item.price }} {{ $t('curr') }}</td>
+                    <td class="date">{{ item.publish_date }}</td>
+                    <td class="stat">{{ item.statue }}</td>
+                    <td v-if="item.statusCar == 2" class="switch-container d-flex align-items-center gap-2">
                       <span :class="{ 'active': item.show_in_home_page }">{{ item.show_in_home_page ? active : unActive
                       }}</span>
                       <v-switch v-model="item.show_in_home_page" color="#38A2A4"
                         @change="activeCar(item.id, item.show_in_home_page)"></v-switch>
-                    </div>
-                    <span v-else-if="item.statusCar == 1"> {{ $t('under') }} </span>
-                    <span v-else> {{ $t('rej') }} </span>
+                    </td>
+                    <td v-else-if="item.statusCar == 1"> {{ $t('under') }} </td>
+                    <td v-else> {{ $t('rej') }} </td>
                     <button class="setting-btn">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path
@@ -465,9 +570,12 @@
                         </div>
                       </v-menu>
                     </button>
-
-                  </div>
+        </tr>
+        
+    </tbody>
+</table>
                 </div>
+                
                 <div v-else class="empty">
                   <div class="main">
                     <client-only>
@@ -501,7 +609,7 @@
                 </div>
               </div> -->
             </div>
-            <div v-if="settingNav == 4" class="notifications">
+            <div v-if="settingNav == 4" id="notification-mobile" class="notifications">
               <div class="item " v-for="item in notificationsArr" :class="{ 'active': item.is_read == 0 }">
                 <div class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -525,7 +633,7 @@
 
             </div>
 
-            <div v-if="settingNav == 5" class="personal">
+            <div v-if="settingNav == 5" id="safe-mobile" class="personal">
               <div class="personal-form">
                 <div class="input">
                   <div class="d-flex w-100 flex-column flex-xl-row flex-lg-row phoneContainer align-items-start align-items-xl-center align-items-lg-center justify-content-between">
@@ -578,7 +686,7 @@
               </div>
             </div>
           </div>
-          <button data-bs-toggle="modal" data-bs-target="#logout-modal" class="log-out-btn">
+          <!-- <button data-bs-toggle="modal" data-bs-target="#logout-modal" class="log-out-btn">
             {{ $t('out') }}
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path
@@ -588,7 +696,7 @@
                 d="M2.0625 9.5625C1.755 9.5625 1.5 9.3075 1.5 9C1.5 8.6925 1.755 8.4375 2.0625 8.4375L6.75 8.4375L6.75 9.5625L2.0625 9.5625Z"
                 fill="#90A3BF" />
             </svg>
-          </button>
+          </button> -->
         </div>
       </div>
 
@@ -601,6 +709,49 @@
               <button class="out" @click="logOut()" data-bs-dismiss="modal" aria-label="Close"> {{ $t('out') }} </button>
               <button class="back" data-bs-dismiss="modal" aria-label="Close">
                 {{ $t('back') }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="edit-adddds" tabindex="-1" aria-labelledby="logout-modal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content log-out-modal">
+            <button class="close-btn w-100 d-flex justify-content-end mb-4" data-bs-dismiss="modal" aria-label="Close">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+             <div class="d-flex flex-column gap-4 w-100">
+             
+              <Dropdown v-model="formCar.status_car" :filter-placeholder="$t('search')" :options="carBody" filter
+                      optionValue="value" optionLabel="name" :placeholder="$t('carStat')" class="">
+                      <template #option="slotProps">
+                        <div  class="flex align-items-center">
+                          <div>{{ slotProps.option.name }}</div>
+                        </div>
+                      </template>
+                    </Dropdown>
+                    <Dropdown v-model="formCar.brand" :options="brands" :filter-placeholder="$t('search')" filter
+                      optionValue="id" optionLabel="title" :placeholder="$t('brand')" class="">
+                      <template #option="slotProps">
+                        <div  class="flex align-items-center">
+                          <div>{{ slotProps.option.title }}</div>
+                        </div>
+                      </template>
+                    </Dropdown>
+                    <Dropdown v-model="formCar.status_ad" :filter-placeholder="$t('search')" :options="statusAds" filter
+                      optionLabel="name" optionValue="value" :placeholder="$t('adS')" class="">
+                      <template #option="slotProps">
+                        <div  class="flex align-items-center">
+                          <div>{{ slotProps.option.name }}</div>
+                        </div>
+                      </template>
+                    </Dropdown>
+             </div>
+
+            <div class="btns">
+              
+              <button @click="getCars()" class="back" data-bs-dismiss="modal" aria-label="Close">
+                {{ $t('apply') }}
               </button>
             </div>
           </div>
@@ -634,7 +785,7 @@ import VueEasyLightbox from "vue-easy-lightbox";
 import { useStore } from "~/store";
 import { useToast } from 'vue-toastification'
 const toast = useToast();
-
+let checkTabs = ref(false);
 const tokenCookie = Cookies.get("token");
 const store = useStore;
 let settingNav = ref(1);
@@ -1133,6 +1284,14 @@ onMounted(() => {
       }
     }
   }
+
+  .p-dropdown {
+          width: 100%;
+          height: 40px;
+          border-radius: 8px;
+          border: 1px solid #ebeaed;
+          padding: 8px;
+        }
 }
 
 @media(max-width:800px) {

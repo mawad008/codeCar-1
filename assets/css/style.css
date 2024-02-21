@@ -1755,6 +1755,8 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
 .best-offers .big-img {
   width: 582.157px;
   height: 506.854px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 @media (max-width: 900px) {
@@ -3725,6 +3727,20 @@ html[dir=ltr] .p-accordion-header-action {
   border: 1px solid #2d3a4a;
 }
 
+.head-table {
+  font-size: 12px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  color: #5a7184 !important;
+}
+
+.table-container {
+  width: 100%;
+}
+.table-container td {
+  margin: 20px 0px;
+}
+
 @media (max-width: 900px) {
   .single-new-container, .news-container {
     margin: 50px 0px !important;
@@ -3750,6 +3766,7 @@ html[dir=ltr] .p-accordion-header-action {
     flex-direction: row !important;
     overflow-x: auto;
     gap: 0px !important;
+    display: none !important;
   }
   .settings-page .setting-nav button {
     display: none !important;
@@ -3764,6 +3781,15 @@ html[dir=ltr] .p-accordion-header-action {
     white-space: nowrap;
   }
   .settings-page .setting-nav .item .icon {
+    display: none !important;
+  }
+  .setting-nav-mobile {
+    display: block !important;
+  }
+  .checkTabsMobile {
+    display: none !important;
+  }
+  .settings-page .offers .header {
     display: none !important;
   }
   .empty-container .empty button, .a-orders-empty, .orders-empty-btn {
@@ -4366,6 +4392,34 @@ html[dir=ltr] .about-us .about-container .image .overlay {
   font-weight: 700;
   color: #fff;
 }
+.settings-page .setting-nav-mobile {
+  display: none;
+}
+.settings-page .setting-nav-mobile .boxes {
+  gap: 16px;
+}
+.settings-page .setting-nav-mobile .boxes .box {
+  padding: 12px 16px;
+  background-color: white;
+  border-radius: 10px;
+}
+.settings-page .setting-nav-mobile .boxes .box .icon-container {
+  gap: 16px;
+}
+.settings-page .setting-nav-mobile .boxes .box .icon-container .iconn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FCF4E2;
+}
+.settings-page .setting-nav-mobile .boxes .box h6 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2D3A4A;
+}
 .settings-page .setting-content {
   border-radius: 16px;
   background: #fff;
@@ -4491,12 +4545,12 @@ html[dir=ltr] .about-us .about-container .image .overlay {
   justify-content: space-between;
   margin-bottom: 24px;
 }
-.settings-page .setting-content .offers .header .filter {
+.settings-page .setting-content .offers .filter {
   display: flex;
   align-items: center;
   gap: 16px;
 }
-.settings-page .setting-content .offers .header .filter .icon {
+.settings-page .setting-content .offers .icon-filter {
   height: 40px;
   width: 40px;
   display: flex;
@@ -4505,26 +4559,26 @@ html[dir=ltr] .about-us .about-container .image .overlay {
   border-radius: 8px;
   border: 1px solid #ebeaed;
 }
-.settings-page .setting-content .offers .header .filter .p-dropdown {
+.settings-page .setting-content .offers .p-dropdown {
   width: 140px;
   height: 40px;
   border-radius: 8px;
   border: 1px solid #ebeaed;
   padding: 8px;
 }
-.settings-page .setting-content .offers .header .add {
+.settings-page .setting-content .offers .add {
   display: flex;
   align-items: center;
   cursor: pointer;
   gap: 10px;
 }
-.settings-page .setting-content .offers .header .add span {
+.settings-page .setting-content .offers .add span {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   color: #dcb63b;
 }
-.settings-page .setting-content .offers .header .add .icon {
+.settings-page .setting-content .offers .add .icon {
   display: flex;
   width: 16px;
   height: 16px;
@@ -4533,7 +4587,7 @@ html[dir=ltr] .about-us .about-container .image .overlay {
   background-color: #dcb63b;
   border-radius: 5px;
 }
-.settings-page .setting-content .offers .header .add .icon i {
+.settings-page .setting-content .offers .add .icon i {
   color: #fff;
   font-size: 9px;
 }
@@ -4541,14 +4595,6 @@ html[dir=ltr] .about-us .about-container .image .overlay {
   overflow: auto;
 }
 .settings-page .setting-content .offers .filter-table .head {
-  width: 100%;
-  border-radius: 8px;
-  border: 1px solid #ebeaed;
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-evenly;
   margin-bottom: 20px;
 }
 .settings-page .setting-content .offers .filter-table .head span {
@@ -4558,16 +4604,12 @@ html[dir=ltr] .about-us .about-container .image .overlay {
   color: #5a7184;
 }
 .settings-page .setting-content .offers .filter-table .content {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin: 20px 0px;
-  padding: 0px 16px;
-  justify-content: space-evenly;
   position: relative;
 }
 .settings-page .setting-content .offers .filter-table .content .setting-btn {
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   left: 30px;
 }
 .settings-page .setting-content .offers .filter-table .content .img-container {
@@ -4580,7 +4622,6 @@ html[dir=ltr] .about-us .about-container .image .overlay {
   font-style: normal;
   font-weight: 700;
   color: #2d3a4a;
-  width: 76px;
   line-height: 20px;
 }
 .settings-page .setting-content .offers .filter-table .content .img-container .image {
@@ -4628,6 +4669,16 @@ html[dir=ltr] .about-us .about-container .image .overlay {
 .settings-page .setting-content .offers .filter-table .content .v-switch--inset .v-switch__thumb {
   box-shadow: none !important;
 }
+.settings-page .setting-content .offers .header-mobile {
+  margin-bottom: 30px;
+}
+.settings-page .setting-content .offers .header-mobile .p-dropdown {
+  width: 140px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #ebeaed;
+  padding: 8px;
+}
 .settings-page .setting-content .notifications {
   display: flex;
   flex-direction: column;
@@ -4669,12 +4720,11 @@ html[dir=ltr] .about-us .about-container .image .overlay {
   fill: #dcb63b !important;
 }
 .settings-page .log-out-btn {
-  margin-top: 70px;
+  margin-top: 64px;
   display: none;
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-color: #fff;
   height: 48px;
   border-radius: 12px;
   padding: 8px 16px;
@@ -4743,6 +4793,14 @@ html[dir=ltr] .setting-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+.modal-dialog .p-dropdown {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #ebeaed;
+  padding: 8px;
 }
 
 .log-out-modal {
@@ -4869,6 +4927,11 @@ html[dir=ltr] .setting-btn {
   font-weight: 700;
 }
 
+@media (max-width: 900px) {
+  .p-dropdown-panel, .p-component, .p-ripple-disabled {
+    z-index: 555555555 !important;
+  }
+}
 .v-toolbar__content, .v-toolbar__extension {
   background-color: #2d3a4a;
   direction: rtl !important;
@@ -5539,7 +5602,10 @@ html[dir=ltr] .orders-page .orders-container .the-order .stat {
   .text-breadcrumbs {
     margin-bottom: 32px !important;
   }
-  .filter-table .head, .filter-table .content {
+  .filter-table .head, .filter-table .content, .filter-table tbody {
+    width: 700px !important;
+  }
+  .filter-table thead tr {
     width: 700px !important;
   }
   .settings-page .p-dropdown {
@@ -5594,6 +5660,15 @@ html[dir=ltr] .orders-page .orders-container .the-order .stat {
   }
   .modal .log-out-modal .btns button {
     width: 100%;
+  }
+  .log-out-modal {
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 100%;
+  }
+  .log-out-modal .btns {
+    flex-direction: column;
+    margin-top: 20px;
   }
   .contact-us .text-breadcrumbs {
     margin-bottom: 30px;
