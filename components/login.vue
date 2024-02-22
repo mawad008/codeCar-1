@@ -342,7 +342,7 @@ let value2 = ref("The email field is required");
 let value3 = ref("Invalid email format");
 let value4 = ref("This field should be at least 8 characters long");
 if (locale.value == "ar") {
-  value1.value = "هذا الحقل مطلوبة";
+  value1.value = "هذا الحقل مطلوب";
   value2.value = "حقل البريد الإلكتروني مطلوب";
   value3.value = "تنسيق البريد الإلكتروني غير صالح";
   value4.value = "يجب أن يكون هذا الحقل 8 أحرف على الأقل";
@@ -356,7 +356,7 @@ if (locale.value == "ar") {
 const rules = computed(() => {
   return {
     phone: {
-      required: helpers.withMessage(value2.value, required),
+      required: helpers.withMessage(value1.value, required),
     },
     password: {
       required: helpers.withMessage(value1.value, required),

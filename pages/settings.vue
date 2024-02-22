@@ -7,7 +7,7 @@
 
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
-            <v-icon icon="mdi-chevron-left"></v-icon>
+            <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
           </template>
         </v-breadcrumbs>
       </div>
@@ -92,7 +92,7 @@
                </div>
                <h6>{{ $t('personal') }}</h6>             
              </div>
-             <img src="~/assets/images/direction-left.svg" alt="">
+             <img src="~/assets/images/direction-left.svg" class="arrow-icon" alt="">
              </a>
              <a @click="settingNav = 2 , checkTabs = true" href="#addds-mobile" class="box d-flex align-items-center w-100 justify-content-between ">
              <div class="d-flex align-items-center  icon-container">
@@ -101,7 +101,8 @@
                </div>
                <h6>{{ $t('Ads') }}</h6>             
              </div>
-             <img src="~/assets/images/direction-left.svg" alt="">
+             <img src="~/assets/images/direction-left.svg" class="arrow-icon" alt="">
+
              </a>
              <a @click="settingNav = 4 , checkTabs = true" href="#notification-mobile" class="box d-flex align-items-center w-100 justify-content-between ">
              <div class="d-flex align-items-center  icon-container">
@@ -110,7 +111,8 @@
                </div>
                <h6>{{ $t('noti') }}</h6>             
              </div>
-             <img src="~/assets/images/direction-left.svg" alt="">
+             <img src="~/assets/images/direction-left.svg" class="arrow-icon" alt="">
+
              </a>
              <a @click="settingNav = 5 , checkTabs = true" href="#safe-mobile" class="box d-flex align-items-center w-100 justify-content-between ">
              <div class="d-flex align-items-center  icon-container">
@@ -119,7 +121,8 @@
                </div>
                <h6>{{ $t('sec') }}</h6>             
              </div>
-             <img src="~/assets/images/direction-left.svg" alt="">
+             <img src="~/assets/images/direction-left.svg" class="arrow-icon" alt="">
+
              </a>
            </div>
 
@@ -154,7 +157,8 @@
 
         <div class="col-12 col-xl-9 col-lg-9" :class="{'checkTabsMobile': !checkTabs}">
         <div @click="checkTabs = false" class="d-flex d-xl-none d-lg-none justify-content-end" >
-            <img src="~/assets/images/direction-left.svg" alt="">
+          <img src="~/assets/images/direction-left.svg" class="arrow-icon" alt="">
+
         </div>
           <div class="setting-content ">
 
@@ -224,7 +228,7 @@
                     </label>
                     <div class=" d-flex  align-items-center justify-content-between phonenum">
                       <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="form.phone" />
-                      <span class="numm ">+966</span>
+                      <span class="numm ">966+</span>
                     </div>
                   </div>
                   <span class="error-msg" v-if="errors1.phone">{{
@@ -286,7 +290,7 @@
                 <div class="header">
 
                   <div class="filter">
-                    <div class="icon-filter">
+                    <div @click="getCars()" class="icon-filter">
                       <img src="~/assets/images/sort.svg" />
                     </div>
                     <Dropdown v-model="formCar.status_car" :filter-placeholder="$t('search')" :options="carBody" filter
@@ -365,13 +369,13 @@
                  
 
                   <table class="table-container">
-    <thead>
+    <thead >
         <tr>
-            <th class="head-table">{{ $t('nameimg') }}</th>
-            <th class="head-table">{{ $t('price') }}</th>
-            <th class="head-table">{{ $t('datee') }}</th>
-            <th class="head-table">{{ $t('carStat') }}</th>
-            <th class="head-table">{{ $t('adS') }}</th>
+            <td class="head-table first">{{ $t('nameimg') }}</td>
+            <td class="head-table bord">{{ $t('price') }}</td>
+            <td class="head-table bord">{{ $t('datee') }}</td>
+            <td class="head-table bord">{{ $t('carStat') }}</td>
+            <td class="head-table second">{{ $t('adS') }}</td>
         </tr>
     </thead>
     <tbody>
@@ -385,11 +389,13 @@
                     <td class="price">{{ item.price }} {{ $t('curr') }}</td>
                     <td class="date">{{ item.publish_date }}</td>
                     <td class="stat">{{ item.statue }}</td>
-                    <td v-if="item.statusCar == 2" class="switch-container d-flex align-items-center gap-2">
-                      <span :class="{ 'active': item.show_in_home_page }">{{ item.show_in_home_page ? active : unActive
+                    <td v-if="item.statusCar == 2" class="switch-container ">
+                    <div class="d-flex align-items-center gap">
+                      <span class="mt-1" :class="{ 'active': item.show_in_home_page }">{{ item.show_in_home_page ? active : unActive
                       }}</span>
                       <v-switch v-model="item.show_in_home_page" color="#38A2A4"
                         @change="activeCar(item.id, item.show_in_home_page)"></v-switch>
+                    </div>
                     </td>
                     <td v-else-if="item.statusCar == 1"> {{ $t('under') }} </td>
                     <td v-else> {{ $t('rej') }} </td>
@@ -850,7 +856,7 @@ let title = ref("تم تحديث البايانات بنجاح");
 let title1 = ref("تم الحذف بنجاح");
 let title2 = ref("تم تحديث كلمة السر بنجاح");
 if (locale.value == "ar") {
-  value1.value = "هذا الحقل مطلوبة";
+  value1.value = "هذا الحقل مطلوب";
   value2.value = "حقل البريد الإلكتروني مطلوب";
   value3.value = "تنسيق البريد الإلكتروني غير صالح";
   value5.value = "يجب أن يكون عدد السيارات 1 سيارة على الأقل";
@@ -1093,6 +1099,21 @@ const deleteCar = async (id) => {
     //       toastBackgroundColor: "#dcb63b",
     //     }
     //   );
+    toast.success(title1.value, {
+        position: "top-right",
+        timeout: 3000,
+        closeOnClick: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        draggable: true,
+        draggablePercent: 0.6,
+        showCloseButtonOnHover: false,
+        hideProgressBar: true,
+        closeButton: "button",
+        icon: true,
+        class: 'toast-container',
+        rtl: false
+      });
   }
 
 }
@@ -1159,11 +1180,12 @@ onMounted(() => {
 }
 
 .switch-container {
-  width: 130px;
-  // background-color:red;
-  display: flex;
-  position: relative;
-  justify-content: flex-end;
+  // width: 130px;
+  // // background-color:red;
+  // display: flex;
+  // position: relative;
+  // justify-content: flex-end;
+  // margin-bottom: 20px !important;
 
   span {
     color: #959EAD;

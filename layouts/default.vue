@@ -64,7 +64,7 @@
               >
               {{ $t("contact") }}
             </nuxt-link>
-            <nuxt-link class="nav-link" :to="localePath('/about')"
+            <nuxt-link class="nav-link asdad" :to="localePath('/about')"
               >
               {{ $t("about") }}
               </nuxt-link
@@ -79,7 +79,7 @@
           <div
             class="icons justify-content-center justify-content-xl-start justify-content-lg-start justify-content-md-start mt-4 mt-xl-0 mt-lg-0 mt-md-0"
           >
-            <span @click="changeLang()" class="lang">{{ $t("lang") }}</span>
+            <span @click="changeLang()" class="nav-link lang ">{{ $t("lang") }}</span>
             <div @click="overlay = !overlay" class="icon d-none d-xl-flex d-lg-flex  ">
               <img
                 class="dark-img"
@@ -123,7 +123,7 @@
             </div>
             <div v-if="overlay" @click="overlay = !overlay" class="overlay"></div>
 
-            <nuxt-link :to="localePath('/wishlist')" class="icon">
+            <nuxt-link :to="localePath('/wishlist')" class="nav-link icon">
 
               <svg class="dark-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M12.3812 6.13389C14.1606 4.35511 17.0457 4.35511 18.8252 6.13389C20.6047 7.91277 20.6047 10.797 18.8252 12.5759L12.3392 19.0593C12.1518 19.2466 11.8479 19.2466 11.6605 19.0593L5.17453 12.5759C3.39495 10.797 3.39495 7.91277 5.17453 6.13389C6.95401 4.35511 9.83904 4.35511 11.6185 6.13389L11.9998 6.51506L12.3812 6.13389Z" fill=""/>
@@ -132,7 +132,7 @@
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12.3812 6.13389C14.1606 4.35511 17.0457 4.35511 18.8252 6.13389C20.6047 7.91277 20.6047 10.797 18.8252 12.5759L12.3392 19.0593C12.1518 19.2466 11.8479 19.2466 11.6605 19.0593L5.17453 12.5759C3.39495 10.797 3.39495 7.91277 5.17453 6.13389C6.95401 4.35511 9.83904 4.35511 11.6185 6.13389L11.9998 6.51506L12.3812 6.13389Z" fill=""/>
             </svg>
             </nuxt-link>
-            <nuxt-link :to="localePath(`${tokenCookie ? '/settings' : 'auth'}`)" class="icon">
+            <nuxt-link :to="localePath(`${tokenCookie ? '/settings' : 'auth'}`)" class="nav-link icon ">
               <svg
                 class="dark-img"
                 xmlns="http://www.w3.org/2000/svg"
@@ -504,9 +504,17 @@
             </a>
             </div>
             <div class="d-flex align-items-center gap-3">
+            <a href="https://zatca.gov.sa/ar/RulesRegulations/VAT/Pages/default.aspx" target="_blank">
               <img src="~/assets/images/footer-png-1.svg" alt="" />
+            </a>
+            <a href="https://www.vision2030.gov.sa/" target="_blank">
               <img src="~/assets/images/footer-png-2.svg" alt="" />
+            </a>
+            <a href="https://maroof.sa/businesses/details/311427" target="_blank">
               <img src="~/assets/images/footer-png-3.png" alt="" />
+            </a>
+             
+           
             </div>
           </div>
         </div>

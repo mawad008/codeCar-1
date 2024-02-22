@@ -181,7 +181,10 @@
                          </div>
                          <div class="input">
                           <label> {{ $t('phone') }} </label>
-                          <input type="tel" v-model="form.phone" placeholder=" 3333-5555-9999-55">
+                          <div class="w-100  d-flex align-items-center justify-content-between phonenum">
+                  <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="form.phone" />
+                  <span class="numm login">966+</span>
+                </div>
                           <span class="error-msg" v-if="v$.phone.$error">{{ v$.phone.$errors[0].$message }}</span>
                             <span class="error-msg" v-if="errors.phone">{{ errors.phone[0] }}</span>
                          </div>
@@ -254,7 +257,7 @@ let value2 = ref("The email field is required");
 let value3 = ref("Invalid email format");
 let title = ref('تم التواصل بنجاح  ');
 if (locale.value == "ar") {
-    value1.value = "هذا الحقل مطلوبة";
+    value1.value = "هذا الحقل مطلوب";
     value2.value = "حقل البريد الإلكتروني مطلوب";
     value3.value = "تنسيق البريد الإلكتروني غير صالح";
     title.value = "تم التواصل بنجاح  ";
@@ -301,7 +304,7 @@ const sendContact = async()=>{
       if(result.status >= 200){
     pendingBtn.value = false;
         errors.value = [];
-        console.log('dasdas');
+        // form.value = '';
         // createToast({
         //   title: title.value
         // },

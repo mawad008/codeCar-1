@@ -56,6 +56,7 @@
                       </div>
                     </div>
                   </div>
+                  
                   <div class="h-100 d-flex flex-column justify-content-end">
                     <div class="icons">
                       <div class="icon" @click="shareIcons = !shareIcons">
@@ -73,7 +74,8 @@
                       <a target="_blank" :href="`https://twitter.com/intent/tweet?url=${theRoute}`">
                         <img src="~/assets/images/social3.svg" alt="" />
                       </a>
-                      <a target="_blank" :href="`https://wa.me/?text=${route}/`">
+                      
+                      <a target="_blank" :href="`https://wa.me/?text=${theRoute}/`">
                         <img src="~/assets/images/social4.svg" alt="" />
                       </a>
                       <button @click="copyToClipboard2();">
@@ -251,7 +253,7 @@
                       <a target="_blank" :href="`https://twitter.com/intent/tweet?url=${theRoute}`">
                         <img src="~/assets/images/social3.svg" alt="" />
                       </a>
-                      <a target="_blank" :href="`https://wa.me/?text=${route}/`">
+                      <a target="_blank" :href="`https://wa.me/?text=${theRoute}/`">
                         <img src="~/assets/images/social4.svg" alt="" />
                       </a>
                       <button @click="copyToClipboard2();">
@@ -311,6 +313,7 @@
                   href="#cash-payment-container"
                   @click="paymentType = 1"
                   class="cash"
+                  :class="{'active': mainCar.statuekey == 0}" 
                   >{{$t('cash')}}</a
                 >
                 <a v-if="mainCar.statuekey == 1 " href="#finance-payment-container" @click="paymentType = 2" class="finance">{{$t('finance')}}</a>
@@ -444,13 +447,11 @@
                   <div class="input-container">
                     <span> {{$t('phone')}} </span>
                     <div class="input">
-                      <input
-                        type="text"
-                        placeholder="+021093051515"
-                        name=""
-                        v-model="formCash1.phone"
-                        class=""
-                      />
+                      <div class="w-100  d-flex align-items-center justify-content-between phonenum">
+                  <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="formCash1.phone" />
+                  <span class="numm login">966+</span>
+                </div>
+                      
                       <span class="error-msg" v-if="v1$.phone.$error">{{
                               v1$.phone.$errors[0].$message
                           }}</span>
@@ -652,13 +653,10 @@
                   <div class="input-container">
                     <span> {{ $t('phone') }} </span>
                     <div class="input">
-                      <input
-                        type="tel"
-                        placeholder="3333-5555-9999-55"
-                        name=""
-                        v-model="formCash2.phone"
-                        class=""
-                      />
+                      <div class="w-100  d-flex align-items-center justify-content-between phonenum">
+                  <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="formCash2.phone" />
+                  <span class="numm login">966+</span>
+                </div>
                       <span class="error-msg" v-if="v2$.phone.$error">{{
                               v2$.phone.$errors[0].$message
                           }}</span>
@@ -838,7 +836,7 @@
         </div>
         <div
           id="finance-payment-container"
-          v-if="paymentType == 2"
+          v-if="paymentType == 2 && mainCar.statuekey == 1"
           class="payment-container cash"
         >
         <div class="textt">
@@ -1312,7 +1310,7 @@ let value2 = ref("The email field is required");
 let value3 = ref("Invalid email format");
 let value5 = ref("يجب أن يكون عدد السيارات 1 سيارة على الأقل");
 if (locale.value == "ar") {
-    value1.value = "هذا الحقل مطلوبة";
+    value1.value = "هذا الحقل مطلوب";
     value2.value = "حقل البريد الإلكتروني مطلوب";
     value3.value = "تنسيق البريد الإلكتروني غير صالح";
     value5.value = "يجب أن يكون عدد السيارات 1 سيارة على الأقل";

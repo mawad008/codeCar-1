@@ -35,7 +35,7 @@
                       />
                     </svg>
                   </div>
-                  <div class="d-flex flex-column">
+                  <div class="d-flex flex-column gap-3">
                     <h6>{{ item.title }}</h6>
                     <span>{{ item.city.name }} | {{ item.work_type }}</span>
                   </div>
@@ -199,12 +199,15 @@
                 </div>
                 <div class="input">
                   <label for="">{{ $t('phone') }}</label>
-                  <input type="tel" v-model="form.phone" placeholder=" 3333-5555-9999-55" />
+                  <div class="w-100  d-flex align-items-center justify-content-between phonenum">
+                  <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="form.phone" />
+                  <span class="numm login">966+</span>
+                </div>
                   <span class="error-msg" v-if="v$.phone.$error">{{
                     v$.phone.$errors[0].$message
                   }}</span>
-                  <span class="error-msg"  v-if="errors.email">{{
-                    errors.email[0]
+                  <span class="error-msg"  v-if="errors.phone">{{
+                    errors.phone[0]
                   }}</span>
                 </div>
                 <div class="input">
@@ -256,7 +259,10 @@
                   }}</span>
                 </div>
                 <div class="d-flex justify-content-center justify-content-xl-start justify-content-lg-start">
-                <button @click="sendContact()">{{ $t('conf') }}</button>
+                <button @click="sendContact()" class="gap-2 align-items-center">
+                {{ $t('conf') }}
+                <v-progress-circular v-if="pending2"   indeterminate :size="25" :width="4"></v-progress-circular>
+                </button>
                 </div>
               </div>
             </div>
@@ -298,17 +304,32 @@ const onFileChange = (e) =>{
         return;
       form.value.cv = (files[0]);
     }
+
+    let value1 = ref("value is required");
+let value2 = ref("The email field is required");
+let value3 = ref("Invalid email format");
+if (locale.value == "ar") {
+    value1.value = "هذا الحقل مطلوب";
+    value2.value = "حقل البريد الإلكتروني مطلوب";
+    value3.value = "تنسيق البريد الإلكتروني غير صالح";
+} else {
+    value1.value = "value is required";
+    value2.value = "The email field is required";
+    value3.value = "Invalid email format";
+}
 const rules = computed(() => {
   return {
-    name: { required },
-    phone: { required },
-    email: {
-      required: helpers.withMessage("The email field is required", required),
-      email: helpers.withMessage("Invalid email format", email),
-    },
-    cv: { required },
+    name: { required: helpers.withMessage(value1.value, required) },
+        phone: { required: helpers.withMessage(value1.value, required) },
+        email: {
+            required: helpers.withMessage(value2.value, required),
+            email: helpers.withMessage(value3.value, email),
+        },
+    cv: { required: helpers.withMessage(value1.value, required)  },
   };
 });
+
+
 
 
 let title = ref("تم الاشتراك بنجاح");
@@ -320,6 +341,7 @@ if (locale.value == 'ar') {
 }
 const v$ = useValidate(rules, form);
 let pending = ref(true);
+let pending2 = ref(false);
 let errors = ref([]);
 const sendContact = async () => {
   let check = await v$.value.$validate();
@@ -329,6 +351,7 @@ const sendContact = async () => {
   formBody.append("email", form.value.email);
   formBody.append("cv", form.value.cv);
   if (check) {
+    pending2.value = true;
     try {
       let result = await axios.post(`${getUrl()}/career/store/${activeBoxId.value}`, formBody, {
         headers: {
@@ -338,6 +361,7 @@ const sendContact = async () => {
 
       if (result.status >= 200) {
         errors.value = [];
+    pending2.value = false;
         // createToast(
         //   {
         //     title: "تم الاشتراك بنجاح",
@@ -368,11 +392,10 @@ const sendContact = async () => {
       }
     } catch (errorss) {
       if (errorss.response) {
+       pending2.value = false;
         errors.value = errorss.response.data.errors;
       }
     }
-  } else {
-    console.log(check);
   }
 };
 

@@ -324,7 +324,7 @@
               <div class="input">
                 <div class="w-100  d-flex align-items-center justify-content-between phonenum">
                   <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="form3.phone" />
-                  <span class="numm login">+966</span>
+                  <span class="numm login">966+</span>
                 </div>
                 <span class="error-msg d-block" style="position:relative;" v-if="v3$.phone.$error">{{
                   v3$.phone.$errors[0].$message
@@ -968,7 +968,7 @@ let value3 = ref("Invalid email format");
 let value5 = ref("يجب أن يكون عدد السيارات 1 سيارة على الأقل");
 let checkSlider = ref(locale.value == "ar" ? true : false);
 if (locale.value == "ar") {
-  value1.value = "هذا الحقل مطلوبة";
+  value1.value = "هذا الحقل مطلوب";
   value2.value = "حقل البريد الإلكتروني مطلوب";
   value3.value = "تنسيق البريد الإلكتروني غير صالح";
   value5.value = "يجب أن يكون عدد السيارات 1 سيارة على الأقل";

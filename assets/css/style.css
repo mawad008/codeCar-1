@@ -704,7 +704,7 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
   height: fit-content;
 }
 .navbar .nav-link {
-  padding: 0px !important;
+  padding: inherit !important;
   transition: 0.4s all;
 }
 .navbar .items {
@@ -820,7 +820,7 @@ html[dir=rtl] .navbar .icons {
   margin-right: 20px;
 }
 html[dir=rtl] .navbar .icons span {
-  padding-left: 20px;
+  padding-left: 20px !important;
   border-left: 1px solid white;
 }
 html[dir=rtl] .navbar.back .icons span, html[dir=rtl] .navbar.active .icons span {
@@ -838,7 +838,7 @@ html[dir=ltr] .navbar .icons {
   margin-left: 20px;
 }
 html[dir=ltr] .navbar .icons span {
-  padding-right: 20px;
+  padding-right: 20px !important;
   border-right: 1px solid white;
 }
 html[dir=ltr] .navbar.back .icons span, html[dir=ltr] .navbar.active .icons span {
@@ -2241,6 +2241,9 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
+}
+.main-car-page .car-details .btns a.active {
+  width: 100% !important;
 }
 .main-car-page .car-details .btns a.cash {
   color: #fff;
@@ -3728,20 +3731,75 @@ html[dir=ltr] .p-accordion-header-action {
 }
 
 .head-table {
-  font-size: 12px !important;
+  font-size: 14px !important;
   font-style: normal !important;
   font-weight: 400 !important;
   color: #5a7184 !important;
+  padding: 16px !important;
+  margin: 0px;
+}
+.head-table.first {
+  width: 110px;
 }
 
 .table-container {
   width: 100%;
+  border-collapse: separate;
+  overflow: auto;
+}
+.table-container tbody td {
+  padding: 0px 16px !important;
+}
+.table-container tbody td.img-container {
+  width: 260px;
 }
 .table-container td {
   margin: 20px 0px;
 }
 
-@media (max-width: 900px) {
+html[dir=rtl] .table-container thead td {
+  border: 1px solid #ebeaed !important;
+  border-style: solid none;
+}
+html[dir=rtl] .table-container thead td.bord {
+  border-left: none !important;
+  border-right: none !important;
+}
+html[dir=rtl] .table-container thead td:first-child {
+  border-right-style: solid;
+  border-top-right-radius: 11px;
+  border-bottom-right-radius: 11px;
+  border-left: none !important;
+}
+html[dir=rtl] .table-container thead td:last-child {
+  border-right-style: solid;
+  border-bottom-left-radius: 11px;
+  border-top-left-radius: 11px;
+  border-right: none !important;
+}
+
+html[dir=ltr] .table-container thead td {
+  border: 1px solid #ebeaed !important;
+  border-style: solid none;
+}
+html[dir=ltr] .table-container thead td.bord {
+  border-left: none !important;
+  border-right: none !important;
+}
+html[dir=ltr] .table-container thead td:first-child {
+  border-left-style: solid;
+  border-top-left-radius: 11px;
+  border-bottom-left-radius: 11px;
+  border-right: none !important;
+}
+html[dir=ltr] .table-container thead td:last-child {
+  border-right-style: solid;
+  border-bottom-right-radius: 11px;
+  border-top-right-radius: 11px;
+  border-left: none !important;
+}
+
+@media (max-width: 914px) {
   .single-new-container, .news-container {
     margin: 50px 0px !important;
   }
@@ -4608,9 +4666,8 @@ html[dir=ltr] .about-us .about-container .image .overlay {
 }
 .settings-page .setting-content .offers .filter-table .content .setting-btn {
   position: absolute;
-  top: 50%;
+  top: 52%;
   transform: translateY(-50%);
-  left: 30px;
 }
 .settings-page .setting-content .offers .filter-table .content .img-container {
   display: flex;
@@ -4659,7 +4716,7 @@ html[dir=ltr] .about-us .about-container .image .overlay {
 }
 .settings-page .setting-content .offers .filter-table .content .v-input {
   max-height: 50px !important;
-  max-width: 80px !important;
+  max-width: 64px !important;
   display: flex;
   justify-content: center;
 }
@@ -4733,7 +4790,40 @@ html[dir=ltr] .about-us .about-container .image .overlay {
   color: #5a7184;
   font-weight: 700;
 }
+.settings-page .p-dropdown-trigger {
+  background-color: #f6f7f9;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+.settings-page .p-dropdown-trigger svg {
+  width: 8px !important;
+  height: 8px !important;
+  fill: #2d3a4a !important;
+}
+.settings-page .p-dropdown-trigger svg path {
+  fill: #2d3a4a !important;
+}
 
+html[dir=rtl] .settings-page .setting-btn {
+  left: 0px;
+}
+
+html[dir=ltr] .settings-page .setting-btn {
+  right: 0px;
+}
+
+@media (max-width: 900px) {
+  html[dir=rtl] .settings-page .setting-btn {
+    left: 0px;
+  }
+  html[dir=ltr] .settings-page .setting-btn {
+    right: 0px;
+  }
+}
 .empty {
   height: 100%;
   display: flex;
@@ -4775,11 +4865,6 @@ html[dir=ltr] .about-us .about-container .image .overlay {
   border-radius: 12px;
   border: 1px solid #2d3a4a;
   margin-top: 32px;
-}
-
-html[dir=ltr] .setting-btn {
-  left: auto !important;
-  right: 30px;
 }
 
 .modal {
@@ -5589,7 +5674,7 @@ html[dir=ltr] .orders-page .orders-container .the-order .stat {
   border-radius: 12px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 914px) {
   .orders-page .box {
     margin-bottom: 20px;
   }
@@ -5602,11 +5687,8 @@ html[dir=ltr] .orders-page .orders-container .the-order .stat {
   .text-breadcrumbs {
     margin-bottom: 32px !important;
   }
-  .filter-table .head, .filter-table .content, .filter-table tbody {
-    width: 700px !important;
-  }
-  .filter-table thead tr {
-    width: 700px !important;
+  .filter-table .table-container {
+    width: 800px !important;
   }
   .settings-page .p-dropdown {
     width: 100% !important;
@@ -5614,6 +5696,7 @@ html[dir=ltr] .orders-page .orders-container .the-order .stat {
   .settings-page .setting-content .offers .header {
     flex-direction: column;
     gap: 20px;
+    display: none !important;
   }
   .settings-page .setting-content .offers .header .filter {
     flex-direction: column;
