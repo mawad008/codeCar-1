@@ -2,7 +2,7 @@
     <div>
 
         <div  class="car-card" v-if="car">
-        <nuxt-link :to="localePath({path:'/car',query:{id:car.id}})">
+        <div @click="goToCar(car.id)" style="cursor: pointer;">
             <Swiper
         :spaceBetween="30"
         :slidesPerView="1"
@@ -19,7 +19,7 @@
         </swiper-slide>
       </Swiper>
         
-        </nuxt-link>
+        </div>
             <!-- <div class="image">
                 <img :src="car.main_image" alt="" />
             </div> -->
@@ -79,9 +79,9 @@
 
             <div class="btn-container">
             
-                <button>
-              
-                <nuxt-link class="w-100" :to="localePath({path:'/car',query:{id:car.id}})">  {{ $t('buy') }} </nuxt-link>
+                <button @click="goToCar(car.id)">
+                    {{ $t('buy') }}
+                <!-- <nuxt-link class="w-100" :to="localePath({path:'/car',query:{id:car.id}})">   </nuxt-link> -->
                 </button>
                 <div @click="addFavFunc(car.id , car.is_fav)" class="icon heart">
                     <!-- <img src="~/assets/images/heart.png" /> -->
@@ -105,6 +105,8 @@ import axios from 'axios';
 const { locale } = useI18n();
 const localePath = useLocalePath();
 
+const router = useRouter();
+
 import Cookies from "js-cookie";
 const tokenCookie = Cookies.get("token");
 
@@ -118,8 +120,8 @@ if (locale.value == "ar") {
   value2.value = "تم الحذف من قائمة المفضلات ";
 
 } else {
-    value1.value = 'value is required';
-  value2.value = "The email field is required";
+    value1.value = 'Added to Favorites list';
+  value2.value = "Removed from Favorites list";
 
 }
 
@@ -162,8 +164,28 @@ const addFavFunc = async (id , success) =>{
   }
 }
 
-const clickk = () =>{
-  
+const goToCar = (id) =>{
+
+    const queryParams = {
+    id: id,
+  };
+  const url = "/car";
+
+  const updatedRoute = {
+    path: url,
+    query: {
+      ...queryParams,
+    },
+  };
+
+  const fullLocalePath = localePath(updatedRoute);
+  router.push(fullLocalePath);
+    if (process.client) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
 }
 
 </script>

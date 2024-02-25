@@ -31,9 +31,12 @@ definePageMeta({
 });
 import { useStore } from "@/store/index";
 let store = useStore;
+const { locale } = useI18n();
 
 
-
+useHead({
+  title: locale.value == 'ar' ? 'تسجيل الدخول' : 'sign up'
+});
 </script>
 
 <style lang="scss" scoped></style>

@@ -466,7 +466,7 @@
                         <div class="input">
 
                            <div class="w-100  d-flex align-items-center justify-content-between phonenum">
-                    <input type="tel" placeholder="3333-5555-9999-55" name=""  maxlength="11" v-model="form3.phone" />
+                    <input type="tel" maxlength="9" placeholder="3333-5555-9999-55" name=""  v-model="form3.phone" />
                     <span class="numm login">966+</span>
                   </div>
                           <span class="error-msg" v-if="v3$.phone.$error">{{
@@ -924,19 +924,24 @@
                   
                   </div>
                   <div v-else class="empty">
-                <div class="main">
-                    <client-only>
-            <Vue3Lottie :animation-data="emptyoffers" :height="300" :width="300" />
-          </client-only>
-                  <h4> {{ $t('offerEmpty1') }} </h4>
-                  <span>
-                   {{$t('offerEmpty2')}}
-                  </span>
-                  <nuxt-link :to="localePath('/')">
-                  <button>{{$t('backHome')}}</button>
-                  </nuxt-link>
-                </div>
+            <div class="main">
+              <client-only>
+                <Vue3Lottie :animation-data="emptyoffers" :height="300" :width="300" />
+              </client-only>
+              <h4> {{ $t('offerEmpty1') }} </h4>
+              <span>
+                {{ $t('offerEmpty2') }}
+              </span>
+              <div class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4">
+                <button @click="paymentIndividualBtn = 3" class="back">
+                {{ $t('back') }}
+              </button> 
+              <nuxt-link :to="localePath('/')">
+                <button class="home">{{ $t('backHome') }}</button>
+              </nuxt-link>
               </div>
+            </div>
+          </div>
                   </div>
 
                   <div v-if="paymentIndividualBtn == 5" class="final-review">
@@ -1141,10 +1146,19 @@ const currentYear = currentDate.getFullYear();
 
 let paymentOtp = ref(1);
 let years = ref([]);
-for (let i = currentYear; i >= currentYear - 14; i--) {
-    years.value.push(i);
-}
 
+
+const getDesc = async () => {
+  let result = await axios.get(`${getUrl()}/allsettings`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  for (let i = currentYear; i >= parseInt(result.data.data.Min_year_of_finance); i--) {
+  years.value.push(i);
+}
+console.log(years.value);
+}
 let optionsCars = ref([]);
 let brands = ref([]);
 
@@ -1602,6 +1616,7 @@ let paymentIndividualBtn = ref(1);
 
 onMounted(() => {
     getOptions();
+    getDesc();
     getCites();
 })
 </script>

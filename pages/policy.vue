@@ -4,8 +4,7 @@
       <h3>{{ $t('policyy2') }}</h3>
       <div class="policy-page" >
         <div class="text">
-         <p>
-           {{ generalArr.privacy }}
+         <p v-html="generalArr.privacy">
          </p>
         </div>
       
@@ -76,7 +75,7 @@ onMounted(()=>{
       color: #5a7184;
       font-size: 16px;
       font-weight: 400;
-      line-height: 32px;
+      line-height: 48px;
     }
   }
 }

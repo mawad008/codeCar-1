@@ -4,8 +4,7 @@
       <h3>{{ $t('policyy3') }}</h3>
       <div class="policy-page" >
         <div class="text">
-         <p>
-           {{ generalArr.terms_and_conditions }}
+         <p v-html="generalArr.terms_and_conditions">
          </p>
         </div>
       

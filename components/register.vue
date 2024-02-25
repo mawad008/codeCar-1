@@ -97,8 +97,8 @@
             <div class="input">
               <label for=""> {{ $t('phone') }} </label>
             <div class="w-100 d-flex align-items-center justify-content-between phonenum">
-                  <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="form.phone" />
-                  <span class="numm login">+966</span>
+                  <input type="tel" maxlength="10" placeholder="3333-5555-9999-55" name="" v-model="form.phone" />
+                  <span class="numm login" style="">+966</span>
                 </div>
               <span class="error-msg" v-if="v$.phone.$error">{{
                 v$.phone.$errors[0].$message
@@ -110,7 +110,7 @@
             <div v-if="typeForm == 'individual'" class="input">
               <label for=""> {{ $t('ident') }}</label>
               <input
-              type="text"
+              type="number"
               placeholder="3333-5555-9999-55"
               name=""
               v-model="form.id_number"
@@ -126,7 +126,7 @@
             <div v-if="typeForm != 'individual'" class="input">
               <label for=""> {{ $t('nummm') }} </label>
               <input
-                type="text"
+                type="number"
                 placeholder="3333-5555-9999-55"
                 name=""
                 v-model="form.commercial_register_namber"
@@ -360,6 +360,12 @@ let type = ref(0);
 let passType = ref("password");
 let passConfType = ref("password");
 
+
+let route = ref(null);
+
+if(process.client){
+  route.value = window.location.hostname;
+}
 const selectedCountry = ref();
 const countries = ref([]);
 
@@ -461,6 +467,9 @@ const registerFunc = async () => {
   formBody.append("city_id", form.value.city_id.id);
   formBody.append("password", form.value.password);
   formBody.append("password_confirmation", form.value.password_confirmation);
+  if(route.value){
+  formBody.append("link", route.value);
+  }
   if (typeForm.value == "agency" || typeForm.value == "exhibition" ) {
     formBody.append(
       "commercial_registration_no",

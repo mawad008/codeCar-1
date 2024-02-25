@@ -601,6 +601,7 @@ html[dir=rtl] .input .phonenum {
   background: #f6f7f9;
   padding: 0px 8px;
   position: relative;
+  direction: rtl;
 }
 html[dir=rtl] .input .phonenum:focus-within {
   background-color: #fff;
@@ -611,6 +612,7 @@ html[dir=rtl] .input .phonenum:focus-within input {
   border: 1px solid transparent !important;
 }
 html[dir=rtl] .input .numm {
+  direction: ltr;
   color: #5a7184;
   border-right: 1px solid #5a7184;
   padding-right: 5px;
@@ -631,7 +633,9 @@ html[dir=ltr] .input {
 html[dir=ltr] .input .phonenum {
   border-radius: 8px;
   background: #f6f7f9;
-  padding: 0px 16px;
+  padding: 0px 8px;
+  position: relative;
+  direction: rtl;
 }
 html[dir=ltr] .input .phonenum:focus-within {
   background-color: #fff;
@@ -641,11 +645,17 @@ html[dir=ltr] .input .phonenum:focus-within input {
   background-color: transparent !important;
   border: 1px solid transparent !important;
 }
-html[dir=ltr] .input .phonenum .numm {
+html[dir=ltr] .input .numm {
+  direction: ltr;
   color: #5a7184;
-  border-left: 1px solid #5a7184;
+  border-right: 1px solid #5a7184;
+  padding-right: 5px;
   padding-left: 5px;
-  padding-right: 10px;
+}
+html[dir=ltr] .input .numm.set {
+  position: absolute;
+  left: 10px;
+  top: 50%;
 }
 html[dir=ltr] .main-auth .main-radio {
   direction: ltr;
@@ -3650,7 +3660,7 @@ html[dir=ltr] .p-accordion-header-action {
 .single-new-container .news-box .icons .iconn {
   display: flex;
   width: 48px;
-  height: 40px;
+  height: 48px;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
@@ -4853,8 +4863,11 @@ html[dir=ltr] .settings-page .setting-btn {
 .empty .main a {
   width: 200px;
 }
+.empty .main .btnss {
+  margin-top: 32px;
+}
 .empty .main button {
-  width: 100%;
+  width: 200px;
   display: flex;
   height: 48px;
   padding: 8px 16px;
@@ -4863,8 +4876,14 @@ html[dir=ltr] .settings-page .setting-btn {
   align-content: center;
   font-weight: 700;
   border-radius: 12px;
+}
+.empty .main button.back {
   border: 1px solid #2d3a4a;
-  margin-top: 32px;
+  color: #2d3a4a;
+}
+.empty .main button.home {
+  background-color: #2d3a4a;
+  color: #fff;
 }
 
 .modal {
@@ -5046,50 +5065,61 @@ html[dir=ltr] .settings-page .setting-btn {
 .advertisementtt-container .error-msg2 {
   white-space: normal !important;
 }
-.advertisementtt-container .ad-container {
+.advertisementtt-container .addd-container {
   margin-bottom: 0px !important;
   border-radius: 24px;
   background: #fff;
   padding: 32px;
 }
-.advertisementtt-container .ad-container .ad-content h5 {
+.advertisementtt-container .addd-container .addd-content h5 {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  color: #2d3a4a;
+  margin-bottom: 20px;
+}
+.advertisementtt-container .addd-container .addd-content h6 {
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   color: #2d3a4a;
 }
-.advertisementtt-container .ad-container .ad-content .error-msg2 {
+.advertisementtt-container .addd-container .addd-content .restImages {
+  margin-top: 32px;
+  margin-bottom: 20px;
+}
+.advertisementtt-container .addd-container .addd-content .error-msg2 {
   position: relative !important;
   display: block;
 }
-.advertisementtt-container .ad-container .ad-content .input {
+.advertisementtt-container .addd-container .addd-content .input {
   display: flex;
   flex-direction: column;
   position: relative;
   gap: 10px;
   margin: 20px 0px;
 }
-.advertisementtt-container .ad-container .ad-content .input .num {
+.advertisementtt-container .addd-container .addd-content .input .num {
   position: absolute;
   bottom: 20px;
   left: 30px;
 }
-.advertisementtt-container .ad-container .ad-content .input .num span {
+.advertisementtt-container .addd-container .addd-content .input .num span {
   color: #dcb63b;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
 }
-.advertisementtt-container .ad-container .ad-content .input label {
+.advertisementtt-container .addd-container .addd-content .input label {
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
   color: #5A7184;
   position: relative;
 }
-.advertisementtt-container .ad-container .ad-content .input input,
-.advertisementtt-container .ad-container .ad-content .input .p-dropdown,
-.advertisementtt-container .ad-container .ad-content .input textarea {
+.advertisementtt-container .addd-container .addd-content .input input,
+.advertisementtt-container .addd-container .addd-content .input .p-dropdown,
+.advertisementtt-container .addd-container .addd-content .input textarea {
   border-radius: 8px;
   background: #f6f7f9;
   font-size: 14px;
@@ -5103,29 +5133,29 @@ html[dir=ltr] .settings-page .setting-btn {
   border-color: transparent;
   resize: none;
 }
-.advertisementtt-container .ad-container .ad-content .input input:focus,
-.advertisementtt-container .ad-container .ad-content .input .p-dropdown:focus,
-.advertisementtt-container .ad-container .ad-content .input textarea:focus {
+.advertisementtt-container .addd-container .addd-content .input input:focus,
+.advertisementtt-container .addd-container .addd-content .input .p-dropdown:focus,
+.advertisementtt-container .addd-container .addd-content .input textarea:focus {
   background-color: #fff;
   border-color: #dcb63b;
 }
-.advertisementtt-container .ad-container .ad-content .det {
+.advertisementtt-container .addd-container .addd-content .det {
   border-top: 1px solid #ebeaed;
   padding-top: 20px;
 }
-.advertisementtt-container .ad-container .ad-content .det .half {
+.advertisementtt-container .addd-container .addd-content .det .half {
   display: flex;
   align-items: center;
   width: 100%;
 }
-.advertisementtt-container .ad-container .ad-content .price {
+.advertisementtt-container .addd-container .addd-content .price {
   border-top: 1px solid #ebeaed;
   padding-top: 20px;
 }
-.advertisementtt-container .ad-container .ad-content .main-btn {
+.advertisementtt-container .addd-container .addd-content .main-btn {
   margin-top: 56px;
 }
-.advertisementtt-container .ad-container .ad-content .main-btn button {
+.advertisementtt-container .addd-container .addd-content .main-btn button {
   display: flex;
   width: 200px;
   height: 48px;
@@ -5137,24 +5167,24 @@ html[dir=ltr] .settings-page .setting-btn {
   color: #fff;
   font-weight: 700;
 }
-.advertisementtt-container .ad-container .ad-content .images .word {
+.advertisementtt-container .addd-container .addd-content .images .word {
   font-size: 12px;
   font-weight: 400;
   color: #959ead;
 }
-.advertisementtt-container .ad-container .ad-content .images .add {
+.advertisementtt-container .addd-container .addd-content .images .add {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
 }
-.advertisementtt-container .ad-container .ad-content .images .add span {
+.advertisementtt-container .addd-container .addd-content .images .add span {
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   color: #dcb63b;
 }
-.advertisementtt-container .ad-container .ad-content .images .image {
+.advertisementtt-container .addd-container .addd-content .images .image {
   border-radius: 14px;
   border: 1px dashed #90a3bf;
   position: relative;
@@ -5163,7 +5193,7 @@ html[dir=ltr] .settings-page .setting-btn {
   height: 150px;
   cursor: pointer;
 }
-.advertisementtt-container .ad-container .ad-content .images .image .img-icon {
+.advertisementtt-container .addd-container .addd-content .images .image .img-icon {
   position: absolute;
   top: 40%;
   left: 50%;
@@ -5172,33 +5202,33 @@ html[dir=ltr] .settings-page .setting-btn {
   align-items: center;
   transform: translateX(-50%);
 }
-.advertisementtt-container .ad-container .ad-content .images .image .img-icon .active {
+.advertisementtt-container .addd-container .addd-content .images .image .img-icon .active {
   filter: brightness(200%);
 }
-.advertisementtt-container .ad-container .ad-content .images .image .img-icon span {
+.advertisementtt-container .addd-container .addd-content .images .image .img-icon span {
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   color: #5a7184;
 }
-.advertisementtt-container .ad-container .ad-content .images .image input {
+.advertisementtt-container .addd-container .addd-content .images .image input {
   display: none;
 }
-.advertisementtt-container .ad-container .ad-content .images .image.big {
+.advertisementtt-container .addd-container .addd-content .images .image.big {
   height: 200px;
 }
-.advertisementtt-container .ad-container .ad-content .images .image .main-img {
+.advertisementtt-container .addd-container .addd-content .images .image .main-img {
   border-radius: 14px;
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
-.advertisementtt-container .ad-container .ad-content .btns {
+.advertisementtt-container .addd-container .addd-content .btns {
   gap: 30px;
   margin-top: 56px;
 }
-.advertisementtt-container .ad-container .ad-content .btns button {
+.advertisementtt-container .addd-container .addd-content .btns button {
   display: flex;
   width: 200px;
   height: 48px;
@@ -5208,16 +5238,16 @@ html[dir=ltr] .settings-page .setting-btn {
   font-weight: 700;
   border-radius: 12px;
 }
-.advertisementtt-container .ad-container .ad-content .btns button.back {
+.advertisementtt-container .addd-container .addd-content .btns button.back {
   background-color: #fff;
   border: 1px solid #2d3a4a;
   color: #2d3a4a;
 }
-.advertisementtt-container .ad-container .ad-content .btns button.next {
+.advertisementtt-container .addd-container .addd-content .btns button.next {
   color: #fff;
   background: #2d3a4a;
 }
-.advertisementtt-container .ad-container .confirm {
+.advertisementtt-container .addd-container .confirm {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5228,20 +5258,20 @@ html[dir=ltr] .settings-page .setting-btn {
   background: #fff;
   padding: 53px 0px;
 }
-.advertisementtt-container .ad-container .confirm h4 {
+.advertisementtt-container .addd-container .confirm h4 {
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
   color: #2d3a4a;
 }
-.advertisementtt-container .ad-container .confirm span {
+.advertisementtt-container .addd-container .confirm span {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   color: #5a7184;
   width: 361px;
 }
-.advertisementtt-container .ad-container .confirm button {
+.advertisementtt-container .addd-container .confirm button {
   display: flex;
   width: 350px;
   height: 48px;
@@ -5272,7 +5302,7 @@ html[dir=ltr] .settings-page .setting-btn {
   .empty a {
     width: 100%;
   }
-  .advertisementtt-container .ad-container .ad-content .det .half {
+  .advertisementtt-container .addd-container .addd-content .det .half {
     width: auto !important;
   }
   .modal-dialog {

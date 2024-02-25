@@ -174,7 +174,7 @@
                         id="auto-1"
                         v-model="selected2"
                         color="#DCB63B"
-                        value="automatic"
+                        value="manual"
                       ></v-checkbox>
                       <label for="auto-1"> {{$t('gear1')}} </label>
                     </div>
@@ -190,9 +190,9 @@
                         id="manu-1"
                         v-model="selected2"
                         color="#DCB63B"
-                        value="manual"
+                        value="automatic"
                       ></v-checkbox>
-                      <label for="manu-1">  {{ $t('manual') }} </label>
+                      <label for="manu-1">  {{ $t('automatic') }} </label>
                     </div>
                     <span class="num">(25)</span>
                   </div>
@@ -624,6 +624,7 @@
             </v-progress-linear>
             
             </div>
+            
                 
 
             <button @click="loadMore()"> {{$t('searchMore')}} </button>
@@ -813,7 +814,7 @@ const pageCount = computed(() => {
   return Math.ceil(total.value / itemsPerPage.value);
 });
 const progressValue = computed(() => {
-  return (itemsPerPage.value / total.value) * 100;
+  return ((itemsPerPage.value  * page.value) / total.value) * 100;
 });
 
 const loadMore = async () => {

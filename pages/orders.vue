@@ -24,7 +24,7 @@
                         <button @click="chooseBtn = 2, type = 'complete', getOrders()" class="two"
                             :class="{ 'active': chooseBtn == 2 }">{{ $t('compelete') }}</button>
                     </div>
-                    <div v-else class="search-bar">
+                    <div v-if="!tokenCookie" class="search-bar">
                         <input type="text" v-model="orderNumber" :placeholder="$t('searchOrder')">
                         <div @click="getOrders()" class="icon">
                             <img src="~/assets/images/search-icon.svg" alt="" />
@@ -560,7 +560,7 @@ import cart from "~/assets/animations/car2.json";
 import axios from "axios";
 import { useStore } from "~/store";
 import Cookies from "js-cookie";
-const tokenCookie = Cookies.get("token");
+const tokenCookie = ref(Cookies.get("token") ? Cookies.get("token") : null);
 let store = useStore;
 let user = store.state.user
 const localePath = useLocalePath();
@@ -585,7 +585,7 @@ const getDesc = async () => {
     desc.value = result.data.data.followyourOrder;
 }
 const getOrders = async () => {
-    if (tokenCookie) {
+    if (tokenCookie.value) {
         pendingLoader.value = true;
         pendingLoader2.value = true;
         pendingLoader3.value = false;
@@ -597,7 +597,7 @@ const getOrders = async () => {
             },
             headers: {
                 "Content-Language": `${locale.value}`,
-                Authorization: `Bearer ${tokenCookie}`,
+                Authorization: `Bearer ${tokenCookie.value}`,
             },
         });
         if (result.status == 200) {
@@ -657,7 +657,7 @@ let items = ref([
 
 onMounted(() => {
     console.log(user);
-    if (tokenCookie) {
+    if (tokenCookie.value) {
         getOrders();
     }
     getDesc();

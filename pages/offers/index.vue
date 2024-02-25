@@ -22,7 +22,7 @@
                         </div>
                         <div class="text w-100">
                             <h6>{{ item.title }}</h6>
-                            <p> {{ item.description }} </p>
+                            <p> {{ `${item.description.substring(0 , 150)} ...` }} </p>
                             <div class="det">
                                 <div @click="goToOfferPage(item.id , item.title) , store.state.offerActive = true" class="d-flex align-items-center gap-2">
                                     <span>{{ $t("offersDetails") }}</span>

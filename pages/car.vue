@@ -436,19 +436,19 @@
                         class=""
                         v-model="formCash1.name"
                       />
-                    </div>
                     <span class="error-msg" v-if="v1$.name.$error">{{
                               v1$.name.$errors[0].$message
                           }}</span>
-                  </div>
+                    </div>
                   <span class="error-msg mt-1" v-if="errors1.name">{{
                       errors1.name[0]
                   }}</span>
+                  </div>
                   <div class="input-container">
                     <span> {{$t('phone')}} </span>
                     <div class="input">
                       <div class="w-100  d-flex align-items-center justify-content-between phonenum">
-                  <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="formCash1.phone" />
+                  <input type="tel" maxlength="10" placeholder="3333-5555-9999-55" name="" v-model="formCash1.phone" />
                   <span class="numm login">966+</span>
                 </div>
                       
@@ -654,7 +654,7 @@
                     <span> {{ $t('phone') }} </span>
                     <div class="input">
                       <div class="w-100  d-flex align-items-center justify-content-between phonenum">
-                  <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="formCash2.phone" />
+                  <input type="tel" maxlength="10" placeholder="3333-5555-9999-55" name="" v-model="formCash2.phone" />
                   <span class="numm login">966+</span>
                 </div>
                       <span class="error-msg" v-if="v2$.phone.$error">{{
@@ -1243,8 +1243,8 @@ if (locale.value == "ar") {
   valuee2.value = "تم الحذف من قائمة المفضلات ";
 
 } else {
-    valuee1.value = 'value is required';
-  valuee2.value = "The email field is required";
+    valuee1.value = 'Added to Favorites list';
+  valuee2.value = "Removed from Favorites list";
 
 }
 

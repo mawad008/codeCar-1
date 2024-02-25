@@ -733,6 +733,7 @@ html[dir="rtl"] {
     background: #f6f7f9;
     padding: 0px 8px; 
     position: relative;
+    direction: rtl;
     span{
 
     }
@@ -746,7 +747,7 @@ html[dir="rtl"] {
   }
       }
     .numm{
-    
+      direction: ltr;
 
       &.set{
           position: absolute;
@@ -772,28 +773,42 @@ html[dir="rtl"] {
 html[dir="ltr"] {
   .input{
     position: relative;
-      .phonenum{
+    .phonenum{
     border-radius: 8px;
     background: #f6f7f9;
-    padding: 0px 16px; 
+    padding: 0px 8px; 
+    position: relative;
+    direction: rtl;
+    span{
+
+    }
      &:focus-within {
          background-color: #fff;
           border: 1px solid #dcb63b;
           input{
-            background-color: transparent !important;
+          background-color: transparent !important;
           border: 1px solid transparent !important;
             }
   }
+      }
     .numm{
-      // position: absolute;
-      // right: 10px;
+    
+      direction: ltr;
+
+      &.set{
+          position: absolute;
+      left: 10px;
+        top: 50%;
+        // transform: translateY(-50%);
+
+      }
       color: $body-text;
-      border-left: 1px solid $body-text;
+      border-right: 1px solid $body-text;
+      padding-right: 5px;
       padding-left: 5px;
-      padding-right: 10px;
     }
   }
-}
+
   
   .main-auth{
   .main-radio{
@@ -4469,7 +4484,7 @@ html[dir="ltr"] {
       .iconn {
         display: flex;
         width: 48px;
-        height: 40px;
+        height: 48px;
         justify-content: center;
         align-items: center;
         border-radius: 50%;
@@ -5838,8 +5853,13 @@ html[dir="ltr"] .settings-page{
       width: 200px;
 
     }
+    .btnss{
+      margin-top: 32px;
+
+    }
     button {
-      width: 100%;
+      // width: 100%;
+      width: 200px;
       display: flex;
       height: 48px;
       padding: 8px 16px;
@@ -5848,8 +5868,14 @@ html[dir="ltr"] .settings-page{
       align-content: center;
       font-weight: 700;
       border-radius: 12px;
-      border: 1px solid #2d3a4a;
-      margin-top: 32px;
+      &.back{
+        border: 1px solid #2d3a4a;
+        color: $secondary-black;
+      }
+      &.home{
+        background-color: $secondary-black;
+        color: #fff;
+      }
     }
   }
 }
@@ -6044,7 +6070,7 @@ font-weight: 700;
   .error-msg2{
     white-space: normal !important;
   }
-  .ad-container {
+  .addd-container {
     margin-bottom: 0px !important;
     border-radius: 24px;
     background: #fff;
@@ -6176,13 +6202,23 @@ font-weight: 700;
     //   }
     // }
 
-    .ad-content {
+    .addd-content {
       h5 {
         font-size: 16px;
         font-style: normal;
         font-weight: 700;
         color: $secondary-black;
-        // margin-bottom: 20px;
+        margin-bottom: 20px;
+      }
+      h6{
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        color: $secondary-black;
+      }
+      .restImages{
+        margin-top: 32px;
+        margin-bottom: 20px;
       }
        .error-msg2{
         position: relative !important;
@@ -6423,7 +6459,7 @@ font-weight: 700;
       width: 100%;
     }
   }
-  .advertisementtt-container .ad-container .ad-content .det .half{
+  .advertisementtt-container .addd-container .addd-content .det .half{
     width: auto !important;
   }
   .modal-dialog{

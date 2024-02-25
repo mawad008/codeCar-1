@@ -91,19 +91,19 @@
                                 d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
                             </svg> 
                              </button>
-                             <a v-if="contactArr.instagram" :href="contactArr.instagram" target="_blank" class="iconn">
+                             <a v-if="contactArr.instagram" :href="`https://www.instagram.com/?url=${routee}`" target="_blank" class="iconn">
                               <img src="~/assets/images/share2.svg" alt="">
                              </a>
-                             <a v-if="contactArr.facebook" :href="contactArr.facebook" target="_blank" class="iconn">
+                             <a v-if="contactArr.facebook" :href="`https://www.facebook.com/sharer/sharer.php?${routee}`" target="_blank" class="iconn">
                               <img src="~/assets/images/share3.svg" alt="">
                              </a>
-                             <a v-if="contactArr.snapchat" :href="contactArr.snapchat" target="_blank" class="iconn">
+                             <a v-if="contactArr.snapchat" :href="`https://www.snapchat.com/share?url=${routee}`" target="_blank" class="iconn">
                               <img src="~/assets/images/share4.svg" alt="">
                              </a>
-                             <a v-if="contactArr.twitter" :href="contactArr.twitter" target="_blank" class="iconn">
+                             <a v-if="contactArr.twitter" :href="`https://twitter.com/intent/tweet?url=${routee}`" target="_blank" class="iconn">
                               <img src="~/assets/images/share5.svg" alt="">
                              </a>
-                             <a v-if="contactArr.phone" :href="`https://wa.me/${contactArr.phone}`" target="_blank" class="iconn">
+                             <a v-if="contactArr.phone" :href="`https://wa.me/?text=${routee}/`" target="_blank" class="iconn">
                               <img src="~/assets/images/share6.svg" alt="">
                              </a>
                             </div>

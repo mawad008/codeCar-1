@@ -71,7 +71,7 @@
             >
             <nuxt-link class="nav-link spe" :to="localePath('/addCar')"
               >
-              {{ $t("ad") }}
+              {{ $t("adddd") }}
               </nuxt-link
             >
           </div>
@@ -401,7 +401,7 @@
                   <span class="head-link"> {{$t("market")}} </span>
                 </nuxt-link>
                 <nuxt-link :to="localePath('addCar')">
-                  <span class="head-link"> {{$t("ad")}} </span>
+                  <span class="head-link"> {{$t("adddd")}} </span>
                 </nuxt-link>
                 </div>
               </div>

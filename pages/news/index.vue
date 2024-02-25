@@ -43,7 +43,9 @@
                                         <span>{{ item.created_at }}</span>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
-                                    <h4>{{ item.title }}</h4>
+                                    <!-- <h4>{{ item.title }}</h4> -->
+                                    <h4>{{ `${item.title.substring(0 , 40)} ...` }}</h4>
+                                    <!-- <h4>{{ item.title.length }}</h4> -->
                                       <div @click="goToNewPage(item.id , item.title) , store.state.newActive = true" class="icon" >
                                       <i class="fa-solid fa-arrow-left arrow-icon"></i>
                                       </div>

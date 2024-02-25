@@ -278,7 +278,7 @@
               <span> {{ $t('phone') }} </span>
               <div class="input">
                 <div class="w-100  d-flex align-items-center justify-content-between phonenum">
-                  <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="form4.phone" />
+                  <input type="tel" maxlength="9" placeholder="3333-5555-9999-55" name="" v-model="form4.phone" />
                   <span class="numm login">966+</span>
                 </div>
                 <span class="error-msg" v-if="v4$.phone.$error">{{
@@ -387,8 +387,16 @@ const currentYear = currentDate.getFullYear();
 
 let paymentOtp = ref(1);
 let years = ref([]);
-for (let i = currentYear; i >= currentYear - 14; i--) {
+const getDesc = async () => {
+  let result = await axios.get(`${getUrl()}/allsettings`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  for (let i = currentYear; i >= parseInt(result.data.data.Min_year_of_finance); i--) {
   years.value.push(i);
+}
+console.log(years.value);
 }
 
 let optionsCars = ref([]);
@@ -688,6 +696,7 @@ const sendCorporate2 = async () => {
 
 onMounted(() => {
   getOptions();
+  getDesc();
   getCites();
 })
 </script>

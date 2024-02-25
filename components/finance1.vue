@@ -237,7 +237,7 @@
             <div class="input-container">
               <span> {{ $t('theYear') }}</span>
               <div class="input">
-                <Dropdown :filter-placeholder="$t('search')" v-model="form2.year" :options="optionsCars.year" filter
+                <Dropdown :filter-placeholder="$t('search')" v-model="form2.year" :options="years" filter
                   optionLabel="" placeholder="2024" class="">
                   <template #option="slotProps">
                     <div class="flex align-items-center">
@@ -323,7 +323,7 @@
               <span> {{ $t('phone') }}</span>
               <div class="input">
                 <div class="w-100  d-flex align-items-center justify-content-between phonenum">
-                  <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="form3.phone" />
+                  <input type="tel" maxlength="9" placeholder="3333-5555-9999-55" name="" v-model="form3.phone" />
                   <span class="numm login">966+</span>
                 </div>
                 <span class="error-msg d-block" style="position:relative;" v-if="v3$.phone.$error">{{
@@ -673,9 +673,14 @@
               <span>
                 {{ $t('offerEmpty2') }}
               </span>
+              <div class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4">
+                <button @click="paymentIndividualBtn = 3" class="back">
+                {{ $t('back') }}
+              </button> 
               <nuxt-link :to="localePath('/')">
-                <button>{{ $t('backHome') }}</button>
+                <button class="home">{{ $t('backHome') }}</button>
               </nuxt-link>
+              </div>
             </div>
           </div>
         </div>
@@ -866,12 +871,23 @@ const currentYear = currentDate.getFullYear();
 
 let paymentOtp = ref(1);
 let years = ref([]);
-for (let i = currentYear; i >= currentYear - 14; i--) {
-  years.value.push(i);
-}
+
 
 let optionsCars = ref([]);
 let brands = ref([]);
+
+
+const getDesc = async () => {
+  let result = await axios.get(`${getUrl()}/allsettings`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  for (let i = currentYear; i >= parseInt(result.data.data.Min_year_of_finance); i--) {
+  years.value.push(i);
+}
+console.log(years.value);
+}
 
 let bank_offer_id = ref(null);
 const getOptions = async () => {
@@ -1296,6 +1312,7 @@ let paymentIndividualBtn = ref(1);
 
 onMounted(() => {
   getOptions();
+  getDesc();
   getCites();
 })
 </script>

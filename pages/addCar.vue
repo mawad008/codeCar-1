@@ -4,7 +4,7 @@
       <div
         class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column"
       >
-        <h4 class="heading-text">{{ $t("ad") }}</h4>
+        <h4 class="heading-text">{{ $t("adddd") }}</h4>
         <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
 
         <v-breadcrumbs :items="items">
@@ -14,7 +14,7 @@
         </v-breadcrumbs>
       </div>
 
-      <div class="ad-container paymentType">
+      <div class="addd-container paymentType">
         <div class="row" :class="{ 'd-none': adNavBtn == 3 }">
           <div class="col-12 col-xl-5 col-lg-5">
             <div class="main-pagination-container finance">
@@ -35,12 +35,12 @@
                   <div class="icon" :class="{ active: paymentSec2 == 1 }">
                     <img
                       class="def"
-                      src="@/assets/images/image-ad.svg"
+                      src="@/assets/images/image-addd.svg"
                       alt=""
                     />
                     <img
                       class="active"
-                      src="@/assets/images/image-ad-active.svg"
+                      src="@/assets/images/image-addd-active.svg"
                       alt=""
                     />
                   </div>
@@ -96,7 +96,7 @@
           </div>
 
           <div class="col-12 col-xl-7 col-lg-7">
-            <div class="ad-content">
+            <div class="addd-content">
               <div v-if="adNavBtn == 1">
                 <h5>{{ $t("namee") }}</h5>
                 <!-- <div class="input">
@@ -142,7 +142,7 @@
                     errors1.Car_Description[0]
                   }}</span>
                 </div>
-                <div class="input">
+                <!-- <div class="input">
                   <label for="">
                     <span> {{ $t("car_det2") }} </span>
                   </label>
@@ -168,7 +168,7 @@
                   <span class="error-msg2" v-if="errors1.Car_Description_en">{{
                     errors1.Car_Description_en[0]
                   }}</span>
-                </div>
+                </div> -->
                 <div class="det">
                   <h5>{{ $t("carDet") }}</h5>
                   <div class="half row">
@@ -237,10 +237,10 @@
                         <Dropdown
                           v-model="form4.Car_Year"
                           :filter-placeholder="$t('search')"
-                          :options="optionsCars.year"
+                          :options="years"
                           filter
                           optionLabel=""
-                          placeholder="2024"
+                          :placeholder="$t('theYear')"
                           class=""
                         >
                           <template #option="slotProps">
@@ -289,7 +289,7 @@
                     <div class="col-12 col-l-6 col-lg-6">
                       <div class="input">
                         <label for="">
-                          {{ $t("engine") }}
+                          {{ $t("gear") }}
                         </label>
                         <Dropdown
                           v-model="form4.Gear_shifter"
@@ -414,10 +414,10 @@
                         <div class="input">
                           <label for="">{{ $t("carCategory") }}</label>
                           <Dropdown v-model="form4.Category" optionValue="id" :filter-placeholder="$t('search')"
-                            :options="optionsCars.Category" filter optionLabel="title" :placeholder="$t('carCategory')" class="">
+                            :options="form4.Car_Model != '' ? getCategories[0][0].Categories : ''" filter optionLabel="name" :placeholder="$t('carCategory')" class="">
                             <template #option="slotProps">
                               <div class="flex align-items-center">
-                                <div>{{ slotProps.option.title }}</div>
+                                <div>{{ slotProps.option.name }}</div>
                               </div>
                             </template>
                           </Dropdown>
@@ -430,6 +430,7 @@
                         </div>
                       </div>
                     </div>
+                    
                     <div class="half row">
                       <div class="col-12 col-l-6 col-lg-6">
                         <div class="input">
@@ -520,13 +521,13 @@
                             min="1"
                             placeholder="100,000"
                           />
-                          <span
+                          <!-- <span
                             class="error-msg"
                             v-if="v1$.Car_Price_after_Discount.$error"
                             >{{
                               v1$.Car_Price_after_Discount.$errors[0].$message
                             }}</span
-                          >
+                          > -->
                           <span class="error-msg2" v-if="errors1.Car_Price_after_Discount">{{
                           errors1.Car_Price_after_Discount[0]
                         }}</span>
@@ -587,11 +588,11 @@
                 </div>
                 <div>
                   <div
-                    class="d-flex w-100 align-items-center justify-content-between mt-4 mb-2"
+                    class="d-flex w-100 align-items-center justify-content-between restImages"
                   >
-                    <h5>
+                    <h6>
                       {{ $t("img3") }}
-                    </h5>
+                    </h6>
                     <div @click="addImage" class="add">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -620,9 +621,12 @@
                     <div
                       v-for="(image, index) in images"
                       :key="index"
-                      class="col-12 col-xl-6 col-lg-6"
+                      class="col-12 col-xl-6 col-lg-6 mb-3"
                     >
                       <div style="position:relative;">
+                        <div v-if="images.length > 2" class="d-flex justify-content-end mb-3">
+                    <i @click="removeRow(index)" class="fa-solid fa-trash" style="color:#ed3f3f; cursor:pointer;"></i>
+                  </div>
                         <label :for="`the-img-${index}`" class="image">
                           <div class="img-icon">
                             <img v-if="!image.url" src="~/assets/images/gallery-add.png" />
@@ -692,6 +696,7 @@
 </template>
 
 <script setup>
+
 definePageMeta({
   middleware: "auth",
 });
@@ -720,6 +725,21 @@ let paymentSec1 = ref(1);
 let paymentSec2 = ref(0);
 let checkBtnSec1 = ref(0);
 let checkBtnSec2 = ref(0);
+
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+let years = ref([]);
+const getDesc = async () => {
+  let result = await axios.get(`${getUrl()}/allsettings`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  for (let i = currentYear; i >= parseInt(result.data.data.Min_year_of_ads); i--) {
+  years.value.push(i);
+}
+console.log(years.value);
+}
 
 
 // const handleKeyUp = (event) => {
@@ -789,16 +809,16 @@ const rules1 = computed(() => {
     City: { required: helpers.withMessage(value1.value, required) },
     fuel_tank_capacity: { required: helpers.withMessage(value1.value, required) },
     Car_style: { required: helpers.withMessage(value1.value, required) },
-    Car_Description_en: { required: helpers.withMessage(value1.value, required) },
+    // Car_Description_en: { required: helpers.withMessage(value1.value, required) },
     Gear_shifter: { required: helpers.withMessage(value1.value, required) },
     // Killometer: { required: helpers.withMessage(value1.value, required) },
     Fuel_Type: { required: helpers.withMessage(value1.value, required) },
     Supplier: { required: helpers.withMessage(value1.value, required) },
     Car_Color: { required: helpers.withMessage(value1.value, required) },
     Car_Price: { required: helpers.withMessage(value1.value, required) },
-    Car_Price_after_Discount: {
-      required: helpers.withMessage(value1.value, required),
-    },
+    // Car_Price_after_Discount: {
+    //   required: helpers.withMessage(value1.value, required),
+    // },
   };
 });
 // watch(form4, (newForm, oldForm) => {
@@ -861,10 +881,17 @@ const addImage = () => {
 console.log(checkImages.value);
 };
 
+const removeRow = (index) => {
+    if (images.value.length > 1) {
+      images.value.splice(index, 1);
+    }
+
+}
+
 let gear_shifterArr = ref([
   {
     value: "manual",
-    name: locale.value == "ar" ? "مانوال" : "manual",
+    name: locale.value == "ar" ? "جير عادي" : "manual",
   },
   {
     value: "automatic",
@@ -994,6 +1021,16 @@ const getmodels = computed(() => {
   if (optionsCars.value.brands) {
     return optionsCars.value.brands.filter((ele) => {
       return form4.value.Car_Brand == ele.id;
+    });
+  }
+});
+
+const getCategories = computed(() => {
+  if (form4.value.Car_Model != '') {
+    return optionsCars.value.brands.map((ele) => {
+     return ele.models.filter((e)=>{
+         return form4.value.Car_Model == e.id;
+      })
     });
   }
 });
@@ -1136,6 +1173,7 @@ let items = ref([
 onMounted(() => {
     // loopImages();
   getOptions();
+  getDesc();
   getCites();
 });
 </script>

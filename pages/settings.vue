@@ -227,7 +227,7 @@
                       <span> {{ $t('phone10') }} </span>
                     </label>
                     <div class=" d-flex  align-items-center justify-content-between phonenum">
-                      <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="form.phone" />
+                      <input type="tel" maxlength="10" placeholder="3333-5555-9999-55" name="" v-model="form.phone" />
                       <span class="numm ">966+</span>
                     </div>
                   </div>
@@ -629,11 +629,10 @@
                 </div>
                 <div class="text d-flex w-100 flex-column">
                   <div class="d-flex w-100 align-items-center justify-content-between">
-                    <h6>تتبع طلبك!</h6>
+                    <h6>{{ item.title }}</h6>
                     <span class="date">{{ item.time }}</span>
                   </div>
-                  <span>نحن نقوم بمعالجة طلبك بسرعة. انتظر قدومه قريبًا واستعد
-                    لتجربة رائعة. شكرًا لصبرك واختيارك لنا.</span>
+                  <span>{{ item.description }}</span>
                 </div>
               </div>
 
@@ -977,7 +976,7 @@ const getDesc = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
-  desc.value = result.data.data.ProfileDescription;
+  desc.value = result.data.data.settingprofile;
 }
 const getNotifications = async () => {
   let result = await axios.get(`${getUrl()}/notification`, {
@@ -1079,7 +1078,7 @@ const activeCar = async (id, statusCar) => {
 
 }
 const deleteCar = async (id) => {
-  let result = await axios.delete(`${getUrl()}/adds/delete/${id}`, {
+  let result = await axios.delete(`${getUrl()}/addss/delete/${id}`, {
     headers: {
       "Content-Language": `${locale.value}`,
       Authorization: `Bearer ${tokenCookie}`,

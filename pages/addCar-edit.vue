@@ -22,7 +22,7 @@
             </nuxt-link>
     
     </div>
-        <div class="ad-container paymentType">
+        <div class="addd-container paymentType">
         <div class="row" :class="{ 'd-none': adNavBtn == 3 }">
           <div class="col-12 col-xl-5 col-lg-5">
             <div class="main-pagination-container finance">
@@ -103,7 +103,7 @@
           </div>
 
           <div class="col-12 col-xl-7 col-lg-7">
-            <div class="ad-content">
+            <div class="addd-content">
               <div v-if="adNavBtn == 1">
                 <h5>{{ $t("namee") }}</h5>
                 <!-- <div class="input">
@@ -217,10 +217,10 @@
                         <Dropdown
                           v-model="form4.Car_Year"
                           :filter-placeholder="$t('search')"
-                          :options="optionsCars.year"
+                          :options="years"
                           filter
                           optionLabel=""
-                          placeholder="2024"
+                          :placeholder="$t('theYear')"
                           class=""
                         >
                           <template #option="slotProps">
@@ -548,7 +548,7 @@
                       </div>
 
                     </div>
-                      <span v-if="!checkImages" class="d-block text-center mt-2 text-danger" > {{$t('warn1')}} </span>
+                      <!-- <span v-if="!checkImages" class="d-block text-center mt-2 text-danger" > {{$t('warn1')}} </span> -->
                   </div>
                 </div>
                 <div class="btns d-flex align-items-center justify-content-end">
@@ -556,7 +556,7 @@
                     {{ $t("back") }}
                   </button>
                   <button @click="addFunc2()" :disabled="pending2" class="next gap-3">
-                    {{ $t("addd") }}
+                    {{ $t("addd2") }}
                     <v-progress-circular
                       v-if="pending2"
                       indeterminate
@@ -579,7 +579,7 @@
             {{ $t("adThank1") }}
           </h4>
           <span>
-            {{ $t("adThank2") }}
+            {{ $t("adThank3") }}
           </span>
           <nuxt-link :to="localePath('/')">
             <button>{{ $t("backHome") }}</button>
@@ -622,6 +622,20 @@ let checkBtnSec1 = ref(0);
 let checkBtnSec2 = ref(0);
 let dataform = ref();
 
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+let years = ref([]);
+const getDesc = async () => {
+  let result = await axios.get(`${getUrl()}/allsettings`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  for (let i = currentYear; i >= parseInt(result.data.data.Min_year_of_ads); i--) {
+  years.value.push(i);
+}
+console.log(years.value);
+}
 
 // const handleKeyUp = (event) => {
 //     if (process.client) {
@@ -1020,6 +1034,7 @@ useHead({
 onMounted(() => {
     // loopImages();
     getCarDetails();
+    getDesc();
   getOptions();
 });
 </script>
