@@ -471,9 +471,17 @@ p{
 .main-auth {
   // height: 100vh;
   background-color: #fff;
+  
 
   .row {
-    height: 100%;
+    // height: 100%;
+    // height: 100vh !important;
+  }
+
+  .arrow{
+    cursor: pointer;
+  }
+  .img-container-auth{
   }
   .main-img {
     // width: 674px;
@@ -849,6 +857,19 @@ html[dir="ltr"] .main-auth{
     background-color: #fff !important;
   }
 }
+
+
+
+.Vue-Toastification__container.top-right .Vue-Toastification__toast--rtl, .Vue-Toastification__container.bottom-right .Vue-Toastification__toast--rtl {
+  margin-left: auto !important;
+  margin-right: 0px !important;
+}
+
+.Vue-Toastification__container.top-left .Vue-Toastification__toast--rtl, .Vue-Toastification__container.bottom-left .Vue-Toastification__toast--rtl {
+  margin-right: auto !important;
+  margin-left: 0px !important;
+}
+
 .navbar {
   background-color: $background;
   // background-color: transparent;
@@ -1193,7 +1214,9 @@ html[dir="ltr"] .main-auth{
     }
 
 @media (max-width: 920px) {
-  
+  .main-auth .img-container-auth{
+    display: none !important;
+  }
   .footer-container {
     padding: 31px 16px;
     p {
@@ -6326,6 +6349,21 @@ font-weight: 700;
           margin-bottom: 9px;
           height: 150px;
           cursor: pointer;
+          &.active{
+          border: none;
+            &::before{
+              content: '';
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              border-radius: 14px;
+              background-color: #2D3A4A;
+              opacity: 0.6;
+              // filter: blur(2px);
+            }
+            
+
+          }
           .img-icon {
             position: absolute;
             top: 40%;
@@ -6333,6 +6371,8 @@ font-weight: 700;
             display: flex;
             flex-direction: column;
             align-items: center;
+            // background-color: #fff;
+            // padding: 15px;
             .active{
               filter: brightness(200%);
             }
@@ -6354,7 +6394,7 @@ font-weight: 700;
             border-radius: 14px;
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
           }
         }
       }

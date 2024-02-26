@@ -372,6 +372,80 @@
                     </div>
                   </div>
                   <div class="half row">
+                      <div class="col-12 col-l-6 col-lg-6">
+                        <div class="input">
+                          <label for=""> {{ $t('filter4') }}</label>
+
+                          <Dropdown v-model="form4.Car_style" optionValue="value" :filter-placeholder="$t('search')" :options="carStyle"
+                            filter optionLabel="name" :placeholder="$t('filter4')" class="">
+                            <template #option="slotProps">
+                              <div class="flex align-items-center">
+                                <div>{{ slotProps.option.name }}</div>
+                              </div>
+                            </template>
+                          </Dropdown>
+                          <span class="error-msg" v-if="v1$.Car_style.$error">{{
+                            v1$.Car_style.$errors[0].$message
+                          }}</span>
+                          <span class="error-msg2" v-if="errors1.Car_style">{{
+                            errors1.Car_style[0]
+                          }}</span>
+                        </div>
+                      </div>
+                      <div class="col-12 col-l-6 col-lg-6">
+                        <div class="input">
+                          <label for="">{{ $t("carCategory") }}</label>
+                          <Dropdown v-model="form4.Category" optionValue="id" :filter-placeholder="$t('search')"
+                            :options="form4.Car_Model != '' ? getCategories[0][0].Categories : ''" filter optionLabel="name" :placeholder="$t('carCategory')" class="">
+                            <template #option="slotProps">
+                              <div class="flex align-items-center">
+                                <div>{{ slotProps.option.name }}</div>
+                              </div>
+                            </template>
+                          </Dropdown>
+                          <span class="error-msg" v-if="v1$.Category.$error">{{
+                            v1$.Category.$errors[0].$message
+                          }}</span>
+                          <span class="error-msg2" v-if="errors1.Category">{{
+                            errors1.Category[0]
+                          }}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="half row">
+                      <div class="col-12 col-l-6 col-lg-6">
+                        <div class="input">
+                          <label for="">
+                            {{ $t("engi") }}
+                          </label>
+                          <input type="number" :placeholder="$t('engi')" min="1" v-model="form4.fuel_tank_capacity" />
+                          <span class="error-msg" v-if="v1$.fuel_tank_capacity.$error">{{
+                            v1$.fuel_tank_capacity.$errors[0].$message }}</span>
+                          <span class="error-msg2" v-if="errors1.fuel_tank_capacity">{{
+                            errors1.fuel_tank_capacity[0]
+                          }}</span>
+                        </div>
+                      </div>
+                      <div class="col-12 col-l-6 col-lg-6">
+                        <div class="input">
+                          <label for="">{{ $t("city") }}</label>
+                          <Dropdown v-model="form4.City" optionValue="id" :filter-placeholder="$t('search')"
+                            :options="cities" filter optionLabel="name" :placeholder="$t('city')" class="">
+                            <template #option="slotProps">
+                              <div class="flex align-items-center">
+                                <div>{{ slotProps.option.name }}</div>
+                              </div>
+                            </template>
+                          </Dropdown>
+                          <span class="error-msg" v-if="v1$.City.$error">{{ v1$.City.$errors[0].$message }}</span>
+                          <span class="error-msg2" v-if="errors1.City">{{
+                            errors1.City[0]
+                          }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  <div class="half row">
                     <div class="col-12 col-l-6 col-lg-6">
                       <div class="input">
                         <label for="">{{ $t("color") }}</label>
@@ -465,10 +539,17 @@
               <div v-if="adNavBtn == 2" class="images">
                 <h5>{{ $t("mainImgs") }}</h5>
                 <div style="position:relative;">
-                  <label for="big-img" class="image big" >
+                {{ selectedFileUrl }}
+                  <label for="big-img" class="image big" :class="{'active':dataform.main_image}">
                     <div class="img-icon">
-                      <img src="~/assets/images/gallery-add.png" />
-                      <span>
+                      <img v-if="!dataform.main_image" src="~/assets/images/gallery-add.png" />
+                      <svg v-if="dataform.main_image" style="cursor:pointer;" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                      viewBox="0 0 22 21" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M1.75 4.75008C1.75 3.02994 3.20507 1.6355 5 1.6355H14C14.4142 1.6355 14.75 1.3137 14.75 0.916748C14.75 0.519793 14.4142 0.197998 14 0.197998H5C2.37665 0.197998 0.25 2.23604 0.25 4.75008V16.2501C0.25 18.7641 2.37665 20.8022 5 20.8022H17C19.6234 20.8022 21.75 18.7641 21.75 16.2501V7.62508C21.75 7.22813 21.4142 6.90633 21 6.90633C20.5858 6.90633 20.25 7.22813 20.25 7.62508V11.951C20.1948 11.9069 20.1371 11.8654 20.0768 11.8269L17.6504 10.2767C16.0951 9.28305 14.0618 9.48254 12.7292 10.7596L9.27077 14.0739C7.93822 15.351 5.90492 15.5504 4.34959 14.5568L1.75 12.8959V4.75008ZM10 7.14592C10 8.4691 8.88071 9.54175 7.5 9.54175C6.11929 9.54175 5 8.4691 5 7.14592C5 5.82273 6.11929 4.75008 7.5 4.75008C8.88071 4.75008 10 5.82273 10 7.14592ZM18.1292 1.33778L14.7081 4.61634C14.5791 4.73992 14.4879 4.89494 14.4442 5.06463L14.015 6.73357C13.925 7.08344 14.255 7.39972 14.6201 7.31349L16.3616 6.90211C16.5387 6.86029 16.7004 6.77286 16.8294 6.64928L20.2505 3.37071C20.8363 2.80933 20.8363 1.89916 20.2505 1.33778C19.6647 0.776403 18.715 0.776403 18.1292 1.33778Z"
+                        fill="#fff" />
+                    </svg>
+                      <span v-if="!dataform.main_image">
                         {{ $t("img1") }}
                       </span>
                     </div>
@@ -525,10 +606,19 @@
                       class="col-12 col-xl-6 col-lg-6"
                     >
                       <div style="position:relative;">
-                        <label :for="`the-img-${index}`" class="image">
+                        <div v-if="images.length > 2" class="d-flex justify-content-end mb-3">
+                    <i @click="removeRow(index)" class="fa-solid fa-trash" style="color:#ed3f3f; cursor:pointer;"></i>
+                  </div>
+                        <label :for="`the-img-${index}`" class="image" :class="{'active':image.url}">
                           <div class="img-icon">
-                            <img src="~/assets/images/gallery-add.png" />
-                            <span>{{ $t("img1") }}</span>
+                            <img v-if="!image.url" src="~/assets/images/gallery-add.png" />
+                            <svg v-if="image.url" style="cursor:pointer;" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                      viewBox="0 0 22 21" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M1.75 4.75008C1.75 3.02994 3.20507 1.6355 5 1.6355H14C14.4142 1.6355 14.75 1.3137 14.75 0.916748C14.75 0.519793 14.4142 0.197998 14 0.197998H5C2.37665 0.197998 0.25 2.23604 0.25 4.75008V16.2501C0.25 18.7641 2.37665 20.8022 5 20.8022H17C19.6234 20.8022 21.75 18.7641 21.75 16.2501V7.62508C21.75 7.22813 21.4142 6.90633 21 6.90633C20.5858 6.90633 20.25 7.22813 20.25 7.62508V11.951C20.1948 11.9069 20.1371 11.8654 20.0768 11.8269L17.6504 10.2767C16.0951 9.28305 14.0618 9.48254 12.7292 10.7596L9.27077 14.0739C7.93822 15.351 5.90492 15.5504 4.34959 14.5568L1.75 12.8959V4.75008ZM10 7.14592C10 8.4691 8.88071 9.54175 7.5 9.54175C6.11929 9.54175 5 8.4691 5 7.14592C5 5.82273 6.11929 4.75008 7.5 4.75008C8.88071 4.75008 10 5.82273 10 7.14592ZM18.1292 1.33778L14.7081 4.61634C14.5791 4.73992 14.4879 4.89494 14.4442 5.06463L14.015 6.73357C13.925 7.08344 14.255 7.39972 14.6201 7.31349L16.3616 6.90211C16.5387 6.86029 16.7004 6.77286 16.8294 6.64928L20.2505 3.37071C20.8363 2.80933 20.8363 1.89916 20.2505 1.33778C19.6647 0.776403 18.715 0.776403 18.1292 1.33778Z"
+                        fill="#fff" />
+                    </svg>
+                            <span v-if="!image.url">{{ $t("img1") }}</span>
                           </div>
                           <img
                             
@@ -676,6 +766,10 @@ let form4 = ref({
   Car_Description:  "",
   Car_Brand: "",
   Car_Model: "",
+  Car_style: "",
+  fuel_tank_capacity: "",
+  City: "",
+  Category: "",
   Car_Year:  "",
   Car_Statue: "",
   Gear_shifter: "",
@@ -695,6 +789,10 @@ const rules1 = computed(() => {
     Car_Model: { required: helpers.withMessage(value1.value, required) },
     Car_Year: { required: helpers.withMessage(value1.value, required) },
     Car_Statue: { required: helpers.withMessage(value1.value, required) },
+    Category: { required: helpers.withMessage(value1.value, required) },
+    City: { required: helpers.withMessage(value1.value, required) },
+    fuel_tank_capacity: { required: helpers.withMessage(value1.value, required) },
+    Car_style: { required: helpers.withMessage(value1.value, required) },
     Gear_shifter: { required: helpers.withMessage(value1.value, required) },
     Killometer: { required: helpers.withMessage(value1.value, required) },
     Fuel_Type: { required: helpers.withMessage(value1.value, required) },
@@ -748,12 +846,21 @@ const handleFilesChange = (event, index) => {
 };
 
 const addImage = () => {
-  if (images.value.length <= 15) {
+  if (images.value.length < 15) {
     images.value.push({ url: "", file: null });
   }
 //   loopImages();
 console.log(checkImages.value);
 };
+
+
+const removeRow = (index) => {
+    if (images.value.length > 1) {
+      images.value.splice(index, 1);
+    }
+
+}
+
 
 let filterImages = computed(()=>{
     return images.value.map(image => image.file)
@@ -777,12 +884,35 @@ const countries = ref([
 let gear_shifterArr = ref([
   {
     value: "manual",
-    name: locale.value == "ar" ? "مانوال" : "manual",
+    name: locale.value == "ar" ? "جير عادي" : "manual",
   },
   {
     value: "automatic",
     name: locale.value == "ar" ? "اوتوماتيك" : "automatic",
   },
+]);
+
+let carStyle = ref([
+  {
+    value: "hatchback",
+    name: locale.value == "ar" ? "هاتشباك" : "hatchback",
+  },
+  {
+    value: "sedan",
+    name: locale.value == "ar" ? "سيدان" : "sedan",
+  },
+  {
+    value: "our-wheel-drive",
+    name: locale.value == "ar" ? "دفع رباعي" : "Four-Wheel Drive",
+  },
+  {
+    value: "family",
+    name: locale.value == "ar" ? "عائلي" : "family",
+  },
+  {
+    value: "commercial",
+    name: locale.value == "ar" ? "تجاري" : "commercial",
+  }
 ]);
 
 let carBody = ref([
@@ -875,6 +1005,16 @@ const getmodels = computed(() => {
     });
   }
 });
+
+const getCategories = computed(() => {
+  if (form4.value.Car_Model != '') {
+    return optionsCars.value.brands.map((ele) => {
+     return ele.models.filter((e)=>{
+         return form4.value.Car_Model == e.id;
+      })
+    });
+  }
+});
 const isFormFilled2 = () => {
   // Iterate through each object in the form array
   for (const key in form4.value) {
@@ -910,6 +1050,11 @@ const getCarDetails = async ()=>{
   form4.value.Supplier = dataform.value.supplier;
   form4.value.Killometer = dataform.value.kilometer;
   form4.value.Car_Description = dataform.value.description;
+
+  form4.value.Car_style = dataform.value.car_style;
+  form4.value.Category = dataform.value.categories.id;
+  form4.value.City = dataform.value.city.id;
+  form4.value.fuel_tank_capacity = dataform.value.fuel_tank_capacity;
 //   selectedMainImg.value = dataform.value.main_image;
   for(let i = 0; i < dataform.value.images.length; i++){
     images.value.push({url:dataform.value.images[i], file:null});
@@ -959,7 +1104,7 @@ const addFunc2 = async () => {
     console.log(filterImages.value);
     // console.log(checkImg.value);
           let formBody = new FormData();
-    formBody.append("Car_Name", form4.value.Car_Name);
+    // formBody.append("Car_Name", form4.value.Car_Name);
     formBody.append("Car_Description", form4.value.Car_Description);
     formBody.append("Car_Brand", form4.value.Car_Brand);
     formBody.append("Car_Model", form4.value.Car_Model);
@@ -970,7 +1115,14 @@ const addFunc2 = async () => {
     formBody.append("Fuel_Type", form4.value.Fuel_Type);
     formBody.append("Supplier", form4.value.Supplier);
     formBody.append("Car_Color", form4.value.Car_Color);
+
     formBody.append("Car_Price", form4.value.Car_Price);
+
+    formBody.append("fuel_tank_capacity", form4.value.fuel_tank_capacity);
+    formBody.append("City", form4.value.City);
+    formBody.append("Car_style", form4.value.Car_style);
+    formBody.append("Category", form4.value.Category);
+
     formBody.append("Car_Price_after_Discount", form4.value.Car_Price_after_Discount);
     formBody.append("Main_Image", selectedMainImg.value);
     // formBody.append("Images", filterImages.value);
@@ -1013,18 +1165,15 @@ try {
 
 };
 
-// let items = ref([
-//   {
-//     title: locale.value == "ar" ? "الرئيسية" : "home",
-//     disabled: true,
-//     href: "/",
-//   },
-//   {
-//     title: locale.value == "ar" ? "اضف اعلانك" : "add your ad",
-//     disabled: false,
-//     href: "ad",
-//   },
-// ]);
+let cities = ref([]);
+const getCites = async () => {
+  let result = await axios.get(`${getUrl()}/cities`, {
+    headers: {
+      "Content-Language": `${locale.value}`
+    }
+  });
+  cities.value = result.data.data;
+}
 
 
 useHead({
@@ -1033,6 +1182,7 @@ useHead({
 
 onMounted(() => {
     // loopImages();
+    getCites();
     getCarDetails();
     getDesc();
   getOptions();

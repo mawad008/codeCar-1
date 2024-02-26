@@ -368,8 +368,8 @@ html[dir=rtl] input[type=tel] {
 .main-auth {
   background-color: #fff;
 }
-.main-auth .row {
-  height: 100%;
+.main-auth .arrow {
+  cursor: pointer;
 }
 .main-auth .main-img {
   width: 100%;
@@ -677,6 +677,16 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
   transform: rotate(180deg);
 }
 
+.Vue-Toastification__container.top-right .Vue-Toastification__toast--rtl, .Vue-Toastification__container.bottom-right .Vue-Toastification__toast--rtl {
+  margin-left: auto !important;
+  margin-right: 0px !important;
+}
+
+.Vue-Toastification__container.top-left .Vue-Toastification__toast--rtl, .Vue-Toastification__container.bottom-left .Vue-Toastification__toast--rtl {
+  margin-right: auto !important;
+  margin-left: 0px !important;
+}
+
 .navbar {
   background-color: #1b2126;
   transition: 0.4s all;
@@ -970,6 +980,9 @@ html[dir=ltr] .footer-container .search button {
 }
 
 @media (max-width: 920px) {
+  .main-auth .img-container-auth {
+    display: none !important;
+  }
   .footer-container {
     padding: 31px 16px;
   }
@@ -5193,6 +5206,18 @@ html[dir=ltr] .settings-page .setting-btn {
   height: 150px;
   cursor: pointer;
 }
+.advertisementtt-container .addd-container .addd-content .images .image.active {
+  border: none;
+}
+.advertisementtt-container .addd-container .addd-content .images .image.active::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  background-color: #2D3A4A;
+  opacity: 0.6;
+}
 .advertisementtt-container .addd-container .addd-content .images .image .img-icon {
   position: absolute;
   top: 40%;
@@ -5221,8 +5246,8 @@ html[dir=ltr] .settings-page .setting-btn {
   border-radius: 14px;
   width: 100%;
   height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .advertisementtt-container .addd-container .addd-content .btns {
   gap: 30px;

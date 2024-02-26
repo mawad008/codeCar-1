@@ -557,7 +557,7 @@
               <div v-if="adNavBtn == 2" class="images">
                 <h5>{{ $t("mainImgs") }}</h5>
                 <div style="position:relative;">
-                  <label for="big-img" class="image big" >
+                  <label for="big-img" class="image big" :class="{'active':selectedFileUrl}" >
                     <div class="img-icon">
                       <img v-if="!selectedFileUrl" src="~/assets/images/gallery-add.png" />
                       <svg v-if="selectedFileUrl" style="cursor:pointer;" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -627,7 +627,7 @@
                         <div v-if="images.length > 2" class="d-flex justify-content-end mb-3">
                     <i @click="removeRow(index)" class="fa-solid fa-trash" style="color:#ed3f3f; cursor:pointer;"></i>
                   </div>
-                        <label :for="`the-img-${index}`" class="image">
+                        <label :for="`the-img-${index}`" class="image" :class="{'active':image.url}">
                           <div class="img-icon">
                             <img v-if="!image.url" src="~/assets/images/gallery-add.png" />
                             <svg v-if="image.url" style="cursor:pointer;" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -779,7 +779,7 @@ let selectedMainImg = ref(null);
 let form4 = ref({
   // Car_Name: "",
   Car_Description: "",
-  Car_Description_en: "",
+  // Car_Description_en: "",
   Car_style: "",
   fuel_tank_capacity: "",
   City: "",
@@ -874,7 +874,7 @@ const handleFilesChange = (event, index) => {
 };
 
 const addImage = () => {
-  if (images.value.length <= 15) {
+  if (images.value.length < 15) {
     images.value.push({ url: "", file: null });
   }
 //   loopImages();

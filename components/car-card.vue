@@ -146,19 +146,19 @@ const addFavFunc = async (id , success) =>{
         }
         
         toast.success(favBtn.value ? value1.value : value2.value, {
-  position: "top-right",
-  timeout: 3000,
-  closeOnClick: true,
-  pauseOnFocusLoss: true,
-  pauseOnHover: true,
-  draggable: true,
-  draggablePercent: 0.6,
-  showCloseButtonOnHover: false,
-  hideProgressBar: true,
-  closeButton: "button",
-  icon: true,
-  class:'toast-container',
-  rtl: false
+          position: locale.value == 'ar' ? "top-right" : "top-left",
+            timeout: 3000,
+            closeOnClick: true,
+            pauseOnFocusLoss: true,
+            pauseOnHover: true,
+            draggable: true,
+            draggablePercent: 0.6,
+            showCloseButtonOnHover: false,
+            hideProgressBar: true,
+            closeButton: "button",
+            icon: true,
+            class: 'toast-container',
+             rtl: locale.value == 'ar' ? true : false
 });
 
   }

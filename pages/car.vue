@@ -1594,19 +1594,19 @@ const addFavFunc = async () =>{
   if(result.status >= 200){
         
         toast.success(mainCar.value.is_fav ? valuee1.value : valuee2.value, {
-  position: "top-right",
-  timeout: 3000,
-  closeOnClick: true,
-  pauseOnFocusLoss: true,
-  pauseOnHover: true,
-  draggable: true,
-  draggablePercent: 0.6,
-  showCloseButtonOnHover: false,
-  hideProgressBar: true,
-  closeButton: "button",
-  icon: true,
-  class:'toast-container',
-//   rtl: false
+          position: locale.value == 'ar' ? "top-right" : "top-left",
+            timeout: 3000,
+            closeOnClick: true,
+            pauseOnFocusLoss: true,
+            pauseOnHover: true,
+            draggable: true,
+            draggablePercent: 0.6,
+            showCloseButtonOnHover: false,
+            hideProgressBar: true,
+            closeButton: "button",
+            icon: true,
+            class: 'toast-container',
+             rtl: locale.value == 'ar' ? true : false
 });
 
   }

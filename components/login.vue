@@ -420,7 +420,7 @@ const loginFunc = async () => {
         if (errors.value.login) {
 
           toast.error(errors.value.login[0], {
-            position: "top-right",
+            position: locale.value == 'ar' ? "top-right" : "top-left",
             timeout: 3000,
             closeOnClick: true,
             pauseOnFocusLoss: true,
@@ -432,7 +432,7 @@ const loginFunc = async () => {
             closeButton: "button",
             icon: true,
             class: 'toast-container',
-            //   rtl: false
+             rtl: locale.value == 'ar' ? true : false
           });
         }
       }

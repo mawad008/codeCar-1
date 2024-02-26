@@ -111,6 +111,7 @@
               <label for=""> {{ $t('ident') }}</label>
               <input
               type="number"
+              min="1"
               placeholder="3333-5555-9999-55"
               name=""
               v-model="form.id_number"
@@ -129,6 +130,7 @@
                 type="number"
                 placeholder="3333-5555-9999-55"
                 name=""
+                min="1"
                 v-model="form.commercial_register_namber"
               />
                <!-- <span class="error-msg" v-if="v$.commercial_register_namber.$error">{{
