@@ -471,6 +471,7 @@ p{
 .main-auth {
   // height: 100vh;
   background-color: #fff;
+  position: relative;
   
 
   .row {
@@ -4007,6 +4008,9 @@ html[dir="ltr"] {
 .cars-filter {
   margin-top: 73px;
   margin-bottom: 140px;
+  .sort-mobile{
+    display: none;
+  }
   .filter {
     top: 100px;
     position: sticky;
@@ -4716,6 +4720,38 @@ margin: 50px 0px!important;
 }
 .cars-filter .progress-container .line {
 width: 100%;
+}
+.cars-filter{
+  .sort-mobile{
+    display: block;
+    position: fixed;
+    background-color:$secondary-black;
+    width: 50px;
+    height: 50px;
+    z-index: 4444;
+    .sort{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      span{
+        width: 10px;
+        height: 2px;
+        background-color: #fff;
+        color: #fff;
+      }
+    }
+  }
+  .filter{
+    display: none;
+    // position: fixed;
+    // width: 100%;
+    // height: 100vh;
+    // left: 0;
+    // top: 50px;
+    // right: 0;
+    // z-index: 3;
+  }
 }
 .settings-page .setting-nav{
   flex-direction: row !important;

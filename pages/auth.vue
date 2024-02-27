@@ -16,7 +16,7 @@
         </div>
         <div class="col-12 col-xl-5 col-lg-5 img-container-auth">
           <div class="main-img">
-            <img src="~/assets/images/login-img.png" alt="" />
+            <img src="~/assets/images/login-img.jpg" alt="" />
             <img class="overlay" src="~/assets/images/overlay-form.svg" alt="" />
           </div>
         </div>

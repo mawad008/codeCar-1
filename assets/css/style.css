@@ -367,6 +367,7 @@ html[dir=rtl] input[type=tel] {
 }
 .main-auth {
   background-color: #fff;
+  position: relative;
 }
 .main-auth .arrow {
   cursor: pointer;
@@ -3311,6 +3312,9 @@ html[dir=ltr] .safety-mssg {
   margin-top: 73px;
   margin-bottom: 140px;
 }
+.cars-filter .sort-mobile {
+  display: none;
+}
 .cars-filter .filter {
   top: 100px;
   position: sticky;
@@ -3842,6 +3846,29 @@ html[dir=ltr] .table-container thead td:last-child {
   }
   .cars-filter .progress-container .line {
     width: 100%;
+  }
+  .cars-filter .sort-mobile {
+    display: block;
+    position: fixed;
+    background-color: #2d3a4a;
+    width: 50px;
+    height: 50px;
+    z-index: 4444;
+  }
+  .cars-filter .sort-mobile .sort {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+  }
+  .cars-filter .sort-mobile .sort span {
+    width: 10px;
+    height: 2px;
+    background-color: #fff;
+    color: #fff;
+  }
+  .cars-filter .filter {
+    display: none;
   }
   .settings-page .setting-nav {
     flex-direction: row !important;

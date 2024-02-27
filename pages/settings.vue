@@ -248,12 +248,16 @@
                   </div>
                 </div>
                 <div v-if="user.type != 'individual'" class="input">
+                <div class="d-flex w-100 flex-column flex-xl-row flex-lg-row phoneContainer align-items-start align-items-xl-center align-items-lg-center justify-content-between">
+                
                   <label for="">
                     <h6> {{ $t('nummm') }} </h6>
                     <span> {{ $t('nummm10') }} </span>
                   </label>
                   <input type="text" readonly v-model="form.commercial_registration_no" maxlength="10"
                     placeholder="8418988989-5894848-878" />
+                
+                </div>
                 </div>
                 <div class="input">
                   <div
@@ -262,6 +266,7 @@
                       <h6>{{ $t('city') }}</h6>
                       <span> {{ $t('city10') }} </span>
                     </label>
+                    
                     <Dropdown v-model="form.city_id" :options="cities" :filter-placeholder="$t('search')" filter
                             optionValue="id"
                       optionLabel="name"  :placeholder="$t('city')" class="">
@@ -815,8 +820,8 @@ let countryCode = "966";
 let formattedNumber = phoneNumber.value.slice(countryCode.length);
 let form = ref({
   name: user.value ? user.value.name : '',
-  phone: user.value.phone ? formattedNumber : '',
-  city_id: user.value ? user.value.city_id : '',
+  phone: user.value.phone ? phoneNumber : '',
+  city_id: user.value ? parseInt(user.value.city_id)  : '',
   commercial_registration_no: user.value ? user.value.commercial_registration_no : '',
   identity_no: user.value ? user.value.identity_no : '',
 });

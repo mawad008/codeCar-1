@@ -5,7 +5,7 @@
         class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column"
       >
         <h4 class="heading-text">{{ $t('market') }}</h4>
-        <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
+        <p> {{ desc }} </p>
 
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
@@ -600,6 +600,14 @@
             <button @click="filterCars();" class="search-btn">{{ $t('searchh') }}</button>
             
           </div>
+          <div class="sort-mobile">
+            <!-- <img src="~/assets/images/sort.svg" /> -->
+            <div class="sort">
+             <span class="one"></span>
+             <span class="two"></span>
+             <span class="three"></span>
+            </div>
+          </div>
         </div>
         <div class="col-12 col-xl-9 col-lg-9">
           <div v-if="!pendingState">
@@ -724,7 +732,15 @@ valuePrice.value = [parseInt(optionsCars.value.Slider.minPrice) , parseInt(optio
 
 let filterCarsArr = ref([]);
 
-
+let desc = ref('');
+const getDesc = async () => {
+  let result = await axios.get(`${getUrl()}/allsettings`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  desc.value = result.data.data.exhibitionDescription;
+}
 
 const filterCars = async () => {
     spinnerProducts.value = true;
@@ -854,6 +870,7 @@ let items = ref([
 ]);
 
 onMounted(() => {
+  getDesc();
   getOptions();
   filterCars();
 });

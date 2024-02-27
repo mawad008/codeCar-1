@@ -157,6 +157,7 @@ function copyToClipboard() {
         check.value = false;
         routee.value = window.location.href;
         const clipBoard = navigator.clipboard;
+        
         clipBoard.writeText(routee.value).then(() => {
         });
        
