@@ -77,6 +77,75 @@ export const createFormData = (
 
   return formData;
 };
+export const createFormData2 = (
+  form2,
+  form3,
+  bank_offer_id,
+  sliderValue1,
+  sliderValue2,
+  sliderValue3
+) => {
+  const formData = new FormData();
+
+  // Destructure form values
+  const { brand, model, year, gear_shifter, color_id } = form2;
+  const {
+    client_name,
+    phone,
+    sex,
+    birth_date,
+    city_id,
+    identity_no,
+    sector,
+    salary,
+    bank,
+    Monthly_cometment,
+    transferd_type,
+    email,
+    nationality_id,
+    have_life_problem,
+    traffic_violations,
+    department_loan,
+    driving_license,
+  } = form3;
+
+  // Fields and values
+  const fieldsAndValues = [
+    ["brand", brand],
+    ["model", model],
+    ["year", year],
+    ["gear_shifter", gear_shifter],
+    ["color_id", color_id],
+    ["client_name", client_name],
+    ["phone", phone],
+    ["sex", sex],
+    ["nationality_id", nationality_id],
+    ["birth_date", birth_date],
+    ["city_id", city_id],
+    ["identity_no", identity_no],
+    ["sector", sector],
+    ["salary", salary],
+    ["bank", bank],
+    ["Monthly_cometment", Monthly_cometment],
+    ["transferd_type", transferd_type],
+    ["email", email],
+    ["have_life_problem", have_life_problem],
+    ["traffic_violations", traffic_violations],
+    ["department_loan", department_loan],
+    ["driving_license", driving_license],
+    ["bank_offer_id", bank_offer_id],
+    ["first_batch", sliderValue1],
+    ["installment", sliderValue2],
+    ["last_batch", sliderValue3],
+  ];
+
+  // Append fields and values to FormData
+  fieldsAndValues.forEach(([field, value]) => {
+    formData.append(field, value);
+  });
+
+  return formData;
+};
 export const createFormData1 = (
   form2,
   form3,

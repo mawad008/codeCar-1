@@ -369,7 +369,7 @@
                         <span> {{ $t('phone') }} </span>
                         <div class="input">
                           <div class="w-100  d-flex align-items-center justify-content-between phonenum">
-                  <input type="tel" maxlength="9" placeholder="3333-5555-9999-55" name="" v-model="form4.phone" />
+                  <input type="tel" maxlength="10" placeholder="3333-5555-9999-55" name="" v-model="form4.phone" />
                   <span class="numm login">966+</span>
                 </div>
                           <span class="error-msg" v-if="v4$.phone.$error">{{

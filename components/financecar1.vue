@@ -466,7 +466,7 @@
                         <div class="input">
 
                            <div class="w-100  d-flex align-items-center justify-content-between phonenum">
-                    <input type="tel" maxlength="9" placeholder="3333-5555-9999-55" name=""  v-model="form3.phone" />
+                    <input type="tel" maxlength="10" placeholder="3333-5555-9999-55" name=""  v-model="form3.phone" />
                     <span class="numm login">966+</span>
                   </div>
                           <span class="error-msg" v-if="v3$.phone.$error">{{
@@ -1439,18 +1439,19 @@ const paymentFunc3 = async () => {
 
 
 const paymentFunc4 = async () => {
-    let formBody = new FormData();
-    formBody.append("brand", form2.value.brand);
-    formBody.append("model", form2.value.model);
-    formBody.append("year", form2.value.year);
-    formBody.append("sector", form3.value.sector);
-    formBody.append("gear_shifter", form2.value.gear_shifter);
-    formBody.append("bank_offer_id", bank_offer_id.value);
-    formBody.append("color_id", form2.value.color_id);
-    formBody.append("bank", form3.value.bank);
-      formBody.append("first_batch", sliderValue1.value);
-    formBody.append("installment", sliderValue2.value);
-    formBody.append("last_batch", sliderValue3.value);
+    // let formBody = new FormData();
+    // formBody.append("brand", form2.value.brand);
+    // formBody.append("model", form2.value.model);
+    // formBody.append("year", form2.value.year);
+    // formBody.append("sector", form3.value.sector);
+    // formBody.append("gear_shifter", form2.value.gear_shifter);
+    // formBody.append("bank_offer_id", bank_offer_id.value);
+    // formBody.append("color_id", form2.value.color_id);
+    // formBody.append("bank", form3.value.bank);
+    //   formBody.append("first_batch", sliderValue1.value);
+    // formBody.append("installment", sliderValue2.value);
+    // formBody.append("last_batch", sliderValue3.value);
+  let formBody = createFormData2(form2.value, form3.value , bank_offer_id.value , sliderValue1.value, sliderValue2.value, sliderValue3.value);
     if (bank_offer_id.value) {
       pending4.value = true;
         let result = await axios.post(`${getUrl()}/financecar-Order`, formBody, {
