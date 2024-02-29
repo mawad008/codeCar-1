@@ -414,23 +414,25 @@
                         <div class="input">
                           <label for="">{{ $t("carCategory") }}</label>
                           <Dropdown v-model="form4.Category" optionValue="id" :filter-placeholder="$t('search')"
-                            :options="form4.Car_Model != '' ? getCategories[0][0].Categories : ''" filter optionLabel="name" :placeholder="$t('carCategory')" class="">
+                            :options="getCategories ? getCategories[0].Categories : ''" filter optionLabel="name" :placeholder="$t('carCategory')" class="">
                             <template #option="slotProps">
                               <div class="flex align-items-center">
                                 <div>{{ slotProps.option.name }}</div>
                               </div>
                             </template>
                           </Dropdown>
-                          <span class="error-msg" v-if="v1$.Category.$error">{{
+                          <!-- <span class="error-msg" v-if="v1$.Category.$error">{{
                             v1$.Category.$errors[0].$message
-                          }}</span>
+                          }}</span> -->
                           <span class="error-msg2" v-if="errors1.Category">{{
                             errors1.Category[0]
                           }}</span>
                         </div>
                       </div>
                     </div>
-                    
+                     <!-- {{ getCategories[0].Categories }} -->
+                     <!-- {{ getCategories[0] }} -->
+                     <!-- {{ getmodels }} -->
                     <div class="half row">
                       <div class="col-12 col-l-6 col-lg-6">
                         <div class="input">
@@ -805,7 +807,7 @@ const rules1 = computed(() => {
     Car_Model: { required: helpers.withMessage(value1.value, required) },
     Car_Year: { required: helpers.withMessage(value1.value, required) },
     Car_Statue: { required: helpers.withMessage(value1.value, required) },
-    Category: { required: helpers.withMessage(value1.value, required) },
+    // Category: { required: helpers.withMessage(value1.value, required) },
     City: { required: helpers.withMessage(value1.value, required) },
     fuel_tank_capacity: { required: helpers.withMessage(value1.value, required) },
     Car_style: { required: helpers.withMessage(value1.value, required) },
@@ -985,7 +987,7 @@ const getOptions = async () => {
   });
 
   optionsCars.value = result.data.data;
-  brands.value = result.data.data.brands;
+  brands.value = result.data.data.allbrands;
 };
 
 
@@ -1018,8 +1020,8 @@ const isImage = (file) => {
 
 
 const getmodels = computed(() => {
-  if (optionsCars.value.brands) {
-    return optionsCars.value.brands.filter((ele) => {
+  if (optionsCars.value.allbrands) {
+    return optionsCars.value.allbrands.filter((ele) => {
       return form4.value.Car_Brand == ele.id;
     });
   }
@@ -1027,13 +1029,24 @@ const getmodels = computed(() => {
 
 const getCategories = computed(() => {
   if (form4.value.Car_Model != '') {
-    return optionsCars.value.brands.map((ele) => {
-     return ele.models.filter((e)=>{
-         return form4.value.Car_Model == e.id;
-      })
-    });
+    // return optionsCars.value.allbrands.map((ele) => {
+    //  return ele.models.filter((e)=>{
+    //      return form4.value.Car_Model == e.id;
+    //   });
+    // });
+
+    return getmodels.value[0].models.filter((e)=>{
+           let leng = getmodels.value[0].models.length;
+           if(leng >= 1){
+             return form4.value.Car_Model == e.id;
+
+           } else{
+            return [];
+           }
+      });
   }
 });
+
 
 
 const isFormFilled2 = () => {

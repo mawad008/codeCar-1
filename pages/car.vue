@@ -1141,9 +1141,9 @@
 <script setup>
 import VueEasyLightbox from "vue-easy-lightbox";
 import Dropdown from "primevue/dropdown";
-import loader from "~/assets/animations/Loader.json";
 import otpp from "~/assets/animations/otp.json";
 import success from "~/assets/animations/success.json";
+import * as clipboard from "clipboard-polyfill";
 import { Vue3Lottie } from "vue3-lottie";
 import axios from 'axios';
 const { locale } = useI18n();
@@ -1213,9 +1213,12 @@ if (process.client) {
 function copyToClipboard() {
     if (process.client) {
       copyPhone.value = false;
-        const clipBoard = navigator.clipboard;
-        clipBoard.writeText(mainCar.value.vendor.phone).then(() => {
-        });
+        // const clipBoard = navigator.clipboard;
+        // clipBoard.writeText(mainCar.value.vendor.phone).then(() => {
+        // });
+
+        clipboard.writeText(mainCar.value.vendor.phone);
+
 
         setTimeout(() => {
           copyPhone.value = true;
@@ -1226,9 +1229,11 @@ function copyToClipboard() {
 function copyToClipboard2() {
   if (process.client) {
     checkCopy.value = false;
-    const clipBoard = navigator.clipboard;
-    clipBoard.writeText(theRoute.value).then(() => {
-    });
+    // const clipBoard = navigator.clipboard;
+    // clipBoard.writeText(theRoute.value).then(() => {
+    // });
+
+    clipboard.writeText(theRoute.value);
 
     setTimeout(() => {
       checkCopy.value = true;

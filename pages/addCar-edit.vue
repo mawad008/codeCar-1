@@ -396,16 +396,16 @@
                         <div class="input">
                           <label for="">{{ $t("carCategory") }}</label>
                           <Dropdown v-model="form4.Category" optionValue="id" :filter-placeholder="$t('search')"
-                            :options="form4.Car_Model != '' ? getCategories[0][0].Categories : ''" filter optionLabel="name" :placeholder="$t('carCategory')" class="">
+                            :options="getCategories ? getCategories[0].Categories : ''" filter optionLabel="name" :placeholder="$t('carCategory')" class="">
                             <template #option="slotProps">
                               <div class="flex align-items-center">
                                 <div>{{ slotProps.option.name }}</div>
                               </div>
                             </template>
                           </Dropdown>
-                          <span class="error-msg" v-if="v1$.Category.$error">{{
+                          <!-- <span class="error-msg" v-if="v1$.Category.$error">{{
                             v1$.Category.$errors[0].$message
-                          }}</span>
+                          }}</span> -->
                           <span class="error-msg2" v-if="errors1.Category">{{
                             errors1.Category[0]
                           }}</span>
@@ -503,13 +503,13 @@
                             min="1"
                             placeholder="100,000"
                           />
-                          <span
+                          <!-- <span
                             class="error-msg"
                             v-if="v1$.Car_Price_after_Discount.$error"
                             >{{
                               v1$.Car_Price_after_Discount.$errors[0].$message
                             }}</span
-                          >
+                          > -->
                           <span class="error-msg2" v-if="errors1.Car_Price_after_Discount">{{
                           errors1.Car_Price_after_Discount[0]
                         }}</span>
@@ -539,7 +539,6 @@
               <div v-if="adNavBtn == 2" class="images">
                 <h5>{{ $t("mainImgs") }}</h5>
                 <div style="position:relative;">
-                {{ selectedFileUrl }}
                   <label for="big-img" class="image big" :class="{'active':dataform.main_image}">
                     <div class="img-icon">
                       <img v-if="!dataform.main_image" src="~/assets/images/gallery-add.png" />
@@ -555,7 +554,7 @@
                     </div>
                     <img
                       class="main-img"
-                      :src="dataform ? dataform.main_image : selectedFileUrl "
+                      :src="selectedFileUrl ? selectedFileUrl : dataform.main_image "
                     />
                     <input
                       id="big-img"
@@ -789,7 +788,7 @@ const rules1 = computed(() => {
     Car_Model: { required: helpers.withMessage(value1.value, required) },
     Car_Year: { required: helpers.withMessage(value1.value, required) },
     Car_Statue: { required: helpers.withMessage(value1.value, required) },
-    Category: { required: helpers.withMessage(value1.value, required) },
+    // Category: { required: helpers.withMessage(value1.value, required) },
     City: { required: helpers.withMessage(value1.value, required) },
     fuel_tank_capacity: { required: helpers.withMessage(value1.value, required) },
     Car_style: { required: helpers.withMessage(value1.value, required) },
@@ -799,9 +798,9 @@ const rules1 = computed(() => {
     Supplier: { required: helpers.withMessage(value1.value, required) },
     Car_Color: { required: helpers.withMessage(value1.value, required) },
     Car_Price: { required: helpers.withMessage(value1.value, required) },
-    Car_Price_after_Discount: {
-      required: helpers.withMessage(value1.value, required),
-    },
+    // Car_Price_after_Discount: {
+    //   required: helpers.withMessage(value1.value, required),
+    // },
   };
 });
 
@@ -948,7 +947,7 @@ let fuel_typeArr = ref([
 let supplierArr = ref([
   {
     value: "gulf",
-    name: locale.value == "ar" ? "خليجي" : "saudi",
+    name: locale.value == "ar" ? "خليجي" : "gulf",
   },
   {
     value: "saudi",
@@ -966,7 +965,7 @@ const getOptions = async () => {
   });
 
   optionsCars.value = result.data.data;
-  brands.value = result.data.data.brands;
+  brands.value = result.data.data.allbrands;
 };
 
 
@@ -999,8 +998,8 @@ const isImage = (file , img) => {
 
 
 const getmodels = computed(() => {
-  if (optionsCars.value.brands) {
-    return optionsCars.value.brands.filter((ele) => {
+  if (optionsCars.value.allbrands) {
+    return optionsCars.value.allbrands.filter((ele) => {
       return form4.value.Car_Brand == ele.id;
     });
   }
@@ -1008,11 +1007,20 @@ const getmodels = computed(() => {
 
 const getCategories = computed(() => {
   if (form4.value.Car_Model != '') {
-    return optionsCars.value.brands.map((ele) => {
-     return ele.models.filter((e)=>{
-         return form4.value.Car_Model == e.id;
-      })
-    });
+    // return optionsCars.value.brands.map((ele) => {
+    //  return ele.models.filter((e)=>{
+    //      return form4.value.Car_Model == e.id;
+    //   })
+    // });
+    return getmodels.value[0].models.filter((e)=>{
+           let leng = getmodels.value[0].models.length;
+           if(leng >= 1){
+             return form4.value.Car_Model == e.id;
+
+           } else{
+            return [];
+           }
+      });
   }
 });
 const isFormFilled2 = () => {
@@ -1047,10 +1055,9 @@ const getCarDetails = async ()=>{
   form4.value.Car_Statue = dataform.value.statuekey;
   form4.value.Fuel_Type = dataform.value.fuel_typekey;
   form4.value.Gear_shifter = dataform.value.gear_shifterkey;
-  form4.value.Supplier = dataform.value.supplier;
-  form4.value.Killometer = dataform.value.kilometer;
+  form4.value.Supplier = dataform.value.supplier_english;
+  form4.value.Killometer = dataform.value.kilometer == null ? 0 : dataform.value.kilometer;
   form4.value.Car_Description = dataform.value.description;
-
   form4.value.Car_style = dataform.value.car_style;
   form4.value.Category = dataform.value.categories.id;
   form4.value.City = dataform.value.city.id;
@@ -1126,8 +1133,9 @@ const addFunc2 = async () => {
     formBody.append("Car_Price_after_Discount", form4.value.Car_Price_after_Discount);
     formBody.append("Main_Image", selectedMainImg.value);
     // formBody.append("Images", filterImages.value);
-    filterImages.value.forEach((file, index) => {
-        formBody.append(`Images[${index}]`, file);
+    images.value.forEach((file, index) => {
+        formBody.append(`Images[${index}][file]`, file.file);
+        formBody.append(`Images[${index}][url]`, file.url != '' ? file.url : null);
       });
    
   let check1 = await v2$.value.$validate();

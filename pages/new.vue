@@ -118,7 +118,9 @@
 </template>
 
 <script setup>
+import * as clipboard from "clipboard-polyfill";
 import axios from 'axios';
+
 
 const localePath = useLocalePath();
 const { locale } = useI18n();
@@ -156,10 +158,11 @@ function copyToClipboard() {
     if (process.client) {
         check.value = false;
         routee.value = window.location.href;
-        const clipBoard = navigator.clipboard;
-        
-        clipBoard.writeText(routee.value).then(() => {
-        });
+        // const clipBoard = navigator.clipboard;
+        clipboard.writeText(routee.value);
+
+        // clipBoard.writeText(routee.value).then(() => {
+        // });
        
         // console.log(window.location.href);
         setTimeout(() => {
@@ -195,8 +198,8 @@ let items = ref([
     },
     {
         title: locale.value == 'ar' ? 'اخبار السيارات' : 'car news',
-        disabled: true,
-    //    class:"breadcrumbs-text",
+        disabled: false,
+       class:"breadcrumbs-text",
         href: 'news',
     },
     {
