@@ -698,6 +698,7 @@ import {
   helpers,
 } from "@vuelidate/validators";
 import { useStore } from "~/store";
+import { NULL } from "sass";
 let store = useStore;
 const localePath = useLocalePath();
 const { locale } = useI18n();
@@ -840,7 +841,6 @@ const handleFilesChange = (event, index) => {
     const imageUrl = URL.createObjectURL(file);
     images.value[index].url = imageUrl;
     images.value[index].file = file;
-    // checkImagesFunc();
   }
 };
 
@@ -852,10 +852,18 @@ const addImage = () => {
 console.log(checkImages.value);
 };
 
-
+let deletedArr = ref([]);
 const removeRow = (index) => {
     if (images.value.length > 1) {
-      images.value.splice(index, 1);
+      // images.value.splice(index, 1);
+      const removedItem = images.value.splice(index, 1)[0];
+      deletedArr.value.push(removedItem.id);
+      const removed = deletedArr.value.filter((ele)=>{
+        return ele != undefined;
+      });
+     
+      deletedArr.value = removed;
+      console.log(deletedArr.value);      
     }
 
 }
@@ -901,7 +909,7 @@ let carStyle = ref([
     name: locale.value == "ar" ? "سيدان" : "sedan",
   },
   {
-    value: "our-wheel-drive",
+    value: "four-wheel-drive",
     name: locale.value == "ar" ? "دفع رباعي" : "Four-Wheel Drive",
   },
   {
@@ -1064,7 +1072,7 @@ const getCarDetails = async ()=>{
   form4.value.fuel_tank_capacity = dataform.value.fuel_tank_capacity;
 //   selectedMainImg.value = dataform.value.main_image;
   for(let i = 0; i < dataform.value.images.length; i++){
-    images.value.push({url:dataform.value.images[i], file:null});
+    images.value.push({url:dataform.value.images_ads[i].url, file:null , id:dataform.value.images_ads[i].id});
     console.log(dataform.value.images[i])
   }
   console.log(images.value);
@@ -1135,7 +1143,11 @@ const addFunc2 = async () => {
     // formBody.append("Images", filterImages.value);
     images.value.forEach((file, index) => {
         formBody.append(`Images[${index}][file]`, file.file);
-        formBody.append(`Images[${index}][url]`, file.url != '' ? file.url : null);
+        formBody.append(`Images[${index}][url]`, file.url? file.url : null);
+        formBody.append(`Images[${index}][id]`, file.id? file.id : null);
+      });
+      deletedArr.value.forEach((file , index) => {
+        formBody.append(`deletedImages[${index}]`, file);
       });
    
   let check1 = await v2$.value.$validate();

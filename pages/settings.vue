@@ -927,7 +927,7 @@ let countryCode = "966";
 let formattedNumber = phoneNumber.value.slice(countryCode.length);
 let form = ref({
   name: user.value ? user.value.name : '',
-  phone: user.value.phone ? phoneNumber : '',
+  phone: user.value.phone ? formattedNumber : '',
   city_id: user.value ? parseInt(user.value.city_id)  : '',
   commercial_registration_no: user.value ? user.value.commercial_registration_no : '',
   identity_no: user.value ? user.value.identity_no : '',
