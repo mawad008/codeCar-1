@@ -193,6 +193,13 @@
         <Vue3Lottie :animation-data="arrow" :height="100" :width="100" />
       </client-only>
     </div>
+    <div v-if="footerData">
+    <a v-if="footerData.whatsapp" target="_blank" :href="footerData.whatsapp"  class="whats-app-icon" :class="{'active':arrowActive}">
+      <client-only>
+        <Vue3Lottie :animation-data="whatsappIcon" :height="70" :width="70" />
+      </client-only>
+    </a>
+    </div>
     <footer>
       <div class="footer-container">
         <div class="container">
@@ -541,6 +548,7 @@ import Cookies from "js-cookie";
 const tokenCookie = Cookies.get("token");
 import { Vue3Lottie } from "vue3-lottie";
 import arrow from "~/assets/animations/arrow.json";
+import whatsappIcon from "~/assets/animations/whatsapp.json";
 let activeNav = ref(false);
 let activeItemsContainer = ref(false);
 const currentDate = new Date();
@@ -750,7 +758,7 @@ onMounted(() => {
       activeNav.value = false;
       activeItemsContainer.value = false;
     }
-    if (this.window.scrollY >= 1000) {
+    if (this.window.scrollY >= 300) {
       arrowActive.value = true;
     } else if (window.scrollY == 0) {
       arrowActive.value = false;

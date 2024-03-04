@@ -5,7 +5,7 @@
         class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column"
       >
         <h4 class="heading-text">{{ $t("adddd") }}</h4>
-        <p>هذا النص هو مثال حي يستبدل في نفش المساحة</p>
+        <p> {{ desc }} </p>
 
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
@@ -727,7 +727,7 @@ let paymentSec1 = ref(1);
 let paymentSec2 = ref(0);
 let checkBtnSec1 = ref(0);
 let checkBtnSec2 = ref(0);
-
+let desc = ref('');
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 let years = ref([]);
@@ -737,6 +737,8 @@ const getDesc = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
+
+  desc.value = result.data.data.exhibitionDescription;
   for (let i = currentYear; i >= parseInt(result.data.data.Min_year_of_ads); i--) {
   years.value.push(i);
 }
@@ -1185,6 +1187,7 @@ let items = ref([
 ]);
 onMounted(() => {
     // loopImages();
+    getDesc();
   getOptions();
   getDesc();
   getCites();

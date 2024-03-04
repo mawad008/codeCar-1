@@ -49,6 +49,18 @@
 
                 </div>
             </div>
+             <div class="d-flex align-items-center justify-content-center">
+            <div class="video-container">
+             
+             <iframe 
+             v-if="videoKey"
+     :src="`https://www.youtube.com/embed/${videoKey}`"
+      title="YouTube video player" frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+      gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+             
+             </div>
 
             <div class="faqs">
             <h5> {{ $t("faq") }}</h5>
@@ -98,7 +110,17 @@ if(result.status == 200){
 
 }
 
+let videoKey = ref(null);
+const getDesc = async () => {
+  let result = await axios.get(`${getUrl()}/allsettings`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  videoKey.value = result.data.data.video_url;
+}
 onMounted(() => {
+    getDesc();
     getAboutData();
 });
 

@@ -6,7 +6,7 @@
           >
             <h4 class="heading-text"> {{ $t('market') }} </h4>
             <p>
-              {{ brandsArr.description }}
+              {{ desc }}
             </p>
 
                 <v-breadcrumbs :items="items">
@@ -41,6 +41,16 @@ let { locale } = useI18n();
 
 let pending = ref(false);
 let brandsArr = ref([]);
+
+let desc = ref('');
+const getDesc = async () => {
+  let result = await axios.get(`${getUrl()}/allsettings`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  desc.value = result.data.data.exhibitionDescription;
+}
 const getBrands = async () => {
   pending.value = true;
   let result = await axios.get(`${getUrl()}/brand`, {
@@ -57,6 +67,7 @@ const getBrands = async () => {
 
 
 onMounted(() => {
+  getDesc();
   getBrands();
 });
 
