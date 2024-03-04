@@ -105,35 +105,35 @@
                             {{$t('finance1')}}
                 
                         </h5>
-                        <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                        <span> {{ $t('text1') }} </span>
                       </div>
                       <div>
                         <h5 :class="{ active: paymentBtn2 == 1 }">
                          {{ $t('finance2') }}
 
                         </h5>
-                        <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                        <span> {{ $t('text2') }}</span>
                       </div>
                       <div>
                         <h5 :class="{ active: paymentBtn3 == 1 }">
                           {{ $t('finance3') }}
 
                         </h5>
-                        <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                        <span> {{ $t('text3') }}</span>
                       </div>
                       <div>
                         <h5 :class="{ active: paymentBtn4 == 1 }">
                             {{$t('finance4')}}
                         
                         </h5>
-                        <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                        <span> {{ $t('text4') }}</span>
                       </div>
                       <div >
                         <h5 :class="{ active: paymentBtn5 == 1 }">
                             {{ $t('finance5') }}
                         
                         </h5>
-                        <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                        <span> {{ $t('text5') }}</span>
                       </div>
                     </div>
                     <div class="pagination-container ">

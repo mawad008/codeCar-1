@@ -63,11 +63,11 @@
               <div class="content-pagination">
                 <div>
                   <h5 :class="{ active: paymentSec1 == 1 }"> {{ $t('carData') }} </h5>
-                  <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                  <span> {{ $t('text7') }}</span>
                 </div>
                 <div>
                   <h5 :class="{ active: paymentSec2 == 1 }">{{ $t('carImgs') }}</h5>
-                  <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                  <span> {{ $t('text8') }} </span>
                 </div>
               </div>
               <div class="pagination-container">

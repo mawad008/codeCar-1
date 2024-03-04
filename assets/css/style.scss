@@ -756,7 +756,7 @@ html[dir="rtl"] {
   }
       }
     .numm{
-      // direction: ltr;
+      direction: ltr;
 
       &.set{
           position: absolute;
@@ -803,6 +803,7 @@ html[dir="ltr"] {
     .numm{
     
       // direction: rtl;
+      direction: ltr;
 
       &.set{
           position: absolute;

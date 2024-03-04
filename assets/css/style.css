@@ -613,6 +613,7 @@ html[dir=rtl] .input .phonenum:focus-within input {
   border: 1px solid transparent !important;
 }
 html[dir=rtl] .input .numm {
+  direction: ltr;
   color: #5a7184;
   border-right: 1px solid #5a7184;
   padding-right: 5px;
@@ -646,6 +647,7 @@ html[dir=ltr] .input .phonenum:focus-within input {
   border: 1px solid transparent !important;
 }
 html[dir=ltr] .input .numm {
+  direction: ltr;
   color: #5a7184;
   border-right: 1px solid #5a7184;
   padding-right: 5px;
