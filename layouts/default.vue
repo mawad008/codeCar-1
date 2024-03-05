@@ -386,11 +386,11 @@
                       </svg>
                     </a>
                   </div>
-                  <div v-if="footerData.whatsapp" class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
+                  <!-- <div v-if="footerData.whatsapp" class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
                     <a target="_blank" :href="footerData.whatsapp">
                        <img src="~/assets/images/whatsapp.svg" alt="">
                     </a>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

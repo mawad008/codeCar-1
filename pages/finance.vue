@@ -145,6 +145,8 @@
             </nuxt-link>
         </div>
       </div> -->
+
+      <Loader v-if="pending"></Loader> 
     </div>
   </div>
 </template>
@@ -166,6 +168,7 @@ let paymentOtp1 = ref(1);
 
 let pendingOtp1 = ref(false);
 let pendingOtp2 = ref(false);
+let pending = ref(true);
 let orderNum1 = ref();
 let error1 = ref();
 
@@ -176,6 +179,9 @@ const getDesc = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
+  if(result.status == 200){
+    pending.value = false;
+  }
   desc.value = result.data.data.financeDescription;
 }
 

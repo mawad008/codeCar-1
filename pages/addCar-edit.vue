@@ -70,11 +70,11 @@
               <div class="content-pagination">
                 <div>
                   <h5 :class="{ active: paymentSec1 == 1 }"> {{ $t('carData') }}  </h5>
-                  <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                  <span> {{ $t("text7") }}</span>
                 </div>
                 <div>
                   <h5 :class="{ active: paymentSec2 == 1 }">  {{ $t('carImgs') }} </h5>
-                  <span> هذا النص هو مثال حي يمكن ان يستبدل في </span>
+                  <span> {{ $t("text8") }}</span>
                 </div>
               </div>
               <div class="pagination-container">
@@ -413,23 +413,30 @@
                       </div>
                     </div>
                     
-                    <div class="half row">
-                      <div class="col-12 col-l-6 col-lg-6">
-                        <div class="input">
-                          <label for="">
-                            {{ $t("engi") }}
-                          </label>
+                  
+                    <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
+                    <div class="input-container">
+                      <span class="namee">
+                        {{ $t("engi")  }}
+                      </span>
+                      <div class="input">
                           <input type="number" :placeholder="$t('engi')" min="1" v-model="form4.fuel_tank_capacity" />
                           <span class="error-msg" v-if="v1$.fuel_tank_capacity.$error">{{
                             v1$.fuel_tank_capacity.$errors[0].$message }}</span>
-                          <span class="error-msg2" v-if="errors1.fuel_tank_capacity">{{
-                            errors1.fuel_tank_capacity[0]
-                          }}</span>
                         </div>
-                      </div>
-                      <div class="col-12 col-l-6 col-lg-6">
-                        <div class="input">
-                          <label for="">{{ $t("city") }}</label>
+                          <span class="error-msg2 mt-2" :class="{'marg':v1$.fuel_tank_capacity.$error}" v-if="errors1.fuel_tank_capacity">{{
+                            errors1.fuel_tank_capacity[0]
+                        }}</span>
+                      <span
+                        class="error-msg2 mt-2" :class="{'marg':v1$.fuel_tank_capacity.$error}"
+                        v-if="errors1.fuel_tank_capacity"
+                        >{{ errors1.fuel_tank_capacity[0] }}</span
+                      >
+                    </div>
+                    <div class="input-container">
+                      <span class="namee">{{$t("city") }}</span>
+
+                      <div class="input">
                           <Dropdown v-model="form4.City" optionValue="id" :filter-placeholder="$t('search')"
                             :options="cities" filter optionLabel="name" :placeholder="$t('city')" class="">
                             <template #option="slotProps">
@@ -439,12 +446,12 @@
                             </template>
                           </Dropdown>
                           <span class="error-msg" v-if="v1$.City.$error">{{ v1$.City.$errors[0].$message }}</span>
+                        </div>
                           <span class="error-msg2" v-if="errors1.City">{{
                             errors1.City[0]
                           }}</span>
-                        </div>
-                      </div>
                     </div>
+                  </div>
                   <div class="half row">
                     <div class="col-12 col-l-6 col-lg-6">
                       <div class="input">
@@ -476,10 +483,13 @@
                   </div>
                   <div class="price">
                     <h5>{{ $t("price") }}</h5>
-                    <div class="half row">
-                      <div class="col-12 col-l-6 col-lg-6">
-                        <div class="input">
-                          <label for="">{{ $t("carPrice") }}</label>
+                    
+                    <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
+                    <div class="input-container">
+                      <span class="namee">
+                        {{ $t("carPrice") }}
+                      </span>
+                      <div class="input">
                           <input
                             type="number"
                             v-model="form4.Car_Price"
@@ -489,14 +499,20 @@
                           <span class="error-msg" v-if="v1$.Car_Price.$error">{{
                             v1$.Car_Price.$errors[0].$message
                           }}</span>
-                          <span class="error-msg2" v-if="errors1.Car_Price">{{
+                        </div>
+                          <span class="error-msg2 mt-2" :class="{'marg':v1$.Car_Price.$error}" v-if="errors1.Car_Price">{{
                           errors1.Car_Price[0]
                         }}</span>
-                        </div>
-                      </div>
-                      <div class="col-12 col-l-6 col-lg-6">
-                        <div class="input">
-                          <label for="">{{ $t("disc3") }}</label>
+                      <span
+                        class="error-msg2 mt-2" :class="{'marg':v1$.fuel_tank_capacity.$error}"
+                        v-if="errors1.fuel_tank_capacity"
+                        >{{ errors1.fuel_tank_capacity[0] }}</span
+                      >
+                    </div>
+                    <div class="input-container">
+                      <span class="namee">{{ $t("disc3") }}</span>
+
+                      <div class="input">
                           <input
                             type="number"
                             v-model="form4.Car_Price_after_Discount"
@@ -510,12 +526,12 @@
                               v1$.Car_Price_after_Discount.$errors[0].$message
                             }}</span
                           > -->
-                          <span class="error-msg2" v-if="errors1.Car_Price_after_Discount">{{
+                        </div>
+                          <span class="error-msg2 mt-2" v-if="errors1.Car_Price_after_Discount">{{
                           errors1.Car_Price_after_Discount[0]
                         }}</span>
-                        </div>
-                      </div>
                     </div>
+                  </div>
                   </div>
                 </div>
 
@@ -675,6 +691,8 @@
           </nuxt-link>
         </div>
       </div>
+
+    <Loader v-if="pendingLoader"></Loader> 
       
     </div>
     </div>
@@ -711,6 +729,7 @@ let paymentSec2 = ref(0);
 let checkBtnSec1 = ref(0);
 let checkBtnSec2 = ref(0);
 let dataform = ref();
+let pendingLoader = ref(true);
 
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
@@ -1052,6 +1071,9 @@ const getCarDetails = async ()=>{
           Authorization: `Bearer ${tokenCookie}`,
    }
   });
+  if(result.status == 200){
+    pendingLoader.value = false;
+  }
   dataform.value = result.data.data;
   form4.value.Car_Name = dataform.value.main_title;
   form4.value.Car_Brand = dataform.value.brand.id;

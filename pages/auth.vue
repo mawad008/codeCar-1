@@ -28,6 +28,7 @@
 <script setup>
 definePageMeta({
   layout: "custom",
+  middleware: "auth",
 });
 import { useStore } from "@/store/index";
 let store = useStore;

@@ -29,7 +29,7 @@
                       </svg>
                       
                       </div>
-                      <span class="city"> {{ mainCar.vendor.city.name }} </span>
+                      <span class="city" v-if="mainCar.vendor.city"> {{ mainCar.vendor.city.name }} </span>
 
                       
                       </div>
@@ -197,7 +197,7 @@
                       </svg>
                       
                       </div>
-                      <span class="city"> {{ mainCar.vendor.city.name }} </span>
+                      <span class="city" v-if="mainCar.vendor.city"> {{ mainCar.vendor.city.name }} </span>
 
                       
                       </div>
@@ -1072,7 +1072,7 @@
           </div>
         </div>
       </div>
-      <div class="similar-cars">
+      <div  class="similar-cars">
         <div class="head">
           <h4> {{ $t("similar") }} </h4>
         </div>

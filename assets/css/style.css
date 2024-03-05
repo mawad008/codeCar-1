@@ -299,7 +299,8 @@ html[dir=rtl] input[type=tel] {
   color: #ed3f3f !important;
   font-size: 13px !important;
   white-space: nowrap;
-  display: block;
+  position: relative !important;
+  display: block !important;
 }
 
 .toast-container, .Vue-Toastification__toast-body {
@@ -575,7 +576,6 @@ html[dir=rtl] input[type=tel] {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   gap: 16px;
 }
 .main-auth .form-inputs .input {
@@ -5178,18 +5178,37 @@ html[dir=ltr] .settings-page .setting-btn {
   margin-bottom: 140px;
   min-height: 100vh;
 }
-.advertisementtt-container .error-msg {
-  position: absolute;
-  top: 101%;
-}
 .advertisementtt-container .error-msg2 {
   white-space: normal !important;
+}
+.advertisementtt-container .error-msg, .advertisementtt-container .error-msg2 {
+  font-weight: 700;
+}
+.advertisementtt-container .input-container {
+  gap: 0px !important;
+  margin-bottom: 30px;
+}
+.advertisementtt-container .input-container span.namee {
+  margin-bottom: 12px;
+}
+.advertisementtt-container .input-container .error-msg, .advertisementtt-container .input-container .error-msg2 {
+  display: block !important;
+}
+.advertisementtt-container .input-container .marg {
+  margin-top: 30px !important;
+}
+.advertisementtt-container .col-12 {
+  margin-bottom: 30px;
 }
 .advertisementtt-container .addd-container {
   margin-bottom: 0px !important;
   border-radius: 24px;
   background: #fff;
   padding: 32px;
+}
+.advertisementtt-container .addd-container .error-msg.desc {
+  position: absolute !important;
+  top: 101%;
 }
 .advertisementtt-container .addd-container .addd-content h5 {
   font-size: 16px;
@@ -5217,7 +5236,6 @@ html[dir=ltr] .settings-page .setting-btn {
   flex-direction: column;
   position: relative;
   gap: 10px;
-  margin: 20px 0px;
 }
 .advertisementtt-container .addd-container .addd-content .input .num {
   position: absolute;
@@ -5262,6 +5280,7 @@ html[dir=ltr] .settings-page .setting-btn {
 .advertisementtt-container .addd-container .addd-content .det {
   border-top: 1px solid #ebeaed;
   padding-top: 20px;
+  margin-top: 30px;
 }
 .advertisementtt-container .addd-container .addd-content .det .half {
   display: flex;

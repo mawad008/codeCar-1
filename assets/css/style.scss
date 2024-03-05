@@ -404,7 +404,8 @@ html[dir="rtl"] input[type="tel"] {
   color: #ed3f3f !important;
   font-size: 13px !important;
   white-space: nowrap;
-  display: block;
+  position:  relative !important;
+  display: block !important;
 }
 
 .toast-container , .Vue-Toastification__toast-body{
@@ -695,7 +696,7 @@ p{
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      // align-items: center;
       gap: 16px;
     }
     .input {
@@ -6210,11 +6211,34 @@ font-weight: 700;
   margin-bottom: 140px;
   min-height: 100vh;
   .error-msg{
-    position: absolute;
-    top: 101%;
+    // position: absolute;
+    // top: 101%;
   }
   .error-msg2{
     white-space: normal !important;
+  }
+  .error-msg , .error-msg2{
+    font-weight: 700;
+  }
+  .input-container{
+    gap: 0px !important;
+    margin-bottom: 30px;
+    span{
+      &.namee{
+        margin-bottom: 12px;
+      }
+    }
+   
+    .error-msg,.error-msg2{
+      display: block !important;
+      
+    }
+    .marg{
+      margin-top: 30px !important;
+    }
+  }
+  .col-12{
+    margin-bottom: 30px;
   }
   .addd-container {
     margin-bottom: 0px !important;
@@ -6348,6 +6372,13 @@ font-weight: 700;
     //   }
     // }
 
+    .error-msg{
+      &.desc{
+        position: absolute !important;
+        top:101%;
+      }
+    }
+
     .addd-content {
       h5 {
         font-size: 16px;
@@ -6375,7 +6406,7 @@ font-weight: 700;
         flex-direction: column;
         position: relative;
         gap: 10px;
-        margin: 20px 0px;
+        // margin-bottom: 30px;
         .num {
           position: absolute;
           bottom: 20px;
@@ -6421,6 +6452,8 @@ font-weight: 700;
       .det {
         border-top: 1px solid #ebeaed;
         padding-top: 20px;
+        margin-top: 30px;
+       
         .half {
           display: flex;
           align-items: center;

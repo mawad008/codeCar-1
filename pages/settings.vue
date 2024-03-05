@@ -228,7 +228,7 @@
                     </label>
                     <div class=" d-flex  align-items-center justify-content-between phonenum">
                       <input type="tel" maxlength="10" placeholder="3333-5555-9999-55" name="" v-model="form.phone" />
-                      <span class="numm ">966+</span>
+                      <span class="numm " style="direction:rtl;">966+</span>
                     </div>
                   </div>
                   <span class="error-msg" v-if="errors1.phone">{{
@@ -301,15 +301,16 @@
                     <Dropdown v-model="formCar.status_car" :filter-placeholder="$t('search')" :options="carBody" filter
                       optionValue="value" optionLabel="name" :placeholder="$t('carStat')" class="">
                       <template #option="slotProps">
-                        <div @click="getCars()" class="flex align-items-center">
-                          <div>{{ slotProps.option.name }}</div>
+                        <div  class="flex align-items-center w-100">
+                          <div @click="carStatt = slotProps.option.value , getCars()" class=" w-100">{{ slotProps.option.name }}</div>
                         </div>
                       </template>
+                      
                     </Dropdown>
                     <Dropdown v-model="formCar.brand" :options="brands" :filter-placeholder="$t('search')" filter
                       optionValue="id" optionLabel="title" :placeholder="$t('brand')" class="">
                       <template #option="slotProps">
-                        <div @click="getCars()" class="flex align-items-center">
+                        <div @click="brandCar = slotProps.option.id ,  getCars()" class="flex align-items-center">
                           <div>{{ slotProps.option.title }}</div>
                         </div>
                       </template>
@@ -317,7 +318,7 @@
                     <Dropdown v-model="formCar.status_ad" :filter-placeholder="$t('search')" :options="statusAds" filter
                       optionLabel="name" optionValue="value" :placeholder="$t('adS')" class="">
                       <template #option="slotProps">
-                        <div @click="getCars()" class="flex align-items-center">
+                        <div @click="addStat = slotProps.option.value , getCars()" class="flex align-items-center">
                           <div>{{ slotProps.option.name }}</div>
                         </div>
                       </template>
@@ -346,30 +347,11 @@
                     <!-- <span> {{ $t('adAd') }} </span> -->
                   </nuxt-link>
                 </div>
-                <div class="table-responsive">
-                <!-- <table class="table  table-borderless" >
-  <thead>
-    <tr>
-                    <th class="head-table"> {{ $t('nameimg') }}</th>
-                    <th class="head-table">{{ $t('price') }}</th>
-                    <th class="head-table">{{ $t('datee') }}</th>
-                    <th class="head-table">{{ $t('carStat') }}</th>
-                    <th class="head-table">{{ $t('adS') }}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
-    </tr>
-  </tbody>
-                </table> -->
-
-   
+                <div v-if="carPending" class="d-flex justify-content-center">
+            <v-progress-circular color="#dcb63b" indeterminate :size="50" :width="5"></v-progress-circular>
+                
                 </div>
+                <div v-if="!carPending">
                 <div v-if="carsAds.length >= 1" class="filter-table">
                  
 
@@ -597,9 +579,10 @@
                       {{ $t('stateAd2') }}
                     </span>
                     <nuxt-link :to="localePath('/addCar')">
-                      <button>{{ $t('adAd') }}</button>
+                      <button class="back">{{ $t('adAd') }}</button>
                     </nuxt-link>
                   </div>
+                </div>
                 </div>
               </div>
 
@@ -859,7 +842,8 @@
           </div>
         </div>
       </div>
-
+      <Loader v-if="pending"></Loader> 
+       
     </div>
   </div>
 </template>
@@ -896,6 +880,11 @@ let selectedFileUrl = ref(null);
 const localePath = useLocalePath();
 let router = useRouter();
 let descriptionText = ref('');
+
+let carStatt = ref();
+let brandCar = ref();
+let addStat = ref();
+let pending = ref(true);
 
 let passType = ref('password');
 let passType1 = ref('password');
@@ -997,6 +986,9 @@ const rules1 = computed(() => {
   };
 });
 
+
+let carPending = ref(false);
+
 let errors1 = ref([]);
 let errors2 = ref([]);
 let pending1 = ref(false);
@@ -1088,6 +1080,9 @@ const getDesc = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
+  if(result.status == 200){
+    pending.value = false;
+  }
   desc.value = result.data.data.settingprofile;
 }
 const getNotifications = async () => {
@@ -1158,10 +1153,12 @@ const updatePassword = async () => {
   }
 }
 const getCars = async () => {
+  carPending.value = true;
   let result = await axios.get(`${getUrl()}/addss`, {
     params: {
-      status_car: formCar.value.status_car,
-      brand: formCar.value.brand
+      status_car: carStatt.value,
+      brand: brandCar.value,
+      status_ad: addStat.value
     },
     headers: {
       "Content-Language": `${locale.value}`,
@@ -1172,6 +1169,7 @@ const getCars = async () => {
   if (result.status >= 200) {
     carsAds.value = result.data.data.cars;
     descriptionText.value = result.data.data.description;
+    carPending.value = false;
     // console.log(carsAds.value);
   }
 }
