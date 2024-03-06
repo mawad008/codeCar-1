@@ -28,12 +28,18 @@
 <script setup>
 definePageMeta({
   layout: "custom",
-  middleware: "auth",
+  // middleware: "authLogin",
 });
 import { useStore } from "@/store/index";
 let store = useStore;
 const { locale } = useI18n();
-
+import Cookies from "js-cookie";
+const tokenCookie = Cookies.get("token");
+const router = useRouter();
+const localePath = useLocalePath();
+if (tokenCookie) {
+  router.push(localePath("/"));
+}
 
 useHead({
   title: locale.value == 'ar' ? 'تسجيل الدخول' : 'sign up'

@@ -33,12 +33,12 @@
                 <input type="tel" maxlength="10" placeholder="3333-5555-9999-55" name="" v-model="form.phone" />
                 <span class="numm login">+966</span>
               </div>
-                 <span class="error-msg" v-if="v$.phone.$error">{{
-                   v$.phone.$errors[0].$message
-                 }}</span>
-                <span class="error-msg" v-if="errors.phone">{{
-                  errors.phone[0]
-                }}</span>
+              <span class="error-msg" v-if="v$.phone.$error">{{
+        v$.phone.$errors[0].$message
+      }}</span>
+              <span class="error-msg" v-if="errors.phone">{{
+        errors.phone[0]
+      }}</span>
             </div>
 
             <div class="input pass">
@@ -75,12 +75,12 @@
                 </svg>
               </div>
             </div>
-               <span class="error-msg" v-if="v$.password.$error">{{
-                 v$.password.$errors[0].$message
-               }}</span>
-                <span class="error-msg" v-if="errors.password">{{
-                  errors.password[0]
-                }}</span>
+            <span class="error-msg" v-if="v$.password.$error">{{
+        v$.password.$errors[0].$message
+      }}</span>
+            <span class="error-msg" v-if="errors.password">{{
+        errors.password[0]
+      }}</span>
           </div>
           <div class="input">
             <span @click="loginNav = 2" class="forget d-block mt-3">{{ $t('forget') }}</span>
@@ -117,7 +117,7 @@
       <div v-if="loginNav == 2" class="otp">
         <div class="">
           <div class="header w-100 d-flex align-items-center justify-content-between">
-               <nuxt-link :to="localePath('/')">
+            <nuxt-link :to="localePath('/')">
               <logo />
             </nuxt-link>
             <div @click="loginNav = 1" class="arrow">
@@ -138,16 +138,16 @@
           <div class="form">
             <div class="input">
               <label for=""> {{ $t('phone') }} </label>
-            <div class="w-100 d-flex align-items-center justify-content-between phonenum">
-                  <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="phone" />
-                  <span class="numm login">+966</span>
-                </div>
-             
+              <div class="w-100 d-flex align-items-center justify-content-between phonenum">
+                <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="phone" />
+                <span class="numm login">+966</span>
+              </div>
+
               <span class="error-msg" v-if="error2">{{
-                error2
-              }}</span>
+        error2
+      }}</span>
             </div>
-         
+
           </div>
           <button @click="sendOtp()" :disabled="pending2" style="margin-top:72px;">
             {{ $t('follow') }}
@@ -247,8 +247,8 @@
               </div>
             </div>
             <span class="error-msg" v-if="errors4.password">{{
-              errors4.password[0]
-            }}</span>
+        errors4.password[0]
+      }}</span>
 
             <div class="input pass">
               <label for="">{{ $t('pass4') }}</label>
@@ -266,8 +266,8 @@
               </div>
             </div>
             <span class="error-msg" v-if="errors4.password_confirmation">{{
-              errors4.password_confirmation[0]
-            }}</span>
+        errors4.password_confirmation[0]
+      }}</span>
           </div>
           <button @click="resetPass()" :disabled="pending4" style="margin-top:72px;">
             {{ $t('confirm') }}
@@ -372,7 +372,7 @@ let errors4 = ref([]);
 const v$ = useValidate(rules, form);
 
 let title = ref("هذا الحساب ليس مفعل ");
-
+let optverfied = ref(false);
 if (locale.value == 'ar') {
   title.value = 'هذا الحساب ليس مفعل  ';
 } else {
@@ -432,8 +432,32 @@ const loginFunc = async () => {
             closeButton: "button",
             icon: true,
             class: 'toast-container',
-             rtl: locale.value == 'ar' ? true : false
+            rtl: locale.value == 'ar' ? true : false
           });
+        }
+        if (errors.value.message) {
+
+          toast.error(errors.value.message, {
+            position: locale.value == 'ar' ? "top-right" : "top-left",
+            timeout: 3000,
+            closeOnClick: true,
+            pauseOnFocusLoss: true,
+            pauseOnHover: true,
+            draggable: true,
+            draggablePercent: 0.6,
+            showCloseButtonOnHover: false,
+            hideProgressBar: true,
+            closeButton: "button",
+            icon: true,
+            class: 'toast-container',
+            rtl: locale.value == 'ar' ? true : false
+          });
+        }
+        if (errors.value.otp) {
+          otp.value = errors.value.otp;
+          phone.value = errors.value.phone;
+          loginNav.value = 3;
+          optverfied.value = true;
         }
       }
 
@@ -494,11 +518,13 @@ const otpFunc = async () => {
         },
       });
     if (result.status >= 200) {
-      if (process.client) {
+      if (optverfied) {
+        loginNav.value = 1;
+      } else {
         loginNav.value = 4;
-        pending3.value = false;
-        error3.value = '';
       }
+      pending3.value = false;
+      error3.value = '';
     }
     console.log(result.data.data);
   } catch (errorss) {
