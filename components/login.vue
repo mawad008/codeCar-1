@@ -31,14 +31,14 @@
               <label for="">{{ $t('phone') }}</label>
               <div class="w-100 d-flex align-items-center justify-content-between phonenum">
                 <input type="tel" maxlength="10" placeholder="3333-5555-9999-55" name="" v-model="form.phone" />
-                <span class="numm login">+966</span>
+                <span class="numm loginn">+966</span>
               </div>
               <span class="error-msg" v-if="v$.phone.$error">{{
-        v$.phone.$errors[0].$message
-      }}</span>
+                v$.phone.$errors[0].$message
+                }}</span>
               <span class="error-msg" v-if="errors.phone">{{
-        errors.phone[0]
-      }}</span>
+                errors.phone[0]
+                }}</span>
             </div>
 
             <div class="input pass">
@@ -76,14 +76,14 @@
               </div>
             </div>
             <span class="error-msg" v-if="v$.password.$error">{{
-        v$.password.$errors[0].$message
-      }}</span>
+              v$.password.$errors[0].$message
+              }}</span>
             <span class="error-msg" v-if="errors.password">{{
-        errors.password[0]
-      }}</span>
+              errors.password[0]
+              }}</span>
           </div>
           <div class="input">
-            <span @click="loginNav = 2" class="forget d-block mt-3">{{ $t('forget') }}</span>
+            <span @click="optverfied = false , loginNav = 2" class="forget d-block mt-3">{{ $t('forget') }}</span>
           </div>
 
           <div class="d-flex align-item-center justify-content-center">
@@ -140,12 +140,12 @@
               <label for=""> {{ $t('phone') }} </label>
               <div class="w-100 d-flex align-items-center justify-content-between phonenum">
                 <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="phone" />
-                <span class="numm login">+966</span>
+                <span class="numm loginn">+966</span>
               </div>
 
               <span class="error-msg" v-if="error2">{{
-        error2
-      }}</span>
+                error2
+                }}</span>
             </div>
 
           </div>
@@ -247,8 +247,8 @@
               </div>
             </div>
             <span class="error-msg" v-if="errors4.password">{{
-        errors4.password[0]
-      }}</span>
+              errors4.password[0]
+              }}</span>
 
             <div class="input pass">
               <label for="">{{ $t('pass4') }}</label>
@@ -266,8 +266,8 @@
               </div>
             </div>
             <span class="error-msg" v-if="errors4.password_confirmation">{{
-        errors4.password_confirmation[0]
-      }}</span>
+              errors4.password_confirmation[0]
+              }}</span>
           </div>
           <button @click="resetPass()" :disabled="pending4" style="margin-top:72px;">
             {{ $t('confirm') }}
@@ -454,10 +454,10 @@ const loginFunc = async () => {
           });
         }
         if (errors.value.otp) {
+          optverfied.value = true;
           otp.value = errors.value.otp;
           phone.value = errors.value.phone;
           loginNav.value = 3;
-          optverfied.value = true;
         }
       }
 
@@ -518,9 +518,9 @@ const otpFunc = async () => {
         },
       });
     if (result.status >= 200) {
-      if (optverfied) {
+      if (optverfied.value) {
         loginNav.value = 1;
-      } else {
+      } else if (!optverfied.value) {
         loginNav.value = 4;
       }
       pending3.value = false;

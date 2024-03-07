@@ -1,11 +1,9 @@
 <template>
   <div>
     <div class="container finance-container paymentType">
-      <div
-        class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column"
-      >
+      <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
         <h4 class="heading-text">{{ $t('finance') }}</h4>
-        <p>{{desc}}</p>
+        <p>{{ desc }}</p>
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
             <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
@@ -14,10 +12,7 @@
       </div>
 
       <div>
-        <div
-        v-if="!store.state.showConfirm1"
-          class="payment-container cash"
-        >
+        <div v-if="!store.state.showConfirm1" class="payment-container cash">
           <div class="textt">
             <h4>{{ $t('finance') }}</h4>
             <span class="word">
@@ -26,29 +21,21 @@
           </div>
 
           <div class="payment-method">
-            <button
-              @click="paymentMethod = 1"
-              class="one"
-              :class="{ active: paymentMethod == 1 }"
-            >
+            <button @click="paymentMethod = 1" class="one" :class="{ active: paymentMethod == 1 }">
               {{ $t('ind') }}
             </button>
-            <button
-              @click="paymentMethod = 2"
-              class="two"
-              :class="{ active: paymentMethod == 2 }"
-            >
+            <button @click="paymentMethod = 2" class="two" :class="{ active: paymentMethod == 2 }">
               {{ $t('comp') }}
             </button>
           </div>
           <div v-if="paymentMethod == 1">
-           <finance1/>
+            <finance1 />
           </div>
-           
-           <div v-if="paymentMethod == 2">
-           <finance2 />
-           </div>
-         
+
+          <div v-if="paymentMethod == 2">
+            <finance2 />
+          </div>
+
         </div>
       </div>
 
@@ -58,19 +45,20 @@
             <Vue3Lottie :animation-data="otpp" :height="200" :width="200" />
           </client-only>
           <h4>
-          {{ $t('otp1') }}
-        </h4>
+            {{ $t('otp1') }}
+          </h4>
           <p>
-           {{ $t('otp2') }}
+            {{ $t('otp2') }}
           </p>
 
-          <v-otp-input v-model="store.state.otpFin1" style="direction: ltr !important;" :length="4" placeholder="-"></v-otp-input>
+          <v-otp-input v-model="store.state.otpFin1" style="direction: ltr !important;" :length="4"
+            placeholder="-"></v-otp-input>
           <!-- {{ otp }}
           {{ store.state.otpFin1 }} -->
           <span class="error-msg2" v-if="error1">{{
-                            error1
-                  }}</span>
-          <button class="resend">{{ $t('reOtp') }}</button>
+          error1
+        }}</span>
+          <button class="resend" @click="resendOtp1()">{{ $t('reOtp') }}</button>
 
           <button @click="sendOtp()" class="send">{{ $t('follow') }}</button>
         </div>
@@ -86,13 +74,13 @@
           <div class="order-number">
             <h5>{{ $t('orderNum') }} : <span>{{ orderNum1 }}</span></h5>
             <button @click="copyToClipboard();" class="iconn">
-                              <img v-if="check" src="~/assets/images/share1.svg" style="margin-bottom:0px" alt="">
-                               <svg v-else xmlns="http://www.w3.org/2000/svg" fill="#90a3bf" height="20" width="20"
-                              viewBox="0 0 448 512">
-                              <path
-                                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
-                            </svg> 
-                             </button>
+              <img v-if="check" src="~/assets/images/share1.svg" style="margin-bottom:0px" alt="">
+              <svg v-else xmlns="http://www.w3.org/2000/svg" fill="#90a3bf" height="20" width="20"
+                viewBox="0 0 448 512">
+                <path
+                  d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+              </svg>
+            </button>
           </div>
 
           <nuxt-link :to="localePath('/')" class="nav-link">
@@ -146,7 +134,7 @@
         </div>
       </div> -->
 
-      <Loader v-if="pending"></Loader> 
+      <Loader v-if="pending"></Loader>
     </div>
   </div>
 </template>
@@ -179,62 +167,90 @@ const getDesc = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
-  if(result.status == 200){
+  if (result.status == 200) {
     pending.value = false;
   }
   desc.value = result.data.data.financeDescription;
 }
 
 
-const sendOtp = async () => {
-    let formBody = new FormData();
-    formBody.append("otp", store.state.otpFin1 );
-    formBody.append("phone", store.state.phoneFin1);
-    formBody.append("order_id", store.state.orderFin1);
-    try {
-        let result = await axios.post(`${getUrl()}/verify-otp-order`, formBody, {
-            // params: {
-            //     type: paymentMethod.value == 1 ? 'individual' : 'company',
-            //     step: 5
-            // },
-            headers: {
-                "Content-Language": `${locale.value}`,
-            },
-        });
-        if (result.status >= 200) {
-          // if(store.state.orderFin1){
-          // } 
-          paymentOtp.value = 2;
-          pendingOtp1.value = false;
-          // if(store.state.orderFin2){
-          //   paymentOtp1.value = 2;
-          //   pendingOtp2.value = false;
-          // }
-          orderNum1.value = result.data.data.Order_Number;
-          error1.value = '';
-        }
-    } catch (errorss) {
-        console.log(errorss);
-        if (errorss.response) {
-          pendingOtp1.value = false;
-          error1.value = errorss.response.data.errors;
-        }
+const resendOtp1 = async () => {
+  let formBody = new FormData();
+  formBody.append("phone", store.state.phoneFin1);
+  formBody.append("orderId", store.state.orderFin1);
+  try {
+    let result = await axios.post(`${getUrl()}/resend-otp-order`, formBody,
+      {
+        // params: {
+        //   otp: parseInt(otp.value),
+        //   phone: form.value.phone
+        // },
+        headers: {
+          "Content-Language": `${locale.value}`,
+        },
+      });
+    if (result.status >= 200) {
+      // store.commit("changeFormCheck", 2);
+      store.state.otpFin1 = result.data.data.verification_code;
+
     }
+  } catch (errorss) {
+    if (errorss.response) {
+      // pending.value = false;
+      // error.value = errorss.response.data.errors;
+    }
+  }
+};
+
+const sendOtp = async () => {
+  let formBody = new FormData();
+  formBody.append("otp", store.state.otpFin1);
+  formBody.append("phone", store.state.phoneFin1);
+  formBody.append("order_id", store.state.orderFin1);
+  try {
+    let result = await axios.post(`${getUrl()}/verify-otp-order`, formBody, {
+      // params: {
+      //     type: paymentMethod.value == 1 ? 'individual' : 'company',
+      //     step: 5
+      // },
+      headers: {
+        "Content-Language": `${locale.value}`,
+      },
+    });
+    if (result.status >= 200) {
+      // if(store.state.orderFin1){
+      // } 
+      paymentOtp.value = 2;
+      pendingOtp1.value = false;
+      // if(store.state.orderFin2){
+      //   paymentOtp1.value = 2;
+      //   pendingOtp2.value = false;
+      // }
+      orderNum1.value = result.data.data.Order_Number;
+      error1.value = '';
+    }
+  } catch (errorss) {
+    console.log(errorss);
+    if (errorss.response) {
+      pendingOtp1.value = false;
+      error1.value = errorss.response.data.errors;
+    }
+  }
 }
 
 let check = ref(true);
 function copyToClipboard() {
-    /* Copy the text */
-    if (process.client) {
-        check.value = false;
-        const clipBoard = navigator.clipboard;
-        clipBoard.writeText(orderNum1.value).then(() => {
-        });
+  /* Copy the text */
+  if (process.client) {
+    check.value = false;
+    const clipBoard = navigator.clipboard;
+    clipBoard.writeText(orderNum1.value).then(() => {
+    });
 
-        setTimeout(() => {
-            check.value = true;
-        }, 1000);
-    }
+    setTimeout(() => {
+      check.value = true;
+    }, 1000);
+  }
 
 }
 
@@ -247,13 +263,13 @@ let items = ref([
   {
     title: locale.value == 'ar' ? "الرئيسية" : "home",
     disabled: false,
-    class:"breadcrumbs-text",
+    class: "breadcrumbs-text",
     href: "/",
   },
   {
     title: locale.value == 'ar' ? "التمويل" : "finance",
     disabled: true,
-        class:"breadcrumbs-dark",
+    class: "breadcrumbs-dark",
     href: "finance",
   },
 ]);
@@ -265,8 +281,6 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-
-
 .finance-container {
   margin-top: 72px !important;
   margin-bottom: 140px;

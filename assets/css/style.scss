@@ -800,8 +800,10 @@ html[dir="rtl"] {
   }
       }
     .numm{
+      direction: rtl;
+ &.loginn{
       direction: ltr;
-
+        }
       &.set{
           position: absolute;
       left: 10px;
@@ -846,8 +848,10 @@ html[dir="ltr"] {
       }
     .numm{
     
-      // direction: rtl;
+      direction: rtl;
+      &.loginn{
       direction: ltr;
+        }
 
       &.set{
           position: absolute;

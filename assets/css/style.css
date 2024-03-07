@@ -656,11 +656,14 @@ html[dir=rtl] .input .phonenum:focus-within input {
   border: 1px solid transparent !important;
 }
 html[dir=rtl] .input .numm {
-  direction: ltr;
+  direction: rtl;
   color: #5a7184;
   border-right: 1px solid #5a7184;
   padding-right: 5px;
   padding-left: 5px;
+}
+html[dir=rtl] .input .numm.loginn {
+  direction: ltr;
 }
 html[dir=rtl] .input .numm.set {
   position: absolute;
@@ -690,11 +693,14 @@ html[dir=ltr] .input .phonenum:focus-within input {
   border: 1px solid transparent !important;
 }
 html[dir=ltr] .input .numm {
-  direction: ltr;
+  direction: rtl;
   color: #5a7184;
   border-right: 1px solid #5a7184;
   padding-right: 5px;
   padding-left: 5px;
+}
+html[dir=ltr] .input .numm.loginn {
+  direction: ltr;
 }
 html[dir=ltr] .input .numm.set {
   position: absolute;
