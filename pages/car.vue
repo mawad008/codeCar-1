@@ -972,6 +972,7 @@ import otpp from "~/assets/animations/otp.json";
 import success from "~/assets/animations/success.json";
 import * as clipboard from "clipboard-polyfill";
 import { Vue3Lottie } from "vue3-lottie";
+
 import axios from 'axios';
 const { locale } = useI18n();
 import { useToast } from 'vue-toastification'
@@ -1070,13 +1071,16 @@ function copyToClipboard2() {
 }
 let valuee1 = ref(" تم الاضافة الي قائمة المفضلات ");
 let valuee2 = ref(" تم الحذف من قائمة المفضلات ");
+let valuee3 = ref(" تم ارسال الكود بنجاح")
 if (locale.value == "ar") {
   valuee1.value = "تم الاضافة الي قائمة المفضلات ";
   valuee2.value = "تم الحذف من قائمة المفضلات ";
+  valuee3.value = " تم ارسال الكود بنجاح ";
 
 } else {
   valuee1.value = 'Added to Favorites list';
   valuee2.value = "Removed from Favorites list";
+  valuee3.value = "The code has been sent successfully";
 
 }
 
@@ -1299,6 +1303,21 @@ const resendOtp1 = async () => {
       // pending.value = false;
       errors1.value = '';
       pending1.value = false;
+      toast.success(valuee3.value , {
+      position: locale.value == 'ar' ? "top-right" : "top-left",
+      timeout: 3000,
+      closeOnClick: true,
+      pauseOnFocusLoss: true,
+      pauseOnHover: true,
+      draggable: true,
+      draggablePercent: 0.6,
+      showCloseButtonOnHover: false,
+      hideProgressBar: true,
+      closeButton: "button",
+      icon: true,
+      class: 'toast-container',
+      rtl: locale.value == 'ar' ? true : false
+    });
 
     }
   } catch (errorss) {
@@ -1330,6 +1349,21 @@ const resendOtp2 = async () => {
       // pending.value = false;
       errors1.value = '';
       pending1.value = false;
+      toast.success(valuee3.value , {
+      position: locale.value == 'ar' ? "top-right" : "top-left",
+      timeout: 3000,
+      closeOnClick: true,
+      pauseOnFocusLoss: true,
+      pauseOnHover: true,
+      draggable: true,
+      draggablePercent: 0.6,
+      showCloseButtonOnHover: false,
+      hideProgressBar: true,
+      closeButton: "button",
+      icon: true,
+      class: 'toast-container',
+      rtl: locale.value == 'ar' ? true : false
+    });
 
     }
   } catch (errorss) {

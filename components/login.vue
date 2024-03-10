@@ -337,11 +337,13 @@ let pending2 = ref(false);
 let pending3 = ref(false);
 let pending4 = ref(false);
 
+let valuee3 = ref(" تم ارسال الكود بنجاح");
 let value1 = ref("value is required");
 let value2 = ref("The email field is required");
 let value3 = ref("Invalid email format");
 let value4 = ref("This field should be at least 8 characters long");
 if (locale.value == "ar") {
+  valuee3.value = " تم ارسال الكود بنجاح ";
   value1.value = "هذا الحقل مطلوب";
   value2.value = "حقل البريد الإلكتروني مطلوب";
   value3.value = "تنسيق البريد الإلكتروني غير صالح";
@@ -351,6 +353,7 @@ if (locale.value == "ar") {
   value2.value = "The email field is required";
   value3.value = "Invalid email format";
   value4.value = "This field should be at least 8 characters long";
+  valuee3.value = "The code has been sent successfully";
 }
 
 const rules = computed(() => {
@@ -554,6 +557,21 @@ const resendOtp = async () => {
       // store.commit("changeFormCheck", 2);
       otp.value = result.data.data.verification_code;
       // pending.value = false;
+      toast.success(valuee3.value , {
+      position: locale.value == 'ar' ? "top-right" : "top-left",
+      timeout: 3000,
+      closeOnClick: true,
+      pauseOnFocusLoss: true,
+      pauseOnHover: true,
+      draggable: true,
+      draggablePercent: 0.6,
+      showCloseButtonOnHover: false,
+      hideProgressBar: true,
+      closeButton: "button",
+      icon: true,
+      class: 'toast-container',
+      rtl: locale.value == 'ar' ? true : false
+    });
       error.value = '';
 
     }

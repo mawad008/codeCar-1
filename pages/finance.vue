@@ -146,6 +146,8 @@ import success from "~/assets/animations/success.json";
 import { Vue3Lottie } from "vue3-lottie";
 import { useStore } from "~/store";
 let store = useStore;
+import { useToast } from 'vue-toastification';
+const toast = useToast();
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let paymentMethod = ref(1);
@@ -159,6 +161,17 @@ let pendingOtp2 = ref(false);
 let pending = ref(true);
 let orderNum1 = ref();
 let error1 = ref();
+
+
+let valuee3 = ref(" تم ارسال الكود بنجاح")
+if (locale.value == "ar") {
+  valuee3.value = " تم ارسال الكود بنجاح ";
+
+} else {
+  valuee3.value = "The code has been sent successfully";
+
+}
+
 
 let desc = ref('');
 const getDesc = async () => {
@@ -192,6 +205,21 @@ const resendOtp1 = async () => {
     if (result.status >= 200) {
       // store.commit("changeFormCheck", 2);
       store.state.otpFin1 = result.data.data.verification_code;
+      toast.success(valuee3.value , {
+      position: locale.value == 'ar' ? "top-right" : "top-left",
+      timeout: 3000,
+      closeOnClick: true,
+      pauseOnFocusLoss: true,
+      pauseOnHover: true,
+      draggable: true,
+      draggablePercent: 0.6,
+      showCloseButtonOnHover: false,
+      hideProgressBar: true,
+      closeButton: "button",
+      icon: true,
+      class: 'toast-container',
+      rtl: locale.value == 'ar' ? true : false
+    });
 
     }
   } catch (errorss) {

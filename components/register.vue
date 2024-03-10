@@ -357,6 +357,8 @@ import { useStore } from "~/store";
 let store = useStore;
 const localePath = useLocalePath();
 const { locale } = useI18n();
+import { useToast } from 'vue-toastification'
+const toast = useToast();
 
 let type = ref(0);
 let passType = ref("password");
@@ -372,6 +374,15 @@ const selectedCountry = ref();
 const countries = ref([]);
 
 let pending1 = ref(false);
+
+let valuee3 = ref(" تم ارسال الكود بنجاح")
+if (locale.value == "ar") {
+  valuee3.value = " تم ارسال الكود بنجاح ";
+
+} else {
+  valuee3.value = "The code has been sent successfully";
+
+}
 
 const getCites = async ()=>{
   let result = await axios.get(`${getUrl()}/cities`,{
@@ -556,6 +567,21 @@ const resendOtp = async () => {
       // store.commit("changeFormCheck", 2);
       otp.value = result.data.data.verification_code;
       pending.value = false;
+      toast.success(valuee3.value , {
+      position: locale.value == 'ar' ? "top-right" : "top-left",
+      timeout: 3000,
+      closeOnClick: true,
+      pauseOnFocusLoss: true,
+      pauseOnHover: true,
+      draggable: true,
+      draggablePercent: 0.6,
+      showCloseButtonOnHover: false,
+      hideProgressBar: true,
+      closeButton: "button",
+      icon: true,
+      class: 'toast-container',
+      rtl: locale.value == 'ar' ? true : false
+    });
       error.value = '';
    
     }

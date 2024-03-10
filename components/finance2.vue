@@ -219,7 +219,7 @@
                             type="number"
                             min="1"
                             v-model="item.car_count"
-                            placeholder="3"
+                            :placeholder="$t('numCars')"
                             name=""
                             class=""
                           />
@@ -228,6 +228,11 @@
                           }}</span>
                         </div>
                       </div>
+                    </div>
+                    <div v-if="errorsObj">
+                       <span class="text-danger" v-if="errorsObj.field_number == index">
+                         {{ errorsObj.errors }}
+                       </span>
                     </div>
                     <div class="d-flex flex-column flex-xl-row flex-lg-row justify-content-between align-items-center">
                     <div @click="addRow()" class="add d-flex align-items-center gap-2 mb-3" style="cursor:pointer;">
@@ -239,6 +244,7 @@
                      <span style="color:#DCB63B; font-size: 14px;"> {{$t('addCar')}}</span>
                     </div>
                     </div>
+                    
                   </div>
                   <div class="d-flex justify-content-end">
               
@@ -631,7 +637,7 @@ const addRow = () => {
             year: '',
             color: '',
             gear_shifter: '',
-            car_count: 0
+            car_count: 1
         }
     );
 }
@@ -743,6 +749,7 @@ const isFormFilled2 = () => {
 const v$ = useValidate(rules, form);
 const v4$ = useValidate(rules4, form4);
 
+let errorsObj = ref();
 let pendingCorp1 = ref(false);
 let pendingCorp2 = ref(false);
 const sendCorporate1 = async () => {
@@ -752,21 +759,30 @@ const sendCorporate1 = async () => {
 
     if (isFormFilled()) {
         pendingCorp1.value = true;
-        let result = await axios.post(`${getUrl()}/finance-Order`, { cars: form.value }, {
-            params: {
-                type: 'organization',
-                step: 1
-            },
-            headers: {
-                "Content-Language": `${locale.value}`,
-            },
-        });
-
-        if (result.status >= 200) {
-            pendingCorp1.value = false;
-            paymentSec2.value = 1
-            checkBtnSec1.value = 1;
-            paymentIndividualBtn2.value = 2;
+        try{
+          
+          let result = await axios.post(`${getUrl()}/finance-Order`, { cars: form.value }, {
+              params: {
+                  type: 'organization',
+                  step: 1
+              },
+              headers: {
+                  "Content-Language": `${locale.value}`,
+              },
+          });
+  
+          if (result.status >= 200) {
+              pendingCorp1.value = false;
+              paymentSec2.value = 1
+              checkBtnSec1.value = 1;
+              errorsObj.value = null;
+              paymentIndividualBtn2.value = 2;
+          }
+        } catch(errorss){
+          if (errorss.response) {
+                pendingCorp1.value = false;
+                errorsObj.value = errorss.response.data.errors;
+            }
         }
 
     }
