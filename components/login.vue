@@ -458,7 +458,7 @@ const loginFunc = async () => {
         }
         if (errors.value.otp) {
           optverfied.value = true;
-          otp.value = errors.value.otp;
+          // otp.value = errors.value.otp;
           phone.value = errors.value.phone;
           loginNav.value = 3;
         }
@@ -494,7 +494,7 @@ const sendOtp = async () => {
         loginNav.value = 3;
         pending2.value = false;
         error2.value = '';
-        otp.value = result.data.data.verification_code;
+        // otp.value = result.data.data.verification_code;
       }
     }
   } catch (errorss) {
@@ -555,7 +555,7 @@ const resendOtp = async () => {
       });
     if (result.status >= 200) {
       // store.commit("changeFormCheck", 2);
-      otp.value = result.data.data.verification_code;
+      // otp.value = result.data.data.verification_code;
       // pending.value = false;
       toast.success(valuee3.value , {
       position: locale.value == 'ar' ? "top-right" : "top-left",

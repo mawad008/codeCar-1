@@ -819,7 +819,7 @@ const sendCorporate2 = async () => {
             if (result.status >= 200) {
                 pendingCorp2.value = false
                 store.state.showConfirm1 = true;
-        store.state.otpFin1 = result.data.data.verification_code;
+        // store.state.otpFin1 = result.data.data.verification_code;
         store.state.orderFin1 = result.data.data.Order_Number;
         store.state.phoneFin1 = form4.value.phone;
             }

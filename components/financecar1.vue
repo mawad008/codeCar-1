@@ -1544,7 +1544,7 @@ const paymentFunc5 = async () => {
         // paymentBtn5.value = 1;
         // checkBtn4.value = 1;
         store.state.showConfirm1 = true;
-        store.state.otpFin1 = result.data.data.verification_code;
+        // store.state.otpFin1 = result.data.data.verification_code;
         store.state.orderFin1 = result.data.data.Order_Number;
         store.state.phoneFin1 = form3.value.phone;
     }

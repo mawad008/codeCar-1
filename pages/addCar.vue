@@ -894,7 +894,7 @@ const getDesc = async () => {
     },
   });
 
-  desc.value = result.data.data.exhibitionDescription;
+  desc.value = result.data.data.addYourads;
   for (
     let i = currentYear;
     i >= parseInt(result.data.data.Min_year_of_ads);

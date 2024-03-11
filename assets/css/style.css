@@ -73,7 +73,7 @@ a {
 .car-card .used {
   width: -moz-fit-content;
   width: fit-content;
-  padding: 0px 4px;
+  padding: 0px 12px;
   height: 33px;
   display: flex;
   align-items: center;
@@ -277,6 +277,7 @@ a {
 body,
 html {
   overflow-x: clip;
+  scroll-behavior: smooth;
 }
 
 html[dir=rtl] body {
@@ -1077,7 +1078,7 @@ html[dir=ltr] .footer-container .search button {
     transition: 0.4s all;
   }
   .navbar .icon-bar {
-    background-color: #000;
+    background-color: #000 !important;
   }
   .navbar .navbar-toggler.collapsed .icon-bar {
     background-color: #555;
@@ -3896,27 +3897,45 @@ html[dir=ltr] .table-container thead td:last-child {
   .cars-filter .progress-container .line {
     width: 100%;
   }
+  .cars-filter .arrow-icon.active {
+    display: flex !important;
+  }
   .cars-filter .sort-mobile {
     display: block;
     position: fixed;
     background-color: #2d3a4a;
     width: 50px;
     height: 50px;
+    border-radius: 10px;
     z-index: 4444;
   }
   .cars-filter .sort-mobile .sort {
     display: flex;
     align-items: center;
+    height: 100%;
+    width: 100%;
     justify-content: center;
+    flex-direction: column;
     gap: 3px;
   }
   .cars-filter .sort-mobile .sort span {
-    width: 10px;
     height: 2px;
     background-color: #fff;
     color: #fff;
   }
-  .cars-filter .filter {
+  .cars-filter .sort-mobile .sort span.one {
+    width: 50%;
+  }
+  .cars-filter .sort-mobile .sort span.two {
+    width: 30%;
+  }
+  .cars-filter .sort-mobile .sort span.three {
+    width: 10%;
+  }
+  .cars-filter .cars-box.none {
+    display: none;
+  }
+  .cars-filter .cars-box2.active {
     display: none;
   }
   .settings-page .setting-nav {

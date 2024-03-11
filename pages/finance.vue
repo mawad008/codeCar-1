@@ -51,7 +51,7 @@
             {{ $t('otp2') }}
           </p>
 
-          <v-otp-input v-model="store.state.otpFin1" style="direction: ltr !important;" :length="4"
+          <v-otp-input v-model="otp" style="direction: ltr !important;" :length="4"
             placeholder="-"></v-otp-input>
           <!-- {{ otp }}
           {{ store.state.otpFin1 }} -->
@@ -151,7 +151,7 @@ const toast = useToast();
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let paymentMethod = ref(1);
-let otp = ref(store.state.otpFin1);
+let otp = ref('');
 
 let paymentOtp = ref(1);
 let paymentOtp1 = ref(1);
@@ -204,7 +204,7 @@ const resendOtp1 = async () => {
       });
     if (result.status >= 200) {
       // store.commit("changeFormCheck", 2);
-      store.state.otpFin1 = result.data.data.verification_code;
+      // store.state.otpFin1 = result.data.data.verification_code;
       toast.success(valuee3.value , {
       position: locale.value == 'ar' ? "top-right" : "top-left",
       timeout: 3000,
@@ -232,7 +232,7 @@ const resendOtp1 = async () => {
 
 const sendOtp = async () => {
   let formBody = new FormData();
-  formBody.append("otp", store.state.otpFin1);
+  formBody.append("otp", otp.value);
   formBody.append("phone", store.state.phoneFin1);
   formBody.append("order_id", store.state.orderFin1);
   try {

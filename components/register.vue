@@ -503,7 +503,7 @@ const registerFunc = async () => {
         console.log(result.data.data);
         // phoneNum.value = result.data.data.vendor.phone;
         signNav.value = 2;
-        otp.value = result.data.data.vendor.verification_code;
+        // otp.value = result.data.data.vendor.verification_code;
         pending1.value= false;
         errors.value = [];
       }
@@ -565,7 +565,7 @@ const resendOtp = async () => {
     });
     if (result.status >= 200) {
       // store.commit("changeFormCheck", 2);
-      otp.value = result.data.data.verification_code;
+      // otp.value = result.data.data.verification_code;
       pending.value = false;
       toast.success(valuee3.value , {
       position: locale.value == 'ar' ? "top-right" : "top-left",
