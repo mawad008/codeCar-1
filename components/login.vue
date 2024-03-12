@@ -30,7 +30,7 @@
             <div class="input phone">
               <label for="">{{ $t('phone') }}</label>
               <div class="w-100 d-flex align-items-center justify-content-between phonenum">
-                <input type="tel" maxlength="10" placeholder="3333-5555-9999-55" name="" v-model="form.phone" />
+                <input type="tel" maxlength="10" :placeholder="$t('mobileplace')" name="" v-model="form.phone" />
                 <span class="numm loginn">+966</span>
               </div>
               <span class="error-msg" v-if="v$.phone.$error">{{
@@ -139,7 +139,7 @@
             <div class="input">
               <label for=""> {{ $t('phone') }} </label>
               <div class="w-100 d-flex align-items-center justify-content-between phonenum">
-                <input type="tel" placeholder="3333-5555-9999-55" name="" v-model="phone" />
+                <input type="tel" :placeholder="$t('mobileplace')" name="" v-model="phone" />
                 <span class="numm loginn">+966</span>
               </div>
 

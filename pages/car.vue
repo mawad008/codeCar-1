@@ -395,7 +395,7 @@
                     <span> {{ $t('phone') }} </span>
                     <div class="input">
                       <div class="w-100  d-flex align-items-center justify-content-between phonenum">
-                        <input type="tel" maxlength="10" placeholder="3333-5555-9999-55" name=""
+                        <input type="tel" maxlength="10" :placeholder="$t('mobileplace')" name=""
                           v-model="formCash1.phone" />
                         <span class="numm login">966+</span>
                       </div>
@@ -547,7 +547,7 @@
                     <span> {{ $t('phone') }} </span>
                     <div class="input">
                       <div class="w-100  d-flex align-items-center justify-content-between phonenum">
-                        <input type="tel" maxlength="10" placeholder="3333-5555-9999-55" name=""
+                        <input type="tel" maxlength="10" :placeholder="$t('mobileplace')" name=""
                           v-model="formCash2.phone" />
                         <span class="numm login">966+</span>
                       </div>

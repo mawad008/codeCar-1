@@ -26,7 +26,9 @@
                                             <img src="~/assets/images/contact-1.svg" alt="">
                                         </div>
                                         <span>{{ $t('email') }}</span>
+                                        <a :href="`mailto:${contactArr.email}`">
                                         <h6>{{ contactArr.email }}</h6>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-6 col-lg-6 my-3">
@@ -35,7 +37,9 @@
                                             <img src="~/assets/images/contact-2.svg" alt="">
                                         </div>
                                         <span> {{ $t('phoneNum') }}</span>
+                                        <a :href="`tel:${contactArr.phone}`">
                                         <h6>{{ contactArr.phone }}</h6>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-6 col-lg-6 my-3">
@@ -135,7 +139,7 @@
 
                                             </div>
                                             <div class="iconn">
-                                                <a :href="contactArr.twitter" target="_blank">
+                                                <a :href="contactArr.tiktok" target="_blank">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none">
                                                     <path
@@ -182,14 +186,14 @@
                          <div class="input">
                           <label> {{ $t('phone') }} </label>
                           <div class="w-100  d-flex align-items-center justify-content-between phonenum">
-                  <input type="tel" maxlength="10" placeholder="3333-5555-9999-55" name="" v-model="form.phone" />
+                  <input type="tel" maxlength="10" :placeholder="$t('mobileplace')" name="" v-model="form.phone" />
                   <span class="numm login">966+</span>
                 </div>
                           <span class="error-msg" v-if="v$.phone.$error">{{ v$.phone.$errors[0].$message }}</span>
                             <span class="error-msg" v-if="errors.phone">{{ errors.phone[0] }}</span>
                          </div>
                          <div class="input">
-                          <label> {{ $t('email') }} </label>
+                          <label> {{ $t('emailE') }} </label>
                           <input type="email" v-model="form.email" placeholder=" Demo@icloud.com">
                           <span class="error-msg" v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</span>
                             <span class="error-msg" v-if="errors.email">{{ errors.email[0] }}</span>

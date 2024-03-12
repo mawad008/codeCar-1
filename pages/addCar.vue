@@ -902,7 +902,6 @@ const getDesc = async () => {
   ) {
     years.value.push(i);
   }
-  console.log(years.value);
 };
 
 // const handleKeyUp = (event) => {
@@ -1039,7 +1038,7 @@ const addImage = () => {
     images.value.push({ url: "", file: null });
   }
   //   loopImages();
-  console.log(checkImages.value);
+
 };
 
 const removeRow = (index) => {
@@ -1241,7 +1240,7 @@ const addFunc1 = async () => {
         errors1.value = [];
       }
     } catch (errorss) {
-      console.log(errorss);
+
       if (errorss.response) {
         pending1.value = false;
         errors1.value = errorss.response.data.errors;
@@ -1308,7 +1307,7 @@ const addFunc2 = async () => {
         errors2.value = [];
       }
     } catch (errorss) {
-      console.log(errorss);
+
       if (errorss.response) {
         pending2.value = false;
         errors2.value = errorss.response.data.errors;

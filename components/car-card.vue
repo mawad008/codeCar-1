@@ -25,7 +25,7 @@
             </div> -->
             <span class="namee">{{ car.statue }}</span>
             <div class="name d-flex flex-column">
-                <span class="used"> {{ $t('discc') }} {{ Math.round(car.discount_percentage) }} % </span>
+                <span class="used" v-if="Math.round(car.discount_percentage) > 0" >  {{ $t('discc') }}  {{ Math.round(car.discount_percentage) }}  % </span>
                 <h4 >{{ car.title }}</h4>
             </div>
             <div class="price d-flex flex-column align-items-cente w-100 justify-content-cente ">
