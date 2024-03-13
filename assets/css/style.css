@@ -1827,8 +1827,8 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   line-height: 160%;
 }
 .best-offers .big-img {
-  width: 582.157px;
-  height: 506.854px;
+  width: 583px;
+  height: 507px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -2018,7 +2018,7 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
 }
 .main-car-page .car-details .images-text .mySwiper2 .swiper-slide .image {
   width: 401px;
-  height: 416px;
+  height: 250px;
 }
 .main-car-page .car-details .images-text .mySwiper2 .swiper-slide .image img {
   width: 100%;
