@@ -372,7 +372,7 @@
         </div>
       </div>
     </div>
-    <Loader v-if="pending"></Loader>
+    <!-- <Loader2 v-if="pending"></Loader2> -->
 
   </div>
 </template>

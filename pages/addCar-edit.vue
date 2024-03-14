@@ -716,7 +716,6 @@ import {
   helpers,
 } from "@vuelidate/validators";
 import { useStore } from "~/store";
-import { NULL } from "sass";
 let store = useStore;
 const localePath = useLocalePath();
 const { locale } = useI18n();
