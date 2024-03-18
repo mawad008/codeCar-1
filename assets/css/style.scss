@@ -116,6 +116,11 @@ a {
   position: relative;
   // width: 100%;
   height: fit-content;
+  .disc2{
+     font-weight: 300 !important;
+     text-decoration: line-through;
+
+    }
   .used {
     width: fit-content;
     padding: 0px 12px;
@@ -2481,7 +2486,7 @@ html[dir="rtl"] .explore {
           display: flex;
           align-items: center;
           justify-content: center;
-          .image{
+          .image , iframe{
             width: 401px;
             height: 250px;
             img{
@@ -2502,6 +2507,12 @@ html[dir="rtl"] .explore {
       }
 
       .mySwiper .swiper-slide {
+        .iconn{
+          i{
+            color: #90A3BF;
+            font-size:25px;
+            }
+              }
         &.auto-width{
           width: auto !important;
         }
@@ -5971,6 +5982,33 @@ display: none !important;
     }
   }
 }
+
+.dropdown-finance-filter{
+   .p-dropdown {
+          width: 140px;
+          height: 40px;
+          border-radius: 8px;
+          border: 1px solid #ebeaed;
+          padding: 8px;
+        }
+  .p-dropdown-trigger{
+    background-color: #f6f7f9;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    svg{
+      width: 8px !important;
+      height: 8px !important;
+      fill: $secondary-black !important;
+      path{
+        fill: $secondary-black !important;
+      }
+    }
+  }
+  }
 
 html[dir="rtl"] .settings-page{
   .setting-btn{

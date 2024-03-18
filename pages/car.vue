@@ -106,8 +106,13 @@
                 <swiper :style="{
       '--swiper-navigation-color': '#fff',
       '--swiper-pagination-color': '#fff',
-    }" :loop="true" :spaceBetween="10" :thumbs="{ swiper: thumbsSwiper }"
-                  :modules="[SwiperFreeMode, SwiperThumbs]" class="mySwiper2">
+    }" :loop="true" :spaceBetween="10" :thumbs="{ swiper: thumbsSwiper }" :modules="[SwiperFreeMode, SwiperThumbs]"
+                  class="mySwiper2">
+                  <swiper-slide>
+                    <iframe v-if="videoKey" :src="`https://www.youtube.com/embed/${videoKey}`"
+                      title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+      gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </swiper-slide>
                   <swiper-slide v-for="image in mainCar.images">
                     <div class="image">
                       <img :src="image" alt="">
@@ -141,6 +146,12 @@
         spaceBetween: 20,
       },
     }" :modules="[SwiperNavigation]" class="mySwiper">
+                    <swiper-slide>
+                      <div class="iconn d-flex align-items-center">
+                        <i class="fa-regular fa-circle-play"></i>
+                      </div>
+
+                    </swiper-slide>
                     <swiper-slide v-for="image in mainCar.images" :class="{ 'auto-width': mainCar.images.length <= 4 }">
                       <div class="image">
                         <img :src="image" alt="">
@@ -384,12 +395,12 @@
                     <div class="input">
                       <input type="text" placeholder="" name="" class="" v-model="formCash1.name" />
                       <span class="error-msg" v-if="v1$.name.$error">{{
-      v1$.name.$errors[0].$message
-    }}</span>
+                        v1$.name.$errors[0].$message
+                        }}</span>
                     </div>
                     <span class="error-msg mt-1" v-if="errors1.name">{{
-      errors1.name[0]
-    }}</span>
+                      errors1.name[0]
+                      }}</span>
                   </div>
                   <div class="input-container">
                     <span> {{ $t('phone') }} </span>
@@ -401,12 +412,12 @@
                       </div>
 
                       <span class="error-msg" v-if="v1$.phone.$error">{{
-      v1$.phone.$errors[0].$message
-    }}</span>
+                        v1$.phone.$errors[0].$message
+                        }}</span>
                     </div>
                     <span class="error-msg mt-1" v-if="errors1.phone">{{
-      errors1.phone[0]
-    }}</span>
+                      errors1.phone[0]
+                      }}</span>
                   </div>
                 </div>
                 <button @click="cashFunc1()" class="gap-3">
@@ -462,13 +473,13 @@
                       <input type="text" :placeholder="$t('name3')" name="" v-model="formCash2.organization_name"
                         class="" />
                       <span class="error-msg" v-if="v2$.organization_name.$error">{{
-      v2$.organization_name.$errors[0].$message
-    }}</span>
+                        v2$.organization_name.$errors[0].$message
+                        }}</span>
 
                     </div>
                     <span class="error-msg mt-1" v-if="errors2.name">{{
-      errors2.name[0]
-    }}</span>
+                      errors2.name[0]
+                      }}</span>
                   </div>
 
                   <div class="input-container">
@@ -484,11 +495,11 @@
                         </template>
                       </Dropdown>
                       <span class="error-msg" v-if="v2$.organization_type.$error">{{
-      v2$.organization_type.$errors[0].$message
-    }}</span>
+                        v2$.organization_type.$errors[0].$message
+                        }}</span>
                       <span class="error-msg" v-if="errors2.organization_type">{{
-      errors2.organization_type[0]
-    }}</span>
+                        errors2.organization_type[0]
+                        }}</span>
                     </div>
                   </div>
                 </div>
@@ -499,12 +510,12 @@
                       <input type="tel" placeholder="3333-5555-9999-55" name=""
                         v-model="formCash2.commercial_registration_no" class="" />
                       <span class="error-msg" v-if="v2$.commercial_registration_no.$error">{{
-      v2$.commercial_registration_no.$errors[0].$message
-    }}</span>
+                        v2$.commercial_registration_no.$errors[0].$message
+                        }}</span>
                     </div>
                     <span class="error-msg mt-1" v-if="errors2.commercial_registration_no">{{
-      errors2.commercial_registration_no[0]
-    }}</span>
+                      errors2.commercial_registration_no[0]
+                      }}</span>
                   </div>
 
                   <div class="input-container">
@@ -521,11 +532,11 @@
                         </template>
                       </Dropdown>
                       <span class="error-msg" v-if="v2$.organization_activity.$error">{{
-      v2$.organization_activity.$errors[0].$message
-    }}</span>
+                        v2$.organization_activity.$errors[0].$message
+                        }}</span>
                       <span class="error-msg" v-if="errors2.organization_activity">{{
-      errors2.organization_activity[0]
-    }}</span>
+                        errors2.organization_activity[0]
+                        }}</span>
                     </div>
                   </div>
                 </div>
@@ -535,12 +546,12 @@
                     <div class="input">
                       <input type="text" :placeholder="$t('name4')" name="" class="" v-model="formCash2.name" />
                       <span class="error-msg" v-if="v2$.name.$error">{{
-      v2$.name.$errors[0].$message
-    }}</span>
+                        v2$.name.$errors[0].$message
+                        }}</span>
                     </div>
                     <span class="error-msg mt-1" v-if="errors2.name">{{
-      errors2.name[0]
-    }}</span>
+                      errors2.name[0]
+                      }}</span>
                   </div>
 
                   <div class="input-container">
@@ -552,12 +563,12 @@
                         <span class="numm login">966+</span>
                       </div>
                       <span class="error-msg" v-if="v2$.phone.$error">{{
-      v2$.phone.$errors[0].$message
-    }}</span>
+                        v2$.phone.$errors[0].$message
+                        }}</span>
                     </div>
                     <span class="error-msg mt-1" v-if="errors2.phone">{{
-      errors2.phone[0]
-    }}</span>
+                      errors2.phone[0]
+                      }}</span>
                   </div>
                 </div>
                 <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
@@ -567,12 +578,12 @@
                       <input type="number" min="1" :placeholder="$t('exmp')" name=""
                         v-model="formCash2.organization_age" class="" />
                       <span class="error-msg" v-if="v2$.organization_age.$error">{{
-      v2$.organization_age.$errors[0].$message
-    }}</span>
+                        v2$.organization_age.$errors[0].$message
+                        }}</span>
                     </div>
                     <span class="error-msg mt-1" v-if="errors2.organization_age">{{
-      errors2.organization_age[0]
-    }}</span>
+                      errors2.organization_age[0]
+                      }}</span>
                   </div>
 
                   <div class="input-container">
@@ -588,11 +599,11 @@
                         </template>
                       </Dropdown>
                       <span class="error-msg" v-if="v2$.city_id.$error">{{
-      v2$.city_id.$errors[0].$message
-    }}</span>
+                        v2$.city_id.$errors[0].$message
+                        }}</span>
                       <span class="error-msg" v-if="errors2.city_id">{{
-      errors2.city_id[0]
-    }}</span>
+                        errors2.city_id[0]
+                        }}</span>
                     </div>
                   </div>
                 </div>
@@ -611,11 +622,11 @@
                         </template>
                       </Dropdown>
                       <span class="error-msg" v-if="v2$.bank_id.$error">{{
-      v2$.bank_id.$errors[0].$message
-    }}</span>
+                        v2$.bank_id.$errors[0].$message
+                        }}</span>
                       <span class="error-msg" v-if="errors2.bank_id">{{
-      errors2.bank_id[0]
-    }}</span>
+                        errors2.bank_id[0]
+                        }}</span>
                     </div>
                   </div>
 
@@ -625,12 +636,12 @@
                       <input type="number" min="1" :placeholder="$t('numCars')" name="" v-model="formCash2.car_count"
                         class="" />
                       <span class="error-msg" v-if="v2$.car_count.$error">{{
-      v2$.car_count.$errors[0].$message
-    }}</span>
+                        v2$.car_count.$errors[0].$message
+                        }}</span>
                     </div>
                     <span class="error-msg mt-1" v-if="errors2.car_count">{{
-      errors2.car_count[0]
-    }}</span>
+                      errors2.car_count[0]
+                      }}</span>
                   </div>
                 </div>
                 <button @click="cashFunc1()" class="gap-3">
@@ -726,8 +737,8 @@
 
           <v-otp-input v-model="otp1" :length="4" style="direction: ltr !important;" placeholder="-"></v-otp-input>
           <span class="error-msg2" v-if="error1">{{
-      error1
-    }}</span>
+            error1
+            }}</span>
           <button class="resend" @click="resendOtp1()">{{ $t('reOtp') }}</button>
 
           <button @click="sendOtp()" class="send">{{ $t('follow') }}</button>
@@ -774,8 +785,8 @@
             placeholder="-"></v-otp-input>
 
           <span class="error-msg2" v-if="error2">{{
-      error1
-    }}</span>
+            error1
+            }}</span>
           <button class="resend" @click="resendOtp2()">{{ $t('reOtp') }}</button>
 
           <button @click="sendOtp2()" class="send">{{ $t('follow') }}</button>
@@ -999,6 +1010,10 @@ if (locale.value == 'ar') {
 } else {
   slide.value = false;
 }
+
+
+
+
 
 let btnModel = ref(1);
 let btnModel2 = ref(1);
@@ -1303,21 +1318,21 @@ const resendOtp1 = async () => {
       // pending.value = false;
       errors1.value = '';
       pending1.value = false;
-      toast.success(valuee3.value , {
-      position: locale.value == 'ar' ? "top-right" : "top-left",
-      timeout: 3000,
-      closeOnClick: true,
-      pauseOnFocusLoss: true,
-      pauseOnHover: true,
-      draggable: true,
-      draggablePercent: 0.6,
-      showCloseButtonOnHover: false,
-      hideProgressBar: true,
-      closeButton: "button",
-      icon: true,
-      class: 'toast-container',
-      rtl: locale.value == 'ar' ? true : false
-    });
+      toast.success(valuee3.value, {
+        position: locale.value == 'ar' ? "top-right" : "top-left",
+        timeout: 3000,
+        closeOnClick: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        draggable: true,
+        draggablePercent: 0.6,
+        showCloseButtonOnHover: false,
+        hideProgressBar: true,
+        closeButton: "button",
+        icon: true,
+        class: 'toast-container',
+        rtl: locale.value == 'ar' ? true : false
+      });
 
     }
   } catch (errorss) {
@@ -1349,21 +1364,21 @@ const resendOtp2 = async () => {
       // pending.value = false;
       errors1.value = '';
       pending1.value = false;
-      toast.success(valuee3.value , {
-      position: locale.value == 'ar' ? "top-right" : "top-left",
-      timeout: 3000,
-      closeOnClick: true,
-      pauseOnFocusLoss: true,
-      pauseOnHover: true,
-      draggable: true,
-      draggablePercent: 0.6,
-      showCloseButtonOnHover: false,
-      hideProgressBar: true,
-      closeButton: "button",
-      icon: true,
-      class: 'toast-container',
-      rtl: locale.value == 'ar' ? true : false
-    });
+      toast.success(valuee3.value, {
+        position: locale.value == 'ar' ? "top-right" : "top-left",
+        timeout: 3000,
+        closeOnClick: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        draggable: true,
+        draggablePercent: 0.6,
+        showCloseButtonOnHover: false,
+        hideProgressBar: true,
+        closeButton: "button",
+        icon: true,
+        class: 'toast-container',
+        rtl: locale.value == 'ar' ? true : false
+      });
 
     }
   } catch (errorss) {
@@ -1543,6 +1558,16 @@ const addFavFunc = async () => {
   }
 }
 
+let videoKey = ref(null);
+const getDesc = async () => {
+  let result = await axios.get(`${getUrl()}/allsettings`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  videoKey.value = result.data.data.video_url;
+}
+
 watch(
   () => route.query.id,
   (newId) => {
@@ -1574,6 +1599,8 @@ onMounted(() => {
   getContactData();
   getOptions();
   getCites();
+
+  getDesc();
 
 });
 </script>

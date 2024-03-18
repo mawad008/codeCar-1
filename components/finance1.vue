@@ -93,7 +93,7 @@
                 {{ $t('finance5') }}
 
               </h5>
-              <span> {{ $t('text5') }}  </span>
+              <span> {{ $t('text5') }} </span>
             </div>
           </div>
           <div class="pagination-container ">
@@ -206,10 +206,10 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v2$.brand.$error">{{
                   v2$.brand.$errors[0].$message
-                }}</span>
+                  }}</span>
                 <span class="error-msg position-relative" v-if="errors2.brand">{{
                   errors2.brand[0]
-                }}</span>
+                  }}</span>
               </div>
             </div>
             <div class="input-container">
@@ -226,10 +226,10 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v2$.model.$error">{{
                   v2$.model.$errors[0].$message
-                }}</span>
+                  }}</span>
                 <span class="error-msg" v-if="errors2.model">{{
                   errors2.model[0]
-                }}</span>
+                  }}</span>
               </div>
             </div>
           </div>
@@ -237,8 +237,8 @@
             <div class="input-container">
               <span> {{ $t('theYear') }}</span>
               <div class="input">
-                <Dropdown :filter-placeholder="$t('search')" v-model="form2.year" :options="years" filter
-                  optionLabel="" placeholder="2024" class="">
+                <Dropdown :filter-placeholder="$t('search')" v-model="form2.year" :options="years" filter optionLabel=""
+                  placeholder="2024" class="">
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option }}</div>
@@ -247,10 +247,10 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v2$.year.$error">{{
                   v2$.year.$errors[0].$message
-                }}</span>
+                  }}</span>
                 <span class="error-msg" v-if="errors2.year">{{
                   errors2.year[0]
-                }}</span>
+                  }}</span>
               </div>
             </div>
             <div class="input-container">
@@ -266,10 +266,10 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v2$.gear_shifter.$error">{{
                   v2$.gear_shifter.$errors[0].$message
-                }}</span>
+                  }}</span>
                 <span class="error-msg" v-if="errors2.gear_shifter">{{
                   errors2.gear_shifter[0]
-                }}</span>
+                  }}</span>
               </div>
             </div>
           </div>
@@ -277,8 +277,9 @@
             <div class="input-container">
               <span>{{ $t('color') }}</span>
               <div class="input">
-                <Dropdown v-model="form2.color_id" :options="optionsCars.colors" filter :filter-placeholder="$t('search')"
-                  optionLabel="title" optionValue="id" :placeholder="$t('example6')" class="">
+                <Dropdown v-model="form2.color_id" :options="optionsCars.colors" filter
+                  :filter-placeholder="$t('search')" optionLabel="title" optionValue="id" :placeholder="$t('example6')"
+                  class="">
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option.title }}</div>
@@ -287,10 +288,10 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v2$.color_id.$error">{{
                   v2$.color_id.$errors[0].$message
-                }}</span>
+                  }}</span>
                 <span class="error-msg" v-if="errors2.color_id">{{
                   errors2.color_id[0]
-                }}</span>
+                  }}</span>
               </div>
             </div>
           </div>
@@ -304,7 +305,8 @@
             </button>
           </div>
         </div>
-        <div v-if="paymentIndividualBtn == 3" class="d-flex h-100 justify-content-between flex-column gap-4 " style="position:relative;">
+        <div v-if="paymentIndividualBtn == 3" class="d-flex h-100 justify-content-between flex-column gap-4 "
+          style="position:relative;">
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t('name1') }} </span>
@@ -312,10 +314,10 @@
                 <input type="text" placeholder="" name="" v-model="form3.client_name" class="" />
                 <span class="error-msg" v-if="v3$.client_name.$error">{{
                   v3$.client_name.$errors[0].$message
-                }}</span>
+                  }}</span>
               </div>
-                <span class="error-msg mt-1" style="" v-if="errors3.client_name">{{
-                  errors3.client_name[0]
+              <span class="error-msg mt-1" style="" v-if="errors3.client_name">{{
+                errors3.client_name[0]
                 }}</span>
             </div>
             <!-- {{ form3 }} -->
@@ -328,10 +330,10 @@
                 </div>
                 <span class="error-msg d-block" style="position:relative;" v-if="v3$.phone.$error">{{
                   v3$.phone.$errors[0].$message
-                }}</span>
+                  }}</span>
               </div>
-                <span class="error-msg2 mt-1" style="" v-if="errors3.phone">{{
-                  errors3.phone[0]
+              <span class="error-msg2 mt-1" style="" v-if="errors3.phone">{{
+                errors3.phone[0]
                 }}</span>
             </div>
           </div>
@@ -349,10 +351,10 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v3$.sex.$error">{{
                   v3$.sex.$errors[0].$message
-                }}</span>
+                  }}</span>
                 <span class="error-msg" v-if="errors3.sex">{{
                   errors3.sex[0]
-                }}</span>
+                  }}</span>
               </div>
             </div>
             <div class="input-container">
@@ -361,10 +363,10 @@
                 <input type="date" name="" v-model="form3.birth_date" class="" />
                 <span class="error-msg" v-if="v3$.birth_date.$error">{{
                   v3$.birth_date.$errors[0].$message
-                }}</span>
+                  }}</span>
               </div>
-                <span class="error-msg mt-1" v-if="errors3.birth_date">{{
-                  errors3.birth_date[0]
+              <span class="error-msg mt-1" v-if="errors3.birth_date">{{
+                errors3.birth_date[0]
                 }}</span>
             </div>
           </div>
@@ -382,10 +384,10 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v3$.city_id.$error">{{
                   v3$.city_id.$errors[0].$message
-                }}</span>
+                  }}</span>
                 <span class="error-msg" v-if="errors3.city_id">{{
                   errors3.city_id[0]
-                }}</span>
+                  }}</span>
               </div>
             </div>
             <div class="input-container">
@@ -394,10 +396,10 @@
                 <input type="tel" v-model="form3.identity_no" maxlength="11" name="" class="" />
                 <span class="error-msg" v-if="v3$.identity_no.$error">{{
                   v3$.identity_no.$errors[0].$message
-                }}</span>
+                  }}</span>
               </div>
-                <span class="error-msg mt-1" v-if="errors3.identity_no">{{
-                  errors3.identity_no[0]
+              <span class="error-msg mt-1" v-if="errors3.identity_no">{{
+                errors3.identity_no[0]
                 }}</span>
             </div>
           </div>
@@ -407,8 +409,9 @@
                 {{ $t('sector') }}
               </span>
               <div class="input">
-                <Dropdown v-model="form3.sector" :options="optionsCars.sectors" filter :filter-placeholder="$t('search')"
-                  optionLabel="name" optionValue="id" :placeholder="$t('example7')" class="">
+                <Dropdown v-model="form3.sector" :options="optionsCars.sectors" filter
+                  :filter-placeholder="$t('search')" optionLabel="name" optionValue="id" :placeholder="$t('example7')"
+                  class="">
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option.name }}</div>
@@ -417,10 +420,10 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v3$.sector.$error">{{
                   v3$.sector.$errors[0].$message
-                }}</span>
+                  }}</span>
                 <span class="error-msg" v-if="errors3.sector">{{
                   errors3.sector[0]
-                }}</span>
+                  }}</span>
               </div>
             </div>
             <div class="input-container">
@@ -431,10 +434,10 @@
                 <input type="number" min="1" placeholder=" 25000" v-model="form3.salary" name="" class="" />
                 <span class="error-msg" v-if="v3$.salary.$error">{{
                   v3$.salary.$errors[0].$message
-                }}</span>
+                  }}</span>
               </div>
-                <span class="error-msg mt-1" v-if="errors3.salary">{{
-                  errors3.salary[0]
+              <span class="error-msg mt-1" v-if="errors3.salary">{{
+                errors3.salary[0]
                 }}</span>
             </div>
 
@@ -455,10 +458,10 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v3$.bank.$error">{{
                   v3$.bank.$errors[0].$message
-                }}</span>
+                  }}</span>
                 <span class="error-msg" v-if="errors3.bank">{{
                   errors3.bank[0]
-                }}</span>
+                  }}</span>
               </div>
             </div>
             <div class="input-container">
@@ -467,10 +470,10 @@
                 <input type="number" min="1" placeholder="25000" name="" v-model="form3.Monthly_cometment" class="" />
                 <span class="error-msg" v-if="v3$.Monthly_cometment.$error">{{
                   v3$.Monthly_cometment.$errors[0].$message
-                }}</span>
+                  }}</span>
               </div>
-                <span class="error-msg mt-1" v-if="errors3.Monthly_cometment">{{
-                  errors3.Monthly_cometment[0]
+              <span class="error-msg mt-1" v-if="errors3.Monthly_cometment">{{
+                errors3.Monthly_cometment[0]
                 }}</span>
             </div>
           </div>
@@ -489,10 +492,10 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v3$.nationality_id.$error">{{
                   v3$.nationality_id.$errors[0].$message
-                }}</span>
+                  }}</span>
                 <span class="error-msg" v-if="errors3.nationality_id">{{
                   errors3.nationality_id[0]
-                }}</span>
+                  }}</span>
               </div>
             </div>
             <div class="input-container">
@@ -508,10 +511,10 @@
                 <input type="email" placeholder=" Demo@gmail.com" v-model="form3.email" name="" class="" />
                 <span class="error-msg" v-if="v3$.email.$error">{{
                   v3$.email.$errors[0].$message
-                }}</span>
+                  }}</span>
               </div>
-                <span class="error-msg mt-1" v-if="errors3.email">{{
-                  errors3.email[0]
+              <span class="error-msg mt-1" v-if="errors3.email">{{
+                errors3.email[0]
                 }}</span>
             </div>
           </div>
@@ -580,10 +583,10 @@
           </div>
 
           <div class="safety-mssg">
-           <div class="d-flex align-items-center gap-2">
-           <img src="~/assets/images/ic-security-safety.svg" alt="">
-            <span> {{ $t('safetyMsg') }} </span>
-           </div>
+            <div class="d-flex align-items-center gap-2">
+              <img src="~/assets/images/ic-security-safety.svg" alt="">
+              <span> {{ $t('safetyMsg') }} </span>
+            </div>
           </div>
           <div class="btns">
             <button @click="paymentIndividualBtn = 2, pending3 = false" class="back">
@@ -598,239 +601,252 @@
 
         <div v-if="paymentIndividualBtn == 4" class="offers">
           <div v-if="offers.length >= 1">
-            <v-radio-group v-model="bank_offer_id">
-              <div class="row">
-                <div v-for="item, index in offers" class="col-12 col-xl-6 col-lg-6">
-                  <label :for="`offer-${index}-1`" class="offer w-100">
-                    <div class="d-flex align-items-center justify-content-between w-100">
-                      <span class="name">{{ item.OfferName.title }}</span>
-                      <v-radio class="radio-input" :id="`offer-${index}-1`" color="#DCB63B" name="offer-1"
-                        :value="item.bank_offer_id" v-model="bank_offer_id"></v-radio>
+            <div class="w-100 d-flex justify-content-end">
+            <div class=" input dropdown-finance-filter">
+              <Dropdown v-model="form3.sector" :options="optionsCars.sectors" filter :filter-placeholder="$t('search')"
+                optionLabel="name" optionValue="id" :placeholder="$t('example7')" class="">
+                <template #option="slotProps">
+                  <div class="flex align-items-center">
+                    <div>{{ slotProps.option.name }}</div>
+                  </div>
+                </template>
+              </Dropdown>
+            </div>
+          </div>
+          <v-radio-group v-model="bank_offer_id">
+            <div class="row">
+              <div v-for="item, index in offers" class="col-12 col-xl-6 col-lg-6">
+                <label :for="`offer-${index}-1`" class="offer w-100">
+                  <div class="d-flex align-items-center justify-content-between w-100">
+                    <span class="name">{{ item.OfferName.title }}</span>
+                    <v-radio class="radio-input" :id="`offer-${index}-1`" color="#DCB63B" name="offer-1"
+                      :value="item.bank_offer_id" v-model="bank_offer_id"></v-radio>
+                  </div>
+                  <div class="price">
+                    <h4>{{ item.monthly_installment }}</h4>
+                    <span> {{ $t('offer1') }} </span>
+                  </div>
+                  <v-divider></v-divider>
+                  <div class="details">
+                    <div class="detail">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="~/assets/images/det1.png" alt="" />
+                        <span class="name"> {{ $t('offer2') }} </span>
+                      </div>
+                      <p class="price">{{ item.fundingAmount }} {{ $t('curr') }}</p>
                     </div>
-                    <div class="price">
-                      <h4>{{ item.monthly_installment }}</h4>
-                      <span> {{ $t('offer1') }} </span>
+                    <div class="detail">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="~/assets/images/det2.png" alt="" />
+                        <span class="name"> {{ $t('offer3') }}</span>
+                      </div>
+                      <p class="price">{{ item.firs_installment }} {{ $t('curr') }}</p>
                     </div>
-                    <v-divider></v-divider>
-                    <div class="details">
-                      <div class="detail">
-                        <div class="d-flex align-items-center gap-2">
-                          <img src="~/assets/images/det1.png" alt="" />
-                          <span class="name"> {{ $t('offer2') }} </span>
-                        </div>
-                        <p class="price">{{ item.fundingAmount }} {{ $t('curr') }}</p>
+                    <div class="detail">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="~/assets/images/det3.png" alt="" />
+                        <span class="name"> {{ $t('offer4') }} </span>
                       </div>
-                      <div class="detail">
-                        <div class="d-flex align-items-center gap-2">
-                          <img src="~/assets/images/det2.png" alt="" />
-                          <span class="name"> {{ $t('offer3') }}</span>
-                        </div>
-                        <p class="price">{{ item.firs_installment }} {{ $t('curr') }}</p>
-                      </div>
-                      <div class="detail">
-                        <div class="d-flex align-items-center gap-2">
-                          <img src="~/assets/images/det3.png" alt="" />
-                          <span class="name"> {{ $t('offer4') }} </span>
-                        </div>
-                        <p class="price">{{ item.years }} {{ $t('year') }}</p>
-                      </div>
-                      <div class="detail">
-                        <div class="d-flex align-items-center gap-2">
-                          <img src="~/assets/images/det4.png" alt="" />
-                          <span class="name"> {{ $t('calc3') }}</span>
-                        </div>
-                        <p class="price">{{ item.last_installment }} {{ $t('curr') }}</p>
-                      </div>
-                      <div class="detail">
-                        <div class="d-flex align-items-center gap-2">
-                          <img src="~/assets/images/det5.png" alt="" />
-                          <span class="name"> {{ $t('offer5') }} </span>
-                        </div>
-                        <p class="price">{{ item.sectorAdministrative_fees }} {{ $t('curr') }}</p>
-                      </div>
+                      <p class="price">{{ item.years }} {{ $t('year') }}</p>
                     </div>
-                  </label>
-                </div>
+                    <div class="detail">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="~/assets/images/det4.png" alt="" />
+                        <span class="name"> {{ $t('calc3') }}</span>
+                      </div>
+                      <p class="price">{{ item.last_installment }} {{ $t('curr') }}</p>
+                    </div>
+                    <div class="detail">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="~/assets/images/det5.png" alt="" />
+                        <span class="name"> {{ $t('offer5') }} </span>
+                      </div>
+                      <p class="price">{{ item.sectorAdministrative_fees }} {{ $t('curr') }}</p>
+                    </div>
+                  </div>
+                </label>
               </div>
-            </v-radio-group>
-            <div class="btns">
+            </div>
+          </v-radio-group>
+          <div class="btns">
+            <button @click="paymentIndividualBtn = 3" class="back">
+              {{ $t('back') }}
+            </button>
+            <button @click="paymentFunc4()" class="next gap-3">
+              {{ $t('next') }}
+              <v-progress-circular v-if="pending4" indeterminate :size="25" :width="4"></v-progress-circular>
+
+            </button>
+          </div>
+        </div>
+        <div v-else class="empty">
+          <div class="main">
+            <client-only>
+              <Vue3Lottie :animation-data="emptyoffers" :height="300" :width="300" />
+            </client-only>
+            <h4> {{ $t('offerEmpty1') }} </h4>
+            <span>
+              {{ $t('offerEmpty2') }}
+            </span>
+            <div class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4">
               <button @click="paymentIndividualBtn = 3" class="back">
                 {{ $t('back') }}
               </button>
-              <button @click="paymentFunc4()" class="next gap-3">
-                {{ $t('next') }}
-                <v-progress-circular v-if="pending4" indeterminate :size="25" :width="4"></v-progress-circular>
-
-              </button>
-            </div>
-          </div>
-          <div v-else class="empty">
-            <div class="main">
-              <client-only>
-                <Vue3Lottie :animation-data="emptyoffers" :height="300" :width="300" />
-              </client-only>
-              <h4> {{ $t('offerEmpty1') }} </h4>
-              <span>
-                {{ $t('offerEmpty2') }}
-              </span>
-              <div class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4">
-                <button @click="paymentIndividualBtn = 3" class="back">
-                {{ $t('back') }}
-              </button> 
               <nuxt-link :to="localePath('/')">
                 <button class="home">{{ $t('backHome') }}</button>
               </nuxt-link>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div v-if="paymentIndividualBtn == 5" class="final-review">
-          <div class="offer">
-            <span class="word">{{ $t('offer') }}</span>
-            <div class="main-container">
-              <div class="name-price">
-                <div class="d-flex main flex-column">
-                  <span class="name">{{ $t('offer') }}</span>
-                  <p class="type mt-2"> {{ $t('offernum') }} : {{ theOffer.bank_offer_id }}</p>
-                </div>
-                <div class="d-flex main flex-column">
-                  <h6>{{ theOffer.monthly_installment }} {{ $t('curr') }}</h6>
-                  <p class="type"> {{ $t('offer1') }} </p>
-                </div>
-              </div>
-              <div class="offer-det">
-                <div
-                  class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center  gap-3">
-                  <div class="d-flex align-items-center gap-4">
-                    <div class="d-flex align-items-center gap-2">
-                      <img src="~/assets/images/det1.png" alt="" />
-                      <span> {{ $t('offer2') }} </span>
-                    </div>
-                    <h6>{{ theOffer.fundingAmount }} {{ $t('curr') }}</h6>
-                  </div>
-                  <div class="d-flex align-items-center gap-3">
-                    <div class="d-flex align-items-center gap-2">
-                      <img src="~/assets/images/det2.png" alt="" />
-                      <span>{{ $t('calc3') }}</span>
-                    </div>
-                    <h6>{{ theOffer.last_installment }} {{ $t('curr') }}</h6>
-                  </div>
-                </div>
-                <div
-                  class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3">
-                  <div class="d-flex align-items-center gap-3">
-                    <div class="d-flex align-items-center gap-2">
-                      <img src="~/assets/images/det3.png" alt="" />
-                      <span> {{ $t('offer3') }} </span>
-                    </div>
-                    <h6>{{ theOffer.firs_installment }} {{ $t('curr') }}</h6>
-                  </div>
-                  <div class="d-flex align-items-center gap-3">
-                    <div class="d-flex align-items-center gap-2">
-                      <img src="~/assets/images/det4.png" alt="" />
-                      <span>{{ $t('offer5') }}</span>
-                    </div>
-                    <h6>{{ theOffer.sectorAdministrative_fees }} ريال سعودي</h6>
-                  </div>
-                </div>
-                <div
-                  class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3">
-                  <div class="d-flex align-items-center gap-3">
-                    <div class="d-flex align-items-center gap-2">
-                      <img src="~/assets/images/det3.png" alt="" />
-                      <span> {{ $t('offer4') }} </span>
-                    </div>
-                    <h6>{{ theOffer.years }} {{ $t('year') }}</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="offer">
-            <span class="word"> {{ $t('carData') }} </span>
-            <div class="main-container">
-              <div class="img-container">
-                <div class="image">
-                  <!-- <img src="~/assets/images/small-car.png" /> -->
-                  <img :src="theOffer.car.main_image" />
-                </div>
-                <div class="d-flex flex-column gap-2">
-                  <h6>{{ theOffer.car.main_title }}</h6>
-                  <span>{{ theOffer.car.brand.title }} - {{ theOffer.car.model.title }} - {{ theOffer.car.color.title }} -
-                    {{ theOffer.car.year }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="files-span">
-              <span class="f1"> {{ $t('uti') }} </span>
-              <span class="f2">( {{ $t('opt') }} )</span>
-            </div>
-            <div class="row">
-              <div class="col-6 col-xl-3 col-lg-3 col-md-4">
-                <label for="fileInput1" class="custom-file-upload">
-                  <!-- <span>{{ buttonText }}</span> -->
-                  <img src="~/assets/images/file1.png" />
-                  <h6> {{ $t('immg1') }} </h6>
-                  <span> {{ $t('immg2') }} </span>
-                  <span v-if="selectedFileName1">{{
-                    selectedFileName1
-                  }}</span>
-                  <input type="file" @change="handleFileChange1" id="fileInput1" />
-                </label>
-              </div>
-              <div class="col-6 col-xl-3 col-lg-3 col-md-4">
-                <label for="fileInput2" class="custom-file-upload">
-                  <!-- <span>{{ buttonText }}</span> -->
-                  <img src="~/assets/images/file2.png" />
-                  <h6> {{ $t('immg3') }} </h6>
-                  <span> {{ $t('immg2') }} </span>
-                  <span v-if="selectedFileName2">{{
-                    selectedFileName2
-                  }}</span>
-                  <input type="file" @change="handleFileChange2" id="fileInput2" />
-                </label>
-              </div>
-              <div class="col-6 col-xl-3 col-lg-3 col-md-4">
-                <label for="fileInput3" class="custom-file-upload">
-                  <!-- <span>{{ buttonText }}</span> -->
-                  <img src="~/assets/images/file3.png" />
-                  <h6> {{ $t('immg4') }} </h6>
-                  <span>{{ $t('immg2') }}</span>
-                  <span v-if="selectedFileName3">{{
-                    selectedFileName3
-                  }}</span>
-                  <input type="file" @change="handleFileChange3" id="fileInput3" />
-                </label>
-              </div>
-              <div class="col-6 col-xl-3 col-lg-3 col-md-4">
-                <label for="fileInput4" class="custom-file-upload">
-                  <!-- <span>{{ buttonText }}</span> -->
-                  <img src="~/assets/images/file4.png" />
-                  <h6> {{ $t('immg5') }} </h6>
-                  <span> {{ $t('immg2') }} </span>
-                  <span v-if="selectedFileName4">{{
-                    selectedFileName4
-                  }}</span>
-                  <input type="file" @change="handleFileChange4" id="fileInput4" />
-                </label>
-              </div>
-            </div>
-            <div class="btns">
-              <button @click="paymentIndividualBtn = 4" class="back">
-                {{ $t('backOf') }}
-              </button>
-              <button @click="paymentFunc5()" class="next">
-                {{ $t('sendOrd') }}
-                <v-progress-circular v-if="pending5" indeterminate :size="25" :width="4"></v-progress-circular>
-              </button>
             </div>
           </div>
         </div>
       </div>
+
+      <div v-if="paymentIndividualBtn == 5" class="final-review">
+        <div class="offer">
+          <span class="word">{{ $t('offer') }}</span>
+          <div class="main-container">
+            <div class="name-price">
+              <div class="d-flex main flex-column">
+                <span class="name">{{ $t('offer') }}</span>
+                <p class="type mt-2"> {{ $t('offernum') }} : {{ theOffer.bank_offer_id }}</p>
+              </div>
+              <div class="d-flex main flex-column">
+                <h6>{{ theOffer.monthly_installment }} {{ $t('curr') }}</h6>
+                <p class="type"> {{ $t('offer1') }} </p>
+              </div>
+            </div>
+            <div class="offer-det">
+              <div
+                class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center  gap-3">
+                <div class="d-flex align-items-center gap-4">
+                  <div class="d-flex align-items-center gap-2">
+                    <img src="~/assets/images/det1.png" alt="" />
+                    <span> {{ $t('offer2') }} </span>
+                  </div>
+                  <h6>{{ theOffer.fundingAmount }} {{ $t('curr') }}</h6>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="d-flex align-items-center gap-2">
+                    <img src="~/assets/images/det2.png" alt="" />
+                    <span>{{ $t('calc3') }}</span>
+                  </div>
+                  <h6>{{ theOffer.last_installment }} {{ $t('curr') }}</h6>
+                </div>
+              </div>
+              <div
+                class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="d-flex align-items-center gap-2">
+                    <img src="~/assets/images/det3.png" alt="" />
+                    <span> {{ $t('offer3') }} </span>
+                  </div>
+                  <h6>{{ theOffer.firs_installment }} {{ $t('curr') }}</h6>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="d-flex align-items-center gap-2">
+                    <img src="~/assets/images/det4.png" alt="" />
+                    <span>{{ $t('offer5') }}</span>
+                  </div>
+                  <h6>{{ theOffer.sectorAdministrative_fees }} ريال سعودي</h6>
+                </div>
+              </div>
+              <div
+                class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="d-flex align-items-center gap-2">
+                    <img src="~/assets/images/det3.png" alt="" />
+                    <span> {{ $t('offer4') }} </span>
+                  </div>
+                  <h6>{{ theOffer.years }} {{ $t('year') }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="offer">
+          <span class="word"> {{ $t('carData') }} </span>
+          <div class="main-container">
+            <div class="img-container">
+              <div class="image">
+                <!-- <img src="~/assets/images/small-car.png" /> -->
+                <img :src="theOffer.car.main_image" />
+              </div>
+              <div class="d-flex flex-column gap-2">
+                <h6>{{ theOffer.car.main_title }}</h6>
+                <span>{{ theOffer.car.brand.title }} - {{ theOffer.car.model.title }} - {{ theOffer.car.color.title }}
+                  -
+                  {{ theOffer.car.year }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="files-span">
+            <span class="f1"> {{ $t('uti') }} </span>
+            <span class="f2">( {{ $t('opt') }} )</span>
+          </div>
+          <div class="row">
+            <div class="col-6 col-xl-3 col-lg-3 col-md-4">
+              <label for="fileInput1" class="custom-file-upload">
+                <!-- <span>{{ buttonText }}</span> -->
+                <img src="~/assets/images/file1.png" />
+                <h6> {{ $t('immg1') }} </h6>
+                <span> {{ $t('immg2') }} </span>
+                <span v-if="selectedFileName1">{{
+                  selectedFileName1
+                  }}</span>
+                <input type="file" @change="handleFileChange1" id="fileInput1" />
+              </label>
+            </div>
+            <div class="col-6 col-xl-3 col-lg-3 col-md-4">
+              <label for="fileInput2" class="custom-file-upload">
+                <!-- <span>{{ buttonText }}</span> -->
+                <img src="~/assets/images/file2.png" />
+                <h6> {{ $t('immg3') }} </h6>
+                <span> {{ $t('immg2') }} </span>
+                <span v-if="selectedFileName2">{{
+                  selectedFileName2
+                  }}</span>
+                <input type="file" @change="handleFileChange2" id="fileInput2" />
+              </label>
+            </div>
+            <div class="col-6 col-xl-3 col-lg-3 col-md-4">
+              <label for="fileInput3" class="custom-file-upload">
+                <!-- <span>{{ buttonText }}</span> -->
+                <img src="~/assets/images/file3.png" />
+                <h6> {{ $t('immg4') }} </h6>
+                <span>{{ $t('immg2') }}</span>
+                <span v-if="selectedFileName3">{{
+                  selectedFileName3
+                  }}</span>
+                <input type="file" @change="handleFileChange3" id="fileInput3" />
+              </label>
+            </div>
+            <div class="col-6 col-xl-3 col-lg-3 col-md-4">
+              <label for="fileInput4" class="custom-file-upload">
+                <!-- <span>{{ buttonText }}</span> -->
+                <img src="~/assets/images/file4.png" />
+                <h6> {{ $t('immg5') }} </h6>
+                <span> {{ $t('immg2') }} </span>
+                <span v-if="selectedFileName4">{{
+                  selectedFileName4
+                  }}</span>
+                <input type="file" @change="handleFileChange4" id="fileInput4" />
+              </label>
+            </div>
+          </div>
+          <div class="btns">
+            <button @click="paymentIndividualBtn = 4" class="back">
+              {{ $t('backOf') }}
+            </button>
+            <button @click="paymentFunc5()" class="next">
+              {{ $t('sendOrd') }}
+              <v-progress-circular v-if="pending5" indeterminate :size="25" :width="4"></v-progress-circular>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
   </div>
 </template>
 
