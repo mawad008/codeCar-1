@@ -162,8 +162,9 @@ a {
       height: 100%;
       img {
         width: 100%;
-        height: 92px;
-        object-fit: contain;
+        border-radius: 8px;
+        height: 100%;
+        object-fit: cover;
       }
     }
   }
@@ -519,13 +520,13 @@ p{
   }
 }
 .main-auth {
-  // height: 100vh;
+  height: 100vh;
   background-color: #fff;
   position: relative;
   
 
   .row {
-    // height: 100%;
+    height: 100%;
     // height: 100vh !important;
   }
 
@@ -533,10 +534,11 @@ p{
     cursor: pointer;
   }
   .img-container-auth{
+  
   }
   .main-img {
     // width: 674px;
-    width: 100%;
+    // width: 100%;
     // background-image: url("~/assets/images/login-img.png");
     height: 100%;
     // background-size: auto;
@@ -1272,6 +1274,11 @@ html[dir="ltr"] .main-auth{
 @media (max-width: 920px) {
   .main-auth .img-container-auth{
     display: none !important;
+  }
+  .main-auth{
+    .img-col{
+      display: none;
+    }
   }
   .footer-container {
     padding: 31px 16px;
@@ -2204,7 +2211,7 @@ html[dir="rtl"] .explore {
       font-style: normal;
       font-weight: 700;
       line-height: 140%;
-      margin-bottom: 30px;
+      // margin-bottom: 30px;
       color: $secondary-black;
     }
     .special {
@@ -2487,12 +2494,16 @@ html[dir="rtl"] .explore {
           align-items: center;
           justify-content: center;
           .image , iframe{
-            width: 401px;
-            height: 250px;
+            // width: 401px;
+            // height: 250px;
+            width: 100%;
+            height: 100%;
+          border-radius: 16px;
             img{
               width: 100%;
               height: 100%;
-              object-fit: contain;
+          border-radius: 16px;
+              object-fit: cover;
             }
 
           }
@@ -2514,7 +2525,8 @@ html[dir="rtl"] .explore {
             }
               }
         &.auto-width{
-          width: auto !important;
+          width: 85.36px !important;
+          
         }
         height: 80px;
         border-radius: 8px;
@@ -2525,6 +2537,7 @@ html[dir="rtl"] .explore {
         .image {
           width: 68px;
           height: 32px;
+          height: 100%;
           // background-image: url("~/assets/images/car.png");
           background-position: center;
           background-size: contain;
@@ -3825,8 +3838,8 @@ html[dir="ltr"] {
             .swiper-slide {
               height: 164px;
               .image{
-                width: 249px;
-                height: 120px;
+                width: 100%;
+                height: 100%;
               }
             }
           }
@@ -4998,6 +5011,11 @@ display: none !important;
       }
     }
   }
+  .offer-page{
+    .main-offer-img{
+      height: 280px;
+    }
+  }
 }
 // end offers page
 
@@ -5985,7 +6003,7 @@ display: none !important;
 
 .dropdown-finance-filter{
    .p-dropdown {
-          width: 140px;
+          width: 200px;
           height: 40px;
           border-radius: 8px;
           border: 1px solid #ebeaed;

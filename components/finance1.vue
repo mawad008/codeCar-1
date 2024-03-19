@@ -238,7 +238,7 @@
               <span> {{ $t('theYear') }}</span>
               <div class="input">
                 <Dropdown :filter-placeholder="$t('search')" v-model="form2.year" :options="years" filter optionLabel=""
-                  placeholder="2024" class="">
+                  :placeholder="$t('theYear')" class="">
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option }}</div>
@@ -601,21 +601,23 @@
 
         <div v-if="paymentIndividualBtn == 4" class="offers">
           <div v-if="offers.length >= 1">
-            <div class="w-100 d-flex justify-content-end">
-            <div class=" input dropdown-finance-filter">
-              <Dropdown v-model="form3.sector" :options="optionsCars.sectors" filter :filter-placeholder="$t('search')"
-                optionLabel="name" optionValue="id" :placeholder="$t('example7')" class="">
-                <template #option="slotProps">
-                  <div class="flex align-items-center">
-                    <div>{{ slotProps.option.name }}</div>
-                  </div>
-                </template>
-              </Dropdown>
+            <div class="w-100 d-flex justify-content-center justify-content-xl-end justify-content-lg-end">
+              <div class="input dropdown-finance-filter">
+                <Dropdown v-model="filterFinance" :options="filterFinanceArr" filter
+                  :filter-placeholder="$t('search')" optionLabel="name" optionValue="value" :placeholder="$t('show1')"
+                  class="">
+                  <template #option="slotProps">
+                    <div class="flex align-items-center">
+                      <div>{{ slotProps.option.name }}</div>
+                    </div>
+                  </template>
+                </Dropdown>
+              </div>
+
             </div>
-          </div>
           <v-radio-group v-model="bank_offer_id">
             <div class="row">
-              <div v-for="item, index in offers" class="col-12 col-xl-6 col-lg-6">
+              <div v-for="item, index in sortedItems" class="col-12 col-xl-6 col-lg-6">
                 <label :for="`offer-${index}-1`" class="offer w-100">
                   <div class="d-flex align-items-center justify-content-between w-100">
                     <span class="name">{{ item.OfferName.title }}</span>
@@ -1175,6 +1177,26 @@ const paymentFunc3 = async () => {
   // }
 };
 
+let filterFinance = ref(1);
+let filterFinanceArr = ref([
+ {
+  name: locale.value == 'ar' ? 'الاقل قسطا' : 'The lowest premium',
+  value:1
+ }, 
+ {
+  name: locale.value == 'ar' ? 'الاعلي قسطا' : 'The higher premium',
+  value:2
+ } 
+]);
+const sortedItems = computed(() => {
+  const sorted = [...offers.value];
+  if (filterFinance.value === 1) {
+    sorted.sort((a, b) => a.monthly_installment - b.monthly_installment); // Sort by low price
+  } else if (filterFinance.value === 2) {
+    sorted.sort((a, b) => b.monthly_installment - a.monthly_installment); // Sort by high price
+  }
+  return sorted;
+});
 
 const paymentFunc4 = async () => {
   //let formBody = new FormData();

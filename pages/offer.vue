@@ -70,6 +70,10 @@ onMounted(() => {
     getOfferData();
 });
 
+useHead({
+  title: locale.value == 'ar' ? 'العروض' : 'offers'
+});
+
 let items = ref([
     {
         title: locale.value == "ar" ? 'الرئيسية' : 'home',

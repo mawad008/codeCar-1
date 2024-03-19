@@ -187,7 +187,12 @@ const getContactData =  async()=>{
 watch(id, (newId) => {
   // Update the route with the new id
   router.push({ query: { id: newId } })
-})
+});
+
+
+useHead({
+  title: locale.value == 'ar' ? 'اخبار السيارات' : 'news'
+});
 
 let items = ref([
     {

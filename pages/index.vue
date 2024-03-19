@@ -105,7 +105,7 @@
     </div>
 
     <div class="brands">
-      <div class="text d-flex align-items-center justify-content-center text-center flex-column">
+      <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
         <h4 class="heading-text">{{ $t('brands') }}</h4>
         <p class="p-text">
           {{ brandsArr.description }}
@@ -196,68 +196,29 @@
         <div class="header mb-4 d-flex flex-column align-items-center justify-content-center w-100">
           <h3 class="mb-5 heading-text">{{ $t('cars') }}</h3>
 
-          <!-- <v-tabs v-model="tabNav" align-tabs="center">
-            <v-tab :value="0" class="head">
-              <span class="choose"> الاكثر مبيعا </span>
-            </v-tab>
-            <v-tab :value="1" class="head">
-              <span class="choose"> افضل العروض </span>
-            </v-tab>
-            <v-tab :value="2" class="head">
-              <span class="choose"> كلاسيك </span>
-            </v-tab>
-            <v-tab :value="3" class="head">
-              <span class="choose"> موديل السنة </span>
-            </v-tab>
-          </v-tabs> -->
-
           <div class="tabs">
             <div v-for="item, index in tags" @click="(tabNav = index), (tab = item.id), getProducts()"
               :class="{ active: tab == item.id }" class="tab">
               <span class="choose"> {{ item.title }} </span>
               <border />
             </div>
-            <!-- <div
-              @click="(tabNav = 1), (tab = 2), getProducts()"
-              :class="{ active: tab == 2 }"
-              class="tab"
-              
-
-            >
-              <span class="choose">{{ $t('tab2') }}</span>
-              <border />
-            </div>
-            <div
-              @click="(tabNav = 2), (tab = 3), getProducts()"
-              :class="{ active: tab == 3 }"
-              class="tab"
-            >
-              <span class="choose"> {{ $t('tab3') }} </span>
-              <border />
-            </div> -->
           </div>
         </div>
         <!-- :autoplay="{
                   delay: 4500,
                   disableOnInteraction: false,
                 }" -->
-        <v-window v-model="tabNav">
-          <v-window-item v-for="i in 3">
-
-            <!-- <div class="row">
-              <div
-                v-for="item in productsTags"
-                class="col-12  col-xl-3 col-lg-3 col-md-6"
-              >
-                <car-card :car="item" />
-              </div>
-            </div> -->
-          </v-window-item>
-        </v-window>
-        <swiper :navigation="{
+    
+        <client-only v-if="spinnerProducts">
+          <Vue3Lottie :animation-data="loaderr" :height="100" :width="100" />
+        </client-only>
+      </div>
+        <swiper 
+        :navigation="{
           nextEl: '.slider-product22-next',
           prevEl: '.slider-product22-prev',
-        }" :breakpoints="{
+        }" 
+        :breakpoints="{
           '300': {
             slidesPerView: 1.3,
             spaceBetween: 30,
@@ -274,7 +235,6 @@
           <swiper-slide v-for="item, index in productsTags">
             <car-card :car="item" />
           </swiper-slide>
-        </swiper>
         <div v-if="!spinnerProducts && productsTags.length > 4" class="icons-arrow">
           <div class="slider-product22-next">
             <div class="icon">
@@ -296,10 +256,7 @@
             </div>
           </div>
         </div>
-        <client-only v-if="spinnerProducts">
-          <Vue3Lottie :animation-data="loaderr" :height="100" :width="100" />
-        </client-only>
-      </div>
+        </swiper>
     </div>
 
     <!-- <div style="height:100vh;">
@@ -418,6 +375,11 @@ const calculateDelay = (index) => `${index * 300}`;
 let selectedBrand = ref();
 let selectedmodel = ref();
 let selectedBody = ref();
+watch(()=> selectedBrand.value , (model)=>{
+  if(!model){
+    selectedmodel.value = null;
+  }
+})
 const getBrands = async () => {
   let result = await axios.get(`${getUrl()}/brand`, {
     headers: {

@@ -638,7 +638,7 @@
 
         <div v-if="paymentIndividualBtn == 4" class="offers">
           <div v-if="offers.length >= 1">
-            <div class="w-100 d-flex justify-content-end">
+            <div class="w-100 d-flex justify-content-center justify-content-xl-end justify-content-lg-end">
               <div class="input dropdown-finance-filter">
                 <Dropdown v-model="filterFinance" :options="filterFinanceArr" filter
                   :filter-placeholder="$t('search')" optionLabel="name" optionValue="value" :placeholder="$t('show1')"
@@ -1045,11 +1045,7 @@ let filterFinanceArr = ref([
 ]);
 
 
-const items = ref([
-  { id: 1, name: 'Product 1', price: 20 },
-  { id: 2, name: 'Product 2', price: 30 },
-  { id: 3, name: 'Product 3', price: 15 },
-]);
+
 
 
 

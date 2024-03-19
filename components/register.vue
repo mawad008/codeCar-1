@@ -98,7 +98,7 @@
               <label for=""> {{ $t('phone') }} </label>
             <div class="w-100 d-flex align-items-center justify-content-between phonenum">
                   <input type="tel" maxlength="10" :placeholder="$t('mobileplace')" name="" v-model="form.phone" />
-                  <span class="numm login" style="">+966</span>
+                  <span class="numm login" style="direction:ltr">+966</span>
                 </div>
               <span class="error-msg" v-if="v$.phone.$error">{{
                 v$.phone.$errors[0].$message
@@ -110,11 +110,11 @@
             <div v-if="typeForm == 'individual'" class="input">
               <label for=""> {{ $t('ident') }}</label>
               <input
-              type="number"
+              type="tel"
               min="1"
               placeholder="3333-5555-9999-55"
-              name=""
               v-model="form.id_number"
+              maxlength="10"
               />
               <!-- <span class="error-msg" v-if="v$.id_number.$error">{{
                 v$.id_number.$errors[0].$message
@@ -126,13 +126,7 @@
             </div>
             <div v-if="typeForm != 'individual'" class="input">
               <label for=""> {{ $t('nummm') }} </label>
-              <input
-                type="number"
-                placeholder="3333-5555-9999-55"
-                name=""
-                min="1"
-                v-model="form.commercial_register_namber"
-              />
+              <input type="tel" placeholder="3333-5555-9999-55"  min="1" v-model="form.commercial_register_namber" maxlength="10"/>
                <!-- <span class="error-msg" v-if="v$.commercial_register_namber.$error">{{
                  v$.commercial_register_namber.$errors[0].$message
                }}</span> -->

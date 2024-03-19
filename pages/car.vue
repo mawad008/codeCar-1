@@ -146,7 +146,7 @@
         spaceBetween: 20,
       },
     }" :modules="[SwiperNavigation]" class="mySwiper">
-                    <swiper-slide>
+                    <swiper-slide :class="{ 'auto-width': mainCar.images.length <= 4 }"> 
                       <div class="iconn d-flex align-items-center">
                         <i class="fa-regular fa-circle-play"></i>
                       </div>
@@ -280,7 +280,7 @@
                   <span class="word fw-bold">{{ $t('price') }}</span>
                   <div class="main-price">
                     <h5>{{ mainCar.price }} {{ $t('curr') }}</h5>
-                    <span v-if="discount_price" class="disc">{{ mainCar.discount_price }} {{ $t('curr') }}</span>
+                    <span v-if="mainCar.discount_price" class="disc">{{ mainCar.discount_price }} {{ $t('curr') }}</span>
                     <span>( {{ mainCar.price_after_tax }} {{ $t('curr') }} {{ $t('taxx') }} )</span>
                   </div>
                 </div>
@@ -1240,7 +1240,7 @@ const cashFunc1 = async () => {
         if (result.status >= 200) {
           showConfirmCash.value = true;
           pending1.value = false;
-          otp1.value = result.data.data.verification_code;
+          // otp1.value = result.data.data.verification_code;
           orderNumber1.value = result.data.data.Order_Number;
         }
       } catch (errors) {
@@ -1281,7 +1281,7 @@ const cashFunc1 = async () => {
         if (result.status >= 200) {
           showConfirmCash.value = true;
           pending1.value = false;
-          otp1.value = result.data.data.verification_code;
+          // otp1.value = result.data.data.verification_code;
           orderNumber1.value = result.data.data.Order_Number;
         }
       } catch (errors) {
@@ -1314,7 +1314,7 @@ const resendOtp1 = async () => {
       });
     if (result.status >= 200) {
       // store.commit("changeFormCheck", 2);
-      otp1.value = result.data.data.verification_code;
+      // otp1.value = result.data.data.verification_code;
       // pending.value = false;
       errors1.value = '';
       pending1.value = false;
@@ -1360,7 +1360,7 @@ const resendOtp2 = async () => {
       });
     if (result.status >= 200) {
       // store.commit("changeFormCheck", 2);
-      store.state.otpFin1 = result.data.data.verification_code;
+      // store.state.otpFin1 = result.data.data.verification_code;
       // pending.value = false;
       errors1.value = '';
       pending1.value = false;
@@ -1568,9 +1568,7 @@ const getDesc = async () => {
   videoKey.value = result.data.data.video_url;
 }
 
-watch(
-  () => route.query.id,
-  (newId) => {
+watch(() => route.query.id, (newId) => {
     id.value = newId;
     getCar();
   }

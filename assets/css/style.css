@@ -114,9 +114,10 @@ a {
 }
 .car-card .image .swiper-slide img {
   width: 100%;
-  height: 92px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  border-radius: 8px;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .car-card .name {
   gap: 14px;
@@ -415,14 +416,17 @@ html[dir=rtl] input[type=tel] {
   }
 }
 .main-auth {
+  height: 100vh;
   background-color: #fff;
   position: relative;
+}
+.main-auth .row {
+  height: 100%;
 }
 .main-auth .arrow {
   cursor: pointer;
 }
 .main-auth .main-img {
-  width: 100%;
   height: 100%;
   background-color: #fff;
   position: relative;
@@ -1037,6 +1041,9 @@ html[dir=ltr] .footer-container .search button {
 @media (max-width: 920px) {
   .main-auth .img-container-auth {
     display: none !important;
+  }
+  .main-auth .img-col {
+    display: none;
   }
   .footer-container {
     padding: 31px 16px;
@@ -1792,7 +1799,6 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   font-style: normal;
   font-weight: 700;
   line-height: 140%;
-  margin-bottom: 30px;
   color: #2d3a4a;
 }
 .best-offers .text-container .special {
@@ -2021,14 +2027,16 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   justify-content: center;
 }
 .main-car-page .car-details .images-text .mySwiper2 .swiper-slide .image, .main-car-page .car-details .images-text .mySwiper2 .swiper-slide iframe {
-  width: 401px;
-  height: 250px;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
 }
 .main-car-page .car-details .images-text .mySwiper2 .swiper-slide .image img, .main-car-page .car-details .images-text .mySwiper2 .swiper-slide iframe img {
   width: 100%;
   height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  border-radius: 16px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .main-car-page .car-details .images-text .mySwiper2 .swiper-slide .zoom {
   position: absolute;
@@ -2050,11 +2058,12 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   font-size: 25px;
 }
 .main-car-page .car-details .images-text .mySwiper .swiper-slide.auto-width {
-  width: auto !important;
+  width: 85.36px !important;
 }
 .main-car-page .car-details .images-text .mySwiper .swiper-slide .image {
   width: 68px;
   height: 32px;
+  height: 100%;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -3166,8 +3175,8 @@ html[dir=ltr] .safety-mssg {
     height: 164px;
   }
   .main-car-page .car-details .images-text .main-images .mySwiper2 .swiper-slide .image {
-    width: 249px;
-    height: 120px;
+    width: 100%;
+    height: 100%;
   }
   .main-car-page .car-details .images-text .main-images .mySwiper .swiper-slide {
     height: 60px;
@@ -4086,6 +4095,9 @@ html[dir=ltr] .table-container thead td:last-child {
     width: 100%;
     height: 150px;
   }
+  .offer-page .main-offer-img {
+    height: 280px;
+  }
 }
 .contact-us {
   margin-top: 72px;
@@ -4972,7 +4984,7 @@ html[dir=ltr] .about-us .about-container .image .overlay {
 }
 
 .dropdown-finance-filter .p-dropdown {
-  width: 140px;
+  width: 200px;
   height: 40px;
   border-radius: 8px;
   border: 1px solid #ebeaed;
