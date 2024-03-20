@@ -520,13 +520,13 @@ p{
   }
 }
 .main-auth {
-  height: 100vh;
+  height: 100%;
   background-color: #fff;
   position: relative;
   
 
   .row {
-    height: 100%;
+    // height: 100%;
     // height: 100vh !important;
   }
 
@@ -6964,6 +6964,7 @@ font-weight: 700;
         // width: 109px;
         width: fit-content;
         padding: 0px 6px;
+        min-width: 100px;
         height: 37px;
         display: flex;
         align-items: center;

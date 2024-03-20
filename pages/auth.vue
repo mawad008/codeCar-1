@@ -4,22 +4,22 @@
       <div class="row justify-content-betwee">
         <div class="col-12 col-xl-7 col-lg-7 main-col">
           <div class="form-inputs">
-            
-           <div v-if="store.state.checkForm == 1">
-           <register />
-           </div>
-           <div v-if="store.state.checkForm == 2">
+
+            <div v-if="store.state.checkForm == 1">
+              <register />
+            </div>
+            <div v-if="store.state.checkForm == 2">
               <login />
-           </div>
-           
+            </div>
+
           </div>
         </div>
-        <div class="col-12 col-xl-5 col-lg-5 img-col" :class="{'h-100':store.state.checkForm == 2}">
-        <div class="main-img">
+        <div class="col-12 col-xl-5 col-lg-5 img-col">
+          <div class="main-img">
             <img src="~/assets/images/login-img.jpg" alt="" />
             <img class="overlay" src="~/assets/images/overlay-form.svg" alt="" />
-        
-        </div>
+
+          </div>
         </div>
       </div>
     </div>

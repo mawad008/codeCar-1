@@ -19,7 +19,7 @@
       <span class="namee">{{ car.statue }}</span>
       <div class="name d-flex flex-column">
         <span class="used" v-if="Math.round(car.discount_percentage) > 0"> {{ $t('discc') }} {{
-          Math.round(car.discount_percentage) }} % </span>
+      Math.round(car.discount_percentage) }} % </span>
         <h4>{{ car.title }}</h4>
       </div>
       <div class="price d-flex flex-column align-items-cente w-100 justify-content-cente ">
@@ -73,7 +73,6 @@
           <span> {{ car.year }} </span>
         </div>
       </div>
-
       <div class="btn-container">
 
         <button @click="goToCar(car.id)">
@@ -82,7 +81,7 @@
         </button>
         <div @click="addFavFunc(car.id, car.is_fav)" class="icon heart">
           <!-- <img src="~/assets/images/heart.png" /> -->
-          <svg :class="{ 'active': favBtn || car.is_fav }" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+          <svg :class="{ 'active': favBtn }" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
             viewBox="0 0 24 24" fill="none">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12.3812 6.13389C14.1606 4.35511 17.0457 4.35511 18.8252 6.13389C20.6047 7.91277 
   20.6047 10.797 18.8252 12.5759L12.3392 19.0593C12.1518 19.2466 11.8479 19.2466 11.6605 
@@ -111,7 +110,8 @@ const tokenCookie = Cookies.get("token");
 let value1 = ref(" تم الاضافة الي قائمة المفضلات ");
 let value2 = ref(" تم الحذف من قائمة المفضلات ");
 
-let favBtn = ref(props.car.is_fav);
+let favBtn = ref(false);
+
 
 if (locale.value == "ar") {
   value1.value = "تم الاضافة الي قائمة المفضلات ";
@@ -124,8 +124,13 @@ if (locale.value == "ar") {
 }
 
 
-const addFavFunc = async (id, success) => {
-  favBtn.value = !favBtn.value;
+onMounted(() => {
+  setTimeout(() => {
+    favBtn.value = props.car.is_fav ? true : false;
+  }, 1000);
+});
+
+const addFavFunc = async (id, fav) => {
   let formBody = new FormData();
   formBody.append("car_id", id);
   let result = await axios.post(
@@ -142,7 +147,8 @@ const addFavFunc = async (id, success) => {
     if (props.check) {
       props.myFunction();
     }
-
+    // props.myFunction();
+    favBtn.value = !favBtn.value;
     toast.success(favBtn.value ? value1.value : value2.value, {
       position: locale.value == 'ar' ? "top-right" : "top-left",
       timeout: 3000,

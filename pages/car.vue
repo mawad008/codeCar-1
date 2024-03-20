@@ -146,7 +146,7 @@
         spaceBetween: 20,
       },
     }" :modules="[SwiperNavigation]" class="mySwiper">
-                    <swiper-slide :class="{ 'auto-width': mainCar.images.length <= 4 }"> 
+                    <swiper-slide :class="{ 'auto-width': mainCar.images.length <= 4 }">
                       <div class="iconn d-flex align-items-center">
                         <i class="fa-regular fa-circle-play"></i>
                       </div>
@@ -280,7 +280,8 @@
                   <span class="word fw-bold">{{ $t('price') }}</span>
                   <div class="main-price">
                     <h5>{{ mainCar.price }} {{ $t('curr') }}</h5>
-                    <span v-if="mainCar.discount_price" class="disc">{{ mainCar.discount_price }} {{ $t('curr') }}</span>
+                    <span v-if="mainCar.discount_price" class="disc">{{ mainCar.discount_price }} {{ $t('curr')
+                      }}</span>
                     <span>( {{ mainCar.price_after_tax }} {{ $t('curr') }} {{ $t('taxx') }} )</span>
                   </div>
                 </div>
@@ -781,8 +782,7 @@
             {{ $t('otp2') }}
           </p>
 
-          <v-otp-input v-model="store.state.otpFin1" style="direction: ltr !important;" :length="4"
-            placeholder="-"></v-otp-input>
+          <v-otp-input v-model="otpp2" style="direction: ltr !important;" :length="4" placeholder="-"></v-otp-input>
 
           <span class="error-msg2" v-if="error2">{{
             error1
@@ -1026,6 +1026,10 @@ let sliderValue3 = ref(40);
 let showConfirm = ref(false);
 let shareIcons = ref(false);
 let checkCopy = ref(true);
+
+
+let otpp2 = ref('');
+
 const selectedFileName1 = ref(null);
 const selectedFileName2 = ref(null);
 const selectedFileName3 = ref(null);
@@ -1425,7 +1429,7 @@ let error2 = ref();
 
 const sendOtp2 = async () => {
   let formBody = new FormData();
-  formBody.append("otp", store.state.otpFin1);
+  formBody.append("otp", otpp2.value);
   formBody.append("phone", store.state.phoneFin1);
   formBody.append("order_id", store.state.orderFin1);
   try {

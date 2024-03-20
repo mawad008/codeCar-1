@@ -141,7 +141,7 @@
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
                       <v-checkbox style="" class="" id="label-1" v-model="selected3" color="#DCB63B"
-                        value="used"></v-checkbox>
+                        value="gasoline"></v-checkbox>
                       <label for="label-1"> {{ $t('benz') }} </label>
                     </div>
                     <span class="num">(25)</span>
@@ -149,7 +149,7 @@
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
                       <v-checkbox style="" class="" id="label-2" v-model="selected3" color="#DCB63B"
-                        value="new"></v-checkbox>
+                        value="electric"></v-checkbox>
                       <label for="label-2"> {{ $t('elct') }} </label>
                     </div>
                     <span class="num">(25)</span>

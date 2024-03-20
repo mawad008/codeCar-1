@@ -204,21 +204,17 @@
             </div>
           </div>
         </div>
-        <!-- :autoplay="{
-                  delay: 4500,
-                  disableOnInteraction: false,
-                }" -->
-    
+
         <client-only v-if="spinnerProducts">
           <Vue3Lottie :animation-data="loaderr" :height="100" :width="100" />
         </client-only>
       </div>
-        <swiper 
-        :navigation="{
+    </div>
+    <div class="container">
+      <swiper :navigation="{
           nextEl: '.slider-product22-next',
           prevEl: '.slider-product22-prev',
-        }" 
-        :breakpoints="{
+        }" :breakpoints="{
           '300': {
             slidesPerView: 1.3,
             spaceBetween: 30,
@@ -232,12 +228,12 @@
             spaceBetween: 30,
           },
         }" :modules="[SwiperNavigation, SwiperAutoplay]">
-          <swiper-slide v-for="item, index in productsTags">
-            <car-card :car="item" />
-          </swiper-slide>
-        <div v-if="!spinnerProducts && productsTags.length > 4" class="icons-arrow">
+        <swiper-slide v-for="item, index in productsTags">
+          <car-card :car="item" :myFunction="getProducts" />
+        </swiper-slide>
+        <div class="icons-arrow">
           <div class="slider-product22-next">
-            <div class="icon">
+            <div v-if="productsTags.length > 4" class="icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none"
                 class="arrow-icon">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -246,7 +242,7 @@
             </div>
           </div>
           <div class="slider-product22-prev">
-            <div class="icon">
+            <div v-if="productsTags.length > 4" class="icon">
               <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17"
                 fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -256,7 +252,8 @@
             </div>
           </div>
         </div>
-        </swiper>
+      </swiper>
+
     </div>
 
     <!-- <div style="height:100vh;">
@@ -378,6 +375,9 @@ let selectedBody = ref();
 watch(()=> selectedBrand.value , (model)=>{
   if(!model){
     selectedmodel.value = null;
+  } else {
+    selectedmodel.value = null;
+
   }
 })
 const getBrands = async () => {

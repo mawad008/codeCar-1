@@ -473,7 +473,7 @@
                                                     </svg>
                                                     <span>{{ $t('calc2') }}</span>
                                                 </div>
-                                                <h6>{{ item.installment }} {{ $t('months') }}</h6>
+                                                <h6>{{ item.installment }} {{ $t('years') }}</h6>
                                             </div>
                                         </div>
                                     </div>

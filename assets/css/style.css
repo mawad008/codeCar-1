@@ -416,12 +416,9 @@ html[dir=rtl] input[type=tel] {
   }
 }
 .main-auth {
-  height: 100vh;
+  height: 100%;
   background-color: #fff;
   position: relative;
-}
-.main-auth .row {
-  height: 100%;
 }
 .main-auth .arrow {
   cursor: pointer;
@@ -5735,6 +5732,7 @@ html[dir=ltr] .settings-page .setting-btn {
   width: -moz-fit-content;
   width: fit-content;
   padding: 0px 6px;
+  min-width: 100px;
   height: 37px;
   display: flex;
   align-items: center;
