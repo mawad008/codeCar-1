@@ -208,9 +208,6 @@
         <client-only v-if="spinnerProducts">
           <Vue3Lottie :animation-data="loaderr" :height="100" :width="100" />
         </client-only>
-      </div>
-    </div>
-    <div class="container">
       <swiper :navigation="{
           nextEl: '.slider-product22-next',
           prevEl: '.slider-product22-prev',
@@ -253,7 +250,7 @@
           </div>
         </div>
       </swiper>
-
+      </div>
     </div>
 
     <!-- <div style="height:100vh;">
@@ -379,7 +376,7 @@ watch(()=> selectedBrand.value , (model)=>{
     selectedmodel.value = null;
 
   }
-})
+});
 const getBrands = async () => {
   let result = await axios.get(`${getUrl()}/brand`, {
     headers: {
@@ -486,13 +483,7 @@ const getProducts = async () => {
   productsTags.value = result.data.data;
 };
 
-const customFilter = (itemTitle, queryText, item) => {
-  const textOne = item.raw.name.toLowerCase();
-  const textTwo = item.raw.abbr.toLowerCase();
-  const searchText = queryText.toLowerCase();
 
-  return textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1;
-};
 
 useHead({
   title: locale.value == 'ar' ? 'الرئيسية' : 'home'

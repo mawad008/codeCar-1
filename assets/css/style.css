@@ -320,7 +320,7 @@ html[dir=rtl] input[type=tel] {
   right: 30px;
   cursor: pointer;
   transition: 0.4s all;
-  z-index: 1111111;
+  z-index: 111111111111;
   transform: translateX(200%);
 }
 .up-arrow-icon.active {
@@ -333,7 +333,7 @@ html[dir=rtl] input[type=tel] {
   left: 30px;
   cursor: pointer;
   transition: 0.4s all;
-  z-index: 1111111;
+  z-index: 1111111111111;
   transform: translateX(-200%);
 }
 .whats-app-icon.active {
@@ -748,7 +748,7 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
   transition: 0.4s all;
   height: -moz-fit-content;
   height: fit-content;
-  z-index: 555;
+  z-index: 55555555;
 }
 .navbar .white-img {
   display: none;
@@ -775,7 +775,7 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
   top: 0;
   right: 0;
   left: 0;
-  z-index: 5555;
+  z-index: 5555555555;
   height: -moz-fit-content;
   height: fit-content;
 }
@@ -1027,6 +1027,10 @@ html[dir=ltr] .navbar.back .icons span, html[dir=ltr] .navbar.active .icons span
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
+}
+
+.vel-modal {
+  z-index: 99999999 !important;
 }
 
 html[dir=ltr] .footer-container .search button {
@@ -1887,7 +1891,7 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
     gap: 25px;
   }
   .our-products .icons-arrow {
-    display: none;
+    display: none !important;
   }
   .footer-container .box-container {
     text-align: center;

@@ -346,7 +346,7 @@
                 </div>
               </AccordionTab>
             </Accordion>
-            <button @click="filterCars();" class="search-btn">{{ $t('searchh') }}</button>
+            <button @click="checkSort = !checkSort , filterCars();" class="search-btn">{{ $t('searchh') }}</button>
 
           </div>
           <div @click="checkSort = !checkSort" class="sort-mobile">
@@ -514,7 +514,7 @@ const filterCars = async () => {
 
   if (result.status == 200) {
     spinnerProducts.value = false;
-    checkSort.value = !checkSort.value;
+    // checkSort.value = !checkSort.value;
     filterCarsArr.value = result.data.data;
     itemsPerPage.value = result.data.meta.per_page;
     total.value = result.data.meta.total;
@@ -558,7 +558,7 @@ const filterCar2 = async () => {
     filterCarsArr.value = [...filterCarsArr.value, ...result.data.data];
     itemsPerPage.value = result.data.meta.per_page;
     total.value = result.data.meta.total;
-    checkSort.value = !checkSort.value;
+    // checkSort.value = !checkSort.value;
     if (result.data.data.length < 1) {
       filterCarsArr.value = [];
     }

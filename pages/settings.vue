@@ -310,16 +310,16 @@
                     <Dropdown v-model="formCar.brand" :options="brands" :filter-placeholder="$t('search')" filter
                       optionValue="id" optionLabel="title" :placeholder="$t('brand')" class="">
                       <template #option="slotProps">
-                        <div @click="brandCar = slotProps.option.id ,  getCars()" class="flex align-items-center">
-                          <div>{{ slotProps.option.title }}</div>
+                        <div @click="brandCar = slotProps.option.id ,  getCars()" class="flex w-100  align-items-center">
+                          <div class="w-100">{{ slotProps.option.title }}</div>
                         </div>
                       </template>
                     </Dropdown>
                     <Dropdown v-model="formCar.status_ad" :filter-placeholder="$t('search')" :options="statusAds" filter
                       optionLabel="name" optionValue="value" :placeholder="$t('adS')" class="">
                       <template #option="slotProps">
-                        <div @click="addStat = slotProps.option.value , getCars()" class="flex align-items-center">
-                          <div>{{ slotProps.option.name }}</div>
+                        <div @click="addStat = slotProps.option.value , getCars()" class="flex w-100 align-items-center">
+                          <div class="w-100">{{ slotProps.option.name }}</div>
                         </div>
                       </template>
                     </Dropdown>
@@ -615,7 +615,7 @@
                       fill="#90A3BF" />
                   </svg>
                 </div>
-                <div class="text d-flex w-100 flex-column">
+                <div class="text d-flex w-100 gap-2 flex-column">
                   <div class="d-flex w-100 align-items-center justify-content-between">
                     <h6>{{ item.title }}</h6>
                     <span class="date">{{ item.time }}</span>

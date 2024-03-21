@@ -372,8 +372,8 @@
                         <label for="">{{ $t("tra") }}</label>
                         <Dropdown
                           v-model="form4.Supplier"
-                          optionValue="value"
-                          :filter-placeholder="$t('search')"
+                           optinValue="v al ue"
+                            :filter-placeholder="$t('search')"
                           :options="supplierArr"
                           filter
                           optionLabel="name"
@@ -431,9 +431,7 @@
                           v-model="form4.Category"
                           optionValue="id"
                           :filter-placeholder="$t('search')"
-                          :options="
-                            getCategories ? getCategories[0].Categories : ''
-                          "
+                          :options=" getCategories ? getCategories[0].Categories : '' "
                           filter
                           optionLabel="name"
                           :placeholder="$t('carCategory')"
@@ -957,6 +955,15 @@ let form4 = ref({
   Car_Color: "",
   Car_Price: "",
   Car_Price_after_Discount: "",
+});
+
+
+watch(() => form4.value.Car_Brand , (brand)=>{
+  if(brand != ""){
+    form4.value.Car_Model = "";
+  } else {
+    form4.value.Car_Model = "";
+  }
 });
 
 const rules1 = computed(() => {

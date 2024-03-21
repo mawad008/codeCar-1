@@ -425,7 +425,7 @@ html[dir="rtl"] input[type="tel"] {
   right: 30px;
   cursor: pointer;
   transition: 0.4s all;
-  z-index: 1111111;
+  z-index: 111111111111;
   transform: translateX(200%);
   &.active{
     transform: translateX(0%);
@@ -437,7 +437,7 @@ html[dir="rtl"] input[type="tel"] {
   left: 30px;
   cursor: pointer;
   transition: 0.4s all;
-  z-index: 1111111;
+  z-index: 1111111111111;
   transform: translateX(-200%);
   &.active{
     transform: translateX(0%);
@@ -933,7 +933,7 @@ html[dir="ltr"] .main-auth{
   // background-color: transparent;
   transition: 0.4s all;
   height: fit-content;
-  z-index: 555;
+  z-index: 55555555;
 
   .white-img {
     display: none;
@@ -967,7 +967,7 @@ html[dir="ltr"] .main-auth{
     top: 0;
     right: 0;
     left: 0;
-    z-index: 5555;
+    z-index: 5555555555;
     height: fit-content;
   }
 
@@ -1258,6 +1258,10 @@ html[dir="ltr"] .main-auth{
 
 
 
+  .vel-modal{
+    z-index: 99999999 !important;
+    
+    }
 
 
   html[dir="ltr"] .footer-container{
@@ -2314,7 +2318,7 @@ html[dir="rtl"] .explore {
       gap:25px;
         }
     .icons-arrow{
-      display: none;
+      display: none !important;
     }
   }
     .footer-container{
