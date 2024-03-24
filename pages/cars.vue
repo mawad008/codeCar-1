@@ -235,19 +235,19 @@
                       </div>
                       <span class="num">(25)</span>
                     </div>
-                    <div v-for="(i, index) in optYears" class="d-flex align-items-center justify-content-between">
+                    <div v-for="(i, index) in years" class="d-flex align-items-center justify-content-between">
                       <div class="d-flex align-items-center gap-2">
                         <v-checkbox style="" class="" :id="`labelll-${index}`" v-model="selected7" color="#DCB63B"
-                          :value="i"></v-checkbox>
+                          :value="items.year"></v-checkbox>
                         <label :for="`labelll-${index}`"> {{ i }} </label>
                       </div>
                       <span class="num">(25)</span>
                     </div>
 
-                    <span class="moree" style="font-size: 12px; color: #dcb63b; cursor: pointer"
+                    <!-- <span class="moree" style="font-size: 12px; color: #dcb63b; cursor: pointer"
                       @click="optYears = years">
                       {{ $t('more') }}
-                    </span>
+                    </span> -->
                     <div class="d-flex align-items-center justify-content-between">
                       <div class="d-flex align-items-center gap-2">
                         <v-checkbox style="" class="" :id="`labelll-less`" v-model="selected7" color="#DCB63B"
@@ -270,7 +270,7 @@
                         {{ item.title }}
                       </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num">({{ item.cars_count }})</span>
                   </div>
                 </div>
               </AccordionTab>
@@ -470,6 +470,7 @@ const getOptions = async () => {
   });
 
   optionsCars.value = result.data.data;
+  years.value = result.data.data.years;
   minNum.value = parseInt(optionsCars.value.Slider.minPrice);
   maxNum.value = parseInt(optionsCars.value.Slider.maxPrice);
   valuePrice.value = [parseInt(optionsCars.value.Slider.minPrice), parseInt(optionsCars.value.Slider.maxPrice)]

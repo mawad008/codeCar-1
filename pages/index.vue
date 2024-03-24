@@ -77,7 +77,7 @@
 
       </div>
     </div>
-
+     
 
     <!-- <div id="hero-section-back" style="width: 100vw; height: 100vh;"></div> -->
     <div class="container d-flex align-items-center justify-content-center">
@@ -333,6 +333,7 @@ import axios from "axios";
 import { Vue3Lottie } from "vue3-lottie";
 import hero from "~/assets/animations/hero.json";
 import loaderr from "~/assets/animations/Loader.json";
+
 let tab = ref(null);
 let tabNav = ref(0);
 let pending = ref(true);
@@ -512,4 +513,28 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+.selectttt{
+  width: 100px;
+  height: 100px;
+
+  border-radius: 8px;
+  &.selectt1{
+   background-color: #e91b1f;
+  }
+  &.selectt2{
+    background-color: #e91e63;
+  }
+  &.selectt3{
+    background-color: #9c27b0;
+  }
+  &.selectt4{
+   background-color: #673ab7;
+  }
+  &.selectt5{
+    background-color: #2196f3;
+  }
+}
+
+</style>

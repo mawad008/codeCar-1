@@ -1034,13 +1034,9 @@ const updateProfile = async () => {
 
     if (result.status >= 200) {
       pending1.value = false;
-      errors1.value = [];
-      store.state.user = result.data.data;
-      const userObjectString = JSON.stringify(result.data.data);
-      Cookies.set('user', userObjectString);
             toast.success(title.value, {
-              position: locale.value == 'ar' ? "top-right" : "top-left",
-            timeout: 3000,
+            position: locale.value == 'ar' ? "top-right" : "top-left",
+            timeout: 30000,
             closeOnClick: true,
             pauseOnFocusLoss: true,
             pauseOnHover: true,
@@ -1053,6 +1049,10 @@ const updateProfile = async () => {
             class: 'toast-container',
              rtl: locale.value == 'ar' ? true : false
       });
+      errors1.value = [];
+      store.state.user = result.data.data;
+      const userObjectString = JSON.stringify(result.data.data);
+      Cookies.set('user', userObjectString);
     }
 
   } catch (errorss) {

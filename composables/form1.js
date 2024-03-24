@@ -15,7 +15,7 @@ export const createFormData = (
   const formData = new FormData();
 
   // Destructure form values
-  const { brand, model, year, gear_shifter, color_id } = form2;
+  const { brand, model, year, gear_shifter, category , color_id } = form2;
   const {
     client_name,
     phone,
@@ -41,6 +41,7 @@ export const createFormData = (
     ["brand", brand],
     ["model", model],
     ["year", year],
+    ["category", category],
     ["gear_shifter", gear_shifter],
     ["color_id", color_id],
     ["client_name", client_name],
@@ -88,7 +89,7 @@ export const createFormData2 = (
   const formData = new FormData();
 
   // Destructure form values
-  const { brand, model, year, gear_shifter, color_id } = form2;
+  const { brand, model, year, gear_shifter, category , color_id } = form2;
   const {
     client_name,
     phone,
@@ -117,6 +118,7 @@ export const createFormData2 = (
     ["gear_shifter", gear_shifter],
     ["color_id", color_id],
     ["client_name", client_name],
+    ["category", category],
     ["phone", phone],
     ["sex", sex],
     ["nationality_id", nationality_id],
@@ -156,7 +158,7 @@ export const createFormData1 = (
   const formData = new FormData();
 
   // Destructure form values
-  const { brand, model, year, gear_shifter, color_id } = form2;
+  const { brand, model, year, gear_shifter, color_id , category } = form2;
   const {
     client_name,
     phone,
@@ -188,6 +190,7 @@ export const createFormData1 = (
     ["client_name", client_name],
     ["phone", phone],
     ["sex", sex],
+    ["category", category],
     ["nationality_id", nationality_id],
     ["birth_date", birth_date],
     ["city_id", city_id],

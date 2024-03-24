@@ -314,6 +314,10 @@ html[dir=rtl] input[type=tel] {
   font-weight: 700 !important;
 }
 
+.Vue-Toastification__container {
+  z-index: 111111111111 !important;
+}
+
 .up-arrow-icon {
   position: fixed;
   top: 84%;
@@ -767,7 +771,7 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
 }
 .navbar .logo-container span {
   font-size: 12px;
-  color: #dcb63b;
+  color: #df9011;
 }
 .navbar.active {
   transition: 0.4s all;

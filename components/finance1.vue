@@ -192,7 +192,7 @@
         </div>
 
         <div v-if="paymentIndividualBtn == 2" class="d-flex flex-column h-100 justify-content-between gap-4">
-          <div class="d-flex gap-3">
+          <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t('carBrand') }}</span>
               <div class="input">
@@ -233,7 +233,7 @@
               </div>
             </div>
           </div>
-          <div class="d-flex gap-3">
+          <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t('theYear') }}</span>
               <div class="input">
@@ -273,7 +273,7 @@
               </div>
             </div>
           </div>
-          <div class="d-flex gap-3">
+          <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3 ">
             <div class="input-container">
               <span>{{ $t('color') }}</span>
               <div class="input">
@@ -294,6 +294,34 @@
                   }}</span>
               </div>
             </div>
+            <div class="input-container">
+                        <span>{{ $t("carCategory") }}</span>
+                        <div class="input">
+                        <Dropdown
+                          v-model="form2.category"
+                          optionValue="id"
+                          :filter-placeholder="$t('search')"
+                          :options=" getCategories ? getCategories[0].Categories : '' "
+                          filter
+                          optionLabel="name"
+                          :placeholder="$t('carCategory')"
+                          class=""
+                        >
+                          <template #option="slotProps">
+                            <div class="flex align-items-center">
+                              <div>{{ slotProps.option.name }}</div>
+                            </div>
+                          </template>
+                        </Dropdown>
+                        <!-- <span class="error-msg" v-if="v1$.Category.$error">{{
+                            v1$.Category.$errors[0].$message
+                          }}</span> -->
+                        <span class="error-msg2" v-if="errors2.category">{{
+                          errors2.category[0]
+                        }}</span>
+                        
+                        </div>
+                      </div>
           </div>
           <div class="btns">
             <button @click="paymentIndividualBtn = 1" class="back">
@@ -974,6 +1002,7 @@ let form2 = ref({
   year: '',
   gear_shifter: '',
   color_id: '',
+  category:''
 });
 let form3 = ref({
   client_name: '',
@@ -1102,6 +1131,7 @@ const paymentFunc2 = async () => {
   formBody.append("year", form2.value.year);
   formBody.append("gear_shifter", form2.value.gear_shifter);
   formBody.append("color_id", form2.value.color_id);
+  formBody.append("category", form2.value.category);
   formBody.append("first_batch", sliderValue1.value);
   formBody.append("installment", sliderValue2.value);
   formBody.append("last_batch", sliderValue3.value);
@@ -1346,6 +1376,19 @@ const getmodels = computed(() => {
   return optionsCars.value.brands.filter((ele) => {
     return form2.value.brand == ele.id
   });
+});
+
+const getCategories = computed(() => {
+  if (form2.value.model != "") {
+    return getmodels.value[0].models.filter((e) => {
+      let leng = getmodels.value[0].models.length;
+      if (leng >= 1) {
+        return form2.value.model == e.id;
+      } else {
+        return [];
+      }
+    });
+  }
 });
 
 

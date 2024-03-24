@@ -24,8 +24,8 @@
       </div>
       <div class="price d-flex flex-column align-items-cente w-100 justify-content-cente ">
         <div class="d-flex align-items-center justify-content-between w-100">
-          <h6>{{ car.price }} {{ $t('curr') }}</h6>
-          <span class="disc2" v-if="car.discount_price"> {{ car.discount_price }} {{ $t('curr') }} </span>
+          <h6>{{ car.selling_price }} {{ $t('curr') }}</h6>
+          <span class="disc2" v-if="car.have_discount == 1"> {{ car.price }} {{ $t('curr') }} </span>
         </div>
         <span> {{ Math.round(car.price_after_tax) }} {{ $t('curr') }} {{ $t('taxes') }}</span>
       </div>

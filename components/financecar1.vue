@@ -338,6 +338,13 @@
                   }}</span> -->
               </div>
             </div>
+            <div class="input-container">
+              <span>{{ $t('carCategory') }}</span>
+              <div class="input">
+                <input v-model="carDet.category" readonly />
+               
+              </div>
+            </div>
           </div>
           <div class="btns">
             <button @click="paymentIndividualBtn = 1" class="back">
@@ -433,6 +440,7 @@
                   errors3.city_id[0]
                   }}</span>
               </div>
+              
             </div>
             <div class="input-container">
               <span> {{ $t('ident') }}</span>

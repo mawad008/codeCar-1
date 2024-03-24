@@ -108,8 +108,8 @@
       '--swiper-pagination-color': '#fff',
     }" :loop="true" :spaceBetween="10" :thumbs="{ swiper: thumbsSwiper }" :modules="[SwiperFreeMode, SwiperThumbs]"
                   class="mySwiper2">
-                  <swiper-slide>
-                    <iframe v-if="videoKey" :src="`https://www.youtube.com/embed/${videoKey}`"
+                  <swiper-slide v-if="mainCar.video_url">
+                    <iframe v-if="mainCar.video_url" :src="`https://www.youtube.com/embed/${mainCar.video_url}`"
                       title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
       gyroscope; picture-in-picture" allowfullscreen></iframe>
                   </swiper-slide>
@@ -146,7 +146,7 @@
         spaceBetween: 20,
       },
     }" :modules="[SwiperNavigation]" class="mySwiper">
-                    <swiper-slide :class="{ 'auto-width': mainCar.images.length <= 4 }">
+                    <swiper-slide v-if="mainCar.video_url" :class="{ 'auto-width': mainCar.images.length <= 4 }">
                       <div class="iconn d-flex align-items-center">
                         <i class="fa-regular fa-circle-play"></i>
                       </div>
@@ -279,8 +279,8 @@
                 <div class="price">
                   <span class="word fw-bold">{{ $t('price') }}</span>
                   <div class="main-price">
-                    <h5>{{ mainCar.price }} {{ $t('curr') }}</h5>
-                    <span v-if="mainCar.discount_price" class="disc">{{ mainCar.discount_price }} {{ $t('curr')
+                    <h5>{{ mainCar.selling_price }} {{ $t('curr') }}</h5>
+                    <span v-if="mainCar.have_discount == 1 " class="disc">{{ mainCar.price }} {{ $t('curr')
                       }}</span>
                     <span>( {{ mainCar.price_after_tax }} {{ $t('curr') }} {{ $t('taxx') }} )</span>
                   </div>
