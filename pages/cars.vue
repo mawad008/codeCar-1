@@ -51,7 +51,7 @@
                         value="0"></v-checkbox>
                       <label for="used1">{{ $t('used') }}</label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.used }})</span>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -59,7 +59,7 @@
                         value="1"></v-checkbox>
                       <label for="new-1"> {{ $t('new') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.new }})</span>
                   </div>
                 </div>
               </AccordionTab>
@@ -97,7 +97,7 @@
                                   {{ model.name }}
                                 </label>
                               </div>
-                              <span class="num">(25)</span>
+                              <span class="num">({{ model.cars_count }})</span>
                             </div>
                           </div>
                         </div>
@@ -119,7 +119,7 @@
                         value="manual"></v-checkbox>
                       <label for="auto-1"> {{ $t('gear1') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.manual }})</span>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -127,7 +127,7 @@
                         value="automatic"></v-checkbox>
                       <label for="manu-1"> {{ $t('automatic') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.automatic }})</span>
                   </div>
                 </div>
               </AccordionTab>
@@ -144,7 +144,7 @@
                         value="gasoline"></v-checkbox>
                       <label for="label-1"> {{ $t('benz') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.gasoline_type }})</span>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -152,7 +152,7 @@
                         value="electric"></v-checkbox>
                       <label for="label-2"> {{ $t('elct') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.electric_type }})</span>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -160,7 +160,7 @@
                         value="hybrid"></v-checkbox>
                       <label for="label-77"> {{ $t('hyp') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.hybrid_type }})</span>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -168,7 +168,7 @@
                         value="diesel "></v-checkbox>
                       <label for="label-7"> {{ $t('dis') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.diesel_type }})</span>
                   </div>
                 </div>
               </AccordionTab>
@@ -180,7 +180,7 @@
                         value="all"></v-checkbox>
                       <label for="All-3">{{ $t('all') }}</label>
                     </div>
-                    <span class="num">(25)</span>
+                    <!-- <span class="num">({{ optionsCars.car_counts.hatchback_shape  }})</span> -->
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -188,7 +188,7 @@
                         value="hatchback"></v-checkbox>
                       <label for="label-3"> {{ $t('hatchback') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.hatchback_shape  }})</span>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -196,7 +196,7 @@
                         value="sedan"></v-checkbox>
                       <label for="label-4"> {{ $t('sedan') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.sedan_shape }})</span>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -204,7 +204,7 @@
                         value="our-wheel-drive"></v-checkbox>
                       <label for="label-5"> {{ $t('our-wheel-drive') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.four_wheel_drive_shape }})</span>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -212,7 +212,7 @@
                         value="family"></v-checkbox>
                       <label for="label-6"> {{ $t('family') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.family_shape }})</span>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -220,13 +220,13 @@
                         value="commercial"></v-checkbox>
                       <label for="label-7"> {{ $t('commercial') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.commercial_shape  }})</span>
                   </div>
                 </div>
               </AccordionTab>
               <AccordionTab :header="$t('theYear')">
                 <div class="accordtion-container">
-                  <div class="mainn d-flex flex-column gap-3">
+                  <div v-if="optionsCars.car_counts" class="mainn d-flex flex-column gap-3">
                     <div class="d-flex align-items-center justify-content-between">
                       <div class="d-flex align-items-center gap-2">
                         <v-checkbox style="" class="" id="All-l-3" v-model="selected7" color="#DCB63B"
@@ -235,27 +235,27 @@
                       </div>
                       <span class="num">(25)</span>
                     </div>
-                    <div v-for="(i, index) in years" class="d-flex align-items-center justify-content-between">
+                    <div   v-for="(item, index) in optionsCars.car_counts.years" class="d-flex align-items-center justify-content-between">
                       <div class="d-flex align-items-center gap-2">
                         <v-checkbox style="" class="" :id="`labelll-${index}`" v-model="selected7" color="#DCB63B"
-                          :value="items.year"></v-checkbox>
-                        <label :for="`labelll-${index}`"> {{ i }} </label>
+                          :value="item.year"></v-checkbox>
+                        <label :for="`labelll-${index}`"> {{ item.year }} </label>
                       </div>
-                      <span class="num">(25)</span>
+                      <span class="num">({{ item.count }})</span>
                     </div>
 
                     <!-- <span class="moree" style="font-size: 12px; color: #dcb63b; cursor: pointer"
                       @click="optYears = years">
                       {{ $t('more') }}
                     </span> -->
-                    <div class="d-flex align-items-center justify-content-between">
+                    <!-- <div class="d-flex align-items-center justify-content-between">
                       <div class="d-flex align-items-center gap-2">
                         <v-checkbox style="" class="" :id="`labelll-less`" v-model="selected7" color="#DCB63B"
                           :value="1"></v-checkbox>
                         <label :for="`labelll-less`"> {{ $t('less1') }} </label>
                       </div>
                       <span class="num">(25)</span>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </AccordionTab>
@@ -286,7 +286,7 @@
                         value="all"></v-checkbox>
                       <label for="All-t-3">{{ $t('all') }}</label>
                     </div>
-                    <span class="num">(25)</span>
+                    <!-- <span class="num">(25)</span> -->
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -294,7 +294,7 @@
                         value="0"></v-checkbox>
                       <label for="cc-label-1"> {{ $t('from1') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.fuel_capacity[0].car_count }})</span>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -302,7 +302,7 @@
                         value="1"></v-checkbox>
                       <label for="cc-label-2"> {{ $t('from2') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.fuel_capacity[1].car_count }})</span>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -310,7 +310,7 @@
                         value="2"></v-checkbox>
                       <label for="cc-label-3"> {{ $t('from3') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.fuel_capacity[2].car_count }})</span>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -318,7 +318,7 @@
                         value="3"></v-checkbox>
                       <label for="cc-label-4"> {{ $t('from4') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.fuel_capacity[3].car_count }})</span>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -326,7 +326,7 @@
                         value="4"></v-checkbox>
                       <label for="cc-label-5"> {{ $t('from5') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.fuel_capacity[4].car_count }})</span>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
@@ -334,7 +334,7 @@
                         value="5"></v-checkbox>
                       <label for="cc-label-6"> {{ $t('from6') }} </label>
                     </div>
-                    <span class="num">(25)</span>
+                    <span class="num" v-if="optionsCars.car_counts">({{ optionsCars.car_counts.fuel_capacity[5].car_count }})</span>
                   </div>
                 </div>
               </AccordionTab>
@@ -373,7 +373,6 @@
               <div class="line">
                 <v-progress-linear :reverse="reverse" rounded color="#DCB63B" :model-value="progressValue" :height="6">
                 </v-progress-linear>
-
               </div>
 
 
@@ -478,6 +477,8 @@ const getOptions = async () => {
 
 let filterCarsArr = ref([]);
 
+let per_page = ref();
+
 let desc = ref('');
 const getDesc = async () => {
   let result = await axios.get(`${getUrl()}/allsettings`, {
@@ -517,7 +518,8 @@ const filterCars = async () => {
     spinnerProducts.value = false;
     // checkSort.value = !checkSort.value;
     filterCarsArr.value = result.data.data;
-    itemsPerPage.value = result.data.meta.per_page;
+    itemsPerPage.value = result.data.meta.current_data_on_this_page;
+    per_page.value = result.data.meta.per_page;
     total.value = result.data.meta.total;
     if (result.data.data.length < 1) {
       filterCarsArr.value = [];
@@ -557,8 +559,9 @@ const filterCar2 = async () => {
   if (result.status == 200) {
     spinnerProducts.value = false;
     filterCarsArr.value = [...filterCarsArr.value, ...result.data.data];
-    itemsPerPage.value = result.data.meta.per_page;
+    itemsPerPage.value = result.data.meta.current_data_on_this_page;
     total.value = result.data.meta.total;
+    per_page.value = result.data.meta.per_page;
     // checkSort.value = !checkSort.value;
     if (result.data.data.length < 1) {
       filterCarsArr.value = [];
@@ -575,10 +578,10 @@ const filterCar2 = async () => {
 
 
 const pageCount = computed(() => {
-  return Math.ceil(total.value / itemsPerPage.value);
+  return Math.ceil(total.value / per_page.value);
 });
 const progressValue = computed(() => {
-  return ((itemsPerPage.value * page.value) / total.value) * 100;
+  return ((itemsPerPage.value * 1) / total.value) * 100;
 });
 
 const loadMore = async () => {

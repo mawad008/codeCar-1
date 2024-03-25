@@ -4,7 +4,7 @@
       <div class="car-details">
         <div class="images-text">
           <div class="row">
-            <div class="col-12 col-xl-6 col-lg-6">
+            <div class="main-col-images col-12 col-xl-6 col-lg-6">
               <div class="header mobile">
                 <div class="vendor">
                   <div>
@@ -102,7 +102,7 @@
                   </div>
                 </div>
               </div>
-              <div class="main-images">
+              <div class="main-images justify-content-start justify-content-xl-between justify-content-lg-between">
                 <swiper :style="{
       '--swiper-navigation-color': '#fff',
       '--swiper-pagination-color': '#fff',
