@@ -186,7 +186,7 @@
         </div>
 
         <div v-if="paymentIndividualBtn == 2" class="d-flex flex-column gap-4">
-          <div class="d-flex gap-3">
+          <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t('carBrand') }}</span>
               <div class="input">
@@ -246,7 +246,7 @@
               </div>
             </div>
           </div>
-          <div class="d-flex gap-3">
+          <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t('theYear') }}</span>
               <div class="input">
@@ -307,7 +307,7 @@
               </div>
             </div>
           </div>
-          <div class="d-flex gap-3">
+          <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span>{{ $t('color') }}</span>
               <div class="input">

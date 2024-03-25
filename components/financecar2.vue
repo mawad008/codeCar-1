@@ -192,7 +192,7 @@
           </div>
         </div>
         <div v-if="paymentIndividualBtn2 == 2" class="form-ind">
-          <div class="d-flex gap-3">
+          <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t('name3') }} </span>
               <div class="input">
@@ -227,7 +227,7 @@
               </div>
             </div>
           </div>
-          <div class="d-flex gap-3">
+          <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t('nummm') }} </span>
               <div class="input">
@@ -260,7 +260,7 @@
               </div>
             </div>
           </div>
-          <div class="d-flex gap-3">
+          <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t('name4') }} </span>
               <div class="input">
@@ -290,7 +290,7 @@
               </div>
             </div>
           </div>
-          <div class="d-flex gap-3">
+          <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t('orgAge') }} </span>
               <div class="input">
@@ -324,7 +324,7 @@
               </div>
             </div>
           </div>
-          <div class="d-flex gap-3">
+          <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t('bankk') }} </span>
               <div class="input">

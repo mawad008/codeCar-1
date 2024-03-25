@@ -2026,6 +2026,9 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   flex-direction: column;
   justify-content: space-between;
 }
+.main-car-page .car-details .images-text .mySwiper2 {
+  width: 100%;
+}
 .main-car-page .car-details .images-text .mySwiper2 .swiper-slide {
   width: 100%;
   height: 430px;
@@ -2057,6 +2060,9 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   bottom: 20px;
   right: 20px;
   cursor: pointer;
+}
+.main-car-page .car-details .images-text .mySwiper {
+  width: 100%;
 }
 .main-car-page .car-details .images-text .mySwiper .swiper-slide {
   height: 80px;

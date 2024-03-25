@@ -2497,6 +2497,7 @@ html[dir="rtl"] .explore {
       }
       .mySwiper2 {
         // margin-bottom: 40px;
+        width: 100%;
         .swiper-slide {
           width: 100%;
           height: 430px;
@@ -2533,7 +2534,10 @@ html[dir="rtl"] .explore {
           }
         }
       }
-
+       
+      .mySwiper{
+        width: 100%;
+      }
       .mySwiper .swiper-slide {
         .iconn{
           i{
