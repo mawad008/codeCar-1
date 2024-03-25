@@ -1126,7 +1126,9 @@ const updatePassword = async () => {
 
     if (result.status >= 200) {
       pending2.value = false;
-      form1.value = '';
+      form1.value.old_password = '';
+      form1.value.password = '';
+      form1.value.password_confirmation = '';
       errors2.value = [];
             toast.success(title2.value, {
         position: "top-right",
