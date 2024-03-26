@@ -5,6 +5,7 @@
         <div class="select">
           <span class="type"> {{ $t('kind') }} </span>
           <v-autocomplete
+          clearable
             chips
             :items="carBody"
             item-title="name"
@@ -68,7 +69,14 @@ let carBody = ref([
 let selectedBrand = ref();
 let selectedmodel = ref();
 let selectedBody = ref();
+watch(()=> selectedBrand.value , (model)=>{
+  if(!model){
+    selectedmodel.value = null;
+  } else {
+    selectedmodel.value = null;
 
+  }
+});
 let optionsCars = ref([]);
 let brands = ref([]);
 

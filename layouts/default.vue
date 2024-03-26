@@ -17,7 +17,7 @@
         <div class="logo-container">
           <img class="dark-img" src="~/assets/images/logo-white.svg" alt="" />
            <logo2/>
-          <span> {{$t('slogan')}}  </span>
+          <span class="active"> {{$t('slogan')}}  </span>
         </div>
         </nuxt-link>
         </div>

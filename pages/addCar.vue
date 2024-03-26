@@ -372,8 +372,8 @@
                         <label for="">{{ $t("tra") }}</label>
                         <Dropdown
                           v-model="form4.Supplier"
-                           optinValue="v al ue"
                             :filter-placeholder="$t('search')"
+                          optionValue="value"
                           :options="supplierArr"
                           filter
                           optionLabel="name"
@@ -386,6 +386,7 @@
                             </div>
                           </template>
                         </Dropdown>
+                   
                         <span class="error-msg" v-if="v1$.Supplier.$error">{{
                           v1$.Supplier.$errors[0].$message
                         }}</span>

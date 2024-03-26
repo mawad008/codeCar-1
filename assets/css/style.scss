@@ -969,7 +969,7 @@ html[dir="ltr"] .main-auth{
         // left: 50%;
         // transform: translateX(-50%);
       font-size:12px;
-      color:#df9011;
+      color: #ffff;
     }
   }
   &.active {
@@ -980,6 +980,11 @@ html[dir="ltr"] .main-auth{
     left: 0;
     z-index: 5555555555;
     height: fit-content;
+    .logo-container{
+      span{
+        color: #df9011;
+      }
+    }
   }
 
   .nav-link {
@@ -5006,7 +5011,7 @@ display: none !important;
       border-radius: 16px;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      // object-fit: cover;
     }
     .overlay {
       position: absolute;

@@ -260,7 +260,7 @@
                 </div>
                 <p class="time">{{ $t('datee') }} {{ mainCar.publish_date }}</p>
                 <div class="name">
-                  <h4>{{ mainCar.main_title }}</h4>
+                  <h4>{{ mainCar.CarName }}</h4>
                   <div class="model">
                     <span>{{ mainCar.statue }}</span>
                     <span>{{ mainCar.brand.title }}</span>
