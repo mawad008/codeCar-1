@@ -320,27 +320,33 @@
             <div
               class="col-12 main-link col-xl-2 col-lg-2  d-flex justify-content-center justify-content-xl-en justify-content-lg-en col-md-6">
               <div
-                class="box-container d-flex flex-column align-items-center text-cente justify-content-center justify-content-xl-start justify-content-lg-start align-items-xl-start align-items-lg-start gap">
-                <h6 class="head mb-2">{{ $t("address") }}</h6>
+                class="box-container d-flex flex-column align-items-center text-cente justify-content-center justify-content-xl-start justify-content-lg-start align-items-xl-start align-items-lg-start gap-3">
                 <div class="d-fle gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                    <path
-                      d="M10.5 1.25C8.6773 1.25215 6.92987 1.97717 5.64102 3.26602C4.35218 4.55486 3.62716 6.3023 3.62501 8.125C3.62282 9.61452 4.10937 11.0636 5.01001 12.25C5.01001 12.25 5.19751 12.4969 5.22813 12.5325L10.5 18.75L15.7744 12.5294C15.8019 12.4963 15.99 12.25 15.99 12.25L15.9906 12.2481C16.8908 11.0623 17.3771 9.61383 17.375 8.125C17.3729 6.3023 16.6478 4.55486 15.359 3.26602C14.0701 1.97717 12.3227 1.25215 10.5 1.25ZM10.5 10.625C10.0056 10.625 9.52221 10.4784 9.11108 10.2037C8.69996 9.92897 8.37953 9.53852 8.19031 9.08171C8.00109 8.62489 7.95158 8.12223 8.04804 7.63727C8.14451 7.15232 8.38261 6.70686 8.73224 6.35723C9.08187 6.0076 9.52733 5.7695 10.0123 5.67304C10.4972 5.57657 10.9999 5.62608 11.4567 5.8153C11.9135 6.00452 12.304 6.32495 12.5787 6.73607C12.8534 7.1472 13 7.63055 13 8.125C12.9992 8.78779 12.7355 9.42319 12.2669 9.89185C11.7982 10.3605 11.1628 10.6242 10.5 10.625Z"
-                      fill="white" />
-                  </svg>
-                  <span class="head-link px-1" style="font-size: 14px;" v-if="footerData2"> {{ footerData2.address }}
-                  </span>
+                  <h6 class="head mb-2">{{ $t("address") }}</h6>
+                  <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                      <path
+                        d="M10.5 1.25C8.6773 1.25215 6.92987 1.97717 5.64102 3.26602C4.35218 4.55486 3.62716 6.3023 3.62501 8.125C3.62282 9.61452 4.10937 11.0636 5.01001 12.25C5.01001 12.25 5.19751 12.4969 5.22813 12.5325L10.5 18.75L15.7744 12.5294C15.8019 12.4963 15.99 12.25 15.99 12.25L15.9906 12.2481C16.8908 11.0623 17.3771 9.61383 17.375 8.125C17.3729 6.3023 16.6478 4.55486 15.359 3.26602C14.0701 1.97717 12.3227 1.25215 10.5 1.25ZM10.5 10.625C10.0056 10.625 9.52221 10.4784 9.11108 10.2037C8.69996 9.92897 8.37953 9.53852 8.19031 9.08171C8.00109 8.62489 7.95158 8.12223 8.04804 7.63727C8.14451 7.15232 8.38261 6.70686 8.73224 6.35723C9.08187 6.0076 9.52733 5.7695 10.0123 5.67304C10.4972 5.57657 10.9999 5.62608 11.4567 5.8153C11.9135 6.00452 12.304 6.32495 12.5787 6.73607C12.8534 7.1472 13 7.63055 13 8.125C12.9992 8.78779 12.7355 9.42319 12.2669 9.89185C11.7982 10.3605 11.1628 10.6242 10.5 10.625Z"
+                        fill="white" />
+                    </svg>
+                    <span class="head-link px-1" style="font-size: 14px;" v-if="footerData2"> {{ footerData2.address }}
+                    </span>
+
+                  </div>
                 </div>
-                <v-divider class="w-100 my-3" :thickness="1"></v-divider>
-                <h6 class="head mb-2">{{ $t("time") }}</h6>
+                <!-- <v-divider class="w-100 my-3 d-none d-xl-block d-lg-block" :thickness="1"></v-divider> -->
                 <div class="d-fle">
-                  <svg class="" fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20"
-                    height="20">
-                    <path
-                      d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
-                  </svg>
-                  <span class="head-link px-2" v-if="footerData" style="font-size: 14px;"> {{ footerData.working_time }}
-                  </span>
+                  <h6 class="head mb-2">{{ $t("time") }}</h6>
+                  <div>
+                    <svg class="" fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20"
+                      height="20">
+                      <path
+                        d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                    </svg>
+                    <span class="head-link px-2" v-if="footerData" style="font-size: 14px;"> {{ footerData.working_time
+                      }}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
