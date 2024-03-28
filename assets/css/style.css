@@ -282,7 +282,7 @@ a {
 body,
 html {
   overflow-x: clip;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
 }
 
 html[dir=rtl] body {

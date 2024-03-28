@@ -169,6 +169,7 @@
   "gear": "Gear Type",
   "sex": "Gender",
   "birth": "Date of Birth",
+  "time":"time",
   "city": "City",
   "ident": "ID Number",
   "sector": "Employer",
