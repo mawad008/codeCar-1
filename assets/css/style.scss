@@ -3042,7 +3042,6 @@ html[dir="ltr"] .main-car-page{
     }
   }
   .v-selection-control-group {
-    direction: rtl;
     #radio-1:checked + label {
       /* Your styles for the checked state */
       color: #dcb63b;
@@ -3202,22 +3201,6 @@ html[dir="ltr"] .main-car-page{
   }
 
 
-
-
-  
-  @media(max-width:800px){
-      .v-slider-thumb__label {
-        height: 44px !important;
-        border-radius: 32px;
-        background-color: #fcf4e2;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 700;
-        color: #dcb63b;
-        min-width: 100px !important;
-        padding: 0px 20px;
-      }
-  }
   .offers {
     .offer {
       // width: 354px;
@@ -3533,6 +3516,41 @@ html[dir="ltr"] .main-car-page{
   }
 }
 
+
+html[dir="rtl"] .v-selection-control-group {
+  direction: rtl;
+}
+html[dir="ltr"] .v-selection-control-group {
+  direction: ltr;
+}
+
+
+.p-dropdown{
+ span{
+ font-weight: 700;
+ color: #5a7184;
+}
+.p-placeholder {
+  color: #5a7184 !important;
+  font-weight: 200 !important;
+}
+
+
+}
+
+@media(max-width:800px){
+    .v-slider-thumb__label {
+      height: 44px !important;
+      border-radius: 32px;
+      background-color: #fcf4e2;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      color: #dcb63b;
+      min-width: 100px !important;
+      padding: 0px 20px;
+    }
+}
 
 .payment-method {
   margin-top: 24px;
