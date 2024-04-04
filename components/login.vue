@@ -400,13 +400,20 @@ const loginFunc = async () => {
         console.log(result.data.data);
         if (process.client) {
           pending1.value = false;
-          document.cookie = `token=${result.data.data.token}; path=/;`; // Set token in cookie
+          // document.cookie = `token=${result.data.data.token}; path=/;`; // Set token in cookie
           store.state.user = result.data.data.user;
           store.state.authenticated = true;
-
+          
+      // Example: Expires in 2 days
+      const expirationDate = new Date();
+      expirationDate.setDate(expirationDate.getDate() + 2);
           const userObjectString = JSON.stringify(result.data.data.user);
-          Cookies.set('user', userObjectString);
-          Cookies.set('auth', true);
+          Cookies.set('user', userObjectString , { expires: expirationDate });
+          Cookies.set('auth', true , { expires: expirationDate });
+          Cookies.set('token', result.data.data.token , { expires: expirationDate });
+
+       ;
+
 
           //  localStorage.setItem("user", JSON.stringify(result.data.data.user));
           // localStorage.setItem("auth", true);
@@ -465,12 +472,7 @@ const loginFunc = async () => {
       }
 
 
-      // Optionally, set an expiration date for the cookie
-      // Example: Expires in 7 days
-      // const expirationDate = new Date();
-      // expirationDate.setDate(expirationDate.getDate() + 7);
-      // Cookies.set('user', userObjectString, { expires: expirationDate });
-
+ 
     }
   } else {
     console.log('not login');

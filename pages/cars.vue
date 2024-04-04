@@ -20,6 +20,20 @@
             fill="#2D3A4A" />
         </svg>
       </div>
+      <div class="d-flex w-100 justify-content-end mb-3">
+       <div class="sort-icon">
+        <i v-if="order == 'Desc'" class="fa-solid fa-arrow-up-wide-short"></i>
+        <i v-if="order == 'Asc'" class="fa-solid fa-arrow-down-short-wide"></i>
+        <v-menu activator="parent">
+        <div class="sort-by-order">
+        <div class="main">
+        <span @click="order = 'Desc' , filterCars()"> تصاعدي </span>
+        <span @click="order = 'Asc' , filterCars()"> تنازلي </span>
+        </div>
+        </div>
+      </v-menu>
+       </div>
+      </div>
       <div class="row">
         <div class="col-12 col-xl-3 col-lg-3" style="position: relative">
           <div class="cars-box filter" :class="{ 'none': !checkSort }">
@@ -446,6 +460,17 @@ let selected7 = ref([]);
 let selected8 = ref([]);
 let selected9 = ref([]);
 
+let order = ref('Desc');
+let orderArr = ref([
+  {
+    value:"Asc",
+    name: locale.value == "ar" ? "تصاعدي" : " ",
+  },
+  {
+    value:"Desc",
+    name: locale.value == "ar" ? "تنازلي" : " ",
+  },
+])
 
 const resetFunc = () => {
   selected1.value = ["all"];
@@ -504,6 +529,7 @@ const filterCars = async () => {
       year: selected7.value,
       color_id: selected8.value,
       fuel_tank_capacity: selected9.value,
+       sort:order.value,
       min_price: valuePrice.value[0],
       max_price: valuePrice.value[1],
       search: searchh.value ? searchh.value : null,
@@ -544,6 +570,7 @@ const filterCar2 = async () => {
       brand_id: selected5.value,
       model_id: selected6.value,
       year: selected7.value,
+      sort:order.value,
       color_id: selected8.value,
       fuel_tank_capacity: selected9.value,
       min_price: valuePrice.value[0],

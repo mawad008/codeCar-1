@@ -7,53 +7,69 @@
             <div class="contain">
               <div class="icon" :class="{ active: paymentBtn1 == 1 }">
                 <img class="def" src="@/assets/images/calc-icon1.svg" alt="" />
-                <img class="active" src="@/assets/images/calc-icon-active1.svg" alt="" />
+                <img
+                  class="active"
+                  src="@/assets/images/calc-icon-active1.svg"
+                  alt=""
+                />
               </div>
               <div class="icon" :class="{ active: paymentBtn2 == 1 }">
                 <img class="def" src="@/assets/images/calc-icon2.svg" alt="" />
-                <img class="active" src="@/assets/images/calc-icon-active2.svg" alt="" />
+                <img
+                  class="active"
+                  src="@/assets/images/calc-icon-active2.svg"
+                  alt=""
+                />
               </div>
               <div class="icon" :class="{ active: paymentBtn3 == 1 }">
                 <img class="def" src="@/assets/images/calc-icon3.svg" alt="" />
-                <img class="active" src="@/assets/images/calc-icon-active3.svg" alt="" />
+                <img
+                  class="active"
+                  src="@/assets/images/calc-icon-active3.svg"
+                  alt=""
+                />
               </div>
               <div class="icon" :class="{ active: paymentBtn4 == 1 }">
                 <img class="def" src="@/assets/images/calc-icon4.svg" alt="" />
-                <img class="active" src="@/assets/images/calc-icon-active4.svg" alt="" />
+                <img
+                  class="active"
+                  src="@/assets/images/calc-icon-active4.svg"
+                  alt=""
+                />
               </div>
               <div class="icon" :class="{ active: paymentBtn5 == 1 }">
                 <img class="def" src="@/assets/images/package.svg" alt="" />
-                <img class="active" src="@/assets/images/package-active.svg" alt="" />
+                <img
+                  class="active"
+                  src="@/assets/images/package-active.svg"
+                  alt=""
+                />
               </div>
             </div>
             <div class="text">
               <div>
                 <h5 :class="{ active: paymentBtn1 == 1 }">
-                  {{ $t('finance1') }}
+                  {{ $t("finance1") }}
                 </h5>
               </div>
               <div>
                 <h5 :class="{ active: paymentBtn2 == 1 }">
-                  {{ $t('finance2') }}
-
+                  {{ $t("finance2") }}
                 </h5>
               </div>
               <div>
                 <h5 :class="{ active: paymentBtn3 == 1 }">
-                  {{ $t('finance3') }}
-
+                  {{ $t("finance3") }}
                 </h5>
               </div>
               <div>
                 <h5 :class="{ active: paymentBtn4 == 1 }">
-                  {{ $t('finance4') }}
-
+                  {{ $t("finance4") }}
                 </h5>
               </div>
               <div>
                 <h5 :class="{ active: paymentBtn5 == 1 }">
-                  {{ $t('finance5') }}
-
+                  {{ $t("finance5") }}
                 </h5>
               </div>
             </div>
@@ -62,58 +78,67 @@
           <div class="content-pagination">
             <div>
               <h5 :class="{ active: paymentBtn1 == 1 }">
-                {{ $t('finance1') }}
-
+                {{ $t("finance1") }}
               </h5>
-              <span> {{ $t('text1') }} </span>
+              <span> {{ $t("text1") }} </span>
             </div>
             <div>
               <h5 :class="{ active: paymentBtn2 == 1 }">
-                {{ $t('finance2') }}
-
+                {{ $t("finance2") }}
               </h5>
-              <span> {{ $t('text2') }}</span>
+              <span> {{ $t("text2") }}</span>
             </div>
             <div>
               <h5 :class="{ active: paymentBtn3 == 1 }">
-                {{ $t('finance3') }}
-
+                {{ $t("finance3") }}
               </h5>
-              <span> {{ $t('text3') }} </span>
+              <span> {{ $t("text3") }} </span>
             </div>
             <div>
               <h5 :class="{ active: paymentBtn4 == 1 }">
-                {{ $t('finance4') }}
-
+                {{ $t("finance4") }}
               </h5>
-              <span> {{ $t('text4') }}</span>
+              <span> {{ $t("text4") }}</span>
             </div>
             <div>
               <h5 :class="{ active: paymentBtn5 == 1 }">
-                {{ $t('finance5') }}
-
+                {{ $t("finance5") }}
               </h5>
-              <span> {{ $t('text5') }} </span>
+              <span> {{ $t("text5") }} </span>
             </div>
           </div>
-          <div class="pagination-container ">
+          <div class="pagination-container">
             <div class="contain second">
-              <div class="dot" :class="{ active: paymentBtn1 == 1, check: checkBtn1 == 1 }">
+              <div
+                class="dot"
+                :class="{ active: paymentBtn1 == 1, check: checkBtn1 == 1 }"
+              >
                 <i class="fa-solid fa-check"></i>
               </div>
-              <div class="dot" :class="{ active: paymentBtn2 == 1, check: checkBtn2 == 1 }">
+              <div
+                class="dot"
+                :class="{ active: paymentBtn2 == 1, check: checkBtn2 == 1 }"
+              >
                 <i class="fa-solid fa-check"></i>
               </div>
-              <div class="dot" :class="{ active: paymentBtn3 == 1, check: checkBtn3 == 1 }">
+              <div
+                class="dot"
+                :class="{ active: paymentBtn3 == 1, check: checkBtn3 == 1 }"
+              >
                 <i class="fa-solid fa-check"></i>
               </div>
-              <div class="dot" :class="{ active: paymentBtn4 == 1, check: checkBtn4 == 1 }">
+              <div
+                class="dot"
+                :class="{ active: paymentBtn4 == 1, check: checkBtn4 == 1 }"
+              >
                 <i class="fa-solid fa-check"></i>
               </div>
-              <div class="dot" :class="{ active: paymentBtn5 == 1, check: checkBtn5 == 1 }">
+              <div
+                class="dot"
+                :class="{ active: paymentBtn5 == 1, check: checkBtn5 == 1 }"
+              >
                 <i class="fa-solid fa-check"></i>
               </div>
-
             </div>
           </div>
         </div>
@@ -121,10 +146,17 @@
       <div class="col-12 col-xl-7 col-lg-7">
         <div v-if="paymentIndividualBtn == 1" class="range-container">
           <div class="d-flex flex-column range-slider">
-
-            <span class="word">{{ $t('calc1') }}</span>
-            <v-slider v-model="sliderValue1" :min="minNum" :max="maxNum" step="5" thumb-label="always"
-              class="custom-slider mt-5" @input="updateRange()" :reverse="checkSlider">
+            <span class="word">{{ $t("calc1") }}</span>
+            <v-slider
+              v-model="sliderValue1"
+              :min="minNum"
+              :max="maxNum"
+              step="5"
+              thumb-label="always"
+              class="custom-slider mt-5"
+              @input="updateRange()"
+              :reverse="checkSlider"
+            >
               <template v-slot:thumb-label="{ value }">
                 <div class="d-flex align-items-center gap-2">
                   <!-- <span> {{ $t('curr') }} </span> -->
@@ -135,13 +167,21 @@
           </div>
           <div class="d-flex flex-column range-slider">
             <span class="word">
-              {{ $t('calc2') }}
+              {{ $t("calc2") }}
             </span>
-            <v-slider v-model="sliderValue2" min="1" max="5" step="1" thumb-label="always" class="custom-slider mt-5"
-              @input="updateRange()" :reverse="checkSlider">
+            <v-slider
+              v-model="sliderValue2"
+              min="1"
+              max="5"
+              step="1"
+              thumb-label="always"
+              class="custom-slider mt-5"
+              @input="updateRange()"
+              :reverse="checkSlider"
+            >
               <template v-slot:thumb-label="{ value }">
                 <div class="d-flex align-items-center gap-2">
-                  <span> {{ $t('year') }} </span>
+                  <span> {{ $t("year") }} </span>
                   {{ sliderValue2 }}
                 </div>
               </template>
@@ -149,11 +189,19 @@
           </div>
           <div class="d-flex flex-column range-slider">
             <span class="word">
-              {{ $t('calc3') }}
+              {{ $t("calc3") }}
             </span>
 
-            <v-slider v-model="sliderValue3" :min="minNum" :max="maxNum" step="5" thumb-label="always"
-              class="custom-slider mt-5" @input="updateRange()" :reverse="checkSlider">
+            <v-slider
+              v-model="sliderValue3"
+              :min="minNum"
+              :max="maxNum"
+              step="5"
+              thumb-label="always"
+              class="custom-slider mt-5"
+              @input="updateRange()"
+              :reverse="checkSlider"
+            >
               <template v-slot:thumb-label="{ value }">
                 <div class="d-flex align-items-center gap-2">
                   <!-- <span> {{ $t('curr') }} </span> -->
@@ -184,20 +232,40 @@
                   </div>
                 </div> -->
           <div class="d-flex justify-content-end">
-            <button @click=" paymentFunc1()" :disabled="pending1" class="next-step gap-3">
-              {{ $t('next') }}
-              <v-progress-circular v-if="pending1" indeterminate :size="25" :width="4"></v-progress-circular>
+            <button
+              @click="paymentFunc1()"
+              :disabled="pending1"
+              class="next-step gap-3"
+            >
+              {{ $t("next") }}
+              <v-progress-circular
+                v-if="pending1"
+                indeterminate
+                :size="25"
+                :width="4"
+              ></v-progress-circular>
             </button>
           </div>
         </div>
 
-        <div v-if="paymentIndividualBtn == 2" class="d-flex flex-column h-100 justify-content-between gap-4">
+        <div
+          v-if="paymentIndividualBtn == 2"
+          class="d-flex flex-column h-100 justify-content-between gap-4"
+        >
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
-              <span> {{ $t('carBrand') }}</span>
+              <span> {{ $t("carBrand") }}</span>
               <div class="input">
-                <Dropdown v-model="form2.brand" :options="brands" :filter-placeholder="$t('search')" filter
-                  optionValue="id" optionLabel="title" :placeholder="$t('examplee2')" class="">
+                <Dropdown
+                  v-model="form2.brand"
+                  :options="brands"
+                  :filter-placeholder="$t('search')"
+                  filter
+                  optionValue="id"
+                  optionLabel="title"
+                  :placeholder="$t('examplee2')"
+                  class=""
+                >
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option.title }}</div>
@@ -206,18 +274,27 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v2$.brand.$error">{{
                   v2$.brand.$errors[0].$message
-                  }}</span>
-                <span class="error-msg position-relative" v-if="errors2.brand">{{
-                  errors2.brand[0]
-                  }}</span>
+                }}</span>
+                <span
+                  class="error-msg position-relative"
+                  v-if="errors2.brand"
+                  >{{ errors2.brand[0] }}</span
+                >
               </div>
             </div>
             <div class="input-container">
-              <span> {{ $t('carModel') }} </span>
+              <span> {{ $t("carModel") }} </span>
               <div class="input">
-                <Dropdown v-model="form2.model" :filter-placeholder="$t('search')"
-                  :options="form2.brand != '' ? getmodels[0].models : ''" filter optionLabel="name" optionValue="id"
-                  placeholder="" class="">
+                <Dropdown
+                  v-model="form2.model"
+                  :filter-placeholder="$t('search')"
+                  :options="form2.brand != '' ? getmodels[0].models : ''"
+                  filter
+                  optionLabel="name"
+                  optionValue="id"
+                  placeholder=""
+                  class=""
+                >
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option.name }}</div>
@@ -226,19 +303,26 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v2$.model.$error">{{
                   v2$.model.$errors[0].$message
-                  }}</span>
+                }}</span>
                 <span class="error-msg" v-if="errors2.model">{{
                   errors2.model[0]
-                  }}</span>
+                }}</span>
               </div>
             </div>
           </div>
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
-              <span> {{ $t('theYear') }}</span>
+              <span> {{ $t("theYear") }}</span>
               <div class="input">
-                <Dropdown :filter-placeholder="$t('search')" v-model="form2.year" :options="years" filter optionLabel=""
-                  :placeholder="$t('theYear')" class="">
+                <Dropdown
+                  :filter-placeholder="$t('search')"
+                  v-model="form2.year"
+                  :options="years"
+                  filter
+                  optionLabel=""
+                  :placeholder="$t('theYear')"
+                  class=""
+                >
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option }}</div>
@@ -247,17 +331,25 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v2$.year.$error">{{
                   v2$.year.$errors[0].$message
-                  }}</span>
+                }}</span>
                 <span class="error-msg" v-if="errors2.year">{{
                   errors2.year[0]
-                  }}</span>
+                }}</span>
               </div>
             </div>
             <div class="input-container">
-              <span>{{ $t('gear') }}</span>
+              <span>{{ $t("gear") }}</span>
               <div class="input">
-                <Dropdown v-model="form2.gear_shifter" :options="gear_shifterArr" filter
-                  :filter-placeholder="$t('search')" optionLabel="name" optionValue="value" placeholder="" class="">
+                <Dropdown
+                  v-model="form2.gear_shifter"
+                  :options="gear_shifterArr"
+                  filter
+                  :filter-placeholder="$t('search')"
+                  optionLabel="name"
+                  optionValue="value"
+                  placeholder=""
+                  class=""
+                >
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option.name }}</div>
@@ -266,20 +358,27 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v2$.gear_shifter.$error">{{
                   v2$.gear_shifter.$errors[0].$message
-                  }}</span>
+                }}</span>
                 <span class="error-msg" v-if="errors2.gear_shifter">{{
                   errors2.gear_shifter[0]
-                  }}</span>
+                }}</span>
               </div>
             </div>
           </div>
-          <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3 ">
+          <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
-              <span>{{ $t('color') }}</span>
+              <span>{{ $t("color") }}</span>
               <div class="input">
-                <Dropdown v-model="form2.color_id" :options="optionsCars.colors" filter
-                  :filter-placeholder="$t('search')" optionLabel="title" optionValue="id" :placeholder="$t('example6')"
-                  class="">
+                <Dropdown
+                  v-model="form2.color_id"
+                  :options="optionsCars.colors"
+                  filter
+                  :filter-placeholder="$t('search')"
+                  optionLabel="title"
+                  optionValue="id"
+                  :placeholder="$t('example6')"
+                  class=""
+                >
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option.title }}</div>
@@ -288,89 +387,128 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v2$.color_id.$error">{{
                   v2$.color_id.$errors[0].$message
-                  }}</span>
+                }}</span>
                 <span class="error-msg" v-if="errors2.color_id">{{
                   errors2.color_id[0]
-                  }}</span>
+                }}</span>
               </div>
             </div>
             <div class="input-container">
-                        <span>{{ $t("carCategory") }}</span>
-                        <div class="input">
-                        <Dropdown
-                          v-model="form2.category"
-                          optionValue="id"
-                          :filter-placeholder="$t('search')"
-                          :options=" getCategories ? getCategories[0].Categories : '' "
-                          filter
-                          optionLabel="name"
-                          :placeholder="$t('carCategory')"
-                          class=""
-                        >
-                          <template #option="slotProps">
-                            <div class="flex align-items-center">
-                              <div>{{ slotProps.option.name }}</div>
-                            </div>
-                          </template>
-                        </Dropdown>
-                        <!-- <span class="error-msg" v-if="v1$.Category.$error">{{
+              <span>{{ $t("carCategory") }}</span>
+              <div class="input">
+                <Dropdown
+                  v-model="form2.category"
+                  optionValue="id"
+                  :filter-placeholder="$t('search')"
+                  :options="getCategories ? getCategories[0].Categories : ''"
+                  filter
+                  optionLabel="name"
+                  :placeholder="$t('carCategory')"
+                  class=""
+                >
+                  <template #option="slotProps">
+                    <div class="flex align-items-center">
+                      <div>{{ slotProps.option.name }}</div>
+                    </div>
+                  </template>
+                </Dropdown>
+                <!-- <span class="error-msg" v-if="v1$.Category.$error">{{
                             v1$.Category.$errors[0].$message
                           }}</span> -->
-                        <span class="error-msg2" v-if="errors2.category">{{
-                          errors2.category[0]
-                        }}</span>
-                        
-                        </div>
-                      </div>
+                <span class="error-msg2" v-if="errors2.category">{{
+                  errors2.category[0]
+                }}</span>
+              </div>
+            </div>
           </div>
           <div class="btns">
             <button @click="paymentIndividualBtn = 1" class="back">
-              {{ $t('back') }}
+              {{ $t("back") }}
             </button>
-            <button @click=" paymentFunc2()" :disabled="pending2" class="next gap-3">
-              {{ $t('next') }}
-              <v-progress-circular v-if="pending2" indeterminate :size="25" :width="4"></v-progress-circular>
+            <button
+              @click="paymentFunc2()"
+              :disabled="pending2"
+              class="next gap-3"
+            >
+              {{ $t("next") }}
+              <v-progress-circular
+                v-if="pending2"
+                indeterminate
+                :size="25"
+                :width="4"
+              ></v-progress-circular>
             </button>
           </div>
         </div>
-        <div v-if="paymentIndividualBtn == 3" class="d-flex h-100 justify-content-between flex-column gap-4 "
-          style="position:relative;">
+        <div
+          v-if="paymentIndividualBtn == 3"
+          class="d-flex h-100 justify-content-between flex-column gap-4"
+          style="position: relative"
+        >
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
-              <span> {{ $t('name1') }} </span>
+              <span> {{ $t("name1") }} </span>
               <div class="input">
-                <input type="text" placeholder="" name="" v-model="form3.client_name" class="" />
+                <input
+                  type="text"
+                  placeholder=""
+                  name=""
+                  v-model="form3.client_name"
+                  class=""
+                />
                 <span class="error-msg" v-if="v3$.client_name.$error">{{
                   v3$.client_name.$errors[0].$message
-                  }}</span>
-              </div>
-              <span class="error-msg mt-1" style="" v-if="errors3.client_name">{{
-                errors3.client_name[0]
                 }}</span>
+              </div>
+              <span
+                class="error-msg mt-1"
+                style=""
+                v-if="errors3.client_name"
+                >{{ errors3.client_name[0] }}</span
+              >
             </div>
             <!-- {{ form3 }} -->
             <div class="input-container">
-              <span> {{ $t('phone') }}</span>
+              <span> {{ $t("phone") }}</span>
               <div class="input">
-                <div class="w-100  d-flex align-items-center justify-content-between phonenum">
-                  <input type="tel" maxlength="10" :placeholder="$t('mobileplace')" name="" v-model="form3.phone" />
+                <div
+                  class="w-100 d-flex align-items-center justify-content-between phonenum"
+                >
+                  <input
+                    type="tel"
+                    maxlength="10"
+                    :placeholder="$t('mobileplace')"
+                    name=""
+                    v-model="form3.phone"
+                  />
                   <span class="numm login">966+</span>
                 </div>
-                <span class="error-msg d-block" style="position:relative;" v-if="v3$.phone.$error">{{
-                  v3$.phone.$errors[0].$message
-                  }}</span>
+                <span
+                  class="error-msg d-block"
+                  style="position: relative"
+                  v-if="v3$.phone.$error"
+                  >{{ v3$.phone.$errors[0].$message }}</span
+                >
               </div>
               <span class="error-msg2 mt-1" style="" v-if="errors3.phone">{{
                 errors3.phone[0]
-                }}</span>
+              }}</span>
             </div>
           </div>
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
-              <span> {{ $t('sex') }} </span>
+              <span> {{ $t("sex") }} </span>
               <div class="input">
-                <Dropdown v-model="form3.sex" :options="sexArr" filter :filter-placeholder="$t('search')"
-                  optionLabel="name" optionValue="value" placeholder="" class="">
+                <Dropdown
+                  v-model="form3.sex"
+                  :options="sexArr"
+                  filter
+                  :filter-placeholder="$t('search')"
+                  optionLabel="name"
+                  optionValue="value"
+                  placeholder=""
+                  class=""
+                >
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option.name }}</div>
@@ -379,31 +517,44 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v3$.sex.$error">{{
                   v3$.sex.$errors[0].$message
-                  }}</span>
+                }}</span>
                 <span class="error-msg" v-if="errors3.sex">{{
                   errors3.sex[0]
-                  }}</span>
+                }}</span>
               </div>
             </div>
             <div class="input-container">
-              <span> {{ $t('birth') }}</span>
+              <span> {{ $t("birth") }}</span>
               <div class="input">
-                <input type="date" name="" v-model="form3.birth_date" class="" />
+                <input
+                  type="date"
+                  name=""
+                  v-model="form3.birth_date"
+                  class=""
+                />
                 <span class="error-msg" v-if="v3$.birth_date.$error">{{
                   v3$.birth_date.$errors[0].$message
-                  }}</span>
+                }}</span>
               </div>
               <span class="error-msg mt-1" v-if="errors3.birth_date">{{
                 errors3.birth_date[0]
-                }}</span>
+              }}</span>
             </div>
           </div>
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
-              <span> {{ $t('city') }} </span>
+              <span> {{ $t("city") }} </span>
               <div class="input">
-                <Dropdown v-model="form3.city_id" :options="cities" filter :filter-placeholder="$t('search')"
-                  optionLabel="name" optionValue="id" placeholder="" class="">
+                <Dropdown
+                  v-model="form3.city_id"
+                  :options="cities"
+                  filter
+                  :filter-placeholder="$t('search')"
+                  optionLabel="name"
+                  optionValue="id"
+                  placeholder=""
+                  class=""
+                >
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option.name }}</div>
@@ -412,34 +563,47 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v3$.city_id.$error">{{
                   v3$.city_id.$errors[0].$message
-                  }}</span>
+                }}</span>
                 <span class="error-msg" v-if="errors3.city_id">{{
                   errors3.city_id[0]
-                  }}</span>
+                }}</span>
               </div>
             </div>
             <div class="input-container">
-              <span> {{ $t('ident') }}</span>
+              <span> {{ $t("ident") }}</span>
               <div class="input">
-                <input type="tel" v-model="form3.identity_no" maxlength="11" name="" class="" />
+                <input
+                  type="tel"
+                  v-model="form3.identity_no"
+                  maxlength="11"
+                  name=""
+                  class=""
+                />
                 <span class="error-msg" v-if="v3$.identity_no.$error">{{
                   v3$.identity_no.$errors[0].$message
-                  }}</span>
+                }}</span>
               </div>
               <span class="error-msg mt-1" v-if="errors3.identity_no">{{
                 errors3.identity_no[0]
-                }}</span>
+              }}</span>
             </div>
           </div>
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span>
-                {{ $t('sector') }}
+                {{ $t("sector") }}
               </span>
               <div class="input">
-                <Dropdown v-model="form3.sector" :options="optionsCars.sectors" filter
-                  :filter-placeholder="$t('search')" optionLabel="name" optionValue="id" :placeholder="$t('example7')"
-                  class="">
+                <Dropdown
+                  v-model="form3.sector"
+                  :options="optionsCars.sectors"
+                  filter
+                  :filter-placeholder="$t('search')"
+                  optionLabel="name"
+                  optionValue="id"
+                  :placeholder="$t('example7')"
+                  class=""
+                >
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option.name }}</div>
@@ -448,36 +612,50 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v3$.sector.$error">{{
                   v3$.sector.$errors[0].$message
-                  }}</span>
+                }}</span>
                 <span class="error-msg" v-if="errors3.sector">{{
                   errors3.sector[0]
-                  }}</span>
+                }}</span>
               </div>
             </div>
             <div class="input-container">
               <span>
-                {{ $t('sal') }}
+                {{ $t("sal") }}
               </span>
               <div class="input">
-                <input type="number" min="1" placeholder=" 25000" v-model="form3.salary" name="" class="" />
+                <input
+                  type="number"
+                  min="1"
+                  placeholder=" 25000"
+                  v-model="form3.salary"
+                  name=""
+                  class=""
+                />
                 <span class="error-msg" v-if="v3$.salary.$error">{{
                   v3$.salary.$errors[0].$message
-                  }}</span>
+                }}</span>
               </div>
               <span class="error-msg mt-1" v-if="errors3.salary">{{
                 errors3.salary[0]
-                }}</span>
+              }}</span>
             </div>
-
           </div>
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span>
-                {{ $t('sal2') }}
+                {{ $t("sal2") }}
               </span>
               <div class="input">
-                <Dropdown v-model="form3.bank" :options="optionsCars.banks" filter :filter-placeholder="$t('search')"
-                  optionLabel="name" optionValue="id" :placeholder="$t('example8')" class="">
+                <Dropdown
+                  v-model="form3.bank"
+                  :options="optionsCars.banks"
+                  filter
+                  :filter-placeholder="$t('search')"
+                  optionLabel="name"
+                  optionValue="id"
+                  :placeholder="$t('example8')"
+                  class=""
+                >
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option.name }}</div>
@@ -486,32 +664,46 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v3$.bank.$error">{{
                   v3$.bank.$errors[0].$message
-                  }}</span>
+                }}</span>
                 <span class="error-msg" v-if="errors3.bank">{{
                   errors3.bank[0]
-                  }}</span>
+                }}</span>
               </div>
             </div>
             <div class="input-container">
-              <span> {{ $t('sal3') }} </span>
+              <span> {{ $t("sal3") }} </span>
               <div class="input">
-                <input type="number" min="1" placeholder="25000" name="" v-model="form3.Monthly_cometment" class="" />
+                <input
+                  type="number"
+                  min="1"
+                  placeholder="25000"
+                  name=""
+                  v-model="form3.Monthly_cometment"
+                  class=""
+                />
                 <span class="error-msg" v-if="v3$.Monthly_cometment.$error">{{
                   v3$.Monthly_cometment.$errors[0].$message
-                  }}</span>
+                }}</span>
               </div>
               <span class="error-msg mt-1" v-if="errors3.Monthly_cometment">{{
                 errors3.Monthly_cometment[0]
-                }}</span>
+              }}</span>
             </div>
           </div>
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
-              <span> {{ $t('nat') }} </span>
+              <span> {{ $t("nat") }} </span>
               <div class="input">
-                <Dropdown v-model="form3.nationality_id" :options="optionsCars.nationalities" filter
-                  :filter-placeholder="$t('search')" optionValue="id" optionLabel="title" :placeholder="$t('nat')"
-                  class="">
+                <Dropdown
+                  v-model="form3.nationality_id"
+                  :options="optionsCars.nationalities"
+                  filter
+                  :filter-placeholder="$t('search')"
+                  optionValue="id"
+                  optionLabel="title"
+                  :placeholder="$t('nat')"
+                  class=""
+                >
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option.title }}</div>
@@ -520,90 +712,152 @@
                 </Dropdown>
                 <span class="error-msg" v-if="v3$.nationality_id.$error">{{
                   v3$.nationality_id.$errors[0].$message
-                  }}</span>
+                }}</span>
                 <span class="error-msg" v-if="errors3.nationality_id">{{
                   errors3.nationality_id[0]
-                  }}</span>
+                }}</span>
               </div>
             </div>
             <div class="input-container">
               <div class="d-flex align-items-center gap-3">
-                <span> {{ $t('emailE') }}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M18.3337 9.99999C18.3337 14.6024 14.6027 18.3333 10.0003 18.3333C5.39795 18.3333 1.66699 14.6024 1.66699 9.99999C1.66699 5.39762 5.39795 1.66666 10.0003 1.66666C14.6027 1.66666 18.3337 5.39762 18.3337 9.99999ZM10.8337 5.83332C10.8337 6.29356 10.4606 6.66666 10.0003 6.66666C9.54009 6.66666 9.16699 6.29356 9.16699 5.83332C9.16699 5.37309 9.54009 4.99999 10.0003 4.99999C10.4606 4.99999 10.8337 5.37309 10.8337 5.83332ZM9.16699 7.70832C8.82182 7.70832 8.54199 7.98815 8.54199 8.33332C8.54199 8.6785 8.82182 8.95832 9.16699 8.95832H9.37533V14.1667C9.37533 14.5118 9.65515 14.7917 10.0003 14.7917C10.3455 14.7917 10.6253 14.5118 10.6253 14.1667V8.33332C10.6253 7.98815 10.3455 7.70832 10.0003 7.70832H9.16699Z"
-                    fill="#90A3BF" />
-                </svg>
+                <span> {{ $t("emailE") }}</span>
+                <button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M18.3337 9.99999C18.3337 14.6024 14.6027 18.3333 10.0003 18.3333C5.39795 18.3333 1.66699 14.6024 1.66699 9.99999C1.66699 5.39762 5.39795 1.66666 10.0003 1.66666C14.6027 1.66666 18.3337 5.39762 18.3337 9.99999ZM10.8337 5.83332C10.8337 6.29356 10.4606 6.66666 10.0003 6.66666C9.54009 6.66666 9.16699 6.29356 9.16699 5.83332C9.16699 5.37309 9.54009 4.99999 10.0003 4.99999C10.4606 4.99999 10.8337 5.37309 10.8337 5.83332ZM9.16699 7.70832C8.82182 7.70832 8.54199 7.98815 8.54199 8.33332C8.54199 8.6785 8.82182 8.95832 9.16699 8.95832H9.37533V14.1667C9.37533 14.5118 9.65515 14.7917 10.0003 14.7917C10.3455 14.7917 10.6253 14.5118 10.6253 14.1667V8.33332C10.6253 7.98815 10.3455 7.70832 10.0003 7.70832H9.16699Z"
+                      fill="#90A3BF"
+                    />
+                  </svg>
+                  <v-tooltip activator="parent" location="top" color="red"
+                    > {{ $t('tooltip1') }}  </v-tooltip
+                  >
+                </button>
               </div>
+
               <div class="input">
-                <input type="email" placeholder=" Demo@gmail.com" v-model="form3.email" name="" class="" />
+                <input
+                  type="email"
+                  placeholder=" Demo@gmail.com"
+                  v-model="form3.email"
+                  name=""
+                  class=""
+                />
                 <span class="error-msg" v-if="v3$.email.$error">{{
                   v3$.email.$errors[0].$message
-                  }}</span>
+                }}</span>
               </div>
               <span class="error-msg mt-1" v-if="errors3.email">{{
                 errors3.email[0]
-                }}</span>
+              }}</span>
             </div>
           </div>
           <div
-            class="d-flex main-radio align-items-center flex-column flex-xl-row flex-lg-row w-100 justify-content-between">
+            class="d-flex main-radio align-items-center flex-column flex-xl-row flex-lg-row w-100 justify-content-between"
+          >
             <div>
-              <span> {{ $t('problem') }} </span>
+              <span> {{ $t("problem") }} </span>
               <v-radio-group v-model="form3.have_life_problem">
                 <div class="d-flex">
                   <div class="d-flex align-items-center">
-                    <label for="radio-first-1">{{ $t('yes') }}</label>
-                    <v-radio id="radio-first-1" color="#DCB63B" name="radio-1" :value="1"></v-radio>
+                    <label for="radio-first-1">{{ $t("yes") }}</label>
+                    <v-radio
+                      id="radio-first-1"
+                      color="#DCB63B"
+                      name="radio-1"
+                      :value="1"
+                    ></v-radio>
                   </div>
                   <div class="d-flex align-items-center">
-                    <label for="radio-sec-2"> {{ $t('no') }} </label>
-                    <v-radio id="radio-sec-2" color="#DCB63B" name="radio-1" :value="0"></v-radio>
+                    <label for="radio-sec-2"> {{ $t("no") }} </label>
+                    <v-radio
+                      id="radio-sec-2"
+                      color="#DCB63B"
+                      name="radio-1"
+                      :value="0"
+                    ></v-radio>
                   </div>
                 </div>
               </v-radio-group>
             </div>
             <div>
-              <span> {{ $t('traffic') }} </span>
+              <span> {{ $t("traffic") }} </span>
               <v-radio-group v-model="form3.traffic_violations">
                 <div class="d-flex">
                   <div class="d-flex align-items-center">
-                    <label for="radio-first-3">{{ $t('yes') }}</label>
-                    <v-radio id="radio-first-3" color="#DCB63B" name="radio-1" :value="1"></v-radio>
+                    <label for="radio-first-3">{{ $t("yes") }}</label>
+                    <v-radio
+                      id="radio-first-3"
+                      color="#DCB63B"
+                      name="radio-1"
+                      :value="1"
+                    ></v-radio>
                   </div>
                   <div class="d-flex align-items-center">
-                    <label for="radio-sec-4"> {{ $t('no') }} </label>
-                    <v-radio id="radio-sec-4" color="#DCB63B" name="radio-1" :value="0"></v-radio>
+                    <label for="radio-sec-4"> {{ $t("no") }} </label>
+                    <v-radio
+                      id="radio-sec-4"
+                      color="#DCB63B"
+                      name="radio-1"
+                      :value="0"
+                    ></v-radio>
                   </div>
                 </div>
               </v-radio-group>
             </div>
             <div>
-              <span> {{ $t('driv') }} </span>
+              <span> {{ $t("driv") }} </span>
               <v-radio-group v-model="form3.driving_license">
                 <div class="d-flex">
                   <div class="d-flex align-items-center">
-                    <label for="radio-first-5">{{ $t('yes') }}</label>
-                    <v-radio id="radio-first-5" color="#DCB63B" name="radio-1" :value="1"></v-radio>
+                    <label for="radio-first-5">{{ $t("yes") }}</label>
+                    <v-radio
+                      id="radio-first-5"
+                      color="#DCB63B"
+                      name="radio-1"
+                      :value="1"
+                    ></v-radio>
                   </div>
                   <div class="d-flex align-items-center">
-                    <label for="radio-sec-6"> {{ $t('no') }} </label>
-                    <v-radio id="radio-sec-6" color="#DCB63B" name="radio-1" :value="0"></v-radio>
+                    <label for="radio-sec-6"> {{ $t("no") }} </label>
+                    <v-radio
+                      id="radio-sec-6"
+                      color="#DCB63B"
+                      name="radio-1"
+                      :value="0"
+                    ></v-radio>
                   </div>
                 </div>
               </v-radio-group>
             </div>
             <div>
-              <span> {{ $t('loan') }} </span>
+              <span> {{ $t("loan") }} </span>
               <v-radio-group v-model="form3.department_loan">
                 <div class="d-flex">
                   <div class="d-flex align-items-center">
-                    <label for="radio-first-7">{{ $t('yes') }}</label>
-                    <v-radio id="radio-first-7" color="#DCB63B" name="radio-1" :value="1"></v-radio>
+                    <label for="radio-first-7">{{ $t("yes") }}</label>
+                    <v-radio
+                      id="radio-first-7"
+                      color="#DCB63B"
+                      name="radio-1"
+                      :value="1"
+                    ></v-radio>
                   </div>
                   <div class="d-flex align-items-center">
-                    <label for="radio-sec-8"> {{ $t('no') }} </label>
-                    <v-radio id="radio-sec-8" color="#DCB63B" name="radio-1" :value="0"></v-radio>
+                    <label for="radio-sec-8"> {{ $t("no") }} </label>
+                    <v-radio
+                      id="radio-sec-8"
+                      color="#DCB63B"
+                      name="radio-1"
+                      :value="0"
+                    ></v-radio>
                   </div>
                 </div>
               </v-radio-group>
@@ -612,28 +866,49 @@
 
           <div class="safety-mssg">
             <div class="d-flex align-items-center gap-2">
-              <img src="~/assets/images/ic-security-safety.svg" alt="">
-              <span> {{ $t('safetyMsg') }} </span>
+              <img src="~/assets/images/ic-security-safety.svg" alt="" />
+              <span> {{ $t("safetyMsg") }} </span>
             </div>
           </div>
           <div class="btns">
-            <button @click="paymentIndividualBtn = 2, pending3 = false" class="back">
-              {{ $t('back') }}
+            <button
+              @click="(paymentIndividualBtn = 2), (pending3 = false)"
+              class="back"
+            >
+              {{ $t("back") }}
             </button>
-            <button @click="paymentFunc3()" :disabled="pending3" class="next gap-2">
-              {{ $t('next') }}
-              <v-progress-circular v-if="pending3" indeterminate :size="25" :width="4"></v-progress-circular>
+            <button
+              @click="paymentFunc3()"
+              :disabled="pending3"
+              class="next gap-2"
+            >
+              {{ $t("next") }}
+              <v-progress-circular
+                v-if="pending3"
+                indeterminate
+                :size="25"
+                :width="4"
+              ></v-progress-circular>
             </button>
           </div>
         </div>
 
         <div v-if="paymentIndividualBtn == 4" class="offers">
           <div v-if="offers.length >= 1">
-            <div class="w-100 d-flex justify-content-center justify-content-xl-end justify-content-lg-end">
+            <div
+              class="w-100 d-flex justify-content-center justify-content-xl-end justify-content-lg-end"
+            >
               <div class="input dropdown-finance-filter">
-                <Dropdown v-model="filterFinance" :options="filterFinanceArr" filter
-                  :filter-placeholder="$t('search')" optionLabel="name" optionValue="value" :placeholder="$t('show1')"
-                  class="">
+                <Dropdown
+                  v-model="filterFinance"
+                  :options="filterFinanceArr"
+                  filter
+                  :filter-placeholder="$t('search')"
+                  optionLabel="name"
+                  optionValue="value"
+                  :placeholder="$t('show1')"
+                  class=""
+                >
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option.name }}</div>
@@ -641,242 +916,292 @@
                   </template>
                 </Dropdown>
               </div>
-
             </div>
-          <v-radio-group v-model="bank_offer_id">
+            <v-radio-group v-model="bank_offer_id">
+              <div class="row">
+                <div
+                  v-for="(item, index) in sortedItems"
+                  class="col-12 col-xl-6 col-lg-6"
+                >
+                  <label :for="`offer-${index}-1`" class="offer w-100">
+                    <div
+                      class="d-flex align-items-center justify-content-between w-100"
+                    >
+                      <span class="name">{{ item.OfferName.title }}</span>
+                      <v-radio
+                        class="radio-input"
+                        :id="`offer-${index}-1`"
+                        color="#DCB63B"
+                        name="offer-1"
+                        :value="item.bank_offer_id"
+                        v-model="bank_offer_id"
+                      ></v-radio>
+                    </div>
+                    <div class="price">
+                      <h4>{{ item.monthly_installment }}</h4>
+                      <span> {{ $t("offer1") }} </span>
+                    </div>
+                    <v-divider></v-divider>
+                    <div class="details">
+                      <div class="detail">
+                        <div class="d-flex align-items-center gap-2">
+                          <img src="~/assets/images/det1.png" alt="" />
+                          <span class="name"> {{ $t("offer2") }} </span>
+                        </div>
+                        <p class="price">
+                          {{ item.fundingAmount }} {{ $t("curr") }}
+                        </p>
+                      </div>
+                      <div class="detail">
+                        <div class="d-flex align-items-center gap-2">
+                          <img src="~/assets/images/det2.png" alt="" />
+                          <span class="name"> {{ $t("offer3") }}</span>
+                        </div>
+                        <p class="price">
+                          {{ item.firs_installment }} {{ $t("curr") }}
+                        </p>
+                      </div>
+                      <div class="detail">
+                        <div class="d-flex align-items-center gap-2">
+                          <img src="~/assets/images/det3.png" alt="" />
+                          <span class="name"> {{ $t("offer4") }} </span>
+                        </div>
+                        <p class="price">{{ item.years }} {{ $t("year") }}</p>
+                      </div>
+                      <div class="detail">
+                        <div class="d-flex align-items-center gap-2">
+                          <img src="~/assets/images/det4.png" alt="" />
+                          <span class="name"> {{ $t("calc3") }}</span>
+                        </div>
+                        <p class="price">
+                          {{ item.last_installment }} {{ $t("curr") }}
+                        </p>
+                      </div>
+                      <div class="detail">
+                        <div class="d-flex align-items-center gap-2">
+                          <img src="~/assets/images/det5.png" alt="" />
+                          <span class="name"> {{ $t("offer5") }} </span>
+                        </div>
+                        <p class="price">
+                          {{ item.sectorAdministrative_fees }} {{ $t("curr") }}
+                        </p>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </v-radio-group>
+            <div class="btns">
+              <button @click="paymentIndividualBtn = 3" class="back">
+                {{ $t("back") }}
+              </button>
+              <button @click="paymentFunc4()" class="next gap-3">
+                {{ $t("next") }}
+                <v-progress-circular
+                  v-if="pending4"
+                  indeterminate
+                  :size="25"
+                  :width="4"
+                ></v-progress-circular>
+              </button>
+            </div>
+          </div>
+          <div v-else class="empty">
+            <div class="main">
+              <client-only>
+                <Vue3Lottie
+                  :animation-data="emptyoffers"
+                  :height="300"
+                  :width="300"
+                />
+              </client-only>
+              <h4>{{ $t("offerEmpty1") }}</h4>
+              <span>
+                {{ $t("offerEmpty2") }}
+              </span>
+              <div
+                class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4"
+              >
+                <button @click="paymentIndividualBtn = 3" class="back">
+                  {{ $t("back") }}
+                </button>
+                <nuxt-link :to="localePath('/')">
+                  <button class="home">{{ $t("backHome") }}</button>
+                </nuxt-link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div v-if="paymentIndividualBtn == 5" class="final-review">
+          <div class="offer">
+            <span class="word">{{ $t("offer") }}</span>
+            <div class="main-container">
+              <div class="name-price">
+                <div class="d-flex main flex-column">
+                  <span class="name">{{ $t("offer") }}</span>
+                  <p class="type mt-2">
+                    {{ $t("offernum") }} : {{ theOffer.bank_offer_id }}
+                  </p>
+                </div>
+                <div class="d-flex main flex-column">
+                  <h6>{{ theOffer.monthly_installment }} {{ $t("curr") }}</h6>
+                  <p class="type">{{ $t("offer1") }}</p>
+                </div>
+              </div>
+              <div class="offer-det">
+                <div
+                  class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3"
+                >
+                  <div class="d-flex align-items-center gap-4">
+                    <div class="d-flex align-items-center gap-2">
+                      <img src="~/assets/images/det1.png" alt="" />
+                      <span> {{ $t("offer2") }} </span>
+                    </div>
+                    <h6>{{ theOffer.fundingAmount }} {{ $t("curr") }}</h6>
+                  </div>
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex align-items-center gap-2">
+                      <img src="~/assets/images/det2.png" alt="" />
+                      <span>{{ $t("calc3") }}</span>
+                    </div>
+                    <h6>{{ theOffer.last_installment }} {{ $t("curr") }}</h6>
+                  </div>
+                </div>
+                <div
+                  class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3"
+                >
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex align-items-center gap-2">
+                      <img src="~/assets/images/det3.png" alt="" />
+                      <span> {{ $t("offer3") }} </span>
+                    </div>
+                    <h6>{{ theOffer.firs_installment }} {{ $t("curr") }}</h6>
+                  </div>
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex align-items-center gap-2">
+                      <img src="~/assets/images/det4.png" alt="" />
+                      <span>{{ $t("offer5") }}</span>
+                    </div>
+                    <h6>{{ theOffer.sectorAdministrative_fees }} ريال سعودي</h6>
+                  </div>
+                </div>
+                <div
+                  class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3"
+                >
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex align-items-center gap-2">
+                      <img src="~/assets/images/det3.png" alt="" />
+                      <span> {{ $t("offer4") }} </span>
+                    </div>
+                    <h6>{{ theOffer.years }} {{ $t("year") }}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="offer">
+            <span class="word"> {{ $t("carData") }} </span>
+            <div class="main-container">
+              <div class="img-container">
+                <div class="image">
+                  <!-- <img src="~/assets/images/small-car.png" /> -->
+                  <img :src="theOffer.car.main_image" />
+                </div>
+                <div class="d-flex flex-column gap-2">
+                  <h6>{{ theOffer.car.main_title }}</h6>
+                  <span
+                    >{{ theOffer.car.brand.title }} -
+                    {{ theOffer.car.model.title }} -
+                    {{ theOffer.car.color.title }}
+                    -
+                    {{ theOffer.car.year }}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="files-span">
+              <span class="f1"> {{ $t("uti") }} </span>
+              <span class="f2">( {{ $t("opt") }} )</span>
+            </div>
             <div class="row">
-              <div v-for="item, index in sortedItems" class="col-12 col-xl-6 col-lg-6">
-                <label :for="`offer-${index}-1`" class="offer w-100">
-                  <div class="d-flex align-items-center justify-content-between w-100">
-                    <span class="name">{{ item.OfferName.title }}</span>
-                    <v-radio class="radio-input" :id="`offer-${index}-1`" color="#DCB63B" name="offer-1"
-                      :value="item.bank_offer_id" v-model="bank_offer_id"></v-radio>
-                  </div>
-                  <div class="price">
-                    <h4>{{ item.monthly_installment }}</h4>
-                    <span> {{ $t('offer1') }} </span>
-                  </div>
-                  <v-divider></v-divider>
-                  <div class="details">
-                    <div class="detail">
-                      <div class="d-flex align-items-center gap-2">
-                        <img src="~/assets/images/det1.png" alt="" />
-                        <span class="name"> {{ $t('offer2') }} </span>
-                      </div>
-                      <p class="price">{{ item.fundingAmount }} {{ $t('curr') }}</p>
-                    </div>
-                    <div class="detail">
-                      <div class="d-flex align-items-center gap-2">
-                        <img src="~/assets/images/det2.png" alt="" />
-                        <span class="name"> {{ $t('offer3') }}</span>
-                      </div>
-                      <p class="price">{{ item.firs_installment }} {{ $t('curr') }}</p>
-                    </div>
-                    <div class="detail">
-                      <div class="d-flex align-items-center gap-2">
-                        <img src="~/assets/images/det3.png" alt="" />
-                        <span class="name"> {{ $t('offer4') }} </span>
-                      </div>
-                      <p class="price">{{ item.years }} {{ $t('year') }}</p>
-                    </div>
-                    <div class="detail">
-                      <div class="d-flex align-items-center gap-2">
-                        <img src="~/assets/images/det4.png" alt="" />
-                        <span class="name"> {{ $t('calc3') }}</span>
-                      </div>
-                      <p class="price">{{ item.last_installment }} {{ $t('curr') }}</p>
-                    </div>
-                    <div class="detail">
-                      <div class="d-flex align-items-center gap-2">
-                        <img src="~/assets/images/det5.png" alt="" />
-                        <span class="name"> {{ $t('offer5') }} </span>
-                      </div>
-                      <p class="price">{{ item.sectorAdministrative_fees }} {{ $t('curr') }}</p>
-                    </div>
-                  </div>
+              <div class="col-6 col-xl-3 col-lg-3 col-md-4">
+                <label for="fileInput1" class="custom-file-upload">
+                  <!-- <span>{{ buttonText }}</span> -->
+                  <img src="~/assets/images/file1.png" />
+                  <h6>{{ $t("immg1") }}</h6>
+                  <span> {{ $t("immg2") }} </span>
+                  <span v-if="selectedFileName1">{{ selectedFileName1 }}</span>
+                  <input
+                    type="file"
+                    @change="handleFileChange1"
+                    id="fileInput1"
+                  />
+                </label>
+              </div>
+              <div class="col-6 col-xl-3 col-lg-3 col-md-4">
+                <label for="fileInput2" class="custom-file-upload">
+                  <!-- <span>{{ buttonText }}</span> -->
+                  <img src="~/assets/images/file2.png" />
+                  <h6>{{ $t("immg3") }}</h6>
+                  <span> {{ $t("immg2") }} </span>
+                  <span v-if="selectedFileName2">{{ selectedFileName2 }}</span>
+                  <input
+                    type="file"
+                    @change="handleFileChange2"
+                    id="fileInput2"
+                  />
+                </label>
+              </div>
+              <div class="col-6 col-xl-3 col-lg-3 col-md-4">
+                <label for="fileInput3" class="custom-file-upload">
+                  <!-- <span>{{ buttonText }}</span> -->
+                  <img src="~/assets/images/file3.png" />
+                  <h6>{{ $t("immg4") }}</h6>
+                  <span>{{ $t("immg2") }}</span>
+                  <span v-if="selectedFileName3">{{ selectedFileName3 }}</span>
+                  <input
+                    type="file"
+                    @change="handleFileChange3"
+                    id="fileInput3"
+                  />
+                </label>
+              </div>
+              <div class="col-6 col-xl-3 col-lg-3 col-md-4">
+                <label for="fileInput4" class="custom-file-upload">
+                  <!-- <span>{{ buttonText }}</span> -->
+                  <img src="~/assets/images/file4.png" />
+                  <h6>{{ $t("immg5") }}</h6>
+                  <span> {{ $t("immg2") }} </span>
+                  <span v-if="selectedFileName4">{{ selectedFileName4 }}</span>
+                  <input
+                    type="file"
+                    @change="handleFileChange4"
+                    id="fileInput4"
+                  />
                 </label>
               </div>
             </div>
-          </v-radio-group>
-          <div class="btns">
-            <button @click="paymentIndividualBtn = 3" class="back">
-              {{ $t('back') }}
-            </button>
-            <button @click="paymentFunc4()" class="next gap-3">
-              {{ $t('next') }}
-              <v-progress-circular v-if="pending4" indeterminate :size="25" :width="4"></v-progress-circular>
-
-            </button>
-          </div>
-        </div>
-        <div v-else class="empty">
-          <div class="main">
-            <client-only>
-              <Vue3Lottie :animation-data="emptyoffers" :height="300" :width="300" />
-            </client-only>
-            <h4> {{ $t('offerEmpty1') }} </h4>
-            <span>
-              {{ $t('offerEmpty2') }}
-            </span>
-            <div class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4">
-              <button @click="paymentIndividualBtn = 3" class="back">
-                {{ $t('back') }}
+            <div class="btns">
+              <button @click="paymentIndividualBtn = 4" class="back">
+                {{ $t("backOf") }}
               </button>
-              <nuxt-link :to="localePath('/')">
-                <button class="home">{{ $t('backHome') }}</button>
-              </nuxt-link>
+              <button @click="paymentFunc5()" class="next">
+                {{ $t("sendOrd") }}
+                <v-progress-circular
+                  v-if="pending5"
+                  indeterminate
+                  :size="25"
+                  :width="4"
+                ></v-progress-circular>
+              </button>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div v-if="paymentIndividualBtn == 5" class="final-review">
-        <div class="offer">
-          <span class="word">{{ $t('offer') }}</span>
-          <div class="main-container">
-            <div class="name-price">
-              <div class="d-flex main flex-column">
-                <span class="name">{{ $t('offer') }}</span>
-                <p class="type mt-2"> {{ $t('offernum') }} : {{ theOffer.bank_offer_id }}</p>
-              </div>
-              <div class="d-flex main flex-column">
-                <h6>{{ theOffer.monthly_installment }} {{ $t('curr') }}</h6>
-                <p class="type"> {{ $t('offer1') }} </p>
-              </div>
-            </div>
-            <div class="offer-det">
-              <div
-                class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center  gap-3">
-                <div class="d-flex align-items-center gap-4">
-                  <div class="d-flex align-items-center gap-2">
-                    <img src="~/assets/images/det1.png" alt="" />
-                    <span> {{ $t('offer2') }} </span>
-                  </div>
-                  <h6>{{ theOffer.fundingAmount }} {{ $t('curr') }}</h6>
-                </div>
-                <div class="d-flex align-items-center gap-3">
-                  <div class="d-flex align-items-center gap-2">
-                    <img src="~/assets/images/det2.png" alt="" />
-                    <span>{{ $t('calc3') }}</span>
-                  </div>
-                  <h6>{{ theOffer.last_installment }} {{ $t('curr') }}</h6>
-                </div>
-              </div>
-              <div
-                class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3">
-                <div class="d-flex align-items-center gap-3">
-                  <div class="d-flex align-items-center gap-2">
-                    <img src="~/assets/images/det3.png" alt="" />
-                    <span> {{ $t('offer3') }} </span>
-                  </div>
-                  <h6>{{ theOffer.firs_installment }} {{ $t('curr') }}</h6>
-                </div>
-                <div class="d-flex align-items-center gap-3">
-                  <div class="d-flex align-items-center gap-2">
-                    <img src="~/assets/images/det4.png" alt="" />
-                    <span>{{ $t('offer5') }}</span>
-                  </div>
-                  <h6>{{ theOffer.sectorAdministrative_fees }} ريال سعودي</h6>
-                </div>
-              </div>
-              <div
-                class="d-flex align-items-start flex-column flex-xl-row flex-lg-row align-items-xl-center align-items-lg-center gap-3">
-                <div class="d-flex align-items-center gap-3">
-                  <div class="d-flex align-items-center gap-2">
-                    <img src="~/assets/images/det3.png" alt="" />
-                    <span> {{ $t('offer4') }} </span>
-                  </div>
-                  <h6>{{ theOffer.years }} {{ $t('year') }}</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="offer">
-          <span class="word"> {{ $t('carData') }} </span>
-          <div class="main-container">
-            <div class="img-container">
-              <div class="image">
-                <!-- <img src="~/assets/images/small-car.png" /> -->
-                <img :src="theOffer.car.main_image" />
-              </div>
-              <div class="d-flex flex-column gap-2">
-                <h6>{{ theOffer.car.main_title }}</h6>
-                <span>{{ theOffer.car.brand.title }} - {{ theOffer.car.model.title }} - {{ theOffer.car.color.title }}
-                  -
-                  {{ theOffer.car.year }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="files-span">
-            <span class="f1"> {{ $t('uti') }} </span>
-            <span class="f2">( {{ $t('opt') }} )</span>
-          </div>
-          <div class="row">
-            <div class="col-6 col-xl-3 col-lg-3 col-md-4">
-              <label for="fileInput1" class="custom-file-upload">
-                <!-- <span>{{ buttonText }}</span> -->
-                <img src="~/assets/images/file1.png" />
-                <h6> {{ $t('immg1') }} </h6>
-                <span> {{ $t('immg2') }} </span>
-                <span v-if="selectedFileName1">{{
-                  selectedFileName1
-                  }}</span>
-                <input type="file" @change="handleFileChange1" id="fileInput1" />
-              </label>
-            </div>
-            <div class="col-6 col-xl-3 col-lg-3 col-md-4">
-              <label for="fileInput2" class="custom-file-upload">
-                <!-- <span>{{ buttonText }}</span> -->
-                <img src="~/assets/images/file2.png" />
-                <h6> {{ $t('immg3') }} </h6>
-                <span> {{ $t('immg2') }} </span>
-                <span v-if="selectedFileName2">{{
-                  selectedFileName2
-                  }}</span>
-                <input type="file" @change="handleFileChange2" id="fileInput2" />
-              </label>
-            </div>
-            <div class="col-6 col-xl-3 col-lg-3 col-md-4">
-              <label for="fileInput3" class="custom-file-upload">
-                <!-- <span>{{ buttonText }}</span> -->
-                <img src="~/assets/images/file3.png" />
-                <h6> {{ $t('immg4') }} </h6>
-                <span>{{ $t('immg2') }}</span>
-                <span v-if="selectedFileName3">{{
-                  selectedFileName3
-                  }}</span>
-                <input type="file" @change="handleFileChange3" id="fileInput3" />
-              </label>
-            </div>
-            <div class="col-6 col-xl-3 col-lg-3 col-md-4">
-              <label for="fileInput4" class="custom-file-upload">
-                <!-- <span>{{ buttonText }}</span> -->
-                <img src="~/assets/images/file4.png" />
-                <h6> {{ $t('immg5') }} </h6>
-                <span> {{ $t('immg2') }} </span>
-                <span v-if="selectedFileName4">{{
-                  selectedFileName4
-                  }}</span>
-                <input type="file" @change="handleFileChange4" id="fileInput4" />
-              </label>
-            </div>
-          </div>
-          <div class="btns">
-            <button @click="paymentIndividualBtn = 4" class="back">
-              {{ $t('backOf') }}
-            </button>
-            <button @click="paymentFunc5()" class="next">
-              {{ $t('sendOrd') }}
-              <v-progress-circular v-if="pending5" indeterminate :size="25" :width="4"></v-progress-circular>
-            </button>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -918,10 +1243,8 @@ const currentYear = currentDate.getFullYear();
 let paymentOtp = ref(1);
 let years = ref([]);
 
-
 let optionsCars = ref([]);
 let brands = ref([]);
-
 
 const getDesc = async () => {
   let result = await axios.get(`${getUrl()}/allsettings`, {
@@ -929,11 +1252,15 @@ const getDesc = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
-  for (let i = currentYear; i >= parseInt(result.data.data.Min_year_of_finance); i--) {
-  years.value.push(i);
-}
-console.log(years.value);
-}
+  for (
+    let i = currentYear;
+    i >= parseInt(result.data.data.Min_year_of_finance);
+    i--
+  ) {
+    years.value.push(i);
+  }
+  console.log(years.value);
+};
 
 let bank_offer_id = ref(null);
 const getOptions = async () => {
@@ -961,69 +1288,66 @@ let checkBtn3 = ref(0);
 let checkBtn4 = ref(0);
 let checkBtn5 = ref(0);
 
-
 let gear_shifterArr = ref([
   {
     value: "manual",
-    name: locale.value == 'ar' ? ' جير عادي ' : 'manual'
+    name: locale.value == "ar" ? " جير عادي " : "manual",
   },
   {
     value: "automatic",
-    name: locale.value == 'ar' ? 'اوتوماتيك' : 'automatic'
+    name: locale.value == "ar" ? "اوتوماتيك" : "automatic",
   },
 ]);
 
 let sexArr = ref([
   {
     value: "female",
-    name: locale.value == 'ar' ? 'انثي' : 'female'
+    name: locale.value == "ar" ? "انثي" : "female",
   },
   {
     value: "male",
-    name: locale.value == 'ar' ? 'ذكر' : 'male'
+    name: locale.value == "ar" ? "ذكر" : "male",
   },
 ]);
 
 let transferArr = ref([
   {
     value: "transfer",
-    name: locale.value == 'ar' ? 'محول' : 'transfer'
+    name: locale.value == "ar" ? "محول" : "transfer",
   },
   {
     value: "untransfer",
-    name: locale.value == 'ar' ? 'غير محول' : 'untransfer'
+    name: locale.value == "ar" ? "غير محول" : "untransfer",
   },
 ]);
 
 let selectedBrand = ref();
 let form2 = ref({
-  brand: '',
-  model: '',
-  year: '',
-  gear_shifter: '',
-  color_id: '',
-  category:''
+  brand: "",
+  model: "",
+  year: "",
+  gear_shifter: "",
+  color_id: "",
+  category: "",
 });
 let form3 = ref({
-  client_name: '',
-  phone: '',
-  sex: '',
-  birth_date: '',
-  city_id: '',
-  identity_no: '',
-  sector: '',
-  salary: '',
-  bank: '',
-  Monthly_cometment: '',
-  nationality_id: '',
-  email: '',
+  client_name: "",
+  phone: "",
+  sex: "",
+  birth_date: "",
+  city_id: "",
+  identity_no: "",
+  sector: "",
+  salary: "",
+  bank: "",
+  Monthly_cometment: "",
+  nationality_id: "",
+  email: "",
   have_life_problem: 0,
   traffic_violations: 0,
   department_loan: 0,
   driving_license: 0,
 });
-
-
 
 let value1 = ref("value is required");
 let value2 = ref("The email field is required");
@@ -1049,7 +1373,7 @@ const rules2 = computed(() => {
     year: { required: helpers.withMessage(value1.value, required) },
     gear_shifter: { required: helpers.withMessage(value1.value, required) },
     color_id: { required: helpers.withMessage(value1.value, required) },
-  }
+  };
 });
 const rules3 = computed(() => {
   return {
@@ -1064,13 +1388,22 @@ const rules3 = computed(() => {
     salary: { required: helpers.withMessage(value1.value, required) },
     nationality_id: { required: helpers.withMessage(value1.value, required) },
     bank: { required: helpers.withMessage(value1.value, required) },
-    Monthly_cometment: { required: helpers.withMessage(value1.value, required) },
-    have_life_problem: { required: helpers.withMessage(value1.value, required) },
-    traffic_violations: { required: helpers.withMessage(value1.value, required) },
+    Monthly_cometment: {
+      required: helpers.withMessage(value1.value, required),
+    },
+    have_life_problem: {
+      required: helpers.withMessage(value1.value, required),
+    },
+    traffic_violations: {
+      required: helpers.withMessage(value1.value, required),
+    },
     department_loan: { required: helpers.withMessage(value1.value, required) },
     driving_license: { required: helpers.withMessage(value1.value, required) },
-    email: { required: helpers.withMessage(value2.value, required), email: helpers.withMessage(value3.value, email) },
-  }
+    email: {
+      required: helpers.withMessage(value2.value, required),
+      email: helpers.withMessage(value3.value, email),
+    },
+  };
 });
 
 let errors2 = ref([]);
@@ -1088,7 +1421,7 @@ const isFormFilled3 = () => {
   // Iterate through each object in the form array
   for (const key in form3.value) {
     // Check if any key in the object has an empty value
-    if (form3.value[key] === '') {
+    if (form3.value[key] === "") {
       // If any value is empty, return false
       return false;
     }
@@ -1109,8 +1442,8 @@ const paymentFunc1 = async () => {
   formBody.append("last_batch", sliderValue3.value);
   let result = await axios.post(`${getUrl()}/finance-Order`, formBody, {
     params: {
-      type: paymentMethod.value == 1 ? 'individual' : 'company',
-      step: 1
+      type: paymentMethod.value == 1 ? "individual" : "company",
+      step: 1,
     },
     headers: {
       "Content-Language": `${locale.value}`,
@@ -1124,7 +1457,6 @@ const paymentFunc1 = async () => {
   }
 };
 const paymentFunc2 = async () => {
-
   let formBody = new FormData();
   formBody.append("brand", form2.value.brand);
   formBody.append("model", form2.value.model);
@@ -1137,13 +1469,12 @@ const paymentFunc2 = async () => {
   formBody.append("last_batch", sliderValue3.value);
   let check = await v2$.value.$validate();
   if (check) {
-
     pending2.value = true;
     try {
       let result = await axios.post(`${getUrl()}/finance-Order`, formBody, {
         params: {
-          type: paymentMethod.value == 1 ? 'individual' : 'company',
-          step: 2
+          type: paymentMethod.value == 1 ? "individual" : "company",
+          step: 2,
         },
         headers: {
           "Content-Language": `${locale.value}`,
@@ -1170,14 +1501,20 @@ const paymentFunc3 = async () => {
   // formBody.append("first_batch", sliderValue1.value);
   // formBody.append("installment", sliderValue2.value);
   // formBody.append("last_batch", sliderValue3.value);
-  let formBody = createFormData1(form2.value, form3.value , sliderValue1.value , sliderValue2.value , sliderValue3.value);
+  let formBody = createFormData1(
+    form2.value,
+    form3.value,
+    sliderValue1.value,
+    sliderValue2.value,
+    sliderValue3.value
+  );
   if (isFormFilled3()) {
     pending3.value = true;
     try {
       let result = await axios.post(`${getUrl()}/finance-Order`, formBody, {
         params: {
-          type: paymentMethod.value == 1 ? 'individual' : 'company',
-          step: 3
+          type: paymentMethod.value == 1 ? "individual" : "company",
+          step: 3,
         },
         headers: {
           "Content-Language": `${locale.value}`,
@@ -1198,8 +1535,6 @@ const paymentFunc3 = async () => {
         errors3.value = errorss.response.data.errors;
       }
     }
-
-
   }
   // if (check) {
   // } else{
@@ -1209,14 +1544,14 @@ const paymentFunc3 = async () => {
 
 let filterFinance = ref(1);
 let filterFinanceArr = ref([
- {
-  name: locale.value == 'ar' ? 'الاقل قسطا' : 'The lowest premium',
-  value:1
- }, 
- {
-  name: locale.value == 'ar' ? 'الاعلي قسطا' : 'The higher premium',
-  value:2
- } 
+  {
+    name: locale.value == "ar" ? "الاقل قسطا" : "The lowest premium",
+    value: 1,
+  },
+  {
+    name: locale.value == "ar" ? "الاعلي قسطا" : "The higher premium",
+    value: 2,
+  },
 ]);
 const sortedItems = computed(() => {
   const sorted = [...offers.value];
@@ -1242,14 +1577,21 @@ const paymentFunc4 = async () => {
   //formBody.append("installment", sliderValue2.value);
   //formBody.append("last_batch", sliderValue3.value);
 
-  let formBody = createFormData2(form2.value, form3.value , bank_offer_id.value , sliderValue1.value, sliderValue2.value, sliderValue3.value);
+  let formBody = createFormData2(
+    form2.value,
+    form3.value,
+    bank_offer_id.value,
+    sliderValue1.value,
+    sliderValue2.value,
+    sliderValue3.value
+  );
 
   if (bank_offer_id.value) {
     pending4.value = true;
     let result = await axios.post(`${getUrl()}/finance-Order`, formBody, {
       params: {
-        type: paymentMethod.value == 1 ? 'individual' : 'company',
-        step: 4
+        type: paymentMethod.value == 1 ? "individual" : "company",
+        step: 4,
       },
       headers: {
         "Content-Language": `${locale.value}`,
@@ -1260,11 +1602,10 @@ const paymentFunc4 = async () => {
       paymentBtn5.value = 1;
       checkBtn4.value = 1;
       pending4.value = false;
-      theOffer.value = result.data.data
+      theOffer.value = result.data.data;
       // theOffer.value = result.data.data
     }
   }
-
 };
 // const paymentFunc5 = async () => {
 //     let formBody = new FormData();
@@ -1318,12 +1659,23 @@ const paymentFunc5 = async () => {
   // formBody.append("first_batch", sliderValue1.value);
   // formBody.append("installment", sliderValue2.value);
   // formBody.append("last_batch", sliderValue3.value);
-  let formBody = createFormData(form2.value, form3.value, selectedFileName1.value, selectedFileName2.value, selectedFileName3.value, selectedFileName4.value, bank_offer_id.value , sliderValue1.value , sliderValue2.value , sliderValue3.value);
+  let formBody = createFormData(
+    form2.value,
+    form3.value,
+    selectedFileName1.value,
+    selectedFileName2.value,
+    selectedFileName3.value,
+    selectedFileName4.value,
+    bank_offer_id.value,
+    sliderValue1.value,
+    sliderValue2.value,
+    sliderValue3.value
+  );
   pending5.value = true;
   let result = await axios.post(`${getUrl()}/finance-Order`, formBody, {
     params: {
-      type: paymentMethod.value == 1 ? 'individual' : 'company',
-      step: 5
+      type: paymentMethod.value == 1 ? "individual" : "company",
+      step: 5,
     },
     headers: {
       "Content-Language": `${locale.value}`,
@@ -1339,11 +1691,7 @@ const paymentFunc5 = async () => {
     store.state.phoneFin1 = form3.value.phone;
     pending5.value = false;
   }
-
 };
-
-
-
 
 const handleFileChange1 = (event) => {
   selectedFileName1.value = event.target.files[0] || null;
@@ -1366,15 +1714,15 @@ let cities = ref([]);
 const getCites = async () => {
   let result = await axios.get(`${getUrl()}/cities`, {
     headers: {
-      "Content-Language": `${locale.value}`
-    }
+      "Content-Language": `${locale.value}`,
+    },
   });
   cities.value = result.data.data;
-}
+};
 
 const getmodels = computed(() => {
   return optionsCars.value.brands.filter((ele) => {
-    return form2.value.brand == ele.id
+    return form2.value.brand == ele.id;
   });
 });
 
@@ -1391,14 +1739,13 @@ const getCategories = computed(() => {
   }
 });
 
-
 let paymentIndividualBtn = ref(1);
 
 onMounted(() => {
   getOptions();
   getDesc();
   getCites();
-})
+});
 </script>
 
 <style lang="scss" scoped></style>

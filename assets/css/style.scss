@@ -4117,10 +4117,34 @@ html[dir="ltr"] {
 // end car page
 
 // start car filter page
+.sort-by-order{
+  background-color: #fff;
+  box-shadow: 0px 12px 32px 0px rgba(169, 169, 173, 0.16);
 
+  border-radius: 8px;
+  width: 150px;
+  // height: 50px;
+  padding: 10px;
+  .main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    span{
+      font-weight: 500;
+      font-size: 17px;
+      cursor: pointer;
+    }
+  }
+}
 .cars-filter {
   margin-top: 73px;
   margin-bottom: 140px;
+ .sort-icon{
+  font-size: 20px;
+  cursor: pointer;
+ }
   .sort-mobile{
     display: none;
   }

@@ -1052,7 +1052,10 @@ const updateProfile = async () => {
       errors1.value = [];
       store.state.user = result.data.data;
       const userObjectString = JSON.stringify(result.data.data);
-      Cookies.set('user', userObjectString);
+      // Example: Expires in 2 days
+      const expirationDate = new Date();
+      expirationDate.setDate(expirationDate.getDate() + 2);
+      Cookies.set('user', userObjectString , { expires: expirationDate });
     }
 
   } catch (errorss) {

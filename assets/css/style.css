@@ -3407,9 +3407,33 @@ html[dir=ltr] .safety-mssg {
     right: -150%;
   }
 }
+.sort-by-order {
+  background-color: #fff;
+  box-shadow: 0px 12px 32px 0px rgba(169, 169, 173, 0.16);
+  border-radius: 8px;
+  width: 150px;
+  padding: 10px;
+}
+.sort-by-order .main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.sort-by-order .main span {
+  font-weight: 500;
+  font-size: 17px;
+  cursor: pointer;
+}
+
 .cars-filter {
   margin-top: 73px;
   margin-bottom: 140px;
+}
+.cars-filter .sort-icon {
+  font-size: 20px;
+  cursor: pointer;
 }
 .cars-filter .sort-mobile {
   display: none;
