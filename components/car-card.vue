@@ -169,7 +169,7 @@ const addFavFunc = async (id, fav) => {
 }
 
 const goToCar = (id) => {
-
+k
   const queryParams = {
     id: id,
   };
