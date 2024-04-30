@@ -69,12 +69,12 @@ export default defineNuxtConfig({
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
         `,
-          body: true
+          body: true,
         },
       ],
     },
   },
-  
+
   css: [
     // "primevue/resources/themes/lara-dark-green/theme.css",
     "vuetify/lib/styles/main.sass",
@@ -83,6 +83,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     "~/assets/css/style.css",
   ],
   build: {
-    transpile: ["vuetify" , 'vue-toastification'],
+    transpile: ["vuetify", "vue-toastification"],
   },
 });
