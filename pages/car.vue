@@ -1027,6 +1027,7 @@ let showConfirm = ref(false);
 let shareIcons = ref(false);
 let checkCopy = ref(true);
 
+const router = useRouter();
 
 let otpp2 = ref('');
 
@@ -1406,10 +1407,13 @@ const sendOtp = async () => {
       },
     });
     if (result.status >= 200) {
-      otpCash.value = 2;
+      // otpCash.value = 2;
       pendingOtp1.value = false;
       orderNum1.value = result.data.data.Order_Number;
       error1.value = '';
+      store.state.thankOrderNum = result.data.data.Order_Number;
+      const fullLocalePath = localePath('/thank-you');
+       router.push(fullLocalePath);
     }
   } catch (errorss) {
     if (errorss.response) {
@@ -1441,13 +1445,16 @@ const sendOtp2 = async () => {
     if (result.status >= 200) {
       // if(store.state.orderFin1){
       // } 
-      paymentOtp.value = 2;
+      // paymentOtp.value = 2;
       pendingOtp2.value = false;
       // if(store.state.orderFin2){
       //   paymentOtp1.value = 2;
       //   pendingOtp2.value = false;
       // }
-      orderNum2.value = result.data.data.Order_Number;
+      // orderNum2.value = result.data.data.Order_Number;
+      store.state.thankOrderNum = result.data.data.Order_Number;
+      const fullLocalePath = localePath('/thank-you');
+       router.push(fullLocalePath);
       error2.value = '';
     }
   } catch (errorss) {

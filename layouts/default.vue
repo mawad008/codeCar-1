@@ -26,7 +26,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="links navbar-nav justify-content-center w-100">
             <nuxt-link class="nav-link" :to="localePath('/')">{{ $t("home") }}</nuxt-link>
-            <nuxt-link class="nav-link" :to="localePath('/finance')">{{ $t("finance") }}</nuxt-link>
+            <nuxt-link class="nav-link newfinanceMain" :to="localePath('/finance')">
+             <span> {{ $t("finance") }} </span> 
+             <span class="newFinance">{{ $t('new') }}</span>
+            </nuxt-link>
             <nuxt-link class="nav-link" :to="localePath('/market')">{{ $t("market") }}</nuxt-link>
 
             <nuxt-link class="nav-link" :to="localePath('/news')" :class="{ 'active': store.state.newActive }">
@@ -670,6 +673,36 @@ onBeforeMount(() => {
 <style lang="scss">
 .search-nav {}
 
+.newfinanceMain{
+  position:relative;
+  .newFinance{
+    position: absolute;
+    top: -17px;
+    background-color: #dcb63b;
+    padding: 1px 5px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #fff !important;
+  }
+}
+
+html[dir="rtl"]{
+  .newfinanceMain{
+    .newFinance{
+      right: -4px;
+
+    }
+  }
+
+}
+html[dir="ltr"]{
+  .newfinanceMain{
+    .newFinance{
+      left: -4px;
+
+    }
+  }
+}
 .navbar-toggler .icon-bar {
   display: block;
   width: 22px;

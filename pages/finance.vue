@@ -62,7 +62,7 @@
 
           <button @click="sendOtp()" class="send">{{ $t('follow') }}</button>
         </div>
-        <div v-if="paymentOtp == 2" class="confirm-text">
+        <!-- <div v-if="paymentOtp == 2" class="confirm-text">
           <client-only>
             <Vue3Lottie :animation-data="success" :height="200" :width="200" />
           </client-only>
@@ -86,7 +86,7 @@
           <nuxt-link :to="localePath('/')" class="nav-link">
             <button class="send home">{{ $t('backHome') }}</button>
           </nuxt-link>
-        </div>
+        </div> -->
       </div>
 
       <!-- <div v-if="store.state.showConfirm2" class="confirm-container">
@@ -152,6 +152,7 @@ const localePath = useLocalePath();
 const { locale } = useI18n();
 let paymentMethod = ref(1);
 let otp = ref('');
+const router = useRouter();
 
 let paymentOtp = ref(1);
 let paymentOtp1 = ref(1);
@@ -254,8 +255,10 @@ const sendOtp = async () => {
       //   paymentOtp1.value = 2;
       //   pendingOtp2.value = false;
       // }
-      orderNum1.value = result.data.data.Order_Number;
+      store.state.thankOrderNum = result.data.data.Order_Number;
       error1.value = '';
+      const fullLocalePath = localePath('/thank-you');
+    router.push(fullLocalePath);
     }
   } catch (errorss) {
     console.log(errorss);

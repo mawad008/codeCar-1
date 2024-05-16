@@ -269,7 +269,8 @@
                             </div>
                             <div v-if="item.OrderType == 'individual'" class="image-container">
                                 <div class="image">
-                                    <img src="~/assets/images/car1.png" alt="">
+                                    <!-- <img src="~/assets/images/car1.png" alt=""> -->
+                                    <img :src="item.carimage" alt="">
                                 </div>
                                 <div class="d-flex flex-column">
                                     <h5>{{ item.car_title }}</h5>

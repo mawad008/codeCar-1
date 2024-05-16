@@ -107,8 +107,8 @@
     <div class="brands">
       <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
         <h4 class="heading-text">{{ $t('brands') }}</h4>
-        <p class="p-text">
-          {{ brandsArr.description }}
+        <p v-if="descBrands" class="p-text">
+          {{ descBrands }}
         </p>
         <!-- <p class="p-text " v-html="brandsArr.description">
         </p> -->
@@ -116,7 +116,7 @@
 
       <div class="container">
         <div class="row">
-          <div v-for="item, index in brandsArr.brands" class="col-6 col-xl-2 col-lg-2 col-md-3">
+          <div v-for="item, index in brandsArr" class="col-6 col-xl-2 col-lg-2 col-md-3">
             <nuxt-link class="box" data-aos="zoom-in-up" :to="localePath({ path: '/cars', query: { id: item.id } })">
               <div class="image" :style="{
           backgroundImage:
@@ -131,6 +131,19 @@
             </nuxt-link>
           </div>
         </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-center mt-5">
+              <v-progress-circular
+                  v-if="pending1"
+                  indeterminate
+                  :size="45"
+                  :width="6"
+                  color="#dcb63b"
+                ></v-progress-circular>
+              
+              </div>
+      <div v-if="page < pageCount" class=" d-flex align-items-center justify-content-center mt-4">
+       <button @click="loadMore()" class="load-more-btn">{{ $t('more') }}</button>
       </div>
     </div>
 
@@ -312,17 +325,31 @@
       <div class="header d-flex align-items-center justify-content-c">
         <div class="text d-flex text-center w-100 align-items-center flex-column">
           <h3 class="heading-text">{{ $t('markss') }}</h3>
-          <span class="p-text">{{ financingbodyArr.description }}</span>
+          <!-- <span class="p-text">{{ financingbodyArr.description }}</span> -->
         </div>
       </div>
       <div class="row gap- align-items-center">
-        <div v-for="item, index in financingbodyArr.banks" class="col-6 col-xl-2 col-lg-2 col-md-4">
+        <div v-for="item, index in financingbodyArr" class="col-6 col-xl-2 col-lg-2 col-md-4">
           <div class="box " data-aos="fade-down" data-aos-delay="300">
             <div>
               <img :src="item.image" clss="" />
             </div>
           </div>
         </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-center mt-5">
+              <v-progress-circular
+                  v-if="pending2"
+                  indeterminate
+                  :size="45"
+                  :width="6"
+                  color="#dcb63b"
+                ></v-progress-circular>
+              
+              </div>
+              
+      <div v-if="page2 < pageCount2" class=" d-flex align-items-center justify-content-center mt-4">
+       <button @click="loadMore2()" class="load-more-btn">{{ $t('more') }}</button>
       </div>
     </div>
     <!-- <Loader2 v-if="pending"></Loader2> -->
@@ -344,10 +371,150 @@ const localePath = useLocalePath();
 let { locale } = useI18n();
 
 let brandsArr = ref([]);
+let descBrands = ref('');
 let financingbodyArr = ref([]);
 let whyCodeCarArr = ref([]);
 let financingAdv = ref();
 let router = useRouter();
+
+let pending1 = ref(false);
+let pending2 = ref(false);
+let total = ref();
+let total2 = ref();
+let per_page = ref();
+let per_page2 = ref();
+let itemsPerPage = ref();
+let itemsPerPage2 = ref();
+let page = ref(1);
+let page2 = ref(1);
+
+const filterCars = async () => {
+  // pending1.value = true;
+  brandsArr.value = [];
+  let result = await axios.get(`${getUrl()}/brand`, {
+    params: {
+      page: page.value
+    },
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  if (result.status == 200) {
+    descBrands.value = result.data.data.description
+    brandsArr.value = result.data.data.brands.original.data;
+    itemsPerPage.value = result.data.data.brands.original.meta.per_page;
+    per_page.value = result.data.data.brands.original.meta.per_page;
+    total.value = result.data.data.brands.original.meta.total;
+    if (result.data.data.length < 1) {
+      brandsArr.value = [];
+    }
+  }
+};
+const filterCar2 = async () => {
+  pending1.value = true;
+  // brandsArr.value = [];
+  let result = await axios.get(`${getUrl()}/brand`, {
+    params: {
+      page: page.value
+    },
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  if (result.status == 200) {
+    pending1.value = false;
+    brandsArr.value = [...brandsArr.value, ...result.data.data.brands.original.data];
+    itemsPerPage.value = result.data.data.brands.original.meta.per_page;
+    per_page.value = result.data.data.brands.original.meta.per_page;
+    total.value = result.data.data.brands.original.meta.total;
+    if (result.data.data.length < 1) {
+      brandsArr.value = [];
+    }
+    if (brandsArr.value.length < 1) {
+      pending1.value = true;
+    } else {
+      pending1.value = false;
+    }
+  }
+};
+const filterBank = async () => {
+  let result = await axios.get(`${getUrl()}/financing-body`, {
+    params: {
+      page: page2.value
+    },
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  if (result.status == 200) {
+    financingbodyArr.value = result.data.data.banks.original.data;
+    itemsPerPage2.value = result.data.data.banks.original.meta.per_page;
+    per_page2.value = result.data.data.banks.original.meta.per_page;
+    total2.value = result.data.data.banks.original.meta.total;
+    if (result.data.data.length < 1) {
+      financingbodyArr.value = [];
+    }
+    if (financingbodyArr.value.length < 1) {
+      pending.value = true;
+    } else {
+      pending.value = false;
+    }
+  }
+};
+const filterBank2 = async () => {
+  pending2.value = true;
+  // brandsArr.value = [];
+  let result = await axios.get(`${getUrl()}/financing-body`, {
+    params: {
+      page: page2.value
+    },
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  if (result.status == 200) {
+    pending2.value = false;
+    financingbodyArr.value = [...financingbodyArr.value, ...result.data.data.banks.original.data];
+    itemsPerPage2.value = result.data.data.banks.original.meta.per_page;
+    per_page2.value = result.data.data.banks.original.meta.per_page;
+    total2.value = result.data.data.banks.original.meta.total;
+    // if (result.data.data.length < 1) {
+    //   financingbodyArr.value = [];
+    // }
+    if (financingbodyArr.value.length < 1) {
+      pending2.value = true;
+    } else {
+      pending2.value = false;
+    }
+  }
+};
+
+
+
+
+const pageCount = computed(() => {
+  return Math.ceil(total.value / per_page.value);
+});
+const pageCount2 = computed(() => {
+  return Math.ceil(total2.value / per_page2.value);
+});
+
+const loadMore = async () => {
+  if (page.value < pageCount.value) {
+    page.value++;
+    await filterCar2();
+  }
+};
+const loadMore2 = async () => {
+  if (page2.value < pageCount2.value) {
+    page2.value++;
+    await filterBank2();
+  }
+};
 
 let carBody = ref([
   {
@@ -494,9 +661,9 @@ useHead({
 
 onMounted(() => {
   getOptions();
-  getBrands();
+  filterCars();
   whyCodeCar();
-  getfinancingbody();
+  filterBank();
   getfinancingAdv();
   getProducts();
   pending.value = false;

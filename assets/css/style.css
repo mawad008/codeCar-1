@@ -3164,7 +3164,7 @@ html[dir=ltr] .safety-mssg {
   font-style: normal;
   font-weight: 400;
   color: #5a7184;
-  margin-top: 5px;
+  margin-top: 3px;
 }
 
 .p-dropdown-filter-container {
@@ -5052,11 +5052,15 @@ html[dir=ltr] .about-us .about-container .image .overlay {
 }
 
 .dropdown-finance-filter .p-dropdown {
-  width: 200px;
+  width: -moz-fit-content;
+  width: fit-content;
   height: 40px;
   border-radius: 8px;
   border: 1px solid #ebeaed;
   padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 .dropdown-finance-filter .p-dropdown-trigger {
   background-color: #f6f7f9;
@@ -5748,6 +5752,7 @@ html[dir=ltr] .settings-page .setting-btn {
   font-size: 14px;
   color: #5a7184;
   font-weight: 400;
+  width: 60%;
 }
 .orders-page .orders-container .the-order.corp {
   direction: ltr;
@@ -5815,6 +5820,26 @@ html[dir=ltr] .settings-page .setting-btn {
   font-weight: 700;
 }
 
+.load-more-btn {
+  display: flex;
+  width: 115px;
+  height: 44px;
+  padding: 0px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  border-radius: 12px;
+  background-color: #2d3a4a;
+  color: white;
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .orders-page .orders-container .the-order .image-container span {
+    width: 100% !important;
+  }
+}
 html[dir=rtl] .orders-page .orders-container .the-order .stat {
   left: 0px;
   border-top-right-radius: 20px;

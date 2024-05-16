@@ -186,7 +186,7 @@ const getContactData =  async()=>{
 
 watch(id, (newId) => {
   // Update the route with the new id
-  router.push({ query: { id: newId } })
+  router.push({ query: { id: newId } });
 });
 
 

@@ -29,6 +29,7 @@ export const useStore = createStore({
     phoneFin2:null,
     isInFav: [],
     user: {},
+    thankOrderNum:0
   },
   mutations: {
     changeFormCheck(state, payload) {
