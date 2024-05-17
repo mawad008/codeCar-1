@@ -1,6 +1,6 @@
 <<template>
-    <div class="container d-flex align-items-center justify-content-center" style="min-height:70vh">
-        <div  class="confirm-container">
+    <div class="container d-flex align-items-center justify-content-center">
+        <div  class="confirm-container" style="margin: 70px 0px;">
         <div class="confirm-text w-100">
           <client-only>
             <Vue3Lottie :animation-data="success" :height="200" :width="200" />

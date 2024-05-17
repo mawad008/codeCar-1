@@ -167,8 +167,8 @@
                   class=""
                 >
                   <template #option="slotProps">
-                    <div class="flex align-items-center">
-                      <div>{{ slotProps.option.title }}</div>
+                    <div class="flex w-100 align-items-center">
+                      <div @click="form2.model = ''" class="w-100">{{ slotProps.option.title }}</div>
                     </div>
                   </template>
                 </Dropdown>
@@ -452,10 +452,10 @@
                   :width="300"
                 />
               </client-only>
-              <h4> هذه السيارة غير متوفرة </h4>
+              <h4> {{$t('unCar')}} </h4>
               <span>
                 <!-- {{ $t("offerEmpty2") }} -->
-                برجاء التواصل مع خدمة عملاء كودكار <a :href="`tel:${generalPhone}`" class="fw-bold"> {{ generalPhone }} </a>
+                {{$t('contactCodCar')}} <a :href="`tel:${generalPhone}`" class="fw-bold"> {{ generalPhone }} </a>
               </span>
               <div
                 class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4"
@@ -925,11 +925,11 @@
 
         <div v-if="paymentIndividualBtn == 4" class="offers">
             <div
-              class="w-100 d-flex justify-content-center mb-3 gap-4 justify-content-xl-end justify-content-lg-end"
+              class="w-100 d-flex justify-content-center flex-column flex-xl-row flex-lg-row mb-3 gap-3 justify-content-xl-end justify-content-lg-end"
             >
               <div class="input dropdown-finance-filter">
                 <Dropdown
-                  v-model="firstPatchInput"
+                  v-model="sliderValue1"
                   :options="firstPatch"
                   filter
                   :filter-placeholder="$t('search')"
@@ -948,7 +948,7 @@
               
               <div class="input dropdown-finance-filter">
                 <Dropdown
-                  v-model="secondPatchInput"
+                  v-model="sliderValue3"
                   :options="secondPatch"
                   filter
                   :filter-placeholder="$t('search')"
@@ -966,7 +966,7 @@
               </div>
               <div class="input dropdown-finance-filter">
                 <Dropdown
-                  v-model="yearInput"
+                  v-model="sliderValue2"
                   :options="yearsInst"
                   filter
                   :filter-placeholder="$t('search')"
@@ -1112,8 +1112,8 @@
                 />
               </client-only>
               <h4>{{ $t("offerEmpty1") }}</h4>
-              <span>
-                {{ $t("offerEmpty2") }} برجاء التواصل مع خدمة عملاء كودكار <a :href="`tel:${generalPhone}`" class="fw-bold"> {{ generalPhone }} </a>
+              <span>  
+                {{ $t("offerEmpty2") }} {{$t('contactCodCar')}} <a :href="`tel:${generalPhone}`" class="fw-bold"> {{ generalPhone }} </a>
               </span>
               <div
                 class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4"
@@ -1521,39 +1521,38 @@ let firstPatchInput = ref(sliderValue1.value);
 let secondPatchInput = ref(sliderValue3.value);
 let yearInput = ref(sliderValue2.value);
 let firstPatch = ref([
-  { value: 0 , name: '0' },
-  { value: 5 , name: '5' },
-  { value: 10 , name: '10' },
-  { value: 15 , name: '15' },
-  { value: 20 , name: '20' },
-  { value: 25 , name: '25' },
-  { value: 30 , name: '30' },
-  { value: 30 , name: '30' },
-  { value: 35 , name: '35' },
-  { value: 40 , name: '40' },
-  { value: 45 , name: '45' },
-  { value: 50 , name: '50' },
+  { value: 0 , name: `0 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 5 , name: `5 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 10 , name: `10 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 15 , name: `15 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 20 , name: `20 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 25 , name: `25 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 30 , name: `30 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 30 , name: `30 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 35 , name: `35 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 40 , name: `40 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 45 , name: `45 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 50 , name: `50 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
 ]);
 let secondPatch = ref([
-  { value: 0 , name: '0' },
-  { value: 5 , name: '5' },
-  { value: 10 , name: '10' },
-  { value: 15 , name: '15' },
-  { value: 20 , name: '20' },
-  { value: 25 , name: '25' },
-  { value: 30 , name: '30' },
-  { value: 30 , name: '30' },
-  { value: 35 , name: '35' },
-  { value: 40 , name: '40' },
-  { value: 45 , name: '45' },
-  { value: 50 , name: '50' },
+  { value: 0, name: `0 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 5 , name: `5 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 10 , name: `10 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 15 , name: `15 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 20 , name: `20 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 25 , name: `25 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 30 , name: `30 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 35 , name: `35 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 40 , name: `40 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 45 , name: `45 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 50 , name: `50 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
 ]);
 let yearsInst = ref([
-  { value: 1 , name: '1' },
-  { value: 2 , name: '2' },
-  { value: 3 , name: '3' },
-  { value: 4 , name: '4' },
-  { value: 5 , name: '5' },
+  { value: 1 , name: `1 ${locale.value == 'ar' ? 'سنة' : 'year'}` },
+  { value: 2 , name: `2  ${locale.value == 'ar' ? 'سنتين' : 'years'}` },
+  { value: 3 , name: `3  ${locale.value == 'ar' ? 'سنوات' : 'years'}` },
+  { value: 4 , name: `4 ${locale.value == 'ar' ? 'سنوات' : 'years'}` },
+  { value: 5 , name: `5 ${locale.value == 'ar' ? 'سنوات' : 'years'}` },
 ]);
 let errors2 = ref([]);
 let errors3 = ref([]);
