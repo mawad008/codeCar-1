@@ -8,7 +8,12 @@ p {
   margin-bottom: 0px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-bottom: 0px;
 }
 
@@ -191,10 +196,10 @@ a {
   cursor: pointer;
 }
 .car-card .btn-container .icon svg.active {
-  fill: #ED3F3F !important;
+  fill: #ed3f3f !important;
 }
 .car-card .btn-container .icon svg.active path {
-  fill: #ED3F3F !important;
+  fill: #ed3f3f !important;
 }
 .car-card .btn-container button {
   display: flex;
@@ -305,7 +310,8 @@ html[dir=rtl] input[type=tel] {
   direction: rtl;
 }
 
-.error-msg, .error-msg2 {
+.error-msg,
+.error-msg2 {
   color: #ed3f3f !important;
   font-size: 13px !important;
   white-space: nowrap;
@@ -313,7 +319,8 @@ html[dir=rtl] input[type=tel] {
   display: block !important;
 }
 
-.toast-container, .Vue-Toastification__toast-body {
+.toast-container,
+.Vue-Toastification__toast-body {
   font-family: "Janna-lt", sans-serif !important;
   font-weight: 700 !important;
 }
@@ -350,7 +357,7 @@ html[dir=rtl] input[type=tel] {
 
 .empty-state {
   border-radius: 16px;
-  background-color: #FFF;
+  background-color: #fff;
   padding: 32px;
   height: 583px;
   display: flex;
@@ -361,12 +368,12 @@ html[dir=rtl] input[type=tel] {
 .empty-state h4 {
   margin-top: 32px;
   margin-bottom: 16px;
-  color: #2D3A4A;
+  color: #2d3a4a;
   font-size: 32px;
   font-weight: 700;
 }
 .empty-state p {
-  color: #5A7184;
+  color: #5a7184;
   width: 402px;
   text-align: center;
   font-size: 16px;
@@ -741,12 +748,14 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
   transform: rotate(180deg);
 }
 
-.Vue-Toastification__container.top-right .Vue-Toastification__toast--rtl, .Vue-Toastification__container.bottom-right .Vue-Toastification__toast--rtl {
+.Vue-Toastification__container.top-right .Vue-Toastification__toast--rtl,
+.Vue-Toastification__container.bottom-right .Vue-Toastification__toast--rtl {
   margin-left: auto !important;
   margin-right: 0px !important;
 }
 
-.Vue-Toastification__container.top-left .Vue-Toastification__toast--rtl, .Vue-Toastification__container.bottom-left .Vue-Toastification__toast--rtl {
+.Vue-Toastification__container.top-left .Vue-Toastification__toast--rtl,
+.Vue-Toastification__container.bottom-left .Vue-Toastification__toast--rtl {
   margin-right: auto !important;
   margin-left: 0px !important;
 }
@@ -804,7 +813,8 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
 }
 .navbar .items .links a {
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
+  white-space: nowrap;
   text-align: center;
   font-weight: 400;
 }
@@ -853,7 +863,8 @@ html[dir=ltr] .main-auth .form-inputs .form .input.pass .icon {
   color: #5a7184 !important;
   transition: 0.4s all;
 }
-.navbar .router-link-active, .navbar .active {
+.navbar .router-link-active,
+.navbar .active {
   font-weight: 700 !important;
 }
 .navbar .searchBar {
@@ -1646,20 +1657,25 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
 }
 
 @media (max-width: 1000px) {
-  html[dir=rtl] .explore, html[dir=ltr] .explore {
+  html[dir=rtl] .explore,
+  html[dir=ltr] .explore {
     padding: 50px 0px;
     height: 100%;
   }
-  html[dir=rtl] .explore .text, html[dir=ltr] .explore .text {
+  html[dir=rtl] .explore .text,
+  html[dir=ltr] .explore .text {
     margin-bottom: 20px !important;
   }
-  html[dir=rtl] .explore .col-12:not(:last-child) .box, html[dir=ltr] .explore .col-12:not(:last-child) .box {
+  html[dir=rtl] .explore .col-12:not(:last-child) .box,
+  html[dir=ltr] .explore .col-12:not(:last-child) .box {
     margin-bottom: 30px;
   }
-  html[dir=rtl] .explore .col-12:not(:last-child) .box p, html[dir=ltr] .explore .col-12:not(:last-child) .box p {
+  html[dir=rtl] .explore .col-12:not(:last-child) .box p,
+  html[dir=ltr] .explore .col-12:not(:last-child) .box p {
     width: 100%;
   }
-  html[dir=rtl] .explore .col-12:not(:last-child) .box::before, html[dir=ltr] .explore .col-12:not(:last-child) .box::before {
+  html[dir=rtl] .explore .col-12:not(:last-child) .box::before,
+  html[dir=ltr] .explore .col-12:not(:last-child) .box::before {
     content: "";
     position: absolute;
     width: 152px;
@@ -1768,10 +1784,10 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   transition: 0.4s;
 }
 .icons-arrow .icon svg {
-  fill: #2D3A4A;
+  fill: #2d3a4a;
 }
 .icons-arrow .icon:hover {
-  background-color: #90A3BF;
+  background-color: #90a3bf;
 }
 .icons-arrow .icon:hover svg {
   fill: #fff;
@@ -2053,12 +2069,14 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   align-items: center;
   justify-content: center;
 }
-.main-car-page .car-details .images-text .mySwiper2 .swiper-slide .image, .main-car-page .car-details .images-text .mySwiper2 .swiper-slide iframe {
+.main-car-page .car-details .images-text .mySwiper2 .swiper-slide .image,
+.main-car-page .car-details .images-text .mySwiper2 .swiper-slide iframe {
   width: 100%;
   height: 100%;
   border-radius: 16px;
 }
-.main-car-page .car-details .images-text .mySwiper2 .swiper-slide .image img, .main-car-page .car-details .images-text .mySwiper2 .swiper-slide iframe img {
+.main-car-page .car-details .images-text .mySwiper2 .swiper-slide .image img,
+.main-car-page .car-details .images-text .mySwiper2 .swiper-slide iframe img {
   width: 100%;
   height: 100%;
   border-radius: 16px;
@@ -2084,7 +2102,7 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   justify-content: center;
 }
 .main-car-page .car-details .images-text .mySwiper .swiper-slide .iconn i {
-  color: #90A3BF;
+  color: #90a3bf;
   font-size: 25px;
 }
 .main-car-page .car-details .images-text .mySwiper .swiper-slide.auto-width {
@@ -2271,7 +2289,7 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   display: block;
 }
 .main-car-page .car-details .description .descDiv {
-  color: #5A7184 !important;
+  color: #5a7184 !important;
 }
 .main-car-page .car-details .description .descDiv.active {
   overflow-y: auto;
@@ -2582,7 +2600,7 @@ html[dir=ltr] .main-car-page .main-col-images {
 }
 .paymentType .form-ind i {
   cursor: pointer;
-  color: #ED3F3F;
+  color: #ed3f3f;
 }
 .paymentType .form-ind button {
   display: flex;
@@ -2810,7 +2828,7 @@ html[dir=ltr] .main-car-page .main-col-images {
   display: none;
 }
 .paymentType .main-pagination-container .pagination-container .icon.active {
-  background-color: #FCF4E2;
+  background-color: #fcf4e2;
 }
 .paymentType .main-pagination-container .pagination-container .icon.active img.active {
   display: block;
@@ -3017,7 +3035,7 @@ html[dir=ltr] .v-selection-control-group {
   }
 }
 .breadcrumbs-text {
-  color: #959EAD !important;
+  color: #959ead !important;
 }
 
 .breadcrumbs-dark {
@@ -3030,7 +3048,7 @@ html[dir=ltr] .v-selection-control-group {
   top: 97%;
 }
 .safety-mssg span {
-  color: #959EAD;
+  color: #959ead;
   font-size: 14px;
 }
 
@@ -3411,7 +3429,10 @@ html[dir=ltr] .safety-mssg {
   .input-container {
     width: 100% !important;
   }
-  .confirm-container p, .confirm-container button, .confirm-container .order-number, .confirm-container a {
+  .confirm-container p,
+  .confirm-container button,
+  .confirm-container .order-number,
+  .confirm-container a {
     width: 100% !important;
   }
   .confirm-container button {
@@ -3972,7 +3993,8 @@ html[dir=ltr] .table-container thead td:last-child {
 }
 
 @media (max-width: 914px) {
-  .single-new-container, .news-container {
+  .single-new-container,
+  .news-container {
     margin: 50px 0px !important;
   }
   .single-new-container .single-new {
@@ -4063,7 +4085,9 @@ html[dir=ltr] .table-container thead td:last-child {
   .settings-page .offers .header {
     display: none !important;
   }
-  .empty-container .empty button, .a-orders-empty, .orders-empty-btn {
+  .empty-container .empty button,
+  .a-orders-empty,
+  .orders-empty-btn {
     width: 100% !important;
   }
 }
@@ -4716,12 +4740,12 @@ html[dir=ltr] .about-us .about-container .image .overlay {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #FCF4E2;
+  background-color: #fcf4e2;
 }
 .settings-page .setting-nav-mobile .boxes .box h6 {
   font-size: 16px;
   font-weight: 700;
-  color: #2D3A4A;
+  color: #2d3a4a;
 }
 .settings-page .setting-content {
   border-radius: 16px;
@@ -5225,7 +5249,7 @@ html[dir=ltr] .settings-page .setting-btn {
 }
 .log-out-modal p {
   width: 302px;
-  color: #5A7184;
+  color: #5a7184;
   text-align: center;
   font-size: 16px;
   font-weight: 400;
@@ -5259,7 +5283,8 @@ html[dir=ltr] .settings-page .setting-btn {
   flex-direction: column;
   gap: 16px;
 }
-.log-out-modal .btns1 button, .log-out-modal .btns1 .copy {
+.log-out-modal .btns1 button,
+.log-out-modal .btns1 .copy {
   width: 350px;
   height: 56px;
   border-radius: 10px;
@@ -5272,7 +5297,7 @@ html[dir=ltr] .settings-page .setting-btn {
   font-weight: 700;
 }
 .log-out-modal .btns1 button.stroke {
-  border: 1px solid #2D3A4A;
+  border: 1px solid #2d3a4a;
   color: #2d3a4a;
 }
 .log-out-modal .btns1 button.fill {
@@ -5280,7 +5305,7 @@ html[dir=ltr] .settings-page .setting-btn {
   color: #fff;
 }
 .log-out-modal .btns1 .copy {
-  border: 1px solid #EBEAED;
+  border: 1px solid #ebeaed;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -5292,28 +5317,31 @@ html[dir=ltr] .settings-page .setting-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #DCB63B;
+  border: 1px solid #dcb63b;
   cursor: pointer;
 }
 .log-out-modal .btns1 .copy i {
   font-size: 20px;
-  color: #90A3BF;
+  color: #90a3bf;
 }
 .log-out-modal .btns1 .copy svg {
   cursor: pointer;
 }
 .log-out-modal .btns1 .copy span {
-  color: #2D3A4A;
+  color: #2d3a4a;
   font-size: 16px;
   font-weight: 700;
 }
 
 @media (max-width: 900px) {
-  .p-dropdown-panel, .p-component, .p-ripple-disabled {
+  .p-dropdown-panel,
+  .p-component,
+  .p-ripple-disabled {
     z-index: 555555555 !important;
   }
 }
-.v-toolbar__content, .v-toolbar__extension {
+.v-toolbar__content,
+.v-toolbar__extension {
   background-color: #2d3a4a;
   direction: rtl !important;
 }
@@ -5338,7 +5366,8 @@ html[dir=ltr] .settings-page .setting-btn {
 .advertisementtt-container .error-msg2 {
   white-space: normal !important;
 }
-.advertisementtt-container .error-msg, .advertisementtt-container .error-msg2 {
+.advertisementtt-container .error-msg,
+.advertisementtt-container .error-msg2 {
   font-weight: 700;
 }
 .advertisementtt-container .input-container {
@@ -5348,7 +5377,8 @@ html[dir=ltr] .settings-page .setting-btn {
 .advertisementtt-container .input-container span.namee {
   margin-bottom: 12px;
 }
-.advertisementtt-container .input-container .error-msg, .advertisementtt-container .input-container .error-msg2 {
+.advertisementtt-container .input-container .error-msg,
+.advertisementtt-container .input-container .error-msg2 {
   display: block !important;
 }
 .advertisementtt-container .input-container .marg {
@@ -5409,7 +5439,7 @@ html[dir=ltr] .settings-page .setting-btn {
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
-  color: #5A7184;
+  color: #5a7184;
   position: relative;
 }
 .advertisementtt-container .addd-container .addd-content .input input,
@@ -5498,7 +5528,7 @@ html[dir=ltr] .settings-page .setting-btn {
   width: 100%;
   height: 100%;
   border-radius: 14px;
-  background-color: #2D3A4A;
+  background-color: #2d3a4a;
   opacity: 0.6;
 }
 .advertisementtt-container .addd-container .addd-content .images .image .img-icon {
@@ -5601,7 +5631,9 @@ html[dir=ltr] .settings-page .setting-btn {
     font-size: 20px !important;
     line-height: 30px;
   }
-  .advertisementtt-container .confirm span, .advertisementtt-container .confirm a, .advertisementtt-container .confirm button {
+  .advertisementtt-container .confirm span,
+  .advertisementtt-container .confirm a,
+  .advertisementtt-container .confirm button {
     width: 100% !important;
   }
   .empty span {
@@ -5619,7 +5651,9 @@ html[dir=ltr] .settings-page .setting-btn {
   .settings-page .setting-content .personal .personal-form .input {
     width: 100%;
   }
-  .settings-page .setting-content .personal .personal-form .input input, .settings-page .setting-content .personal .personal-form .input .p-dropdown, .settings-page .setting-content .personal .personal-form .input .phonenum {
+  .settings-page .setting-content .personal .personal-form .input input,
+  .settings-page .setting-content .personal .personal-form .input .p-dropdown,
+  .settings-page .setting-content .personal .personal-form .input .phonenum {
     width: 100% !important;
   }
   .settings-page .setting-content {
@@ -5758,7 +5792,7 @@ html[dir=ltr] .settings-page .setting-btn {
   margin-bottom: 8px;
 }
 .orders-page .orders-container .the-order .image-container h5 span {
-  color: #DCB63B;
+  color: #dcb63b;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -6091,7 +6125,8 @@ html[dir=ltr] .orders-page .orders-container .the-order .stat {
   .modal .log-out-modal .btns1 {
     width: 100%;
   }
-  .modal .log-out-modal .btns1 .copy, .modal .log-out-modal .btns1 button {
+  .modal .log-out-modal .btns1 .copy,
+  .modal .log-out-modal .btns1 button {
     width: 100%;
   }
   .modal .log-out-modal p {
@@ -6197,14 +6232,18 @@ html[dir=ltr] .orders-page .orders-container .the-order .stat {
   .main-auth .form-inputs .text span {
     width: 100%;
   }
-  .main-auth .logo, .main-auth .linkk, .main-auth .forget {
+  .main-auth .logo,
+  .main-auth .linkk,
+  .main-auth .forget {
     justify-content: center;
     text-align: center;
   }
   .main-auth .form {
     width: 100%;
   }
-  .main-auth .input, .main-auth .d-flex, .main-auth button {
+  .main-auth .input,
+  .main-auth .d-flex,
+  .main-auth button {
     width: 100% !important;
   }
   .careers-page .careers .iconn {

@@ -1766,18 +1766,6 @@ const sortedItems = computed(() => {
 });
 
 const paymentFunc4 = async () => {
-  //let formBody = new FormData();
-  //formBody.append("brand", form2.value.brand);
-  //formBody.append("model", form2.value.model);
-  //formBody.append("year", form2.value.year);
-  //formBody.append("sector", form3.value.sector);
-  //formBody.append("gear_shifter", form2.value.gear_shifter);
-  //formBody.append("bank_offer_id", bank_offer_id.value);
-  //formBody.append("color_id", form2.value.color_id);
-  //formBody.append("bank", form3.value.bank);
-  //formBody.append("first_batch", sliderValue1.value);
-  //formBody.append("installment", sliderValue2.value);
-  //formBody.append("last_batch", sliderValue3.value);
 
   let formBody = createFormData2(
     form2.value,

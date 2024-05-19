@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg" :class="{
+    <nav class="navbar navbar-expand-xl" :class="{
       active: activeNav,
       back:
         route.name !=
@@ -27,8 +27,8 @@
           <div class="links navbar-nav justify-content-center w-100">
             <nuxt-link class="nav-link" :to="localePath('/')">{{ $t("home") }}</nuxt-link>
             <nuxt-link class="nav-link newfinanceMain" :to="localePath('/finance')">
-             <span> {{ $t("finance") }} </span> 
-             <span class="newFinance">{{ $t('new') }}</span>
+              <span> {{ $t("financeS") }} </span>
+              <span class="newFinance">{{ $t('new') }}</span>
             </nuxt-link>
             <nuxt-link class="nav-link" :to="localePath('/market')">{{ $t("market") }}</nuxt-link>
 
@@ -37,7 +37,7 @@
 
             </nuxt-link>
             <nuxt-link class="nav-link" :to="localePath('/offers')" :class="{ 'active': store.state.offerActive }">{{
-      $t("offers") }}</nuxt-link>
+              $t("offers") }}</nuxt-link>
             <nuxt-link class="nav-link" :to="localePath('/orders')">
               {{ $t("followOrder") }}
             </nuxt-link>
@@ -283,7 +283,7 @@
                 </nuxt-link>
                 <div class="links d-flex flex-column gap-4">
                   <nuxt-link :to="localePath('finance')">
-                    <span class="head-link"> {{ $t("finance") }} </span>
+                    <span class="head-link"> {{ $t("financeS") }} </span>
                   </nuxt-link>
                   <nuxt-link :to="localePath('news')">
                     <span class="head-link"> {{ $t("news") }} </span>

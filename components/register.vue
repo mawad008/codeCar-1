@@ -54,11 +54,11 @@
             <v-radio
               id="radio-input-2"
               color="#DCB63B"
-              value="agency"
+              value="exhibition"
             ></v-radio>
             <label
               for="radio-input-2"
-              :class="{ active: typeForm == 'agency' }"
+              :class="{ active: typeForm == 'exhibition' }"
             >
               {{ $t('vend') }}
             </label>
@@ -67,11 +67,11 @@
             <v-radio
               id="radio-input-3"
               color="#DCB63B"
-              value="exhibition"
+              value="agency"
             ></v-radio>
             <label
               for="radio-input-3"
-              :class="{ active: typeForm == 'exhibition' }"
+              :class="{ active: typeForm == 'agency' }"
             >
               {{ $t('compa') }}
             </label>
