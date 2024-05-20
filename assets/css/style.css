@@ -2361,7 +2361,7 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   margin-top: 14px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 35px;
 }
 .main-car-page .car-details .colors .main .color-hexa {
   width: 24px;

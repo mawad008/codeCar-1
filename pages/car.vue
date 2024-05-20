@@ -457,12 +457,15 @@
                 <div class="colors">
                   <span class="word fw-bold">{{ $t("colorr") }}</span>
                   <div class="main" v-if="mainCar.color">
+                  <div v-for="i in mainCar.color" class="d-flex flex-column align-items-center gap-2">
                     <div
                       class="color-hexa"
-                      v-for="i in mainCar.color"
+                      
                       :class="{ 'light-color': isLightColor(i.hex_code) }"
                       :style="{ backgroundColor: i.hex_code }"
                     ></div>
+                    <span> {{ i.name }} </span>
+                  </div>
                   </div>
                 </div>
 
