@@ -2359,6 +2359,17 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
 }
 .main-car-page .car-details .colors .main {
   margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.main-car-page .car-details .colors .main .color-hexa {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+.main-car-page .car-details .colors .main .color-hexa.light-color {
+  border: 1px solid #b2b2b3;
 }
 .main-car-page .car-details .colors .main span {
   color: #5a7184;

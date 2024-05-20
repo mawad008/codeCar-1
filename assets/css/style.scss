@@ -2793,6 +2793,17 @@ html[dir="ltr"] {
       }
       .main {
         margin-top: 14px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        .color-hexa{
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          &.light-color{
+            border: 1px solid #b2b2b3;
+          }
+        }
         span {
           color: #5a7184;
           font-size: 14px;

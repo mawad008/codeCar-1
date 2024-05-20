@@ -18,7 +18,7 @@
                 <div v-for="item in offersArr.offers" class="col-12 col-xl-6 col-lg-6 my-2">
                     <div class="offer-box">
                         <div class="image">
-                          <img  :src="item.image" />
+                          <img  :src="item.cover" />
                         </div>
                         <div class="text w-100">
                             <h6>{{ item.title }}</h6>

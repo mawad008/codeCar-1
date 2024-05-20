@@ -28,7 +28,11 @@
             <nuxt-link class="nav-link" :to="localePath('/')">{{ $t("home") }}</nuxt-link>
             <nuxt-link class="nav-link newfinanceMain" :to="localePath('/finance')">
               <span> {{ $t("financeS") }} </span>
-              <span class="newFinance">{{ $t('new') }}</span>
+              <div class="newFinance">
+              <span>
+              {{ $t('new') }}
+              </span>
+              </div>
             </nuxt-link>
             <nuxt-link class="nav-link" :to="localePath('/market')">{{ $t("market") }}</nuxt-link>
 
@@ -677,12 +681,19 @@ onBeforeMount(() => {
   position:relative;
   .newFinance{
     position: absolute;
-    top: -17px;
+    top: -20px;
     background-color: #dcb63b;
-    padding: 1px 5px;
-    border-radius: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 12px;
+    padding: 0px 6px;
     color: #fff !important;
+    span{
+      padding: 0px !important;
+      margin-bottom:2px;
+    }
   }
 }
 
