@@ -29,7 +29,7 @@
                                     <i class="fa-solid fa-arrow-left arrow-icon"></i>
 
                                 </div>
-                                <img src="~/assets/images/special-offer.svg" alt="">
+                                <img v-if="item.highlighted == 1" src="~/assets/images/special-offer.svg" alt="">
                             </div>
                         </div>
                     </div>
