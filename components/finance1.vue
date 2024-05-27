@@ -1337,7 +1337,7 @@ const selectedFileName4 = ref(null);
 let generalPhone = ref('');
 let otp = ref("");
 const currentDate = new Date();
-const currentYear = currentDate.getFullYear();
+const currentYear = currentDate.getFullYear() + 1;
 
 let paymentOtp = ref(1);
 let years = ref([]);
@@ -1351,11 +1351,7 @@ const getDesc = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
-  for (
-    let i = currentYear;
-    i >= parseInt(result.data.data.Min_year_of_finance);
-    i--
-  ) {
+  for (let i = currentYear; i >= parseInt(result.data.data.Min_year_of_finance);i--) {
     years.value.push(i);
   }
   console.log(years.value);
