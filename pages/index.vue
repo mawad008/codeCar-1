@@ -231,11 +231,15 @@
             slidesPerView: 1.3,
             spaceBetween: 30,
           },
-          '768': {
-            slidesPerView: 3,
+          '900': {
+            slidesPerView: 2,
             spaceBetween: 30,
           },
           '1024': {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          '1200': {
             slidesPerView: 4,
             spaceBetween: 30,
           },
@@ -276,7 +280,7 @@
     <div class="best-offers">
       <div class="container">
         <div v-if="financingAdv" class="row">
-          <div class="col-12 col-xl-5 col-lg-5 " data-aos="fade-right" data-aos-delay="0">
+          <div class="col-12 col-xl-5 col-lg-5 main-col " data-aos="fade-right" data-aos-delay="0">
             <div class="text-container">
               <span class="special"> {{ $t('about1') }}</span>
               <h4>{{ financingAdv.description }}</h4>
@@ -329,7 +333,7 @@
         </div>
       </div>
       <div class="row gap- align-items-center">
-        <div v-for="item, index in financingbodyArr" class="col-6 col-xl-2 col-lg-2 col-md-4">
+        <div v-for="item, index in financingbodyArr" class="col-6 col-xl-2 col-lg-3 col-md-4">
           <div class="box " data-aos="fade-down" data-aos-delay="300">
             <div>
               <img :src="item.image" clss="" />

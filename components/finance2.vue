@@ -505,7 +505,7 @@ let showConfirm = ref(false);
 
 let otp = ref("");
 const currentDate = new Date();
-const currentYear = currentDate.getFullYear();
+const currentYear = currentDate.getFullYear() + 1;
 
 let paymentOtp = ref(1);
 let years = ref([]);

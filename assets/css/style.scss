@@ -186,6 +186,10 @@ a {
       font-weight: 700;
       color: $secondary-black;
       margin-top: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: relative;
     }
   }
   .price {
@@ -2242,12 +2246,15 @@ html[dir="ltr"] {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .best-offers {
     padding: 16px;
     .special {
       text-align: center;
       margin-bottom: 12px !important;
+    }
+    .main-col{
+      width: 100% !important;
     }
     h4 {
       text-align: center;

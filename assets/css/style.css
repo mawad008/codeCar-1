@@ -139,6 +139,10 @@ a {
   font-weight: 700;
   color: #2d3a4a;
   margin-top: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
 }
 .car-card .price {
   margin-top: 14px;
@@ -1879,13 +1883,16 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
      object-fit: contain;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .best-offers {
     padding: 16px;
   }
   .best-offers .special {
     text-align: center;
     margin-bottom: 12px !important;
+  }
+  .best-offers .main-col {
+    width: 100% !important;
   }
   .best-offers h4 {
     text-align: center;
