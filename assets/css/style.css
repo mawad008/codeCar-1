@@ -5819,7 +5819,7 @@ html[dir=ltr] .settings-page .setting-btn {
   font-size: 14px;
   color: #5a7184;
   font-weight: 400;
-  width: 60%;
+  width: 310px;
 }
 .orders-page .orders-container .the-order.corp {
   direction: ltr;
@@ -5903,7 +5903,12 @@ html[dir=ltr] .settings-page .setting-btn {
   font-weight: 700;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1200px) {
+  .orders-page .orders-container .the-order .image-container span {
+    width: 220px;
+  }
+}
+@media (max-width: 900px) {
   .orders-page .orders-container .the-order .image-container span {
     width: 100% !important;
   }
