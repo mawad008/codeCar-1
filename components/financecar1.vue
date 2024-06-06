@@ -311,31 +311,31 @@
             <div class="input-container">
               <span>{{ $t('color') }}</span>
               <div class="input">
-                <!-- <Dropdown
-                            v-model="form2.color_id"
-                            :options="optionsCars.colors"
-                            filter
-                          :filter-placeholder="$t('search')"
+              
+                <Dropdown
+                        v-model="form2.color_id"
+                        :options="colors ? colors : optionsCars.colors"
+                        filter
+                        optionValue="id"
+                        :optionLabel="`${colors ? 'name' : 'title'}`"
+                        :filter-placeholder="$t('search')"
+                        :placeholder="$t('color')"
+                        class=""
+                      >
+                        <template #option="slotProps">
+                          <div class="flex align-items-center">
+                            <div>{{ slotProps.option.name ?  slotProps.option.name : slotProps.option.title}}</div>
+                          </div>
+                        </template>
+                      </Dropdown>
+                <!-- <input v-model="carDet.color_id" readonly /> -->
 
-                            optionLabel="title"
-                            optionValue="id"
-                            :placeholder="$t('example6')"
-                            class=""
-                          >
-                            <template #option="slotProps">
-                              <div class="flex align-items-center">
-                                <div>{{ slotProps.option.title }}</div>
-                              </div>
-                            </template>
-                          </Dropdown> -->
-                <input v-model="carDet.color_id" readonly />
-
-                <!-- <span class="error-msg" v-if="v2$.color_id.$error">{{
+                <span class="error-msg" v-if="v2$.color_id.$error">{{
                               v2$.color_id.$errors[0].$message
                           }}</span>
                   <span class="error-msg" v-if="errors2.color_id">{{
                       errors2.color_id[0]
-                  }}</span> -->
+                  }}</span>
               </div>
             </div>
             <div class="input-container">
@@ -446,9 +446,9 @@
               <span> {{ $t('ident') }}</span>
               <div class="input">
                 <input type="tel" v-model="form3.identity_no" maxlength="11" name="" class="" />
-                <span class="error-msg" v-if="v3$.identity_no.$error">{{
+                <!-- <span class="error-msg" v-if="v3$.identity_no.$error">{{
                   v3$.identity_no.$errors[0].$message
-                  }}</span>
+                  }}</span> -->
               </div>
               <span class="error-msg mt-1" v-if="errors3.identity_no">{{
                 errors3.identity_no[0]
@@ -928,7 +928,7 @@ import {
   helpers,
 } from "@vuelidate/validators";
 import { useStore } from "~/store";
-const props = defineProps(["carid", "price"]);
+const props = defineProps(["carid", "price" , "colors"]);
 
 let store = useStore;
 const localePath = useLocalePath();
@@ -1028,10 +1028,10 @@ let transferArr = ref([
 
 let selectedBrand = ref();
 let form2 = ref({
-  brand: '',
-  model: '',
-  year: '',
-  gear_shifter: '',
+  // brand: '',
+  // model: '',
+  // year: '',
+  // gear_shifter: '',
   color_id: '',
 });
 
@@ -1091,10 +1091,10 @@ if (locale.value == "ar") {
 
 const rules2 = computed(() => {
   return {
-    brand: { required: helpers.withMessage(value1.value, required) },
-    model: { required: helpers.withMessage(value1.value, required) },
-    year: { required: helpers.withMessage(value1.value, required) },
-    gear_shifter: { required: helpers.withMessage(value1.value, required) },
+    // brand: { required: helpers.withMessage(value1.value, required) },
+    // model: { required: helpers.withMessage(value1.value, required) },
+    // year: { required: helpers.withMessage(value1.value, required) },
+    // gear_shifter: { required: helpers.withMessage(value1.value, required) },
     color_id: { required: helpers.withMessage(value1.value, required) },
   }
 });
@@ -1106,7 +1106,7 @@ const rules3 = computed(() => {
     sex: { required: helpers.withMessage(value1.value, required) },
     birth_date: { required: helpers.withMessage(value1.value, required) },
     city_id: { required: helpers.withMessage(value1.value, required) },
-    identity_no: { required: helpers.withMessage(value1.value, required) },
+    // identity_no: { required: helpers.withMessage(value1.value, required) },
     sector: { required: helpers.withMessage(value1.value, required) },
     salary: { required: helpers.withMessage(value1.value, required) },
     nationality_id: { required: helpers.withMessage(value1.value, required) },
@@ -1116,7 +1116,7 @@ const rules3 = computed(() => {
     traffic_violations: { required: helpers.withMessage(value1.value, required) },
     department_loan: { required: helpers.withMessage(value1.value, required) },
     driving_license: { required: helpers.withMessage(value1.value, required) },
-    email: { required: helpers.withMessage(value2.value, required), email: helpers.withMessage(value3.value, email) },
+    email: {email: helpers.withMessage(value3.value, email) },
   }
 });
 
@@ -1135,9 +1135,11 @@ const isFormFilled3 = () => {
   // Iterate through each object in the form array
   for (const key in form3.value) {
     // Check if any key in the object has an empty value
-    if (form3.value[key] === '') {
-      // If any value is empty, return false
-      return false;
+    if(key !== 'identity_no' && key !== 'email'){
+      if (form3.value[key] === '') {
+        // If any value is empty, return false
+        return false;
+      }
     }
   }
 
@@ -1147,7 +1149,14 @@ const isFormFilled3 = () => {
 let offers = ref([]);
 let theOffer = ref();
 let theCar = ref();
-let carDet = ref({});
+let carDet = ref({
+  brand:"",
+  category:"",
+  gear_shifter:"",
+  color_id:"",
+  model:"",
+  year:"",
+});
 
 const paymentFunc1 = async () => {
   pending1.value = true;
@@ -1169,51 +1178,54 @@ const paymentFunc1 = async () => {
     pending1.value = false;
     paymentBtn2.value = 1;
     checkBtn1.value = 1;
-    carDet.value = result.data;
+    carDet.value.brand = result.data.brand;
+    carDet.value.category = result.data.category;
+    carDet.value.gear_shifter = result.data.gear_shifter;
+    carDet.value.model = result.data.model;
+    carDet.value.year = result.data.year;
     paymentIndividualBtn.value = 2;
   }
 };
 const paymentFunc2 = async () => {
 
-  // let formBody = new FormData();
-  // formBody.append("brand", form2.value.brand);
-  // formBody.append("model", form2.value.model);
-  // formBody.append("year", form2.value.year);
-  // formBody.append("gear_shifter", form2.value.gear_shifter);
-  // formBody.append("color_id", form2.value.color_id);
-  // let check = await v2$.value.$validate();
-  // if (check) {
+  let formBody = new FormData();
+  formBody.append("first_batch", sliderValue1.value);
+  formBody.append("installment", sliderValue2.value);
+  formBody.append("last_batch", sliderValue3.value);
+  formBody.append("color_id", form2.value.color_id);
+  let check = await v2$.value.$validate();
+  if (check) {
 
-  //     pending2.value = true;
-  //     try {
-  //         let result = await axios.post(`${getUrl()}/financecar-Order`, formBody, {
-  //             params: {
-  //                 type:'individual',
-  //                id: props.carid,
-  //                 step: 2
-  //             },
-  //             headers: {
-  //                 "Content-Language": `${locale.value}`,
-  //             },
-  //         });
-  //         if (result.status >= 200) {
-  //             paymentIndividualBtn.value = 3;
-  //             paymentBtn3.value = 1;
-  //             checkBtn2.value = 1;
-  //             pending2.value = false;
-  //             errors2.value = [];
-  //         }
-  //     } catch (errorss) {
-  //         console.log(errorss);
-  //         if (errorss.response) {
-  //             pending2.value = false;
-  //             errors2.value = errorss.response.data.errors;
-  //         }
-  //     }
-  // }
-  paymentIndividualBtn.value = 3;
-  paymentBtn3.value = 1;
-  checkBtn2.value = 1;
+      pending2.value = true;
+      try {
+          let result = await axios.post(`${getUrl()}/financecar-Order`, formBody, {
+              params: {
+                  type:'individual',
+                 id: props.carid,
+                  step: 2
+              },
+              headers: {
+                  "Content-Language": `${locale.value}`,
+              },
+          });
+          if (result.status >= 200) {
+              paymentIndividualBtn.value = 3;
+              paymentBtn3.value = 1;
+              checkBtn2.value = 1;
+              pending2.value = false;
+              errors2.value = [];
+          }
+      } catch (errorss) {
+          console.log(errorss);
+          if (errorss.response) {
+              pending2.value = false;
+              errors2.value = errorss.response.data.errors;
+          }
+      }
+  }
+  // paymentIndividualBtn.value = 3;
+  // paymentBtn3.value = 1;
+  // checkBtn2.value = 1;
 };
 const paymentFunc3 = async () => {
   v3$.value.$validate();

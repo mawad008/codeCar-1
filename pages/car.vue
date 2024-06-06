@@ -636,7 +636,37 @@
                       errors1.phone[0]
                     }}</span>
                   </div>
+               
                 </div>
+                <div class="input-container">
+                    <span> {{ $t("color") }} </span>
+                    <div class="input">
+                      <!-- optionLabel="title" -->
+                      <Dropdown
+                        v-model="formCash1.color_id"
+                        :options="mainCar.color ? mainCar.color : optionsCars.colors"
+                        filter
+                        optionValue="id"
+                        :optionLabel="`${mainCar.color ? 'name' : 'title'}`"
+                        :filter-placeholder="$t('search')"
+                        :placeholder="$t('color')"
+                        class=""
+                      >
+                        <template #option="slotProps">
+                          <div class="flex align-items-center">
+                            <div>{{ slotProps.option.name ?  slotProps.option.name : slotProps.option.title}}</div>
+                          </div>
+                        </template>
+                      </Dropdown>
+                      <span class="error-msg" v-if="v1$.color_id.$error">{{
+                        v1$.color_id.$errors[0].$message
+                      }}</span>
+                    </div>
+                    <span class="error-msg mt-1" v-if="errors1.color_id">{{
+                      errors1.color_id[0]
+                    }}</span>
+                  </div>
+              
                 <button @click="cashFunc1()" class="gap-3">
                   {{ $t("send") }}
                   <v-progress-circular
@@ -971,6 +1001,35 @@
                     }}</span>
                   </div>
                 </div>
+                <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
+                  <div class="input-container">
+                    <span> {{ $t("color") }}</span>
+                    <div class="input">
+                      <Dropdown
+                        v-model="formCash2.color_id"
+                        :options="mainCar.color ? mainCar.color : optionsCars.colors"
+                        filter
+                        optionValue="id"
+                        :optionLabel="`${mainCar.color ? 'name' : 'title'}`"
+                        :filter-placeholder="$t('search')"
+                        :placeholder="$t('color')"
+                        class=""
+                      >
+                        <template #option="slotProps">
+                          <div class="flex align-items-center">
+                            <div>{{ slotProps.option.name ?  slotProps.option.name : slotProps.option.title}}</div>
+                          </div>
+                        </template>
+                      </Dropdown>
+                      <span class="error-msg" v-if="v2$.color_id.$error">{{
+                        v2$.color_id.$errors[0].$message
+                      }}</span>
+                      <span class="error-msg" v-if="errors2.color_id">{{
+                        errors2.color_id[0]
+                      }}</span>
+                    </div>
+                  </div>
+                </div>
                 <button @click="cashFunc1()" class="gap-3">
                   {{ $t("send") }}
                   <v-progress-circular
@@ -1073,13 +1132,14 @@
           </div>
 
           <div v-if="paymentMethod == 1">
-            <financecar1 :carid="id" :price="mainCar.price_after_tax" />
+            <financecar1 :carid="id" :colors="mainCar.color"  :price="mainCar.price_after_tax" />
           </div>
           <div v-if="paymentMethod == 2">
             <financecar2
               :carid="id"
               :price="mainCar.price_after_tax"
               :car="mainCar"
+              :colors="mainCar.color"
             />
           </div>
         </div>
@@ -1521,28 +1581,6 @@ if (locale.value == "ar") {
   slide.value = false;
 }
 
-let colors = ref([
-  {
-  namee:'dsd',
-  hex_code:'#f7f7f7'
-  },
-  {
-  namee:'dsd',
-  hex_code:'#e8e8e8'
-  },
-  {
-  namee:'dsd',
-  hex_code:'#e8e8e8'
-  },
-  {
-  namee:'dsd',
-  hex_code:'#fc0303'
-  },
-  {
-  namee:'dsd',
-  hex_code:'#0d0505'
-  },
-])
 
 const hexToRgb = (hex) => {
   // Remove '#' from hex string
@@ -1714,6 +1752,7 @@ if (locale.value == "ar") {
 let formCash1 = ref({
   name: "",
   phone: "",
+  color_id: "",
 });
 let formCash2 = ref({
   organization_name: "",
@@ -1726,18 +1765,21 @@ let formCash2 = ref({
   phone: "",
   organization_age: "",
   car_count: 1,
+  color_id:""
 });
 
 const rules1 = computed(() => {
   return {
     name: { required: helpers.withMessage(value1.value, required) },
     phone: { required: helpers.withMessage(value1.value, required) },
+    color_id: { required: helpers.withMessage(value1.value, required) },
   };
 });
 const rules2 = computed(() => {
   return {
     name: { required: helpers.withMessage(value1.value, required) },
     phone: { required: helpers.withMessage(value1.value, required) },
+    color_id: { required: helpers.withMessage(value1.value, required) },
     organization_name: {
       required: helpers.withMessage(value1.value, required),
     },
@@ -1771,7 +1813,7 @@ const cashFunc1 = async () => {
       try {
         let result = await axios.post(
           `${getUrl()}/cash-Order`,
-          { name: formCash1.value.name, phone: formCash1.value.phone },
+          formCash1.value,
           {
             params: {
               type: "individual",
@@ -1814,6 +1856,7 @@ const cashFunc1 = async () => {
     formBody.append("phone", formCash2.value.phone);
     formBody.append("organization_age", formCash2.value.organization_age);
     formBody.append("car_count", formCash2.value.car_count);
+    formBody.append("color_id", formCash2.value.color_id);
     let check = await v2$.value.$validate();
     if (check) {
       pending2.value = true;

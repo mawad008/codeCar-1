@@ -154,20 +154,25 @@
             <div class="input-container">
               <span>{{ $t('color') }}</span>
               <div class="input">
-                <!-- <Dropdown v-model="form.color" :options="optionsCars.colors" filter optionLabel="title"
-                  :filter-placeholder="$t('search')" optionValue="id" :placeholder="$t('example6')" class="">
-                  <template #option="slotProps">
-                    <div class="flex align-items-center">
-                      <div>{{ slotProps.option.title }}</div>
-                    </div>
-                  </template>
-                </Dropdown>
-                <span class="error-msg" v-if="v$.color.$error">{{
-                  v$.color.$errors[0].$message
-                }}</span> -->
-
-                <input type="text" readonly v-model="car.color.title" />
-
+                <Dropdown
+                        v-model="form.color_id"
+                        :options="colors ? colors : optionsCars.colors"
+                        filter
+                        optionValue="id"
+                        :optionLabel="`${colors ? 'name' : 'title'}`"
+                        :filter-placeholder="$t('search')"
+                        :placeholder="$t('color')"
+                        class=""
+                      >
+                        <template #option="slotProps">
+                          <div class="flex align-items-center">
+                            <div>{{ slotProps.option.name ?  slotProps.option.name : slotProps.option.title}}</div>
+                          </div>
+                        </template>
+                      </Dropdown>
+                <span class="error-msg" v-if="v$.color_id.$error">{{
+                  v$.color_id.$errors[0].$message
+                }}</span>
               </div>
             </div>
 
@@ -374,7 +379,7 @@ import {
 } from "@vuelidate/validators";
 import { useStore } from "~/store";
 let store = useStore;
-const props = defineProps(["carid", "car"]);
+const props = defineProps(["carid", "car" , "colors"]);
 
 const localePath = useLocalePath();
 const { locale } = useI18n();
@@ -499,7 +504,7 @@ let form = ref(
     brand: '',
     model: '',
     year: '',
-    color: '',
+    color_id: '',
     gear_shifter: '',
     car_count: 1
   }
@@ -552,7 +557,7 @@ const rules = computed(() => {
     model: { required: helpers.withMessage(value1.value, required) },
     year: { required: helpers.withMessage(value1.value, required) },
     gear_shifter: { required: helpers.withMessage(value1.value, required) },
-    color: { required: helpers.withMessage(value1.value, required) },
+    color_id: { required: helpers.withMessage(value1.value, required) },
     car_count: { required: helpers.withMessage(value1.value, required), minLength: helpers.withMessage(value5.value, minLength(1)) },
   }
 })
@@ -609,9 +614,10 @@ let pendingCorp2 = ref(false);
 const sendCorporate1 = async () => {
   // let formBody = new FormData();
   // formBody.append("brand", form2.value.brand);
-  v$.value.$validate();
+  let check = await v$.value.$validate();
 
-  if (form.value.car_count) {
+
+  if (form.value.car_count && form.value.color_id ) {
     // pendingCorp1.value = true;
     // let result = await axios.post(`${getUrl()}/financecar-Order`, { 
     //              brand: form.value.brand,
@@ -655,6 +661,7 @@ const sendCorporate2 = async () => {
           //   color: form.value.color,
           //   gear_shifter: form.value.gear_shifter,
           car_count: form.value.car_count,
+          color_id: form.value.color_id,
           organization_name: form4.value.organization_name,
           organization_type: form4.value.organization_type,
           commercial_registration_no: form4.value.commercial_registration_no,
