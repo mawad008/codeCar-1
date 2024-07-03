@@ -600,7 +600,10 @@
               </div>
             </div>
             <div class="input-container">
-              <span> {{ $t("ident") }}</span>
+              <div class="d-flex align-items-center gap-2">
+                <span> {{ $t("ident") }}</span>
+                <span style="font-weight: 500">( {{ $t('opt') }} )</span>
+              </div>
               <div class="input">
                 <input
                   type="tel"
@@ -749,9 +752,10 @@
               </div>
             </div>
             <div class="input-container">
-              <div class="d-flex align-items-center gap-3">
+              <div class="d-flex align-items-center gap-2">
                 <span> {{ $t("emailE") }}</span>
-                <button>
+                <span style="font-weight: 500">( {{ $t('opt') }} )</span>
+                <!-- <button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -769,7 +773,7 @@
                   <v-tooltip activator="parent" location="top" color="red"
                     > {{ $t('tooltip1') }}  </v-tooltip
                   >
-                </button>
+                </button> -->
               </div>
 
               <div class="input">
@@ -1884,8 +1888,8 @@ onMounted(() => {
   getOptions();
   getDesc();
   getCites();
-  var currentDate = new Date();
-var maxDate = new Date();
+   var currentDate = new Date();
+   var maxDate = new Date();
   maxDate.setFullYear(currentDate.getFullYear() - 16);
   max_years.value =  maxDate.toISOString().slice(0, 10);
 });

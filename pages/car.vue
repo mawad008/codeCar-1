@@ -2161,9 +2161,7 @@ const getDesc = async () => {
   videoKey.value = result.data.data.video_url;
 };
 
-watch(
-  () => route.query.id,
-  (newId) => {
+watch(() => route.query.id,(newId) => {
     id.value = newId;
     getCar();
   }

@@ -411,7 +411,7 @@
             <div class="input-container">
               <span> {{ $t('birth') }}</span>
               <div class="input">
-                <input type="date" name="" v-model="form3.birth_date" class="" />
+                <input type="date" :max="max_years" name="" v-model="form3.birth_date" class="" />
                 <span class="error-msg" v-if="v3$.birth_date.$error">{{
                   v3$.birth_date.$errors[0].$message
                   }}</span>
@@ -443,7 +443,10 @@
               
             </div>
             <div class="input-container">
-              <span> {{ $t('ident') }}</span>
+              <div class="d-flex align-items-center gap-2">
+                <span> {{ $t('ident') }}</span>
+                <span style="font-weight: 500">( {{ $t('opt') }} )</span>
+              </div>
               <div class="input">
                 <input type="tel" v-model="form3.identity_no" maxlength="11" name="" class="" />
                 <!-- <span class="error-msg" v-if="v3$.identity_no.$error">{{
@@ -551,9 +554,10 @@
               </div>
             </div>
             <div class="input-container">
-              <div class="d-flex align-items-center gap-3">
+              <div class="d-flex align-items-center gap-2">
                 <span> {{ $t('emailE') }}</span>
-                <button>
+                <span style="font-weight: 500">( {{ $t('opt') }} )</span>
+                <!-- <button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -571,7 +575,7 @@
                   <v-tooltip activator="parent" location="top" color="red"
                     > {{ $t('tooltip1') }}  </v-tooltip
                   >
-                </button>
+                </button> -->
               </div>
               <div class="input">
                 <input type="email" placeholder=" Demo@gmail.com" v-model="form3.email" name="" class="" />
@@ -659,12 +663,75 @@
         </div>
 
         <div v-if="paymentIndividualBtn == 4" class="offers">
-          <div v-if="offers.length >= 1">
-            <div class="w-100 d-flex justify-content-center justify-content-xl-end justify-content-lg-end">
+            <div
+              class="w-100 d-flex justify-content-center flex-column flex-xl-row flex-lg-row mb-3 gap-3 justify-content-xl-end justify-content-lg-end"
+            >
               <div class="input dropdown-finance-filter">
-                <Dropdown v-model="filterFinance" :options="filterFinanceArr" filter
-                  :filter-placeholder="$t('search')" optionLabel="name" optionValue="value" :placeholder="$t('show1')"
-                  class="">
+                <Dropdown
+                  v-model="sliderValue1"
+                  :options="firstPatch"
+                  filter
+                  :filter-placeholder="$t('search')"
+                  :placeholder="$t('calc1')"
+                  optionLabel="name"
+                  optionValue="value"
+                  class=""
+                >
+                  <template #option="slotProps">
+                    <div class="flex align-items-center w-100">
+                      <div  @click="sliderValue1 = slotProps.option.value , offersFiter()" class="w-100">{{ slotProps.option.name }}</div>
+                    </div>
+                  </template>
+                </Dropdown>
+              </div>
+              
+              <div class="input dropdown-finance-filter">
+                <Dropdown
+                  v-model="sliderValue3"
+                  :options="secondPatch"
+                  filter
+                  :filter-placeholder="$t('search')"
+                  :placeholder="$t('calc2')"
+                  optionLabel="name"
+                  optionValue="value"
+                  class=""
+                >
+                  <template #option="slotProps">
+                    <div class="flex align-items-center w-100">
+                      <div @click="sliderValue3 = slotProps.option.value , offersFiter()" class=" w-100">{{ slotProps.option.name }}</div>
+                    </div>
+                  </template>
+                </Dropdown>
+              </div>
+              <div class="input dropdown-finance-filter">
+                <Dropdown
+                  v-model="sliderValue2"
+                  :options="yearsInst"
+                  filter
+                  :filter-placeholder="$t('search')"
+                  :placeholder="$t('calc3')"
+                  optionLabel="name"
+                  optionValue="value"
+                  class=""
+                >
+                  <template #option="slotProps">
+                    <div class="flex align-items-center w-100">
+                      <div  @click="sliderValue2 = slotProps.option.value , offersFiter()" class="w-100">{{ slotProps.option.name }}</div>
+                    </div>
+                  </template>
+                </Dropdown>
+              </div>
+              <div class="input dropdown-finance-filter">
+                <Dropdown
+                  v-model="filterFinance"
+                  :options="filterFinanceArr"
+                  filter
+                  :filter-placeholder="$t('search')"
+                  optionLabel="name"
+                  optionValue="value"
+                  :placeholder="$t('show1')"
+                  class=""
+                >
                   <template #option="slotProps">
                     <div class="flex align-items-center">
                       <div>{{ slotProps.option.name }}</div>
@@ -672,57 +739,87 @@
                   </template>
                 </Dropdown>
               </div>
-
             </div>
+            <div v-if="pendingFilter" class="d-flex align-items-center justify-content-center w-100" style="min-height:50vh;">
+            <v-progress-circular
+                
+                indeterminate
+                :size="45"
+                :width="6"
+                color="#dcb63b"
+              ></v-progress-circular>
+            
+            </div>
+              <div v-if="!pendingFilter">
+          <div v-if="offers.length >= 1">
             <v-radio-group v-model="bank_offer_id">
               <div class="row">
-                <div v-for="item, index in sortedItems" class="col-12 col-xl-6 col-lg-6">
+                <div
+                  v-for="(item, index) in sortedItems"
+                  class="col-12 col-xl-6 col-lg-6"
+                >
                   <label :for="`offer-${index}-1`" class="offer w-100">
-                    <div class="d-flex align-items-center justify-content-between w-100">
+                    <div
+                      class="d-flex align-items-center justify-content-between w-100"
+                    >
                       <span class="name">{{ item.OfferName.title }}</span>
-                      <v-radio class="radio-input" :id="`offer-${index}-1`" color="#DCB63B" name="offer-1"
-                        :value="item.bank_offer_id" v-model="bank_offer_id"></v-radio>
+                      <v-radio
+                        class="radio-input"
+                        :id="`offer-${index}-1`"
+                        color="#DCB63B"
+                        name="offer-1"
+                        :value="item.bank_offer_id"
+                        v-model="bank_offer_id"
+                      ></v-radio>
                     </div>
                     <div class="price">
                       <h4>{{ item.monthly_installment }}</h4>
-                      <span> {{ $t('offer1') }} </span>
+                      <span> {{ $t("offer1") }} </span>
                     </div>
                     <v-divider></v-divider>
                     <div class="details">
                       <div class="detail">
                         <div class="d-flex align-items-center gap-2">
                           <img src="~/assets/images/det1.png" alt="" />
-                          <span class="name"> {{ $t('offer2') }} </span>
+                          <span class="name"> {{ $t("carPrice") }} </span>
                         </div>
-                        <p class="price">{{ item.fundingAmount }} {{ $t('curr') }}</p>
+                        <p class="price">
+                          {{ item.car.price_after_tax }} {{ $t("curr") }}
+                        </p>
                       </div>
                       <div class="detail">
                         <div class="d-flex align-items-center gap-2">
                           <img src="~/assets/images/det2.png" alt="" />
-                          <span class="name"> {{ $t('offer3') }}</span>
+                          <span class="name"> {{ $t("offer3") }}</span>
                         </div>
-                        <p class="price">{{ item.firs_installment }} {{ $t('curr') }}</p>
+                        <p class="price">
+                          {{ item.firs_installment }} {{ $t("curr") }}
+                        </p>
                       </div>
                       <div class="detail">
                         <div class="d-flex align-items-center gap-2">
                           <img src="~/assets/images/det3.png" alt="" />
-                          <span class="name"> {{ $t('offer4') }} </span>
+                          <span class="name"> {{ $t("offer4") }} </span>
                         </div>
-                        <p class="price">{{ item.years }} {{ $t('year') }}</p>
+                        <p class="price">{{ item.years }} {{ $t("year") }}</p>
                       </div>
                       <div class="detail">
                         <div class="d-flex align-items-center gap-2">
                           <img src="~/assets/images/det4.png" alt="" />
-                          <span class="name"> {{ $t('calc3') }}</span>
+                          <span class="name"> {{ $t("calc3") }}</span>
                         </div>
-                        <p class="price">{{ item.last_installment }} {{ $t('curr') }}</p>
+                        <p class="price">
+                          {{ item.last_installment }} {{ $t("curr") }}
+                        </p>
                       </div>
                       <div class="detail">
                         <div class="d-flex align-items-center gap-2">
                           <img src="~/assets/images/det5.png" alt="" />
-                          <span class="name"> {{ $t('offer5') }} </span>
+                          <span class="name"> {{ $t("offer5") }} </span>
                         </div>
-                        <p class="price">{{ item.sectorAdministrative_fees }} {{ $t('curr') }}</p>
+                        <p class="price">
+                          {{ item.sectorAdministrative_fees }} {{ $t("curr") }}
+                        </p>
                       </div>
                     </div>
                   </label>
@@ -731,35 +828,46 @@
             </v-radio-group>
             <div class="btns">
               <button @click="paymentIndividualBtn = 3" class="back">
-                {{ $t('back') }}
+                {{ $t("back") }}
               </button>
               <button @click="paymentFunc4()" class="next gap-3">
-                {{ $t('next') }}
-                <v-progress-circular v-if="pending4" indeterminate :size="25" :width="4"></v-progress-circular>
+                {{ $t("next") }}
+                <v-progress-circular
+                  v-if="pending4"
+                  indeterminate
+                  :size="25"
+                  :width="4"
+                ></v-progress-circular>
               </button>
             </div>
-
-
           </div>
           <div v-else class="empty">
             <div class="main">
               <client-only>
-                <Vue3Lottie :animation-data="emptyoffers" :height="300" :width="300" />
+                <Vue3Lottie
+                  :animation-data="emptyoffers"
+                  :height="300"
+                  :width="300"
+                />
               </client-only>
-              <h4> {{ $t('offerEmpty1') }} </h4>
-              <span>
-                {{ $t('offerEmpty2') }}
+              <h4>{{ $t("offerEmpty1") }}</h4>
+              <span>  
+                {{ $t("offerEmpty2") }} {{$t('contactCodCar')}} <a :href="`tel:${generalPhone}`" class="fw-bold"> {{ generalPhone }} </a>
               </span>
-              <div class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4">
+              <div
+                class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4"
+              >
                 <button @click="paymentIndividualBtn = 3" class="back">
-                  {{ $t('back') }}
+                  {{ $t("back") }}
                 </button>
                 <nuxt-link :to="localePath('/')">
-                  <button class="home">{{ $t('backHome') }}</button>
+                  <button class="home">{{ $t("backHome") }}</button>
                 </nuxt-link>
               </div>
             </div>
           </div>
+              
+              </div>
         </div>
 
         <div v-if="paymentIndividualBtn == 5" class="final-review">
@@ -1070,7 +1178,44 @@ let filterFinanceArr = ref([
 
 
 
-
+let sellingPrice = ref();
+let firstPatchInput = ref(sliderValue1.value);
+let secondPatchInput = ref(sliderValue3.value);
+let yearInput = ref(sliderValue2.value);
+let firstPatch = ref([
+  { value: 0 , name: `0 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 5 , name: `5 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 10 , name: `10 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 15 , name: `15 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 20 , name: `20 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 25 , name: `25 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 30 , name: `30 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 30 , name: `30 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 35 , name: `35 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 40 , name: `40 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 45 , name: `45 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 50 , name: `50 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+]);
+let secondPatch = ref([
+  { value: 0, name: `0 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 5 , name: `5 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 10 , name: `10 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 15 , name: `15 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 20 , name: `20 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 25 , name: `25 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 30 , name: `30 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 35 , name: `35 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 40 , name: `40 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 45 , name: `45 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  { value: 50 , name: `50 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+]);
+let yearsInst = ref([
+  { value: 1 , name: `1 ${locale.value == 'ar' ? 'سنة' : 'year'}` },
+  { value: 2 , name: `2  ${locale.value == 'ar' ? 'سنتين' : 'years'}` },
+  { value: 3 , name: `3  ${locale.value == 'ar' ? 'سنوات' : 'years'}` },
+  { value: 4 , name: `4 ${locale.value == 'ar' ? 'سنوات' : 'years'}` },
+  { value: 5 , name: `5 ${locale.value == 'ar' ? 'سنوات' : 'years'}` },
+]);
 
 let value1 = ref("value is required");
 let value2 = ref("The email field is required");
@@ -1088,6 +1233,8 @@ if (locale.value == "ar") {
   value3.value = "Invalid email format";
   value5.value = "The number of cars must be at least 1 car";
 }
+
+
 
 const rules2 = computed(() => {
   return {
@@ -1157,6 +1304,49 @@ let carDet = ref({
   model:"",
   year:"",
 });
+
+let pendingFilter = ref(false);
+const offersFiter = async () =>{
+  v3$.value.$validate();
+  // formBody.append("first_batch", sliderValue1.value);
+  // formBody.append("installment", sliderValue2.value);
+  // formBody.append("last_batch", sliderValue3.value);
+    
+  let formBody = createFormData1(form2.value, form3.value, sliderValue1.value, sliderValue2.value, sliderValue3.value);
+
+  if (isFormFilled3()) {
+    pending3.value = true;
+    pendingFilter.value = true;
+    offers.value = []; 
+    try {
+      let result = await axios.post(`${getUrl()}/financecar-Order`, formBody, {
+        params: {
+          type: 'individual',
+          id: props.carid,
+          step: 3
+        },
+        headers: {
+          "Content-Language": `${locale.value}`,
+        },
+      });
+      if (result.status >= 200) {
+        paymentIndividualBtn.value = 4;
+        paymentBtn4.value = 1;
+        checkBtn3.value = 1;
+        pending3.value = false;
+        pendingFilter.value = false;
+        errors3.value = [];
+        offers.value = result.data.data;
+      }
+    } catch (errorss) {
+      console.log(errorss);
+      if (errorss.response) {
+        pending3.value = false;
+        errors3.value = errorss.response.data.errors;
+      }
+    }
+  }
+}
 
 const paymentFunc1 = async () => {
   pending1.value = true;
@@ -1394,34 +1584,6 @@ const paymentFunc5 = async () => {
 
 };
 
-const sendOtp = async () => {
-  let formBody = new FormData();
-  formBody.append("identity_Card", selectedFileName1.value);
-
-  try {
-    let result = await axios.post(`${getUrl()}/finance-Order`, formBody, {
-      params: {
-        type: paymentMethod.value == 1 ? 'individual' : 'company',
-        step: 5
-      },
-      headers: {
-        "Content-Language": `${locale.value}`,
-      },
-    });
-    if (result.status >= 200) {
-      paymentIndividualBtn.value = 7;
-      errors3.value = [];
-    }
-  } catch (errorss) {
-    console.log(errorss);
-    if (errorss.response) {
-      pending3.value = false;
-      errors3.value = errorss.response.data.errors;
-    }
-  }
-}
-
-
 const handleFileChange1 = (event) => {
   selectedFileName1.value = event.target.files[0] || null;
   console.log(selectedFileName1.value);
@@ -1457,8 +1619,13 @@ const getmodels = computed(() => {
 
 
 let paymentIndividualBtn = ref(1);
+let max_years = ref('');
 
 onMounted(() => {
+  var currentDate = new Date();
+   var maxDate = new Date();
+  maxDate.setFullYear(currentDate.getFullYear() - 16);
+  max_years.value =  maxDate.toISOString().slice(0, 10);
   getOptions();
   getDesc();
   getCites();
