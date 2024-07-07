@@ -155,12 +155,13 @@
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t("carBrand") }}</span>
-              <div class="input">
+              <div class="input" >
                 <Dropdown
                   v-model="form2.brand"
                   :options="brands"
                   :filter-placeholder="$t('search')"
                   filter
+                  @blur="filterColors()"
                   optionValue="id"
                   optionLabel="title"
                   :placeholder="$t('examplee2')"
@@ -168,7 +169,7 @@
                 >
                   <template #option="slotProps">
                     <div class="flex w-100 align-items-center">
-                      <div @click="form2.model = ''" class="w-100">{{ slotProps.option.title }}</div>
+                      <div @click="form2.model = '' , filterColors()" class="w-100">{{ slotProps.option.title }}</div>
                     </div>
                   </template>
                 </Dropdown>
@@ -184,19 +185,20 @@
             </div>
             <div class="input-container">
               <span> {{ $t("carModel") }} </span>
-              <div class="input">
+              <div class="input" >
                 <Dropdown
                   v-model="form2.model"
                   :filter-placeholder="$t('search')"
                   :options="form2.brand != '' ? getmodels[0].models : ''"
                   filter
+                  @blur="filterColors()"
                   optionLabel="name"
                   optionValue="id"
                   placeholder=""
                   class=""
                 >
                   <template #option="slotProps">
-                    <div class="flex align-items-center">
+                    <div @click="filterColors()" class="flex w-100 align-items-center">
                       <div>{{ slotProps.option.name }}</div>
                     </div>
                   </template>
@@ -213,18 +215,19 @@
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t("theYear") }}</span>
-              <div class="input">
+              <div class="input" >
                 <Dropdown
                   :filter-placeholder="$t('search')"
                   v-model="form2.year"
                   :options="years"
                   filter
+                  @blur="filterColors()"
                   optionLabel=""
                   :placeholder="$t('theYear')"
                   class=""
                 >
                   <template #option="slotProps">
-                    <div class="flex align-items-center">
+                    <div @click="filterColors()" class="flex w-100 align-items-center">
                       <div>{{ slotProps.option }}</div>
                     </div>
                   </template>
@@ -239,11 +242,12 @@
             </div>
             <div class="input-container">
               <span>{{ $t("gear") }}</span>
-              <div class="input">
+              <div class="input" >
                 <Dropdown
                   v-model="form2.gear_shifter"
                   :options="gear_shifterArr"
                   filter
+                  @blur="filterColors()"
                   :filter-placeholder="$t('search')"
                   optionLabel="name"
                   optionValue="value"
@@ -251,7 +255,7 @@
                   class=""
                 >
                   <template #option="slotProps">
-                    <div class="flex align-items-center">
+                    <div @click="filterColors()" class="flex w-100 align-items-center">
                       <div>{{ slotProps.option.name }}</div>
                     </div>
                   </template>
@@ -267,11 +271,39 @@
           </div>
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
+              <span>{{ $t("carCategory") }}</span>
+              <div class="input" >
+                <Dropdown
+                  v-model="form2.category"
+                  optionValue="id"
+                  @blur="filterColors()"
+                  :filter-placeholder="$t('search')"
+                  :options="getCategories ? getCategories[0].Categories : ''"
+                  filter
+                  optionLabel="name"
+                  :placeholder="$t('carCategory')"
+                  class=""
+                >
+                  <template #option="slotProps">
+                    <div @click="filterColors()" class="flex w-100 align-items-center">
+                      <div>{{ slotProps.option.name }}</div>
+                    </div>
+                  </template>
+                </Dropdown>
+                <!-- <span class="error-msg" v-if="v1$.Category.$error">{{
+                            v1$.Category.$errors[0].$message
+                          }}</span> -->
+                <span class="error-msg2" v-if="errors2.category">{{
+                  errors2.category[0]
+                }}</span>
+              </div>
+            </div>
+            <div class="input-container">
               <span>{{ $t("color") }}</span>
               <div class="input">
                 <Dropdown
                   v-model="form2.color_id"
-                  :options="optionsCars.colors"
+                  :options="colorsFilter.length > 0 ? colorsFilter : optionsCars.colors"
                   filter
                   :filter-placeholder="$t('search')"
                   optionLabel="title"
@@ -290,33 +322,6 @@
                 }}</span>
                 <span class="error-msg" v-if="errors2.color_id">{{
                   errors2.color_id[0]
-                }}</span>
-              </div>
-            </div>
-            <div class="input-container">
-              <span>{{ $t("carCategory") }}</span>
-              <div class="input">
-                <Dropdown
-                  v-model="form2.category"
-                  optionValue="id"
-                  :filter-placeholder="$t('search')"
-                  :options="getCategories ? getCategories[0].Categories : ''"
-                  filter
-                  optionLabel="name"
-                  :placeholder="$t('carCategory')"
-                  class=""
-                >
-                  <template #option="slotProps">
-                    <div class="flex align-items-center">
-                      <div>{{ slotProps.option.name }}</div>
-                    </div>
-                  </template>
-                </Dropdown>
-                <!-- <span class="error-msg" v-if="v1$.Category.$error">{{
-                            v1$.Category.$errors[0].$message
-                          }}</span> -->
-                <span class="error-msg2" v-if="errors2.category">{{
-                  errors2.category[0]
                 }}</span>
               </div>
             </div>
@@ -1577,9 +1582,22 @@ const isFormFilled3 = () => {
   // If all keys in all objects have values, return true
   return true;
 };
+
+
+const isFormFilled = () => {
+  for (const key in form2.value) {
+    if (key !== 'color_id' && form2.value[key] === "") {
+      return false;
+    }
+  }
+
+  // If all keys in all objects have values, return true
+  return true;
+};
 let offers = ref([]);
 let theOffer = ref();
 let theCar = ref();
+let colorsFilter = ref([]);
 
 let pendingFilter = ref(false);
 const paymentFunc1 = async () => {
@@ -1647,6 +1665,44 @@ const paymentFunc2 = async () => {
     }
   }
 };
+const filterColors = async () => {
+  let formBody = new FormData();
+  formBody.append("brand", form2.value.brand);
+  formBody.append("model", form2.value.model);
+  formBody.append("year", form2.value.year);
+  formBody.append("gear_shifter", form2.value.gear_shifter);
+  formBody.append("category", form2.value.category);
+  // let check = await v2$.value.$validate();
+  console.log(form2.value);
+  console.log(isFormFilled());
+  if (isFormFilled()) {
+    // pending2.value = true;
+    try {
+      let result = await axios.post(`${getUrl()}/filter-cars`, formBody, {
+        // params: {
+        //   type: paymentMethod.value == 1 ? "individual" : "company",
+        //   step: 2,
+        // },
+        headers: {
+          "Content-Language": `${locale.value}`,
+        },
+      });
+      if (result.status >= 200) {
+        
+        colorsFilter.value = result.data.data;
+        
+      }
+    } catch (errorss) {
+      console.log(errorss);
+      if (errorss.response) {
+        pending2.value = false;
+        errors2.value = errorss.response.data.errors;
+      }
+    }
+  }
+};
+
+
 const paymentFunc3 = async () => {
   v3$.value.$validate();
   // formBody.append("first_batch", sliderValue1.value);
