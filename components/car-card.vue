@@ -8,7 +8,8 @@
       disableOnInteraction: false,
     }" :modules="[SwiperAutoplay]" class="image">
           <swiper-slide v-for="item, index in car.images" :key="index">
-            <img :src="item" alt="" />
+            <NuxtImg :src="item" format="webp" :alt="car.title" quality="80" width="60" height="60" loading="lazy" />
+            
           </swiper-slide>
         </Swiper>
 

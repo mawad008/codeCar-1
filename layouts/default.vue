@@ -256,7 +256,7 @@
                   </div>
                   <div v-if="footerData.tiktok" class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
                     <a target="_blank" :href="footerData.tiktok">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                      <svg xmlns="http://www.w3.org/2000/svg"  width="20" height="21" viewBox="0 0 20 21" fill="none">
                         <g clip-path="url(#clip0_294_522)">
                           <path
                             d="M14.2271 0.500488H10.8565V14.1237C10.8565 15.7469 9.56015 17.0802 7.94688 17.0802C6.3336 17.0802 5.03723 15.7469 5.03723 14.1237C5.03723 12.5295 6.3048 11.2251 7.86047 11.1672V7.74688C4.43226 7.80482 1.66666 10.6164 1.66666 14.1237C1.66666 17.6599 4.48987 20.5005 7.9757 20.5005C11.4615 20.5005 14.2847 17.6309 14.2847 14.1237V7.13815C15.5523 8.06571 17.1079 8.61643 18.75 8.64543V5.22513C16.2149 5.13817 14.2271 3.05121 14.2271 0.500488Z"
@@ -270,11 +270,6 @@
                       </svg>
                     </a>
                   </div>
-                  <!-- <div v-if="footerData.whatsapp" class="col-12 col-xl-2 col-lg-2 col-md-4 icon">
-                    <a target="_blank" :href="footerData.whatsapp">
-                       <img src="~/assets/images/whatsapp.svg" alt="">
-                    </a>
-                  </div> -->
                 </div>
               </div>
             </div>
@@ -388,7 +383,6 @@
           </div>
 
           <div class="head-icons d-flex flex-column flex-xl-row flex-lg-row align-items-center justify-content-between">
-            <img src="" alt="" />
           </div>
           <v-divider :thickness="1"></v-divider>
           <div class="foot w-100 d-flex flex-column flex-xl-row flex-lg-row align-items-center justify-content-between">
