@@ -648,8 +648,9 @@ const getProducts = async () => {
 
 
 
-useHead({
-  title: locale.value == 'ar' ? 'الرئيسية' : 'home'
+useSeoMeta({
+  title: locale.value == "ar" ? "الرئيسية" : "home",
+  description: 'This is my amazing site, let me tell you all about it.',
 });
 
 onMounted(() => {
