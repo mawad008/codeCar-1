@@ -10,8 +10,8 @@
         <div class="logo navbar-brand">
           <nuxt-link :to="localePath('/')">
             <div class="logo-container">
-              <!-- <img class="dark-img" src="~/assets/images/logo-white.svg" alt="" /> -->
-              <NuxtImg src="/images/logo-white.svg" class="dark-img" format="webp" alt="logo-white" loading="lazy" />
+              <img class="dark-img" src="~/assets/images/logo-white.svg" alt="logo-white" loading="lazy" />
+              <!-- <NuxtImg src="/images/logo-white.svg" class="dark-img" format="webp" alt="logo-white" loading="lazy" /> -->
               <logo2 />
               <span class="active"> {{ $t('slogan') }} </span>
             </div>
@@ -61,8 +61,8 @@
             class="icons justify-content-center justify-content-xl-start justify-content-lg-start justify-content-md-start mt-4 mt-xl-0 mt-lg-0 mt-md-0">
             <span @click="changeLang()" class="nav-link lang ">{{ $t("lang") }}</span>
             <div @click="overlay = !overlay" class="icon d-none d-xl-flex d-lg-flex  ">
-              <!-- <img class="dark-img" src="~/assets/images/search-icon.svg" alt="" /> -->
-              <NuxtImg src="/images/search-icon.svg" class="dark-img" format="webp" alt="search-icon.svg" quality="80" width="25" height="25" loading="lazy" />
+              <img class="dark-img" src="~/assets/images/search-icon.svg" alt="search-icon.svg"  loading="lazy" />
+              <!-- <NuxtImg src="/images/search-icon.svg" class="dark-img" format="webp" alt="search-icon.svg" quality="80" width="25" height="25" loading="lazy" /> -->
               <svg class="white-img" loading="lazy" xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                 fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -161,8 +161,8 @@
             </span>
             <div class="search-input">
               <div class="inputt">
-                <!-- <img src="~/assets/images/sms.svg" alt="" /> -->
-              <NuxtImg src="/images/sms.svg" format="webp" alt="sms" quality="80" width="25" height="25" loading="lazy" />
+                <img src="~/assets/images/sms.svg" alt="sms" loading="lazy" />
+              <!-- <NuxtImg src="/images/sms.svg" format="webp" alt="sms" quality="80" width="25" height="25" loading="lazy" /> -->
                 <input type="email" v-model="email" :placeholder="$t('emailE')" />
               </div>
               <button @click="subscripe" :disabled="pendingSub" class="">
@@ -415,15 +415,15 @@
             <div class="d-flex align-items-center gap-3">
               <a href="https://zatca.gov.sa/ar/RulesRegulations/VAT/Pages/default.aspx" aria-label="zatca.gov" target="_blank">
                 <!-- <img src="~/assets/images/footer-png-1.svg" alt="" /> -->
-              <NuxtImg src="/images/footer-png-1.svg" format="webp" alt="zatca" quality="80" width="25" height="31"   loading="lazy" />
+              <NuxtImg src="/images/footer-png-1.svg"  alt="zatca" quality="80" width="25" height="31"   loading="lazy" />
               </a>
               <a href="https://www.vision2030.gov.sa/" aria-label="vision2030" target="_blank">
                 <!-- <img src="~/assets/images/footer-png-2.svg" alt="" /> -->
-              <NuxtImg src="/images/footer-png-2.svg" format="webp" alt="vision2030" quality="80" width="45" height="27"  loading="lazy" />
+              <NuxtImg src="/images/footer-png-2.svg"  alt="vision2030" quality="80" width="45" height="27"  loading="lazy" />
               </a>
               <a href="https://maroof.sa/businesses/details/311427" aria-label="maroof" target="_blank">
                 <!-- <img src="~/assets/images/footer-png-3.png" alt="" /> -->
-              <NuxtImg src="/images/footer-png-3.png" format="webp" alt="maroof" quality="80"  width="45" height="27"  loading="lazy" />
+              <NuxtImg src="/images/footer-png-3.png"  alt="maroof" quality="80"  width="45" height="27"  loading="lazy" />
               </a>
 
 

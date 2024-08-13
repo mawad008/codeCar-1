@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["nuxt-swiper", "@nuxtjs/i18n", 
     // "nuxt-vite",
-     "nuxt-primevue", "nuxt-aos" , 'nuxt-lazy-load' , '@nuxt/image'],
+     "nuxt-primevue", "nuxt-aos" , 'nuxt-lazy-load' , '@nuxt/image' , '@nuxtjs/critters' , 'nuxt-purgecss'],
   plugins: [],
   render: {
     // Minify HTML, including inline JavaScript
@@ -134,11 +134,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     },
   },
 
+  // "primevue/resources/themes/lara-dark-green/theme.css",
+  // "~/assets/bootstrap/css/bootstrap.css",
   css: [
-    // "primevue/resources/themes/lara-dark-green/theme.css",
     "vuetify/lib/styles/main.sass",
     "@mdi/font/css/materialdesignicons.min.css",
-    // "~/assets/bootstrap/css/bootstrap.css",
     "~/assets/css/style.css",
   ],
   build: {

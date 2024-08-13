@@ -10,7 +10,7 @@
             fill="#90A3BF" />
         </svg>
       </div>
-      <button>
+      <button id="search-btnn" aria-label="search">
         <nuxt-link :to="localePath('search')">
           <svg loading="lazy" xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17" fill="none">
             <path d="M7.33197 13.5929H1.03125" stroke="#DCB63B" stroke-width="1.5" stroke-linecap="round"
@@ -43,7 +43,7 @@
             </div>
 
             <div data-aos="zoom-in-up" class="image">
-              <NuxtImg class="img-fluid" format="webp" src="/images/hero-car.png" quality="80" width="650" height="300" loading="lazy" />
+              <NuxtImg class="img-fluid" format="webp" alt="hero-car" src="/images/hero-car.png" quality="80" width="650" height="300" loading="lazy" />
             </div>
           </swiper-slide>
         </swiper>
@@ -95,7 +95,7 @@
 
     <div class="brands">
       <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
-        <h4 class="heading-text">{{ $t('brands') }}</h4>
+        <h1 class="heading-text">{{ $t('brands') }}</h1>
         <p v-if="descBrands" class="p-text">
           {{ descBrands }}
         </p>

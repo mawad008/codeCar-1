@@ -148,7 +148,7 @@ a {
   margin-top: 14px;
   gap: 8px;
 }
-.car-card .price h6 {
+.car-card .price .price-text {
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
