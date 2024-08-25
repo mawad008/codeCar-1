@@ -170,11 +170,11 @@
             </div>
             <div class="w-100 d-flex align-items-center justify-content-between">
               <span>{{ $t('offer3') }}</span>
-              <span> {{ (price * sliderValue1) / 100 }} </span>
+              <span> {{ calculatePrice(price , sliderValue1)}} </span>
             </div>
             <div class="w-100 d-flex align-items-center justify-content-between">
               <span>{{ $t('calc3') }}</span>
-              <span> {{ (price * sliderValue3) / 100 }} </span>
+              <span> {{ calculatePrice(price , sliderValue3) }} </span>
             </div>
           </div>
           <div class="d-flex justify-content-end">
@@ -376,7 +376,7 @@
               <div class="input">
 
                 <div class="w-100  d-flex align-items-center justify-content-between phonenum">
-                  <input type="tel" maxlength="10" :placeholder="$t('mobileplace')" name="" v-model="form3.phone" />
+                  <input type="tel" maxlength="10" :placeholder="$t('mobileplace')" name="phone" v-model="form3.phone" />
                   <span class="numm login">966+</span>
                 </div>
                 <span class="error-msg" v-if="v3$.phone.$error">{{
@@ -650,7 +650,43 @@
                 </div>
               </v-radio-group>
             </div>
+            <div v-if="form3.department_loan == 1">
+              <span> {{ $t(' مدعوم ') }} </span>
+              <v-radio-group v-model="form3.department_loan_support">
+                <div class="d-flex">
+                  <div class="d-flex align-items-center">
+                    <label for="radio-first-7">{{ $t('yes') }}</label>
+                    <v-radio id="radio-first-7" color="#DCB63B" name="radio-1" :value="1"></v-radio>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <label for="radio-sec-8"> {{ $t('no') }} </label>
+                    <v-radio id="radio-sec-8" color="#DCB63B" name="radio-1" :value="0"></v-radio>
+                  </div>
+                </div>
+              </v-radio-group>
+            </div>
           </div>
+          <div v-if="form3.department_loan_support == 1" class="input-container">
+              <span>
+                {{ $t("مبلغ الدعم") }}
+              </span>
+              <div class="input">
+                <input
+                  type="number"
+                  min="1"
+                  placeholder=""
+                  v-model="form3.support_price"
+                  name=""
+                  class=""
+                />
+                <span class="error-msg" v-if="v3$.salary.$error">{{
+                  v3$.salary.$errors[0].$message
+                }}</span>
+              </div>
+              <span class="error-msg mt-1" v-if="errors3.salary">{{
+                errors3.salary[0]
+              }}</span>
+            </div>
           <div class="btns">
             <button @click="paymentIndividualBtn = 2, pending3 = false" class="back">
               {{ $t('back') }}
@@ -890,9 +926,9 @@
                   <div class="d-flex align-items-center gap-4">
                     <div class="d-flex align-items-center gap-2">
                       <img src="~/assets/images/det1.png" alt="" />
-                      <span> {{ $t('offer2') }} </span>
+                      <span> {{ $t('carPrice') }} </span>
                     </div>
-                    <h6>{{ theOffer.fundingAmount }} {{ $t('curr') }}</h6>
+                    <h6>{{ theOffer.price }} {{ $t('curr') }}</h6>
                   </div>
                   <div class="d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-2">
@@ -1134,6 +1170,14 @@ let transferArr = ref([
   },
 ]);
 
+const calculatePrice = (priceString, sliderValue) => {
+  // Convert price string to a number
+  const numericPrice = parseFloat(priceString.replace(/,/g, ''));
+  
+  // Perform the calculation
+  return (numericPrice * sliderValue) / 100;
+};
+
 let selectedBrand = ref();
 let form2 = ref({
   // brand: '',
@@ -1158,6 +1202,8 @@ let form3 = ref({
   email: '',
   have_life_problem: 0,
   traffic_violations: 0,
+  department_loan_support: 0,
+  support_price: "",
   department_loan: 0,
   driving_license: 0,
 });
@@ -1282,7 +1328,7 @@ const isFormFilled3 = () => {
   // Iterate through each object in the form array
   for (const key in form3.value) {
     // Check if any key in the object has an empty value
-    if(key !== 'identity_no' && key !== 'email'){
+    if(key !== 'identity_no' && key !== 'email' && key !== 'support_price'){
       if (form3.value[key] === '') {
         // If any value is empty, return false
         return false;
@@ -1620,7 +1666,10 @@ const getmodels = computed(() => {
 
 let paymentIndividualBtn = ref(1);
 let max_years = ref('');
-
+watch([()=> form3.value.department_loan_support , form3.value.department_loan ] , ([val1 , val2])=>{
+    form3.value.support_price = val1 == 1 ? form3.value.support_price : "";
+    // form3.value.department_loan_support = val2 == 1 ?  form3.value.department_loan_support: 0;
+})
 onMounted(() => {
   var currentDate = new Date();
    var maxDate = new Date();

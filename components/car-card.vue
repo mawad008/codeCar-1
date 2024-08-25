@@ -19,8 +19,8 @@
             </div> -->
       <span class="namee">{{ car.statue }}</span>
       <div class="name d-flex flex-column">
-        <span class="used" v-if="Math.round(car.discount_percentage) > 0"> {{ $t('discc') }} {{
-      Math.round(car.discount_percentage) }} % </span>
+        <span class="used" v-if="car.discount_percentage > 0"> {{ $t('discc') }} {{
+      car.discount_percentage }} % </span>
         <h4>{{ car.title }}</h4>
       </div>
       <div class="price d-flex flex-column align-items-cente w-100 justify-content-cente ">
@@ -28,7 +28,7 @@
           <h5 class="price-text">{{ car.selling_price }} {{ $t('curr') }}</h5>
           <span class="disc2" v-if="car.have_discount == 1"> {{ car.price }} {{ $t('curr') }} </span>
         </div>
-        <span> {{ Math.round(car.price_after_tax) }} {{ $t('curr') }} {{ $t('taxes') }}</span>
+        <span> {{ car.price_after_tax }} {{ $t('curr') }} {{ $t('taxes') }}</span>
       </div>
       <div class="types">
         <div class="type">

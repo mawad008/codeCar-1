@@ -279,7 +279,7 @@
               </div>
             </div>
             <div
-              class="col-12 main-link col-xl-2 col-lg-2 d-flex justify-content-center justify-content-xl-en justify-content-lg-en col-md-6">
+              class="col-6 main-link col-xl-2 col-lg-2 d-flex justify-content-center justify-content-xl-en justify-content-lg-en col-md-6">
               <div
                 class="box-container d-flex flex-column align-items-center  justify-content-center justify-content-xl-start justify-content-lg-start align-items-xl-start align-items-lg-start gap-3">
                 <nuxt-link :to="localePath('/')">
@@ -298,11 +298,14 @@
                   <nuxt-link :to="localePath('addCar')">
                     <span class="head-link"> {{ $t("adddd") }} </span>
                   </nuxt-link>
+                  <nuxt-link :to="localePath('terms')">
+                    <span class="head-link"> {{ $t("policyy3") }} </span>
+                  </nuxt-link>
                 </div>
               </div>
             </div>
             <div
-              class="col-12 main-link col-xl-2 col-lg-2 d-flex justify-content-center justify-content-xl-en justify-content-lg-en col-md-6">
+              class="col-6 main-link col-xl-2 col-lg-2 d-flex justify-content-center justify-content-xl-en justify-content-lg-en col-md-6">
               <div
                 class="box-container d-flex flex-column align-items-center text-cente justify-content-center justify-content-xl-start justify-content-lg-start align-items-xl-start align-items-lg-start gap-3">
                 <h6 class="head">
@@ -320,6 +323,9 @@
                   </nuxt-link>
                   <nuxt-link :to="localePath('contact')">
                     <span class="head-link"> {{ $t("contact") }} </span>
+                  </nuxt-link>
+                  <nuxt-link :to="localePath('/policy')">
+                    <span class="head-link"> {{ $t("policyy2") }} </span>
                   </nuxt-link>
                 </div>
               </div>
@@ -392,7 +398,7 @@
           <v-divider :thickness="1"></v-divider>
           <div class="foot w-100 d-flex flex-column flex-xl-row flex-lg-row align-items-center justify-content-between">
             <div class="d-flex align-items-center text-center gap-2 flex-column flex-xl-row flex-lg-row">
-              <div class="d-flex align-items-center gap-2">
+              <!-- <div class="d-flex align-items-center gap-2">
                 <nuxt-link :to="localePath('/terms')">
                   <span> {{ $t('policyy3') }} </span>
                 </nuxt-link>
@@ -403,13 +409,14 @@
 
 
               </div>
-              <span> | </span>
+              <span> | </span> -->
               <span> {{ $t('cop') }} © {{ currentYear }}</span>
             </div>
             <div>
-              <a target="_blank" aria-label="webstdy"  href="https://webstdy.com/ar?utm_source=codeCar-foorter&utm_medium=referral">
+              <a target="_blank" aria-label="webstdy" class="d-flex align-items-center gap-3" href="https://webstdy.com/ar?utm_source=codeCar-foorter&utm_medium=referral">
                 <!-- <img src="~/assets/images/webstdy-white.png" alt="" /> -->
-              <NuxtImg src="/images/webstdy-white.png" format="webp" alt="codeCar-foorter" quality="80" width="40" height="40"   loading="lazy" />
+                <span> {{ $t('devBy') }} </span>
+              <NuxtImg src="https://webstdy.com/CDN/cr_white.png" format="webp" alt="codeCar-foorter" quality="80" width="40" height="40"   loading="lazy" />
               </a>
             </div>
             <div class="d-flex align-items-center gap-3">

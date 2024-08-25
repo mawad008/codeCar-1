@@ -143,7 +143,7 @@
                                                     </svg>
                                                     <span>{{ $t('offer1') }}</span>
                                                 </div>
-                                                <h6>{{ Math.round(item.monthly_installment) }} {{ $t('curr') }}</h6>
+                                                <h6>{{ item.monthly_installment }} {{ $t('curr') }}</h6>
                                             </div>
                                         </div>
                                     </div>

@@ -21,27 +21,27 @@ export default defineNuxtConfig({
     // Initialize AOS
       once: true, // Animation happens only once
   },
-  lazyLoad: {
-    // These are the default values
-    images: true,
-    videos: true,
-    audios: true,
-    iframes: true,
-    native: false,
-    directiveOnly: false,
+  // lazyLoad: {
+  //   // These are the default values
+  //   images: true,
+  //   videos: true,
+  //   audios: true,
+  //   iframes: true,
+  //   native: false,
+  //   directiveOnly: true,
     
-    // Default image must be in the public folder
-    defaultImage: '/favicon.png',
+  //   // Default image must be in the public folder
+  //   defaultImage: '/favicon.png',
   
-    // To remove class set value to false
-    loadingClass: 'isLoading',
-    loadedClass: 'isLoaded',
-    appendClass: 'lazyLoad',
+  //   // To remove class set value to false
+  //   loadingClass: 'isLoading',
+  //   loadedClass: 'isLoaded',
+  //   appendClass: 'lazyLoad',
     
-    observerConfig: {
-      // See IntersectionObserver documentation
-    }
-  },
+  //   observerConfig: {
+  //     // See IntersectionObserver documentation
+  //   }
+  // },
   i18n: {
     // lazy: true,
     langDir: "locales",
