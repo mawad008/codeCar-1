@@ -1938,6 +1938,10 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   .footer-container .box-container {
     text-align: center;
   }
+  .footer-container .box-container div {
+    text-align: center;
+    align-items: center;
+  }
 }
 .all-marks {
   margin-top: 120px;
@@ -2368,6 +2372,7 @@ html[dir=rtl] .explore .col-12:not(:last-child) .box::before {
   margin-top: 14px;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 35px;
 }
 .main-car-page .car-details .colors .main .color-hexa {

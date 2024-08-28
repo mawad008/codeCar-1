@@ -123,9 +123,9 @@
           <div class="d-flex flex-column range-slider">
 
             <span class="word">{{ $t('calc1') }}</span>
-            <v-slider v-model="sliderValue1" :min="minNum" :max="maxNum" step="5" thumb-label="always"
+            <v-slider  v-model="sliderValue1" :min="minNum" :max="maxNum" step="5" thumb-label="always"
               class="custom-slider mt-5" @input="updateRange()" :reverse="checkSlider">
-              <template v-slot:thumb-label="{ value }">
+              <template  v-slot:thumb-label="{ value }">
                 <div class="d-flex align-items-center gap-2">
                   <!-- <span> {{ $t('curr') }} </span> -->
                   % {{ sliderValue1 }}
@@ -166,15 +166,15 @@
           <div class="total-container">
             <div class="w-100 d-flex align-items-center justify-content-between">
               <span>{{ $t('carPrice') }}</span>
-              <span> {{ price }} {{ $t('curr') }} </span>
+              <span> {{ caclcPrice(price , price2) }} {{ $t('curr') }} </span>
             </div>
             <div class="w-100 d-flex align-items-center justify-content-between">
               <span>{{ $t('offer3') }}</span>
-              <span> {{ calculatePrice(price , sliderValue1)}} </span>
+              <span> {{ calculatePrice(caclcPrice(price , price2) , sliderValue1)}} </span>
             </div>
             <div class="w-100 d-flex align-items-center justify-content-between">
               <span>{{ $t('calc3') }}</span>
-              <span> {{ calculatePrice(price , sliderValue3) }} </span>
+              <span> {{ calculatePrice(caclcPrice(price , price2) , sliderValue3) }} </span>
             </div>
           </div>
           <div class="d-flex justify-content-end">
@@ -655,18 +655,18 @@
               <v-radio-group v-model="form3.department_loan_support">
                 <div class="d-flex">
                   <div class="d-flex align-items-center">
-                    <label for="radio-first-7">{{ $t('yes') }}</label>
-                    <v-radio id="radio-first-7" color="#DCB63B" name="radio-1" :value="1"></v-radio>
+                    <label for="radio-first-33">{{ $t('yes') }}</label>
+                    <v-radio id="radio-first-33" color="#DCB63B" name="radio-1" :value="1"></v-radio>
                   </div>
                   <div class="d-flex align-items-center">
-                    <label for="radio-sec-8"> {{ $t('no') }} </label>
-                    <v-radio id="radio-sec-8" color="#DCB63B" name="radio-1" :value="0"></v-radio>
+                    <label for="radio-sec-12"> {{ $t('no') }} </label>
+                    <v-radio id="radio-sec-12" color="#DCB63B" name="radio-1" :value="0"></v-radio>
                   </div>
                 </div>
               </v-radio-group>
             </div>
           </div>
-          <div v-if="form3.department_loan_support == 1" class="input-container">
+          <div v-if="form3.department_loan_support == 1 && form3.department_loan == 1" class="input-container">
               <span>
                 {{ $t("مبلغ الدعم") }}
               </span>
@@ -679,9 +679,9 @@
                   name=""
                   class=""
                 />
-                <span class="error-msg" v-if="v3$.salary.$error">{{
-                  v3$.salary.$errors[0].$message
-                }}</span>
+                <span class="error-msg mt-1" v-if="errors3.support_price">{{
+                errors3.support_price[0]
+              }}</span>
               </div>
               <span class="error-msg mt-1" v-if="errors3.salary">{{
                 errors3.salary[0]
@@ -1072,15 +1072,15 @@ import {
   helpers,
 } from "@vuelidate/validators";
 import { useStore } from "~/store";
-const props = defineProps(["carid", "price" , "colors"]);
+const props = defineProps(["carid", "price" , "price2" , "colors"]);
 
 let store = useStore;
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let paymentMethod = ref(1);
-let sliderValue1 = ref(0);
+let sliderValue1 = ref(15);
 let sliderValue2 = ref(3);
-let sliderValue3 = ref(0);
+let sliderValue3 = ref(15);
 let showConfirm = ref(false);
 let minNum = ref(0);
 let maxNum = ref(50);
@@ -1178,6 +1178,11 @@ const calculatePrice = (priceString, sliderValue) => {
   return (numericPrice * sliderValue) / 100;
 };
 
+
+const caclcPrice = (price , price2) =>{
+  return ((price.replace("," , "") * `0.0${price2}`) +  Number(price.replace("," , ""))).toLocaleString();
+}
+
 let selectedBrand = ref();
 let form2 = ref({
   // brand: '',
@@ -1201,10 +1206,10 @@ let form3 = ref({
   nationality_id: '',
   email: '',
   have_life_problem: 0,
+  department_loan: 0,
   traffic_violations: 0,
   department_loan_support: 0,
   support_price: "",
-  department_loan: 0,
   driving_license: 0,
 });
 
@@ -1666,9 +1671,11 @@ const getmodels = computed(() => {
 
 let paymentIndividualBtn = ref(1);
 let max_years = ref('');
-watch([()=> form3.value.department_loan_support , form3.value.department_loan ] , ([val1 , val2])=>{
+watch([()=> form3.value.department_loan_support , ()=> form3.value.department_loan ] , ([val1 , val2])=>{
     form3.value.support_price = val1 == 1 ? form3.value.support_price : "";
-    // form3.value.department_loan_support = val2 == 1 ?  form3.value.department_loan_support: 0;
+    if(val2 == 0){
+      form3.value.department_loan_support = 0;
+    }
 })
 onMounted(() => {
   var currentDate = new Date();

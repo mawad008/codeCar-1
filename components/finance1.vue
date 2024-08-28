@@ -416,7 +416,7 @@
           <div class="total-container">
             <div class="w-100 d-flex align-items-center justify-content-between">
               <span>{{ $t('carPrice') }}</span>
-              <span> {{ sellingPrice }} {{ $t('curr') }} </span>
+              <span> {{ sellingPrice.toLocaleString() }} {{ $t('curr') }} </span>
             </div>
             <div class="w-100 d-flex align-items-center justify-content-between">
               <span>{{ $t('offer3') }}</span>
@@ -918,7 +918,7 @@
             </div>
           </div>
 
-          <div v-if="form3.department_loan_support == 1" class="input-container">
+          <div v-if="form3.department_loan_support == 1 && form3.department_loan == 1" class="input-container">
               <span>
                 {{ $t("مبلغ الدعم") }}
               </span>
@@ -935,8 +935,8 @@
                   v3$.salary.$errors[0].$message
                 }}</span>
               </div>
-              <span class="error-msg mt-1" v-if="errors3.salary">{{
-                errors3.salary[0]
+              <span class="error-msg mt-1" v-if="errors3.support_price">{{
+                errors3.support_price[0]
               }}</span>
             </div>
 
@@ -1370,9 +1370,9 @@ let store = useStore;
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let paymentMethod = ref(1);
-let sliderValue1 = ref(0);
+let sliderValue1 = ref(15);
 let sliderValue2 = ref(3);
-let sliderValue3 = ref(0);
+let sliderValue3 = ref(15);
 let showConfirm = ref(false);
 let minNum = ref(0);
 let maxNum = ref(50);
@@ -1979,9 +1979,11 @@ const getCategories = computed(() => {
 let max_years = ref('');
 let paymentIndividualBtn = ref(1);
 
-watch([()=> form3.value.department_loan_support , form3.value.department_loan ] , ([val1 , val2])=>{
+watch([()=> form3.value.department_loan_support , ()=> form3.value.department_loan ] , ([val1 , val2])=>{
     form3.value.support_price = val1 == 1 ? form3.value.support_price : "";
-    // form3.value.department_loan_support = val2 == 1 ?  form3.value.department_loan_support: 0;
+    if(val2 == 0){
+      form3.value.department_loan_support = 0;
+    }
 })
 onMounted(() => {
   getOptions();
