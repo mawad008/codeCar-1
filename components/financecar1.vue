@@ -635,7 +635,7 @@
                 </div>
               </v-radio-group>
             </div>
-            <div>
+            <div v-if="checkCommitment">
               <span> {{ $t('loan') }} </span>
               <v-radio-group v-model="form3.department_loan">
                 <div class="d-flex">
@@ -1089,6 +1089,7 @@ const selectedFileName2 = ref(null);
 const selectedFileName3 = ref(null);
 const selectedFileName4 = ref(null);
 let otp = ref("");
+let checkCommitment = ref(true);
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 
@@ -1211,6 +1212,14 @@ let form3 = ref({
   department_loan_support: 0,
   support_price: "",
   driving_license: 0,
+});
+
+watch(()=> form3.value.Monthly_cometment , (val)=>{
+  if(val == 0){
+    checkCommitment.value = false;
+  } else{
+    checkCommitment.value = true;
+  }
 });
 
 let filterFinance = ref(1);

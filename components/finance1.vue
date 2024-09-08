@@ -876,7 +876,7 @@
                 </div>
               </v-radio-group>
             </div>
-            <div>
+            <div v-if="checkCommitment"> 
               <span> {{ $t("loan") }} </span>
               <v-radio-group v-model="form3.department_loan">
                 <div class="d-flex">
@@ -1473,6 +1473,8 @@ let transferArr = ref([
   },
 ]);
 
+let checkCommitment = ref(true);
+
 let selectedBrand = ref();
 let form2 = ref({
   brand: "",
@@ -1501,6 +1503,14 @@ let form3 = ref({
   support_price:"",
   department_loan: 0,
   driving_license: 0,
+});
+
+watch(()=> form3.value.Monthly_cometment , (val)=>{
+  if(val == 0){
+    checkCommitment.value = false;
+  } else{
+    checkCommitment.value = true;
+  }
 });
 
 let value1 = ref("value is required");
