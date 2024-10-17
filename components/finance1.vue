@@ -21,7 +21,7 @@
                   alt=""
                 />
               </div>
-              
+
               <div class="icon" :class="{ active: paymentBtn3 == 1 }">
                 <img class="def" src="@/assets/images/calc-icon3.svg" alt="" />
                 <img
@@ -58,7 +58,7 @@
                   {{ $t("finance1") }}
                 </h5>
               </div>
-             
+
               <div>
                 <h5 :class="{ active: paymentBtn3 == 1 }">
                   {{ $t("finance3") }}
@@ -90,7 +90,7 @@
               </h5>
               <span> {{ $t("text1") }} </span>
             </div>
-           
+
             <div>
               <h5 :class="{ active: paymentBtn3 == 1 }">
                 {{ $t("finance3") }}
@@ -124,7 +124,7 @@
               >
                 <i class="fa-solid fa-check"></i>
               </div>
-             
+
               <div
                 class="dot"
                 :class="{ active: paymentBtn3 == 1, check: checkBtn3 == 1 }"
@@ -155,7 +155,7 @@
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t("carBrand") }}</span>
-              <div class="input" >
+              <div class="input">
                 <Dropdown
                   v-model="form2.brand"
                   :options="brands"
@@ -169,7 +169,12 @@
                 >
                   <template #option="slotProps">
                     <div class="flex w-100 align-items-center">
-                      <div @click="form2.model = '' , filterColors()" class="w-100">{{ slotProps.option.title }}</div>
+                      <div
+                        @click="(form2.model = ''), filterColors()"
+                        class="w-100"
+                      >
+                        {{ slotProps.option.title }}
+                      </div>
                     </div>
                   </template>
                 </Dropdown>
@@ -185,7 +190,7 @@
             </div>
             <div class="input-container">
               <span> {{ $t("carModel") }} </span>
-              <div class="input" >
+              <div class="input">
                 <Dropdown
                   v-model="form2.model"
                   :filter-placeholder="$t('search')"
@@ -198,7 +203,10 @@
                   class=""
                 >
                   <template #option="slotProps">
-                    <div @click="filterColors()" class="flex w-100 align-items-center">
+                    <div
+                      @click="filterColors()"
+                      class="flex w-100 align-items-center"
+                    >
                       <div>{{ slotProps.option.name }}</div>
                     </div>
                   </template>
@@ -215,7 +223,7 @@
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span> {{ $t("theYear") }}</span>
-              <div class="input" >
+              <div class="input">
                 <Dropdown
                   :filter-placeholder="$t('search')"
                   v-model="form2.year"
@@ -227,7 +235,10 @@
                   class=""
                 >
                   <template #option="slotProps">
-                    <div @click="filterColors()" class="flex w-100 align-items-center">
+                    <div
+                      @click="filterColors()"
+                      class="flex w-100 align-items-center"
+                    >
                       <div>{{ slotProps.option }}</div>
                     </div>
                   </template>
@@ -242,7 +253,7 @@
             </div>
             <div class="input-container">
               <span>{{ $t("gear") }}</span>
-              <div class="input" >
+              <div class="input">
                 <Dropdown
                   v-model="form2.gear_shifter"
                   :options="gear_shifterArr"
@@ -255,7 +266,10 @@
                   class=""
                 >
                   <template #option="slotProps">
-                    <div @click="filterColors()" class="flex w-100 align-items-center">
+                    <div
+                      @click="filterColors()"
+                      class="flex w-100 align-items-center"
+                    >
                       <div>{{ slotProps.option.name }}</div>
                     </div>
                   </template>
@@ -272,7 +286,7 @@
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
             <div class="input-container">
               <span>{{ $t("carCategory") }}</span>
-              <div class="input" >
+              <div class="input">
                 <Dropdown
                   v-model="form2.category"
                   optionValue="id"
@@ -285,7 +299,10 @@
                   class=""
                 >
                   <template #option="slotProps">
-                    <div @click="filterColors()" class="flex w-100 align-items-center">
+                    <div
+                      @click="filterColors()"
+                      class="flex w-100 align-items-center"
+                    >
                       <div>{{ slotProps.option.name }}</div>
                     </div>
                   </template>
@@ -303,7 +320,9 @@
               <div class="input">
                 <Dropdown
                   v-model="form2.color_id"
-                  :options="colorsFilter.length > 0 ? colorsFilter : optionsCars.colors"
+                  :options="
+                    colorsFilter.length > 0 ? colorsFilter : optionsCars.colors
+                  "
                   filter
                   :filter-placeholder="$t('search')"
                   optionLabel="title"
@@ -345,110 +364,117 @@
             </button>
           </div>
         </div>
-        <div v-if="paymentIndividualBtn == 2" >
-        <div v-if="sellingPrice" class="range-container">
-          <div class="d-flex flex-column range-slider">
-            <span class="word">{{ $t("calc1") }}</span>
-            <v-slider
-              v-model="sliderValue1"
-              :min="minNum"
-              :max="maxNum"
-              step="5"
-              thumb-label="always"
-              class="custom-slider mt-5"
-              @input="updateRange()"
-              :reverse="checkSlider"
-            >
-              <template v-slot:thumb-label="{ value }">
-                <div class="d-flex align-items-center gap-2">
-                  <!-- <span> {{ $t('curr') }} </span> -->
-                  % {{ sliderValue1 }}
-                </div>
-              </template>
-            </v-slider>
-          </div>
-          <div class="d-flex flex-column range-slider">
-            <span class="word">
-              {{ $t("calc2") }}
-            </span>
-            <v-slider
-              v-model="sliderValue2"
-              min="1"
-              max="5"
-              step="1"
-              thumb-label="always"
-              class="custom-slider mt-5"
-              @input="updateRange()"
-              :reverse="checkSlider"
-            >
-              <template v-slot:thumb-label="{ value }">
-                <div class="d-flex align-items-center gap-2">
-                  <span> {{ $t("year") }} </span>
-                  {{ sliderValue2 }}
-                </div>
-              </template>
-            </v-slider>
-          </div>
-          <div class="d-flex flex-column range-slider">
-            <span class="word">
-              {{ $t("calc3") }}
-            </span>
+        <div v-if="paymentIndividualBtn == 2">
+          <div v-if="sellingPrice" class="range-container">
+            <div class="d-flex flex-column range-slider">
+              <span class="word">{{ $t("calc1") }}</span>
+              <v-slider
+                v-model="sliderValue1"
+                :min="minNum"
+                :max="maxNum"
+                step="5"
+                thumb-label="always"
+                class="custom-slider mt-5"
+                @input="updateRange()"
+                :reverse="checkSlider"
+              >
+                <template v-slot:thumb-label="{ value }">
+                  <div class="d-flex align-items-center gap-2">
+                    <!-- <span> {{ $t('curr') }} </span> -->
+                    % {{ sliderValue1 }}
+                  </div>
+                </template>
+              </v-slider>
+            </div>
+            <div class="d-flex flex-column range-slider">
+              <span class="word">
+                {{ $t("calc2") }}
+              </span>
+              <v-slider
+                v-model="sliderValue2"
+                min="1"
+                max="5"
+                step="1"
+                thumb-label="always"
+                class="custom-slider mt-5"
+                @input="updateRange()"
+                :reverse="checkSlider"
+              >
+                <template v-slot:thumb-label="{ value }">
+                  <div class="d-flex align-items-center gap-2">
+                    <span> {{ $t("year") }} </span>
+                    {{ sliderValue2 }}
+                  </div>
+                </template>
+              </v-slider>
+            </div>
+            <div class="d-flex flex-column range-slider">
+              <span class="word">
+                {{ $t("calc3") }}
+              </span>
 
-            <v-slider
-              v-model="sliderValue3"
-              :min="minNum"
-              :max="maxNum"
-              step="5"
-              thumb-label="always"
-              class="custom-slider mt-5"
-              @input="updateRange()"
-              :reverse="checkSlider"
-            >
-              <template v-slot:thumb-label="{ value }">
-                <div class="d-flex align-items-center gap-2">
-                  <!-- <span> {{ $t('curr') }} </span> -->
-                  % {{ sliderValue3 }}
-                </div>
-              </template>
-            </v-slider>
+              <v-slider
+                v-model="sliderValue3"
+                :min="minNum"
+                :max="maxNum"
+                step="5"
+                thumb-label="always"
+                class="custom-slider mt-5"
+                @input="updateRange()"
+                :reverse="checkSlider"
+              >
+                <template v-slot:thumb-label="{ value }">
+                  <div class="d-flex align-items-center gap-2">
+                    <!-- <span> {{ $t('curr') }} </span> -->
+                    % {{ sliderValue3 }}
+                  </div>
+                </template>
+              </v-slider>
+            </div>
+
+            <div class="total-container">
+              <div
+                class="w-100 d-flex align-items-center justify-content-between"
+              >
+                <span>{{ $t("carPrice") }}</span>
+                <span>
+                  {{ sellingPrice.toLocaleString() }} {{ $t("curr") }}
+                </span>
+              </div>
+              <div
+                class="w-100 d-flex align-items-center justify-content-between"
+              >
+                <span>{{ $t("offer3") }}</span>
+                <span> {{ (sellingPrice * sliderValue1) / 100 }} </span>
+              </div>
+              <div
+                class="w-100 d-flex align-items-center justify-content-between"
+              >
+                <span>{{ $t("calc3") }}</span>
+                <span> {{ (sellingPrice * sliderValue3) / 100 }} </span>
+              </div>
+            </div>
+            <div class="btns">
+              <button @click="paymentIndividualBtn = 1" class="back">
+                {{ $t("back") }}
+              </button>
+              <button
+                @click="paymentFunc1()"
+                :disabled="pending1"
+                class="next-step next gap-3"
+              >
+                {{ $t("next") }}
+                <v-progress-circular
+                  v-if="pending1"
+                  indeterminate
+                  :size="25"
+                  :width="4"
+                ></v-progress-circular>
+              </button>
+            </div>
           </div>
 
-          <div class="total-container">
-            <div class="w-100 d-flex align-items-center justify-content-between">
-              <span>{{ $t('carPrice') }}</span>
-              <span> {{ sellingPrice.toLocaleString() }} {{ $t('curr') }} </span>
-            </div>
-            <div class="w-100 d-flex align-items-center justify-content-between">
-              <span>{{ $t('offer3') }}</span>
-              <span> {{ (sellingPrice * sliderValue1) / 100 }} </span>
-            </div>
-            <div class="w-100 d-flex align-items-center justify-content-between">
-              <span>{{ $t('calc3') }}</span>
-              <span> {{ (sellingPrice * sliderValue3) / 100 }} </span>
-            </div>
-          </div>
-          <div class="btns">
-            <button @click="paymentIndividualBtn = 1" class="back">
-              {{ $t("back") }}
-            </button>
-            <button
-              @click="paymentFunc1()"
-              :disabled="pending1"
-              class="next-step next gap-3"
-            >
-              {{ $t("next") }}
-              <v-progress-circular
-                v-if="pending1"
-                indeterminate
-                :size="25"
-                :width="4"
-              ></v-progress-circular>
-            </button>
-          </div>
-        
-        </div>
-        
-        <div v-else class="empty">
+          <div v-else class="empty">
             <div class="main">
               <client-only>
                 <Vue3Lottie
@@ -457,10 +483,13 @@
                   :width="300"
                 />
               </client-only>
-              <h4> {{$t('unCar')}} </h4>
+              <h4>{{ $t("unCar") }}</h4>
               <span>
                 <!-- {{ $t("offerEmpty2") }} -->
-                {{$t('contactCodCar')}} <a :href="`tel:${generalPhone}`" class="fw-bold"> {{ generalPhone }} </a>
+                {{ $t("contactCodCar") }}
+                <a :href="`tel:${generalPhone}`" class="fw-bold">
+                  {{ generalPhone }}
+                </a>
               </span>
               <div
                 class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4"
@@ -472,8 +501,7 @@
             </div>
           </div>
         </div>
-      
-       
+
         <div
           v-if="paymentIndividualBtn == 3"
           class="d-flex h-100 justify-content-between flex-column gap-4"
@@ -607,7 +635,7 @@
             <div class="input-container">
               <div class="d-flex align-items-center gap-2">
                 <span> {{ $t("ident") }}</span>
-                <span style="font-weight: 500">( {{ $t('opt') }} )</span>
+                <span style="font-weight: 500">( {{ $t("opt") }} )</span>
               </div>
               <div class="input">
                 <input
@@ -759,7 +787,7 @@
             <div class="input-container">
               <div class="d-flex align-items-center gap-2">
                 <span> {{ $t("emailE") }}</span>
-                <span style="font-weight: 500">( {{ $t('opt') }} )</span>
+                <span style="font-weight: 500">( {{ $t("opt") }} )</span>
                 <!-- <button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -876,7 +904,7 @@
                 </div>
               </v-radio-group>
             </div>
-            <div v-if="checkCommitment"> 
+            <div v-if="checkCommitment">
               <span> {{ $t("loan") }} </span>
               <v-radio-group v-model="form3.department_loan">
                 <div class="d-flex">
@@ -902,43 +930,58 @@
               </v-radio-group>
             </div>
             <div v-if="form3.department_loan == 1">
-              <span> {{ $t(' مدعوم ') }} </span>
+              <span> {{ $t(" مدعوم ") }} </span>
               <v-radio-group v-model="form3.department_loan_support">
                 <div class="d-flex">
                   <div class="d-flex align-items-center">
-                    <label for="radio-first-7">{{ $t('yes') }}</label>
-                    <v-radio id="radio-first-7" color="#DCB63B" name="radio-1" :value="1"></v-radio>
+                    <label for="radio-first-7">{{ $t("yes") }}</label>
+                    <v-radio
+                      id="radio-first-7"
+                      color="#DCB63B"
+                      name="radio-1"
+                      :value="1"
+                    ></v-radio>
                   </div>
                   <div class="d-flex align-items-center">
-                    <label for="radio-sec-8"> {{ $t('no') }} </label>
-                    <v-radio id="radio-sec-8" color="#DCB63B" name="radio-1" :value="0"></v-radio>
+                    <label for="radio-sec-8"> {{ $t("no") }} </label>
+                    <v-radio
+                      id="radio-sec-8"
+                      color="#DCB63B"
+                      name="radio-1"
+                      :value="0"
+                    ></v-radio>
                   </div>
                 </div>
               </v-radio-group>
             </div>
           </div>
 
-          <div v-if="form3.department_loan_support == 1 && form3.department_loan == 1" class="input-container">
-              <span>
-                {{ $t("مبلغ الدعم") }}
-              </span>
-              <div class="input">
-                <input
-                  type="number"
-                  min="1"
-                  placeholder=""
-                  v-model="form3.support_price"
-                  name=""
-                  class=""
-                />
-                <span class="error-msg" v-if="v3$.salary.$error">{{
-                  v3$.salary.$errors[0].$message
-                }}</span>
-              </div>
-              <span class="error-msg mt-1" v-if="errors3.support_price">{{
-                errors3.support_price[0]
+          <div
+            v-if="
+              form3.department_loan_support == 1 && form3.department_loan == 1
+            "
+            class="input-container"
+          >
+            <span>
+              {{ $t("مبلغ الدعم") }}
+            </span>
+            <div class="input">
+              <input
+                type="number"
+                min="1"
+                placeholder=""
+                v-model="form3.support_price"
+                name=""
+                class=""
+              />
+              <span class="error-msg" v-if="v3$.salary.$error">{{
+                v3$.salary.$errors[0].$message
               }}</span>
             </div>
+            <span class="error-msg mt-1" v-if="errors3.support_price">{{
+              errors3.support_price[0]
+            }}</span>
+          </div>
 
           <div class="safety-mssg">
             <div class="d-flex align-items-center gap-2">
@@ -970,211 +1013,238 @@
         </div>
 
         <div v-if="paymentIndividualBtn == 4" class="offers">
-            <div
-              class="w-100 d-flex justify-content-center flex-column flex-xl-row flex-lg-row mb-3 gap-3 justify-content-xl-end justify-content-lg-end"
-            >
-              <div class="input dropdown-finance-filter">
-                <Dropdown
-                  v-model="sliderValue1"
-                  :options="firstPatch"
-                  filter
-                  :filter-placeholder="$t('search')"
-                  :placeholder="$t('calc1')"
-                  optionLabel="name"
-                  optionValue="value"
-                  class=""
-                >
-                  <template #option="slotProps">
-                    <div class="flex align-items-center w-100">
-                      <div  @click="sliderValue1 = slotProps.option.value , offersFiter()" class="w-100">{{ slotProps.option.name }}</div>
-                    </div>
-                  </template>
-                </Dropdown>
-              </div>
-              
-              <div class="input dropdown-finance-filter">
-                <Dropdown
-                  v-model="sliderValue3"
-                  :options="secondPatch"
-                  filter
-                  :filter-placeholder="$t('search')"
-                  :placeholder="$t('calc2')"
-                  optionLabel="name"
-                  optionValue="value"
-                  class=""
-                >
-                  <template #option="slotProps">
-                    <div class="flex align-items-center w-100">
-                      <div @click="sliderValue3 = slotProps.option.value , offersFiter()" class=" w-100">{{ slotProps.option.name }}</div>
-                    </div>
-                  </template>
-                </Dropdown>
-              </div>
-              <div class="input dropdown-finance-filter">
-                <Dropdown
-                  v-model="sliderValue2"
-                  :options="yearsInst"
-                  filter
-                  :filter-placeholder="$t('search')"
-                  :placeholder="$t('calc3')"
-                  optionLabel="name"
-                  optionValue="value"
-                  class=""
-                >
-                  <template #option="slotProps">
-                    <div class="flex align-items-center w-100">
-                      <div  @click="sliderValue2 = slotProps.option.value , offersFiter()" class="w-100">{{ slotProps.option.name }}</div>
-                    </div>
-                  </template>
-                </Dropdown>
-              </div>
-              <div class="input dropdown-finance-filter">
-                <Dropdown
-                  v-model="filterFinance"
-                  :options="filterFinanceArr"
-                  filter
-                  :filter-placeholder="$t('search')"
-                  optionLabel="name"
-                  optionValue="value"
-                  :placeholder="$t('show1')"
-                  class=""
-                >
-                  <template #option="slotProps">
-                    <div class="flex align-items-center">
-                      <div>{{ slotProps.option.name }}</div>
-                    </div>
-                  </template>
-                </Dropdown>
-              </div>
-            </div>
-            <div v-if="pendingFilter" class="d-flex align-items-center justify-content-center w-100" style="min-height:50vh;">
-            <v-progress-circular
-                
-                indeterminate
-                :size="45"
-                :width="6"
-                color="#dcb63b"
-              ></v-progress-circular>
-            
-            </div>
-              <div v-if="!pendingFilter">
-          <div v-if="offers.length >= 1">
-            <v-radio-group v-model="bank_offer_id">
-              <div class="row">
-                <div
-                  v-for="(item, index) in sortedItems"
-                  class="col-12 col-xl-6 col-lg-6"
-                >
-                  <label :for="`offer-${index}-1`" class="offer w-100">
+          <div
+            class="w-100 d-flex justify-content-center flex-column flex-xl-row flex-lg-row mb-3 gap-3 justify-content-xl-end justify-content-lg-end"
+          >
+            <div class="input dropdown-finance-filter">
+              <Dropdown
+                v-model="sliderValue1"
+                :options="firstPatch"
+                filter
+                :filter-placeholder="$t('search')"
+                :placeholder="$t('calc1')"
+                optionLabel="name"
+                optionValue="value"
+                class=""
+              >
+                <template #option="slotProps">
+                  <div class="flex align-items-center w-100">
                     <div
-                      class="d-flex align-items-center justify-content-between w-100"
+                      @click="
+                        (sliderValue1 = slotProps.option.value), offersFiter()
+                      "
+                      class="w-100"
                     >
-                      <span class="name">{{ item.OfferName.title }}</span>
-                      <v-radio
-                        class="radio-input"
-                        :id="`offer-${index}-1`"
-                        color="#DCB63B"
-                        name="offer-1"
-                        :value="item.bank_offer_id"
-                        v-model="bank_offer_id"
-                      ></v-radio>
+                      {{ slotProps.option.name }}
                     </div>
-                    <div class="price">
-                      <h4>{{ item.monthly_installment }}</h4>
-                      <span> {{ $t("offer1") }} </span>
+                  </div>
+                </template>
+              </Dropdown>
+            </div>
+
+            <div class="input dropdown-finance-filter">
+              <Dropdown
+                v-model="sliderValue3"
+                :options="secondPatch"
+                filter
+                :filter-placeholder="$t('search')"
+                :placeholder="$t('calc2')"
+                optionLabel="name"
+                optionValue="value"
+                class=""
+              >
+                <template #option="slotProps">
+                  <div class="flex align-items-center w-100">
+                    <div
+                      @click="
+                        (sliderValue3 = slotProps.option.value), offersFiter()
+                      "
+                      class="w-100"
+                    >
+                      {{ slotProps.option.name }}
                     </div>
-                    <v-divider></v-divider>
-                    <div class="details">
-                      <div class="detail">
-                        <div class="d-flex align-items-center gap-2">
-                          <img src="~/assets/images/det1.png" alt="" />
-                          <span class="name"> {{ $t("carPrice") }} </span>
-                        </div>
-                        <p class="price">
-                          {{ item.car.price_after_tax }} {{ $t("curr") }}
-                        </p>
-                      </div>
-                      <div class="detail">
-                        <div class="d-flex align-items-center gap-2">
-                          <img src="~/assets/images/det2.png" alt="" />
-                          <span class="name"> {{ $t("offer3") }}</span>
-                        </div>
-                        <p class="price">
-                          {{ item.firs_installment }} {{ $t("curr") }}
-                        </p>
-                      </div>
-                      <div class="detail">
-                        <div class="d-flex align-items-center gap-2">
-                          <img src="~/assets/images/det3.png" alt="" />
-                          <span class="name"> {{ $t("offer4") }} </span>
-                        </div>
-                        <p class="price">{{ item.years }} {{ $t("year") }}</p>
-                      </div>
-                      <div class="detail">
-                        <div class="d-flex align-items-center gap-2">
-                          <img src="~/assets/images/det4.png" alt="" />
-                          <span class="name"> {{ $t("calc3") }}</span>
-                        </div>
-                        <p class="price">
-                          {{ item.last_installment }} {{ $t("curr") }}
-                        </p>
-                      </div>
-                      <div class="detail">
-                        <div class="d-flex align-items-center gap-2">
-                          <img src="~/assets/images/det5.png" alt="" />
-                          <span class="name"> {{ $t("offer5") }} </span>
-                        </div>
-                        <p class="price">
-                          {{ item.sectorAdministrative_fees }} {{ $t("curr") }}
-                        </p>
-                      </div>
+                  </div>
+                </template>
+              </Dropdown>
+            </div>
+            <div class="input dropdown-finance-filter">
+              <Dropdown
+                v-model="sliderValue2"
+                :options="yearsInst"
+                filter
+                :filter-placeholder="$t('search')"
+                :placeholder="$t('calc3')"
+                optionLabel="name"
+                optionValue="value"
+                class=""
+              >
+                <template #option="slotProps">
+                  <div class="flex align-items-center w-100">
+                    <div
+                      @click="
+                        (sliderValue2 = slotProps.option.value), offersFiter()
+                      "
+                      class="w-100"
+                    >
+                      {{ slotProps.option.name }}
                     </div>
-                  </label>
-                </div>
-              </div>
-            </v-radio-group>
-            <div class="btns">
-              <button @click="paymentIndividualBtn = 3" class="back">
-                {{ $t("back") }}
-              </button>
-              <button @click="paymentFunc4()" class="next gap-3">
-                {{ $t("next") }}
-                <v-progress-circular
-                  v-if="pending4"
-                  indeterminate
-                  :size="25"
-                  :width="4"
-                ></v-progress-circular>
-              </button>
+                  </div>
+                </template>
+              </Dropdown>
+            </div>
+            <div class="input dropdown-finance-filter">
+              <Dropdown
+                v-model="filterFinance"
+                :options="filterFinanceArr"
+                filter
+                :filter-placeholder="$t('search')"
+                optionLabel="name"
+                optionValue="value"
+                :placeholder="$t('show1')"
+                class=""
+              >
+                <template #option="slotProps">
+                  <div class="flex align-items-center">
+                    <div>{{ slotProps.option.name }}</div>
+                  </div>
+                </template>
+              </Dropdown>
             </div>
           </div>
-          <div v-else class="empty">
-            <div class="main">
-              <client-only>
-                <Vue3Lottie
-                  :animation-data="emptyoffers"
-                  :height="300"
-                  :width="300"
-                />
-              </client-only>
-              <h4>{{ $t("offerEmpty1") }}</h4>
-              <span>  
-                {{ $t("offerEmpty2") }} {{$t('contactCodCar')}} <a :href="`tel:${generalPhone}`" class="fw-bold"> {{ generalPhone }} </a>
-              </span>
-              <div
-                class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4"
-              >
+          <div
+            v-if="pendingFilter"
+            class="d-flex align-items-center justify-content-center w-100"
+            style="min-height: 50vh"
+          >
+            <v-progress-circular
+              indeterminate
+              :size="45"
+              :width="6"
+              color="#dcb63b"
+            ></v-progress-circular>
+          </div>
+          <div v-if="!pendingFilter">
+            <div v-if="offers.length >= 1">
+              <v-radio-group v-model="bank_offer_id">
+                <div class="row">
+                  <div
+                    v-for="(item, index) in sortedItems"
+                    class="col-12 col-xl-6 col-lg-6"
+                  >
+                    <label :for="`offer-${index}-1`" class="offer w-100">
+                      <div
+                        class="d-flex align-items-center justify-content-between w-100"
+                      >
+                        <span class="name">{{ item.OfferName.title }}</span>
+                        <v-radio
+                          class="radio-input"
+                          :id="`offer-${index}-1`"
+                          color="#DCB63B"
+                          name="offer-1"
+                          :value="item.bank_offer_id"
+                          v-model="bank_offer_id"
+                        ></v-radio>
+                      </div>
+                      <div class="price">
+                        <h4>{{ item.monthly_installment }}</h4>
+                        <span> {{ $t("offer1") }} </span>
+                      </div>
+                      <v-divider></v-divider>
+                      <div class="details">
+                        <div class="detail">
+                          <div class="d-flex align-items-center gap-2">
+                            <img src="~/assets/images/det1.png" alt="" />
+                            <span class="name"> {{ $t("carPrice") }} </span>
+                          </div>
+                          <p class="price">
+                            {{ item.car.price_after_tax }} {{ $t("curr") }}
+                          </p>
+                        </div>
+                        <div class="detail">
+                          <div class="d-flex align-items-center gap-2">
+                            <img src="~/assets/images/det2.png" alt="" />
+                            <span class="name"> {{ $t("offer3") }}</span>
+                          </div>
+                          <p class="price">
+                            {{ item.firs_installment }} {{ $t("curr") }}
+                          </p>
+                        </div>
+                        <div class="detail">
+                          <div class="d-flex align-items-center gap-2">
+                            <img src="~/assets/images/det3.png" alt="" />
+                            <span class="name"> {{ $t("offer4") }} </span>
+                          </div>
+                          <p class="price">{{ item.years }} {{ $t("year") }}</p>
+                        </div>
+                        <div class="detail">
+                          <div class="d-flex align-items-center gap-2">
+                            <img src="~/assets/images/det4.png" alt="" />
+                            <span class="name"> {{ $t("calc3") }}</span>
+                          </div>
+                          <p class="price">
+                            {{ item.last_installment }} {{ $t("curr") }}
+                          </p>
+                        </div>
+                        <div class="detail">
+                          <div class="d-flex align-items-center gap-2">
+                            <img src="~/assets/images/det5.png" alt="" />
+                            <span class="name"> {{ $t("offer5") }} </span>
+                          </div>
+                          <p class="price">
+                            {{ item.sectorAdministrative_fees }}
+                            {{ $t("curr") }}
+                          </p>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </v-radio-group>
+              <div class="btns">
                 <button @click="paymentIndividualBtn = 3" class="back">
                   {{ $t("back") }}
                 </button>
-                <nuxt-link :to="localePath('/')">
-                  <button class="home">{{ $t("backHome") }}</button>
-                </nuxt-link>
+                <button @click="paymentFunc4()" class="next gap-3">
+                  {{ $t("next") }}
+                  <v-progress-circular
+                    v-if="pending4"
+                    indeterminate
+                    :size="25"
+                    :width="4"
+                  ></v-progress-circular>
+                </button>
+              </div>
+            </div>
+            <div v-else class="empty">
+              <div class="main">
+                <client-only>
+                  <Vue3Lottie
+                    :animation-data="emptyoffers"
+                    :height="300"
+                    :width="300"
+                  />
+                </client-only>
+                <h4>{{ $t("offerEmpty1") }}</h4>
+                <!-- <span>  
+                {{ $t("offerEmpty2") }} {{$t('contactCodCar')}} <a :href="`tel:${generalPhone}`" class="fw-bold"> {{ generalPhone }} </a>
+              </span> -->
+                <span>
+                   {{ $t('codecar1') }}
+                  {{ $t('codecar2') }} : {{ $t('email') }}: <a :href="`mailto:${generalEmail}`" class="fw-bold"> {{ generalEmail }} </a> ، {{ $t('codecar3') }} : <a :href="`tel:${generalPhone}`" class="fw-bold"> {{ generalPhone }} </a>
+                </span>
+                <div
+                  class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4"
+                >
+                  <button @click="paymentIndividualBtn = 3" class="back">
+                    {{ $t("back") }}
+                  </button>
+                  <nuxt-link :to="localePath('/')">
+                    <button class="home">{{ $t("backHome") }}</button>
+                  </nuxt-link>
+                </div>
               </div>
             </div>
           </div>
-              
-              </div>
         </div>
 
         <div v-if="paymentIndividualBtn == 5" class="final-review">
@@ -1380,7 +1450,8 @@ const selectedFileName1 = ref(null);
 const selectedFileName2 = ref(null);
 const selectedFileName3 = ref(null);
 const selectedFileName4 = ref(null);
-let generalPhone = ref('');
+let generalPhone = ref("");
+let generalEmail = ref("");
 let otp = ref("");
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear() + 1;
@@ -1397,7 +1468,11 @@ const getDesc = async () => {
       "Content-Language": `${locale.value}`,
     },
   });
-  for (let i = currentYear; i >= parseInt(result.data.data.Min_year_of_finance);i--) {
+  for (
+    let i = currentYear;
+    i >= parseInt(result.data.data.Min_year_of_finance);
+    i--
+  ) {
     years.value.push(i);
   }
   console.log(years.value);
@@ -1425,8 +1500,8 @@ const getGeneral = async () => {
     },
   });
 
-  generalPhone.value = result.data.data.phone
-  
+  generalPhone.value = result.data.data.phone;
+  generalEmail.value = result.data.data.email;
 };
 getGeneral();
 let paymentBtn1 = ref(1);
@@ -1500,18 +1575,21 @@ let form3 = ref({
   have_life_problem: 0,
   traffic_violations: 0,
   department_loan_support: 0,
-  support_price:"",
+  support_price: "",
   department_loan: 0,
   driving_license: 0,
 });
 
-watch(()=> form3.value.Monthly_cometment , (val)=>{
-  if(val == 0){
-    checkCommitment.value = false;
-  } else{
-    checkCommitment.value = true;
+watch(
+  () => form3.value.Monthly_cometment,
+  (val) => {
+    if (val == 0) {
+      checkCommitment.value = false;
+    } else {
+      checkCommitment.value = true;
+    }
   }
-});
+);
 
 let value1 = ref("value is required");
 let value2 = ref("The email field is required");
@@ -1575,38 +1653,71 @@ let firstPatchInput = ref(sliderValue1.value);
 let secondPatchInput = ref(sliderValue3.value);
 let yearInput = ref(sliderValue2.value);
 let firstPatch = ref([
-  { value: 0 , name: `0 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
-  { value: 5 , name: `5 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
-  { value: 10 , name: `10 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
-  { value: 15 , name: `15 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
-  { value: 20 , name: `20 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
-  { value: 25 , name: `25 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
-  { value: 30 , name: `30 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
-  { value: 30 , name: `30 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
-  { value: 35 , name: `35 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
-  { value: 40 , name: `40 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
-  { value: 45 , name: `45 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
-  { value: 50 , name: `50 % ${locale.value == 'ar' ? 'مقدم' : ''}` },
+  { value: 0, name: `0 % ${locale.value == "ar" ? "مقدم" : ""}` },
+  { value: 5, name: `5 % ${locale.value == "ar" ? "مقدم" : ""}` },
+  { value: 10, name: `10 % ${locale.value == "ar" ? "مقدم" : ""}` },
+  { value: 15, name: `15 % ${locale.value == "ar" ? "مقدم" : ""}` },
+  { value: 20, name: `20 % ${locale.value == "ar" ? "مقدم" : ""}` },
+  { value: 25, name: `25 % ${locale.value == "ar" ? "مقدم" : ""}` },
+  { value: 30, name: `30 % ${locale.value == "ar" ? "مقدم" : ""}` },
+  { value: 30, name: `30 % ${locale.value == "ar" ? "مقدم" : ""}` },
+  { value: 35, name: `35 % ${locale.value == "ar" ? "مقدم" : ""}` },
+  { value: 40, name: `40 % ${locale.value == "ar" ? "مقدم" : ""}` },
+  { value: 45, name: `45 % ${locale.value == "ar" ? "مقدم" : ""}` },
+  { value: 50, name: `50 % ${locale.value == "ar" ? "مقدم" : ""}` },
 ]);
 let secondPatch = ref([
-  { value: 0, name: `0 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
-  { value: 5 , name: `5 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
-  { value: 10 , name: `10 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
-  { value: 15 , name: `15 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
-  { value: 20 , name: `20 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
-  { value: 25 , name: `25 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
-  { value: 30 , name: `30 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
-  { value: 35 , name: `35 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
-  { value: 40 , name: `40 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
-  { value: 45 , name: `45 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
-  { value: 50 , name: `50 % ${locale.value == 'ar' ? 'دفعة اخيرة' : 'last patch'}` },
+  {
+    value: 0,
+    name: `0 % ${locale.value == "ar" ? "دفعة اخيرة" : "last patch"}`,
+  },
+  {
+    value: 5,
+    name: `5 % ${locale.value == "ar" ? "دفعة اخيرة" : "last patch"}`,
+  },
+  {
+    value: 10,
+    name: `10 % ${locale.value == "ar" ? "دفعة اخيرة" : "last patch"}`,
+  },
+  {
+    value: 15,
+    name: `15 % ${locale.value == "ar" ? "دفعة اخيرة" : "last patch"}`,
+  },
+  {
+    value: 20,
+    name: `20 % ${locale.value == "ar" ? "دفعة اخيرة" : "last patch"}`,
+  },
+  {
+    value: 25,
+    name: `25 % ${locale.value == "ar" ? "دفعة اخيرة" : "last patch"}`,
+  },
+  {
+    value: 30,
+    name: `30 % ${locale.value == "ar" ? "دفعة اخيرة" : "last patch"}`,
+  },
+  {
+    value: 35,
+    name: `35 % ${locale.value == "ar" ? "دفعة اخيرة" : "last patch"}`,
+  },
+  {
+    value: 40,
+    name: `40 % ${locale.value == "ar" ? "دفعة اخيرة" : "last patch"}`,
+  },
+  {
+    value: 45,
+    name: `45 % ${locale.value == "ar" ? "دفعة اخيرة" : "last patch"}`,
+  },
+  {
+    value: 50,
+    name: `50 % ${locale.value == "ar" ? "دفعة اخيرة" : "last patch"}`,
+  },
 ]);
 let yearsInst = ref([
-  { value: 1 , name: `1 ${locale.value == 'ar' ? 'سنة' : 'year'}` },
-  { value: 2 , name: `2  ${locale.value == 'ar' ? 'سنتين' : 'years'}` },
-  { value: 3 , name: `3  ${locale.value == 'ar' ? 'سنوات' : 'years'}` },
-  { value: 4 , name: `4 ${locale.value == 'ar' ? 'سنوات' : 'years'}` },
-  { value: 5 , name: `5 ${locale.value == 'ar' ? 'سنوات' : 'years'}` },
+  { value: 1, name: `1 ${locale.value == "ar" ? "سنة" : "year"}` },
+  { value: 2, name: `2  ${locale.value == "ar" ? "سنتين" : "years"}` },
+  { value: 3, name: `3  ${locale.value == "ar" ? "سنوات" : "years"}` },
+  { value: 4, name: `4 ${locale.value == "ar" ? "سنوات" : "years"}` },
+  { value: 5, name: `5 ${locale.value == "ar" ? "سنوات" : "years"}` },
 ]);
 let errors2 = ref([]);
 let errors3 = ref([]);
@@ -1621,7 +1732,7 @@ const v3$ = useValidate(rules3, form3);
 
 const isFormFilled3 = () => {
   for (const key in form3.value) {
-    if (key != 'identity_no' && key != 'email' && key != 'support_price'){
+    if (key != "identity_no" && key != "email" && key != "support_price") {
       if (form3.value[key] === "") {
         return false;
       }
@@ -1632,10 +1743,9 @@ const isFormFilled3 = () => {
   return true;
 };
 
-
 const isFormFilled = () => {
   for (const key in form2.value) {
-    if (key !== 'color_id' && form2.value[key] === "") {
+    if (key !== "color_id" && form2.value[key] === "") {
       return false;
     }
   }
@@ -1701,8 +1811,8 @@ const paymentFunc2 = async () => {
         checkBtn1.value = 1;
         pending2.value = false;
         errors2.value = [];
-        if(result.data.data){
-          sellingPrice.value = parseInt(result.data.data.car.price_after_vat); 
+        if (result.data.data) {
+          sellingPrice.value = parseInt(result.data.data.car.price_after_vat);
         }
       }
     } catch (errorss) {
@@ -1737,9 +1847,7 @@ const filterColors = async () => {
         },
       });
       if (result.status >= 200) {
-        
         colorsFilter.value = result.data.data;
-        
       }
     } catch (errorss) {
       console.log(errorss);
@@ -1750,7 +1858,6 @@ const filterColors = async () => {
     }
   }
 };
-
 
 const paymentFunc3 = async () => {
   v3$.value.$validate();
@@ -1798,17 +1905,17 @@ const paymentFunc3 = async () => {
   // }
 };
 
-const updateFilter  = async () =>{
-   sliderValue1.value = firstPatchInput.value;
-    sliderValue2.value = yearInput.value;
-    sliderValue3.value = secondPatchInput.value;
-}
-const offersFiter = async () =>{
+const updateFilter = async () => {
+  sliderValue1.value = firstPatchInput.value;
+  sliderValue2.value = yearInput.value;
+  sliderValue3.value = secondPatchInput.value;
+};
+const offersFiter = async () => {
   v3$.value.$validate();
   // formBody.append("first_batch", sliderValue1.value);
   // formBody.append("installment", sliderValue2.value);
   // formBody.append("last_batch", sliderValue3.value);
-    
+
   let formBody = createFormData1(
     form2.value,
     form3.value,
@@ -1819,7 +1926,7 @@ const offersFiter = async () =>{
   if (isFormFilled3()) {
     pending3.value = true;
     pendingFilter.value = true;
-    offers.value = []; 
+    offers.value = [];
     try {
       let result = await axios.post(`${getUrl()}/finance-Order`, formBody, {
         params: {
@@ -1847,7 +1954,7 @@ const offersFiter = async () =>{
       }
     }
   }
-}
+};
 
 let filterFinance = ref(1);
 let filterFinanceArr = ref([
@@ -1871,7 +1978,6 @@ const sortedItems = computed(() => {
 });
 
 const paymentFunc4 = async () => {
-
   let formBody = createFormData2(
     form2.value,
     form3.value,
@@ -1986,23 +2092,29 @@ const getCategories = computed(() => {
   }
 });
 
-let max_years = ref('');
+let max_years = ref("");
 let paymentIndividualBtn = ref(1);
 
-watch([()=> form3.value.department_loan_support , ()=> form3.value.department_loan ] , ([val1 , val2])=>{
+watch(
+  [
+    () => form3.value.department_loan_support,
+    () => form3.value.department_loan,
+  ],
+  ([val1, val2]) => {
     form3.value.support_price = val1 == 1 ? form3.value.support_price : "";
-    if(val2 == 0){
+    if (val2 == 0) {
       form3.value.department_loan_support = 0;
     }
-})
+  }
+);
 onMounted(() => {
   getOptions();
   getDesc();
   getCites();
-   var currentDate = new Date();
-   var maxDate = new Date();
+  var currentDate = new Date();
+  var maxDate = new Date();
   maxDate.setFullYear(currentDate.getFullYear() - 16);
-  max_years.value =  maxDate.toISOString().slice(0, 10);
+  max_years.value = maxDate.toISOString().slice(0, 10);
 });
 </script>
 
