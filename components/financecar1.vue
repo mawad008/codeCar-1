@@ -887,9 +887,10 @@
                 />
               </client-only>
               <h4>{{ $t("offerEmpty1") }}</h4>
-              <span>  
-                {{ $t("offerEmpty2") }} {{$t('contactCodCar')}} <a :href="`tel:${generalPhone}`" class="fw-bold"> {{ generalPhone }} </a>
-              </span>
+              <span>
+                   {{ $t('codecar1') }}
+                  {{ $t('codecar2') }} : {{ $t('email') }}: <a :href="`mailto:${generalEmail}`" class="fw-bold"> {{ generalEmail }} </a> ، {{ $t('codecar3') }} : <a :href="`tel:${generalPhone}`" class="fw-bold"> {{ generalPhone }} </a>
+                </span>
               <div
                 class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4"
               >
@@ -1092,7 +1093,8 @@ let otp = ref("");
 let checkCommitment = ref(true);
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
-
+let generalPhone = ref("");
+let generalEmail = ref("");
 let paymentOtp = ref(1);
 let years = ref([]);
 
@@ -1110,7 +1112,17 @@ const getDesc = async () => {
 }
 let optionsCars = ref([]);
 let brands = ref([]);
+const getGeneral = async () => {
+  let result = await axios.get(`${getUrl()}/contact-us`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
 
+  generalPhone.value = result.data.data.phone;
+  generalEmail.value = result.data.data.email;
+};
+getGeneral();
 let bank_offer_id = ref(null);
 const getOptions = async () => {
   let result = await axios.get(`${getUrl()}/car-option`, {
