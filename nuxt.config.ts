@@ -105,6 +105,12 @@ export default defineNuxtConfig({
           rel:"stylesheet",
           href: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
         },
+        // {
+        //   rel: "stylesheet",
+        //   href: "https://slider.codecar.com.sa/revslider/public/assets/css/settings.css",
+        //   type: "text/css",
+        //   media: "all",
+        // },
       ],
       script: [
         {
@@ -130,6 +136,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         `,
           body: true,
         },
+        // {
+        //   src: "/jquery.js",
+        // },
+        // {
+        //   type: 'text/javascript',
+        //   children: `
+        //     var $ = jQuery.noConflict();
+        //   `
+        // },
+        // {
+        //   src: "https://slider.codecar.com.sa/revslider/public/assets/js/jquery.themepunch.tools.min.js",
+        // },
+        // {
+        //   src: "https://slider.codecar.com.sa/revslider/public/assets/js/jquery.themepunch.revolution.min.js",
+        // },
       ],
     },
   },

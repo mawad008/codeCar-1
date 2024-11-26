@@ -27,7 +27,7 @@
         </nuxt-link>
       </button>
     </div>
-    <div class="hero-section">
+    <!-- <div class="hero-section">
       <div class="container">
         <swiper :pagination="{
           clickable: true,
@@ -65,8 +65,11 @@
           <Vue3Lottie :animation-data="hero" :height="750" :width="1300" />
         </client-only>
       </div>
+    </div> -->
+    <!-- <slider></slider> -->
+    <div style="width:100%; height:100vh;margin-top:-10px;">
+     <iframe src="https://control.codecar.com.sa/slider/code-car-ar" width="100%" height="100%" frameborder="0"></iframe>
     </div>
-     
 
     <!-- <div id="hero-section-back" style="width: 100vw; height: 100vh;"></div> -->
     <div class="container d-flex align-items-center justify-content-center">
