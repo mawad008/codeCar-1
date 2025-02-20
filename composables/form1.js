@@ -33,6 +33,8 @@ export const createFormData = (
     have_life_problem,
     traffic_violations,
     department_loan,
+    department_loan_support,
+    support_price,
     driving_license,
   } = form3;
 
@@ -60,6 +62,8 @@ export const createFormData = (
     ["have_life_problem", have_life_problem],
     ["traffic_violations", traffic_violations],
     ["department_loan", department_loan],
+    ["department_loan_support", department_loan_support],
+    ["support_price", support_price],
     ["driving_license", driving_license],
     ["bank_offer_id", bank_offer_id],
     ["identity_Card", selectedFileName1],
@@ -107,6 +111,8 @@ export const createFormData2 = (
     have_life_problem,
     traffic_violations,
     department_loan,
+    department_loan_support,
+    support_price,
     driving_license,
   } = form3;
 
@@ -131,6 +137,8 @@ export const createFormData2 = (
     ["Monthly_cometment", Monthly_cometment],
     ["transferd_type", transferd_type],
     ["email", email],
+    ["department_loan_support", department_loan_support],
+    ["support_price", support_price],
     ["have_life_problem", have_life_problem],
     ["traffic_violations", traffic_violations],
     ["department_loan", department_loan],
@@ -176,6 +184,8 @@ export const createFormData1 = (
     have_life_problem,
     traffic_violations,
     department_loan,
+    department_loan_support,
+    support_price,
     driving_license,
 
   } = form3;
@@ -197,6 +207,8 @@ export const createFormData1 = (
     ["identity_no", identity_no],
     ["sector", sector],
     ["salary", salary],
+    ["department_loan_support", department_loan_support],
+    ["support_price", support_price],
     ["bank", bank],
     ["Monthly_cometment", Monthly_cometment],
     ["transferd_type", transferd_type],

@@ -195,7 +195,7 @@ a {
   .price {
     margin-top: 14px;
     gap: 8px;
-    h6 {
+    .price-text {
       font-size: 15px;
       font-style: normal;
       font-weight: 700;
@@ -2309,6 +2309,10 @@ html[dir="ltr"] {
   .footer-container {
     .box-container {
       text-align: center;
+        div{
+        text-align: center;
+        align-items: center;
+       }
     }
   }
 }
@@ -2802,6 +2806,7 @@ html[dir="ltr"] {
         margin-top: 14px;
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
         gap: 35px;
         .color-hexa{
           width: 24px;

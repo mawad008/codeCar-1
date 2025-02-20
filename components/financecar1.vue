@@ -123,9 +123,9 @@
           <div class="d-flex flex-column range-slider">
 
             <span class="word">{{ $t('calc1') }}</span>
-            <v-slider v-model="sliderValue1" :min="minNum" :max="maxNum" step="5" thumb-label="always"
+            <v-slider  v-model="sliderValue1" :min="minNum" :max="maxNum" step="5" thumb-label="always"
               class="custom-slider mt-5" @input="updateRange()" :reverse="checkSlider">
-              <template v-slot:thumb-label="{ value }">
+              <template  v-slot:thumb-label="{ value }">
                 <div class="d-flex align-items-center gap-2">
                   <!-- <span> {{ $t('curr') }} </span> -->
                   % {{ sliderValue1 }}
@@ -166,15 +166,15 @@
           <div class="total-container">
             <div class="w-100 d-flex align-items-center justify-content-between">
               <span>{{ $t('carPrice') }}</span>
-              <span> {{ price }} {{ $t('curr') }} </span>
+              <span> {{ caclcPrice(price , price2) }} {{ $t('curr') }} </span>
             </div>
             <div class="w-100 d-flex align-items-center justify-content-between">
               <span>{{ $t('offer3') }}</span>
-              <span> {{ (price * sliderValue1) / 100 }} </span>
+              <span> {{ calculatePrice(caclcPrice(price , price2) , sliderValue1)}} </span>
             </div>
             <div class="w-100 d-flex align-items-center justify-content-between">
               <span>{{ $t('calc3') }}</span>
-              <span> {{ (price * sliderValue3) / 100 }} </span>
+              <span> {{ calculatePrice(caclcPrice(price , price2) , sliderValue3) }} </span>
             </div>
           </div>
           <div class="d-flex justify-content-end">
@@ -376,7 +376,7 @@
               <div class="input">
 
                 <div class="w-100  d-flex align-items-center justify-content-between phonenum">
-                  <input type="tel" maxlength="10" :placeholder="$t('mobileplace')" name="" v-model="form3.phone" />
+                  <input type="tel" maxlength="10" :placeholder="$t('mobileplace')" name="phone" v-model="form3.phone" />
                   <span class="numm login">966+</span>
                 </div>
                 <span class="error-msg" v-if="v3$.phone.$error">{{
@@ -635,7 +635,7 @@
                 </div>
               </v-radio-group>
             </div>
-            <div>
+            <div v-if="checkCommitment">
               <span> {{ $t('loan') }} </span>
               <v-radio-group v-model="form3.department_loan">
                 <div class="d-flex">
@@ -650,7 +650,43 @@
                 </div>
               </v-radio-group>
             </div>
+            <div v-if="form3.department_loan == 1">
+              <span> {{ $t(' مدعوم ') }} </span>
+              <v-radio-group v-model="form3.department_loan_support">
+                <div class="d-flex">
+                  <div class="d-flex align-items-center">
+                    <label for="radio-first-33">{{ $t('yes') }}</label>
+                    <v-radio id="radio-first-33" color="#DCB63B" name="radio-1" :value="1"></v-radio>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <label for="radio-sec-12"> {{ $t('no') }} </label>
+                    <v-radio id="radio-sec-12" color="#DCB63B" name="radio-1" :value="0"></v-radio>
+                  </div>
+                </div>
+              </v-radio-group>
+            </div>
           </div>
+          <div v-if="form3.department_loan_support == 1 && form3.department_loan == 1" class="input-container">
+              <span>
+                {{ $t("مبلغ الدعم") }}
+              </span>
+              <div class="input">
+                <input
+                  type="number"
+                  min="1"
+                  placeholder=""
+                  v-model="form3.support_price"
+                  name=""
+                  class=""
+                />
+                <span class="error-msg mt-1" v-if="errors3.support_price">{{
+                errors3.support_price[0]
+              }}</span>
+              </div>
+              <span class="error-msg mt-1" v-if="errors3.salary">{{
+                errors3.salary[0]
+              }}</span>
+            </div>
           <div class="btns">
             <button @click="paymentIndividualBtn = 2, pending3 = false" class="back">
               {{ $t('back') }}
@@ -851,9 +887,10 @@
                 />
               </client-only>
               <h4>{{ $t("offerEmpty1") }}</h4>
-              <span>  
-                {{ $t("offerEmpty2") }} {{$t('contactCodCar')}} <a :href="`tel:${generalPhone}`" class="fw-bold"> {{ generalPhone }} </a>
-              </span>
+              <span>
+                   {{ $t('codecar1') }}
+                  {{ $t('codecar2') }} : {{ $t('email') }}: <a :href="`mailto:${generalEmail}`" class="fw-bold"> {{ generalEmail }} </a> ، {{ $t('codecar3') }} : <a :href="`tel:${generalPhone}`" class="fw-bold"> {{ generalPhone }} </a>
+                </span>
               <div
                 class="d-flex flex-column btnss flex-xl-row flex-lg-row align-items-center gap-4"
               >
@@ -890,9 +927,9 @@
                   <div class="d-flex align-items-center gap-4">
                     <div class="d-flex align-items-center gap-2">
                       <img src="~/assets/images/det1.png" alt="" />
-                      <span> {{ $t('offer2') }} </span>
+                      <span> {{ $t('carPrice') }} </span>
                     </div>
-                    <h6>{{ theOffer.fundingAmount }} {{ $t('curr') }}</h6>
+                    <h6>{{ theOffer.price }} {{ $t('curr') }}</h6>
                   </div>
                   <div class="d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-2">
@@ -1036,15 +1073,15 @@ import {
   helpers,
 } from "@vuelidate/validators";
 import { useStore } from "~/store";
-const props = defineProps(["carid", "price" , "colors"]);
+const props = defineProps(["carid", "price" , "price2" , "colors"]);
 
 let store = useStore;
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let paymentMethod = ref(1);
-let sliderValue1 = ref(0);
+let sliderValue1 = ref(15);
 let sliderValue2 = ref(3);
-let sliderValue3 = ref(0);
+let sliderValue3 = ref(15);
 let showConfirm = ref(false);
 let minNum = ref(0);
 let maxNum = ref(50);
@@ -1053,9 +1090,11 @@ const selectedFileName2 = ref(null);
 const selectedFileName3 = ref(null);
 const selectedFileName4 = ref(null);
 let otp = ref("");
+let checkCommitment = ref(true);
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
-
+let generalPhone = ref("");
+let generalEmail = ref("");
 let paymentOtp = ref(1);
 let years = ref([]);
 
@@ -1073,7 +1112,17 @@ const getDesc = async () => {
 }
 let optionsCars = ref([]);
 let brands = ref([]);
+const getGeneral = async () => {
+  let result = await axios.get(`${getUrl()}/contact-us`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
 
+  generalPhone.value = result.data.data.phone;
+  generalEmail.value = result.data.data.email;
+};
+getGeneral();
 let bank_offer_id = ref(null);
 const getOptions = async () => {
   let result = await axios.get(`${getUrl()}/car-option`, {
@@ -1134,6 +1183,19 @@ let transferArr = ref([
   },
 ]);
 
+const calculatePrice = (priceString, sliderValue) => {
+  // Convert price string to a number
+  const numericPrice = parseFloat(priceString.replace(/,/g, ''));
+  
+  // Perform the calculation
+  return (numericPrice * sliderValue) / 100;
+};
+
+
+const caclcPrice = (price , price2) =>{
+  return ((price.replace("," , "") * `0.0${price2}`) +  Number(price.replace("," , ""))).toLocaleString();
+}
+
 let selectedBrand = ref();
 let form2 = ref({
   // brand: '',
@@ -1157,9 +1219,19 @@ let form3 = ref({
   nationality_id: '',
   email: '',
   have_life_problem: 0,
-  traffic_violations: 0,
   department_loan: 0,
+  traffic_violations: 0,
+  department_loan_support: 0,
+  support_price: "",
   driving_license: 0,
+});
+
+watch(()=> form3.value.Monthly_cometment , (val)=>{
+  if(val == 0){
+    checkCommitment.value = false;
+  } else{
+    checkCommitment.value = true;
+  }
 });
 
 let filterFinance = ref(1);
@@ -1282,7 +1354,7 @@ const isFormFilled3 = () => {
   // Iterate through each object in the form array
   for (const key in form3.value) {
     // Check if any key in the object has an empty value
-    if(key !== 'identity_no' && key !== 'email'){
+    if(key !== 'identity_no' && key !== 'email' && key !== 'support_price'){
       if (form3.value[key] === '') {
         // If any value is empty, return false
         return false;
@@ -1620,7 +1692,12 @@ const getmodels = computed(() => {
 
 let paymentIndividualBtn = ref(1);
 let max_years = ref('');
-
+watch([()=> form3.value.department_loan_support , ()=> form3.value.department_loan ] , ([val1 , val2])=>{
+    form3.value.support_price = val1 == 1 ? form3.value.support_price : "";
+    if(val2 == 0){
+      form3.value.department_loan_support = 0;
+    }
+})
 onMounted(() => {
   var currentDate = new Date();
    var maxDate = new Date();

@@ -1132,7 +1132,7 @@
           </div>
 
           <div v-if="paymentMethod == 1">
-            <financecar1 :carid="id" :colors="mainCar.color"  :price="mainCar.price_after_tax" />
+            <financecar1 :carid="id" :colors="mainCar.color" :price2="optionsCars.car_profit"  :price="mainCar.price_after_tax" />
           </div>
           <div v-if="paymentMethod == 2">
             <financecar2

@@ -8,7 +8,8 @@
       disableOnInteraction: false,
     }" :modules="[SwiperAutoplay]" class="image">
           <swiper-slide v-for="item, index in car.images" :key="index">
-            <img :src="item" alt="" />
+            <NuxtImg :src="item" format="webp" :alt="car.title" quality="80" width="60" height="60" loading="lazy" />
+            
           </swiper-slide>
         </Swiper>
 
@@ -18,16 +19,16 @@
             </div> -->
       <span class="namee">{{ car.statue }}</span>
       <div class="name d-flex flex-column">
-        <span class="used" v-if="Math.round(car.discount_percentage) > 0"> {{ $t('discc') }} {{
-      Math.round(car.discount_percentage) }} % </span>
+        <span class="used" v-if="car.discount_percentage > 0"> {{ $t('discc') }} {{
+      car.discount_percentage }} % </span>
         <h4>{{ car.title }}</h4>
       </div>
       <div class="price d-flex flex-column align-items-cente w-100 justify-content-cente ">
         <div class="d-flex align-items-center justify-content-between w-100">
-          <h6>{{ car.selling_price }} {{ $t('curr') }}</h6>
+          <h5 class="price-text">{{ car.selling_price }} {{ $t('curr') }}</h5>
           <span class="disc2" v-if="car.have_discount == 1"> {{ car.price }} {{ $t('curr') }} </span>
         </div>
-        <span> {{ Math.round(car.price_after_tax) }} {{ $t('curr') }} {{ $t('taxes') }}</span>
+        <span> {{ car.price_after_tax }} {{ $t('curr') }} {{ $t('taxes') }}</span>
       </div>
       <div class="types">
         <div class="type">

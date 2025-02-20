@@ -3,16 +3,16 @@
     <div class="search-mobile">
       <div class="inputt">
         <input type="text" v-model="searchValue" @keypress.enter="goCarsFilterByName()" :placeholder="$t('search')" />
-        <svg @click="goCarsFilterByName()" xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
+        <svg @click="goCarsFilterByName()" loading="lazy" xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
           fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd"
             d="M17.0252 16.1671L19.4689 18.6344C20.1478 19.3199 19.1297 20.3484 18.4508 19.6629L16.0069 17.1954C13.0712 19.6407 8.74031 19.4539 6.01897 16.7055C3.11347 13.771 3.11347 9.01342 6.01897 6.07901C8.92447 3.1446 13.6352 3.1446 16.5407 6.07901C19.2623 8.8277 19.4471 13.2022 17.0252 16.1671ZM15.5225 7.10738C13.1793 4.74092 9.38035 4.74092 7.0372 7.10738C4.69406 9.47384 4.69406 13.3106 7.0372 15.6771C9.38035 18.0436 13.1793 18.0436 15.5225 15.6771C17.8656 13.3106 17.8656 9.47384 15.5225 7.10738Z"
             fill="#90A3BF" />
         </svg>
       </div>
-      <button>
+      <button id="search-btnn" aria-label="search">
         <nuxt-link :to="localePath('search')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17" fill="none">
+          <svg loading="lazy" xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17" fill="none">
             <path d="M7.33197 13.5929H1.03125" stroke="#DCB63B" stroke-width="1.5" stroke-linecap="round"
               stroke-linejoin="round" />
             <path d="M10.1406 3.90039H16.4413" stroke="#DCB63B" stroke-width="1.5" stroke-linecap="round"
@@ -27,20 +27,13 @@
         </nuxt-link>
       </button>
     </div>
-    <div class="hero-section">
+    <!-- <div class="hero-section">
       <div class="container">
         <swiper :pagination="{
           clickable: true,
         }" :effect="'fade'" :modules="[SwiperPagination, SwiperPagination]" class="mySwiper">
           <swiper-slide class="flex-column flex-xl-row flex-lg-row">
             <div data-aos="zoom-in" class="text">
-              <!-- <div class="d-flex flex-column align-items">
-            <h1  class="">{{ $t('hero1') }}</h1>
-            <h1  class="">{{ $t('and') }}</h1>
-            <h1  class="">{{ $t('fin') }}</h1>
-            <h1  class="">{{ $t('hero2') }}</h1>
-            <h1  class="">{{ $t('hero3') }}</h1>
-            </div> -->
               <h1 class="head">
                 {{ $t('hero1') }} {{ $t('and') }} <span>{{ $t('fin') }}</span> {{ $t('hero2') }} {{ $t('hero3') }}
               </h1>
@@ -50,13 +43,11 @@
             </div>
 
             <div data-aos="zoom-in-up" class="image">
-              <img class="img-fluid" src="~/assets/images/hero-car.png" alt="" />
+              <NuxtImg class="img-fluid" format="webp" alt="hero-car" src="/images/hero-car.png" quality="80" width="650" height="300" loading="lazy" />
             </div>
           </swiper-slide>
         </swiper>
       </div>
-      <!-- <video class="mask" src="~/assets/videos/hero-section-video.mp4"  autoplay loop muted></video> -->
-      <!-- <img class="mask" src="~/assets/images/mask-hero.png" alt="" /> -->
       <div class="mask one">
         <client-only>
           <Vue3Lottie :animation-data="hero" :height="750" :width="1300" />
@@ -73,11 +64,12 @@
         <client-only>
           <Vue3Lottie :animation-data="hero" :height="750" :width="1300" />
         </client-only>
-        <!-- <div id="hero-section-back" class="back" ></div> -->
-
       </div>
+    </div> -->
+    <!-- <slider></slider> -->
+    <div style="width:100%; height:100vh;margin-top:-10px;">
+     <iframe src="https://control.codecar.com.sa/slider/code-car-ar" width="100%" height="100%" frameborder="0"></iframe>
     </div>
-     
 
     <!-- <div id="hero-section-back" style="width: 100vw; height: 100vh;"></div> -->
     <div class="container d-flex align-items-center justify-content-center">
@@ -106,7 +98,7 @@
 
     <div class="brands">
       <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
-        <h4 class="heading-text">{{ $t('brands') }}</h4>
+        <h1 class="heading-text">{{ $t('brands') }}</h1>
         <p v-if="descBrands" class="p-text">
           {{ descBrands }}
         </p>
@@ -118,10 +110,10 @@
         <div class="row">
           <div v-for="item, index in brandsArr" class="col-6 col-xl-2 col-lg-2 col-md-3">
             <nuxt-link class="box" data-aos="zoom-in-up" :to="localePath({ path: '/cars', query: { id: item.id } })">
-              <div class="image" :style="{
+              <div loading="lazy" class="image" :style="{
           backgroundImage:
             'url(' +
-            (item.cover ? item.cover : 'https://placehold.co/600') +
+            (item.cover) +
             ')',
         }">
                 <!-- <img src="~/assets/images/brand1.png" alt=""> -->
@@ -166,8 +158,7 @@
           <div class="col-12 col-xl-4 col-lg-4">
             <div class="box" data-aos="fade-up" data-aos-anchor-placement="top-center">
               <div class="image">
-                <!-- <img src="~/assets/images/explore1.png" alt="" /> -->
-                <img :src="whyCodeCarArr.icon_card_1" alt="" />
+                <NuxtImg :src="whyCodeCarArr.icon_card_1" format="webp" :alt="whyCodeCarArr.why_code_car_label_card_1" quality="80" width="60" height="60" loading="lazy" />
               </div>
               <span> {{ whyCodeCarArr.why_code_car_label_card_1 }} </span>
               <p>
@@ -178,8 +169,8 @@
           <div class="col-12 col-xl-4 col-lg-4 my-3">
             <div class="box" data-aos="fade-up" data-aos-anchor-placement="top-center" data-aos-delay="200">
               <div class="image">
-                <!-- <img src="~/assets/images/explore2.png" alt="" /> -->
-                <img :src="whyCodeCarArr.icon_card_2" alt="" />
+                <NuxtImg :src="whyCodeCarArr.icon_card_2" format="webp" :alt="whyCodeCarArr.why_code_car_label_card_2" quality="80" width="60" height="60" loading="lazy" />
+
               </div>
               <span> {{ whyCodeCarArr.why_code_car_label_card_2 }} </span>
               <p>
@@ -190,8 +181,8 @@
           <div class="col-12 col-xl-4 col-lg-4 my-3">
             <div class="box adv" data-aos="fade-up" data-aos-anchor-placement="top-center" data-aos-delay="400">
               <div class="image">
-                <!-- <img src="~/assets/images/explore3.png" alt="" /> -->
-                <img :src="whyCodeCarArr.icon_card_3" alt="" />
+                <NuxtImg :src="whyCodeCarArr.icon_card_3" format="webp" :alt="whyCodeCarArr.why_code_car_label_card_3" quality="80" width="60" height="60" loading="lazy" />
+
               </div>
               <span> {{ whyCodeCarArr.why_code_car_label_card_3 }} </span>
               <p>
@@ -250,7 +241,7 @@
         <div class="icons-arrow">
           <div class="slider-product22-next">
             <div v-if="productsTags.length > 4" class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none"
+              <svg loading="lazy" xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none"
                 class="arrow-icon">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                   d="M4.29289 1.3384C3.90237 1.72995 3.90237 2.36479 4.29289 2.75634L9.58579 8.06316L4.29289 13.37C3.90237 13.7615 3.90237 14.3964 4.29289 14.7879C4.68342 15.1795 5.31658 15.1795 5.70711 14.7879L11.7071 8.77213C12.0976 8.38058 12.0976 7.74574 11.7071 7.35419L5.70711 1.3384C5.31658 0.946851 4.68342 0.946851 4.29289 1.3384Z" />
@@ -300,7 +291,7 @@
                 </div>
                 <div class="main d-flex">
                   <div class="image">
-                    <img :src="financingAdv.icon_card_2" alt="" />
+                <NuxtImg :src="financingAdv.icon_card_2" format="webp" :alt="financingAdv.financing_advantage_label_card_2" quality="80" width="60" height="60" loading="lazy" />
 
                   </div>
                   <div class="choose d-flex flex-column">
@@ -336,7 +327,8 @@
         <div v-for="item, index in financingbodyArr" class="col-6 col-xl-2 col-lg-3 col-md-4">
           <div class="box " data-aos="fade-down" data-aos-delay="300">
             <div>
-              <img :src="item.image" clss="" />
+              <NuxtImg :src="item.image" format="webp" :alt="`mark ${index}`" quality="80" width="60" height="60" loading="lazy" />
+
             </div>
           </div>
         </div>
@@ -659,8 +651,9 @@ const getProducts = async () => {
 
 
 
-useHead({
-  title: locale.value == 'ar' ? 'الرئيسية' : 'home'
+useSeoMeta({
+  title: locale.value == "ar" ? "الرئيسية" : "home",
+  description: 'This is my amazing site, let me tell you all about it.',
 });
 
 onMounted(() => {
