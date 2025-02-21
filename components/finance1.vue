@@ -161,7 +161,7 @@
                   :options="brands"
                   :filter-placeholder="$t('search')"
                   filter
-                  @blur="filterColors()"
+                   @change="getmodelsFunc()"
                   optionValue="id"
                   optionLabel="title"
                   :placeholder="$t('examplee2')"
@@ -170,7 +170,7 @@
                   <template #option="slotProps">
                     <div class="flex w-100 align-items-center">
                       <div
-                        @click="(form2.model = ''), filterColors()"
+                        @click="resetFunc(false)"
                         class="w-100"
                       >
                         {{ slotProps.option.title }}
@@ -194,20 +194,20 @@
                 <Dropdown
                   v-model="form2.model"
                   :filter-placeholder="$t('search')"
-                  :options="form2.brand != '' ? getmodels[0].models : ''"
+                  :options="models"
                   filter
-                  @blur="filterColors()"
-                  optionLabel="name"
+                  @change="getYearsFunc()"
+                  optionLabel="title"
                   optionValue="id"
                   placeholder=""
                   class=""
                 >
                   <template #option="slotProps">
                     <div
-                      @click="filterColors()"
+                      @click="resetFunc(true)"
                       class="flex w-100 align-items-center"
                     >
-                      <div>{{ slotProps.option.name }}</div>
+                      <div>{{ slotProps.option.title }}</div>
                     </div>
                   </template>
                 </Dropdown>
@@ -229,14 +229,14 @@
                   v-model="form2.year"
                   :options="years"
                   filter
-                  @blur="filterColors()"
+                  @change="getShiftersFunc()"
                   optionLabel=""
                   :placeholder="$t('theYear')"
                   class=""
                 >
                   <template #option="slotProps">
                     <div
-                      @click="filterColors()"
+                      @click="shifters = [] , form2.gear_shifter = '' , categories = [] , form2.category = '' , colors = [] , form2.color_id = ''"
                       class="flex w-100 align-items-center"
                     >
                       <div>{{ slotProps.option }}</div>
@@ -251,14 +251,14 @@
                 }}</span>
               </div>
             </div>
-            <div class="input-container">
+              <div class="input-container">
               <span>{{ $t("gear") }}</span>
               <div class="input">
                 <Dropdown
                   v-model="form2.gear_shifter"
-                  :options="gear_shifterArr"
+                  :options="shifters"
                   filter
-                  @blur="filterColors()"
+                  @change="getCategoriesFunc()"
                   :filter-placeholder="$t('search')"
                   optionLabel="name"
                   optionValue="value"
@@ -267,7 +267,7 @@
                 >
                   <template #option="slotProps">
                     <div
-                      @click="filterColors()"
+                      @click="categories = [] , form2.category = '' , colors = [] , form2.color_id = ''"
                       class="flex w-100 align-items-center"
                     >
                       <div>{{ slotProps.option.name }}</div>
@@ -290,9 +290,9 @@
                 <Dropdown
                   v-model="form2.category"
                   optionValue="id"
-                  @blur="filterColors()"
+                  @change="getColorsFunc()"
                   :filter-placeholder="$t('search')"
-                  :options="getCategories ? getCategories[0].Categories : ''"
+                  :options="categories"
                   filter
                   optionLabel="name"
                   :placeholder="$t('carCategory')"
@@ -300,7 +300,7 @@
                 >
                   <template #option="slotProps">
                     <div
-                      @click="filterColors()"
+                      @click="colors = [] , form2.color_id = ''"
                       class="flex w-100 align-items-center"
                     >
                       <div>{{ slotProps.option.name }}</div>
@@ -320,19 +320,17 @@
               <div class="input">
                 <Dropdown
                   v-model="form2.color_id"
-                  :options="
-                    colorsFilter.length > 0 ? colorsFilter : optionsCars.colors
-                  "
+                  :options="colors"
                   filter
                   :filter-placeholder="$t('search')"
-                  optionLabel="title"
+                  optionLabel="name"
                   optionValue="id"
                   :placeholder="$t('example6')"
                   class=""
                 >
                   <template #option="slotProps">
                     <div class="flex align-items-center">
-                      <div>{{ slotProps.option.title }}</div>
+                      <div>{{ slotProps.option.name }}</div>
                     </div>
                   </template>
                 </Dropdown>
@@ -1457,29 +1455,49 @@ const currentDate = new Date();
 const currentYear = currentDate.getFullYear() + 1;
 
 let paymentOtp = ref(1);
-let years = ref([]);
 
 let optionsCars = ref([]);
 let brands = ref([]);
+let models = ref([]);
+let years = ref([]);
+let categories = ref([]);
+let shifters = ref([]);
+let colors = ref([]);
+let form2 = ref({
+  brand: "",
+  model: "",
+  year: "",
+  gear_shifter: "",
+  color_id: "",
+  category: "",
+});
+// const getDesc = async () => {
+//   let result = await axios.get(`${getUrl()}/allsettings`, {
+//     headers: {
+//       "Content-Language": `${locale.value}`,
+//     },
+//   });
+//   for (
+//     let i = currentYear;
+//     i >= parseInt(result.data.data.Min_year_of_finance);
+//     i--
+//   ) {
+//     years.value.push(i);
+//   }
+//   console.log(years.value);
+// };
 
-const getDesc = async () => {
-  let result = await axios.get(`${getUrl()}/allsettings`, {
+let bank_offer_id = ref(null);
+const getOptions = async () => {
+  let result = await axios.get(`${getUrl()}/get_brands`, {
     headers: {
       "Content-Language": `${locale.value}`,
     },
   });
-  for (
-    let i = currentYear;
-    i >= parseInt(result.data.data.Min_year_of_finance);
-    i--
-  ) {
-    years.value.push(i);
-  }
-  console.log(years.value);
-};
 
-let bank_offer_id = ref(null);
-const getOptions = async () => {
+  brands.value = result.data.data;
+};
+const getOptions2 = async () => {
   let result = await axios.get(`${getUrl()}/car-option`, {
     headers: {
       "Content-Language": `${locale.value}`,
@@ -1487,12 +1505,68 @@ const getOptions = async () => {
   });
 
   optionsCars.value = result.data.data;
-  brands.value = result.data.data.brands;
-  //minNum.value = parseInt(result.data.data.Slider.minPrice);
-  //maxNum.value = parseInt(result.data.data.Slider.maxPrice);
-  // sliderValue1.value = parseInt(result.data.data.Slider.minPrice) + 20000;
-  // sliderValue3.value = parseInt(result.data.data.Slider.minPrice) + 20000;
 };
+const getmodelsFunc = async () => {
+  let result = await axios.get(`${getUrl()}/get_models_by_brands/${form2.value.brand}`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  models.value = result.data.data;
+ 
+};
+const getYearsFunc = async () => {
+  let result = await axios.get(`${getUrl()}/available-years/${form2.value.brand}/${form2.value.model}`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  years.value = result.data.data;
+ 
+};
+const getShiftersFunc = async () => {
+  let result = await axios.get(`${getUrl()}/available-gear-shifters/${form2.value.brand}/${form2.value.model}/${form2.value.year}`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  shifters.value = result.data.data;
+ 
+};
+const getCategoriesFunc = async () => {
+  let result = await axios.get(`${getUrl()}/available-categories/${form2.value.brand}/${form2.value.model}/${form2.value.year}/${form2.value.gear_shifter}`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  categories.value = result.data.data;
+};
+const getColorsFunc = async () => {
+  let result = await axios.get(`${getUrl()}/available-colors/${form2.value.brand}/${form2.value.model}/${form2.value.year}/${form2.value.gear_shifter}/${form2.value.category}`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  colors.value = result.data.data;
+};
+
+const resetFunc = (check)=>{
+  models.value = check ? models.value : [];
+  years.value = [];
+  shifters.value = [];
+  categories.value = [];
+  colors.value = [];
+  form2.value.model = check ? form2.value.model : "";
+  form2.value.gear_shifter = "";
+  form2.value.year = "";
+  form2.value.category = "";
+  form2.value.color_id = "";
+}
 const getGeneral = async () => {
   let result = await axios.get(`${getUrl()}/contact-us`, {
     headers: {
@@ -1551,14 +1625,7 @@ let transferArr = ref([
 let checkCommitment = ref(true);
 
 let selectedBrand = ref();
-let form2 = ref({
-  brand: "",
-  model: "",
-  year: "",
-  gear_shifter: "",
-  color_id: "",
-  category: "",
-});
+
 let form3 = ref({
   client_name: "",
   phone: "",
@@ -2108,11 +2175,12 @@ watch(
   }
 );
 onMounted(() => {
+  getOptions2();
   getOptions();
-  getDesc();
+  // getDesc();
   getCites();
-  var currentDate = new Date();
-  var maxDate = new Date();
+  let currentDate = new Date();
+  let maxDate = new Date();
   maxDate.setFullYear(currentDate.getFullYear() - 16);
   max_years.value = maxDate.toISOString().slice(0, 10);
 });

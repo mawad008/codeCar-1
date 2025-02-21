@@ -3,20 +3,22 @@
         <div v-if="offerArr" class="container offer-page">
             <div class="text text-breadcrumbs d-flex align-items-center justify-content-center text-center flex-column">
                 <h4 class="heading-text">{{ offerArr.title }}</h4>
-                <p> {{ offerArr.description }} </p>
-
+                
                 <v-breadcrumbs :items="items">
                     <template v-slot:divider>
                         <v-icon icon="mdi-chevron-left" class="arrow-icon"></v-icon>
                     </template>
                 </v-breadcrumbs>
             </div>
-
+            
             <div class="main-offer-img">
-            <img :src="image" alt="">
-             <div class="overlay"></div>
+                <img :src="image" alt="">
+                <div class="overlay"></div>
             </div>
-
+            <div class="mb-5 custom-html" v-html="offerArr.description">
+                
+            </div>
+            
             <div class="cars">
             <div class="head">
              <h5> {{ $t('carOffer') }} </h5>
@@ -96,4 +98,24 @@ let items = ref([
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.offer-page{
+    .custom-html{
+        img{
+            width: 100% !important;
+            border-radius: 16px;
+        }
+    }
+}
+
+@media(max-width: 770px){
+    .offer-page{
+    .custom-html{
+        img{
+         height: 270px !important;
+        }
+    }
+}
+ 
+}
+</style>

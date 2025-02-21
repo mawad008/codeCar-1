@@ -3,7 +3,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["nuxt-swiper", "@nuxtjs/i18n", 
     // "nuxt-vite",
-     "nuxt-primevue", "nuxt-aos" , 'nuxt-lazy-load' , '@nuxt/image'],
+    // 'nuxt-lazy-load'
+     "nuxt-primevue", "nuxt-aos"  , '@nuxt/image'],
   plugins: [],
   render: {
     // Minify HTML, including inline JavaScript

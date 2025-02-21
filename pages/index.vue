@@ -68,7 +68,7 @@
     </div> -->
     <!-- <slider></slider> -->
     <div style="width:100%; height:100vh;margin-top:-10px;">
-     <iframe src="https://control.codecar.com.sa/slider/code-car-ar" width="100%" height="100%" frameborder="0"></iframe>
+     <iframe class="iframeSlider" src="https://control.codecar.com.sa/slider/code-car-ar" width="100%" height="100%" frameborder="0"></iframe>
     </div>
 
     <!-- <div id="hero-section-back" style="width: 100vw; height: 100vh;"></div> -->
@@ -679,28 +679,15 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-
-.selectttt{
-  width: 100px;
-  height: 100px;
-
-  border-radius: 8px;
-  &.selectt1{
-   background-color: #e91b1f;
-  }
-  &.selectt2{
-    background-color: #e91e63;
-  }
-  &.selectt3{
-    background-color: #9c27b0;
-  }
-  &.selectt4{
-   background-color: #673ab7;
-  }
-  &.selectt5{
-    background-color: #2196f3;
-  }
+<style lang="scss">
+.iframeSlider{
+  overflow: auto !important; /* Or overflow: scroll; */
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* Internet Explorer 10+ */
 }
+.iframeSlider::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, and Edge */
+}
+
 
 </style>

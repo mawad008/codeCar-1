@@ -95,6 +95,7 @@
                             optionLabel="title"
                             optionValue="id"
                           :filter-placeholder="$t('search')"
+                           @change="resetFunc(false , item , index) ,getmodelsFunc(item , index)"
                             :placeholder="$t('carBrand')"
                             class=""
                           >
@@ -114,9 +115,10 @@
                         <div class="input">
                           <Dropdown
                             v-model="item.model"
-                            :options="getmodels2(index) ? getmodels2(index) : []"
+                            :options="models[index]"
                             filter
-                            optionLabel="name"
+                            @change="resetFunc(true , item , index) ,getYearsFunc(item , index)"
+                            optionLabel="title"
                             optionValue="id"
                           :filter-placeholder="$t('search')"
                             :placeholder="$t('carModel')"
@@ -124,7 +126,7 @@
                           >
                             <template #option="slotProps">
                               <div class="flex align-items-center">
-                                <div>{{ slotProps.option.name }}</div>
+                                <div>{{ slotProps.option.title }}</div>
                               </div>
                             </template>
                           </Dropdown>
@@ -140,15 +142,17 @@
                         <div class="input">
                           <Dropdown
                             v-model="item.year"
-                            :options="years"
+                            :options="years[index]"
                             filter
                           :filter-placeholder="$t('search')"
                             optionLabel=""
+                            @change="getShiftersFunc(item , index)"
                             :placeholder="$t('theYear')"
                             class=""
                           >
                             <template #option="slotProps">
-                              <div class="flex align-items-center">
+                              <div @click="shifters[index] = [] , form[index].gear_shifter = '' , categories[index] = [] , colors[index] = [] , form[index].color = ''"
+                              class="flex w-100 align-items-center">
                                 <div>{{ slotProps.option }}</div>
                               </div>
                             </template>
@@ -164,16 +168,17 @@
                         <div class="input">
                         <Dropdown
                             v-model="item.gear_shifter"
-                            :options="gear_shifterArr"
+                            :options="shifters[index]"
                             filter
                             :filter-placeholder="$t('search')"
-                            optionLabel="name"
-                            optionValue="value"
+                              optionLabel="name"
+                             optionValue="value"
+                             @change="getColorsFunc(item , index)"
                             :placeholder="$t('gear')"
                             class=""
                           >
                             <template #option="slotProps">
-                              <div class="flex align-items-center">
+                              <div @click="colors[index] = [] , form[index].color = ''" class="flex w-100 align-items-center">
                                 <div>{{ slotProps.option.name }}</div>
                               </div>
                             </template>
@@ -192,9 +197,9 @@
                         <div class="input">
                           <Dropdown
                             v-model="item.color"
-                            :options="optionsCars.colors"
+                            :options="colors[index]"
                             filter
-                            optionLabel="title"
+                            optionLabel="name"
                             :filter-placeholder="$t('search')"
                             optionValue="id"
                             :placeholder="$t('example6')"
@@ -202,7 +207,7 @@
                           >
                             <template #option="slotProps">
                               <div class="flex align-items-center">
-                                <div>{{ slotProps.option.title }}</div>
+                                <div>{{ slotProps.option.name }}</div>
                               </div>
                             </template>
                           </Dropdown>
@@ -508,7 +513,6 @@ const currentDate = new Date();
 const currentYear = currentDate.getFullYear() + 1;
 
 let paymentOtp = ref(1);
-let years = ref([]);
 const getDesc = async () => {
   let result = await axios.get(`${getUrl()}/allsettings`, {
     headers: {
@@ -521,19 +525,120 @@ const getDesc = async () => {
 console.log(years.value);
 }
 
+let form = ref([
+    {
+        brand: '',
+        model: '',
+        year: '',
+        color: '',
+        gear_shifter: '',
+        car_count: 1
+    }
+]);
+
+
+
 let optionsCars = ref([]);
 let brands = ref([]);
-
+let models = ref(Array(form.value.length).fill([]));
+let years = ref(Array(form.value.length).fill([]));
+let categories = ref(Array(form.value.length).fill([]));
+let shifters = ref(Array(form.value.length).fill([]))
+let colors = ref(Array(form.value.length).fill([]));
+console.log(models.value);
+watch(()=> form.value , (val)=>{
+  if(val.length){
+    models.value = models.value.length >= 1 ? Array(val.length).fill([], models.value.length - 1) : Array(val.length).fill([]);
+    years.value = years.value.length >= 1 ? Array(val.length).fill([], years.value.length - 1) : Array(val.length).fill([]);
+    shifters.value = shifters.value.length >= 1 ? Array(val.length).fill([],  shifters.value.length -1) : Array(val.length).fill([]);
+    colors.value = colors.value.length >= 1 ? Array(val.length).fill([], colors.value.length - 1) : Array(val.length).fill([]);
+  }
+});
 const getOptions = async () => {
-    let result = await axios.get(`${getUrl()}/car-option`, {
-        headers: {
-            "Content-Language": `${locale.value}`,
-        },
-    });
+  let result = await axios.get(`${getUrl()}/get_brands`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
 
-    optionsCars.value = result.data.data;
-    brands.value = result.data.data.brands;
+  brands.value = result.data.data;
 };
+const getOptions2 = async () => {
+  let result = await axios.get(`${getUrl()}/car-option`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  optionsCars.value = result.data.data;
+};
+const getmodelsFunc = async (item , index) => {
+  console.log(index);
+  
+  let result = await axios.get(`${getUrl()}/get_models_by_brands/${item.brand}`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  models.value[index] = result.data.data;
+ for(let i = 0; i< index; i++){
+ }
+ console.log(models.value);
+ 
+ 
+};
+const getYearsFunc = async (item , index) => {
+  let result = await axios.get(`${getUrl()}/available-years/${item.brand}/${item.model}`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  years.value[index] = result.data.data;
+
+ 
+};
+const getShiftersFunc = async (item , index) => {
+  let result = await axios.get(`${getUrl()}/available-gear-shifters/${item.brand}/${item.model}/${item.year}`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  shifters.value[index] = result.data.data;
+
+ 
+};
+const getCategoriesFunc = async (item) => {
+  let result = await axios.get(`${getUrl()}/available-categories/${item.brand}/${item.model}/${item.year}/${item.gear_shifter}`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+
+  categories.value = result.data.data;
+};
+const getColorsFunc = async (item , index) => {
+  let result = await axios.get(`${getUrl()}/available-color/${item.brand}/${item.model}/${item.year}/${item.gear_shifter}`, {
+    headers: {
+      "Content-Language": `${locale.value}`,
+    },
+  });
+  colors.value[index] = result.data.data;
+
+};
+
+const resetFunc = (check , item , index)=>{
+  models.value[index] = check ? models.value[index] : [];
+  years.value[index] = [];
+  shifters.value[index] = [];
+  colors.value[index] = [];
+  form.value[index].model = check ? item.model : "";
+  form.value[index].gear_shifter = "";
+  form.value[index].year = "";
+  // item.category = "";
+  form.value[index].color = "";
+}
 
 
 let paymentSec1 = ref(1);
@@ -616,16 +721,6 @@ const getCites = async () => {
 let paymentIndividualBtn = ref(1);
 let paymentIndividualBtn2 = ref(1);
 
-let form = ref([
-    {
-        brand: '',
-        model: '',
-        year: '',
-        color: '',
-        gear_shifter: '',
-        car_count: 1
-    }
-]);
 
 
 
@@ -756,7 +851,7 @@ const sendCorporate1 = async () => {
     // let formBody = new FormData();
     // formBody.append("brand", form2.value.brand);
     v$.value.$validate();
-
+console.log(form.value);
     if (isFormFilled()) {
         pendingCorp1.value = true;
         try{
@@ -835,6 +930,7 @@ const sendCorporate2 = async () => {
 
 
 onMounted(() => {
+  getOptions2();
     getOptions();
   getDesc();
     getCites();

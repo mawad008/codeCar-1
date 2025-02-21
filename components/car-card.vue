@@ -17,7 +17,12 @@
       <!-- <div class="image">
                 <img :src="car.main_image" alt="" />
             </div> -->
-      <span class="namee">{{ car.statue }}</span>
+            <div class="namee d-flex align-items-center gap-2">
+              <div class="" v-if="car?.statuekey == 1" style="width: 10px; height: 10px; border-radius: 50%; background-color: green;"></div>
+              <div class="" v-else style="width: 10px; height: 10px; border-radius: 50%; background-color: red;"></div>
+              <span class="">{{ car.statue }}</span>
+
+            </div>
       <div class="name d-flex flex-column">
         <span class="used" v-if="car.discount_percentage > 0"> {{ $t('discc') }} {{
       car.discount_percentage }} % </span>

@@ -220,4 +220,24 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.single-new{
+    .text{
+        img{
+            width: 100% !important;
+            border-radius: 16px;
+        }
+    }
+}
+
+@media(max-width: 770px){
+    .single-new{
+    .text{
+        img{
+         height: 270px !important;
+        }
+    }
+}
+ 
+}
+</style>
