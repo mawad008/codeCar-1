@@ -15,7 +15,7 @@
             </div>
 
             <div class="row">
-                <div v-for="item in newsArr.news" class="col-12 col-xl-4 col-lg-4 col-md-6 my-2">
+                <div v-for="item in newsArr.news?.data" class="col-12 col-xl-4 col-lg-4 col-md-6 my-2">
                     <div class="box">
                     <img :src="item.main_image" alt="">
                         <div class="overlay">
@@ -56,6 +56,14 @@
                     </div>
                 </div>
             </div>
+
+            <div class="mt-5">
+                <v-pagination
+      v-model="page"
+      :length="pageCount"
+      :total-visible="7"
+    ></v-pagination>
+            </div>
         </div>
 
         <Loader v-if="pending"></Loader> 
@@ -72,25 +80,40 @@ let store = useStore;
 const router = useRouter();
 
 let pending = ref(false);
-
+let page = ref(1);
 let newsArr = ref([]);
+let total = ref();
+let itemsPerPage = ref();
 const getNewsData = async ()=>{
     pending.value = true;
   let result = await axios.get(`${getUrl()}/cars-news`, {
     headers: {
       "Content-Language": `${locale.value}`,
     },
+    params:{
+        page: page.value
+    }
   });
 
 if(result.status == 200){
     pending.value = false;
     newsArr.value = result.data.data;
+    total.value = result.data.data.news?.total;
+    itemsPerPage.value = result.data.data?.news?.per_page;
 
 }
 
 }
 
+const pageCount = computed(() => {
+  return Math.ceil(total.value / itemsPerPage.value);
+});
 
+watch(()=> page.value , (val)=>{
+    if(val){
+        getNewsData(); 
+    }
+})
 
 const goToNewPage = (id , name) =>{
     const queryParams = {
@@ -135,4 +158,10 @@ onMounted(() => {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+ html[dir="rtl"]{
+    .v-pagination__prev , .v-pagination__next{
+        transform: scaleX(-1);
+    }
+ }
+</style>

@@ -1155,7 +1155,7 @@
                             <span class="name"> {{ $t("carPrice") }} </span>
                           </div>
                           <p class="price">
-                            {{ item.car.price_after_tax }} {{ $t("curr") }}
+                            {{ item.price }} {{ $t("curr") }}
                           </p>
                         </div>
                         <div class="detail">
