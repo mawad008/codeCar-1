@@ -2573,6 +2573,9 @@ html[dir=ltr] .main-car-page .main-col-images {
   gap: 14px;
   width: 50%;
 }
+.paymentType .input-container.custom {
+  width: 100%;
+}
 .paymentType .input-container span {
   font-size: 14px;
   font-style: normal;

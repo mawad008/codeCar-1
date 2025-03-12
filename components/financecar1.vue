@@ -5,10 +5,10 @@
         <div class="main-pagination-container">
           <div class="pagination-container">
             <div class="contain">
-              <div class="icon" :class="{ active: paymentBtn1 == 1 }">
+              <!-- <div class="icon" :class="{ active: paymentBtn1 == 1 }">
                 <img class="def" src="@/assets/images/calc-icon1.svg" alt="" />
                 <img class="active" src="@/assets/images/calc-icon-active1.svg" alt="" />
-              </div>
+              </div> -->
               <div class="icon" :class="{ active: paymentBtn2 == 1 }">
                 <img class="def" src="@/assets/images/calc-icon2.svg" alt="" />
                 <img class="active" src="@/assets/images/calc-icon-active2.svg" alt="" />
@@ -27,11 +27,11 @@
               </div>
             </div>
             <div class="text">
-              <div>
+              <!-- <div>
                 <h5 :class="{ active: paymentBtn1 == 1 }">
                   {{ $t('finance1') }}
                 </h5>
-              </div>
+              </div> -->
               <div>
                 <h5 :class="{ active: paymentBtn2 == 1 }">
                   {{ $t('finance2') }}
@@ -60,13 +60,13 @@
           </div>
 
           <div class="content-pagination">
-            <div>
+            <!-- <div>
               <h5 :class="{ active: paymentBtn1 == 1 }">
                 {{ $t('finance1') }}
 
               </h5>
               <span> {{ $t('text1') }} </span>
-            </div>
+            </div> -->
             <div>
               <h5 :class="{ active: paymentBtn2 == 1 }">
                 {{ $t('finance2') }}
@@ -98,9 +98,9 @@
           </div>
           <div class="pagination-container ">
             <div class="contain second">
-              <div class="dot" :class="{ active: paymentBtn1 == 1, check: checkBtn1 == 1 }">
+              <!-- <div class="dot" :class="{ active: paymentBtn1 == 1, check: checkBtn1 == 1 }">
                 <i class="fa-solid fa-check"></i>
-              </div>
+              </div> -->
               <div class="dot" :class="{ active: paymentBtn2 == 1, check: checkBtn2 == 1 }">
                 <i class="fa-solid fa-check"></i>
               </div>
@@ -119,7 +119,7 @@
         </div>
       </div>
       <div class="col-12 col-xl-7 col-lg-7">
-        <div v-if="paymentIndividualBtn == 1" class="range-container">
+        <!-- <div v-if="paymentIndividualBtn == 1" class="range-container">
           <div class="d-flex flex-column range-slider">
 
             <span class="word">{{ $t('calc1') }}</span>
@@ -127,7 +127,6 @@
               class="custom-slider mt-5" @input="updateRange()" :reverse="checkSlider">
               <template  v-slot:thumb-label="{ value }">
                 <div class="d-flex align-items-center gap-2">
-                  <!-- <span> {{ $t('curr') }} </span> -->
                   % {{ sliderValue1 }}
                 </div>
               </template>
@@ -156,7 +155,6 @@
               class="custom-slider mt-5" @input="updateRange()" :reverse="checkSlider">
               <template v-slot:thumb-label="{ value }">
                 <div class="d-flex align-items-center gap-2">
-                  <!-- <span> {{ $t('curr') }} </span> -->
                   % {{ sliderValue3 }}
                 </div>
               </template>
@@ -183,7 +181,7 @@
               <v-progress-circular v-if="pending1" indeterminate :size="25" :width="4"></v-progress-circular>
             </button>
           </div>
-        </div>
+        </div> -->
 
         <div v-if="paymentIndividualBtn == 2" class="d-flex flex-column gap-4">
           <div class="d-flex flex-column flex-xl-row flex-lg-row gap-3">
@@ -1079,9 +1077,9 @@ let store = useStore;
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let paymentMethod = ref(1);
-let sliderValue1 = ref(15);
-let sliderValue2 = ref(3);
-let sliderValue3 = ref(15);
+let sliderValue1 = ref(0);
+let sliderValue2 = ref(5);
+let sliderValue3 = ref(40);
 let showConfirm = ref(false);
 let minNum = ref(0);
 let maxNum = ref(50);
@@ -1139,12 +1137,12 @@ const getOptions = async () => {
   // sliderValue3.value = parseInt(result.data.data.Slider.minPrice) + 20000;
 };
 let paymentBtn1 = ref(1);
-let paymentBtn2 = ref(0);
+let paymentBtn2 = ref(1);
 let paymentBtn3 = ref(0);
 let paymentBtn4 = ref(0);
 let paymentBtn5 = ref(0);
 let checkBtn1 = ref(0);
-let checkBtn2 = ref(0);
+let checkBtn2 = ref(1);
 let checkBtn3 = ref(0);
 let checkBtn4 = ref(0);
 let checkBtn5 = ref(0);
@@ -1313,7 +1311,6 @@ const rules2 = computed(() => {
     // brand: { required: helpers.withMessage(value1.value, required) },
     // model: { required: helpers.withMessage(value1.value, required) },
     // year: { required: helpers.withMessage(value1.value, required) },
-    // gear_shifter: { required: helpers.withMessage(value1.value, required) },
     color_id: { required: helpers.withMessage(value1.value, required) },
   }
 });
@@ -1377,6 +1374,9 @@ let carDet = ref({
   year:"",
 });
 
+
+
+
 let pendingFilter = ref(false);
 const offersFiter = async () =>{
   v3$.value.$validate();
@@ -1438,23 +1438,24 @@ const paymentFunc1 = async () => {
   });
   if (result.status >= 200) {
     pending1.value = false;
-    paymentBtn2.value = 1;
-    checkBtn1.value = 1;
+    // paymentBtn2.value = 1;
+    // checkBtn1.value = 1;
     carDet.value.brand = result.data.brand;
     carDet.value.category = result.data.category;
     carDet.value.gear_shifter = result.data.gear_shifter;
     carDet.value.model = result.data.model;
     carDet.value.year = result.data.year;
-    paymentIndividualBtn.value = 2;
+    // paymentIndividualBtn.value = 2;
   }
 };
+paymentFunc1();
 const paymentFunc2 = async () => {
 
   let formBody = new FormData();
   formBody.append("first_batch", sliderValue1.value);
   formBody.append("installment", sliderValue2.value);
   formBody.append("last_batch", sliderValue3.value);
-  formBody.append("color_id", form2.value.color_id);
+  formBody.append("color_id",  form2.value.color_id);
   let check = await v2$.value.$validate();
   if (check) {
 
@@ -1690,7 +1691,7 @@ const getmodels = computed(() => {
 });
 
 
-let paymentIndividualBtn = ref(1);
+let paymentIndividualBtn = ref(2);
 let max_years = ref('');
 watch([()=> form3.value.department_loan_support , ()=> form3.value.department_loan ] , ([val1 , val2])=>{
     form3.value.support_price = val1 == 1 ? form3.value.support_price : "";

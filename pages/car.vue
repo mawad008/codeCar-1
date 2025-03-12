@@ -475,7 +475,7 @@
                     @click="paymentType = 1"
                     class="cash"
                     :class="{ active: mainCar.statuekey == 0 }"
-                    >{{ $t("cash") }}</a
+                    >{{ $t("purchaseOrder") }}</a
                   >
                   <a
                     v-if="mainCar.statuekey == 1"
@@ -567,7 +567,7 @@
           class="payment-container"
         >
           <div class="textt">
-            <h4>{{ $t("cash") }}</h4>
+            <h4>{{ $t("purchaseOrder") }}</h4>
             <span class="word">
               {{ $t("cash1") }}
             </span>
@@ -638,34 +638,66 @@
                   </div>
                
                 </div>
-                <div class="input-container">
-                    <span> {{ $t("color") }} </span>
-                    <div class="input">
-                      <!-- optionLabel="title" -->
-                      <Dropdown
-                        v-model="formCash1.color_id"
-                        :options="mainCar.color ? mainCar.color : optionsCars.colors"
+                <div class="row ">
+                  <div class="col-12 col-xl-6 col-lg-6 ">
+                    <div class="input-container custom ">
+                        <span> {{ $t("color") }} </span>
+                        <div class="input">
+                          <!-- optionLabel="title" -->
+                          <Dropdown
+                            v-model="formCash1.color_id"
+                            :options="mainCar.color ? mainCar.color : optionsCars.colors"
+                            filter
+                            optionValue="id"
+                            :optionLabel="`${mainCar.color ? 'name' : 'title'}`"
+                            :filter-placeholder="$t('search')"
+                            :placeholder="$t('color')"
+                            class=""
+                          >
+                            <template #option="slotProps">
+                              <div class="flex align-items-center">
+                                <div>{{ slotProps.option.name ?  slotProps.option.name : slotProps.option.title}}</div>
+                              </div>
+                            </template>
+                          </Dropdown>
+                          <span class="error-msg" v-if="v1$.color_id.$error">{{
+                            v1$.color_id.$errors[0].$message
+                          }}</span>
+                        </div>
+                        <span class="error-msg mt-1" v-if="errors1.color_id">{{
+                          errors1.color_id[0]
+                        }}</span>
+                      </div>
+                  </div>
+                  <div class="col-12 col-xl-6 col-lg-6">
+                    <div class="input-container custom">
+                        <span> {{ $t("kind") }} </span>
+                        <div class="input">
+                          <Dropdown
+                        v-model="formCash1.type_of_order"
+                        :options="typeOfOrders"
                         filter
-                        optionValue="id"
-                        :optionLabel="`${mainCar.color ? 'name' : 'title'}`"
+                        optionValue="value"
+                        optionLabel="name"
                         :filter-placeholder="$t('search')"
-                        :placeholder="$t('color')"
                         class=""
                       >
                         <template #option="slotProps">
                           <div class="flex align-items-center">
-                            <div>{{ slotProps.option.name ?  slotProps.option.name : slotProps.option.title}}</div>
+                            <div>{{ slotProps.option.name}}</div>
                           </div>
                         </template>
                       </Dropdown>
-                      <span class="error-msg" v-if="v1$.color_id.$error">{{
-                        v1$.color_id.$errors[0].$message
-                      }}</span>
-                    </div>
-                    <span class="error-msg mt-1" v-if="errors1.color_id">{{
-                      errors1.color_id[0]
-                    }}</span>
+                          <span class="error-msg" v-if="v1$.type_of_order.$error">{{
+                            v1$.type_of_order.$errors[0].$message
+                          }}</span>
+                        </div>
+                        <span class="error-msg mt-1" v-if="errors1.type_of_order">{{
+                          errors1.type_of_order[0]
+                        }}</span>
+                      </div>
                   </div>
+                </div>
               
                 <button @click="cashFunc1()" class="gap-3">
                   {{ $t("send") }}
@@ -1026,6 +1058,31 @@
                       }}</span>
                       <span class="error-msg" v-if="errors2.color_id">{{
                         errors2.color_id[0]
+                      }}</span>
+                    </div>
+                  </div>
+                  <div class="input-container">
+                    <span> {{ $t("kind") }}</span>
+                    <div class="input">
+                      <Dropdown
+                        v-model="formCash2.type_of_order"
+                        :options="typeOfOrders"
+                        optionValue="value"
+                        optionLabel="name"
+                        :filter-placeholder="$t('search')"
+                        class=""
+                      >
+                        <template #option="slotProps">
+                          <div class="flex align-items-center">
+                            <div>{{ slotProps.option.name}}</div>
+                          </div>
+                        </template>
+                      </Dropdown>
+                      <span class="error-msg" v-if="v2$.type_of_order.$error">{{
+                        v2$.type_of_order.$errors[0].$message
+                      }}</span>
+                      <span class="error-msg" v-if="errors2.type_of_order">{{
+                        errors2.type_of_order[0]
                       }}</span>
                     </div>
                   </div>
@@ -1601,6 +1658,17 @@ const isLightColor = (hex) => {
   return luminance > 0.5;
 };
 
+let typeOfOrders = ref([
+  {
+    value: "cash",
+    name: locale.value == "ar" ? " كاش " : "cash",
+  },
+  {
+    value: "finance",
+    name: locale.value == "ar" ? "تمويل" : "finance",
+  },
+]);
+
 let btnModel = ref(1);
 let btnModel2 = ref(1);
 let paymentMethod = ref(1);
@@ -1638,6 +1706,8 @@ let showConfirmCash = ref(false);
 let otp1 = ref("");
 let orderNumber1 = ref("");
 let otp2 = ref("");
+
+
 
 let theRoute = ref("");
 let id = ref(route.query.id);
@@ -1753,6 +1823,7 @@ let formCash1 = ref({
   name: "",
   phone: "",
   color_id: "",
+  type_of_order: "",
 });
 let formCash2 = ref({
   organization_name: "",
@@ -1763,6 +1834,7 @@ let formCash2 = ref({
   city_id: "",
   bank_id: "",
   phone: "",
+  type_of_order: "",
   organization_age: "",
   car_count: 1,
   color_id:""
@@ -1772,6 +1844,7 @@ const rules1 = computed(() => {
   return {
     name: { required: helpers.withMessage(value1.value, required) },
     phone: { required: helpers.withMessage(value1.value, required) },
+    type_of_order: { required: helpers.withMessage(value1.value, required) },
     color_id: { required: helpers.withMessage(value1.value, required) },
   };
 });
@@ -1779,6 +1852,7 @@ const rules2 = computed(() => {
   return {
     name: { required: helpers.withMessage(value1.value, required) },
     phone: { required: helpers.withMessage(value1.value, required) },
+    type_of_order: { required: helpers.withMessage(value1.value, required) },
     color_id: { required: helpers.withMessage(value1.value, required) },
     organization_name: {
       required: helpers.withMessage(value1.value, required),
@@ -1855,6 +1929,7 @@ const cashFunc1 = async () => {
     formBody.append("bank_id", formCash2.value.bank_id);
     formBody.append("phone", formCash2.value.phone);
     formBody.append("organization_age", formCash2.value.organization_age);
+    formBody.append("type_of_order", formCash2.value.type_of_order);
     formBody.append("car_count", formCash2.value.car_count);
     formBody.append("color_id", formCash2.value.color_id);
     let check = await v2$.value.$validate();

@@ -27,7 +27,7 @@ export const createFormData = (
     salary,
     bank,
     Monthly_cometment,
-    transferd_type,
+    // transferd_type,
     email,
     nationality_id,
     have_life_problem,
@@ -57,7 +57,7 @@ export const createFormData = (
     ["salary", salary],
     ["bank", bank],
     ["Monthly_cometment", Monthly_cometment],
-    ["transferd_type", transferd_type],
+    // ["transferd_type", transferd_type],
     ["email", email],
     ["have_life_problem", have_life_problem],
     ["traffic_violations", traffic_violations],
@@ -105,7 +105,7 @@ export const createFormData2 = (
     salary,
     bank,
     Monthly_cometment,
-    transferd_type,
+    // transferd_type,
     email,
     nationality_id,
     have_life_problem,
@@ -135,7 +135,7 @@ export const createFormData2 = (
     ["salary", salary],
     ["bank", bank],
     ["Monthly_cometment", Monthly_cometment],
-    ["transferd_type", transferd_type],
+    // ["transferd_type", transferd_type],
     ["email", email],
     ["department_loan_support", department_loan_support],
     ["support_price", support_price],
@@ -166,7 +166,7 @@ export const createFormData1 = (
   const formData = new FormData();
 
   // Destructure form values
-  const { brand, model, year, gear_shifter, color_id , category } = form2;
+  const { brand, model, year, gear_shifter, color_id , category} = form2;
   const {
     client_name,
     phone,
@@ -178,7 +178,7 @@ export const createFormData1 = (
     salary,
     bank,
     Monthly_cometment,
-    transferd_type,
+    // transferd_type,
     email,
     nationality_id,
     have_life_problem,
@@ -211,7 +211,7 @@ export const createFormData1 = (
     ["support_price", support_price],
     ["bank", bank],
     ["Monthly_cometment", Monthly_cometment],
-    ["transferd_type", transferd_type],
+    // ["transferd_type", transferd_type],
     ["email", email],
     ["have_life_problem", have_life_problem],
     ["traffic_violations", traffic_violations],

@@ -469,7 +469,9 @@
                   errors4.bank_id[0]
                 }}</span>
                       </div>
+                     
                     </div>
+                
                     <div class="btns">
                       <button @click="paymentIndividualBtn2 = 1" class="back">
                         {{ $t('back') }}
@@ -535,6 +537,7 @@ let form = ref([
         car_count: 1
     }
 ]);
+
 
 
 
@@ -803,6 +806,7 @@ let form4 = ref(
         organization_name: '',
         organization_type: '',
         commercial_registration_no: '',
+        organization_activity: '',
         organization_activity: '',
         name: '',
         phone: '',

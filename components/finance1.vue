@@ -13,14 +13,14 @@
                   alt=""
                 />
               </div>
-              <div class="icon" :class="{ active: paymentBtn2 == 1 }">
+              <!-- <div class="icon" :class="{ active: paymentBtn2 == 1 }">
                 <img class="def" src="@/assets/images/calc-icon1.svg" alt="" />
                 <img
                   class="active"
                   src="@/assets/images/calc-icon-active1.svg"
                   alt=""
                 />
-              </div>
+              </div> -->
 
               <div class="icon" :class="{ active: paymentBtn3 == 1 }">
                 <img class="def" src="@/assets/images/calc-icon3.svg" alt="" />
@@ -53,11 +53,11 @@
                   {{ $t("finance2") }}
                 </h5>
               </div>
-              <div>
+              <!-- <div>
                 <h5 :class="{ active: paymentBtn2 == 1 }">
                   {{ $t("finance1") }}
                 </h5>
-              </div>
+              </div> -->
 
               <div>
                 <h5 :class="{ active: paymentBtn3 == 1 }">
@@ -84,12 +84,12 @@
               </h5>
               <span> {{ $t("text2") }}</span>
             </div>
-            <div>
+            <!-- <div>
               <h5 :class="{ active: paymentBtn2 == 1 }">
                 {{ $t("finance1") }}
               </h5>
               <span> {{ $t("text1") }} </span>
-            </div>
+            </div> -->
 
             <div>
               <h5 :class="{ active: paymentBtn3 == 1 }">
@@ -118,12 +118,12 @@
               >
                 <i class="fa-solid fa-check"></i>
               </div>
-              <div
+              <!-- <div
                 class="dot"
                 :class="{ active: paymentBtn2 == 1, check: checkBtn2 == 1 }"
               >
                 <i class="fa-solid fa-check"></i>
-              </div>
+              </div> -->
 
               <div
                 class="dot"
@@ -343,6 +343,7 @@
               </div>
             </div>
           </div>
+      
           <div class="btns">
             <!-- <button @click="paymentIndividualBtn = 1" class="back">
               {{ $t("back") }}
@@ -362,7 +363,7 @@
             </button>
           </div>
         </div>
-        <div v-if="paymentIndividualBtn == 2">
+        <!-- <div v-if="paymentIndividualBtn == 2">
           <div v-if="sellingPrice" class="range-container">
             <div class="d-flex flex-column range-slider">
               <span class="word">{{ $t("calc1") }}</span>
@@ -378,7 +379,6 @@
               >
                 <template v-slot:thumb-label="{ value }">
                   <div class="d-flex align-items-center gap-2">
-                    <!-- <span> {{ $t('curr') }} </span> -->
                     % {{ sliderValue1 }}
                   </div>
                 </template>
@@ -423,7 +423,6 @@
               >
                 <template v-slot:thumb-label="{ value }">
                   <div class="d-flex align-items-center gap-2">
-                    <!-- <span> {{ $t('curr') }} </span> -->
                     % {{ sliderValue3 }}
                   </div>
                 </template>
@@ -483,7 +482,6 @@
               </client-only>
               <h4>{{ $t("unCar") }}</h4>
               <span>
-                <!-- {{ $t("offerEmpty2") }} -->
                 {{ $t("contactCodCar") }}
                 <a :href="`tel:${generalPhone}`" class="fw-bold">
                   {{ generalPhone }}
@@ -498,7 +496,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div
           v-if="paymentIndividualBtn == 3"
@@ -1438,9 +1436,9 @@ let store = useStore;
 const localePath = useLocalePath();
 const { locale } = useI18n();
 let paymentMethod = ref(1);
-let sliderValue1 = ref(15);
-let sliderValue2 = ref(3);
-let sliderValue3 = ref(15);
+let sliderValue1 = ref(0);
+let sliderValue2 = ref(5);
+let sliderValue3 = ref(40);
 let showConfirm = ref(false);
 let minNum = ref(0);
 let maxNum = ref(50);
@@ -1589,16 +1587,7 @@ let checkBtn3 = ref(0);
 let checkBtn4 = ref(0);
 let checkBtn5 = ref(0);
 
-let gear_shifterArr = ref([
-  {
-    value: "manual",
-    name: locale.value == "ar" ? " جير عادي " : "manual",
-  },
-  {
-    value: "automatic",
-    name: locale.value == "ar" ? "اوتوماتيك" : "automatic",
-  },
-]);
+
 
 let sexArr = ref([
   {
@@ -1856,9 +1845,9 @@ const paymentFunc2 = async () => {
   formBody.append("gear_shifter", form2.value.gear_shifter);
   formBody.append("color_id", form2.value.color_id);
   formBody.append("category", form2.value.category);
-  // formBody.append("first_batch", sliderValue1.value);
-  // formBody.append("installment", sliderValue2.value);
-  // formBody.append("last_batch", sliderValue3.value);
+  formBody.append("first_batch", sliderValue1.value);
+  formBody.append("installment", sliderValue2.value);
+  formBody.append("last_batch", sliderValue3.value);
   let check = await v2$.value.$validate();
   if (check) {
     pending2.value = true;
@@ -1873,9 +1862,9 @@ const paymentFunc2 = async () => {
         },
       });
       if (result.status >= 200) {
-        paymentIndividualBtn.value = 2;
-        paymentBtn2.value = 1;
-        checkBtn1.value = 1;
+        paymentIndividualBtn.value = 3;
+        paymentBtn3.value = 1;
+        checkBtn3.value = 1;
         pending2.value = false;
         errors2.value = [];
         if (result.data.data) {

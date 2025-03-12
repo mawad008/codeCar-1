@@ -299,7 +299,7 @@
             <div class="input-container">
               <span> {{ $t('orgAge') }} </span>
               <div class="input">
-                <input type="number" min="1" placeholder="4" name="" v-model="form4.organization_age" class="" />
+                <input type="number" min="1" :placeholder="$t('orgAge')" name="" v-model="form4.organization_age" class="" />
                 <span class="error-msg" v-if="v4$.organization_age.$error">{{
                   v4$.organization_age.$errors[0].$message
                 }}</span>
@@ -349,6 +349,7 @@
                 }}</span>
               </div>
             </div>
+   
           </div>
           <div class="btns">
             <button @click="paymentIndividualBtn2 = 1" class="back">
@@ -454,6 +455,7 @@ if (locale.value == "ar") {
 
 let errors3 = ref([]);
 let pending3 = ref(false);
+
 
 
 
