@@ -373,7 +373,7 @@
                       </div>
                       <h5>{{ item.main_title }}</h5>
                     </td>
-                    <td class="price">{{ item.price }} {{ $t('curr') }}</td>
+                    <td class="price">{{ item.price }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></td>
                     <td class="date">{{ item.publish_date }}</td>
                     <td class="stat">{{ item.statue }}</td>
                     <td v-if="item.statusCar == 2" class="switch-container ">
