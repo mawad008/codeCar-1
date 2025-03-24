@@ -9,8 +9,12 @@
     </div>
 </template>
 
-<script>
-export default {
-  
-}
+<script setup>
+
 </script>
+
+<style>
+html[dir="ltr"] .price-dir{
+  direction: rtl;
+}
+</style>

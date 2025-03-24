@@ -34,10 +34,10 @@
         </div>
         <div v-else>
           <div class="d-flex align-items-center justify-content-between w-100">
-            <h5 class="price-text">{{ car.selling_price }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></h5>
-            <span class="disc2" v-if="car.have_discount == 1"> {{ car.price }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal> </span>
+            <h5 class="price-text price-dir">{{ car.selling_price }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></h5>
+            <span class="disc2  price-dir" v-if="car.have_discount == 1"> {{ car.price }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal> </span>
           </div>
-          <span> {{ car.price_after_tax }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal> {{ $t('taxes') }}</span>
+          <span class="price-dir"><riyal class="mb-1 mx-1" color="#90a3bf" v-if="locale == 'en'"></riyal> {{ car.price_after_tax }} <riyal v-if="locale == 'ar'" class="mb-1 mx-1" color="#90a3bf"></riyal> {{ $t('taxes') }}</span>
         </div>
       </div>
       <div class="types">

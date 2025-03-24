@@ -273,9 +273,9 @@
                     <span class="fw-bolder text-gray"> {{ $t('Asoum') }} </span>
                   </div>
                   <div v-else class="main-price">
-                    <h5>{{ mainCar.selling_price }} <riyal width="15" class="mb-1 mx-1" color="#90a3bf"></riyal></h5>
-                    <span v-if="mainCar.have_discount == 1" class="disc">{{ mainCar.price }} <riyal width="15" class="mb-1 mx-1" color="#90a3bf"></riyal></span>
-                    <span>( {{ mainCar.price_after_tax }} <riyal width="15" class="mb-1 mx-1" color="#90a3bf"></riyal>
+                    <h5 class="price-dir">{{ mainCar.selling_price }} <riyal width="15" class="mb-1 mx-1" color="#90a3bf"></riyal></h5>
+                    <span v-if="mainCar.have_discount == 1" class="disc price-dir">{{ mainCar.price }} <riyal width="15" class="mb-1 mx-1" color="#90a3bf"></riyal></span>
+                    <span class="price-dir">( {{ mainCar.price_after_tax }} <riyal width="15" class="mb-1 mx-1" color="#90a3bf"></riyal>
                       {{ $t("taxx") }} )</span>
                   </div>
                 </div>

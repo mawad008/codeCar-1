@@ -1152,8 +1152,8 @@
                             <img src="~/assets/images/det1.png" alt="" />
                             <span class="name"> {{ $t("carPrice") }} </span>
                           </div>
-                          <p class="price">
-                            {{ item.price }} {{ $t("curr") }}
+                          <p class="price d-flex flex-row gap-2 price-dir">
+                            {{ item.price }} <riyal class="mb-" width="15" color="#90a3bf"></riyal>
                           </p>
                         </div>
                         <div class="detail">
@@ -1161,8 +1161,8 @@
                             <img src="~/assets/images/det2.png" alt="" />
                             <span class="name"> {{ $t("offer3") }}</span>
                           </div>
-                          <p class="price">
-                            {{ item.firs_installment }} {{ $t("curr") }}
+                          <p class="price d-flex flex-row gap-2 price-dir">
+                            {{ item.firs_installment }} <riyal class="mb-" width="15" color="#90a3bf"></riyal>
                           </p>
                         </div>
                         <div class="detail">
@@ -1177,8 +1177,8 @@
                             <img src="~/assets/images/det4.png" alt="" />
                             <span class="name"> {{ $t("calc3") }}</span>
                           </div>
-                          <p class="price">
-                            {{ item.last_installment }} {{ $t("curr") }}
+                          <p class="price d-flex flex-row gap-2 price-dir">
+                            {{ item.last_installment }} <riyal class="mb-" width="15" color="#90a3bf"></riyal>
                           </p>
                         </div>
                         <div class="detail">
@@ -1186,9 +1186,9 @@
                             <img src="~/assets/images/det5.png" alt="" />
                             <span class="name"> {{ $t("offer5") }} </span>
                           </div>
-                          <p class="price">
+                          <p class="price d-flex flex-row gap-2 price-dir">
                             {{ item.sectorAdministrative_fees }}
-                            {{ $t("curr") }}
+                            <riyal class="mb-" width="15" color="#90a3bf"></riyal>
                           </p>
                         </div>
                       </div>
@@ -1255,7 +1255,7 @@
                   </p>
                 </div>
                 <div class="d-flex main flex-column">
-                  <h6>{{ theOffer.monthly_installment }} {{ $t("curr") }}</h6>
+                  <h6 class="price-dir">{{ theOffer.monthly_installment }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></h6>
                   <p class="type">{{ $t("offer1") }}</p>
                 </div>
               </div>
@@ -1268,14 +1268,14 @@
                       <img src="~/assets/images/det1.png" alt="" />
                       <span> {{ $t("carPrice") }} </span>
                     </div>
-                    <h6>{{ theOffer.price }} {{ $t("curr") }}</h6>
+                    <h6 class="price-dir">{{ theOffer.price }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></h6>
                   </div>
                   <div class="d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-2">
                       <img src="~/assets/images/det2.png" alt="" />
                       <span>{{ $t("calc3") }}</span>
                     </div>
-                    <h6>{{ theOffer.last_installment }} {{ $t("curr") }}</h6>
+                    <h6 class="price-dir">{{ theOffer.last_installment }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></h6>
                   </div>
                 </div>
                 <div
@@ -1286,14 +1286,14 @@
                       <img src="~/assets/images/det3.png" alt="" />
                       <span> {{ $t("offer3") }} </span>
                     </div>
-                    <h6>{{ theOffer.firs_installment }} {{ $t("curr") }}</h6>
+                    <h6 class="price-dir">{{ theOffer.firs_installment }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></h6>
                   </div>
                   <div class="d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-2">
                       <img src="~/assets/images/det4.png" alt="" />
                       <span>{{ $t("offer5") }}</span>
                     </div>
-                    <h6>{{ theOffer.sectorAdministrative_fees }} ريال سعودي</h6>
+                    <h6 class="price-dir">{{ theOffer.sectorAdministrative_fees }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal> </h6>
                   </div>
                 </div>
                 <div

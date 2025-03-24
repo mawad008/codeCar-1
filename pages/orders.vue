@@ -92,7 +92,7 @@
                                                     </svg>
                                                     <span>{{ $t('offer5') }}</span>
                                                 </div>
-                                                <h6>{{ item.adminstrative_fields }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></h6>
+                                                <h6 class="price-dir">{{ item.adminstrative_fields }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></h6>
                                             </div>
                                             <div class="d-flex w-100 align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center gap-2">
@@ -119,7 +119,7 @@
                                                     </svg>
                                                     <span>{{ $t('offer3') }}</span>
                                                 </div>
-                                                <h6>{{ item.first_installment }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></h6>
+                                                <h6 class="price-dir">{{ item.first_installment }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></h6>
                                             </div>
                                             <div class="d-flex w-100 align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center gap-2">
@@ -143,7 +143,7 @@
                                                     </svg>
                                                     <span>{{ $t('offer1') }}</span>
                                                 </div>
-                                                <h6>{{ item.monthly_installment }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></h6>
+                                                <h6 class="price-dir">{{ item.monthly_installment }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -198,7 +198,7 @@
                                                     </svg>
                                                     <span>{{ $t('offer2') }}</span>
                                                 </div>
-                                                <h6> {{ item.funding_amount }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal> </h6>
+                                                <h6 class="price-dir"> {{ item.funding_amount }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal> </h6>
                                             </div>
                                             <div class="d-flex w-100 align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center gap-2">
@@ -238,7 +238,7 @@
                                                     </svg>
                                                     <span>{{ $t('calc3') }}</span>
                                                 </div>
-                                                <h6>{{ item.last_installment }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></h6>
+                                                <h6 class="price-dir">{{ item.last_installment }} <riyal class="mb-1 mx-1" color="#90a3bf"></riyal></h6>
                                             </div>
                                             <div class="d-flex w-100 align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center gap-2">
